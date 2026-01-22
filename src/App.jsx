@@ -7,6 +7,7 @@ import ExplorePage from './pages/ExplorePage';
 import FavoritesPage from './pages/FavoritesPage';
 import EventsPage from './pages/EventsPage';
 import ProfilePage from './pages/ProfilePage';
+import SearchPage from './pages/SearchPage';
 
 /**
  * Application principale Muzea
@@ -24,6 +25,7 @@ function App() {
           <main className="pb-20 md:pb-0">
             <Routes>
               <Route path="/" element={<HomePage />} />
+              <Route path="/search" element={<SearchPage />} />
               <Route path="/explore" element={<ExplorePage />} />
               <Route path="/favorites" element={<FavoritesPage />} />
               <Route path="/events" element={<EventsPage />} />

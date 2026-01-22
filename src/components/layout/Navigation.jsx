@@ -24,8 +24,18 @@ const Navigation = () => {
     <header className="fixed top-0 left-0 right-0 z-50">
       {/* Fond bleu marine très foncé solide */}
       <div className="absolute inset-0 bg-[#0f0f1a]" />
-      {/* Dégradé de transition vers l'image hero - s'étend sous la navbar */}
-      <div className="absolute inset-x-0 top-full h-24 bg-gradient-to-b from-[#0f0f1a] via-[#0f0f1a]/60 to-transparent pointer-events-none" />
+      {/* Dégradé de transition vers l'image hero - effet bavure style Culturio */}
+      <div
+        className="absolute inset-x-0 top-full h-32 pointer-events-none"
+        style={{
+          background: `linear-gradient(to bottom,
+            #0f0f1a 0%,
+            rgba(15, 15, 26, 0.9) 25%,
+            rgba(15, 15, 26, 0.6) 50%,
+            rgba(15, 15, 26, 0.3) 75%,
+            transparent 100%)`
+        }}
+      />
 
       <nav className="relative max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">

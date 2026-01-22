@@ -108,16 +108,26 @@ const HomePage = () => {
             alt="Paris au crépuscule"
             className="w-full h-full object-cover"
           />
-          {/* Gradient overlay - transition fluide depuis la navbar bleu marine */}
+          {/* Gradient overlay - effet "bavure" fluide depuis la navbar bleu marine (style Culturio) */}
           <div
             className="absolute inset-0"
             style={{
               background: `linear-gradient(to bottom,
                 #0f0f1a 0%,
-                rgba(15, 15, 26, 0.85) 8%,
-                rgba(15, 15, 26, 0.4) 25%,
-                rgba(15, 15, 26, 0.3) 50%,
-                rgba(26, 26, 46, 0.7) 80%,
+                #0f0f1a 6%,
+                rgba(15, 15, 26, 0.97) 10%,
+                rgba(15, 15, 26, 0.92) 14%,
+                rgba(15, 15, 26, 0.85) 18%,
+                rgba(15, 15, 26, 0.75) 22%,
+                rgba(15, 15, 26, 0.6) 28%,
+                rgba(15, 15, 26, 0.45) 34%,
+                rgba(15, 15, 26, 0.3) 40%,
+                rgba(15, 15, 26, 0.18) 48%,
+                rgba(15, 15, 26, 0.1) 55%,
+                rgba(15, 15, 26, 0.05) 62%,
+                transparent 70%,
+                rgba(26, 26, 46, 0.2) 80%,
+                rgba(26, 26, 46, 0.5) 90%,
                 #1a1a2e 100%)`
             }}
           />

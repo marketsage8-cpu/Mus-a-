@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'display': ['"Cormorant Garamond"', 'serif'],
-        'body': ['"DM Sans"', 'sans-serif'],
+        'display': ['"Playfair Display"', 'serif'],
+        'body': ['"Inter"', 'sans-serif'],
       },
       colors: {
         stone: {

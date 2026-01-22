@@ -1,8 +1,8 @@
-# Culture Explorer
+# Muzea
 
 Une plateforme web immersive pour découvrir le patrimoine culturel français : musées, châteaux, monuments et expositions.
 
-![Culture Explorer](https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1200&q=80)
+![Muzea](https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1200&q=80)
 
 ## Fonctionnalités
 

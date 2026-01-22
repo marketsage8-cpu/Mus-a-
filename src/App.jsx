@@ -9,7 +9,7 @@ import EventsPage from './pages/EventsPage';
 import ProfilePage from './pages/ProfilePage';
 
 /**
- * Application principale Culture Explorer
+ * Application principale Muzea
  * Plateforme immersive pour découvrir le patrimoine culturel
  */
 function App() {

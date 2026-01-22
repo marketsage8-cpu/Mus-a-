@@ -108,8 +108,19 @@ const HomePage = () => {
             alt="Paris au crépuscule"
             className="w-full h-full object-cover"
           />
-          {/* Gradient overlay - blue-violet tones */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a2e]/60 via-[#1a1a2e]/40 to-[#1a1a2e]" />
+          {/* Gradient overlay - transition fluide depuis la navbar bleu marine */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `linear-gradient(to bottom,
+                #0f0f1a 0%,
+                rgba(15, 15, 26, 0.85) 8%,
+                rgba(15, 15, 26, 0.4) 25%,
+                rgba(15, 15, 26, 0.3) 50%,
+                rgba(26, 26, 46, 0.7) 80%,
+                #1a1a2e 100%)`
+            }}
+          />
         </div>
 
         {/* Hero Content - centered */}

@@ -332,7 +332,7 @@ const CabinetBackground = () => {
           backgroundRepeat: 'repeat',
           backgroundSize: '400px 400px',
           backgroundPosition: 'center top',
-          opacity: 0.4,
+          opacity: 0.55,
         }}
       />
 

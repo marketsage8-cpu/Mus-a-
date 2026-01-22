@@ -303,7 +303,7 @@ const HomePage = () => {
       {/* ============================================
           SECTION 3: MUZEA NOW
           ============================================ */}
-      <section className="relative py-20 px-4" style={{ backgroundColor: 'rgba(26, 26, 46, 0.85)' }}>
+      <section className="relative py-20 px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section header - Muzea Now centered layout */}
           <div className="text-center mb-12">

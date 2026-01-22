@@ -19,10 +19,11 @@ const HomePage = () => {
   // Expositions éphémères (filtrer par type "exposition")
   const exhibitions = places.filter(p => p.type === 'exposition');
 
-  // Carousel state
-  const carouselRef = useRef(null);
+  // Carousel 3D state
+  const [activeIndex, setActiveIndex] = useState(Math.floor(exhibitions.length / 2));
   const [selectedExhibition, setSelectedExhibition] = useState(null);
   const [flippedCards, setFlippedCards] = useState({});
+  const carouselRef = useRef(null);
 
   // Get user location on mount
   useEffect(() => {
@@ -99,15 +100,20 @@ const HomePage = () => {
     }
   };
 
-  // Carousel scroll functions
-  const scrollCarousel = (direction) => {
-    if (carouselRef.current) {
-      const scrollAmount = 350;
-      carouselRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
-    }
+  // Carousel 3D navigation
+  const navigateCarousel = (direction) => {
+    setActiveIndex(prev => {
+      if (direction === 'left') {
+        return prev > 0 ? prev - 1 : exhibitions.length - 1;
+      } else {
+        return prev < exhibitions.length - 1 ? prev + 1 : 0;
+      }
+    });
+  };
+
+  // Go to specific card
+  const goToCard = (index) => {
+    setActiveIndex(index);
   };
 
   // Toggle flip card
@@ -423,40 +429,90 @@ const HomePage = () => {
             </p>
           </div>
 
-          {/* Carousel container */}
-          <div className="relative">
+          {/* Carousel 3D container */}
+          <div className="relative py-16">
             {/* Navigation arrows */}
             <button
-              onClick={() => scrollCarousel('left')}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-12 h-12 bg-[#d4a574] hover:bg-[#c49464] rounded-full flex items-center justify-center shadow-xl transition-all hover:scale-110"
+              onClick={() => navigateCarousel('left')}
+              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-30 w-14 h-14 bg-[#d4a574] hover:bg-[#c49464] rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110"
             >
-              <ChevronLeft className="w-6 h-6 text-[#1a1a2e]" />
+              <ChevronLeft className="w-7 h-7 text-[#1a1a2e]" />
             </button>
             <button
-              onClick={() => scrollCarousel('right')}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-12 h-12 bg-[#d4a574] hover:bg-[#c49464] rounded-full flex items-center justify-center shadow-xl transition-all hover:scale-110"
+              onClick={() => navigateCarousel('right')}
+              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-30 w-14 h-14 bg-[#d4a574] hover:bg-[#c49464] rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110"
             >
-              <ChevronRight className="w-6 h-6 text-[#1a1a2e]" />
+              <ChevronRight className="w-7 h-7 text-[#1a1a2e]" />
             </button>
 
-            {/* Carousel track */}
+            {/* 3D Carousel track */}
             <div
               ref={carouselRef}
-              className="flex gap-6 overflow-x-auto scrollbar-hide py-8 px-4 snap-x snap-mandatory"
-              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              className="relative flex items-center justify-center h-[600px] overflow-hidden"
+              style={{ perspective: '1200px' }}
             >
-              {exhibitions.map((exhibition) => (
-                <ExhibitionCard
-                  key={exhibition.id}
-                  exhibition={exhibition}
-                  isFlipped={flippedCards[exhibition.id]}
-                  onFlip={() => toggleFlip(exhibition.id)}
-                  isFavorite={isFavorite(exhibition.id)}
-                  onFavoriteClick={(e) => handleFavoriteClick(e, exhibition.id)}
-                  isSelected={selectedExhibition === exhibition.id}
-                  onSelect={() => setSelectedExhibition(
-                    selectedExhibition === exhibition.id ? null : exhibition.id
-                  )}
+              {exhibitions.map((exhibition, index) => {
+                // Calculate position relative to active card
+                const offset = index - activeIndex;
+                const absOffset = Math.abs(offset);
+
+                // Cards visibility (show 5 cards: -2, -1, 0, 1, 2)
+                const isVisible = absOffset <= 2;
+
+                if (!isVisible) return null;
+
+                // Calculate 3D transforms for arc effect
+                const translateX = offset * 280; // Horizontal spacing
+                const translateZ = -absOffset * 150; // Depth (further = smaller)
+                const rotateY = offset * -25; // Rotation for arc effect
+                const scale = 1 - absOffset * 0.15; // Scale down further cards
+                const opacity = 1 - absOffset * 0.25;
+                const zIndex = 10 - absOffset;
+
+                return (
+                  <div
+                    key={exhibition.id}
+                    className="absolute transition-all duration-700 ease-out cursor-pointer"
+                    style={{
+                      transform: `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
+                      opacity,
+                      zIndex,
+                    }}
+                    onClick={() => goToCard(index)}
+                  >
+                    <ExhibitionCard
+                      exhibition={exhibition}
+                      isFlipped={flippedCards[exhibition.id]}
+                      onFlip={() => toggleFlip(exhibition.id)}
+                      isFavorite={isFavorite(exhibition.id)}
+                      onFavoriteClick={(e) => handleFavoriteClick(e, exhibition.id)}
+                      isActive={index === activeIndex}
+                      onSelect={() => {
+                        if (index === activeIndex) {
+                          setSelectedExhibition(
+                            selectedExhibition === exhibition.id ? null : exhibition.id
+                          );
+                        }
+                      }}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Dots indicator */}
+            <div className="flex justify-center gap-2 mt-8">
+              {exhibitions.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToCard(index)}
+                  className={`
+                    w-2 h-2 rounded-full transition-all duration-300
+                    ${index === activeIndex
+                      ? 'w-8 bg-[#d4a574]'
+                      : 'bg-gray-600 hover:bg-gray-500'
+                    }
+                  `}
                 />
               ))}
             </div>
@@ -576,7 +632,7 @@ const BentoCard = ({ museum, size = 'small', badges = [], distanceInfo, onClick,
 };
 
 /**
- * Exhibition Card Component with flip effect
+ * Exhibition Card Component with flip effect - LARGER cards with 3D carousel support
  * Front: Image, title, favorite heart
  * Back: Exhibition details
  */
@@ -586,40 +642,51 @@ const ExhibitionCard = ({
   onFlip,
   isFavorite,
   onFavoriteClick,
-  isSelected,
+  isActive,
   onSelect
 }) => {
   return (
     <div
       className={`
-        flex-shrink-0 w-[320px] h-[420px] cursor-pointer snap-center
+        w-[380px] h-[520px] cursor-pointer
         transition-all duration-500 ease-out
-        ${isSelected ? 'scale-110 z-10' : 'hover:scale-105'}
+        ${isActive ? 'shadow-2xl shadow-[#d4a574]/30' : ''}
       `}
-      style={{ perspective: '1000px' }}
+      style={{ perspective: '1200px' }}
       onClick={onSelect}
     >
       <div
         className={`
-          relative w-full h-full transition-transform duration-700
+          relative w-full h-full transition-transform duration-700 ease-out
           ${isFlipped ? '[transform:rotateY(180deg)]' : ''}
         `}
         style={{ transformStyle: 'preserve-3d' }}
       >
         {/* Front of card */}
         <div
-          className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl"
+          className={`
+            absolute inset-0 rounded-3xl overflow-hidden
+            transition-all duration-500
+            ${isActive
+              ? 'shadow-2xl shadow-[#d4a574]/40 ring-2 ring-[#d4a574]/50'
+              : 'shadow-xl'
+            }
+          `}
           style={{ backfaceVisibility: 'hidden' }}
           onClick={(e) => {
             e.stopPropagation();
-            onFlip();
+            if (isActive) onFlip();
           }}
         >
-          {/* Background image */}
+          {/* Background image with zoom effect on active */}
           <img
             src={exhibition.image}
             alt={exhibition.name}
-            className="absolute inset-0 w-full h-full object-cover"
+            className={`
+              absolute inset-0 w-full h-full object-cover
+              transition-transform duration-700 ease-out
+              ${isActive ? 'scale-105' : ''}
+            `}
           />
 
           {/* Gradient overlay */}
@@ -627,9 +694,10 @@ const ExhibitionCard = ({
             className="absolute inset-0"
             style={{
               background: `linear-gradient(to top,
-                rgba(0, 0, 0, 0.9) 0%,
-                rgba(0, 0, 0, 0.5) 40%,
-                rgba(0, 0, 0, 0.2) 70%,
+                rgba(0, 0, 0, 0.95) 0%,
+                rgba(0, 0, 0, 0.7) 30%,
+                rgba(0, 0, 0, 0.3) 60%,
+                rgba(0, 0, 0, 0.1) 80%,
                 transparent 100%)`
             }}
           />
@@ -638,7 +706,7 @@ const ExhibitionCard = ({
           <button
             onClick={onFavoriteClick}
             className={`
-              absolute top-4 right-4 z-10 p-3 rounded-full
+              absolute top-5 right-5 z-10 p-3.5 rounded-full
               backdrop-blur-md shadow-lg
               transition-all duration-300
               ${isFavorite
@@ -647,107 +715,131 @@ const ExhibitionCard = ({
               }
             `}
           >
-            <Heart className={`w-5 h-5 ${isFavorite ? 'fill-current' : ''}`} />
+            <Heart className={`w-6 h-6 ${isFavorite ? 'fill-current' : ''}`} />
           </button>
 
           {/* Éphémère badge - top left */}
-          <div className="absolute top-4 left-4">
-            <span className="px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide bg-red-500/90 text-white backdrop-blur-md shadow-lg flex items-center gap-2">
-              <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
+          <div className="absolute top-5 left-5">
+            <span className="px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wide bg-red-500/90 text-white backdrop-blur-md shadow-lg flex items-center gap-2">
+              <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
               Éphémère
             </span>
           </div>
 
+          {/* Active indicator glow */}
+          {isActive && (
+            <div className="absolute inset-0 rounded-3xl pointer-events-none">
+              <div className="absolute inset-0 rounded-3xl border-2 border-[#d4a574]/60 animate-pulse" />
+            </div>
+          )}
+
           {/* Content - bottom */}
-          <div className="absolute bottom-0 left-0 right-0 p-5">
-            <h3 className="font-bold text-white text-xl leading-tight mb-2 line-clamp-2">
+          <div className="absolute bottom-0 left-0 right-0 p-6">
+            <h3 className="font-bold text-white text-2xl leading-tight mb-3 line-clamp-2">
               {exhibition.name}
             </h3>
-            <div className="flex items-center gap-2 text-white/70 text-sm">
-              <MapPin className="w-4 h-4" />
+            <div className="flex items-center gap-2 text-white/80 text-base">
+              <MapPin className="w-5 h-5" />
               <span className="truncate">{exhibition.location}</span>
             </div>
-            <p className="text-[#d4a574] text-sm mt-2 font-medium">
+            <p className="text-[#d4a574] text-base mt-3 font-semibold">
               {exhibition.period}
             </p>
-          </div>
 
-          {/* Click hint */}
-          <div className="absolute bottom-4 right-4 opacity-60 text-xs text-white/50">
-            Cliquez pour retourner
+            {/* Click hint - only show for active card */}
+            {isActive && (
+              <div className="mt-4 text-center">
+                <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/70 text-sm">
+                  <span className="animate-bounce-slow">↻</span>
+                  Cliquez pour retourner
+                </span>
+              </div>
+            )}
           </div>
         </div>
 
         {/* Back of card */}
         <div
-          className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-[#1a1a2e] to-[#0f0f1a] border border-[#d4a574]/30"
+          className={`
+            absolute inset-0 rounded-3xl overflow-hidden
+            bg-gradient-to-br from-[#1a1a2e] via-[#151528] to-[#0f0f1a]
+            border-2 border-[#d4a574]/40
+            ${isActive ? 'shadow-2xl shadow-[#d4a574]/40' : 'shadow-xl'}
+          `}
           style={{
             backfaceVisibility: 'hidden',
             transform: 'rotateY(180deg)'
           }}
           onClick={(e) => {
             e.stopPropagation();
-            onFlip();
+            if (isActive) onFlip();
           }}
         >
-          {/* Header with small image */}
-          <div className="relative h-28 overflow-hidden">
+          {/* Header with image */}
+          <div className="relative h-36 overflow-hidden">
             <img
               src={exhibition.image}
               alt={exhibition.name}
-              className="w-full h-full object-cover opacity-60"
+              className="w-full h-full object-cover opacity-50"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#1a1a2e]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#1a1a2e]" />
+
+            {/* Back badge */}
+            <div className="absolute top-4 left-4">
+              <span className="px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide bg-[#d4a574]/90 text-[#1a1a2e] backdrop-blur-md shadow-lg">
+                Détails
+              </span>
+            </div>
           </div>
 
           {/* Content */}
-          <div className="p-5 pt-0 -mt-4 relative">
-            <h3 className="font-bold text-[#d4a574] text-lg leading-tight mb-3">
+          <div className="p-6 pt-0 -mt-6 relative">
+            <h3 className="font-bold text-[#d4a574] text-xl leading-tight mb-4">
               {exhibition.name}
             </h3>
 
-            <p className="text-gray-300 text-sm mb-4 line-clamp-3">
+            <p className="text-gray-300 text-sm mb-5 line-clamp-3 leading-relaxed">
               {exhibition.description}
             </p>
 
             {/* Info grid */}
             <div className="space-y-3 text-sm">
-              <div className="flex items-center gap-3 text-gray-400">
-                <div className="w-8 h-8 rounded-lg bg-[#d4a574]/20 flex items-center justify-center">
-                  <MapPin className="w-4 h-4 text-[#d4a574]" />
+              <div className="flex items-center gap-3 text-gray-300">
+                <div className="w-10 h-10 rounded-xl bg-[#d4a574]/20 flex items-center justify-center">
+                  <MapPin className="w-5 h-5 text-[#d4a574]" />
                 </div>
                 <span className="truncate">{exhibition.location}</span>
               </div>
 
-              <div className="flex items-center gap-3 text-gray-400">
-                <div className="w-8 h-8 rounded-lg bg-[#d4a574]/20 flex items-center justify-center">
-                  <Calendar className="w-4 h-4 text-[#d4a574]" />
+              <div className="flex items-center gap-3 text-gray-300">
+                <div className="w-10 h-10 rounded-xl bg-[#d4a574]/20 flex items-center justify-center">
+                  <Calendar className="w-5 h-5 text-[#d4a574]" />
                 </div>
                 <span>{exhibition.period}</span>
               </div>
 
-              <div className="flex items-center gap-3 text-gray-400">
-                <div className="w-8 h-8 rounded-lg bg-[#d4a574]/20 flex items-center justify-center">
-                  <Clock className="w-4 h-4 text-[#d4a574]" />
+              <div className="flex items-center gap-3 text-gray-300">
+                <div className="w-10 h-10 rounded-xl bg-[#d4a574]/20 flex items-center justify-center">
+                  <Clock className="w-5 h-5 text-[#d4a574]" />
                 </div>
                 <span>{exhibition.hours}</span>
               </div>
 
-              <div className="flex items-center gap-3 text-gray-400">
-                <div className="w-8 h-8 rounded-lg bg-[#d4a574]/20 flex items-center justify-center">
-                  <Euro className="w-4 h-4 text-[#d4a574]" />
+              <div className="flex items-center gap-3 text-gray-300">
+                <div className="w-10 h-10 rounded-xl bg-[#d4a574]/20 flex items-center justify-center">
+                  <Euro className="w-5 h-5 text-[#d4a574]" />
                 </div>
-                <span className="font-semibold text-[#d4a574]">{exhibition.price}</span>
+                <span className="font-bold text-[#d4a574] text-lg">{exhibition.price}</span>
               </div>
             </div>
 
             {/* Highlights */}
             {exhibition.highlights && exhibition.highlights.length > 0 && (
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-5 flex flex-wrap gap-2">
                 {exhibition.highlights.slice(0, 3).map((highlight, index) => (
                   <span
                     key={index}
-                    className="px-2 py-1 text-xs bg-[#d4a574]/10 text-[#d4a574] rounded-full border border-[#d4a574]/20"
+                    className="px-3 py-1.5 text-xs bg-[#d4a574]/15 text-[#d4a574] rounded-full border border-[#d4a574]/30 font-medium"
                   >
                     {highlight}
                   </span>
@@ -757,9 +849,14 @@ const ExhibitionCard = ({
           </div>
 
           {/* Click hint */}
-          <div className="absolute bottom-4 right-4 opacity-60 text-xs text-white/50">
-            Cliquez pour retourner
-          </div>
+          {isActive && (
+            <div className="absolute bottom-4 left-0 right-0 text-center">
+              <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full text-white/60 text-sm">
+                <span className="animate-bounce-slow">↻</span>
+                Retourner
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </div>

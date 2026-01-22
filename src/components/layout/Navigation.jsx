@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Compass, Bell, User, Menu, X, Heart, Calendar, MapPin } from 'lucide-react';
+import { Compass, Bell, User, Menu, X, Heart, Calendar, MapPin, Search } from 'lucide-react';
 import { useUser } from '../../context/UserContext';
 import { NotificationBadge } from '../ui/Badge';
 
@@ -18,6 +18,7 @@ const Navigation = () => {
 
   const navLinks = [
     { path: '/', label: 'Accueil', icon: Compass },
+    { path: '/search', label: 'Recherche', icon: Search },
     { path: '/explore', label: 'Explorer', icon: MapPin },
     { path: '/favorites', label: 'Favoris', icon: Heart },
     { path: '/events', label: 'Expéditions', icon: Calendar },

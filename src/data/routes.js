@@ -1,58 +1,58 @@
 /**
- * Parcours thématiques prédéfinis
- * Chaque parcours regroupe plusieurs lieux autour d'un thème
+ * Expéditions thématiques prédéfinies
+ * Chaque expédition regroupe plusieurs sites autour d'un thème
  */
 export const routes = [
   {
     id: 1,
-    name: "Route de la Renaissance",
-    description: "Découvrez les chefs-d'œuvre de la Renaissance française à travers châteaux et musées emblématiques",
-    image: "https://images.unsplash.com/photo-1519677100203-a0e668c92439?w=800&q=80",
+    name: "Sur les traces des Pharaons",
+    description: "Une expédition légendaire au cœur de l'Égypte ancienne, des pyramides de Gizeh aux temples de Louxor",
+    image: "https://images.unsplash.com/photo-1539650116574-8efeb43e2750?w=800&q=80",
     placeCount: 8,
-    duration: "3 jours",
-    difficulty: "Modéré",
-    region: "Centre-Val de Loire",
-    highlights: ["Chambord", "Chenonceau", "Amboise", "Azay-le-Rideau"],
-    placeIds: [1, 7, 12],
-    color: "from-amber-600 to-orange-700"
+    duration: "7 jours",
+    difficulty: "Avancé",
+    region: "Égypte",
+    highlights: ["Pyramides de Gizeh", "Vallée des Rois", "Temple de Karnak", "Abou Simbel"],
+    placeIds: [1, 2, 4, 6, 8, 10, 12],
+    color: "from-gold-500 to-gold-700"
   },
   {
     id: 2,
-    name: "Trésors médiévaux",
-    description: "Plongez au cœur du Moyen Âge avec ce parcours à travers forteresses, abbayes et cités fortifiées",
-    image: "https://images.unsplash.com/photo-1596394723269-b2cbca4e6313?w=800&q=80",
-    placeCount: 12,
+    name: "Mythes de la Grèce Antique",
+    description: "Parcourez les sites mythiques où les dieux de l'Olympe étaient vénérés et où la démocratie est née",
+    image: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80",
+    placeCount: 6,
     duration: "5 jours",
-    difficulty: "Avancé",
-    region: "France entière",
-    highlights: ["Mont Saint-Michel", "Carcassonne", "Avignon", "Château de Pierrefonds"],
-    placeIds: [3, 8, 10],
-    color: "from-emerald-600 to-teal-700"
+    difficulty: "Modéré",
+    region: "Grèce",
+    highlights: ["Parthénon", "Delphes", "Épidaure", "Knossos"],
+    placeIds: [3, 5, 7, 9, 11],
+    color: "from-turquoise-500 to-turquoise-600"
   },
   {
     id: 3,
-    name: "Art moderne à Paris",
-    description: "Une immersion dans l'art moderne et contemporain au cœur de la capitale",
-    image: "https://images.unsplash.com/photo-1574181611231-90a1c521f8aa?w=800&q=80",
-    placeCount: 6,
-    duration: "2 jours",
-    difficulty: "Facile",
-    region: "Paris",
-    highlights: ["Pompidou", "Palais de Tokyo", "Fondation Louis Vuitton", "MAM"],
-    placeIds: [9, 6, 4],
-    color: "from-purple-600 to-pink-700"
+    name: "Les 7 Merveilles Redécouvertes",
+    description: "Une quête extraordinaire à travers les sites les plus emblématiques de l'Antiquité",
+    image: "https://images.unsplash.com/photo-1568322445389-f64ac2515020?w=800&q=80",
+    placeCount: 7,
+    duration: "10 jours",
+    difficulty: "Expert",
+    region: "Méditerranée",
+    highlights: ["Grande Pyramide", "Temple d'Artémis", "Colosse de Rhodes", "Phare d'Alexandrie"],
+    placeIds: [1, 2, 3, 6, 8],
+    color: "from-terracotta-500 to-terracotta-600"
   }
 ];
 
 /**
- * Obtient les lieux d'un parcours
+ * Obtient les lieux d'une expédition
  */
 export const getRoutePlaces = (route, allPlaces) => {
   return route.placeIds.map(id => allPlaces.find(place => place.id === id)).filter(Boolean);
 };
 
 /**
- * Calcule la progression d'un parcours pour un utilisateur
+ * Calcule la progression d'une expédition pour un utilisateur
  */
 export const getRouteProgress = (route, visitedPlaceIds) => {
   const visitedInRoute = route.placeIds.filter(id => visitedPlaceIds.includes(id));

@@ -6,14 +6,14 @@ export const routes = [
   {
     id: 1,
     name: "Sur les traces des Pharaons",
-    description: "Une expédition légendaire au cœur de l'Égypte ancienne, des pyramides de Gizeh aux temples de Louxor",
-    image: "https://images.unsplash.com/photo-1539650116574-8efeb43e2750?w=800&q=80",
-    placeCount: 8,
+    description: "Une expédition légendaire au cœur de l'Égypte ancienne, de la Vallée des Rois aux temples de Louxor",
+    image: "https://images.unsplash.com/photo-1568322445389-f64ac2515020?w=800&q=80",
+    placeCount: 6,
     duration: "7 jours",
     difficulty: "Avancé",
     region: "Égypte",
-    highlights: ["Pyramides de Gizeh", "Vallée des Rois", "Temple de Karnak", "Abou Simbel"],
-    placeIds: [1, 2, 4, 6, 8, 10, 12],
+    highlights: ["Vallée des Rois", "Temple de Karnak", "Abou Simbel", "Temple de Louxor"],
+    placeIds: [2, 4, 6, 8, 10, 12],
     color: "from-gold-500 to-gold-700"
   },
   {
@@ -31,15 +31,15 @@ export const routes = [
   },
   {
     id: 3,
-    name: "Les 7 Merveilles Redécouvertes",
+    name: "Les Merveilles Redécouvertes",
     description: "Une quête extraordinaire à travers les sites les plus emblématiques de l'Antiquité",
     image: "https://images.unsplash.com/photo-1568322445389-f64ac2515020?w=800&q=80",
-    placeCount: 7,
+    placeCount: 4,
     duration: "10 jours",
     difficulty: "Expert",
     region: "Méditerranée",
-    highlights: ["Grande Pyramide", "Temple d'Artémis", "Colosse de Rhodes", "Phare d'Alexandrie"],
-    placeIds: [1, 2, 3, 6, 8],
+    highlights: ["Parthénon", "Temple de Karnak", "Abou Simbel", "Temple de Louxor"],
+    placeIds: [2, 3, 6, 8],
     color: "from-terracotta-500 to-terracotta-600"
   }
 ];

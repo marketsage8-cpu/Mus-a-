@@ -4,22 +4,6 @@
  */
 export const places = [
   {
-    id: 1,
-    name: "Pyramides de Gizeh",
-    type: "pyramide",
-    image: "https://images.unsplash.com/photo-1539650116574-8efeb43e2750?w=800&q=80",
-    description: "Les seules merveilles du monde antique encore debout. Ces tombeaux monumentaux des pharaons Khéops, Khéphren et Mykérinos défient le temps depuis plus de 4500 ans.",
-    location: "Gizeh, Égypte",
-    rating: 4.9,
-    price: "200 EGP",
-    hours: "7h - 17h",
-    period: "Ancien Empire",
-    coordinates: { lat: 29.9792, lng: 31.1342 },
-    highlights: ["Grande Pyramide de Khéops", "Sphinx de Gizeh", "Pyramide de Khéphren", "Musée du bateau solaire"],
-    visited: false,
-    favorite: false
-  },
-  {
     id: 2,
     name: "Temple de Karnak",
     type: "temple",
@@ -203,7 +187,6 @@ export const places = [
  */
 export const placeTypes = [
   { id: 'all', label: 'Tous', color: 'bg-night-600' },
-  { id: 'pyramide', label: 'Pyramides', color: 'bg-gold-500' },
   { id: 'temple', label: 'Temples', color: 'bg-turquoise-500' },
   { id: 'tombeau', label: 'Tombeaux', color: 'bg-terracotta-500' },
   { id: 'palais', label: 'Palais', color: 'bg-gold-600' },
@@ -216,7 +199,6 @@ export const placeTypes = [
  */
 export const getTypeBadgeColor = (type) => {
   const colors = {
-    'pyramide': 'bg-gold-500/80',
     'temple': 'bg-turquoise-500/80',
     'tombeau': 'bg-terracotta-500/80',
     'palais': 'bg-gold-600/80',

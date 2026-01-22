@@ -1,5 +1,5 @@
 /* Google Fonts - Must be first */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,400&display=swap');
 
 @import "tailwindcss";
 
@@ -19,18 +19,19 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #0c0a09;
-  color: #fffbeb;
-  font-family: 'Inter', sans-serif;
+  background-color: #0a0f1a;
+  color: #f9f5eb;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
 /* Typography */
 .font-display {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.05em;
 }
 
 .font-body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
 /* Custom scrollbar */
@@ -40,16 +41,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1c1917;
+  background: #0d1526;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #44403c;
+  background: #2a3a5c;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #57534e;
+  background: #3d4f73;
 }
 
 /* Hide scrollbar for horizontal scroll */
@@ -94,6 +95,15 @@ body {
   }
 }
 
+@keyframes shimmer {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
 .animate-fade-in {
   animation: fade-in 0.6s ease-out;
 }
@@ -104,6 +114,10 @@ body {
 
 .animate-bounce-slow {
   animation: bounce-slow 2s infinite ease-in-out;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite ease-in-out;
 }
 
 /* Line clamp utilities */
@@ -130,8 +144,8 @@ body {
 
 /* Leaflet map customization */
 .leaflet-container {
-  background: #1c1917;
-  font-family: 'Inter', sans-serif;
+  background: #0d1526;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
 .leaflet-control-zoom {
@@ -139,46 +153,64 @@ body {
 }
 
 .leaflet-control-zoom a {
-  background: #292524 !important;
-  color: #fbbf24 !important;
-  border: 1px solid #44403c !important;
+  background: #1a2744 !important;
+  color: #d4af37 !important;
+  border: 1px solid #2a3a5c !important;
 }
 
 .leaflet-control-zoom a:hover {
-  background: #44403c !important;
+  background: #2a3a5c !important;
 }
 
 .leaflet-popup-content-wrapper {
-  background: #292524;
-  border: 1px solid #44403c;
+  background: #1a2744;
+  border: 1px solid #d4af37;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .leaflet-popup-content {
   margin: 8px 12px;
-  color: #fffbeb;
+  color: #f9f5eb;
 }
 
 .leaflet-popup-tip {
-  background: #292524;
-  border: 1px solid #44403c;
+  background: #1a2744;
+  border: 1px solid #d4af37;
 }
 
 .leaflet-control-attribution {
-  background: rgba(28, 25, 23, 0.8) !important;
-  color: #a8a29e !important;
+  background: rgba(13, 21, 38, 0.8) !important;
+  color: #6b7fa3 !important;
   font-size: 10px;
 }
 
 .leaflet-control-attribution a {
-  color: #d97706 !important;
+  color: #d4af37 !important;
 }
 
 /* Custom marker styles */
 .custom-marker {
   background: transparent !important;
   border: none !important;
+}
+
+/* User location marker */
+.user-location-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.3), 0 2px 8px rgba(0,0,0,0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(212, 175, 55, 0.1), 0 2px 8px rgba(0,0,0,0.3);
+  }
+  100% {
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.3), 0 2px 8px rgba(0,0,0,0.3);
+  }
 }
 
 /* Safe area for mobile bottom nav */
@@ -190,19 +222,19 @@ body {
 button:focus-visible,
 a:focus-visible,
 input:focus-visible {
-  outline: 2px solid #d97706;
+  outline: 2px solid #d4af37;
   outline-offset: 2px;
 }
 
 /* Selection color */
 ::selection {
-  background: #d97706;
-  color: #fffbeb;
+  background: #d4af37;
+  color: #0a0f1a;
 }
 
 /* Gradient text utility */
 .gradient-text {
-  background: linear-gradient(to right, #fde68a, #fbbf24);
+  background: linear-gradient(to right, #f9e08a, #d4af37);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -228,4 +260,23 @@ input:focus-visible {
 
 .img-hover-zoom:hover img {
   transform: scale(1.1);
+}
+
+/* Egyptian/Greek decorative border */
+.border-hieroglyph {
+  border-image: linear-gradient(90deg, transparent, #d4af37, transparent) 1;
+}
+
+/* Papyrus texture overlay */
+.papyrus-overlay {
+  position: relative;
+}
+
+.papyrus-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
 }

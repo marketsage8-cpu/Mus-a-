@@ -1,15 +1,15 @@
 /**
  * CabinetBackground - Arrière-plan décoratif "Cabinet de curiosités"
  *
- * Design: Pattern répétitif style gravure classique du 18e-19e siècle
- * - Vases et urnes antiques élégants
- * - Amphores grecques avec motifs raffinés
- * - Statues classiques et figures ailées
- * - Bustes sur piédestaux
- * - Colonnes et éléments architecturaux
+ * Design: Pattern répétitif style gravure de musée classique
+ * - Tableaux encadrés avec cadres ornés dorés
+ * - Bustes classiques sur piédestaux
+ * - Statues romaines et grecques
+ * - Vases et amphores antiques
+ * - Petites sculptures décoratives
  *
- * Style: Lignes dorées délicates sur fond bleu nuit profond
- * Technique: Gravure à l'eau-forte / Taille-douce
+ * Style: Lignes dorées fines sur fond bleu nuit profond
+ * Technique: Gravure à l'eau-forte / Style musée
  */
 
 const CabinetBackground = () => {
@@ -22,11 +22,11 @@ const CabinetBackground = () => {
       {/* Fond bleu nuit profond */}
       <div
         className="absolute inset-0"
-        style={{ backgroundColor: '#0a0d1a' }}
+        style={{ backgroundColor: '#12152a' }}
       />
 
-      {/* Pattern SVG répétitif style gravure */}
-      <div className="absolute inset-0" style={{ opacity: 0.55 }}>
+      {/* Pattern SVG répétitif style gravure musée */}
+      <div className="absolute inset-0" style={{ opacity: 0.65 }}>
         <svg
           width="100%"
           height="100%"
@@ -34,508 +34,712 @@ const CabinetBackground = () => {
           style={{ position: 'absolute', top: 0, left: 0 }}
         >
           <defs>
-            {/* Pattern principal - 900x900 pour plus de variété */}
+            {/* Pattern principal - 1200x900 pour composition musée */}
             <pattern
               id="cabinetPattern"
               x="0"
               y="0"
-              width="900"
+              width="1200"
               height="900"
               patternUnits="userSpaceOnUse"
             >
               <style>
                 {`
-                  .stroke-main { fill: none; stroke: #c9a227; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
-                  .stroke-med { fill: none; stroke: #d4af37; stroke-width: 0.9; stroke-linecap: round; stroke-linejoin: round; }
-                  .stroke-fine { fill: none; stroke: #b8992c; stroke-width: 0.6; stroke-linecap: round; stroke-linejoin: round; }
-                  .stroke-detail { fill: none; stroke: #a88a28; stroke-width: 0.45; stroke-linecap: round; stroke-linejoin: round; }
-                  .stroke-hatch { fill: none; stroke: #8b7520; stroke-width: 0.3; stroke-linecap: round; }
+                  .stroke-main { fill: none; stroke: #b8956c; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; }
+                  .stroke-med { fill: none; stroke: #a68960; stroke-width: 0.85; stroke-linecap: round; stroke-linejoin: round; }
+                  .stroke-fine { fill: none; stroke: #9a7d55; stroke-width: 0.6; stroke-linecap: round; stroke-linejoin: round; }
+                  .stroke-detail { fill: none; stroke: #8a7050; stroke-width: 0.45; stroke-linecap: round; stroke-linejoin: round; }
+                  .stroke-hatch { fill: none; stroke: #7a6545; stroke-width: 0.3; stroke-linecap: round; }
+                  .stroke-ultra { fill: none; stroke: #6a5a40; stroke-width: 0.25; stroke-linecap: round; }
                 `}
               </style>
 
               {/* ═══════════════════════════════════════════════════════════
-                  GRANDE AMPHORE ÉLÉGANTE - Position gauche haut
-                  Style: Vase grec à volutes
+                  TABLEAU 1 - Portrait classique avec figure
+                  Position haut gauche
                   ═══════════════════════════════════════════════════════════ */}
-              <g transform="translate(50, 60)">
-                {/* Base du vase */}
-                <ellipse className="stroke-main" cx="60" cy="280" rx="35" ry="10"/>
-                <path className="stroke-main" d="M25,280 L30,265 L90,265 L95,280"/>
-                <ellipse className="stroke-med" cx="60" cy="265" rx="30" ry="7"/>
-
-                {/* Pied évasé */}
-                <path className="stroke-main" d="M30,265 Q25,250 35,235 L85,235 Q95,250 90,265"/>
-                <path className="stroke-fine" d="M40,258 L80,258"/>
-                <path className="stroke-fine" d="M38,248 L82,248"/>
-
-                {/* Corps principal - forme élancée */}
-                <path className="stroke-main" d="M35,235 Q15,200 18,150 Q20,100 35,65 Q50,35 60,30 Q70,35 85,65 Q100,100 102,150 Q105,200 85,235"/>
-
-                {/* Lignes de contour internes */}
-                <path className="stroke-fine" d="M40,230 Q22,198 25,150 Q27,105 40,72"/>
-                <path className="stroke-fine" d="M80,230 Q98,198 95,150 Q93,105 80,72"/>
-
-                {/* Col du vase */}
-                <path className="stroke-main" d="M45,35 Q42,25 48,15 L72,15 Q78,25 75,35"/>
-                <ellipse className="stroke-main" cx="60" cy="14" rx="14" ry="5"/>
-                <ellipse className="stroke-med" cx="60" cy="10" rx="10" ry="3"/>
-
-                {/* Anses élégantes avec volutes */}
-                <path className="stroke-main" d="M18,150 Q-5,135 -2,100 Q0,70 25,75 Q35,78 40,90"/>
-                <path className="stroke-med" d="M22,140 Q5,128 8,100 Q10,78 28,82"/>
-                <path className="stroke-detail" d="M2,100 Q-8,98 -3,88 Q5,80 12,90"/>
-
-                <path className="stroke-main" d="M102,150 Q125,135 122,100 Q120,70 95,75 Q85,78 80,90"/>
-                <path className="stroke-med" d="M98,140 Q115,128 112,100 Q110,78 92,82"/>
-                <path className="stroke-detail" d="M118,100 Q128,98 123,88 Q115,80 108,90"/>
-
-                {/* Décoration - bande avec méandres */}
-                <path className="stroke-fine" d="M28,180 Q60,175 92,180"/>
-                <path className="stroke-fine" d="M30,195 Q60,190 90,195"/>
-                <path className="stroke-detail" d="M35,183 L35,192 L42,192 L42,186 L38,186 L38,183"/>
-                <path className="stroke-detail" d="M50,183 L50,192 L57,192 L57,186 L53,186 L53,183"/>
-                <path className="stroke-detail" d="M65,183 L65,192 L72,192 L72,186 L68,186 L68,183"/>
-                <path className="stroke-detail" d="M80,183 L80,192 L87,192 L87,186 L83,186 L83,183"/>
-
-                {/* Scène centrale - silhouette de figure */}
-                <path className="stroke-detail" d="M55,110 Q60,100 65,110"/>
-                <ellipse className="stroke-detail" cx="60" cy="120" rx="8" ry="10"/>
-                <path className="stroke-detail" d="M60,130 L60,160 M52,145 L68,145"/>
-                <path className="stroke-hatch" d="M55,160 L50,175 M65,160 L70,175"/>
+              <g transform="translate(20, 40)">
+                {/* Cadre extérieur orné */}
+                <rect className="stroke-main" x="0" y="0" width="120" height="150" rx="3"/>
+                <rect className="stroke-med" x="5" y="5" width="110" height="140" rx="2"/>
+                {/* Ornements du cadre - coins */}
+                <path className="stroke-fine" d="M3,3 Q15,8 8,20"/>
+                <path className="stroke-fine" d="M117,3 Q105,8 112,20"/>
+                <path className="stroke-fine" d="M3,147 Q15,142 8,130"/>
+                <path className="stroke-fine" d="M117,147 Q105,142 112,130"/>
+                {/* Ornements latéraux */}
+                <path className="stroke-detail" d="M2,60 Q8,75 2,90"/>
+                <path className="stroke-detail" d="M118,60 Q112,75 118,90"/>
+                {/* Cadre intérieur */}
+                <rect className="stroke-med" x="12" y="12" width="96" height="126"/>
+                {/* Contenu - figure classique debout */}
+                <path className="stroke-fine" d="M60,30 Q55,35 60,42"/>
+                <ellipse className="stroke-fine" cx="60" cy="50" rx="10" ry="12"/>
+                <path className="stroke-detail" d="M50,62 Q45,85 48,110 L55,130"/>
+                <path className="stroke-detail" d="M70,62 Q75,85 72,110 L65,130"/>
+                <path className="stroke-hatch" d="M55,70 Q60,75 65,70"/>
+                <path className="stroke-hatch" d="M52,90 Q60,95 68,90"/>
+                {/* Bras */}
+                <path className="stroke-detail" d="M50,65 Q35,70 30,85"/>
+                <path className="stroke-detail" d="M70,65 Q78,72 82,65"/>
               </g>
 
               {/* ═══════════════════════════════════════════════════════════
-                  STATUE CLASSIQUE AILÉE - Figure de la Victoire
-                  Position centre-droite
+                  PETIT TABLEAU - Scène pastorale
+                  Position haut centre-gauche
                   ═══════════════════════════════════════════════════════════ */}
-              <g transform="translate(680, 50)">
-                {/* Socle rectangulaire orné */}
-                <rect className="stroke-main" x="30" y="320" width="100" height="25" rx="2"/>
-                <rect className="stroke-med" x="35" y="325" width="90" height="15" rx="1"/>
-                <path className="stroke-fine" d="M45,332 L115,332"/>
-
-                {/* Piédestal */}
-                <path className="stroke-main" d="M40,320 L45,295 L115,295 L120,320"/>
-                <path className="stroke-med" d="M50,318 L50,298"/>
-                <path className="stroke-med" d="M110,318 L110,298"/>
-                <rect className="stroke-fine" x="55" y="300" width="50" height="15"/>
-
-                {/* Drapé/robe fluide */}
-                <path className="stroke-main" d="M50,295 Q45,260 55,220 Q60,180 70,150"/>
-                <path className="stroke-main" d="M110,295 Q115,260 105,220 Q100,180 90,150"/>
-
-                {/* Plis du drapé */}
-                <path className="stroke-fine" d="M55,290 Q52,250 60,210"/>
-                <path className="stroke-fine" d="M65,290 Q60,255 65,220"/>
-                <path className="stroke-fine" d="M95,290 Q98,255 95,220"/>
-                <path className="stroke-fine" d="M105,290 Q108,250 100,210"/>
-                <path className="stroke-detail" d="M58,270 Q55,250 60,230"/>
-                <path className="stroke-detail" d="M102,270 Q105,250 100,230"/>
-
-                {/* Torse */}
-                <path className="stroke-main" d="M70,150 Q65,130 70,115 Q75,105 80,105 Q85,105 90,115 Q95,130 90,150"/>
-                <path className="stroke-fine" d="M72,145 Q70,130 75,118"/>
-                <path className="stroke-fine" d="M88,145 Q90,130 85,118"/>
-
-                {/* Cou et tête */}
-                <path className="stroke-main" d="M75,105 Q75,95 78,88"/>
-                <path className="stroke-main" d="M85,105 Q85,95 82,88"/>
-                <ellipse className="stroke-main" cx="80" cy="70" rx="18" ry="22"/>
-
-                {/* Chevelure */}
-                <path className="stroke-med" d="M62,65 Q55,50 62,35 Q70,22 80,20 Q90,22 98,35 Q105,50 98,65"/>
-                <path className="stroke-fine" d="M65,60 Q60,48 65,38 Q72,28 80,26"/>
-                <path className="stroke-fine" d="M95,60 Q100,48 95,38 Q88,28 80,26"/>
-                <path className="stroke-detail" d="M68,55 Q65,45 70,38"/>
-                <path className="stroke-detail" d="M92,55 Q95,45 90,38"/>
-
-                {/* Traits du visage */}
-                <path className="stroke-detail" d="M73,62 Q80,58 87,62"/>
-                <ellipse className="stroke-detail" cx="74" cy="68" rx="3" ry="2"/>
-                <ellipse className="stroke-detail" cx="86" cy="68" rx="3" ry="2"/>
-                <path className="stroke-detail" d="M80,72 L79,80"/>
-                <path className="stroke-fine" d="M75,85 Q80,88 85,85"/>
-
-                {/* Ailes majestueuses */}
-                <path className="stroke-main" d="M62,120 Q40,100 25,70 Q15,45 20,20 Q30,5 50,15 Q60,25 62,50"/>
-                <path className="stroke-med" d="M58,110 Q42,92 30,65 Q22,42 28,25"/>
-                <path className="stroke-fine" d="M55,100 Q45,85 35,60 Q28,40 35,28"/>
-                <path className="stroke-detail" d="M52,90 Q45,78 40,55"/>
-                <path className="stroke-detail" d="M48,80 Q42,70 38,50"/>
-                {/* Plumes */}
-                <path className="stroke-hatch" d="M25,50 Q30,45 28,38"/>
-                <path className="stroke-hatch" d="M30,58 Q35,52 32,45"/>
-                <path className="stroke-hatch" d="M35,65 Q40,60 38,52"/>
-
-                <path className="stroke-main" d="M98,120 Q120,100 135,70 Q145,45 140,20 Q130,5 110,15 Q100,25 98,50"/>
-                <path className="stroke-med" d="M102,110 Q118,92 130,65 Q138,42 132,25"/>
-                <path className="stroke-fine" d="M105,100 Q115,85 125,60 Q132,40 125,28"/>
-                <path className="stroke-detail" d="M108,90 Q115,78 120,55"/>
-                <path className="stroke-detail" d="M112,80 Q118,70 122,50"/>
-                {/* Plumes */}
-                <path className="stroke-hatch" d="M135,50 Q130,45 132,38"/>
-                <path className="stroke-hatch" d="M130,58 Q125,52 128,45"/>
-                <path className="stroke-hatch" d="M125,65 Q120,60 122,52"/>
-
-                {/* Bras tenant une couronne */}
-                <path className="stroke-med" d="M95,130 Q110,125 125,115 Q135,108 140,95"/>
-                <path className="stroke-fine" d="M92,125 Q105,120 118,112"/>
-                {/* Couronne/laurier */}
-                <circle className="stroke-med" cx="145" cy="88" r="12"/>
-                <path className="stroke-detail" d="M138,82 Q145,75 152,82"/>
-                <path className="stroke-detail" d="M138,94 Q145,100 152,94"/>
+              <g transform="translate(165, 95)">
+                <rect className="stroke-main" x="0" y="0" width="90" height="65" rx="2"/>
+                <rect className="stroke-med" x="4" y="4" width="82" height="57" rx="1"/>
+                <rect className="stroke-fine" x="8" y="8" width="74" height="49"/>
+                {/* Scène - paysage avec figures */}
+                <path className="stroke-detail" d="M15,45 Q30,35 50,42 Q70,38 75,48"/>
+                <path className="stroke-hatch" d="M25,35 L25,45"/>
+                <path className="stroke-hatch" d="M55,33 L55,42"/>
+                <ellipse className="stroke-hatch" cx="25" cy="32" rx="4" ry="5"/>
+                <ellipse className="stroke-hatch" cx="55" cy="30" rx="4" ry="5"/>
               </g>
 
               {/* ═══════════════════════════════════════════════════════════
-                  URNE AVEC COUVERCLE - Style Louis XVI
-                  Position centre-gauche
+                  TABLEAU LA CÈNE - Grande composition
+                  Position haut centre
                   ═══════════════════════════════════════════════════════════ */}
-              <g transform="translate(280, 120)">
-                {/* Fleuron du couvercle */}
-                <path className="stroke-main" d="M50,0 Q45,8 50,15 Q55,8 50,0"/>
-                <circle className="stroke-med" cx="50" cy="18" r="5"/>
-
-                {/* Couvercle bombé */}
-                <path className="stroke-main" d="M28,35 Q25,25 35,20 Q42,18 50,18 Q58,18 65,20 Q75,25 72,35"/>
-                <ellipse className="stroke-main" cx="50" cy="35" rx="25" ry="8"/>
-                <path className="stroke-fine" d="M32,30 Q40,25 50,25 Q60,25 68,30"/>
-
-                {/* Col étroit */}
-                <path className="stroke-main" d="M30,43 L32,60 L68,60 L70,43"/>
-                <path className="stroke-fine" d="M35,50 L65,50"/>
-
-                {/* Corps ovoïde */}
-                <path className="stroke-main" d="M32,60 Q15,80 15,115 Q15,150 32,175 Q45,195 50,200 Q55,195 68,175 Q85,150 85,115 Q85,80 68,60"/>
-                <path className="stroke-fine" d="M38,65 Q22,82 22,115 Q22,145 38,168"/>
-                <path className="stroke-fine" d="M62,65 Q78,82 78,115 Q78,145 62,168"/>
-
-                {/* Anses serpent */}
-                <path className="stroke-med" d="M15,100 Q0,95 2,80 Q5,68 18,72"/>
-                <path className="stroke-med" d="M85,100 Q100,95 98,80 Q95,68 82,72"/>
-                <path className="stroke-detail" d="M5,85 Q-2,82 2,75"/>
-                <path className="stroke-detail" d="M95,85 Q102,82 98,75"/>
-                {/* Têtes de serpent */}
-                <circle className="stroke-detail" cx="18" cy="70" r="3"/>
-                <circle className="stroke-detail" cx="82" cy="70" r="3"/>
-
-                {/* Guirlande décorative */}
-                <path className="stroke-fine" d="M25,130 Q38,140 50,138 Q62,140 75,130"/>
-                <path className="stroke-detail" d="M30,132 Q35,138 42,136"/>
-                <path className="stroke-detail" d="M58,136 Q65,138 70,132"/>
-                <circle className="stroke-hatch" cx="50" cy="140" r="3"/>
-
-                {/* Base/pied */}
-                <ellipse className="stroke-main" cx="50" cy="200" rx="20" ry="6"/>
-                <path className="stroke-main" d="M30,200 L25,215 L75,215 L70,200"/>
-                <rect className="stroke-med" x="20" y="215" width="60" height="10" rx="1"/>
-                <path className="stroke-fine" d="M28,220 L72,220"/>
-              </g>
-
-              {/* ═══════════════════════════════════════════════════════════
-                  VASE CRATÈRE - Style grec
-                  Position droite
-                  ═══════════════════════════════════════════════════════════ */}
-              <g transform="translate(500, 180)">
-                {/* Base rectangulaire */}
-                <rect className="stroke-main" x="25" y="210" width="70" height="12" rx="1"/>
-                <path className="stroke-fine" d="M30,216 L90,216"/>
-
-                {/* Pied */}
-                <path className="stroke-main" d="M35,210 L40,195 L80,195 L85,210"/>
-                <ellipse className="stroke-med" cx="60" cy="195" rx="22" ry="5"/>
-
-                {/* Corps évasé vers le haut */}
-                <path className="stroke-main" d="M40,195 Q30,170 28,140 Q26,110 35,80 Q45,55 60,50 Q75,55 85,80 Q94,110 92,140 Q90,170 80,195"/>
-
-                {/* Profil intérieur */}
-                <path className="stroke-fine" d="M45,190 Q36,165 35,138 Q34,112 42,85"/>
-                <path className="stroke-fine" d="M75,190 Q84,165 85,138 Q86,112 78,85"/>
-
-                {/* Lèvre évasée */}
-                <path className="stroke-main" d="M35,55 Q30,48 32,40 L88,40 Q90,48 85,55"/>
-                <ellipse className="stroke-main" cx="60" cy="38" rx="30" ry="8"/>
-                <ellipse className="stroke-med" cx="60" cy="34" rx="24" ry="5"/>
-
-                {/* Anses horizontales */}
-                <path className="stroke-main" d="M28,100 Q15,95 12,80 Q15,65 28,70"/>
-                <path className="stroke-main" d="M92,100 Q105,95 108,80 Q105,65 92,70"/>
-                <path className="stroke-fine" d="M25,95 Q18,92 16,82"/>
-                <path className="stroke-fine" d="M95,95 Q102,92 104,82"/>
-
-                {/* Frise de palmettes */}
-                <path className="stroke-fine" d="M35,125 L85,125 M35,145 L85,145"/>
-                <path className="stroke-detail" d="M45,128 Q42,135 45,142"/>
-                <path className="stroke-detail" d="M55,128 Q52,135 55,142"/>
-                <path className="stroke-detail" d="M65,128 Q62,135 65,142"/>
-                <path className="stroke-detail" d="M75,128 Q72,135 75,142"/>
-                <path className="stroke-hatch" d="M48,130 L48,140"/>
-                <path className="stroke-hatch" d="M60,130 L60,140"/>
-                <path className="stroke-hatch" d="M72,130 L72,140"/>
-              </g>
-
-              {/* ═══════════════════════════════════════════════════════════
-                  BUSTE SUR PIÉDESTAL - Style romain
-                  Position bas gauche
-                  ═══════════════════════════════════════════════════════════ */}
-              <g transform="translate(40, 450)">
-                {/* Grand piédestal */}
-                <rect className="stroke-main" x="15" y="320" width="130" height="20" rx="2"/>
-                <path className="stroke-med" d="M20,320 L25,305 L135,305 L140,320"/>
-                <rect className="stroke-fine" x="30" y="290" width="100" height="15"/>
-                <path className="stroke-detail" d="M40,298 L120,298"/>
-
-                {/* Corps du piédestal */}
-                <rect className="stroke-main" x="35" y="200" width="90" height="90"/>
-                <rect className="stroke-med" x="40" y="205" width="80" height="80"/>
-
-                {/* Cartouche central */}
-                <ellipse className="stroke-fine" cx="80" cy="245" rx="30" ry="25"/>
-                <ellipse className="stroke-detail" cx="80" cy="245" rx="22" ry="18"/>
-                {/* Motif intérieur */}
-                <path className="stroke-hatch" d="M70,238 Q80,230 90,238"/>
-                <path className="stroke-hatch" d="M72,252 Q80,260 88,252"/>
-
-                {/* Corniche supérieure */}
-                <rect className="stroke-main" x="30" y="185" width="100" height="15"/>
-                <path className="stroke-fine" d="M35,192 L125,192"/>
-
-                {/* Buste */}
-                <path className="stroke-main" d="M45,185 Q38,160 45,135 Q52,115 65,105"/>
-                <path className="stroke-main" d="M115,185 Q122,160 115,135 Q108,115 95,105"/>
-
-                {/* Drapé */}
-                <path className="stroke-fine" d="M50,180 Q45,155 52,130"/>
-                <path className="stroke-fine" d="M60,180 Q55,160 58,140"/>
-                <path className="stroke-fine" d="M100,180 Q105,160 102,140"/>
-                <path className="stroke-fine" d="M110,180 Q115,155 108,130"/>
-                <path className="stroke-detail" d="M55,165 Q52,150 56,135"/>
-                <path className="stroke-detail" d="M105,165 Q108,150 104,135"/>
-
-                {/* Cou */}
-                <path className="stroke-main" d="M65,105 Q65,95 70,88"/>
-                <path className="stroke-main" d="M95,105 Q95,95 90,88"/>
-
-                {/* Tête */}
-                <ellipse className="stroke-main" cx="80" cy="65" rx="22" ry="28"/>
-
-                {/* Chevelure romaine */}
-                <path className="stroke-main" d="M58,55 Q50,40 58,25 Q68,12 80,10 Q92,12 102,25 Q110,40 102,55"/>
-                <path className="stroke-med" d="M62,50 Q55,38 62,28 Q70,18 80,16"/>
-                <path className="stroke-med" d="M98,50 Q105,38 98,28 Q90,18 80,16"/>
-                {/* Mèches */}
-                <path className="stroke-detail" d="M65,45 Q60,35 68,28"/>
-                <path className="stroke-detail" d="M75,42 Q72,32 78,25"/>
-                <path className="stroke-detail" d="M85,42 Q88,32 82,25"/>
-                <path className="stroke-detail" d="M95,45 Q100,35 92,28"/>
-
-                {/* Visage */}
-                <path className="stroke-fine" d="M68,55 Q75,52 82,55"/>
-                <path className="stroke-fine" d="M78,55 Q85,52 92,55"/>
-                <ellipse className="stroke-detail" cx="72" cy="62" rx="4" ry="2.5"/>
-                <ellipse className="stroke-detail" cx="88" cy="62" rx="4" ry="2.5"/>
-                <path className="stroke-fine" d="M80,58 L78,75"/>
-                <path className="stroke-fine" d="M74,82 Q80,86 86,82"/>
-
-                {/* Oreilles */}
-                <path className="stroke-detail" d="M58,62 Q54,68 58,75"/>
-                <path className="stroke-detail" d="M102,62 Q106,68 102,75"/>
-              </g>
-
-              {/* ═══════════════════════════════════════════════════════════
-                  PETITE AMPHORE ÉLÉGANTE
-                  Position centre
-                  ═══════════════════════════════════════════════════════════ */}
-              <g transform="translate(420, 480)">
-                {/* Base */}
-                <ellipse className="stroke-main" cx="50" cy="200" rx="25" ry="7"/>
-                <path className="stroke-main" d="M25,200 L30,188 L70,188 L75,200"/>
-
-                {/* Corps */}
-                <path className="stroke-main" d="M30,188 Q18,160 20,120 Q22,80 35,55 Q45,35 50,30 Q55,35 65,55 Q78,80 80,120 Q82,160 70,188"/>
-                <path className="stroke-fine" d="M35,182 Q25,158 27,120 Q29,85 40,60"/>
-                <path className="stroke-fine" d="M65,182 Q75,158 73,120 Q71,85 60,60"/>
-
-                {/* Col */}
-                <path className="stroke-main" d="M40,32 Q38,22 42,15 L58,15 Q62,22 60,32"/>
-                <ellipse className="stroke-main" cx="50" cy="14" rx="10" ry="4"/>
-
-                {/* Anses */}
-                <path className="stroke-med" d="M20,105 Q5,95 8,70 Q12,50 28,58"/>
-                <path className="stroke-med" d="M80,105 Q95,95 92,70 Q88,50 72,58"/>
-                <path className="stroke-detail" d="M10,80 Q2,78 8,68"/>
-                <path className="stroke-detail" d="M90,80 Q98,78 92,68"/>
-
-                {/* Décor central */}
-                <circle className="stroke-fine" cx="50" cy="120" r="20"/>
-                <circle className="stroke-detail" cx="50" cy="120" r="12"/>
+              <g transform="translate(720, 25)">
+                {/* Grand cadre orné */}
+                <rect className="stroke-main" x="0" y="0" width="180" height="110" rx="3"/>
+                <rect className="stroke-med" x="5" y="5" width="170" height="100" rx="2"/>
+                {/* Ornements cadre */}
+                <path className="stroke-fine" d="M3,3 Q12,10 8,22"/>
+                <path className="stroke-fine" d="M177,3 Q168,10 172,22"/>
+                <path className="stroke-fine" d="M3,107 Q12,100 8,88"/>
+                <path className="stroke-fine" d="M177,107 Q168,100 172,88"/>
+                <path className="stroke-detail" d="M90,2 Q95,8 90,15"/>
+                <path className="stroke-detail" d="M90,108 Q85,102 90,95"/>
+                <rect className="stroke-fine" x="12" y="12" width="156" height="86"/>
+                {/* La Cène - table et figures */}
+                <path className="stroke-med" d="M20,75 L160,75"/>
+                <path className="stroke-fine" d="M25,78 L155,78"/>
+                {/* Figures - silhouettes assises */}
+                <path className="stroke-detail" d="M30,55 Q33,48 30,42"/>
+                <ellipse className="stroke-hatch" cx="30" cy="38" rx="5" ry="6"/>
+                <path className="stroke-detail" d="M50,55 Q53,48 50,42"/>
+                <ellipse className="stroke-hatch" cx="50" cy="38" rx="5" ry="6"/>
+                <path className="stroke-detail" d="M70,55 Q73,48 70,42"/>
+                <ellipse className="stroke-hatch" cx="70" cy="38" rx="5" ry="6"/>
                 {/* Figure centrale */}
-                <path className="stroke-hatch" d="M45,115 Q50,108 55,115"/>
-                <path className="stroke-hatch" d="M50,118 L50,130"/>
+                <path className="stroke-fine" d="M90,52 Q95,42 90,32"/>
+                <ellipse className="stroke-detail" cx="90" cy="28" rx="7" ry="8"/>
+                <path className="stroke-detail" d="M110,55 Q113,48 110,42"/>
+                <ellipse className="stroke-hatch" cx="110" cy="38" rx="5" ry="6"/>
+                <path className="stroke-detail" d="M130,55 Q133,48 130,42"/>
+                <ellipse className="stroke-hatch" cx="130" cy="38" rx="5" ry="6"/>
+                <path className="stroke-detail" d="M150,55 Q153,48 150,42"/>
+                <ellipse className="stroke-hatch" cx="150" cy="38" rx="5" ry="6"/>
+                {/* Éléments sur la table */}
+                <ellipse className="stroke-ultra" cx="60" cy="68" rx="6" ry="3"/>
+                <ellipse className="stroke-ultra" cx="90" cy="65" rx="8" ry="4"/>
+                <ellipse className="stroke-ultra" cx="120" cy="68" rx="6" ry="3"/>
+                {/* Fenêtres/arches en arrière-plan */}
+                <path className="stroke-hatch" d="M40,20 Q50,15 60,20 L60,35 L40,35 Z"/>
+                <path className="stroke-hatch" d="M80,18 Q90,12 100,18 L100,38 L80,38 Z"/>
+                <path className="stroke-hatch" d="M120,20 Q130,15 140,20 L140,35 L120,35 Z"/>
               </g>
 
               {/* ═══════════════════════════════════════════════════════════
-                  VASE BALUSTRE - Style Renaissance
-                  Position bas centre
+                  STATUE ROMAINE DEBOUT
+                  Position haut droite
                   ═══════════════════════════════════════════════════════════ */}
-              <g transform="translate(580, 520)">
+              <g transform="translate(945, 15)">
                 {/* Socle */}
-                <rect className="stroke-main" x="20" y="260" width="80" height="15" rx="1"/>
-                <path className="stroke-fine" d="M25,268 L95,268"/>
-
-                {/* Pied balustre */}
-                <path className="stroke-main" d="M35,260 Q30,250 35,240 Q45,230 60,228 Q75,230 85,240 Q90,250 85,260"/>
-                <ellipse className="stroke-med" cx="60" cy="228" rx="18" ry="5"/>
-
-                {/* Tige */}
-                <path className="stroke-main" d="M45,228 L48,200 L72,200 L75,228"/>
-                <path className="stroke-fine" d="M52,225 L52,205"/>
-                <path className="stroke-fine" d="M68,225 L68,205"/>
-
-                {/* Noeud central */}
-                <ellipse className="stroke-main" cx="60" cy="195" rx="15" ry="8"/>
-                <path className="stroke-fine" d="M48,195 Q60,185 72,195"/>
-
-                {/* Corps supérieur renflé */}
-                <path className="stroke-main" d="M45,187 Q25,165 25,130 Q25,95 45,75"/>
-                <path className="stroke-main" d="M75,187 Q95,165 95,130 Q95,95 75,75"/>
-                <path className="stroke-fine" d="M50,182 Q32,162 32,130 Q32,100 50,82"/>
-                <path className="stroke-fine" d="M70,182 Q88,162 88,130 Q88,100 70,82"/>
-
-                {/* Col et lèvre */}
-                <path className="stroke-main" d="M45,75 Q40,65 45,55 L75,55 Q80,65 75,75"/>
-                <ellipse className="stroke-main" cx="60" cy="52" rx="18" ry="6"/>
-                <ellipse className="stroke-med" cx="60" cy="48" rx="14" ry="4"/>
-
-                {/* Anses latérales */}
-                <path className="stroke-med" d="M25,130 Q10,125 8,110 Q10,95 25,100"/>
-                <path className="stroke-med" d="M95,130 Q110,125 112,110 Q110,95 95,100"/>
-
-                {/* Motif de guirlande */}
-                <path className="stroke-detail" d="M35,140 Q48,150 60,148 Q72,150 85,140"/>
-                <path className="stroke-hatch" d="M45,145 Q50,150 55,145"/>
-                <path className="stroke-hatch" d="M65,145 Q70,150 75,145"/>
+                <rect className="stroke-main" x="15" y="185" width="60" height="12" rx="1"/>
+                <path className="stroke-med" d="M20,185 L25,172 L65,172 L70,185"/>
+                <rect className="stroke-fine" x="22" y="165" width="46" height="7"/>
+                {/* Jambes avec drapé */}
+                <path className="stroke-main" d="M35,165 Q32,140 35,110"/>
+                <path className="stroke-main" d="M55,165 Q58,145 52,115"/>
+                <path className="stroke-fine" d="M38,160 Q36,140 38,120"/>
+                <path className="stroke-fine" d="M52,160 Q54,142 50,122"/>
+                {/* Torse avec toge */}
+                <path className="stroke-main" d="M35,110 Q28,95 32,75 Q35,60 45,55"/>
+                <path className="stroke-main" d="M55,115 Q62,95 58,75 Q55,60 45,55"/>
+                <path className="stroke-fine" d="M38,105 Q33,90 36,72"/>
+                <path className="stroke-fine" d="M52,108 Q56,92 52,74"/>
+                {/* Plis de la toge */}
+                <path className="stroke-detail" d="M40,100 Q38,85 42,70"/>
+                <path className="stroke-detail" d="M48,102 Q50,88 46,72"/>
+                <path className="stroke-hatch" d="M35,130 Q40,125 45,130"/>
+                <path className="stroke-hatch" d="M45,135 Q50,130 55,135"/>
+                {/* Bras droit levé */}
+                <path className="stroke-med" d="M32,75 Q22,65 18,45 Q15,30 20,20"/>
+                <path className="stroke-fine" d="M35,72 Q28,62 24,48"/>
+                {/* Main tenant objet */}
+                <ellipse className="stroke-detail" cx="20" cy="18" rx="5" ry="6"/>
+                {/* Bras gauche le long du corps */}
+                <path className="stroke-med" d="M58,75 Q68,85 70,100"/>
+                {/* Cou et tête */}
+                <path className="stroke-main" d="M42,55 Q42,48 44,42"/>
+                <path className="stroke-main" d="M48,55 Q48,48 46,42"/>
+                <ellipse className="stroke-main" cx="45" cy="30" rx="12" ry="15"/>
+                {/* Visage */}
+                <path className="stroke-fine" d="M40,25 Q45,22 50,25"/>
+                <ellipse className="stroke-detail" cx="41" cy="28" rx="2" ry="1.5"/>
+                <ellipse className="stroke-detail" cx="49" cy="28" rx="2" ry="1.5"/>
+                <path className="stroke-detail" d="M45,30 L44,36"/>
+                <path className="stroke-hatch" d="M42,38 Q45,40 48,38"/>
+                {/* Cheveux courts romains */}
+                <path className="stroke-med" d="M33,28 Q30,20 35,14 Q42,8 45,8 Q48,8 55,14 Q60,20 57,28"/>
+                <path className="stroke-detail" d="M36,24 Q34,18 38,14"/>
+                <path className="stroke-detail" d="M54,24 Q56,18 52,14"/>
               </g>
 
               {/* ═══════════════════════════════════════════════════════════
-                  COLONNE IONIQUE
-                  Position droite
+                  BUSTE CLASSIQUE - Gauche milieu
                   ═══════════════════════════════════════════════════════════ */}
-              <g transform="translate(780, 320)">
-                {/* Chapiteau ionique */}
-                <rect className="stroke-main" x="15" y="0" width="70" height="10"/>
-                <path className="stroke-med" d="M20,10 L25,25 L75,25 L80,10"/>
+              <g transform="translate(30, 230)">
+                {/* Piédestal court */}
+                <rect className="stroke-main" x="10" y="100" width="60" height="10" rx="1"/>
+                <path className="stroke-med" d="M15,100 L18,90 L62,90 L65,100"/>
+                <rect className="stroke-fine" x="18" y="82" width="44" height="8"/>
+                {/* Buste - épaules */}
+                <path className="stroke-main" d="M18,82 Q12,70 18,55 Q25,42 40,40"/>
+                <path className="stroke-main" d="M62,82 Q68,70 62,55 Q55,42 40,40"/>
+                <path className="stroke-fine" d="M22,78 Q18,68 22,55"/>
+                <path className="stroke-fine" d="M58,78 Q62,68 58,55"/>
+                {/* Drapé */}
+                <path className="stroke-detail" d="M25,75 Q22,65 26,55"/>
+                <path className="stroke-detail" d="M32,75 Q30,68 33,58"/>
+                <path className="stroke-detail" d="M48,75 Q50,68 47,58"/>
+                <path className="stroke-detail" d="M55,75 Q58,65 54,55"/>
+                {/* Cou */}
+                <path className="stroke-main" d="M35,40 Q35,35 37,30"/>
+                <path className="stroke-main" d="M45,40 Q45,35 43,30"/>
+                {/* Tête */}
+                <ellipse className="stroke-main" cx="40" cy="18" rx="14" ry="17"/>
+                {/* Chevelure bouclée */}
+                <path className="stroke-med" d="M26,15 Q22,8 28,2 Q35,-3 40,-3 Q45,-3 52,2 Q58,8 54,15"/>
+                <path className="stroke-fine" d="M30,12 Q28,6 32,3"/>
+                <path className="stroke-fine" d="M50,12 Q52,6 48,3"/>
+                <path className="stroke-detail" d="M35,10 Q34,5 37,2"/>
+                <path className="stroke-detail" d="M45,10 Q46,5 43,2"/>
+                {/* Visage */}
+                <path className="stroke-fine" d="M34,12 Q40,9 46,12"/>
+                <ellipse className="stroke-detail" cx="35" cy="16" rx="3" ry="2"/>
+                <ellipse className="stroke-detail" cx="45" cy="16" rx="3" ry="2"/>
+                <path className="stroke-detail" d="M40,18 L39,26"/>
+                <path className="stroke-fine" d="M36,28 Q40,31 44,28"/>
+              </g>
 
-                {/* Volutes */}
-                <path className="stroke-main" d="M18,25 Q5,30 5,45 Q5,60 20,58 Q30,55 30,45"/>
-                <path className="stroke-main" d="M82,25 Q95,30 95,45 Q95,60 80,58 Q70,55 70,45"/>
-                <circle className="stroke-med" cx="15" cy="45" r="6"/>
-                <circle className="stroke-detail" cx="15" cy="45" r="3"/>
-                <circle className="stroke-med" cx="85" cy="45" r="6"/>
-                <circle className="stroke-detail" cx="85" cy="45" r="3"/>
+              {/* ═══════════════════════════════════════════════════════════
+                  TABLEAU MONA LISA - Cadre orné
+                  Position centre gauche
+                  ═══════════════════════════════════════════════════════════ */}
+              <g transform="translate(130, 260)">
+                {/* Cadre extérieur très orné */}
+                <rect className="stroke-main" x="0" y="0" width="100" height="140" rx="4"/>
+                <rect className="stroke-med" x="4" y="4" width="92" height="132" rx="3"/>
+                {/* Ornements baroques du cadre */}
+                <path className="stroke-fine" d="M2,2 Q10,12 5,25"/>
+                <path className="stroke-fine" d="M98,2 Q90,12 95,25"/>
+                <path className="stroke-fine" d="M2,138 Q10,128 5,115"/>
+                <path className="stroke-fine" d="M98,138 Q90,128 95,115"/>
+                {/* Volutes d'angle */}
+                <path className="stroke-detail" d="M8,8 Q15,15 10,25 Q5,20 8,8"/>
+                <path className="stroke-detail" d="M92,8 Q85,15 90,25 Q95,20 92,8"/>
+                <path className="stroke-detail" d="M8,132 Q15,125 10,115 Q5,120 8,132"/>
+                <path className="stroke-detail" d="M92,132 Q85,125 90,115 Q95,120 92,132"/>
+                {/* Cadre intérieur */}
+                <rect className="stroke-med" x="10" y="10" width="80" height="120"/>
+                <rect className="stroke-fine" x="14" y="14" width="72" height="112"/>
+                {/* Mona Lisa - figure assise */}
+                <ellipse className="stroke-fine" cx="50" cy="45" rx="12" ry="15"/>
+                <path className="stroke-detail" d="M38,60 Q30,75 32,100 Q35,115 50,120"/>
+                <path className="stroke-detail" d="M62,60 Q70,75 68,100 Q65,115 50,120"/>
+                {/* Mains croisées */}
+                <path className="stroke-hatch" d="M40,85 Q50,88 60,85"/>
+                <path className="stroke-hatch" d="M42,90 Q50,92 58,90"/>
+                {/* Cheveux */}
+                <path className="stroke-detail" d="M38,42 Q32,50 35,65"/>
+                <path className="stroke-detail" d="M62,42 Q68,50 65,65"/>
+                {/* Visage */}
+                <path className="stroke-hatch" d="M45,40 Q50,38 55,40"/>
+                <ellipse className="stroke-ultra" cx="46" cy="44" rx="2" ry="1.5"/>
+                <ellipse className="stroke-ultra" cx="54" cy="44" rx="2" ry="1.5"/>
+                <path className="stroke-ultra" d="M50,46 L49,52"/>
+                <path className="stroke-hatch" d="M47,55 Q50,57 53,55"/>
+                {/* Paysage en arrière-plan */}
+                <path className="stroke-ultra" d="M18,75 Q30,65 40,70"/>
+                <path className="stroke-ultra" d="M60,70 Q70,65 82,75"/>
+              </g>
 
-                {/* Échine */}
-                <ellipse className="stroke-fine" cx="50" cy="55" rx="25" ry="8"/>
-                <path className="stroke-detail" d="M30,52 Q40,48 50,50 Q60,48 70,52"/>
+              {/* ═══════════════════════════════════════════════════════════
+                  BUSTE SUR COLONNE - Centre
+                  ═══════════════════════════════════════════════════════════ */}
+              <g transform="translate(520, 200)">
+                {/* Base de colonne */}
+                <rect className="stroke-main" x="15" y="140" width="50" height="8" rx="1"/>
+                <ellipse className="stroke-med" cx="40" cy="138" rx="22" ry="5"/>
+                {/* Colonne courte */}
+                <path className="stroke-main" d="M22,138 L24,105"/>
+                <path className="stroke-main" d="M58,138 L56,105"/>
+                <path className="stroke-fine" d="M28,135 L29,108"/>
+                <path className="stroke-fine" d="M52,135 L51,108"/>
+                <path className="stroke-detail" d="M40,135 L40,108"/>
+                {/* Chapiteau */}
+                <ellipse className="stroke-med" cx="40" cy="102" rx="18" ry="4"/>
+                <path className="stroke-fine" d="M25,100 Q30,95 40,94 Q50,95 55,100"/>
+                {/* Buste */}
+                <path className="stroke-main" d="M25,98 Q18,85 24,70 Q32,58 40,55"/>
+                <path className="stroke-main" d="M55,98 Q62,85 56,70 Q48,58 40,55"/>
+                <path className="stroke-fine" d="M28,92 Q24,82 28,68"/>
+                <path className="stroke-fine" d="M52,92 Q56,82 52,68"/>
+                {/* Cou et tête */}
+                <path className="stroke-main" d="M36,55 Q36,48 38,42"/>
+                <path className="stroke-main" d="M44,55 Q44,48 42,42"/>
+                <ellipse className="stroke-main" cx="40" cy="28" rx="14" ry="18"/>
+                {/* Cheveux */}
+                <path className="stroke-med" d="M26,25 Q22,15 28,6 Q36,-2 40,-2 Q44,-2 52,6 Q58,15 54,25"/>
+                <path className="stroke-detail" d="M30,20 Q28,12 32,6"/>
+                <path className="stroke-detail" d="M50,20 Q52,12 48,6"/>
+                {/* Visage */}
+                <ellipse className="stroke-detail" cx="35" cy="25" rx="3" ry="2"/>
+                <ellipse className="stroke-detail" cx="45" cy="25" rx="3" ry="2"/>
+                <path className="stroke-detail" d="M40,28 L39,35"/>
+                <path className="stroke-fine" d="M36,38 Q40,41 44,38"/>
+              </g>
 
-                {/* Fût lisse */}
-                <path className="stroke-main" d="M30,62 L32,280"/>
-                <path className="stroke-main" d="M70,62 L68,280"/>
-                <path className="stroke-fine" d="M38,65 L40,278"/>
-                <path className="stroke-fine" d="M62,65 L60,278"/>
-                <path className="stroke-detail" d="M50,65 L50,278"/>
+              {/* ═══════════════════════════════════════════════════════════
+                  TABLEAU PORTRAIT - Femme avec enfant
+                  Position centre droite
+                  ═══════════════════════════════════════════════════════════ */}
+              <g transform="translate(640, 260)">
+                {/* Cadre orné */}
+                <rect className="stroke-main" x="0" y="0" width="95" height="120" rx="3"/>
+                <rect className="stroke-med" x="4" y="4" width="87" height="112" rx="2"/>
+                {/* Ornements cadre */}
+                <path className="stroke-fine" d="M2,2 Q12,10 6,22"/>
+                <path className="stroke-fine" d="M93,2 Q83,10 89,22"/>
+                <path className="stroke-fine" d="M2,118 Q12,110 6,98"/>
+                <path className="stroke-fine" d="M93,118 Q83,110 89,98"/>
+                <rect className="stroke-fine" x="10" y="10" width="75" height="100"/>
+                {/* Figure principale - mère */}
+                <ellipse className="stroke-fine" cx="40" cy="35" rx="10" ry="12"/>
+                <path className="stroke-detail" d="M30,47 Q25,60 28,85 L35,105"/>
+                <path className="stroke-detail" d="M50,47 Q55,55 52,70"/>
+                {/* Enfant */}
+                <ellipse className="stroke-hatch" cx="60" cy="55" rx="8" ry="9"/>
+                <path className="stroke-hatch" d="M52,64 Q55,75 58,90"/>
+                <path className="stroke-hatch" d="M68,64 Q72,78 68,95"/>
+                {/* Bras tenant l'enfant */}
+                <path className="stroke-detail" d="M50,50 Q55,48 58,55"/>
+              </g>
 
-                {/* Base attique */}
-                <ellipse className="stroke-med" cx="50" cy="285" rx="25" ry="6"/>
-                <path className="stroke-main" d="M25,290 Q20,295 25,300 L75,300 Q80,295 75,290"/>
-                <rect className="stroke-main" x="15" y="300" width="70" height="10"/>
-                <rect className="stroke-med" x="10" y="310" width="80" height="8" rx="1"/>
+              {/* ═══════════════════════════════════════════════════════════
+                  VASES ET URNES - Rangée du milieu
+                  ═══════════════════════════════════════════════════════════ */}
+
+              {/* Vase décoratif */}
+              <g transform="translate(780, 280)">
+                {/* Base */}
+                <ellipse className="stroke-main" cx="35" cy="95" rx="18" ry="5"/>
+                <path className="stroke-main" d="M17,95 L20,85 L50,85 L53,95"/>
+                {/* Corps ovoïde */}
+                <path className="stroke-main" d="M20,85 Q8,70 10,50 Q12,30 25,20 Q32,15 35,15 Q38,15 45,20 Q58,30 60,50 Q62,70 50,85"/>
+                <path className="stroke-fine" d="M25,80 Q15,68 17,50 Q19,35 28,25"/>
+                <path className="stroke-fine" d="M45,80 Q55,68 53,50 Q51,35 42,25"/>
+                {/* Col */}
+                <path className="stroke-main" d="M28,18 Q26,12 30,8 L40,8 Q44,12 42,18"/>
+                <ellipse className="stroke-med" cx="35" cy="7" rx="7" ry="3"/>
+                {/* Anses */}
+                <path className="stroke-med" d="M10,50 Q-2,45 0,32 Q3,22 15,28"/>
+                <path className="stroke-med" d="M60,50 Q72,45 70,32 Q67,22 55,28"/>
+                {/* Décor - bande */}
+                <path className="stroke-detail" d="M18,55 Q35,50 52,55"/>
+                <path className="stroke-detail" d="M20,65 Q35,60 50,65"/>
+              </g>
+
+              {/* Urne haute */}
+              <g transform="translate(870, 255)">
+                {/* Socle */}
+                <rect className="stroke-main" x="12" y="115" width="46" height="8" rx="1"/>
+                <path className="stroke-med" d="M15,115 L18,108 L52,108 L55,115"/>
+                {/* Base du vase */}
+                <ellipse className="stroke-main" cx="35" cy="105" rx="15" ry="4"/>
+                {/* Corps */}
+                <path className="stroke-main" d="M20,105 Q10,90 12,65 Q14,40 25,28"/>
+                <path className="stroke-main" d="M50,105 Q60,90 58,65 Q56,40 45,28"/>
+                <path className="stroke-fine" d="M24,100 Q16,88 18,65 Q20,45 28,32"/>
+                <path className="stroke-fine" d="M46,100 Q54,88 52,65 Q50,45 42,32"/>
+                {/* Col long */}
+                <path className="stroke-main" d="M28,28 L30,12 L40,12 L42,28"/>
+                <ellipse className="stroke-main" cx="35" cy="10" rx="8" ry="4"/>
+                <ellipse className="stroke-med" cx="35" cy="6" rx="5" ry="2"/>
+                {/* Anses élégantes */}
+                <path className="stroke-med" d="M12,60 Q0,55 2,40 Q5,28 18,35"/>
+                <path className="stroke-med" d="M58,60 Q70,55 68,40 Q65,28 52,35"/>
+                {/* Décor */}
+                <path className="stroke-detail" d="M18,75 Q35,68 52,75"/>
+                <circle className="stroke-hatch" cx="35" cy="55" r="8"/>
+                <circle className="stroke-ultra" cx="35" cy="55" r="4"/>
+              </g>
+
+              {/* ═══════════════════════════════════════════════════════════
+                  AMPHORE GRECQUE - Bas gauche
+                  ═══════════════════════════════════════════════════════════ */}
+              <g transform="translate(20, 500)">
+                {/* Base */}
+                <ellipse className="stroke-main" cx="45" cy="180" rx="22" ry="6"/>
+                <path className="stroke-main" d="M23,180 L28,168 L62,168 L67,180"/>
+                <ellipse className="stroke-med" cx="45" cy="168" rx="18" ry="5"/>
+                {/* Pied évasé */}
+                <path className="stroke-main" d="M28,168 Q22,158 28,148 L62,148 Q68,158 62,168"/>
+                <path className="stroke-fine" d="M32,165 L58,165"/>
+                <path className="stroke-fine" d="M30,155 L60,155"/>
+                {/* Corps principal */}
+                <path className="stroke-main" d="M28,148 Q10,120 12,85 Q14,50 30,28 Q40,15 45,12 Q50,15 60,28 Q76,50 78,85 Q80,120 62,148"/>
+                <path className="stroke-fine" d="M34,142 Q18,118 20,85 Q22,55 35,35"/>
+                <path className="stroke-fine" d="M56,142 Q72,118 70,85 Q68,55 55,35"/>
+                {/* Col */}
+                <path className="stroke-main" d="M38,15 Q35,8 40,3 L50,3 Q55,8 52,15"/>
+                <ellipse className="stroke-main" cx="45" cy="2" rx="8" ry="3"/>
+                {/* Anses avec volutes */}
+                <path className="stroke-main" d="M12,85 Q-5,75 -2,50 Q2,30 20,35 Q30,40 34,55"/>
+                <path className="stroke-med" d="M16,78 Q5,70 8,52 Q12,38 22,42"/>
+                <path className="stroke-detail" d="M2,55 Q-5,52 0,42 Q8,35 14,48"/>
+                <path className="stroke-main" d="M78,85 Q95,75 92,50 Q88,30 70,35 Q60,40 56,55"/>
+                <path className="stroke-med" d="M74,78 Q85,70 82,52 Q78,38 68,42"/>
+                <path className="stroke-detail" d="M88,55 Q95,52 90,42 Q82,35 76,48"/>
+                {/* Frise avec méandres */}
+                <path className="stroke-fine" d="M22,110 Q45,105 68,110"/>
+                <path className="stroke-fine" d="M24,125 Q45,120 66,125"/>
+                <path className="stroke-detail" d="M30,112 L30,122 L37,122 L37,115 L33,115 L33,112"/>
+                <path className="stroke-detail" d="M42,112 L42,122 L49,122 L49,115 L45,115 L45,112"/>
+                <path className="stroke-detail" d="M54,112 L54,122 L61,122 L61,115 L57,115 L57,112"/>
+                {/* Figure centrale */}
+                <ellipse className="stroke-detail" cx="45" cy="70" rx="8" ry="10"/>
+                <path className="stroke-hatch" d="M45,80 L45,100"/>
+                <path className="stroke-hatch" d="M37,88 L53,88"/>
+              </g>
+
+              {/* ═══════════════════════════════════════════════════════════
+                  URN ÉLÉGANTE - Style Louis XVI
+                  ═══════════════════════════════════════════════════════════ */}
+              <g transform="translate(130, 540)">
+                {/* Fleuron */}
+                <path className="stroke-main" d="M40,0 Q35,8 40,15 Q45,8 40,0"/>
+                <circle className="stroke-med" cx="40" cy="18" r="4"/>
+                {/* Couvercle */}
+                <path className="stroke-main" d="M22,32 Q18,25 28,20 Q34,18 40,18 Q46,18 52,20 Q62,25 58,32"/>
+                <ellipse className="stroke-main" cx="40" cy="32" rx="20" ry="6"/>
+                <path className="stroke-fine" d="M26,28 Q33,24 40,24 Q47,24 54,28"/>
+                {/* Col */}
+                <path className="stroke-main" d="M24,38 L26,52 L54,52 L56,38"/>
+                <path className="stroke-fine" d="M30,45 L50,45"/>
+                {/* Corps ovoïde */}
+                <path className="stroke-main" d="M26,52 Q12,68 12,95 Q12,122 26,140 Q36,155 40,158 Q44,155 54,140 Q68,122 68,95 Q68,68 54,52"/>
+                <path className="stroke-fine" d="M32,58 Q20,72 20,95 Q20,118 32,132"/>
+                <path className="stroke-fine" d="M48,58 Q60,72 60,95 Q60,118 48,132"/>
+                {/* Anses serpent */}
+                <path className="stroke-med" d="M12,88 Q-2,82 0,68 Q4,58 16,62"/>
+                <path className="stroke-med" d="M68,88 Q82,82 80,68 Q76,58 64,62"/>
+                <circle className="stroke-detail" cx="16" cy="60" r="3"/>
+                <circle className="stroke-detail" cx="64" cy="60" r="3"/>
+                {/* Guirlande */}
+                <path className="stroke-fine" d="M20,105 Q30,115 40,112 Q50,115 60,105"/>
+                <path className="stroke-detail" d="M25,108 Q32,114 38,110"/>
+                <path className="stroke-detail" d="M42,110 Q48,114 55,108"/>
+                <circle className="stroke-hatch" cx="40" cy="115" r="3"/>
+                {/* Base */}
+                <ellipse className="stroke-main" cx="40" cy="158" rx="16" ry="5"/>
+                <path className="stroke-main" d="M24,158 L20,172 L60,172 L56,158"/>
+                <rect className="stroke-med" x="15" y="172" width="50" height="8" rx="1"/>
+              </g>
+
+              {/* ═══════════════════════════════════════════════════════════
+                  LE PENSEUR - Petite sculpture
+                  ═══════════════════════════════════════════════════════════ */}
+              <g transform="translate(250, 625)">
+                {/* Socle */}
+                <rect className="stroke-main" x="5" y="65" width="50" height="8" rx="1"/>
+                <path className="stroke-med" d="M8,65 L12,58 L48,58 L52,65"/>
+                {/* Rocher/siège */}
+                <path className="stroke-main" d="M12,58 Q8,50 15,42 Q25,35 35,38 Q45,35 48,45 L48,58"/>
+                <path className="stroke-fine" d="M18,55 Q15,48 20,42"/>
+                {/* Figure assise penchée */}
+                <path className="stroke-main" d="M28,38 Q22,32 25,20"/>
+                <path className="stroke-main" d="M38,38 Q40,30 35,22"/>
+                {/* Tête penchée avec main */}
+                <ellipse className="stroke-main" cx="30" cy="12" rx="8" ry="10"/>
+                <path className="stroke-med" d="M25,20 Q18,22 15,18 Q12,12 18,8"/>
+                <path className="stroke-fine" d="M22,18 Q18,20 16,16"/>
+                {/* Bras appuyé sur genou */}
+                <path className="stroke-med" d="M28,28 Q20,32 18,40 Q18,48 25,52"/>
+                <path className="stroke-fine" d="M30,30 Q24,34 22,42"/>
+                {/* Jambes */}
+                <path className="stroke-med" d="M25,52 Q22,58 20,65"/>
+                <path className="stroke-med" d="M35,50 Q40,56 42,65"/>
+                <path className="stroke-fine" d="M28,55 L26,62"/>
+                <path className="stroke-fine" d="M38,54 L40,62"/>
+              </g>
+
+              {/* ═══════════════════════════════════════════════════════════
+                  PETIT VASE CRATÈRE
+                  ═══════════════════════════════════════════════════════════ */}
+              <g transform="translate(340, 640)">
+                {/* Base */}
+                <rect className="stroke-main" x="12" y="85" width="46" height="6" rx="1"/>
+                <path className="stroke-med" d="M18,85 L22,78 L48,78 L52,85"/>
+                <ellipse className="stroke-fine" cx="35" cy="78" rx="14" ry="4"/>
+                {/* Corps évasé */}
+                <path className="stroke-main" d="M22,78 Q15,65 15,48 Q15,32 25,22 Q32,15 35,14 Q38,15 45,22 Q55,32 55,48 Q55,65 48,78"/>
+                <path className="stroke-fine" d="M26,74 Q20,62 20,48 Q20,35 28,26"/>
+                <path className="stroke-fine" d="M44,74 Q50,62 50,48 Q50,35 42,26"/>
+                {/* Lèvre évasée */}
+                <path className="stroke-main" d="M25,18 Q22,12 25,8 L45,8 Q48,12 45,18"/>
+                <ellipse className="stroke-main" cx="35" cy="7" rx="12" ry="4"/>
+                <ellipse className="stroke-med" cx="35" cy="4" rx="8" ry="2"/>
+                {/* Anses horizontales */}
+                <path className="stroke-med" d="M15,45 Q5,42 5,32 Q8,22 18,28"/>
+                <path className="stroke-med" d="M55,45 Q65,42 65,32 Q62,22 52,28"/>
+                {/* Frise */}
+                <path className="stroke-detail" d="M22,50 L48,50"/>
+                <path className="stroke-detail" d="M24,58 L46,58"/>
+                <path className="stroke-hatch" d="M28,52 L28,56"/>
+                <path className="stroke-hatch" d="M35,52 L35,56"/>
+                <path className="stroke-hatch" d="M42,52 L42,56"/>
+              </g>
+
+              {/* ═══════════════════════════════════════════════════════════
+                  VÉNUS DE MILO - Statue classique
+                  ═══════════════════════════════════════════════════════════ */}
+              <g transform="translate(460, 460)">
+                {/* Grand socle */}
+                <rect className="stroke-main" x="10" y="220" width="70" height="12" rx="1"/>
+                <path className="stroke-med" d="M15,220 L20,208 L70,208 L75,220"/>
+                <rect className="stroke-fine" x="18" y="198" width="54" height="10"/>
+                {/* Jambes avec drapé */}
+                <path className="stroke-main" d="M30,198 Q25,170 28,140"/>
+                <path className="stroke-main" d="M60,198 Q62,175 58,145"/>
+                <path className="stroke-fine" d="M34,195 Q30,168 32,145"/>
+                <path className="stroke-fine" d="M56,195 Q58,172 55,150"/>
+                {/* Drapé enroulé */}
+                <path className="stroke-med" d="M25,195 Q20,180 25,165 Q30,155 40,155"/>
+                <path className="stroke-med" d="M65,195 Q70,178 65,162 Q58,152 50,155"/>
+                <path className="stroke-detail" d="M28,188 Q24,175 28,162"/>
+                <path className="stroke-detail" d="M35,185 Q32,172 35,160"/>
+                <path className="stroke-detail" d="M55,185 Q58,172 55,160"/>
+                <path className="stroke-detail" d="M62,188 Q66,175 62,162"/>
+                {/* Torse nu */}
+                <path className="stroke-main" d="M28,140 Q22,120 26,95 Q30,75 40,65"/>
+                <path className="stroke-main" d="M58,145 Q65,125 60,100 Q55,80 45,68"/>
+                <path className="stroke-fine" d="M32,135 Q28,118 30,98"/>
+                <path className="stroke-fine" d="M55,140 Q60,120 56,100"/>
+                {/* Lignes du torse */}
+                <path className="stroke-detail" d="M38,130 Q35,115 38,100"/>
+                <path className="stroke-detail" d="M50,132 Q52,118 50,102"/>
+                <path className="stroke-hatch" d="M40,110 Q45,105 50,110"/>
+                {/* Épaules sans bras */}
+                <path className="stroke-med" d="M26,95 Q18,90 15,82"/>
+                <path className="stroke-med" d="M60,100 Q68,95 72,88"/>
+                {/* Cou */}
+                <path className="stroke-main" d="M38,65 Q38,58 40,52"/>
+                <path className="stroke-main" d="M48,68 Q48,60 46,52"/>
+                {/* Tête */}
+                <ellipse className="stroke-main" cx="43" cy="38" rx="14" ry="18"/>
+                {/* Chevelure */}
+                <path className="stroke-med" d="M29,35 Q24,25 30,15 Q38,5 43,5 Q48,5 56,15 Q62,25 57,35"/>
+                <path className="stroke-fine" d="M32,32 Q28,24 33,16"/>
+                <path className="stroke-fine" d="M54,32 Q58,24 53,16"/>
+                <path className="stroke-detail" d="M38,28 Q36,20 40,14"/>
+                <path className="stroke-detail" d="M48,28 Q50,20 46,14"/>
+                {/* Chignon */}
+                <path className="stroke-fine" d="M43,5 Q48,2 52,8"/>
+                <path className="stroke-detail" d="M45,4 Q50,0 55,6"/>
+                {/* Visage */}
+                <ellipse className="stroke-detail" cx="38" cy="35" rx="3" ry="2"/>
+                <ellipse className="stroke-detail" cx="48" cy="35" rx="3" ry="2"/>
+                <path className="stroke-detail" d="M43,38 L42,46"/>
+                <path className="stroke-fine" d="M40,50 Q43,53 46,50"/>
+              </g>
+
+              {/* ═══════════════════════════════════════════════════════════
+                  URNE DÉCORATIVE - Droite bas
+                  ═══════════════════════════════════════════════════════════ */}
+              <g transform="translate(600, 540)">
+                {/* Base carrée */}
+                <rect className="stroke-main" x="10" y="130" width="60" height="10" rx="1"/>
+                <path className="stroke-med" d="M15,130 L18,122 L62,122 L65,130"/>
+                <ellipse className="stroke-fine" cx="40" cy="120" rx="20" ry="5"/>
+                {/* Pied */}
+                <path className="stroke-main" d="M20,120 Q15,112 22,105 Q32,98 40,98 Q48,98 58,105 Q65,112 60,120"/>
+                <path className="stroke-fine" d="M25,115 Q22,110 28,105"/>
+                <path className="stroke-fine" d="M55,115 Q58,110 52,105"/>
+                {/* Corps balustre */}
+                <path className="stroke-main" d="M28,98 Q18,85 18,65 Q18,45 30,32"/>
+                <path className="stroke-main" d="M52,98 Q62,85 62,65 Q62,45 50,32"/>
+                <path className="stroke-fine" d="M32,92 Q24,80 24,65 Q24,50 34,38"/>
+                <path className="stroke-fine" d="M48,92 Q56,80 56,65 Q56,50 46,38"/>
+                {/* Col */}
+                <path className="stroke-main" d="M32,32 Q28,25 32,18 L48,18 Q52,25 48,32"/>
+                <ellipse className="stroke-main" cx="40" cy="16" rx="10" ry="4"/>
+                <ellipse className="stroke-med" cx="40" cy="12" rx="6" ry="2"/>
+                {/* Décor central */}
+                <ellipse className="stroke-fine" cx="40" cy="65" rx="12" ry="15"/>
+                <ellipse className="stroke-detail" cx="40" cy="65" rx="8" ry="10"/>
+                <path className="stroke-hatch" d="M36,60 Q40,55 44,60"/>
+                <path className="stroke-hatch" d="M40,65 L40,75"/>
+              </g>
+
+              {/* ═══════════════════════════════════════════════════════════
+                  VASE À PIED HAUT
+                  ═══════════════════════════════════════════════════════════ */}
+              <g transform="translate(720, 520)">
+                {/* Base large */}
+                <rect className="stroke-main" x="8" y="155" width="54" height="8" rx="1"/>
+                <path className="stroke-med" d="M12,155 L15,148 L55,148 L58,155"/>
+                {/* Pied haut */}
+                <path className="stroke-main" d="M18,148 L22,115 L48,115 L52,148"/>
+                <path className="stroke-fine" d="M25,145 L28,118"/>
+                <path className="stroke-fine" d="M45,145 L42,118"/>
+                <path className="stroke-detail" d="M35,145 L35,118"/>
+                {/* Nœud */}
+                <ellipse className="stroke-main" cx="35" cy="112" rx="12" ry="5"/>
+                <path className="stroke-fine" d="M25,112 Q35,105 45,112"/>
+                {/* Coupe */}
+                <path className="stroke-main" d="M23,107 Q10,95 10,70 Q10,45 25,30"/>
+                <path className="stroke-main" d="M47,107 Q60,95 60,70 Q60,45 45,30"/>
+                <path className="stroke-fine" d="M28,102 Q17,92 17,70 Q17,50 28,38"/>
+                <path className="stroke-fine" d="M42,102 Q53,92 53,70 Q53,50 42,38"/>
+                {/* Lèvre */}
+                <path className="stroke-main" d="M25,32 Q20,25 25,18 L45,18 Q50,25 45,32"/>
+                <ellipse className="stroke-main" cx="35" cy="16" rx="12" ry="5"/>
+                <ellipse className="stroke-med" cx="35" cy="12" rx="8" ry="3"/>
+                {/* Décor */}
+                <path className="stroke-detail" d="M18,65 Q35,58 52,65"/>
+                <path className="stroke-detail" d="M20,80 Q35,75 50,80"/>
+              </g>
+
+              {/* ═══════════════════════════════════════════════════════════
+                  AMPHORE ALLONGÉE - Extrême droite
+                  ═══════════════════════════════════════════════════════════ */}
+              <g transform="translate(850, 520)">
+                {/* Base */}
+                <ellipse className="stroke-main" cx="40" cy="150" rx="18" ry="5"/>
+                <path className="stroke-main" d="M22,150 L25,140 L55,140 L58,150"/>
+                {/* Pied */}
+                <path className="stroke-main" d="M25,140 Q20,132 28,125 L52,125 Q60,132 55,140"/>
+                <path className="stroke-fine" d="M30,138 L50,138"/>
+                {/* Corps allongé */}
+                <path className="stroke-main" d="M28,125 Q15,105 15,70 Q15,40 30,22"/>
+                <path className="stroke-main" d="M52,125 Q65,105 65,70 Q65,40 50,22"/>
+                <path className="stroke-fine" d="M32,120 Q22,102 22,70 Q22,45 34,28"/>
+                <path className="stroke-fine" d="M48,120 Q58,102 58,70 Q58,45 46,28"/>
+                {/* Col */}
+                <path className="stroke-main" d="M32,22 L35,8 L45,8 L48,22"/>
+                <ellipse className="stroke-main" cx="40" cy="6" rx="7" ry="3"/>
+                {/* Anses */}
+                <path className="stroke-med" d="M15,65 Q2,58 5,42 Q10,30 25,38"/>
+                <path className="stroke-med" d="M65,65 Q78,58 75,42 Q70,30 55,38"/>
+                <path className="stroke-detail" d="M8,52 Q2,48 6,40"/>
+                <path className="stroke-detail" d="M72,52 Q78,48 74,40"/>
+                {/* Décor */}
+                <path className="stroke-detail" d="M22,85 Q40,78 58,85"/>
+                <path className="stroke-detail" d="M25,100 Q40,95 55,100"/>
+                <circle className="stroke-hatch" cx="40" cy="60" r="8"/>
               </g>
 
               {/* ═══════════════════════════════════════════════════════════
                   PETITS ÉLÉMENTS DÉCORATIFS
                   ═══════════════════════════════════════════════════════════ */}
 
-              {/* Petite urne décorative */}
-              <g transform="translate(200, 420)">
+              {/* Petit vase simple */}
+              <g transform="translate(280, 420)">
+                <ellipse className="stroke-med" cx="25" cy="65" rx="12" ry="4"/>
+                <path className="stroke-med" d="M13,65 L16,55 L34,55 L37,65"/>
+                <path className="stroke-med" d="M16,55 Q8,42 10,28 Q13,15 25,12 Q37,15 40,28 Q42,42 34,55"/>
+                <ellipse className="stroke-fine" cx="25" cy="10" rx="6" ry="3"/>
+                <path className="stroke-detail" d="M18,50 Q25,45 32,50"/>
+                <path className="stroke-detail" d="M20,38 Q25,34 30,38"/>
+              </g>
+
+              {/* Petit buste */}
+              <g transform="translate(380, 380)">
+                <rect className="stroke-med" x="8" y="55" width="34" height="6" rx="1"/>
+                <path className="stroke-med" d="M10,55 L14,48 L36,48 L40,55"/>
+                <path className="stroke-med" d="M14,48 Q10,40 15,32 Q20,26 25,25"/>
+                <path className="stroke-med" d="M36,48 Q40,40 35,32 Q30,26 25,25"/>
+                <ellipse className="stroke-med" cx="25" cy="15" rx="10" ry="12"/>
+                <path className="stroke-fine" d="M15,12 Q12,6 18,2 Q23,0 25,0 Q27,0 32,2 Q38,6 35,12"/>
+                <ellipse className="stroke-detail" cx="22" cy="14" rx="2" ry="1.5"/>
+                <ellipse className="stroke-detail" cx="28" cy="14" rx="2" ry="1.5"/>
+                <path className="stroke-hatch" d="M23,22 Q25,24 27,22"/>
+              </g>
+
+              {/* Médaillon ovale */}
+              <g transform="translate(1000, 440)">
+                <ellipse className="stroke-main" cx="40" cy="45" rx="35" ry="42"/>
+                <ellipse className="stroke-med" cx="40" cy="45" rx="30" ry="36"/>
+                <ellipse className="stroke-fine" cx="40" cy="45" rx="25" ry="30"/>
+                {/* Ruban */}
+                <circle className="stroke-med" cx="40" cy="2" r="6"/>
+                <path className="stroke-fine" d="M34,5 Q28,15 32,25"/>
+                <path className="stroke-fine" d="M46,5 Q52,15 48,25"/>
+                {/* Profil */}
+                <path className="stroke-detail" d="M32,42 Q28,35 34,28 Q42,22 52,30 Q58,40 54,52 Q48,62 40,65 Q32,62 30,52"/>
+                <path className="stroke-hatch" d="M38,30 Q48,26 52,35"/>
+              </g>
+
+              {/* Petite urne */}
+              <g transform="translate(1050, 600)">
                 <ellipse className="stroke-med" cx="30" cy="80" rx="15" ry="4"/>
                 <path className="stroke-med" d="M15,80 L18,70 L42,70 L45,80"/>
-                <path className="stroke-med" d="M18,70 Q10,55 12,40 Q15,25 30,20 Q45,25 48,40 Q50,55 42,70"/>
-                <ellipse className="stroke-fine" cx="30" cy="18" rx="8" ry="3"/>
-                <path className="stroke-detail" d="M22,65 Q30,60 38,65"/>
-                <path className="stroke-detail" d="M25,50 Q30,45 35,50"/>
+                <path className="stroke-med" d="M18,70 Q10,55 12,38 Q15,22 30,18 Q45,22 48,38 Q50,55 42,70"/>
+                <path className="stroke-fine" d="M22,65 Q16,52 18,38 Q20,28 30,24"/>
+                <path className="stroke-fine" d="M38,65 Q44,52 42,38 Q40,28 30,24"/>
+                <ellipse className="stroke-fine" cx="30" cy="16" rx="8" ry="3"/>
+                <path className="stroke-main" d="M30,0 Q26,6 30,12 Q34,6 30,0"/>
+                <circle className="stroke-detail" cx="30" cy="14" r="3"/>
+                {/* Anses */}
+                <path className="stroke-detail" d="M12,45 Q4,42 6,32 Q10,25 18,30"/>
+                <path className="stroke-detail" d="M48,45 Q56,42 54,32 Q50,25 42,30"/>
               </g>
 
               {/* Couronne de laurier */}
-              <g transform="translate(380, 50)">
-                <path className="stroke-med" d="M25,60 Q10,45 15,25 Q22,10 40,5"/>
-                <path className="stroke-med" d="M55,60 Q70,45 65,25 Q58,10 40,5"/>
-                <path className="stroke-fine" d="M30,55 Q18,42 22,28"/>
-                <path className="stroke-fine" d="M50,55 Q62,42 58,28"/>
+              <g transform="translate(560, 170)">
+                <path className="stroke-med" d="M20,50 Q8,38 12,22 Q18,8 35,5"/>
+                <path className="stroke-med" d="M50,50 Q62,38 58,22 Q52,8 35,5"/>
+                <path className="stroke-fine" d="M25,45 Q15,35 18,22"/>
+                <path className="stroke-fine" d="M45,45 Q55,35 52,22"/>
                 {/* Feuilles */}
-                <path className="stroke-detail" d="M18,40 Q12,35 18,28 Q24,32 18,40"/>
-                <path className="stroke-detail" d="M22,28 Q18,20 25,15 Q30,22 22,28"/>
-                <path className="stroke-detail" d="M62,40 Q68,35 62,28 Q56,32 62,40"/>
-                <path className="stroke-detail" d="M58,28 Q62,20 55,15 Q50,22 58,28"/>
+                <path className="stroke-detail" d="M15,35 Q10,30 15,24 Q20,28 15,35"/>
+                <path className="stroke-detail" d="M18,22 Q14,15 20,12 Q24,18 18,22"/>
+                <path className="stroke-detail" d="M55,35 Q60,30 55,24 Q50,28 55,35"/>
+                <path className="stroke-detail" d="M52,22 Q56,15 50,12 Q46,18 52,22"/>
                 {/* Ruban */}
-                <path className="stroke-fine" d="M35,60 Q40,68 35,75"/>
-                <path className="stroke-fine" d="M45,60 Q40,68 45,75"/>
+                <path className="stroke-fine" d="M30,50 Q35,58 30,65"/>
+                <path className="stroke-fine" d="M40,50 Q35,58 40,65"/>
               </g>
 
-              {/* Médaillon */}
-              <g transform="translate(600, 420)">
-                <ellipse className="stroke-main" cx="50" cy="55" rx="45" ry="50"/>
-                <ellipse className="stroke-med" cx="50" cy="55" rx="38" ry="42"/>
-                <ellipse className="stroke-fine" cx="50" cy="55" rx="32" ry="35"/>
-                {/* Noeud supérieur */}
-                <circle className="stroke-med" cx="50" cy="2" r="8"/>
-                <path className="stroke-fine" d="M42,5 Q35,15 40,25"/>
-                <path className="stroke-fine" d="M58,5 Q65,15 60,25"/>
-                {/* Profil intérieur */}
-                <path className="stroke-detail" d="M40,50 Q35,40 42,32 Q52,25 65,35 Q72,45 68,58 Q62,72 50,75 Q40,72 38,60"/>
-                <path className="stroke-hatch" d="M45,35 Q55,30 62,38"/>
-                <path className="stroke-hatch" d="M58,50 Q65,55 60,65"/>
-              </g>
+              {/* Points décoratifs */}
+              <circle className="stroke-detail" cx="320" cy="220" r="2"/>
+              <circle className="stroke-hatch" cx="420" cy="180" r="1.5"/>
+              <circle className="stroke-detail" cx="680" cy="200" r="2"/>
+              <circle className="stroke-hatch" cx="920" cy="380" r="1.5"/>
+              <circle className="stroke-detail" cx="180" cy="480" r="2"/>
+              <circle className="stroke-hatch" cx="550" cy="420" r="1.5"/>
+              <circle className="stroke-detail" cx="750" cy="450" r="2"/>
+              <circle className="stroke-hatch" cx="980" cy="550" r="1.5"/>
+              <circle className="stroke-detail" cx="100" cy="680" r="2"/>
+              <circle className="stroke-hatch" cx="450" cy="780" r="1.5"/>
+              <circle className="stroke-detail" cx="650" cy="720" r="2"/>
+              <circle className="stroke-hatch" cx="820" cy="800" r="1.5"/>
 
-              {/* Palmette */}
-              <g transform="translate(720, 700)">
-                <path className="stroke-med" d="M30,50 Q20,40 25,25 Q30,12 35,25 Q40,12 45,25 Q50,40 40,50"/>
-                <path className="stroke-fine" d="M32,45 Q25,38 28,28"/>
-                <path className="stroke-fine" d="M38,45 Q45,38 42,28"/>
-                <path className="stroke-detail" d="M35,42 L35,30"/>
-                <ellipse className="stroke-detail" cx="35" cy="55" rx="10" ry="5"/>
+              {/* Petites étoiles décoratives */}
+              <g transform="translate(1100, 150)">
+                <path className="stroke-detail" d="M10,0 L12,8 L20,10 L12,12 L10,20 L8,12 L0,10 L8,8 Z"/>
               </g>
-
-              {/* Rosette */}
-              <g transform="translate(150, 700)">
-                <circle className="stroke-med" cx="40" cy="40" r="18"/>
-                <circle className="stroke-fine" cx="40" cy="40" r="12"/>
-                <circle className="stroke-detail" cx="40" cy="40" r="6"/>
-                {/* Pétales */}
-                <path className="stroke-detail" d="M40,22 Q45,28 40,34 Q35,28 40,22"/>
-                <path className="stroke-detail" d="M58,40 Q52,45 46,40 Q52,35 58,40"/>
-                <path className="stroke-detail" d="M40,58 Q35,52 40,46 Q45,52 40,58"/>
-                <path className="stroke-detail" d="M22,40 Q28,35 34,40 Q28,45 22,40"/>
+              <g transform="translate(300, 850)">
+                <path className="stroke-hatch" d="M8,0 L9,6 L15,8 L9,10 L8,16 L7,10 L1,8 L7,6 Z"/>
               </g>
-
-              {/* Coquille rocaille */}
-              <g transform="translate(480, 780)">
-                <path className="stroke-main" d="M20,35 Q15,25 22,15 Q30,5 40,10 Q50,5 58,15 Q65,25 60,35 Q40,45 20,35"/>
-                <path className="stroke-med" d="M25,32 Q22,25 27,18 Q33,12 40,15 Q47,12 53,18 Q58,25 55,32"/>
-                <path className="stroke-detail" d="M30,30 L35,18"/>
-                <path className="stroke-detail" d="M40,32 L40,15"/>
-                <path className="stroke-detail" d="M50,30 L45,18"/>
-              </g>
-
-              {/* Points décoratifs dispersés */}
-              <circle className="stroke-detail" cx="350" cy="280" r="2"/>
-              <circle className="stroke-hatch" cx="250" cy="380" r="1.5"/>
-              <circle className="stroke-detail" cx="550" cy="350" r="2"/>
-              <circle className="stroke-hatch" cx="650" cy="280" r="1.5"/>
-              <circle className="stroke-detail" cx="180" cy="580" r="2"/>
-              <circle className="stroke-hatch" cx="450" cy="650" r="1.5"/>
-              <circle className="stroke-detail" cx="320" cy="750" r="2"/>
-              <circle className="stroke-hatch" cx="820" cy="200" r="1.5"/>
-              <circle className="stroke-detail" cx="100" cy="350" r="2"/>
 
             </pattern>
           </defs>
@@ -549,8 +753,8 @@ const CabinetBackground = () => {
         className="absolute inset-0"
         style={{
           background: `
-            radial-gradient(ellipse 85% 65% at 50% 50%, transparent 0%, rgba(10, 13, 26, 0.35) 100%),
-            linear-gradient(to bottom, rgba(10, 13, 26, 0.15) 0%, transparent 20%, transparent 80%, rgba(10, 13, 26, 0.25) 100%)
+            radial-gradient(ellipse 90% 70% at 50% 50%, transparent 0%, rgba(18, 21, 42, 0.3) 100%),
+            linear-gradient(to bottom, rgba(18, 21, 42, 0.1) 0%, transparent 15%, transparent 85%, rgba(18, 21, 42, 0.2) 100%)
           `,
         }}
       />

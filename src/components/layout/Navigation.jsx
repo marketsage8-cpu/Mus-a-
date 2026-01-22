@@ -36,10 +36,7 @@ const Navigation = () => {
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center shadow-lg shadow-gold-900/30 group-hover:scale-105 transition-transform">
               <Compass className="w-6 h-6 text-night-950" />
             </div>
-
-
-       
-            </span>
+            <span className="text-xl font-bold text-sand-100">Muzea</span>
           </Link>
 
           {/* Desktop Navigation */}

@@ -246,58 +246,61 @@ const HomePage = () => {
       </section>
 
       {/* ============================================
-          SECTION 3: MUSEA NOW (suggestions spontanées)
+          SECTION 3: DÉCOUVERTE SPONTANÉE (Bento Box Style)
           ============================================ */}
-      <section className="bg-[#1a1a2e] py-16 px-4">
+      <section className="bg-[#1a1a2e] py-20 px-4">
         <div className="max-w-6xl mx-auto">
-          {/* Section header */}
-          <div className="text-center mb-10">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full mb-6">
-              <Zap className="w-4 h-4 text-yellow-400" />
-              <span className="text-sm font-semibold text-white tracking-wide">MUSEA</span>
-            </div>
-
-            {/* Title */}
-            <h2 className="text-2xl sm:text-3xl font-bold text-white">
+          {/* Section header - Elegant centered title */}
+          <div className="text-center mb-12">
+            <h2
+              className="font-serif-italic text-3xl sm:text-4xl lg:text-5xl"
+              style={{ color: '#d4a574' }}
+            >
               Envie d'une escapade immédiate ?
             </h2>
+            <p className="mt-4 text-gray-400 text-lg max-w-xl mx-auto">
+              3 lieux culturels à découvrir maintenant, autour de vous
+            </p>
           </div>
 
-          {/* Asymmetric grid: 1 large left (60%), 2 small stacked right (40%) */}
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
-            {/* Large card - left side (spans 3 columns = 60%) */}
+          {/* Bento Box Grid: 65% left, 35% right */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5">
+            {/* Large card - left side (spans 7 columns ~60%) */}
             {nearbyMuseums[0] && (
-              <div className="lg:col-span-3 h-[400px] lg:h-[500px]">
-                <MuseumCard
+              <div className="lg:col-span-7 h-[450px] lg:h-[520px]">
+                <BentoCard
                   museum={nearbyMuseums[0]}
                   size="large"
-                  badge={{ text: '#1 RECOMMANDÉ', variant: 'yellow' }}
+                  badges={[{ text: '#1 Recommandé', variant: 'gold' }]}
                   distanceInfo={getDistanceText(nearbyMuseums[0].distance)}
                   onClick={() => navigate('/explore')}
+                  showCTA={true}
                 />
               </div>
             )}
 
-            {/* Right side - 2 smaller cards stacked (spans 2 columns = 40%) */}
-            <div className="lg:col-span-2 flex flex-col gap-4">
+            {/* Right side - 2 smaller cards stacked (spans 5 columns ~40%) */}
+            <div className="lg:col-span-5 flex flex-col gap-4 lg:gap-5">
               {nearbyMuseums[1] && (
-                <div className="h-[200px] lg:h-[242px]">
-                  <MuseumCard
+                <div className="h-[280px] lg:h-[250px]">
+                  <BentoCard
                     museum={nearbyMuseums[1]}
                     size="small"
-                    badge={{ text: 'GRATUIT', variant: 'dark' }}
+                    badges={[{ text: 'Gratuit', variant: 'glass' }]}
                     distanceInfo={getDistanceText(nearbyMuseums[1].distance)}
                     onClick={() => navigate('/explore')}
                   />
                 </div>
               )}
               {nearbyMuseums[2] && (
-                <div className="h-[200px] lg:h-[242px]">
-                  <MuseumCard
+                <div className="h-[280px] lg:h-[250px]">
+                  <BentoCard
                     museum={nearbyMuseums[2]}
                     size="small"
-                    badge={{ text: 'GRATUIT', variant: 'dark' }}
+                    badges={[
+                      { text: 'Gratuit', variant: 'glass' },
+                      { text: '#1 Recommandé', variant: 'gold' }
+                    ]}
                     distanceInfo={getDistanceText(nearbyMuseums[2].distance)}
                     onClick={() => navigate('/explore')}
                   />
@@ -312,74 +315,97 @@ const HomePage = () => {
 };
 
 /**
- * Museum Card Component for Musea Now section
+ * Bento Card Component for Découverte Spontanée section
+ * Design: Full background image with badges, gradient overlay, and hover zoom effect
  */
-const MuseumCard = ({ museum, size = 'small', badge, distanceInfo, onClick }) => {
+const BentoCard = ({ museum, size = 'small', badges = [], distanceInfo, onClick, showCTA = false }) => {
   const DistanceIcon = distanceInfo?.icon || MapPin;
 
   return (
     <div
-      className="relative w-full h-full rounded-2xl overflow-hidden group cursor-pointer"
+      className="relative w-full h-full rounded-2xl xl:rounded-3xl overflow-hidden group cursor-pointer shadow-xl"
       onClick={onClick}
     >
-      {/* Background image */}
+      {/* Background image with hover zoom effect */}
       <img
         src={museum.image}
         alt={museum.name}
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
       />
 
-      {/* Dark gradient overlay from bottom */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+      {/* Gradient overlay - darker at bottom for text readability */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `linear-gradient(to top,
+            rgba(0, 0, 0, 0.85) 0%,
+            rgba(0, 0, 0, 0.6) 30%,
+            rgba(0, 0, 0, 0.2) 60%,
+            transparent 100%)`
+        }}
+      />
 
-      {/* Badge - top left */}
-      {badge && (
-        <div
-          className={`
-            absolute top-4 left-4 px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide
-            ${badge.variant === 'yellow'
-              ? 'bg-[#f4d03f] text-black'
-              : 'bg-gray-800/90 text-white'
-            }
-          `}
-        >
-          {badge.text}
+      {/* Badges - top left with backdrop blur (pill shape) */}
+      {badges.length > 0 && (
+        <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+          {badges.map((badge, index) => (
+            <span
+              key={index}
+              className={`
+                px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide
+                backdrop-blur-md shadow-lg
+                ${badge.variant === 'gold'
+                  ? 'bg-[#d4a574]/90 text-[#1a1a2e]'
+                  : 'bg-white/20 text-white border border-white/30'
+                }
+              `}
+            >
+              {badge.text}
+            </span>
+          ))}
         </div>
       )}
 
-      {/* Content - bottom */}
-      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+      {/* Content overlay - bottom */}
+      <div className={`absolute bottom-0 left-0 right-0 p-5 ${size === 'large' ? 'sm:p-8' : 'sm:p-5'}`}>
         {/* Museum name */}
         <h3
           className={`
-            font-bold text-white mb-2
-            ${size === 'large' ? 'text-2xl sm:text-3xl' : 'text-lg sm:text-xl'}
+            font-bold text-white leading-tight mb-3
+            ${size === 'large' ? 'text-2xl sm:text-3xl lg:text-4xl' : 'text-xl sm:text-2xl'}
           `}
         >
           {museum.name}
         </h3>
 
-        {/* Distance */}
-        <div className="flex items-center gap-2 text-gray-300 mb-4">
-          <DistanceIcon className="w-4 h-4" />
-          <span className="text-sm">{distanceInfo?.text || museum.location}</span>
+        {/* Distance / Travel time with icon */}
+        <div className="flex items-center gap-2 text-white/80 mb-4">
+          <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm">
+            <DistanceIcon className="w-4 h-4" />
+          </div>
+          <span className="text-sm font-medium">{distanceInfo?.text || museum.location}</span>
         </div>
 
         {/* CTA Button - only for large card */}
-        {size === 'large' && (
+        {showCTA && (
           <button
             className="
-              w-full py-3
-              bg-[#f4d03f] hover:bg-[#e5c230]
-              text-black font-semibold
+              w-full py-4
+              bg-[#d4a574] hover:bg-[#c49464]
+              text-[#1a1a2e] font-bold text-lg
               rounded-xl
-              transition-all hover:scale-[1.02]
+              transition-all duration-300
+              hover:scale-[1.02] hover:shadow-lg
+              active:scale-[0.98]
             "
           >
             Commencer la visite
           </button>
         )}
       </div>
+
+      {/* Subtle border glow on hover */}
+      <div className="absolute inset-0 rounded-2xl xl:rounded-3xl border border-white/0 group-hover:border-white/20 transition-all duration-500 pointer-events-none" />
     </div>
   );
 };

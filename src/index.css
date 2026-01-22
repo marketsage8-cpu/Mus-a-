@@ -181,6 +181,24 @@ body {
   border: none !important;
 }
 
+/* User location marker */
+.user-location-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3), 0 2px 8px rgba(0,0,0,0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(59, 130, 246, 0.1), 0 2px 8px rgba(0,0,0,0.3);
+  }
+  100% {
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3), 0 2px 8px rgba(0,0,0,0.3);
+  }
+}
+
 /* Safe area for mobile bottom nav */
 .safe-area-bottom {
   padding-bottom: env(safe-area-inset-bottom, 0px);

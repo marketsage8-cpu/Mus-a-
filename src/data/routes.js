@@ -1,58 +1,58 @@
 /**
- * Expéditions thématiques prédéfinies
- * Chaque expédition regroupe plusieurs sites autour d'un thème
+ * Parcours thématiques prédéfinis
+ * Chaque parcours regroupe plusieurs lieux autour d'un thème
  */
 export const routes = [
   {
     id: 1,
-    name: "Sur les traces des Pharaons",
-    description: "Une expédition légendaire au cœur de l'Égypte ancienne, de la Vallée des Rois aux temples de Louxor",
-    image: "https://images.unsplash.com/photo-1568322445389-f64ac2515020?w=800&q=80",
-    placeCount: 6,
-    duration: "7 jours",
-    difficulty: "Avancé",
-    region: "Égypte",
-    highlights: ["Vallée des Rois", "Temple de Karnak", "Abou Simbel", "Temple de Louxor"],
-    placeIds: [2, 4, 6, 8, 10, 12],
-    color: "from-gold-500 to-gold-700"
-  },
-  {
-    id: 2,
-    name: "Mythes de la Grèce Antique",
-    description: "Parcourez les sites mythiques où les dieux de l'Olympe étaient vénérés et où la démocratie est née",
-    image: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80",
-    placeCount: 6,
-    duration: "5 jours",
-    difficulty: "Modéré",
-    region: "Grèce",
-    highlights: ["Parthénon", "Delphes", "Épidaure", "Knossos"],
-    placeIds: [3, 5, 7, 9, 11],
+    name: "Les Trésors de Paris",
+    description: "Découvrez les musées incontournables de la capitale française, du Louvre au Centre Pompidou",
+    image: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=800&q=80",
+    placeCount: 5,
+    duration: "3 jours",
+    difficulty: "Facile",
+    region: "Île-de-France",
+    highlights: ["Musée du Louvre", "Musée d'Orsay", "Centre Pompidou", "Musée Picasso"],
+    placeIds: [1, 3, 5, 7, 10],
     color: "from-turquoise-500 to-turquoise-600"
   },
   {
+    id: 2,
+    name: "Châteaux de la Loire",
+    description: "Un voyage royal à travers les plus beaux châteaux de la Renaissance française",
+    image: "https://images.unsplash.com/photo-1519677100203-a0e668c92439?w=800&q=80",
+    placeCount: 3,
+    duration: "4 jours",
+    difficulty: "Modéré",
+    region: "Centre-Val de Loire",
+    highlights: ["Chambord", "Chenonceau", "Amboise"],
+    placeIds: [4, 6, 11],
+    color: "from-gold-500 to-gold-700"
+  },
+  {
     id: 3,
-    name: "Les Merveilles Redécouvertes",
-    description: "Une quête extraordinaire à travers les sites les plus emblématiques de l'Antiquité",
-    image: "https://images.unsplash.com/photo-1568322445389-f64ac2515020?w=800&q=80",
-    placeCount: 4,
-    duration: "10 jours",
-    difficulty: "Expert",
-    region: "Méditerranée",
-    highlights: ["Parthénon", "Temple de Karnak", "Abou Simbel", "Temple de Louxor"],
-    placeIds: [2, 3, 6, 8],
+    name: "Patrimoine Royal",
+    description: "Sur les traces des rois de France, de Versailles à Fontainebleau",
+    image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80",
+    placeCount: 3,
+    duration: "2 jours",
+    difficulty: "Facile",
+    region: "Île-de-France",
+    highlights: ["Versailles", "Fontainebleau", "Le Louvre"],
+    placeIds: [1, 2, 9],
     color: "from-terracotta-500 to-terracotta-600"
   }
 ];
 
 /**
- * Obtient les lieux d'une expédition
+ * Obtient les lieux d'un parcours
  */
 export const getRoutePlaces = (route, allPlaces) => {
   return route.placeIds.map(id => allPlaces.find(place => place.id === id)).filter(Boolean);
 };
 
 /**
- * Calcule la progression d'une expédition pour un utilisateur
+ * Calcule la progression d'un parcours pour un utilisateur
  */
 export const getRouteProgress = (route, visitedPlaceIds) => {
   const visitedInRoute = route.placeIds.filter(id => visitedPlaceIds.includes(id));

@@ -17,7 +17,7 @@ const HomePage = () => {
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [activeQuickFilters, setActiveQuickFilters] = useState([]);
 
-  const quickFilters = ['Temples', 'Égypte', 'Grèce', 'Pharaons', 'Mythologie', 'Tombeaux'];
+  const quickFilters = ['Musées', 'Châteaux', 'Paris', 'Loire', 'Renaissance', 'Art moderne'];
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -39,10 +39,10 @@ const HomePage = () => {
 
   // Stats
   const stats = [
-    { icon: MapPin, value: '500+', label: 'Sites antiques' },
-    { icon: Calendar, value: '3000+', label: 'Ans d\'histoire' },
-    { icon: Users, value: '25k+', label: 'Explorateurs' },
-    { icon: Compass, value: '7', label: 'Merveilles' }
+    { icon: MapPin, value: '1200+', label: 'Lieux culturels' },
+    { icon: Calendar, value: '500+', label: 'Événements/an' },
+    { icon: Users, value: '45k+', label: 'Visiteurs' },
+    { icon: Star, value: '4.8', label: 'Note moyenne' }
   ];
 
   return (
@@ -52,8 +52,8 @@ const HomePage = () => {
         {/* Background image */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1555993539-1732b0258235?w=1920&q=80"
-            alt="Parthénon d'Athènes"
+            src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1920&q=80"
+            alt="Musée du Louvre"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-night-950/80 via-night-950/60 to-night-950" />
@@ -64,19 +64,19 @@ const HomePage = () => {
           {/* Notification badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-gold-600/20 border border-gold-500/30 rounded-full text-gold-400 text-sm mb-8 animate-slide-up">
             <Sparkles className="w-4 h-4" />
-            <span>Nouvelle expédition : Le Tombeau de Toutânkhamon</span>
+            <span>Nouveau : Exposition Van Gogh au Musée d'Orsay</span>
           </div>
 
           {/* Title */}
           <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 animate-slide-up" style={{ animationDelay: '100ms' }}>
-            <span className="text-sand-100">Explorez les </span>
+            <span className="text-sand-100">Explorez le </span>
             <span className="bg-gradient-to-r from-gold-300 to-gold-500 bg-clip-text text-transparent">
-              Mystères Antiques
+              Patrimoine Français
             </span>
           </h1>
 
           <p className="text-xl text-sand-300 mb-10 max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: '200ms' }}>
-            Partez à la découverte des temples, tombeaux et trésors des civilisations égyptiennes et grecques.
+            Partez à la découverte des plus beaux musées, châteaux et monuments de France.
           </p>
 
           {/* Search bar */}
@@ -86,7 +86,7 @@ const HomePage = () => {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Rechercher un temple, un tombeau, un pharaon..."
+              placeholder="Rechercher un musée, un château, une exposition..."
               className="
                 w-full
                 py-4 px-6 pl-14 pr-32
@@ -160,10 +160,10 @@ const HomePage = () => {
           <div className="flex items-center justify-between mb-8">
             <div>
               <h2 className="font-display text-3xl font-bold text-sand-100 mb-2">
-                Sites Légendaires
+                Lieux Incontournables
               </h2>
               <p className="text-night-400">
-                Les trésors archéologiques les plus fascinants
+                Les trésors du patrimoine français à ne pas manquer
               </p>
             </div>
             <button
@@ -192,7 +192,7 @@ const HomePage = () => {
             onClick={() => navigate('/explore')}
             className="sm:hidden w-full mt-6 py-3 text-gold-400 hover:text-gold-300 border border-gold-500/30 rounded-xl transition-colors"
           >
-            Voir tous les sites
+            Voir tous les lieux
           </button>
         </div>
       </section>
@@ -202,10 +202,10 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="font-display text-3xl font-bold text-sand-100 mb-2">
-              Expéditions Thématiques
+              Parcours Thématiques
             </h2>
             <p className="text-night-400 max-w-2xl mx-auto">
-              Des parcours soigneusement élaborés pour une immersion totale dans l'Antiquité
+              Des itinéraires soigneusement élaborés pour une immersion culturelle complète
             </p>
           </div>
 
@@ -225,10 +225,10 @@ const HomePage = () => {
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="font-display text-4xl font-bold text-sand-100 mb-4">
-            Prêt pour l'aventure ?
+            Prêt pour la découverte ?
           </h2>
           <p className="text-xl text-night-400 mb-8">
-            Rejoignez les explorateurs et percez les secrets des civilisations anciennes.
+            Rejoignez les passionnés de culture et explorez les richesses du patrimoine français.
           </p>
           <button
             onClick={() => navigate('/explore')}
@@ -243,7 +243,7 @@ const HomePage = () => {
               transition-all duration-300
             "
           >
-            Commencer l'expédition
+            Commencer l'exploration
           </button>
         </div>
       </section>

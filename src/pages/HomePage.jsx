@@ -17,7 +17,7 @@ const HomePage = () => {
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [activeQuickFilters, setActiveQuickFilters] = useState([]);
 
-  const quickFilters = ['Pyramides', 'Temples', 'Égypte', 'Grèce', 'Pharaons', 'Mythologie'];
+  const quickFilters = ['Temples', 'Égypte', 'Grèce', 'Pharaons', 'Mythologie', 'Tombeaux'];
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -52,8 +52,8 @@ const HomePage = () => {
         {/* Background image */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1539650116574-8efeb43e2750?w=1920&q=80"
-            alt="Pyramides de Gizeh"
+            src="https://images.unsplash.com/photo-1555993539-1732b0258235?w=1920&q=80"
+            alt="Parthénon d'Athènes"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-night-950/80 via-night-950/60 to-night-950" />
@@ -76,7 +76,7 @@ const HomePage = () => {
           </h1>
 
           <p className="text-xl text-sand-300 mb-10 max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: '200ms' }}>
-            Partez à la découverte des pyramides, temples et trésors des civilisations égyptiennes et grecques.
+            Partez à la découverte des temples, tombeaux et trésors des civilisations égyptiennes et grecques.
           </p>
 
           {/* Search bar */}
@@ -86,7 +86,7 @@ const HomePage = () => {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Rechercher un temple, une pyramide, un pharaon..."
+              placeholder="Rechercher un temple, un tombeau, un pharaon..."
               className="
                 w-full
                 py-4 px-6 pl-14 pr-32

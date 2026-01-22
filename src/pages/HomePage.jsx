@@ -452,8 +452,17 @@ const HomePage = () => {
               style={{ perspective: '1200px' }}
             >
               {exhibitions.map((exhibition, index) => {
-                // Calculate position relative to active card
-                const offset = index - activeIndex;
+                // Calculate position relative to active card with wrapping for infinite carousel
+                const totalCards = exhibitions.length;
+                let offset = index - activeIndex;
+
+                // Wrap offset for infinite effect
+                if (offset > totalCards / 2) {
+                  offset -= totalCards;
+                } else if (offset < -totalCards / 2) {
+                  offset += totalCards;
+                }
+
                 const absOffset = Math.abs(offset);
 
                 // Cards visibility (show 5 cards: -2, -1, 0, 1, 2)
@@ -461,12 +470,12 @@ const HomePage = () => {
 
                 if (!isVisible) return null;
 
-                // Calculate 3D transforms for arc effect
-                const translateX = offset * 280; // Horizontal spacing
-                const translateZ = -absOffset * 150; // Depth (further = smaller)
-                const rotateY = offset * -25; // Rotation for arc effect
-                const scale = 1 - absOffset * 0.15; // Scale down further cards
-                const opacity = 1 - absOffset * 0.25;
+                // Calculate 3D transforms for arc effect - increased spacing to avoid overlap
+                const translateX = offset * 320; // Increased horizontal spacing
+                const translateZ = -absOffset * 180; // Increased depth
+                const rotateY = offset * -20; // Reduced rotation for cleaner look
+                const scale = 1 - absOffset * 0.12; // Less aggressive scaling
+                const opacity = 1 - absOffset * 0.2;
                 const zIndex = 10 - absOffset;
 
                 return (
@@ -746,15 +755,6 @@ const ExhibitionCard = ({
               {exhibition.period}
             </p>
 
-            {/* Click hint - only show for active card */}
-            {isActive && (
-              <div className="mt-4 text-center">
-                <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/70 text-sm">
-                  <span className="animate-bounce-slow">↻</span>
-                  Cliquez pour retourner
-                </span>
-              </div>
-            )}
           </div>
         </div>
 
@@ -762,27 +762,53 @@ const ExhibitionCard = ({
         <div
           className={`
             absolute inset-0 rounded-3xl overflow-hidden
-            bg-gradient-to-br from-[#1a1a2e] via-[#151528] to-[#0f0f1a]
             border-2 border-[#d4a574]/40
-            ${isActive ? 'shadow-2xl shadow-[#d4a574]/40' : 'shadow-xl'}
+            ${isActive ? 'shadow-2xl shadow-[#d4a574]/40 ring-2 ring-[#d4a574]/30' : 'shadow-xl'}
           `}
           style={{
             backfaceVisibility: 'hidden',
-            transform: 'rotateY(180deg)'
+            transform: 'rotateY(180deg)',
+            background: `
+              radial-gradient(ellipse 80% 50% at 50% 0%, rgba(212, 165, 116, 0.15) 0%, transparent 50%),
+              radial-gradient(ellipse 60% 40% at 80% 100%, rgba(212, 165, 116, 0.1) 0%, transparent 50%),
+              radial-gradient(ellipse 50% 30% at 10% 80%, rgba(212, 165, 116, 0.08) 0%, transparent 50%),
+              linear-gradient(135deg, #1e1e38 0%, #151528 40%, #0f0f1a 100%)
+            `
           }}
           onClick={(e) => {
             e.stopPropagation();
             if (isActive) onFlip();
           }}
         >
+          {/* Subtle glow overlay for premium look */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: `
+                radial-gradient(circle at 30% 20%, rgba(212, 165, 116, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 70% 80%, rgba(212, 165, 116, 0.08) 0%, transparent 35%)
+              `
+            }}
+          />
+
           {/* Header with image */}
           <div className="relative h-36 overflow-hidden">
             <img
               src={exhibition.image}
               alt={exhibition.name}
-              className="w-full h-full object-cover opacity-50"
+              className="w-full h-full object-cover opacity-60"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#1a1a2e]" />
+            {/* Enhanced gradient overlay for smoother transition */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background: `linear-gradient(to bottom,
+                  rgba(30, 30, 56, 0.3) 0%,
+                  rgba(21, 21, 40, 0.6) 50%,
+                  rgba(15, 15, 26, 0.95) 100%
+                )`
+              }}
+            />
 
             {/* Back badge */}
             <div className="absolute top-4 left-4">
@@ -848,13 +874,10 @@ const ExhibitionCard = ({
             )}
           </div>
 
-          {/* Click hint */}
+          {/* Active indicator glow - matches front card */}
           {isActive && (
-            <div className="absolute bottom-4 left-0 right-0 text-center">
-              <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full text-white/60 text-sm">
-                <span className="animate-bounce-slow">↻</span>
-                Retourner
-              </span>
+            <div className="absolute inset-0 rounded-3xl pointer-events-none">
+              <div className="absolute inset-0 rounded-3xl border-2 border-[#d4a574]/60 animate-pulse" />
             </div>
           )}
         </div>

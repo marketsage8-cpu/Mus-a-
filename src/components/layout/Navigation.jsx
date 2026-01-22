@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Compass, Moon, Sun, Menu, X, User } from 'lucide-react';
+import { Compass, Moon, Sun, Menu, X, User, Heart } from 'lucide-react';
 
 /**
  * Navigation principale avec design transparent fusionnant avec le hero
@@ -8,17 +8,34 @@ import { Compass, Moon, Sun, Menu, X, User } from 'lucide-react';
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
+  const navRef = useRef(null);
+  const linkRefs = useRef({});
   const location = useLocation();
 
   const navLinks = [
     { path: '/', label: 'Accueil' },
     { path: '/explore', label: 'Carte' },
     { path: '/search', label: 'Guides' },
-    { path: '/favorites', label: 'Lieux' },
+    { path: '/lieux', label: 'Lieux' },
+    { path: '/favoris', label: 'Favoris' },
     { path: '/events', label: 'Rencontres' }
   ];
 
   const isActive = (path) => location.pathname === path;
+
+  // Update indicator position when route changes
+  useEffect(() => {
+    const activeLink = linkRefs.current[location.pathname];
+    if (activeLink && navRef.current) {
+      const navRect = navRef.current.getBoundingClientRect();
+      const linkRect = activeLink.getBoundingClientRect();
+      setIndicatorStyle({
+        left: linkRect.left - navRect.left + 16,
+        width: linkRect.width - 32
+      });
+    }
+  }, [location.pathname]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
@@ -48,15 +65,19 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation - Centered */}
-          <div className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
+          <div
+            ref={navRef}
+            className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2 relative"
+          >
             {navLinks.map(({ path, label }) => (
               <Link
                 key={path}
                 to={path}
+                ref={(el) => (linkRefs.current[path] = el)}
                 className={`
                   relative px-4 py-2
                   text-sm font-medium
-                  transition-all duration-300
+                  transition-colors duration-300
                   ${isActive(path)
                     ? 'text-white'
                     : 'text-gray-400 hover:text-white'
@@ -64,11 +85,17 @@ const Navigation = () => {
                 `}
               >
                 {label}
-                {isActive(path) && (
-                  <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#d4a574]" />
-                )}
               </Link>
             ))}
+            {/* Animated underline indicator */}
+            <span
+              className="absolute bottom-0 h-0.5 bg-[#d4a574] rounded-full transition-all duration-500 ease-out"
+              style={{
+                left: indicatorStyle.left,
+                width: indicatorStyle.width,
+                transform: 'translateX(0)'
+              }}
+            />
           </div>
 
           {/* Right Actions */}
@@ -81,6 +108,15 @@ const Navigation = () => {
             >
               {isDarkMode ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
             </button>
+
+            {/* Favorites Button */}
+            <Link
+              to="/favoris"
+              className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white transition-all hover:scale-105"
+              aria-label="Mes favoris"
+            >
+              <Heart className="w-5 h-5" />
+            </Link>
 
             {/* Profile Button */}
             <Link

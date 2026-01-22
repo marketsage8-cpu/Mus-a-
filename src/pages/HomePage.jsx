@@ -1,17 +1,28 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Zap, MapPin, Clock, Footprints, Car } from 'lucide-react';
+import { Search, Zap, MapPin, Clock, Footprints, Car, Heart, ChevronLeft, ChevronRight, Calendar, Euro, X } from 'lucide-react';
 import { places } from '../data/places';
 import InteractiveMap from '../components/map/InteractiveMap';
+import { useUser } from '../context/UserContext';
 
 /**
  * Page d'accueil avec hero, carte floue et section Musea Now
  */
 const HomePage = () => {
   const navigate = useNavigate();
+  const { toggleFavorite, isFavorite } = useUser();
   const [searchQuery, setSearchQuery] = useState('');
   const [userLocation, setUserLocation] = useState(null);
   const [nearbyMuseums, setNearbyMuseums] = useState([]);
+  const [selectedBentoCard, setSelectedBentoCard] = useState(null);
+
+  // Expositions éphémères (filtrer par type "exposition")
+  const exhibitions = places.filter(p => p.type === 'exposition');
+
+  // Carousel state
+  const carouselRef = useRef(null);
+  const [selectedExhibition, setSelectedExhibition] = useState(null);
+  const [flippedCards, setFlippedCards] = useState({});
 
   // Get user location on mount
   useEffect(() => {
@@ -86,6 +97,40 @@ const HomePage = () => {
     if (searchQuery.trim()) {
       navigate(`/explore?search=${encodeURIComponent(searchQuery)}`);
     }
+  };
+
+  // Carousel scroll functions
+  const scrollCarousel = (direction) => {
+    if (carouselRef.current) {
+      const scrollAmount = 350;
+      carouselRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  // Toggle flip card
+  const toggleFlip = (exhibitionId) => {
+    setFlippedCards(prev => ({
+      ...prev,
+      [exhibitionId]: !prev[exhibitionId]
+    }));
+  };
+
+  // Handle favorite click (stop propagation to prevent flip)
+  const handleFavoriteClick = (e, placeId) => {
+    e.stopPropagation();
+    toggleFavorite(placeId);
+  };
+
+  // Handle BentoCard click with zoom effect
+  const handleBentoClick = (index) => {
+    setSelectedBentoCard(index);
+    setTimeout(() => {
+      setSelectedBentoCard(null);
+      navigate('/explore');
+    }, 300);
   };
 
   const filterButtons = [
@@ -287,14 +332,19 @@ const HomePage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5">
             {/* Large card - left side (spans 7 columns ~60%) */}
             {nearbyMuseums[0] && (
-              <div className="lg:col-span-7 h-[450px] lg:h-[520px]">
+              <div
+                className={`lg:col-span-7 h-[450px] lg:h-[520px] transition-transform duration-300 ${
+                  selectedBentoCard === 0 ? 'scale-105 z-10' : ''
+                }`}
+              >
                 <BentoCard
                   museum={nearbyMuseums[0]}
                   size="large"
                   badges={[{ text: '#1 Recommandé', variant: 'gold' }]}
                   distanceInfo={getDistanceText(nearbyMuseums[0].distance)}
-                  onClick={() => navigate('/explore')}
+                  onClick={() => handleBentoClick(0)}
                   showCTA={true}
+                  isSelected={selectedBentoCard === 0}
                 />
               </div>
             )}
@@ -302,18 +352,27 @@ const HomePage = () => {
             {/* Right side - 2 smaller cards stacked (spans 5 columns ~40%) */}
             <div className="lg:col-span-5 flex flex-col gap-4 lg:gap-5">
               {nearbyMuseums[1] && (
-                <div className="h-[280px] lg:h-[250px]">
+                <div
+                  className={`h-[280px] lg:h-[250px] transition-transform duration-300 ${
+                    selectedBentoCard === 1 ? 'scale-105 z-10' : ''
+                  }`}
+                >
                   <BentoCard
                     museum={nearbyMuseums[1]}
                     size="small"
                     badges={[{ text: 'Gratuit', variant: 'glass' }]}
                     distanceInfo={getDistanceText(nearbyMuseums[1].distance)}
-                    onClick={() => navigate('/explore')}
+                    onClick={() => handleBentoClick(1)}
+                    isSelected={selectedBentoCard === 1}
                   />
                 </div>
               )}
               {nearbyMuseums[2] && (
-                <div className="h-[280px] lg:h-[250px]">
+                <div
+                  className={`h-[280px] lg:h-[250px] transition-transform duration-300 ${
+                    selectedBentoCard === 2 ? 'scale-105 z-10' : ''
+                  }`}
+                >
                   <BentoCard
                     museum={nearbyMuseums[2]}
                     size="small"
@@ -322,10 +381,84 @@ const HomePage = () => {
                       { text: '#1 Recommandé', variant: 'gold' }
                     ]}
                     distanceInfo={getDistanceText(nearbyMuseums[2].distance)}
-                    onClick={() => navigate('/explore')}
+                    onClick={() => handleBentoClick(2)}
+                    isSelected={selectedBentoCard === 2}
                   />
                 </div>
               )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================
+          SECTION 4: EXPOSITIONS ÉPHÉMÈRES
+          ============================================ */}
+      <section className="bg-[#0f0f1a] py-20 px-4">
+        <div className="max-w-7xl mx-auto">
+          {/* Section header */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center justify-center mb-4">
+              <div className="relative px-6 py-2">
+                <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 via-red-500/10 to-red-500/20 rounded-lg" />
+                <div className="absolute inset-0 border border-red-500/40 rounded-lg" />
+                <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-red-500 rounded-tl-lg" />
+                <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-red-500 rounded-tr-lg" />
+                <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-red-500 rounded-bl-lg" />
+                <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-red-500 rounded-br-lg" />
+                <p className="relative text-sm uppercase tracking-[0.3em] text-red-400 font-semibold flex items-center gap-2">
+                  <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+                  Éphémères
+                </p>
+              </div>
+            </div>
+            <h2
+              className="font-serif-italic text-3xl sm:text-4xl lg:text-5xl mb-4"
+              style={{ color: '#d4a574' }}
+            >
+              Expositions à ne pas louper !
+            </h2>
+            <p className="text-xs sm:text-sm text-gray-500 max-w-md mx-auto">
+              Cliquez sur une carte pour découvrir les détails de l'exposition
+            </p>
+          </div>
+
+          {/* Carousel container */}
+          <div className="relative">
+            {/* Navigation arrows */}
+            <button
+              onClick={() => scrollCarousel('left')}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-12 h-12 bg-[#d4a574] hover:bg-[#c49464] rounded-full flex items-center justify-center shadow-xl transition-all hover:scale-110"
+            >
+              <ChevronLeft className="w-6 h-6 text-[#1a1a2e]" />
+            </button>
+            <button
+              onClick={() => scrollCarousel('right')}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-12 h-12 bg-[#d4a574] hover:bg-[#c49464] rounded-full flex items-center justify-center shadow-xl transition-all hover:scale-110"
+            >
+              <ChevronRight className="w-6 h-6 text-[#1a1a2e]" />
+            </button>
+
+            {/* Carousel track */}
+            <div
+              ref={carouselRef}
+              className="flex gap-6 overflow-x-auto scrollbar-hide py-8 px-4 snap-x snap-mandatory"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {exhibitions.map((exhibition) => (
+                <ExhibitionCard
+                  key={exhibition.id}
+                  exhibition={exhibition}
+                  isFlipped={flippedCards[exhibition.id]}
+                  onFlip={() => toggleFlip(exhibition.id)}
+                  isFavorite={isFavorite(exhibition.id)}
+                  onFavoriteClick={(e) => handleFavoriteClick(e, exhibition.id)}
+                  isSelected={selectedExhibition === exhibition.id}
+                  onSelect={() => setSelectedExhibition(
+                    selectedExhibition === exhibition.id ? null : exhibition.id
+                  )}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -338,19 +471,27 @@ const HomePage = () => {
  * Bento Card Component for Découverte Spontanée section
  * Design: Full background image with badges, gradient overlay, and hover zoom effect
  */
-const BentoCard = ({ museum, size = 'small', badges = [], distanceInfo, onClick, showCTA = false }) => {
+const BentoCard = ({ museum, size = 'small', badges = [], distanceInfo, onClick, showCTA = false, isSelected = false }) => {
   const DistanceIcon = distanceInfo?.icon || MapPin;
 
   return (
     <div
-      className="relative w-full h-full rounded-2xl xl:rounded-3xl overflow-hidden group cursor-pointer shadow-xl"
+      className={`
+        relative w-full h-full rounded-2xl xl:rounded-3xl overflow-hidden group cursor-pointer shadow-xl
+        transition-all duration-300 ease-out
+        ${isSelected ? 'ring-4 ring-[#d4a574] shadow-2xl shadow-[#d4a574]/30' : ''}
+      `}
       onClick={onClick}
     >
-      {/* Background image with hover zoom effect */}
+      {/* Background image with hover zoom effect and click zoom */}
       <img
         src={museum.image}
         alt={museum.name}
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+        className={`
+          absolute inset-0 w-full h-full object-cover
+          transition-transform duration-700 ease-out
+          ${isSelected ? 'scale-110' : 'group-hover:scale-110'}
+        `}
       />
 
       {/* Gradient overlay - darker at bottom for text readability */}
@@ -425,7 +566,202 @@ const BentoCard = ({ museum, size = 'small', badges = [], distanceInfo, onClick,
       </div>
 
       {/* Subtle border glow on hover */}
-      <div className="absolute inset-0 rounded-2xl xl:rounded-3xl border border-white/0 group-hover:border-white/20 transition-all duration-500 pointer-events-none" />
+      <div className={`
+        absolute inset-0 rounded-2xl xl:rounded-3xl
+        border transition-all duration-500 pointer-events-none
+        ${isSelected ? 'border-[#d4a574]/50' : 'border-white/0 group-hover:border-white/20'}
+      `} />
+    </div>
+  );
+};
+
+/**
+ * Exhibition Card Component with flip effect
+ * Front: Image, title, favorite heart
+ * Back: Exhibition details
+ */
+const ExhibitionCard = ({
+  exhibition,
+  isFlipped,
+  onFlip,
+  isFavorite,
+  onFavoriteClick,
+  isSelected,
+  onSelect
+}) => {
+  return (
+    <div
+      className={`
+        flex-shrink-0 w-[320px] h-[420px] cursor-pointer snap-center
+        transition-all duration-500 ease-out
+        ${isSelected ? 'scale-110 z-10' : 'hover:scale-105'}
+      `}
+      style={{ perspective: '1000px' }}
+      onClick={onSelect}
+    >
+      <div
+        className={`
+          relative w-full h-full transition-transform duration-700
+          ${isFlipped ? '[transform:rotateY(180deg)]' : ''}
+        `}
+        style={{ transformStyle: 'preserve-3d' }}
+      >
+        {/* Front of card */}
+        <div
+          className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl"
+          style={{ backfaceVisibility: 'hidden' }}
+          onClick={(e) => {
+            e.stopPropagation();
+            onFlip();
+          }}
+        >
+          {/* Background image */}
+          <img
+            src={exhibition.image}
+            alt={exhibition.name}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+
+          {/* Gradient overlay */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `linear-gradient(to top,
+                rgba(0, 0, 0, 0.9) 0%,
+                rgba(0, 0, 0, 0.5) 40%,
+                rgba(0, 0, 0, 0.2) 70%,
+                transparent 100%)`
+            }}
+          />
+
+          {/* Favorite button - top right */}
+          <button
+            onClick={onFavoriteClick}
+            className={`
+              absolute top-4 right-4 z-10 p-3 rounded-full
+              backdrop-blur-md shadow-lg
+              transition-all duration-300
+              ${isFavorite
+                ? 'bg-red-500/90 text-white scale-110'
+                : 'bg-white/20 text-white hover:bg-white/30 hover:scale-110'
+              }
+            `}
+          >
+            <Heart className={`w-5 h-5 ${isFavorite ? 'fill-current' : ''}`} />
+          </button>
+
+          {/* Éphémère badge - top left */}
+          <div className="absolute top-4 left-4">
+            <span className="px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide bg-red-500/90 text-white backdrop-blur-md shadow-lg flex items-center gap-2">
+              <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
+              Éphémère
+            </span>
+          </div>
+
+          {/* Content - bottom */}
+          <div className="absolute bottom-0 left-0 right-0 p-5">
+            <h3 className="font-bold text-white text-xl leading-tight mb-2 line-clamp-2">
+              {exhibition.name}
+            </h3>
+            <div className="flex items-center gap-2 text-white/70 text-sm">
+              <MapPin className="w-4 h-4" />
+              <span className="truncate">{exhibition.location}</span>
+            </div>
+            <p className="text-[#d4a574] text-sm mt-2 font-medium">
+              {exhibition.period}
+            </p>
+          </div>
+
+          {/* Click hint */}
+          <div className="absolute bottom-4 right-4 opacity-60 text-xs text-white/50">
+            Cliquez pour retourner
+          </div>
+        </div>
+
+        {/* Back of card */}
+        <div
+          className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-[#1a1a2e] to-[#0f0f1a] border border-[#d4a574]/30"
+          style={{
+            backfaceVisibility: 'hidden',
+            transform: 'rotateY(180deg)'
+          }}
+          onClick={(e) => {
+            e.stopPropagation();
+            onFlip();
+          }}
+        >
+          {/* Header with small image */}
+          <div className="relative h-28 overflow-hidden">
+            <img
+              src={exhibition.image}
+              alt={exhibition.name}
+              className="w-full h-full object-cover opacity-60"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#1a1a2e]" />
+          </div>
+
+          {/* Content */}
+          <div className="p-5 pt-0 -mt-4 relative">
+            <h3 className="font-bold text-[#d4a574] text-lg leading-tight mb-3">
+              {exhibition.name}
+            </h3>
+
+            <p className="text-gray-300 text-sm mb-4 line-clamp-3">
+              {exhibition.description}
+            </p>
+
+            {/* Info grid */}
+            <div className="space-y-3 text-sm">
+              <div className="flex items-center gap-3 text-gray-400">
+                <div className="w-8 h-8 rounded-lg bg-[#d4a574]/20 flex items-center justify-center">
+                  <MapPin className="w-4 h-4 text-[#d4a574]" />
+                </div>
+                <span className="truncate">{exhibition.location}</span>
+              </div>
+
+              <div className="flex items-center gap-3 text-gray-400">
+                <div className="w-8 h-8 rounded-lg bg-[#d4a574]/20 flex items-center justify-center">
+                  <Calendar className="w-4 h-4 text-[#d4a574]" />
+                </div>
+                <span>{exhibition.period}</span>
+              </div>
+
+              <div className="flex items-center gap-3 text-gray-400">
+                <div className="w-8 h-8 rounded-lg bg-[#d4a574]/20 flex items-center justify-center">
+                  <Clock className="w-4 h-4 text-[#d4a574]" />
+                </div>
+                <span>{exhibition.hours}</span>
+              </div>
+
+              <div className="flex items-center gap-3 text-gray-400">
+                <div className="w-8 h-8 rounded-lg bg-[#d4a574]/20 flex items-center justify-center">
+                  <Euro className="w-4 h-4 text-[#d4a574]" />
+                </div>
+                <span className="font-semibold text-[#d4a574]">{exhibition.price}</span>
+              </div>
+            </div>
+
+            {/* Highlights */}
+            {exhibition.highlights && exhibition.highlights.length > 0 && (
+              <div className="mt-4 flex flex-wrap gap-2">
+                {exhibition.highlights.slice(0, 3).map((highlight, index) => (
+                  <span
+                    key={index}
+                    className="px-2 py-1 text-xs bg-[#d4a574]/10 text-[#d4a574] rounded-full border border-[#d4a574]/20"
+                  >
+                    {highlight}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Click hint */}
+          <div className="absolute bottom-4 right-4 opacity-60 text-xs text-white/50">
+            Cliquez pour retourner
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

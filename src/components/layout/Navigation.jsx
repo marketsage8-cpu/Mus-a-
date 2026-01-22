@@ -67,7 +67,7 @@ const Navigation = () => {
           {/* Desktop Navigation - Centered */}
           <div
             ref={navRef}
-            className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2 relative"
+            className="hidden md:flex items-center gap-1 relative"
           >
             {navLinks.map(({ path, label }) => (
               <Link

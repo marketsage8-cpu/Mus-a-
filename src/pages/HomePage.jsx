@@ -252,10 +252,24 @@ const HomePage = () => {
         <div className="max-w-6xl mx-auto">
           {/* Section header - Muzea Now centered layout */}
           <div className="text-center mb-12">
-            {/* Muzea now - petit et centré */}
-            <p className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-4">
-              Muzea now
-            </p>
+            {/* Muzea now - avec encadrement stylé */}
+            <div className="inline-flex items-center justify-center mb-4">
+              <div className="relative px-6 py-2">
+                {/* Fond avec dégradé subtil */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#d4a574]/20 via-[#d4a574]/10 to-[#d4a574]/20 rounded-lg" />
+                {/* Bordure avec angles stylés */}
+                <div className="absolute inset-0 border border-[#d4a574]/40 rounded-lg" />
+                {/* Coins décorés */}
+                <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-[#d4a574] rounded-tl-lg" />
+                <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-[#d4a574] rounded-tr-lg" />
+                <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-[#d4a574] rounded-bl-lg" />
+                <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-[#d4a574] rounded-br-lg" />
+                {/* Texte */}
+                <p className="relative text-sm uppercase tracking-[0.3em] text-[#d4a574] font-semibold">
+                  Muzea now
+                </p>
+              </div>
+            </div>
             {/* Question principale */}
             <h2
               className="font-serif-italic text-3xl sm:text-4xl lg:text-5xl mb-4"

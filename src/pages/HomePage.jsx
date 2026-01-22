@@ -471,10 +471,10 @@ const HomePage = () => {
                 if (!isVisible) return null;
 
                 // Calculate 3D transforms for arc effect - increased spacing to avoid overlap
-                const translateX = offset * 320; // Increased horizontal spacing
-                const translateZ = -absOffset * 180; // Increased depth
-                const rotateY = offset * -20; // Reduced rotation for cleaner look
-                const scale = 1 - absOffset * 0.12; // Less aggressive scaling
+                const translateX = offset * 400; // Increased horizontal spacing for no touching
+                const translateZ = -absOffset * 200; // Increased depth
+                const rotateY = offset * -18; // Reduced rotation for cleaner look
+                const scale = 1 - absOffset * 0.15; // Slightly more aggressive scaling for depth
                 const opacity = 1 - absOffset * 0.2;
                 const zIndex = 10 - absOffset;
 
@@ -503,6 +503,7 @@ const HomePage = () => {
                           );
                         }
                       }}
+                      onNavigate={() => navigate('/explore')}
                     />
                   </div>
                 );
@@ -652,14 +653,15 @@ const ExhibitionCard = ({
   isFavorite,
   onFavoriteClick,
   isActive,
-  onSelect
+  onSelect,
+  onNavigate
 }) => {
   return (
     <div
       className={`
         w-[380px] h-[520px] cursor-pointer
         transition-all duration-500 ease-out
-        ${isActive ? 'shadow-2xl shadow-[#d4a574]/30' : ''}
+        ${isActive ? 'shadow-2xl' : ''}
       `}
       style={{ perspective: '1200px' }}
       onClick={onSelect}
@@ -677,7 +679,7 @@ const ExhibitionCard = ({
             absolute inset-0 rounded-3xl overflow-hidden
             transition-all duration-500
             ${isActive
-              ? 'shadow-2xl shadow-[#d4a574]/40 ring-2 ring-[#d4a574]/50'
+              ? 'shadow-2xl'
               : 'shadow-xl'
             }
           `}
@@ -735,13 +737,6 @@ const ExhibitionCard = ({
             </span>
           </div>
 
-          {/* Active indicator glow */}
-          {isActive && (
-            <div className="absolute inset-0 rounded-3xl pointer-events-none">
-              <div className="absolute inset-0 rounded-3xl border-2 border-[#d4a574]/60 animate-pulse" />
-            </div>
-          )}
-
           {/* Content - bottom */}
           <div className="absolute bottom-0 left-0 right-0 p-6">
             <h3 className="font-bold text-white text-2xl leading-tight mb-3 line-clamp-2">
@@ -762,34 +757,19 @@ const ExhibitionCard = ({
         <div
           className={`
             absolute inset-0 rounded-3xl overflow-hidden
-            border-2 border-[#d4a574]/40
-            ${isActive ? 'shadow-2xl shadow-[#d4a574]/40 ring-2 ring-[#d4a574]/30' : 'shadow-xl'}
+            border border-[#d4a574]/20
+            ${isActive ? 'shadow-2xl' : 'shadow-xl'}
           `}
           style={{
             backfaceVisibility: 'hidden',
             transform: 'rotateY(180deg)',
-            background: `
-              radial-gradient(ellipse 80% 50% at 50% 0%, rgba(212, 165, 116, 0.15) 0%, transparent 50%),
-              radial-gradient(ellipse 60% 40% at 80% 100%, rgba(212, 165, 116, 0.1) 0%, transparent 50%),
-              radial-gradient(ellipse 50% 30% at 10% 80%, rgba(212, 165, 116, 0.08) 0%, transparent 50%),
-              linear-gradient(135deg, #1e1e38 0%, #151528 40%, #0f0f1a 100%)
-            `
+            background: 'linear-gradient(135deg, #1e1e38 0%, #151528 40%, #0f0f1a 100%)'
           }}
           onClick={(e) => {
             e.stopPropagation();
             if (isActive) onFlip();
           }}
         >
-          {/* Subtle glow overlay for premium look */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: `
-                radial-gradient(circle at 30% 20%, rgba(212, 165, 116, 0.12) 0%, transparent 40%),
-                radial-gradient(circle at 70% 80%, rgba(212, 165, 116, 0.08) 0%, transparent 35%)
-              `
-            }}
-          />
 
           {/* Header with image */}
           <div className="relative h-36 overflow-hidden">
@@ -819,67 +799,59 @@ const ExhibitionCard = ({
           </div>
 
           {/* Content */}
-          <div className="p-6 pt-0 -mt-6 relative">
-            <h3 className="font-bold text-[#d4a574] text-xl leading-tight mb-4">
+          <div className="p-5 pt-0 -mt-4 relative pb-16">
+            <h3 className="font-bold text-[#d4a574] text-lg leading-tight mb-2">
               {exhibition.name}
             </h3>
 
-            <p className="text-gray-300 text-sm mb-5 line-clamp-3 leading-relaxed">
+            <p className="text-gray-300 text-xs mb-3 line-clamp-2 leading-relaxed">
               {exhibition.description}
             </p>
 
             {/* Info grid */}
-            <div className="space-y-3 text-sm">
-              <div className="flex items-center gap-3 text-gray-300">
-                <div className="w-10 h-10 rounded-xl bg-[#d4a574]/20 flex items-center justify-center">
-                  <MapPin className="w-5 h-5 text-[#d4a574]" />
+            <div className="space-y-2 text-sm">
+              <div className="flex items-center gap-2 text-gray-300">
+                <div className="w-8 h-8 rounded-lg bg-[#d4a574]/20 flex items-center justify-center">
+                  <MapPin className="w-4 h-4 text-[#d4a574]" />
                 </div>
-                <span className="truncate">{exhibition.location}</span>
+                <span className="truncate text-xs">{exhibition.location}</span>
               </div>
 
-              <div className="flex items-center gap-3 text-gray-300">
-                <div className="w-10 h-10 rounded-xl bg-[#d4a574]/20 flex items-center justify-center">
-                  <Calendar className="w-5 h-5 text-[#d4a574]" />
+              <div className="flex items-center gap-2 text-gray-300">
+                <div className="w-8 h-8 rounded-lg bg-[#d4a574]/20 flex items-center justify-center">
+                  <Calendar className="w-4 h-4 text-[#d4a574]" />
                 </div>
-                <span>{exhibition.period}</span>
+                <span className="text-xs">{exhibition.period}</span>
               </div>
 
-              <div className="flex items-center gap-3 text-gray-300">
-                <div className="w-10 h-10 rounded-xl bg-[#d4a574]/20 flex items-center justify-center">
-                  <Clock className="w-5 h-5 text-[#d4a574]" />
+              <div className="flex items-center gap-2 text-gray-300">
+                <div className="w-8 h-8 rounded-lg bg-[#d4a574]/20 flex items-center justify-center">
+                  <Clock className="w-4 h-4 text-[#d4a574]" />
                 </div>
-                <span>{exhibition.hours}</span>
+                <span className="text-xs">{exhibition.hours}</span>
               </div>
 
-              <div className="flex items-center gap-3 text-gray-300">
-                <div className="w-10 h-10 rounded-xl bg-[#d4a574]/20 flex items-center justify-center">
-                  <Euro className="w-5 h-5 text-[#d4a574]" />
+              <div className="flex items-center gap-2 text-gray-300">
+                <div className="w-8 h-8 rounded-lg bg-[#d4a574]/20 flex items-center justify-center">
+                  <Euro className="w-4 h-4 text-[#d4a574]" />
                 </div>
-                <span className="font-bold text-[#d4a574] text-lg">{exhibition.price}</span>
+                <span className="font-bold text-[#d4a574]">{exhibition.price}</span>
               </div>
             </div>
-
-            {/* Highlights */}
-            {exhibition.highlights && exhibition.highlights.length > 0 && (
-              <div className="mt-5 flex flex-wrap gap-2">
-                {exhibition.highlights.slice(0, 3).map((highlight, index) => (
-                  <span
-                    key={index}
-                    className="px-3 py-1.5 text-xs bg-[#d4a574]/15 text-[#d4a574] rounded-full border border-[#d4a574]/30 font-medium"
-                  >
-                    {highlight}
-                  </span>
-                ))}
-              </div>
-            )}
           </div>
 
-          {/* Active indicator glow - matches front card */}
-          {isActive && (
-            <div className="absolute inset-0 rounded-3xl pointer-events-none">
-              <div className="absolute inset-0 rounded-3xl border-2 border-[#d4a574]/60 animate-pulse" />
-            </div>
-          )}
+          {/* Navigation button */}
+          <div className="absolute bottom-6 left-6 right-6">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onNavigate();
+              }}
+              className="w-full py-3 bg-[#d4a574] hover:bg-[#c49464] text-[#1a1a2e] font-bold rounded-xl transition-all duration-300 hover:scale-[1.02]"
+            >
+              Explorer
+            </button>
+          </div>
         </div>
       </div>
     </div>

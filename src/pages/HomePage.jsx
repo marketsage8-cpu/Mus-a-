@@ -52,8 +52,8 @@ const HomePage = () => {
         {/* Background image */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1920&q=80"
-            alt="Paris vue du Louvre"
+            src="https://images.unsplash.com/photo-1551410224-699683e15636?w=1920&q=80"
+            alt="Château de Versailles"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-stone-950/70 via-stone-950/50 to-stone-950" />

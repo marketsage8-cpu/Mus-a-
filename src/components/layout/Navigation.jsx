@@ -1,118 +1,89 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Compass, Bell, User, Menu, X, Heart, Calendar, MapPin, Search } from 'lucide-react';
-import { useUser } from '../../context/UserContext';
-import { NotificationBadge } from '../ui/Badge';
+import { Compass, Moon, Sun, Menu, X, User } from 'lucide-react';
 
 /**
- * Navigation principale (header sticky)
- * Adaptative desktop/mobile avec menu hamburger
+ * Navigation principale avec design transparent fusionnant avec le hero
  */
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const location = useLocation();
-  const { notifications, stats } = useUser();
-
-  const unreadCount = notifications.filter(n => !n.read).length;
 
   const navLinks = [
-    { path: '/', label: 'Accueil', icon: Compass },
-    { path: '/search', label: 'Recherche', icon: Search },
-    { path: '/explore', label: 'Explorer', icon: MapPin },
-    { path: '/favorites', label: 'Favoris', icon: Heart },
-    { path: '/events', label: 'Expéditions', icon: Calendar },
-    { path: '/profile', label: 'Profil', icon: User }
+    { path: '/', label: 'Accueil' },
+    { path: '/explore', label: 'Carte' },
+    { path: '/search', label: 'Guides' },
+    { path: '/favorites', label: 'Lieux' },
+    { path: '/events', label: 'Rencontres' }
   ];
 
   const isActive = (path) => location.pathname === path;
 
   return (
-    <header className="sticky top-0 z-50 bg-night-950/90 backdrop-blur-lg border-b border-night-800/50">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6">
+    <header className="fixed top-0 left-0 right-0 z-50">
+      {/* Fond semi-transparent avec dégradé */}
+      <div className="absolute inset-0 bg-[#1a1a2e]/80 backdrop-blur-sm" />
+      <div className="absolute inset-x-0 bottom-0 h-4 bg-gradient-to-b from-[#1a1a2e]/50 to-transparent" />
+
+      <nav className="relative max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center shadow-lg shadow-gold-900/30 group-hover:scale-105 transition-transform">
-              <Compass className="w-6 h-6 text-night-950" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#d4a574] to-[#b8956a] flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+              <Compass className="w-6 h-6 text-[#1a1a2e]" />
             </div>
-            <span className="text-xl font-bold text-sand-100">Muzea</span>
+            <span className="text-xl font-bold text-white">Muzea</span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
+          {/* Desktop Navigation - Centered */}
+          <div className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
             {navLinks.map(({ path, label }) => (
               <Link
                 key={path}
                 to={path}
                 className={`
-                  px-4 py-2
+                  relative px-4 py-2
                   text-sm font-medium
-                  rounded-lg
                   transition-all duration-300
                   ${isActive(path)
-                    ? 'text-gold-400 bg-gold-500/10'
-                    : 'text-night-400 hover:text-sand-100 hover:bg-night-800/50'
+                    ? 'text-white'
+                    : 'text-gray-400 hover:text-white'
                   }
                 `}
               >
                 {label}
+                {isActive(path) && (
+                  <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#d4a574]" />
+                )}
               </Link>
             ))}
           </div>
 
-          {/* Actions */}
-          <div className="flex items-center gap-2">
-            {/* Notifications */}
-            <div className="relative">
-              <button
-                onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
-                className="relative p-2 text-night-400 hover:text-sand-100 hover:bg-night-800/50 rounded-lg transition-all"
-                aria-label="Notifications"
-              >
-                <Bell className="w-5 h-5" />
-                <NotificationBadge count={unreadCount} />
-              </button>
+          {/* Right Actions */}
+          <div className="flex items-center gap-3">
+            {/* Theme Toggle */}
+            <button
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              className="p-2 text-gray-400 hover:text-white transition-colors"
+              aria-label="Changer de thème"
+            >
+              {isDarkMode ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+            </button>
 
-              {/* Dropdown notifications */}
-              {isNotificationsOpen && (
-                <div className="absolute right-0 mt-2 w-80 bg-night-900 border border-gold-500/20 rounded-xl shadow-xl overflow-hidden">
-                  <div className="p-3 border-b border-night-700/50">
-                    <h3 className="font-semibold text-sand-100">Notifications</h3>
-                  </div>
-                  <div className="max-h-64 overflow-y-auto">
-                    {notifications.map((notif) => (
-                      <div
-                        key={notif.id}
-                        className={`p-3 border-b border-night-800/50 hover:bg-night-800/30 transition-colors ${!notif.read ? 'bg-gold-500/5' : ''}`}
-                      >
-                        <p className="text-sm text-sand-100">{notif.message}</p>
-                        <p className="text-xs text-night-400 mt-1">{notif.date}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Profile link desktop */}
+            {/* Profile Button */}
             <Link
               to="/profile"
-              className="hidden md:flex items-center gap-2 px-3 py-2 bg-night-800/50 border border-gold-500/20 rounded-lg hover:bg-night-700/50 transition-all"
+              className="hidden md:flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-white text-sm font-medium transition-all"
             >
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-night-950 text-sm font-bold">
-                E
-              </div>
-              <div className="text-left">
-                <p className="text-sm font-medium text-sand-100">Explorateur</p>
-                <p className="text-xs text-night-400">{stats.totalVisits} découvertes</p>
-              </div>
+              <User className="w-4 h-4" />
+              Mon profil
             </Link>
 
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 text-night-400 hover:text-sand-100 hover:bg-night-800/50 rounded-lg transition-all"
+              className="md:hidden p-2 text-gray-400 hover:text-white transition-all"
               aria-label="Menu"
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -122,27 +93,32 @@ const Navigation = () => {
 
         {/* Mobile menu */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-night-800/50 animate-fade-in">
-            {navLinks.map(({ path, label, icon: Icon }) => (
+          <div className="md:hidden py-4 border-t border-white/10 animate-fade-in">
+            {navLinks.map(({ path, label }) => (
               <Link
                 key={path}
                 to={path}
                 onClick={() => setIsMenuOpen(false)}
                 className={`
-                  flex items-center gap-3
-                  px-4 py-3
-                  rounded-lg
+                  block px-4 py-3
                   transition-all
                   ${isActive(path)
-                    ? 'text-gold-400 bg-gold-500/10'
-                    : 'text-night-400 hover:text-sand-100 hover:bg-night-800/50'
+                    ? 'text-[#d4a574] border-l-2 border-[#d4a574] bg-white/5'
+                    : 'text-gray-400 hover:text-white hover:bg-white/5'
                   }
                 `}
               >
-                <Icon className="w-5 h-5" />
                 {label}
               </Link>
             ))}
+            <Link
+              to="/profile"
+              onClick={() => setIsMenuOpen(false)}
+              className="flex items-center gap-2 px-4 py-3 mt-2 text-white border-t border-white/10"
+            >
+              <User className="w-5 h-5" />
+              Mon profil
+            </Link>
           </div>
         )}
       </nav>

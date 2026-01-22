@@ -1,23 +1,85 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, ChevronDown, Sparkles, MapPin, Calendar, Users, Star, Compass } from 'lucide-react';
+import { Search, Zap, MapPin, Clock, Footprints, Car } from 'lucide-react';
 import { places } from '../data/places';
-import { routes } from '../data/routes';
-import PlaceCard from '../components/cards/PlaceCard';
-import RouteCard from '../components/cards/RouteCard';
-import PlaceDetailModal from '../components/modals/PlaceDetailModal';
-import { QuickFilterChips } from '../components/ui/FilterTabs';
+import InteractiveMap from '../components/map/InteractiveMap';
 
 /**
- * Page d'accueil avec hero, recherche, lieux recommandés et parcours
+ * Page d'accueil avec hero, carte floue et section Musea Now
  */
 const HomePage = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedPlace, setSelectedPlace] = useState(null);
-  const [activeQuickFilters, setActiveQuickFilters] = useState([]);
+  const [userLocation, setUserLocation] = useState(null);
+  const [nearbyMuseums, setNearbyMuseums] = useState([]);
 
-  const quickFilters = ['Musées', 'Châteaux', 'Paris', 'Loire', 'Renaissance', 'Art moderne'];
+  // Get user location on mount
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setUserLocation({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          });
+        },
+        () => {
+          // Default to Paris if geolocation fails
+          setUserLocation({ lat: 48.8566, lng: 2.3522 });
+        }
+      );
+    } else {
+      setUserLocation({ lat: 48.8566, lng: 2.3522 });
+    }
+  }, []);
+
+  // Calculate nearby museums when location changes
+  useEffect(() => {
+    if (userLocation) {
+      const museumsWithDistance = places
+        .filter(p => p.type === 'musée')
+        .map(museum => ({
+          ...museum,
+          distance: calculateDistance(
+            userLocation.lat,
+            userLocation.lng,
+            museum.coordinates.lat,
+            museum.coordinates.lng
+          )
+        }))
+        .sort((a, b) => a.distance - b.distance)
+        .slice(0, 3);
+
+      setNearbyMuseums(museumsWithDistance);
+    }
+  }, [userLocation]);
+
+  // Haversine formula to calculate distance in km
+  const calculateDistance = (lat1, lng1, lat2, lng2) => {
+    const R = 6371;
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLng = (lng2 - lng1) * Math.PI / 180;
+    const a =
+      Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+      Math.sin(dLng/2) * Math.sin(dLng/2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    return R * c;
+  };
+
+  // Convert distance to travel time text
+  const getDistanceText = (distanceKm) => {
+    if (distanceKm < 1) {
+      const minutes = Math.round(distanceKm * 12); // ~5km/h walking
+      return { text: `${minutes} min à pied`, icon: Footprints };
+    } else if (distanceKm < 3) {
+      const minutes = Math.round(distanceKm * 12);
+      return { text: `${minutes} min à pied`, icon: Footprints };
+    } else {
+      const minutes = Math.round(distanceKm * 2); // ~30km/h city driving
+      return { text: `${minutes} min de trajet`, icon: Car };
+    }
+  };
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -26,234 +88,277 @@ const HomePage = () => {
     }
   };
 
-  const toggleQuickFilter = (filter) => {
-    setActiveQuickFilters(prev =>
-      prev.includes(filter)
-        ? prev.filter(f => f !== filter)
-        : [...prev, filter]
-    );
-  };
-
-  // Lieux recommandés (6 premiers)
-  const recommendedPlaces = places.slice(0, 6);
-
-  // Stats
-  const stats = [
-    { icon: MapPin, value: '1200+', label: 'Lieux culturels' },
-    { icon: Calendar, value: '500+', label: 'Événements/an' },
-    { icon: Users, value: '45k+', label: 'Visiteurs' },
-    { icon: Star, value: '4.8', label: 'Note moyenne' }
+  const filterButtons = [
+    { label: 'Ouvert maintenant', variant: 'green' },
+    { label: 'Gratuit', variant: 'light' },
+    { label: 'Bowsites', variant: 'light' },
+    { label: 'Lilin et al imps', variant: 'light' }
   ];
 
   return (
     <div className="animate-fade-in">
-      {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
-        {/* Background image */}
+      {/* ============================================
+          SECTION 1: HERO
+          ============================================ */}
+      <section className="relative min-h-screen flex flex-col">
+        {/* Background image - Paris with Eiffel Tower at twilight */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1920&q=80"
-            alt="Musée du Louvre"
+            src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1920&q=80"
+            alt="Paris au crépuscule"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-night-950/80 via-night-950/60 to-night-950" />
+          {/* Gradient overlay - blue-violet tones */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a2e]/60 via-[#1a1a2e]/40 to-[#1a1a2e]" />
         </div>
 
-        {/* Content */}
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-          {/* Notification badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gold-600/20 border border-gold-500/30 rounded-full text-gold-400 text-sm mb-8 animate-slide-up">
-            <Sparkles className="w-4 h-4" />
-            <span>Nouveau : Exposition Van Gogh au Musée d'Orsay</span>
-          </div>
-
-          {/* Title */}
-          <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 animate-slide-up" style={{ animationDelay: '100ms' }}>
-            <span className="text-sand-100">Explorez le </span>
-            <span className="bg-gradient-to-r from-gold-300 to-gold-500 bg-clip-text text-transparent">
-              Patrimoine Français
-            </span>
-          </h1>
-
-          <p className="text-xl text-sand-300 mb-10 max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: '200ms' }}>
-            Partez à la découverte des plus beaux musées, châteaux et monuments de France.
-          </p>
-
-          {/* Search bar */}
-          <form onSubmit={handleSearch} className="relative max-w-2xl mx-auto mb-6 animate-slide-up" style={{ animationDelay: '300ms' }}>
-            <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 text-night-400" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Rechercher un musée, un château, une exposition..."
-              className="
-                w-full
-                py-4 px-6 pl-14 pr-32
-                bg-night-800/50
-                border border-night-700/50
-                rounded-2xl
-                text-lg text-sand-100
-                placeholder-night-400
-                focus:outline-none
-                focus:border-gold-500/50
-                focus:ring-2 focus:ring-gold-500/20
-                transition-all
-              "
-            />
-            <button
-              type="submit"
-              className="
-                absolute right-2 top-1/2 -translate-y-1/2
-                px-6 py-2.5
-                bg-gradient-to-r from-gold-500 to-gold-600
-                text-night-950 font-semibold
-                rounded-xl
-                shadow-lg shadow-gold-900/30
-                hover:from-gold-400 hover:to-gold-500
-                transition-all
-              "
+        {/* Hero Content - centered */}
+        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 pt-20 pb-32">
+          <div className="max-w-3xl mx-auto text-center">
+            {/* Main title - Italic serif golden */}
+            <h1
+              className="font-serif-italic text-4xl sm:text-5xl lg:text-6xl mb-6 animate-slide-up"
+              style={{ color: '#d4a574' }}
             >
-              Explorer
-            </button>
-          </form>
+              Toute la culture autour de vous.
+            </h1>
 
-          {/* Quick filters */}
-          <div className="animate-slide-up" style={{ animationDelay: '400ms' }}>
-            <QuickFilterChips
-              filters={quickFilters}
-              activeFilters={activeQuickFilters}
-              onToggle={toggleQuickFilter}
-              className="justify-center"
-            />
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce-slow">
-          <ChevronDown className="w-8 h-8 text-gold-500/50" />
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-12 border-b border-night-800/50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {stats.map(({ icon: Icon, value, label }, index) => (
-              <div
-                key={label}
-                className="text-center p-6 bg-night-800/20 rounded-2xl border border-gold-500/10"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <Icon className="w-8 h-8 text-gold-500 mx-auto mb-3" />
-                <p className="text-3xl font-bold text-sand-100 font-display">{value}</p>
-                <p className="text-night-400 text-sm">{label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Recommended Places */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h2 className="font-display text-3xl font-bold text-sand-100 mb-2">
-                Lieux Incontournables
-              </h2>
-              <p className="text-night-400">
-                Les trésors du patrimoine français à ne pas manquer
-              </p>
-            </div>
-            <button
-              onClick={() => navigate('/explore')}
-              className="hidden sm:flex items-center gap-2 px-4 py-2 text-gold-400 hover:text-gold-300 transition-colors"
+            {/* Subtitle - light gray */}
+            <p
+              className="text-lg sm:text-xl mb-10 max-w-2xl mx-auto animate-slide-up"
+              style={{ color: '#9ca3af', animationDelay: '100ms' }}
             >
-              Voir tout
-              <ChevronDown className="w-4 h-4 rotate-[-90deg]" />
-            </button>
-          </div>
-
-          {/* Grid avec premier élément featured */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {recommendedPlaces.map((place, index) => (
-              <PlaceCard
-                key={place.id}
-                place={place}
-                featured={index === 0}
-                onClick={setSelectedPlace}
-              />
-            ))}
-          </div>
-
-          {/* Mobile voir tout */}
-          <button
-            onClick={() => navigate('/explore')}
-            className="sm:hidden w-full mt-6 py-3 text-gold-400 hover:text-gold-300 border border-gold-500/30 rounded-xl transition-colors"
-          >
-            Voir tous les lieux
-          </button>
-        </div>
-      </section>
-
-      {/* Thematic Routes */}
-      <section className="py-16 bg-night-900/30">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="font-display text-3xl font-bold text-sand-100 mb-2">
-              Parcours Thématiques
-            </h2>
-            <p className="text-night-400 max-w-2xl mx-auto">
-              Des itinéraires soigneusement élaborés pour une immersion culturelle complète
+              Musées, expositions et lieux culturels, visibles en temps réel autour de vous.
             </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {routes.map((route) => (
-              <RouteCard
-                key={route.id}
-                route={route}
-                onClick={() => navigate('/explore')}
+            {/* Search bar - white */}
+            <form
+              onSubmit={handleSearch}
+              className="relative max-w-xl mx-auto mb-6 animate-slide-up"
+              style={{ animationDelay: '200ms' }}
+            >
+              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Rechercher un site, musée..."
+                className="
+                  w-full
+                  py-4 px-6 pl-14
+                  bg-white
+                  rounded-full
+                  text-gray-800
+                  placeholder-gray-400
+                  shadow-lg
+                  focus:outline-none
+                  focus:ring-2 focus:ring-[#d4a574]/50
+                  transition-all
+                "
               />
-            ))}
+            </form>
+
+            {/* Filter buttons */}
+            <div
+              className="flex flex-wrap justify-center gap-3 animate-slide-up"
+              style={{ animationDelay: '300ms' }}
+            >
+              {filterButtons.map((btn, index) => (
+                <button
+                  key={index}
+                  className={`
+                    px-5 py-2.5 rounded-full text-sm font-medium
+                    transition-all hover:scale-105
+                    ${btn.variant === 'green'
+                      ? 'bg-[#2d4a3e] text-white'
+                      : 'bg-white/90 text-gray-800 border border-gray-200'
+                    }
+                  `}
+                >
+                  {btn.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ============================================
+            SECTION 2: BLURRED MAP (overlapping hero)
+            ============================================ */}
+        <div className="relative z-20 -mt-20 px-4 pb-16">
+          <div className="max-w-4xl mx-auto">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+              {/* Blurred map */}
+              <div className="filter blur-[3px]">
+                <InteractiveMap
+                  places={places.slice(0, 5)}
+                  height="300px"
+                  center={userLocation ? [userLocation.lat, userLocation.lng] : [48.8566, 2.3522]}
+                  zoom={12}
+                  showUserLocation={false}
+                />
+              </div>
+
+              {/* Overlay for clickability */}
+              <div className="absolute inset-0 bg-[#1a1a2e]/20" />
+
+              {/* CTA Button centered on map */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <button
+                  onClick={() => navigate('/explore')}
+                  className="
+                    px-8 py-4
+                    bg-[#2d4a3e] hover:bg-[#3d5a4e]
+                    text-white text-lg font-semibold
+                    rounded-full
+                    shadow-xl
+                    hover:scale-105
+                    transition-all duration-300
+                  "
+                >
+                  Explorer la carte !
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="font-display text-4xl font-bold text-sand-100 mb-4">
-            Prêt pour la découverte ?
-          </h2>
-          <p className="text-xl text-night-400 mb-8">
-            Rejoignez les passionnés de culture et explorez les richesses du patrimoine français.
-          </p>
+      {/* ============================================
+          SECTION 3: MUSEA NOW (suggestions spontanées)
+          ============================================ */}
+      <section className="bg-[#1a1a2e] py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          {/* Section header */}
+          <div className="text-center mb-10">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full mb-6">
+              <Zap className="w-4 h-4 text-yellow-400" />
+              <span className="text-sm font-semibold text-white tracking-wide">MUSEA</span>
+            </div>
+
+            {/* Title */}
+            <h2 className="text-2xl sm:text-3xl font-bold text-white">
+              Envie d'une escapade immédiate ?
+            </h2>
+          </div>
+
+          {/* Asymmetric grid: 1 large left (60%), 2 small stacked right (40%) */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+            {/* Large card - left side (spans 3 columns = 60%) */}
+            {nearbyMuseums[0] && (
+              <div className="lg:col-span-3 h-[400px] lg:h-[500px]">
+                <MuseumCard
+                  museum={nearbyMuseums[0]}
+                  size="large"
+                  badge={{ text: '#1 RECOMMANDÉ', variant: 'yellow' }}
+                  distanceInfo={getDistanceText(nearbyMuseums[0].distance)}
+                  onClick={() => navigate('/explore')}
+                />
+              </div>
+            )}
+
+            {/* Right side - 2 smaller cards stacked (spans 2 columns = 40%) */}
+            <div className="lg:col-span-2 flex flex-col gap-4">
+              {nearbyMuseums[1] && (
+                <div className="h-[200px] lg:h-[242px]">
+                  <MuseumCard
+                    museum={nearbyMuseums[1]}
+                    size="small"
+                    badge={{ text: 'GRATUIT', variant: 'dark' }}
+                    distanceInfo={getDistanceText(nearbyMuseums[1].distance)}
+                    onClick={() => navigate('/explore')}
+                  />
+                </div>
+              )}
+              {nearbyMuseums[2] && (
+                <div className="h-[200px] lg:h-[242px]">
+                  <MuseumCard
+                    museum={nearbyMuseums[2]}
+                    size="small"
+                    badge={{ text: 'GRATUIT', variant: 'dark' }}
+                    distanceInfo={getDistanceText(nearbyMuseums[2].distance)}
+                    onClick={() => navigate('/explore')}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+/**
+ * Museum Card Component for Musea Now section
+ */
+const MuseumCard = ({ museum, size = 'small', badge, distanceInfo, onClick }) => {
+  const DistanceIcon = distanceInfo?.icon || MapPin;
+
+  return (
+    <div
+      className="relative w-full h-full rounded-2xl overflow-hidden group cursor-pointer"
+      onClick={onClick}
+    >
+      {/* Background image */}
+      <img
+        src={museum.image}
+        alt={museum.name}
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      />
+
+      {/* Dark gradient overlay from bottom */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+      {/* Badge - top left */}
+      {badge && (
+        <div
+          className={`
+            absolute top-4 left-4 px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide
+            ${badge.variant === 'yellow'
+              ? 'bg-[#f4d03f] text-black'
+              : 'bg-gray-800/90 text-white'
+            }
+          `}
+        >
+          {badge.text}
+        </div>
+      )}
+
+      {/* Content - bottom */}
+      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+        {/* Museum name */}
+        <h3
+          className={`
+            font-bold text-white mb-2
+            ${size === 'large' ? 'text-2xl sm:text-3xl' : 'text-lg sm:text-xl'}
+          `}
+        >
+          {museum.name}
+        </h3>
+
+        {/* Distance */}
+        <div className="flex items-center gap-2 text-gray-300 mb-4">
+          <DistanceIcon className="w-4 h-4" />
+          <span className="text-sm">{distanceInfo?.text || museum.location}</span>
+        </div>
+
+        {/* CTA Button - only for large card */}
+        {size === 'large' && (
           <button
-            onClick={() => navigate('/explore')}
             className="
-              px-8 py-4
-              bg-gradient-to-r from-gold-500 to-gold-600
-              text-night-950 text-lg font-semibold
+              w-full py-3
+              bg-[#f4d03f] hover:bg-[#e5c230]
+              text-black font-semibold
               rounded-xl
-              shadow-lg shadow-gold-900/30
-              hover:from-gold-400 hover:to-gold-500
-              hover:scale-105
-              transition-all duration-300
+              transition-all hover:scale-[1.02]
             "
           >
-            Commencer l'exploration
+            Commencer la visite
           </button>
-        </div>
-      </section>
-
-      {/* Detail Modal */}
-      <PlaceDetailModal
-        place={selectedPlace}
-        isOpen={!!selectedPlace}
-        onClose={() => setSelectedPlace(null)}
-      />
+        )}
+      </div>
     </div>
   );
 };

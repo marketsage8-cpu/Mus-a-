@@ -4,7 +4,6 @@ import { Search, Zap, MapPin, Clock, Footprints, Car, Heart, ChevronLeft, Chevro
 import { places } from '../data/places';
 import InteractiveMap from '../components/map/InteractiveMap';
 import { useUser } from '../context/UserContext';
-import CabinetBackground from '../components/backgrounds/CabinetBackground';
 
 /**
  * Page d'accueil avec hero, carte floue et section Musea Now
@@ -148,10 +147,7 @@ const HomePage = () => {
   ];
 
   return (
-    <div className="animate-fade-in relative" style={{ zIndex: 1 }}>
-      {/* Arrière-plan décoratif "Cabinet de curiosités" - Pattern répétitif */}
-      <CabinetBackground />
-
+    <div className="animate-fade-in relative">
       {/* ============================================
           SECTION 1: HERO
           ============================================ */}

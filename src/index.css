@@ -19,7 +19,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #0a0f1a;
+  background-color: transparent;
   color: #f9f5eb;
   font-family: 'Nunito Sans', sans-serif;
 }

@@ -36,7 +36,7 @@ const Navigation = () => {
               <Compass className="w-6 h-6 text-white" />
             </div>
             <span className="font-display text-xl font-semibold text-amber-50 hidden sm:block">
-              Culture Explorer
+              Muzea
             </span>
           </Link>
 

@@ -246,20 +246,26 @@ const HomePage = () => {
       </section>
 
       {/* ============================================
-          SECTION 3: DÉCOUVERTE SPONTANÉE (Bento Box Style)
+          SECTION 3: MUZEA NOW
           ============================================ */}
       <section className="bg-[#1a1a2e] py-20 px-4">
         <div className="max-w-6xl mx-auto">
-          {/* Section header - Elegant centered title */}
+          {/* Section header - Muzea Now centered layout */}
           <div className="text-center mb-12">
+            {/* Muzea now - petit et centré */}
+            <p className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-4">
+              Muzea now
+            </p>
+            {/* Question principale */}
             <h2
-              className="font-serif-italic text-3xl sm:text-4xl lg:text-5xl"
+              className="font-serif-italic text-3xl sm:text-4xl lg:text-5xl mb-4"
               style={{ color: '#d4a574' }}
             >
-              Envie d'une escapade immédiate ?
+              Que puis-je visiter maintenant ?
             </h2>
-            <p className="mt-4 text-gray-400 text-lg max-w-xl mx-auto">
-              3 lieux culturels à découvrir maintenant, autour de vous
+            {/* Description - beaucoup plus petit */}
+            <p className="text-xs sm:text-sm text-gray-500 max-w-md mx-auto">
+              3 propositions optimales basées sur votre position et l'heure actuelle
             </p>
           </div>
 

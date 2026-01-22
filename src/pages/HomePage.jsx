@@ -148,8 +148,8 @@ const HomePage = () => {
   ];
 
   return (
-    <div className="animate-fade-in">
-      {/* Arrière-plan décoratif "Cabinet de curiosités" */}
+    <div className="animate-fade-in relative" style={{ zIndex: 1 }}>
+      {/* Arrière-plan décoratif "Cabinet de curiosités" - Pattern répétitif */}
       <CabinetBackground />
 
       {/* ============================================
@@ -303,7 +303,7 @@ const HomePage = () => {
       {/* ============================================
           SECTION 3: MUZEA NOW
           ============================================ */}
-      <section className="bg-[#1a1a2e] py-20 px-4">
+      <section className="relative py-20 px-4" style={{ backgroundColor: 'rgba(26, 26, 46, 0.85)' }}>
         <div className="max-w-6xl mx-auto">
           {/* Section header - Muzea Now centered layout */}
           <div className="text-center mb-12">
@@ -404,7 +404,7 @@ const HomePage = () => {
       {/* ============================================
           SECTION 4: EXPOSITIONS ÉPHÉMÈRES
           ============================================ */}
-      <section className="bg-[#0f0f1a] py-20 px-4">
+      <section className="relative py-20 px-4" style={{ backgroundColor: 'rgba(15, 15, 26, 0.9)' }}>
         <div className="max-w-7xl mx-auto">
           {/* Section header */}
           <div className="text-center mb-12">

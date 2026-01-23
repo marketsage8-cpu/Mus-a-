@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Home, MapPin, Heart, Calendar, User } from 'lucide-react';
+import { Home, MapPin, Heart, Palette, User } from 'lucide-react';
 
 /**
  * Navigation mobile fixe en bas de l'écran
@@ -10,9 +10,9 @@ const MobileNav = () => {
 
   const navItems = [
     { path: '/', label: 'Accueil', icon: Home },
-    { path: '/explore', label: 'Explorer', icon: MapPin },
+    { path: '/explore', label: 'Carte', icon: MapPin },
+    { path: '/decouverte', label: 'Découverte', icon: Palette },
     { path: '/favorites', label: 'Favoris', icon: Heart },
-    { path: '/events', label: 'Événements', icon: Calendar },
     { path: '/profile', label: 'Profil', icon: User }
   ];
 

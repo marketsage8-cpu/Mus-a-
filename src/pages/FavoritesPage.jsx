@@ -39,10 +39,10 @@ const FavoritesPage = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20 pb-24 md:pb-8 relative overflow-hidden" style={{ backgroundColor: '#1a1f2e' }}>
+    <div className="min-h-screen pt-20 pb-24 md:pb-8 relative overflow-hidden" style={{ backgroundColor: '#2a3550' }}>
       {/* Fond décoratif */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1a1f2e] via-[#15192a] to-[#0f1320]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#2a3550] via-[#283858] to-[#1e2a42]" />
         <svg className="absolute inset-0 w-full h-full opacity-30" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="heartPattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
@@ -62,17 +62,23 @@ const FavoritesPage = () => {
               <Heart className="w-10 h-10 text-red-400 fill-red-400" />
             </div>
 
-            <h1 className="font-serif-italic text-3xl sm:text-4xl lg:text-5xl mb-4" style={{ color: '#d4a574' }}>
-              Mes Favoris
-            </h1>
-            <p className="text-gray-400 max-w-xl mx-auto">
-              Retrouvez tous vos lieux culturels préférés sauvegardés en un seul endroit.
-              {userData.favorites.length > 0 && (
-                <span className="block mt-2 text-[#d4a574]">
-                  {userData.favorites.length} lieu{userData.favorites.length > 1 ? 'x' : ''} sauvegardé{userData.favorites.length > 1 ? 's' : ''}
-                </span>
-              )}
-            </p>
+            {favoritePlaces.length > 0 ? (
+              <>
+                <h1 className="font-serif-italic text-3xl sm:text-4xl lg:text-5xl mb-4" style={{ color: '#d4a574' }}>
+                  Vos Favoris
+                </h1>
+                <p className="text-gray-400 max-w-xl mx-auto">
+                  Retrouvez tous vos lieux culturels préférés sauvegardés en un seul endroit.
+                  <span className="block mt-2 text-[#d4a574]">
+                    {favoritePlaces.length} lieu{favoritePlaces.length > 1 ? 'x' : ''} sauvegardé{favoritePlaces.length > 1 ? 's' : ''}
+                  </span>
+                </p>
+              </>
+            ) : (
+              <p className="text-gray-400 max-w-xl mx-auto text-lg">
+                Vous n'avez pas encore de favoris
+              </p>
+            )}
           </div>
 
           {/* Filtres par catégorie */}
@@ -90,8 +96,8 @@ const FavoritesPage = () => {
                       font-medium text-sm
                       transition-all duration-300
                       ${isActive
-                        ? 'bg-[#d4a574] text-[#1a1a2e] shadow-lg shadow-[#d4a574]/20'
-                        : 'bg-[#1a1a2e]/80 text-white/80 hover:bg-[#1a1a2e] hover:text-white border border-white/20'
+                        ? 'bg-[#d4a574] text-[#243350] shadow-lg shadow-[#d4a574]/20'
+                        : 'bg-[#243350]/80 text-white/80 hover:bg-[#243350] hover:text-white border border-white/20'
                       }
                     `}
                   >
@@ -99,7 +105,7 @@ const FavoritesPage = () => {
                     <span>{cat.label}</span>
                     <span className={`
                       px-2 py-0.5 rounded-full text-xs
-                      ${isActive ? 'bg-[#1a1a2e]/20' : 'bg-white/10'}
+                      ${isActive ? 'bg-[#243350]/20' : 'bg-white/10'}
                     `}>
                       {cat.count}
                     </span>
@@ -120,7 +126,7 @@ const FavoritesPage = () => {
               return (
                 <div
                   key={place.id}
-                  className="group relative bg-[#1a1a2e] rounded-2xl overflow-hidden border border-white/10 hover:border-[#d4a574]/40 transition-all duration-300 hover:shadow-xl hover:shadow-[#d4a574]/10"
+                  className="group relative bg-[#243350] rounded-2xl overflow-hidden border border-white/10 hover:border-[#d4a574]/40 transition-all duration-300 hover:shadow-xl hover:shadow-[#d4a574]/10"
                 >
                   {/* Image */}
                   <div className="relative h-48 overflow-hidden">
@@ -130,7 +136,7 @@ const FavoritesPage = () => {
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       onClick={() => setSelectedPlace(place)}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a2e] via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#243350] via-transparent to-transparent" />
 
                     {/* Badge type */}
                     <div className="absolute top-3 left-3">
@@ -186,7 +192,7 @@ const FavoritesPage = () => {
         ) : activeFilter !== 'all' ? (
           /* État vide pour une catégorie spécifique */
           <div className="text-center py-16">
-            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-[#1a1a2e] border border-white/10 flex items-center justify-center">
+            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-[#243350] border border-white/10 flex items-center justify-center">
               <Filter className="w-8 h-8 text-gray-600" />
             </div>
             <h3 className="font-serif-italic text-2xl text-[#d4a574] mb-3">
@@ -224,7 +230,7 @@ const FavoritesPage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => navigate('/explore')}
-                className="px-8 py-4 bg-[#d4a574] hover:bg-[#c49464] text-[#1a1a2e] font-bold rounded-xl shadow-lg shadow-[#d4a574]/20 transition-all hover:scale-105 flex items-center justify-center gap-2"
+                className="px-8 py-4 bg-[#d4a574] hover:bg-[#c49464] text-[#243350] font-bold rounded-xl shadow-lg shadow-[#d4a574]/20 transition-all hover:scale-105 flex items-center justify-center gap-2"
               >
                 <MapPin className="w-5 h-5" />
                 Explorer la carte

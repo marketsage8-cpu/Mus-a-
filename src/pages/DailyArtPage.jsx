@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Calendar, Palette, Clock, MapPin, Heart, Share2, ChevronLeft, ChevronRight, Info, Bookmark, ExternalLink } from 'lucide-react';
+import { Calendar, Palette, Clock, MapPin, Heart, Share2, ChevronLeft, ChevronRight, Info, Bookmark, ExternalLink, Sparkles } from 'lucide-react';
 import { useUser } from '../context/UserContext';
 
 /**
  * Base de données des œuvres d'art pour l'oeuvre du jour
+ * Images de haute qualité représentant les œuvres réelles
  */
 const artworks = [
   {
@@ -11,7 +12,7 @@ const artworks = [
     title: "La Liberté guidant le peuple",
     artist: "Eugène Delacroix",
     year: 1830,
-    image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1200&q=80",
+    image: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Eug%C3%A8ne_Delacroix_-_Le_28_Juillet._La_Libert%C3%A9_guidant_le_peuple.jpg",
     style: "Romantisme",
     medium: "Huile sur toile",
     dimensions: "260 × 325 cm",
@@ -25,7 +26,7 @@ const artworks = [
     title: "Les Nymphéas",
     artist: "Claude Monet",
     year: 1906,
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&q=80",
+    image: "https://upload.wikimedia.org/wikipedia/commons/a/aa/Claude_Monet_-_Water_Lilies_-_1906%2C_Ryerson.jpg",
     style: "Impressionnisme",
     medium: "Huile sur toile",
     dimensions: "89 × 93 cm",
@@ -39,7 +40,7 @@ const artworks = [
     title: "Le Penseur",
     artist: "Auguste Rodin",
     year: 1880,
-    image: "https://images.unsplash.com/photo-1564399579883-451a5d44ec08?w=1200&q=80",
+    image: "https://upload.wikimedia.org/wikipedia/commons/5/56/The_Thinker%2C_Rodin.jpg",
     style: "Sculpture réaliste",
     medium: "Bronze",
     dimensions: "186 × 102 × 144 cm",
@@ -53,7 +54,7 @@ const artworks = [
     title: "La Nuit étoilée",
     artist: "Vincent van Gogh",
     year: 1889,
-    image: "https://images.unsplash.com/photo-1541367777708-7905fe3296c0?w=1200&q=80",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg",
     style: "Post-impressionnisme",
     medium: "Huile sur toile",
     dimensions: "73,7 × 92,1 cm",
@@ -67,7 +68,7 @@ const artworks = [
     title: "La Vénus de Milo",
     artist: "Artiste inconnu (Alexandros d'Antioche ?)",
     year: -130,
-    image: "https://images.unsplash.com/photo-1617503752587-97d2103a96ea?w=1200&q=80",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Venus_de_Milo_Louvre_Ma399.jpg/800px-Venus_de_Milo_Louvre_Ma399.jpg",
     style: "Sculpture hellénistique",
     medium: "Marbre de Paros",
     dimensions: "202 cm de hauteur",
@@ -81,7 +82,7 @@ const artworks = [
     title: "Le Sacre de Napoléon",
     artist: "Jacques-Louis David",
     year: 1807,
-    image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=1200&q=80",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Jacques-Louis_David%2C_The_Coronation_of_Napoleon.jpg/1280px-Jacques-Louis_David%2C_The_Coronation_of_Napoleon.jpg",
     style: "Néoclassicisme",
     medium: "Huile sur toile",
     dimensions: "621 × 979 cm",
@@ -95,7 +96,7 @@ const artworks = [
     title: "Le Radeau de la Méduse",
     artist: "Théodore Géricault",
     year: 1819,
-    image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=1200&q=80",
+    image: "https://upload.wikimedia.org/wikipedia/commons/1/15/JEAN_LOUIS_TH%C3%89ODORE_G%C3%89RICAULT_-_La_Balsa_de_la_Medusa_%28Museo_del_Louvre%2C_1818-19%29.jpg",
     style: "Romantisme",
     medium: "Huile sur toile",
     dimensions: "491 × 716 cm",
@@ -107,14 +108,55 @@ const artworks = [
 ];
 
 /**
- * Page de l'Oeuvre du Jour
+ * Composant d'animation de texte fluide
+ */
+const AnimatedText = ({ children, delay = 0, className = '' }) => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), delay);
+    return () => clearTimeout(timer);
+  }, [delay]);
+
+  return (
+    <span
+      className={`inline-block transition-all duration-500 ease-out ${className} ${
+        isVisible
+          ? 'opacity-100 translate-y-0'
+          : 'opacity-0 translate-y-3'
+      }`}
+    >
+      {children}
+    </span>
+  );
+};
+
+/**
+ * Composant pour animer les paragraphes mot par mot
+ */
+const AnimatedParagraph = ({ text, baseDelay = 0, className = '' }) => {
+  const words = text.split(' ');
+
+  return (
+    <p className={className}>
+      {words.map((word, index) => (
+        <AnimatedText key={index} delay={baseDelay + index * 30}>
+          {word}{' '}
+        </AnimatedText>
+      ))}
+    </p>
+  );
+};
+
+/**
+ * Page de l'Oeuvre du Jour - Version améliorée avec animations fluides
  */
 const DailyArtPage = () => {
   const [currentArtwork, setCurrentArtwork] = useState(null);
   const [previousArtworks, setPreviousArtworks] = useState([]);
-  const [showInfo, setShowInfo] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  const [animationKey, setAnimationKey] = useState(0);
 
   // Déterminer l'œuvre du jour basée sur la date
   useEffect(() => {
@@ -135,7 +177,7 @@ const DailyArtPage = () => {
     setPreviousArtworks(previous);
   }, []);
 
-  // Navigation entre les œuvres
+  // Navigation entre les œuvres avec reset des animations
   const navigateArtwork = (direction) => {
     const currentIndex = artworks.findIndex(a => a.id === currentArtwork.id);
     let newIndex;
@@ -145,201 +187,257 @@ const DailyArtPage = () => {
       newIndex = (currentIndex + 1) % artworks.length;
     }
     setCurrentArtwork(artworks[newIndex]);
-    setShowInfo(false);
+    setAnimationKey(prev => prev + 1);
+  };
+
+  // Changement d'œuvre avec reset des animations
+  const selectArtwork = (artwork) => {
+    setCurrentArtwork(artwork);
+    setAnimationKey(prev => prev + 1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   if (!currentArtwork) {
     return (
-      <div className="min-h-screen pt-20 pb-24 flex items-center justify-center" style={{ backgroundColor: '#1a1f2e' }}>
-        <div className="animate-pulse text-[#d4a574]">Chargement...</div>
+      <div className="min-h-screen pt-20 pb-24 flex items-center justify-center" style={{ backgroundColor: '#2a3d5c' }}>
+        <div className="flex items-center gap-3 text-[#d4a574]">
+          <Sparkles className="w-6 h-6 animate-pulse" />
+          <span className="text-lg">Chargement de l'œuvre...</span>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen pt-20 pb-24 md:pb-8 relative overflow-hidden" style={{ backgroundColor: '#0f1320' }}>
-      {/* Fond avec effet artistique */}
+    <div className="min-h-screen pt-20 pb-24 md:pb-8 relative overflow-hidden" style={{ backgroundColor: '#1e2a42' }}>
+      {/* Fond avec effet artistique doux */}
       <div className="absolute inset-0 pointer-events-none">
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-10 blur-3xl"
+          className="absolute inset-0 bg-cover bg-center opacity-15 blur-3xl transition-all duration-1000"
           style={{ backgroundImage: `url(${currentArtwork.image})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0f1320] via-[#0f1320]/90 to-[#0f1320]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1e2a42]/80 via-[#2a3d5c]/60 to-[#1e2a42]" />
+        {/* Motif décoratif subtil */}
+        <div className="absolute inset-0 opacity-5">
+          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="artPattern" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                <circle cx="40" cy="40" r="1" fill="#d4a574" />
+                <circle cx="0" cy="0" r="1" fill="#d4a574" />
+                <circle cx="80" cy="0" r="1" fill="#d4a574" />
+                <circle cx="0" cy="80" r="1" fill="#d4a574" />
+                <circle cx="80" cy="80" r="1" fill="#d4a574" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#artPattern)" />
+          </svg>
+        </div>
       </div>
 
       {/* Contenu principal */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 py-6">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-[#d4a574]/20 rounded-full border border-[#d4a574]/40 mb-4">
-            <Palette className="w-4 h-4 text-[#d4a574]" />
-            <span className="text-[#d4a574] text-sm font-semibold uppercase tracking-wider">L'Œuvre du Jour</span>
-          </div>
-          <h1 className="font-serif-italic text-2xl sm:text-3xl lg:text-4xl text-white mb-2">
-            Découverte Quotidienne
-          </h1>
-          <p className="text-gray-400 text-sm">
-            Chaque jour, une nouvelle œuvre à explorer et à comprendre
-          </p>
+      <div className="relative z-10 max-w-6xl mx-auto px-4 py-6" key={animationKey}>
+        {/* Header avec animation */}
+        <div className="text-center mb-10">
+          <AnimatedText delay={0}>
+            <div className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#d4a574]/20 via-[#d4a574]/30 to-[#d4a574]/20 rounded-full border border-[#d4a574]/40 mb-5 shadow-lg shadow-[#d4a574]/10">
+              <Sparkles className="w-4 h-4 text-[#d4a574]" />
+              <span className="text-[#d4a574] text-sm font-semibold uppercase tracking-wider">L'Œuvre du Jour</span>
+            </div>
+          </AnimatedText>
+          <AnimatedText delay={100}>
+            <h1 className="font-serif-italic text-3xl sm:text-4xl lg:text-5xl text-white mb-3">
+              Découverte Quotidienne
+            </h1>
+          </AnimatedText>
+          <AnimatedText delay={200}>
+            <p className="text-gray-400 text-base max-w-lg mx-auto">
+              Chaque jour, une nouvelle œuvre à explorer et à comprendre
+            </p>
+          </AnimatedText>
         </div>
 
         {/* Œuvre principale */}
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-10">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Image de l'œuvre */}
           <div className="relative">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
-              <img
-                src={currentArtwork.image}
-                alt={currentArtwork.title}
-                className="w-full h-[400px] sm:h-[500px] object-cover transition-transform duration-700 group-hover:scale-105"
-              />
+            <AnimatedText delay={150}>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/40 group ring-1 ring-white/10">
+                <img
+                  src={currentArtwork.image}
+                  alt={currentArtwork.title}
+                  className="w-full h-[400px] sm:h-[500px] object-cover transition-all duration-700 group-hover:scale-105"
+                />
 
-              {/* Overlay avec navigation */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                {/* Overlay gradient doux */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
-              {/* Navigation arrows */}
-              <button
-                onClick={() => navigateArtwork('prev')}
-                className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 hover:bg-black/70 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
-              >
-                <ChevronLeft className="w-6 h-6 text-white" />
-              </button>
-              <button
-                onClick={() => navigateArtwork('next')}
-                className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 hover:bg-black/70 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
-              >
-                <ChevronRight className="w-6 h-6 text-white" />
-              </button>
-
-              {/* Actions */}
-              <div className="absolute top-4 right-4 flex gap-2">
+                {/* Navigation arrows - plus douce */}
                 <button
-                  onClick={() => setIsLiked(!isLiked)}
-                  className={`p-3 rounded-full backdrop-blur-sm transition-all ${
-                    isLiked ? 'bg-red-500 text-white' : 'bg-black/50 hover:bg-black/70 text-white'
-                  }`}
+                  onClick={() => navigateArtwork('prev')}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 p-3.5 bg-white/10 hover:bg-white/20 rounded-full backdrop-blur-md transition-all duration-300 opacity-0 group-hover:opacity-100 border border-white/20"
                 >
-                  <Heart className={`w-5 h-5 ${isLiked ? 'fill-current' : ''}`} />
+                  <ChevronLeft className="w-6 h-6 text-white" />
                 </button>
                 <button
-                  onClick={() => setIsSaved(!isSaved)}
-                  className={`p-3 rounded-full backdrop-blur-sm transition-all ${
-                    isSaved ? 'bg-[#d4a574] text-[#1a1a2e]' : 'bg-black/50 hover:bg-black/70 text-white'
-                  }`}
+                  onClick={() => navigateArtwork('next')}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-3.5 bg-white/10 hover:bg-white/20 rounded-full backdrop-blur-md transition-all duration-300 opacity-0 group-hover:opacity-100 border border-white/20"
                 >
-                  <Bookmark className={`w-5 h-5 ${isSaved ? 'fill-current' : ''}`} />
+                  <ChevronRight className="w-6 h-6 text-white" />
                 </button>
-              </div>
 
-              {/* Badge style */}
-              <div className="absolute top-4 left-4">
-                <span className="px-3 py-1.5 bg-[#d4a574]/90 text-[#1a1a2e] text-xs font-semibold rounded-full uppercase tracking-wide">
-                  {currentArtwork.style}
-                </span>
+                {/* Actions */}
+                <div className="absolute top-4 right-4 flex gap-2.5">
+                  <button
+                    onClick={() => setIsLiked(!isLiked)}
+                    className={`p-3 rounded-full backdrop-blur-md transition-all duration-300 border ${
+                      isLiked
+                        ? 'bg-red-500/90 text-white border-red-400/50 shadow-lg shadow-red-500/30'
+                        : 'bg-white/10 hover:bg-white/20 text-white border-white/20'
+                    }`}
+                  >
+                    <Heart className={`w-5 h-5 transition-transform ${isLiked ? 'fill-current scale-110' : ''}`} />
+                  </button>
+                  <button
+                    onClick={() => setIsSaved(!isSaved)}
+                    className={`p-3 rounded-full backdrop-blur-md transition-all duration-300 border ${
+                      isSaved
+                        ? 'bg-[#d4a574]/90 text-[#1a2640] border-[#d4a574]/50 shadow-lg shadow-[#d4a574]/30'
+                        : 'bg-white/10 hover:bg-white/20 text-white border-white/20'
+                    }`}
+                  >
+                    <Bookmark className={`w-5 h-5 transition-transform ${isSaved ? 'fill-current scale-110' : ''}`} />
+                  </button>
+                </div>
+
+                {/* Badge style - plus élégant */}
+                <div className="absolute top-4 left-4">
+                  <span className="px-4 py-2 bg-gradient-to-r from-[#d4a574] to-[#c49464] text-[#1a2640] text-xs font-bold rounded-full uppercase tracking-wider shadow-lg">
+                    {currentArtwork.style}
+                  </span>
+                </div>
               </div>
-            </div>
+            </AnimatedText>
           </div>
 
-          {/* Informations sur l'œuvre */}
-          <div className="flex flex-col">
+          {/* Informations sur l'œuvre avec animations fluides */}
+          <div className="flex flex-col space-y-6">
             {/* Titre et artiste */}
-            <div className="mb-6">
-              <h2 className="font-serif-italic text-3xl sm:text-4xl text-[#d4a574] mb-2">
-                {currentArtwork.title}
-              </h2>
-              <p className="text-white text-xl">
-                {currentArtwork.artist}
-                <span className="text-gray-400 ml-2">
-                  ({currentArtwork.year < 0 ? `${Math.abs(currentArtwork.year)} av. J.-C.` : currentArtwork.year})
-                </span>
-              </p>
+            <div>
+              <AnimatedText delay={250}>
+                <h2 className="font-serif-italic text-3xl sm:text-4xl text-[#d4a574] mb-3 leading-tight">
+                  {currentArtwork.title}
+                </h2>
+              </AnimatedText>
+              <AnimatedText delay={350}>
+                <p className="text-white text-xl flex items-center gap-2">
+                  {currentArtwork.artist}
+                  <span className="text-gray-400 text-lg">
+                    ({currentArtwork.year < 0 ? `${Math.abs(currentArtwork.year)} av. J.-C.` : currentArtwork.year})
+                  </span>
+                </p>
+              </AnimatedText>
             </div>
 
-            {/* Détails techniques */}
-            <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="bg-white/5 rounded-xl p-4">
-                <p className="text-gray-500 text-xs uppercase tracking-wide mb-1">Technique</p>
-                <p className="text-white">{currentArtwork.medium}</p>
+            {/* Détails techniques - animation décalée */}
+            <AnimatedText delay={450}>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:border-[#d4a574]/30 transition-colors">
+                  <p className="text-[#d4a574]/70 text-xs uppercase tracking-wide mb-1.5">Technique</p>
+                  <p className="text-white font-medium">{currentArtwork.medium}</p>
+                </div>
+                <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:border-[#d4a574]/30 transition-colors">
+                  <p className="text-[#d4a574]/70 text-xs uppercase tracking-wide mb-1.5">Dimensions</p>
+                  <p className="text-white font-medium">{currentArtwork.dimensions}</p>
+                </div>
               </div>
-              <div className="bg-white/5 rounded-xl p-4">
-                <p className="text-gray-500 text-xs uppercase tracking-wide mb-1">Dimensions</p>
-                <p className="text-white">{currentArtwork.dimensions}</p>
-              </div>
-            </div>
+            </AnimatedText>
 
             {/* Localisation */}
-            <div className="flex items-center gap-2 mb-6 text-gray-300">
-              <MapPin className="w-5 h-5 text-[#d4a574]" />
-              <span>{currentArtwork.location}</span>
-            </div>
+            <AnimatedText delay={550}>
+              <div className="flex items-center gap-3 text-gray-300 bg-white/5 rounded-xl px-4 py-3 border border-white/10">
+                <MapPin className="w-5 h-5 text-[#d4a574]" />
+                <span className="font-medium">{currentArtwork.location}</span>
+              </div>
+            </AnimatedText>
 
-            {/* Description */}
-            <div className="mb-6">
-              <h3 className="text-white font-semibold mb-2 flex items-center gap-2">
-                <Info className="w-5 h-5 text-[#d4a574]" />
-                Description
-              </h3>
-              <p className="text-gray-300 leading-relaxed">
-                {currentArtwork.description}
-              </p>
+            {/* Description avec animation progressive */}
+            <div>
+              <AnimatedText delay={650}>
+                <h3 className="text-white font-semibold mb-3 flex items-center gap-2">
+                  <Info className="w-5 h-5 text-[#d4a574]" />
+                  Description
+                </h3>
+              </AnimatedText>
+              <AnimatedParagraph
+                text={currentArtwork.description}
+                baseDelay={700}
+                className="text-gray-300 leading-relaxed"
+              />
             </div>
 
             {/* Message / Signification */}
-            <div className="mb-6 bg-[#d4a574]/10 rounded-xl p-5 border-l-4 border-[#d4a574]">
-              <h3 className="text-[#d4a574] font-semibold mb-2">Le message de l'œuvre</h3>
-              <p className="text-gray-300 leading-relaxed italic">
-                {currentArtwork.message}
-              </p>
-            </div>
+            <AnimatedText delay={1200}>
+              <div className="bg-gradient-to-r from-[#d4a574]/15 to-[#d4a574]/5 rounded-xl p-5 border-l-4 border-[#d4a574] shadow-inner">
+                <h3 className="text-[#d4a574] font-semibold mb-2 flex items-center gap-2">
+                  <Sparkles className="w-4 h-4" />
+                  Le message de l'œuvre
+                </h3>
+                <p className="text-gray-300 leading-relaxed italic">
+                  {currentArtwork.message}
+                </p>
+              </div>
+            </AnimatedText>
 
             {/* Fun fact */}
-            <div className="bg-white/5 rounded-xl p-5">
-              <h3 className="text-white font-semibold mb-2 flex items-center gap-2">
-                <span className="text-xl">💡</span>
-                Le saviez-vous ?
-              </h3>
-              <p className="text-gray-400">
-                {currentArtwork.funFact}
-              </p>
-            </div>
+            <AnimatedText delay={1400}>
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-5 border border-white/10">
+                <h3 className="text-white font-semibold mb-2 flex items-center gap-2">
+                  <span className="text-xl">💡</span>
+                  Le saviez-vous ?
+                </h3>
+                <p className="text-gray-400 leading-relaxed">
+                  {currentArtwork.funFact}
+                </p>
+              </div>
+            </AnimatedText>
           </div>
         </div>
 
         {/* Section des œuvres précédentes */}
-        <div className="mt-16">
-          <h3 className="text-white text-xl font-semibold mb-6 flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-[#d4a574]" />
-            Œuvres précédentes
-          </h3>
+        <AnimatedText delay={1600}>
+          <div className="mt-16">
+            <h3 className="text-white text-xl font-semibold mb-6 flex items-center gap-2">
+              <Calendar className="w-5 h-5 text-[#d4a574]" />
+              Œuvres précédentes
+            </h3>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            {previousArtworks.map((artwork) => (
-              <button
-                key={artwork.id}
-                onClick={() => {
-                  setCurrentArtwork(artwork);
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                className="group relative rounded-xl overflow-hidden aspect-[3/4]"
-              >
-                <img
-                  src={artwork.image}
-                  alt={artwork.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-3">
-                  <p className="text-white text-xs font-medium line-clamp-1">{artwork.title}</p>
-                  <p className="text-gray-400 text-[10px]">
-                    Il y a {artwork.daysAgo} jour{artwork.daysAgo > 1 ? 's' : ''}
-                  </p>
-                </div>
-                {/* Overlay hover */}
-                <div className="absolute inset-0 bg-[#d4a574]/0 group-hover:bg-[#d4a574]/20 transition-colors" />
-              </button>
-            ))}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+              {previousArtworks.map((artwork, index) => (
+                <button
+                  key={artwork.id}
+                  onClick={() => selectArtwork(artwork)}
+                  className="group relative rounded-xl overflow-hidden aspect-[3/4] ring-1 ring-white/10 hover:ring-[#d4a574]/50 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  style={{ animationDelay: `${1700 + index * 100}ms` }}
+                >
+                  <img
+                    src={artwork.image}
+                    alt={artwork.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-3">
+                    <p className="text-white text-xs font-medium line-clamp-1">{artwork.title}</p>
+                    <p className="text-gray-400 text-[10px]">
+                      Il y a {artwork.daysAgo} jour{artwork.daysAgo > 1 ? 's' : ''}
+                    </p>
+                  </div>
+                  {/* Overlay hover élégant */}
+                  <div className="absolute inset-0 bg-[#d4a574]/0 group-hover:bg-[#d4a574]/20 transition-colors duration-300" />
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        </AnimatedText>
       </div>
     </div>
   );

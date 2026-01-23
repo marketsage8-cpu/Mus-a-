@@ -28,13 +28,56 @@ const HomePage = () => {
   ];
 
   // Expositions éphémères (filtrer par type "exposition")
-  const exhibitions = places.filter(p => p.type === 'exposition');
+  const allExhibitions = places.filter(p => p.type === 'exposition');
+
+  // Filtres pour les expositions
+  const [exhibitionDistanceFilter, setExhibitionDistanceFilter] = useState('all'); // 'all', '500m', '5km', '10km'
+  const [exhibitionCityFilter, setExhibitionCityFilter] = useState('all');
+
+  // Extraire les villes uniques des expositions
+  const exhibitionCities = [...new Set(allExhibitions.map(e => {
+    // Extraire la ville de la location (généralement après la virgule)
+    const parts = e.location.split(',');
+    return parts.length > 1 ? parts[parts.length - 1].trim() : parts[0].trim();
+  }))].sort();
+
+  // Filtrer les expositions selon les critères
+  const exhibitions = allExhibitions.filter(exhibition => {
+    // Filtre par ville
+    if (exhibitionCityFilter !== 'all') {
+      const exhibitionCity = exhibition.location.split(',').pop().trim();
+      if (exhibitionCity !== exhibitionCityFilter) return false;
+    }
+
+    // Filtre par distance (nécessite la géolocalisation)
+    if (exhibitionDistanceFilter !== 'all' && userLocation) {
+      const distance = calculateDistance(
+        userLocation.lat,
+        userLocation.lng,
+        exhibition.coordinates.lat,
+        exhibition.coordinates.lng
+      );
+      const maxDistance = exhibitionDistanceFilter === '500m' ? 0.5
+        : exhibitionDistanceFilter === '5km' ? 5
+        : exhibitionDistanceFilter === '10km' ? 10
+        : Infinity;
+      if (distance > maxDistance) return false;
+    }
+
+    return true;
+  });
 
   // Carousel 3D state
-  const [activeIndex, setActiveIndex] = useState(Math.floor(exhibitions.length / 2));
+  const [activeIndex, setActiveIndex] = useState(0);
   const [selectedExhibition, setSelectedExhibition] = useState(null);
   const [flippedCards, setFlippedCards] = useState({});
   const carouselRef = useRef(null);
+
+  // Réinitialiser l'index du carousel quand les filtres changent
+  useEffect(() => {
+    setActiveIndex(0);
+    setFlippedCards({});
+  }, [exhibitionDistanceFilter, exhibitionCityFilter]);
 
   // Get user location on mount
   useEffect(() => {
@@ -163,11 +206,11 @@ const HomePage = () => {
           SECTION 1: HERO
           ============================================ */}
       <section className="relative min-h-screen flex flex-col">
-        {/* Background image - Galerie colorée avec œuvres d'art */}
+        {/* Background image - Intérieur grandiose du Musée du Louvre */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&q=80"
-            alt="Galerie d'art colorée avec Nymphéas de Monet"
+            src="https://images.unsplash.com/photo-1565060169194-19fabf63012c?w=1920&q=80"
+            alt="Grande Galerie du Louvre avec ses tableaux et plafonds dorés"
             className="w-full h-full object-cover"
           />
           {/* Gradient overlay - effet "bavure" fluide depuis la navbar bleu marine (style Culturio) */}
@@ -175,8 +218,8 @@ const HomePage = () => {
             className="absolute inset-0"
             style={{
               background: `linear-gradient(to bottom,
-                #0f0f1a 0%,
-                #0f0f1a 6%,
+                #1a2640 0%,
+                #1a2640 6%,
                 rgba(15, 15, 26, 0.97) 10%,
                 rgba(15, 15, 26, 0.92) 14%,
                 rgba(15, 15, 26, 0.85) 18%,
@@ -190,7 +233,7 @@ const HomePage = () => {
                 transparent 70%,
                 rgba(26, 26, 46, 0.2) 80%,
                 rgba(26, 26, 46, 0.5) 90%,
-                #1a1a2e 100%)`
+                #243350 100%)`
             }}
           />
         </div>
@@ -283,7 +326,7 @@ const HomePage = () => {
               </div>
 
               {/* Overlay for clickability */}
-              <div className="absolute inset-0 bg-[#1a1a2e]/20" />
+              <div className="absolute inset-0 bg-[#243350]/20" />
 
               {/* CTA Button centered on map */}
               <div className="absolute inset-0 flex items-center justify-center">
@@ -312,18 +355,18 @@ const HomePage = () => {
           ============================================ */}
       <section className="relative py-20 px-4 overflow-hidden">
         {/* Background dynamique selon la catégorie - z-index 0 */}
-        <div className="absolute inset-0 z-0 bg-[#1a2744]" />
+        <div className="absolute inset-0 z-0 bg-[#2a3d5c]" />
         {activeCategory === 'musée' && <CabinetBackground />}
         {activeCategory === 'château' && <ChateauBackground />}
         {activeCategory === 'exposition' && <ExpositionBackground />}
-        {/* Overlay léger pour lisibilité - z-index 2 */}
-        <div className="absolute inset-0 z-[2] bg-[#1a2744]/15 pointer-events-none" />
+        {/* Overlay très léger pour mieux voir les motifs - z-index 2 */}
+        <div className="absolute inset-0 z-[2] bg-[#2a3d5c]/5 pointer-events-none" />
 
         <div className="max-w-6xl mx-auto relative z-[5]">
           {/* Section header - Muzea Now centered layout */}
           {/* Container avec fond semi-transparent pour contraste avec les motifs dorés */}
           <div className="text-center mb-8 relative">
-            <div className="absolute inset-0 -mx-4 sm:-mx-8 -my-4 bg-[#0a0d1a]/70 backdrop-blur-sm rounded-3xl" />
+            <div className="absolute inset-0 -mx-4 sm:-mx-8 -my-4 bg-[#1a2640]/50 backdrop-blur-sm rounded-3xl" />
             <div className="relative py-4">
               {/* Muzea now - avec encadrement stylé */}
               <div className="inline-flex items-center justify-center mb-4">
@@ -369,8 +412,8 @@ const HomePage = () => {
                         font-medium text-sm sm:text-base
                         transition-all duration-300 ease-out
                         ${isActive
-                          ? 'bg-[#d4a574] text-[#1a1a2e] shadow-lg shadow-[#d4a574]/30 scale-105'
-                          : 'bg-[#1a1a2e]/80 text-white/90 hover:bg-[#1a1a2e] hover:text-white border border-white/30 backdrop-blur-sm'
+                          ? 'bg-[#d4a574] text-[#243350] shadow-lg shadow-[#d4a574]/30 scale-105'
+                          : 'bg-[#243350]/80 text-white/90 hover:bg-[#243350] hover:text-white border border-white/30 backdrop-blur-sm'
                         }
                       `}
                     >
@@ -459,7 +502,7 @@ const HomePage = () => {
       <section className="relative py-20 px-4" style={{ backgroundColor: 'rgba(15, 15, 26, 0.9)' }}>
         <div className="max-w-7xl mx-auto">
           {/* Section header */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center mb-4">
               <div className="relative px-6 py-2">
                 <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 via-red-500/10 to-red-500/20 rounded-lg" />
@@ -480,25 +523,89 @@ const HomePage = () => {
             >
               Expositions à ne pas louper !
             </h2>
-            <p className="text-xs sm:text-sm text-gray-500 max-w-md mx-auto">
+            <p className="text-xs sm:text-sm text-gray-500 max-w-md mx-auto mb-6">
               Cliquez sur une carte pour découvrir les détails de l'exposition
+            </p>
+
+            {/* Filtres d'expositions */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-2xl mx-auto">
+              {/* Filtre par distance */}
+              <div className="flex items-center gap-2 flex-wrap justify-center">
+                <span className="text-gray-400 text-sm">
+                  <MapPin className="w-4 h-4 inline mr-1" />
+                  Distance :
+                </span>
+                {[
+                  { id: 'all', label: 'Toutes' },
+                  { id: '500m', label: '500m' },
+                  { id: '5km', label: '5 km' },
+                  { id: '10km', label: '10 km' }
+                ].map((filter) => (
+                  <button
+                    key={filter.id}
+                    onClick={() => setExhibitionDistanceFilter(filter.id)}
+                    className={`
+                      px-3 py-1.5 rounded-full text-xs font-medium transition-all
+                      ${exhibitionDistanceFilter === filter.id
+                        ? 'bg-red-500 text-white shadow-lg shadow-red-500/30'
+                        : 'bg-white/10 text-gray-300 hover:bg-white/20 border border-white/20'
+                      }
+                    `}
+                  >
+                    {filter.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Séparateur */}
+              <div className="hidden sm:block w-px h-6 bg-gray-600" />
+
+              {/* Filtre par ville */}
+              <div className="flex items-center gap-2">
+                <span className="text-gray-400 text-sm">Ville :</span>
+                <select
+                  value={exhibitionCityFilter}
+                  onChange={(e) => setExhibitionCityFilter(e.target.value)}
+                  className="
+                    px-3 py-1.5 rounded-full text-xs font-medium
+                    bg-white/10 text-gray-200 border border-white/20
+                    focus:outline-none focus:ring-2 focus:ring-red-500/50
+                    cursor-pointer
+                  "
+                >
+                  <option value="all" className="bg-[#243350]">Toutes les villes</option>
+                  {exhibitionCities.map((city) => (
+                    <option key={city} value={city} className="bg-[#243350]">
+                      {city}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Compteur de résultats */}
+            <p className="text-xs text-gray-500 mt-4">
+              {exhibitions.length} exposition{exhibitions.length > 1 ? 's' : ''} trouvée{exhibitions.length > 1 ? 's' : ''}
+              {exhibitionDistanceFilter !== 'all' && ` à moins de ${exhibitionDistanceFilter}`}
+              {exhibitionCityFilter !== 'all' && ` à ${exhibitionCityFilter}`}
             </p>
           </div>
 
           {/* Carousel 3D container */}
+          {exhibitions.length > 0 ? (
           <div className="relative py-16">
             {/* Navigation arrows */}
             <button
               onClick={() => navigateCarousel('left')}
               className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-30 w-14 h-14 bg-[#d4a574] hover:bg-[#c49464] rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110"
             >
-              <ChevronLeft className="w-7 h-7 text-[#1a1a2e]" />
+              <ChevronLeft className="w-7 h-7 text-[#243350]" />
             </button>
             <button
               onClick={() => navigateCarousel('right')}
               className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-30 w-14 h-14 bg-[#d4a574] hover:bg-[#c49464] rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110"
             >
-              <ChevronRight className="w-7 h-7 text-[#1a1a2e]" />
+              <ChevronRight className="w-7 h-7 text-[#243350]" />
             </button>
 
             {/* 3D Carousel track */}
@@ -583,6 +690,32 @@ const HomePage = () => {
               ))}
             </div>
           </div>
+          ) : (
+            /* Message quand aucune exposition ne correspond aux filtres */
+            <div className="text-center py-16">
+              <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
+                <Palette className="w-10 h-10 text-gray-500" />
+              </div>
+              <h3 className="text-xl text-white mb-3">Aucune exposition trouvée</h3>
+              <p className="text-gray-400 mb-6 max-w-md mx-auto">
+                Aucune exposition ne correspond à vos critères de recherche.
+                {exhibitionDistanceFilter !== 'all' && !userLocation && (
+                  <span className="block mt-2 text-red-400 text-sm">
+                    Activez la géolocalisation pour filtrer par distance.
+                  </span>
+                )}
+              </p>
+              <button
+                onClick={() => {
+                  setExhibitionDistanceFilter('all');
+                  setExhibitionCityFilter('all');
+                }}
+                className="px-6 py-3 bg-[#d4a574] hover:bg-[#c49464] text-[#243350] font-semibold rounded-xl transition-all"
+              >
+                Réinitialiser les filtres
+              </button>
+            </div>
+          )}
         </div>
       </section>
     </div>
@@ -641,7 +774,7 @@ const BentoCard = ({ museum, size = 'small', badges = [], distanceInfo, onClick,
                 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide
                 backdrop-blur-md shadow-lg
                 ${badge.variant === 'gold'
-                  ? 'bg-[#d4a574]/90 text-[#1a1a2e]'
+                  ? 'bg-[#d4a574]/90 text-[#243350]'
                   : 'bg-white/20 text-white border border-white/30'
                 }
               `}
@@ -706,7 +839,7 @@ const BentoCard = ({ museum, size = 'small', badges = [], distanceInfo, onClick,
             className="
               w-full py-4
               bg-[#d4a574] hover:bg-[#c49464]
-              text-[#1a1a2e] font-bold text-lg
+              text-[#243350] font-bold text-lg
               rounded-xl
               transition-all duration-300
               hover:scale-[1.02] hover:shadow-lg
@@ -850,7 +983,7 @@ const ExhibitionCard = ({
           style={{
             backfaceVisibility: 'hidden',
             transform: 'rotateY(180deg)',
-            background: 'linear-gradient(135deg, #1e1e38 0%, #151528 40%, #0f0f1a 100%)'
+            background: 'linear-gradient(135deg, #1e1e38 0%, #151528 40%, #1a2640 100%)'
           }}
           onClick={(e) => {
             e.stopPropagation();
@@ -879,7 +1012,7 @@ const ExhibitionCard = ({
 
             {/* Back badge */}
             <div className="absolute top-4 left-4">
-              <span className="px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide bg-[#d4a574]/90 text-[#1a1a2e] backdrop-blur-md shadow-lg">
+              <span className="px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide bg-[#d4a574]/90 text-[#243350] backdrop-blur-md shadow-lg">
                 Détails
               </span>
             </div>
@@ -934,7 +1067,7 @@ const ExhibitionCard = ({
                 e.stopPropagation();
                 onNavigate();
               }}
-              className="w-full py-3 bg-[#d4a574] hover:bg-[#c49464] text-[#1a1a2e] font-bold rounded-xl transition-all duration-300 hover:scale-[1.02]"
+              className="w-full py-3 bg-[#d4a574] hover:bg-[#c49464] text-[#243350] font-bold rounded-xl transition-all duration-300 hover:scale-[1.02]"
             >
               Explorer
             </button>

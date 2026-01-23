@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import {
-  User, MapPin, Heart, Award, Clock, Settings, ChevronRight, Lock, Star,
-  Trophy, Sparkles, TrendingUp, Calendar, Crown, Mail, ExternalLink,
-  BookOpen, Compass, Palette, Globe, Quote, ArrowUpRight, Instagram,
-  Twitter, Linkedin, Building, GraduationCap, Eye
+  MapPin, Heart, Award, Settings, Lock,
+  Trophy, Sparkles, Calendar, Crown, Mail,
+  Globe, ArrowUpRight, Instagram,
+  Twitter, Linkedin, GraduationCap
 } from 'lucide-react';
 import { useUser } from '../context/UserContext';
 import { places } from '../data/places';
@@ -94,32 +94,6 @@ const MinimalStatCard = ({ value, label, icon: Icon, delay = 0 }) => (
 );
 
 /**
- * Carte de parcours/expérience culturelle
- */
-const JourneyCard = ({ year, title, description, icon: Icon, index }) => (
-  <div
-    className="group relative pl-8 pb-10 last:pb-0 animate-slide-up"
-    style={{ animationDelay: `${index * 100}ms` }}
-  >
-    {/* Ligne verticale */}
-    <div className="absolute left-[11px] top-8 bottom-0 w-px bg-gradient-to-b from-gold-500/40 via-gold-500/20 to-transparent group-last:hidden" />
-
-    {/* Point sur la timeline */}
-    <div className="absolute left-0 top-1 w-6 h-6 rounded-full bg-night-900 border-2 border-gold-500/50 flex items-center justify-center group-hover:border-gold-400 group-hover:scale-110 transition-all duration-300">
-      <div className="w-2 h-2 rounded-full bg-gold-500/80" />
-    </div>
-
-    <div className="ml-4">
-      <span className="text-xs font-medium text-gold-500/70 tracking-widest uppercase">{year}</span>
-      <h4 className="font-display text-lg font-semibold text-sand-100 mt-1 mb-2 group-hover:text-gold-400 transition-colors duration-300">
-        {title}
-      </h4>
-      <p className="text-sand-400/80 text-sm leading-relaxed">{description}</p>
-    </div>
-  </div>
-);
-
-/**
  * Badge de compétence élégant
  */
 const SkillBadge = ({ skill, level, index }) => {
@@ -145,62 +119,6 @@ const SkillBadge = ({ skill, level, index }) => {
     </div>
   );
 };
-
-/**
- * Carte de collection/projet avec effet premium
- */
-const CollectionCard = ({ collection, index }) => (
-  <div
-    className="
-      group relative overflow-hidden rounded-2xl
-      bg-gradient-to-br from-night-800/70 to-night-900/50
-      border border-night-700/40 hover:border-gold-500/30
-      backdrop-blur-sm
-      transform hover:scale-[1.02] hover:-translate-y-1
-      transition-all duration-500 ease-out
-      animate-slide-up
-    "
-    style={{ animationDelay: `${index * 100}ms` }}
-  >
-    {/* Image avec overlay */}
-    <div className="relative h-48 overflow-hidden">
-      <img
-        src={collection.image}
-        alt={collection.title}
-        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-night-950 via-night-950/60 to-transparent" />
-
-      {/* Badge catégorie */}
-      <div className="absolute top-4 left-4">
-        <span className="px-3 py-1.5 text-xs font-medium tracking-wide uppercase rounded-full bg-night-900/80 backdrop-blur-sm border border-night-700/50 text-sand-300">
-          {collection.category}
-        </span>
-      </div>
-
-      {/* Compteur */}
-      <div className="absolute bottom-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-night-900/80 backdrop-blur-sm">
-        <Eye className="w-3.5 h-3.5 text-gold-400" />
-        <span className="text-xs font-medium text-sand-200">{collection.count}</span>
-      </div>
-    </div>
-
-    {/* Contenu */}
-    <div className="p-5">
-      <h4 className="font-display font-semibold text-sand-100 mb-2 group-hover:text-gold-400 transition-colors duration-300">
-        {collection.title}
-      </h4>
-      <p className="text-sm text-sand-400/80 line-clamp-2 leading-relaxed">
-        {collection.description}
-      </p>
-    </div>
-
-    {/* Effet de brillance au survol */}
-    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-      <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/5 to-transparent" />
-    </div>
-  </div>
-);
 
 /**
  * Lien social élégant
@@ -316,11 +234,6 @@ const ProfilePage = () => {
     bio: "Passionné d'art et d'histoire, je parcours les musées et monuments de France à la découverte de notre patrimoine culturel. Chaque visite est une nouvelle aventure intellectuelle.",
     location: "Paris, France",
     memberSince: "Janvier 2026",
-    journey: [
-      { year: '2026', title: 'Début de l\'aventure Muzea', description: 'Première exploration des trésors culturels français avec l\'application.' },
-      { year: '2025', title: 'Découverte des châteaux de la Loire', description: 'Un voyage inoubliable au cœur de la Renaissance française.' },
-      { year: '2024', title: 'Passion pour l\'Impressionnisme', description: 'Exploration approfondie du mouvement à Orsay et Giverny.' },
-    ],
     skills: [
       { name: 'Art Renaissance', level: 'expert' },
       { name: 'Architecture Gothique', level: 'avancé' },
@@ -328,11 +241,6 @@ const ProfilePage = () => {
       { name: 'Art Contemporain', level: 'intermédiaire' },
       { name: 'Impressionnisme', level: 'avancé' },
       { name: 'Antiquité Grecque', level: 'intermédiaire' },
-    ],
-    collections: [
-      { title: 'Chefs-d\'œuvre du Louvre', category: 'Musée', count: 24, image: 'https://images.unsplash.com/photo-1499426600726-ac2c87f337d7?w=800', description: 'Ma sélection des œuvres incontournables du plus grand musée du monde.' },
-      { title: 'Route des Châteaux', category: 'Parcours', count: 12, image: 'https://images.unsplash.com/photo-1551410224-699683e15636?w=800', description: 'Les plus beaux châteaux de la Loire et leurs jardins extraordinaires.' },
-      { title: 'Art Sacré de France', category: 'Thématique', count: 18, image: 'https://images.unsplash.com/photo-1548690596-f7c1f2a59c24?w=800', description: 'Cathédrales, abbayes et trésors religieux à travers les siècles.' },
     ],
     interests: [
       { name: 'Renaissance', icon: '🎨' },
@@ -456,31 +364,6 @@ const ProfilePage = () => {
         <ElegantDivider />
 
         {/* ═══════════════════════════════════════════════════════════════
-            SECTION PARCOURS CULTUREL
-        ═══════════════════════════════════════════════════════════════ */}
-        <section className="max-w-4xl mx-auto px-6 py-8">
-          <SectionTitle
-            icon={Compass}
-            title="Parcours Culturel"
-            subtitle="Une aventure à travers le patrimoine français"
-          />
-
-          <div className="max-w-xl mx-auto">
-            {userProfile.journey.map((item, index) => (
-              <JourneyCard
-                key={index}
-                year={item.year}
-                title={item.title}
-                description={item.description}
-                index={index}
-              />
-            ))}
-          </div>
-        </section>
-
-        <ElegantDivider />
-
-        {/* ═══════════════════════════════════════════════════════════════
             SECTION COMPÉTENCES CULTURELLES
         ═══════════════════════════════════════════════════════════════ */}
         <section className="max-w-4xl mx-auto px-6 py-8">
@@ -496,29 +379,6 @@ const ProfilePage = () => {
                 key={skill.name}
                 skill={skill.name}
                 level={skill.level}
-                index={index}
-              />
-            ))}
-          </div>
-        </section>
-
-        <ElegantDivider />
-
-        {/* ═══════════════════════════════════════════════════════════════
-            SECTION COLLECTIONS / PROJETS
-        ═══════════════════════════════════════════════════════════════ */}
-        <section className="max-w-5xl mx-auto px-6 py-8">
-          <SectionTitle
-            icon={BookOpen}
-            title="Mes Collections"
-            subtitle="Parcours thématiques et sélections personnelles"
-          />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {userProfile.collections.map((collection, index) => (
-              <CollectionCard
-                key={collection.title}
-                collection={collection}
                 index={index}
               />
             ))}

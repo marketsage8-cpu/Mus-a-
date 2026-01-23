@@ -209,8 +209,8 @@ const HomePage = () => {
         {/* Background image - Art coloré et vibrant */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=1920&q=80"
-            alt="Art moderne coloré et vibrant"
+            src="/images/home-background.png"
+            alt="Illustration élégante d'œuvres d'art classiques"
             className="w-full h-full object-cover"
           />
           {/* Gradient overlay - effet "bavure" fluide depuis la navbar bleu marine (style Culturio) */}

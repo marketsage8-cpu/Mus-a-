@@ -492,3 +492,149 @@ input:focus-visible {
   mask-position: -100% 0;
   animation: reveal-mask-left-to-right 3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
+
+/* ===== Museum Decor - Stroke Drawing Animations ===== */
+
+/* Main stroke drawing animation - draws path progressively */
+@keyframes draw-stroke {
+  0% {
+    stroke-dashoffset: var(--stroke-length, 1000);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+/* Fill fade in after stroke is drawn */
+@keyframes fill-fade {
+  0%, 80% {
+    fill-opacity: 0;
+  }
+  100% {
+    fill-opacity: var(--fill-opacity, 0.15);
+  }
+}
+
+/* Golden shimmer on completed drawing */
+@keyframes golden-stroke-shimmer {
+  0%, 100% {
+    stroke: #d4af37;
+    filter: drop-shadow(0 0 2px rgba(212, 175, 55, 0.3));
+  }
+  50% {
+    stroke: #f5d76e;
+    filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.6));
+  }
+}
+
+/* Delayed golden glow after drawing completes */
+@keyframes post-draw-glow {
+  0%, 90% {
+    filter: none;
+  }
+  100% {
+    filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.4));
+  }
+}
+
+/* Museum element base class - stroke drawing effect */
+.museum-element {
+  stroke-dasharray: var(--stroke-length, 1000);
+  stroke-dashoffset: var(--stroke-length, 1000);
+  animation:
+    draw-stroke var(--draw-duration, 4s) cubic-bezier(0.4, 0, 0.2, 1) forwards,
+    fill-fade var(--draw-duration, 4s) ease-out forwards,
+    post-draw-glow var(--draw-duration, 4s) ease-out forwards;
+  animation-delay: var(--draw-delay, 0s);
+}
+
+/* Secondary strokes - drawn after main element */
+.museum-element-secondary {
+  stroke-dasharray: var(--stroke-length, 500);
+  stroke-dashoffset: var(--stroke-length, 500);
+  animation:
+    draw-stroke calc(var(--draw-duration, 4s) * 0.6) cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: calc(var(--draw-delay, 0s) + var(--draw-duration, 4s) * 0.4);
+}
+
+/* Detail strokes - finest details drawn last */
+.museum-element-detail {
+  stroke-dasharray: var(--stroke-length, 200);
+  stroke-dashoffset: var(--stroke-length, 200);
+  animation:
+    draw-stroke calc(var(--draw-duration, 4s) * 0.4) cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: calc(var(--draw-delay, 0s) + var(--draw-duration, 4s) * 0.7);
+}
+
+/* Continuous shimmer after drawing completes */
+.museum-element-shimmer {
+  animation: golden-stroke-shimmer 4s ease-in-out infinite;
+  animation-delay: calc(var(--draw-delay, 0s) + var(--draw-duration, 4s) + 0.5s);
+}
+
+/* Staggered draw delays for multiple elements */
+.draw-delay-1 { --draw-delay: 0.3s; }
+.draw-delay-2 { --draw-delay: 0.8s; }
+.draw-delay-3 { --draw-delay: 1.3s; }
+.draw-delay-4 { --draw-delay: 1.8s; }
+.draw-delay-5 { --draw-delay: 2.3s; }
+.draw-delay-6 { --draw-delay: 2.8s; }
+.draw-delay-7 { --draw-delay: 3.5s; }
+.draw-delay-8 { --draw-delay: 4.2s; }
+.draw-delay-9 { --draw-delay: 5s; }
+.draw-delay-10 { --draw-delay: 6s; }
+
+/* Draw duration variants */
+.draw-slow { --draw-duration: 6s; }
+.draw-medium { --draw-duration: 4s; }
+.draw-fast { --draw-duration: 2.5s; }
+
+/* Stroke length presets for different element complexities */
+.stroke-short { --stroke-length: 300; }
+.stroke-medium { --stroke-length: 800; }
+.stroke-long { --stroke-length: 1500; }
+.stroke-very-long { --stroke-length: 2500; }
+.stroke-ultra { --stroke-length: 4000; }
+
+/* Museum element hover interaction */
+.museum-decor-container:hover .museum-element {
+  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
+  transition: filter 0.5s ease;
+}
+
+/* Floating animation for completed museum elements */
+@keyframes museum-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.3deg);
+  }
+}
+
+.museum-float {
+  animation: museum-float 10s ease-in-out infinite;
+}
+
+.museum-float-slow {
+  animation: museum-float 15s ease-in-out infinite;
+}
+
+/* Perspective depth for 3D-like frames */
+.museum-perspective {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.museum-frame-depth {
+  transform: translateZ(5px);
+  box-shadow:
+    2px 2px 0 rgba(139, 109, 31, 0.3),
+    4px 4px 0 rgba(139, 109, 31, 0.2),
+    6px 6px 0 rgba(139, 109, 31, 0.1);
+}

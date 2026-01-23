@@ -251,11 +251,20 @@ const HomePage = () => {
 
             {/* Subtitle - light gray */}
             <p
-              className="text-lg sm:text-xl mb-10 max-w-2xl mx-auto animate-slide-up"
+              className="text-lg sm:text-xl mb-6 max-w-2xl mx-auto animate-slide-up"
               style={{ color: '#9ca3af', animationDelay: '100ms' }}
             >
               Musées, expositions et lieux culturels, visibles en temps réel autour de vous.
             </p>
+
+            {/* Photo MBA */}
+            <div className="mb-8 animate-slide-up" style={{ animationDelay: '150ms' }}>
+              <img
+                src="/images/MBA_2022_39.jpg"
+                alt="Musée des Beaux-Arts"
+                className="w-64 h-64 sm:w-80 sm:h-80 object-cover rounded-2xl mx-auto shadow-2xl border-4 border-white/20"
+              />
+            </div>
 
             {/* Search bar - white */}
             <form

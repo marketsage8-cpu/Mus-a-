@@ -312,12 +312,12 @@ const HomePage = () => {
           ============================================ */}
       <section className="relative py-20 px-4 overflow-hidden">
         {/* Background dynamique selon la catégorie - z-index 0 */}
-        <div className="absolute inset-0 z-0 bg-[#0a0d1a]" />
+        <div className="absolute inset-0 z-0 bg-[#1a2744]" />
         {activeCategory === 'musée' && <CabinetBackground />}
         {activeCategory === 'château' && <ChateauBackground />}
         {activeCategory === 'exposition' && <ExpositionBackground />}
-        {/* Overlay sombre pour lisibilité - z-index 2 */}
-        <div className="absolute inset-0 z-[2] bg-[#0a0d1a]/40 pointer-events-none" />
+        {/* Overlay léger pour lisibilité - z-index 2 */}
+        <div className="absolute inset-0 z-[2] bg-[#1a2744]/15 pointer-events-none" />
 
         <div className="max-w-6xl mx-auto relative z-[5]">
           {/* Section header - Muzea Now centered layout */}

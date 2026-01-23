@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import {
   MapPin, Heart, Settings, User, Bookmark,
   Globe, ChevronRight, Bell, Shield, Moon, Users,
-  Camera, Mail, Check
+  Camera, Mail, Check, Edit3, X, Save, Upload
 } from 'lucide-react';
 import { useUser } from '../context/UserContext';
 import PlaceDetailModal from '../components/modals/PlaceDetailModal';
@@ -26,6 +26,9 @@ const SelectableTag = ({ label, isSelected, onClick, isPrimary = false }) => (
     `}
   >
     {label}
+    {isPrimary && isSelected && (
+      <span className="ml-1 text-xs opacity-75">(principale)</span>
+    )}
   </button>
 );
 
@@ -48,13 +51,23 @@ const VisitStyleButton = ({ label, isSelected, onClick }) => (
 );
 
 /**
- * Section de profil avec titre et icône
+ * Section de profil avec titre, icône et bouton édition optionnel
  */
-const ProfileSection = ({ icon: Icon, title, children }) => (
+const ProfileSection = ({ icon: Icon, title, children, onEdit, isEditing }) => (
   <div className="py-5 border-b border-gray-100 last:border-b-0">
-    <div className="flex items-center gap-2 mb-3">
-      <Icon className="w-5 h-5 text-[#3182CE]" />
-      <h3 className="text-gray-800 font-semibold">{title}</h3>
+    <div className="flex items-center justify-between mb-3">
+      <div className="flex items-center gap-2">
+        <Icon className="w-5 h-5 text-[#3182CE]" />
+        <h3 className="text-gray-800 font-semibold">{title}</h3>
+      </div>
+      {onEdit && !isEditing && (
+        <button
+          onClick={onEdit}
+          className="p-1.5 text-gray-400 hover:text-[#3182CE] hover:bg-gray-100 rounded-lg transition-colors"
+        >
+          <Edit3 className="w-4 h-4" />
+        </button>
+      )}
     </div>
     {children}
   </div>
@@ -89,8 +102,7 @@ const SettingOption = ({ icon: Icon, label, description, hasToggle, isEnabled, o
 );
 
 /**
- * Page de profil - Design Culturio
- * Refonte complète selon les spécifications du design
+ * Page de profil - Design Culturio avec fonctionnalités d'édition complètes
  */
 const ProfilePage = () => {
   const { userData, stats, setUserData } = useUser();
@@ -99,17 +111,51 @@ const ProfilePage = () => {
   const [showUnderline, setShowUnderline] = useState(true);
   const [selectedSetting, setSelectedSetting] = useState(null);
 
-  // États du profil
-  const [bio, setBio] = useState("Passionné d'art et d'histoire, je parcours les musées et monuments de France.");
-  const [city, setCity] = useState("Paris");
-  const [selectedInterests, setSelectedInterests] = useState(['Art', 'Histoire', 'Architecture']);
-  const [selectedLanguages, setSelectedLanguages] = useState(['Français']);
-  const [visitStyle, setVisitStyle] = useState('Visite tranquille');
+  // Refs pour les inputs file
+  const coverInputRef = useRef(null);
+  const avatarInputRef = useRef(null);
+
+  // États du profil avec persistance localStorage
+  const [coverImage, setCoverImage] = useState(() =>
+    localStorage.getItem('culturio_cover') || 'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=1200&q=80'
+  );
+  const [avatarImage, setAvatarImage] = useState(() =>
+    localStorage.getItem('culturio_avatar') || null
+  );
+  const [bio, setBio] = useState(() =>
+    localStorage.getItem('culturio_bio') || "Passionné d'art et d'histoire, je parcours les musées et monuments de France."
+  );
+  const [city, setCity] = useState(() =>
+    localStorage.getItem('culturio_city') || "Paris"
+  );
+  const [selectedInterests, setSelectedInterests] = useState(() => {
+    const saved = localStorage.getItem('culturio_interests');
+    return saved ? JSON.parse(saved) : ['Art', 'Histoire', 'Architecture'];
+  });
+  const [selectedLanguages, setSelectedLanguages] = useState(() => {
+    const saved = localStorage.getItem('culturio_languages');
+    return saved ? JSON.parse(saved) : ['Français'];
+  });
+  const [primaryLanguage, setPrimaryLanguage] = useState(() =>
+    localStorage.getItem('culturio_primary_language') || 'Français'
+  );
+  const [visitStyle, setVisitStyle] = useState(() =>
+    localStorage.getItem('culturio_visit_style') || 'Visite tranquille'
+  );
+
+  // États d'édition
+  const [isEditingBio, setIsEditingBio] = useState(false);
+  const [isEditingCity, setIsEditingCity] = useState(false);
+  const [tempBio, setTempBio] = useState(bio);
+  const [tempCity, setTempCity] = useState(city);
 
   // Paramètres toggles
   const [notifications, setNotifications] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
   const [locationEnabled, setLocationEnabled] = useState(true);
+
+  // Message de sauvegarde
+  const [showSaveMessage, setShowSaveMessage] = useState(false);
 
   // Centres d'intérêt disponibles
   const interests = ['Art', 'Histoire', 'Science', 'Architecture', 'Photographie', 'Art moderne', 'Antiquité', 'Nature', 'Musique', 'Littérature'];
@@ -119,6 +165,18 @@ const ProfilePage = () => {
 
   // Styles de visite
   const visitStyles = ['Visite tranquille', 'Visite approfondie', 'Visite rapide', 'Flexible'];
+
+  // Sauvegarder dans localStorage
+  useEffect(() => {
+    localStorage.setItem('culturio_cover', coverImage);
+    localStorage.setItem('culturio_avatar', avatarImage || '');
+    localStorage.setItem('culturio_bio', bio);
+    localStorage.setItem('culturio_city', city);
+    localStorage.setItem('culturio_interests', JSON.stringify(selectedInterests));
+    localStorage.setItem('culturio_languages', JSON.stringify(selectedLanguages));
+    localStorage.setItem('culturio_primary_language', primaryLanguage);
+    localStorage.setItem('culturio_visit_style', visitStyle);
+  }, [coverImage, avatarImage, bio, city, selectedInterests, selectedLanguages, primaryLanguage, visitStyle]);
 
   // Gérer la barre sous les onglets
   useEffect(() => {
@@ -134,20 +192,93 @@ const ProfilePage = () => {
     setShowUnderline(true);
   };
 
-  const toggleInterest = (interest) => {
-    setSelectedInterests(prev =>
-      prev.includes(interest)
-        ? prev.filter(i => i !== interest)
-        : [...prev, interest]
-    );
+  // Gestion des images
+  const handleCoverChange = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setCoverImage(event.target.result);
+        showSaved();
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
+  const handleAvatarChange = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setAvatarImage(event.target.result);
+        showSaved();
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  // Afficher message de sauvegarde
+  const showSaved = () => {
+    setShowSaveMessage(true);
+    setTimeout(() => setShowSaveMessage(false), 2000);
+  };
+
+  // Sauvegarder bio
+  const saveBio = () => {
+    setBio(tempBio);
+    setIsEditingBio(false);
+    showSaved();
+  };
+
+  // Sauvegarder ville
+  const saveCity = () => {
+    setCity(tempCity);
+    setIsEditingCity(false);
+    showSaved();
+  };
+
+  // Toggle intérêt
+  const toggleInterest = (interest) => {
+    setSelectedInterests(prev => {
+      const newInterests = prev.includes(interest)
+        ? prev.filter(i => i !== interest)
+        : [...prev, interest];
+      return newInterests;
+    });
+    showSaved();
+  };
+
+  // Toggle langue
   const toggleLanguage = (language) => {
-    setSelectedLanguages(prev =>
-      prev.includes(language)
-        ? prev.filter(l => l !== language)
-        : [...prev, language]
-    );
+    setSelectedLanguages(prev => {
+      if (prev.includes(language)) {
+        // Si c'est la seule langue, ne pas la retirer
+        if (prev.length === 1) return prev;
+        // Si c'est la langue principale, changer la principale
+        if (language === primaryLanguage && prev.length > 1) {
+          const newPrimary = prev.find(l => l !== language);
+          setPrimaryLanguage(newPrimary);
+        }
+        return prev.filter(l => l !== language);
+      } else {
+        return [...prev, language];
+      }
+    });
+    showSaved();
+  };
+
+  // Définir langue principale (double-clic)
+  const setPrimary = (language) => {
+    if (selectedLanguages.includes(language)) {
+      setPrimaryLanguage(language);
+      showSaved();
+    }
+  };
+
+  // Changer style de visite
+  const changeVisitStyle = (style) => {
+    setVisitStyle(style);
+    showSaved();
   };
 
   const tabs = [
@@ -158,18 +289,48 @@ const ProfilePage = () => {
 
   return (
     <div className="min-h-screen bg-[#F7F5F0]">
+      {/* Input file cachés */}
+      <input
+        ref={coverInputRef}
+        type="file"
+        accept="image/*"
+        onChange={handleCoverChange}
+        className="hidden"
+      />
+      <input
+        ref={avatarInputRef}
+        type="file"
+        accept="image/*"
+        onChange={handleAvatarChange}
+        className="hidden"
+      />
+
+      {/* Message de sauvegarde */}
+      {showSaveMessage && (
+        <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 animate-fade-in">
+          <div className="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-full shadow-lg">
+            <Check className="w-4 h-4" />
+            <span className="text-sm font-medium">Sauvegardé</span>
+          </div>
+        </div>
+      )}
+
       {/* Bannière de couverture */}
-      <div className="relative h-48 md:h-56">
+      <div className="relative h-48 md:h-56 group">
         <img
-          src="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=1200&q=80"
+          src={coverImage}
           alt="Couverture"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/40" />
 
         {/* Bouton modifier couverture */}
-        <button className="absolute top-4 right-4 p-2 bg-white/20 backdrop-blur-sm rounded-lg hover:bg-white/30 transition-colors">
-          <Camera className="w-5 h-5 text-white" />
+        <button
+          onClick={() => coverInputRef.current?.click()}
+          className="absolute top-4 right-4 flex items-center gap-2 px-3 py-2 bg-white/20 backdrop-blur-sm rounded-lg hover:bg-white/30 transition-colors opacity-0 group-hover:opacity-100"
+        >
+          <Camera className="w-4 h-4 text-white" />
+          <span className="text-white text-sm font-medium">Modifier</span>
         </button>
       </div>
 
@@ -177,15 +338,22 @@ const ProfilePage = () => {
       <div className="relative max-w-2xl mx-auto px-4">
         {/* Avatar circulaire */}
         <div className="absolute -top-16 left-1/2 -translate-x-1/2">
-          <div className="relative">
+          <div className="relative group">
             <div className="w-32 h-32 rounded-full border-4 border-white shadow-xl overflow-hidden bg-gradient-to-br from-[#3182CE] to-[#2B6CB0]">
-              <div className="w-full h-full flex items-center justify-center">
-                <span className="text-4xl font-bold text-white">
-                  {userData.name.charAt(0)}
-                </span>
-              </div>
+              {avatarImage ? (
+                <img src={avatarImage} alt="Avatar" className="w-full h-full object-cover" />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                  <span className="text-4xl font-bold text-white">
+                    {userData.name.charAt(0)}
+                  </span>
+                </div>
+              )}
             </div>
-            <button className="absolute bottom-1 right-1 p-2 bg-white rounded-full shadow-lg hover:bg-gray-50 transition-colors">
+            <button
+              onClick={() => avatarInputRef.current?.click()}
+              className="absolute bottom-1 right-1 p-2 bg-white rounded-full shadow-lg hover:bg-gray-50 transition-colors group-hover:scale-110"
+            >
               <Camera className="w-4 h-4 text-gray-600" />
             </button>
           </div>
@@ -196,7 +364,7 @@ const ProfilePage = () => {
           <h1 className="text-2xl font-bold text-gray-800">{userData.name}</h1>
           <p className="text-gray-500 flex items-center justify-center gap-1 mt-1">
             <Mail className="w-4 h-4" />
-            tim.sample@email.com
+            {userData.name.toLowerCase().replace(' ', '.')}@email.com
           </p>
         </div>
 
@@ -242,20 +410,88 @@ const ProfilePage = () => {
         {activeTab === 'profil' && (
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
             {/* À propos de moi */}
-            <ProfileSection icon={User} title="À propos de moi">
-              {bio ? (
-                <p className="text-gray-600 leading-relaxed">{bio}</p>
+            <ProfileSection
+              icon={User}
+              title="À propos de moi"
+              onEdit={() => {
+                setTempBio(bio);
+                setIsEditingBio(true);
+              }}
+              isEditing={isEditingBio}
+            >
+              {isEditingBio ? (
+                <div className="space-y-3">
+                  <textarea
+                    value={tempBio}
+                    onChange={(e) => setTempBio(e.target.value)}
+                    className="w-full p-3 border border-gray-200 rounded-xl text-gray-600 focus:outline-none focus:border-[#3182CE] focus:ring-2 focus:ring-[#3182CE]/20 resize-none"
+                    rows={4}
+                    placeholder="Décrivez-vous en quelques mots..."
+                  />
+                  <div className="flex gap-2">
+                    <button
+                      onClick={saveBio}
+                      className="flex items-center gap-1 px-4 py-2 bg-[#3182CE] text-white rounded-lg hover:bg-[#2B6CB0] transition-colors"
+                    >
+                      <Save className="w-4 h-4" />
+                      Enregistrer
+                    </button>
+                    <button
+                      onClick={() => setIsEditingBio(false)}
+                      className="flex items-center gap-1 px-4 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors"
+                    >
+                      <X className="w-4 h-4" />
+                      Annuler
+                    </button>
+                  </div>
+                </div>
               ) : (
-                <p className="text-gray-400 italic">Aucune description pour le moment.</p>
+                <p className="text-gray-600 leading-relaxed">
+                  {bio || <span className="text-gray-400 italic">Aucune description pour le moment.</span>}
+                </p>
               )}
             </ProfileSection>
 
             {/* Ville */}
-            <ProfileSection icon={MapPin} title="Ville">
-              {city ? (
-                <p className="text-gray-600">{city}</p>
+            <ProfileSection
+              icon={MapPin}
+              title="Ville"
+              onEdit={() => {
+                setTempCity(city);
+                setIsEditingCity(true);
+              }}
+              isEditing={isEditingCity}
+            >
+              {isEditingCity ? (
+                <div className="space-y-3">
+                  <input
+                    type="text"
+                    value={tempCity}
+                    onChange={(e) => setTempCity(e.target.value)}
+                    className="w-full p-3 border border-gray-200 rounded-xl text-gray-600 focus:outline-none focus:border-[#3182CE] focus:ring-2 focus:ring-[#3182CE]/20"
+                    placeholder="Votre ville..."
+                  />
+                  <div className="flex gap-2">
+                    <button
+                      onClick={saveCity}
+                      className="flex items-center gap-1 px-4 py-2 bg-[#3182CE] text-white rounded-lg hover:bg-[#2B6CB0] transition-colors"
+                    >
+                      <Save className="w-4 h-4" />
+                      Enregistrer
+                    </button>
+                    <button
+                      onClick={() => setIsEditingCity(false)}
+                      className="flex items-center gap-1 px-4 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors"
+                    >
+                      <X className="w-4 h-4" />
+                      Annuler
+                    </button>
+                  </div>
+                </div>
               ) : (
-                <p className="text-gray-400 italic">Non renseignée</p>
+                <p className="text-gray-600">
+                  {city || <span className="text-gray-400 italic">Non renseignée</span>}
+                </p>
               )}
             </ProfileSection>
 
@@ -271,6 +507,9 @@ const ProfilePage = () => {
                   />
                 ))}
               </div>
+              <p className="text-gray-400 text-xs mt-3">
+                Cliquez pour sélectionner/désélectionner
+              </p>
             </ProfileSection>
 
             {/* Langues */}
@@ -282,8 +521,22 @@ const ProfilePage = () => {
                     label={language}
                     isSelected={selectedLanguages.includes(language)}
                     onClick={() => toggleLanguage(language)}
-                    isPrimary={language === 'Français' && selectedLanguages.includes(language)}
+                    isPrimary={language === primaryLanguage && selectedLanguages.includes(language)}
                   />
+                ))}
+              </div>
+              <p className="text-gray-400 text-xs mt-3">
+                Double-cliquez sur une langue pour la définir comme principale
+              </p>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {selectedLanguages.filter(l => l !== primaryLanguage).map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => setPrimary(lang)}
+                    className="text-xs text-[#3182CE] hover:underline"
+                  >
+                    Définir {lang} comme principale
+                  </button>
                 ))}
               </div>
             </ProfileSection>
@@ -297,10 +550,13 @@ const ProfilePage = () => {
                     key={style}
                     label={style}
                     isSelected={visitStyle === style}
-                    onClick={() => setVisitStyle(style)}
+                    onClick={() => changeVisitStyle(style)}
                   />
                 ))}
               </div>
+              <p className="text-gray-400 text-xs mt-3">
+                Un seul style peut être sélectionné
+              </p>
             </div>
 
             {/* CTA */}

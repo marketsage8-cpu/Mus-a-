@@ -542,42 +542,42 @@ input:focus-visible {
   }
 }
 
-/* Museum element base class - stroke drawing effect - ULTRA FAST */
+/* Museum element base class - stroke drawing effect - SLOW ELEGANT DRAWING */
 .museum-element {
   stroke-dasharray: var(--stroke-length, 1000);
   stroke-dashoffset: var(--stroke-length, 1000);
   animation:
-    draw-stroke var(--draw-duration, 0.8s) cubic-bezier(0.2, 0, 0.1, 1) forwards,
-    fill-fade var(--draw-duration, 0.8s) ease-out forwards,
-    post-draw-glow var(--draw-duration, 0.8s) ease-out forwards;
+    draw-stroke var(--draw-duration, 3.5s) cubic-bezier(0.15, 0, 0.05, 1) forwards,
+    fill-fade var(--draw-duration, 3.5s) ease-out forwards,
+    post-draw-glow var(--draw-duration, 3.5s) ease-out forwards;
   animation-delay: var(--draw-delay, 0s);
 }
 
-/* Secondary strokes - drawn rapidly after main */
+/* Secondary strokes - drawn elegantly after main */
 .museum-element-secondary {
   stroke-dasharray: var(--stroke-length, 500);
   stroke-dashoffset: var(--stroke-length, 500);
   animation:
-    draw-stroke calc(var(--draw-duration, 0.8s) * 0.5) cubic-bezier(0.2, 0, 0.1, 1) forwards;
-  animation-delay: calc(var(--draw-delay, 0s) + var(--draw-duration, 0.8s) * 0.3);
+    draw-stroke calc(var(--draw-duration, 3.5s) * 0.7) cubic-bezier(0.15, 0, 0.05, 1) forwards;
+  animation-delay: calc(var(--draw-delay, 0s) + var(--draw-duration, 3.5s) * 0.4);
 }
 
-/* Detail strokes - ultra-fine details drawn quickly */
+/* Detail strokes - fine details drawn with care */
 .museum-element-detail {
   stroke-dasharray: var(--stroke-length, 200);
   stroke-dashoffset: var(--stroke-length, 200);
   animation:
-    draw-stroke calc(var(--draw-duration, 0.8s) * 0.3) cubic-bezier(0.2, 0, 0.1, 1) forwards;
-  animation-delay: calc(var(--draw-delay, 0s) + var(--draw-duration, 0.8s) * 0.5);
+    draw-stroke calc(var(--draw-duration, 3.5s) * 0.5) cubic-bezier(0.15, 0, 0.05, 1) forwards;
+  animation-delay: calc(var(--draw-delay, 0s) + var(--draw-duration, 3.5s) * 0.6);
 }
 
-/* Micro-detail strokes - finest precision elements */
+/* Micro-detail strokes - finest precision elements drawn slowly */
 .museum-element-micro {
   stroke-dasharray: var(--stroke-length, 100);
   stroke-dashoffset: var(--stroke-length, 100);
   animation:
-    draw-stroke calc(var(--draw-duration, 0.8s) * 0.2) cubic-bezier(0.2, 0, 0.1, 1) forwards;
-  animation-delay: calc(var(--draw-delay, 0s) + var(--draw-duration, 0.8s) * 0.6);
+    draw-stroke calc(var(--draw-duration, 3.5s) * 0.4) cubic-bezier(0.15, 0, 0.05, 1) forwards;
+  animation-delay: calc(var(--draw-delay, 0s) + var(--draw-duration, 3.5s) * 0.75);
 }
 
 /* Continuous shimmer after drawing completes */
@@ -586,23 +586,23 @@ input:focus-visible {
   animation-delay: calc(var(--draw-delay, 0s) + var(--draw-duration, 4s) + 0.5s);
 }
 
-/* Staggered draw delays - RAPID SUCCESSION */
-.draw-delay-1 { --draw-delay: 0.05s; }
-.draw-delay-2 { --draw-delay: 0.1s; }
-.draw-delay-3 { --draw-delay: 0.15s; }
-.draw-delay-4 { --draw-delay: 0.2s; }
-.draw-delay-5 { --draw-delay: 0.25s; }
-.draw-delay-6 { --draw-delay: 0.3s; }
-.draw-delay-7 { --draw-delay: 0.4s; }
-.draw-delay-8 { --draw-delay: 0.5s; }
-.draw-delay-9 { --draw-delay: 0.6s; }
-.draw-delay-10 { --draw-delay: 0.8s; }
+/* Staggered draw delays - ELEGANT SUCCESSION */
+.draw-delay-1 { --draw-delay: 0.3s; }
+.draw-delay-2 { --draw-delay: 0.6s; }
+.draw-delay-3 { --draw-delay: 0.9s; }
+.draw-delay-4 { --draw-delay: 1.2s; }
+.draw-delay-5 { --draw-delay: 1.5s; }
+.draw-delay-6 { --draw-delay: 1.8s; }
+.draw-delay-7 { --draw-delay: 2.2s; }
+.draw-delay-8 { --draw-delay: 2.6s; }
+.draw-delay-9 { --draw-delay: 3.0s; }
+.draw-delay-10 { --draw-delay: 3.5s; }
 
-/* Draw duration variants - ULTRA RAPID */
-.draw-slow { --draw-duration: 1.2s; }
-.draw-medium { --draw-duration: 0.8s; }
-.draw-fast { --draw-duration: 0.4s; }
-.draw-instant { --draw-duration: 0.2s; }
+/* Draw duration variants - ELEGANT TIMING */
+.draw-slow { --draw-duration: 5s; }
+.draw-medium { --draw-duration: 3.5s; }
+.draw-fast { --draw-duration: 2s; }
+.draw-instant { --draw-duration: 1s; }
 
 /* Stroke length presets for different element complexities */
 .stroke-micro { --stroke-length: 50; }

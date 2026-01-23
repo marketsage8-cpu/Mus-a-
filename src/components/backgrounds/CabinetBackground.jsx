@@ -15,7 +15,7 @@
 const IonicColumn = ({ x, y, scale = 1, delay = 0, mirror = false }) => (
   <g
     transform={`translate(${x}, ${y}) scale(${mirror ? -scale : scale}, ${scale})`}
-    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '0.6s' }}
+    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '3s' }}
   >
     {/* === BASE ÉTAGÉE COMPLEXE === */}
     {/* Plinthe principale avec moulures */}
@@ -126,95 +126,165 @@ const IonicColumn = ({ x, y, scale = 1, delay = 0, mirror = false }) => (
 );
 
 // ========================================
-// CADRE BAROQUE 18ÈME SIÈCLE HYPER-DÉTAILLÉ
+// CADRE BAROQUE 18ÈME SIÈCLE ULTRA-DÉTAILLÉ
 // ========================================
 const BaroqueFrame = ({ x, y, width = 120, height = 150, delay = 0, children }) => {
-  const cornerSize = 28;
-  const borderWidth = 16;
+  const cornerSize = 32;
+  const borderWidth = 18;
 
   return (
     <g
       transform={`translate(${x}, ${y})`}
-      style={{ '--draw-delay': `${delay}s`, '--draw-duration': '0.5s' }}
+      style={{ '--draw-delay': `${delay}s`, '--draw-duration': '2.5s' }}
       className="museum-decor-container"
     >
-      {/* === CADRES MULTIPLES AVEC MOULURES === */}
-      <rect className="museum-element stroke-long" x="-2" y="-2" width={width + 4} height={height + 4} fill="none" stroke="#d4af37" strokeWidth="1.8" />
+      {/* === CADRES MULTIPLES AVEC MOULURES ÉLABORÉES === */}
+      {/* Cadre extérieur principal */}
+      <rect className="museum-element stroke-long" x="-4" y="-4" width={width + 8} height={height + 8} fill="none" stroke="#d4af37" strokeWidth="2" />
+      <rect className="museum-element stroke-long" x="-2" y="-2" width={width + 4} height={height + 4} fill="none" stroke="#d4af37" strokeWidth="1.5" />
       <rect className="museum-element stroke-medium" x="0" y="0" width={width} height={height} fill="none" stroke="#d4af37" strokeWidth="1.2" />
-      <rect className="museum-element-secondary stroke-medium" x={borderWidth} y={borderWidth} width={width - borderWidth * 2} height={height - borderWidth * 2} fill="none" stroke="#d4af37" strokeWidth="0.9" />
-      <rect className="museum-element-detail stroke-short" x={borderWidth / 2} y={borderWidth / 2} width={width - borderWidth} height={height - borderWidth} fill="none" stroke="#d4af37" strokeWidth="0.4" />
-      {/* Moulure oves sur bordure */}
-      <path className="museum-element-micro stroke-tiny" d={`M${borderWidth / 2 + 5} ${borderWidth / 4} Q${borderWidth / 2 + 10} ${borderWidth / 4 - 2} ${borderWidth / 2 + 15} ${borderWidth / 4} Q${borderWidth / 2 + 20} ${borderWidth / 4 + 2} ${borderWidth / 2 + 25} ${borderWidth / 4} Q${borderWidth / 2 + 30} ${borderWidth / 4 - 2} ${borderWidth / 2 + 35} ${borderWidth / 4}`} fill="none" stroke="#d4af37" strokeWidth="0.25" />
+      {/* Cadre intermédiaire avec gorge */}
+      <rect className="museum-element-secondary stroke-medium" x={borderWidth / 3} y={borderWidth / 3} width={width - borderWidth * 2 / 3} height={height - borderWidth * 2 / 3} fill="none" stroke="#d4af37" strokeWidth="0.6" />
+      <rect className="museum-element-secondary stroke-medium" x={borderWidth * 0.6} y={borderWidth * 0.6} width={width - borderWidth * 1.2} height={height - borderWidth * 1.2} fill="none" stroke="#d4af37" strokeWidth="0.5" />
+      {/* Cadre intérieur */}
+      <rect className="museum-element-secondary stroke-medium" x={borderWidth} y={borderWidth} width={width - borderWidth * 2} height={height - borderWidth * 2} fill="none" stroke="#d4af37" strokeWidth="1" />
+      <rect className="museum-element-detail stroke-short" x={borderWidth + 2} y={borderWidth + 2} width={width - borderWidth * 2 - 4} height={height - borderWidth * 2 - 4} fill="none" stroke="#d4af37" strokeWidth="0.4" />
 
-      {/* === COIN SUPÉRIEUR GAUCHE - ACANTHE ROCOCO COMPLEXE === */}
+      {/* Moulure oves sur bordure supérieure */}
+      <path className="museum-element-micro stroke-tiny" d={`M${borderWidth / 2 + 5} ${borderWidth / 4} Q${borderWidth / 2 + 8} ${borderWidth / 4 - 2} ${borderWidth / 2 + 11} ${borderWidth / 4} Q${borderWidth / 2 + 14} ${borderWidth / 4 + 2} ${borderWidth / 2 + 17} ${borderWidth / 4} Q${borderWidth / 2 + 20} ${borderWidth / 4 - 2} ${borderWidth / 2 + 23} ${borderWidth / 4} Q${borderWidth / 2 + 26} ${borderWidth / 4 + 2} ${borderWidth / 2 + 29} ${borderWidth / 4} Q${borderWidth / 2 + 32} ${borderWidth / 4 - 2} ${borderWidth / 2 + 35} ${borderWidth / 4} Q${borderWidth / 2 + 38} ${borderWidth / 4 + 2} ${borderWidth / 2 + 41} ${borderWidth / 4}`} fill="none" stroke="#d4af37" strokeWidth="0.22" />
+      {/* Moulure oves sur bordure inférieure */}
+      <path className="museum-element-micro stroke-tiny" d={`M${borderWidth / 2 + 5} ${height - borderWidth / 4} Q${borderWidth / 2 + 8} ${height - borderWidth / 4 + 2} ${borderWidth / 2 + 11} ${height - borderWidth / 4} Q${borderWidth / 2 + 14} ${height - borderWidth / 4 - 2} ${borderWidth / 2 + 17} ${height - borderWidth / 4} Q${borderWidth / 2 + 20} ${height - borderWidth / 4 + 2} ${borderWidth / 2 + 23} ${height - borderWidth / 4} Q${borderWidth / 2 + 26} ${height - borderWidth / 4 - 2} ${borderWidth / 2 + 29} ${height - borderWidth / 4} Q${borderWidth / 2 + 32} ${height - borderWidth / 4 + 2} ${borderWidth / 2 + 35} ${height - borderWidth / 4}`} fill="none" stroke="#d4af37" strokeWidth="0.22" />
+      {/* Perles sur bordures latérales */}
+      <path className="museum-element-micro stroke-micro" d={`M${borderWidth / 4} ${borderWidth + 5} L${borderWidth / 4} ${borderWidth + 7} M${borderWidth / 4} ${borderWidth + 12} L${borderWidth / 4} ${borderWidth + 14} M${borderWidth / 4} ${borderWidth + 19} L${borderWidth / 4} ${borderWidth + 21} M${borderWidth / 4} ${height - borderWidth - 21} L${borderWidth / 4} ${height - borderWidth - 19} M${borderWidth / 4} ${height - borderWidth - 14} L${borderWidth / 4} ${height - borderWidth - 12} M${borderWidth / 4} ${height - borderWidth - 7} L${borderWidth / 4} ${height - borderWidth - 5}`} fill="none" stroke="#d4af37" strokeWidth="0.18" />
+      <path className="museum-element-micro stroke-micro" d={`M${width - borderWidth / 4} ${borderWidth + 5} L${width - borderWidth / 4} ${borderWidth + 7} M${width - borderWidth / 4} ${borderWidth + 12} L${width - borderWidth / 4} ${borderWidth + 14} M${width - borderWidth / 4} ${borderWidth + 19} L${width - borderWidth / 4} ${borderWidth + 21} M${width - borderWidth / 4} ${height - borderWidth - 21} L${width - borderWidth / 4} ${height - borderWidth - 19} M${width - borderWidth / 4} ${height - borderWidth - 14} L${width - borderWidth / 4} ${height - borderWidth - 12} M${width - borderWidth / 4} ${height - borderWidth - 7} L${width - borderWidth / 4} ${height - borderWidth - 5}`} fill="none" stroke="#d4af37" strokeWidth="0.18" />
+
+      {/* === COIN SUPÉRIEUR GAUCHE - ACANTHE ROCOCO ULTRA-COMPLEXE === */}
       <g transform="translate(0, 0)">
-        {/* Structure principale du coin */}
-        <path className="museum-element-detail stroke-medium" d={`M0 ${cornerSize} Q0 0 ${cornerSize} 0 Q${cornerSize - 6} ${cornerSize - 6} 0 ${cornerSize}`} fill="none" stroke="#d4af37" strokeWidth="0.9" />
-        <path className="museum-element-detail stroke-short" d={`M4 ${cornerSize - 4} Q4 4 ${cornerSize - 4} 4 Q${cornerSize - 9} ${cornerSize - 9} 4 ${cornerSize - 4}`} fill="none" stroke="#d4af37" strokeWidth="0.6" />
-        {/* Feuille d'acanthe gauche */}
-        <path className="museum-element-micro stroke-tiny" d="M2 22 Q5 18 4 14 Q7 16 6 20 Q9 17 8 13 Q11 15 10 19 Q6 21 2 22" fill="none" stroke="#d4af37" strokeWidth="0.35" />
-        <path className="museum-element-micro stroke-micro" d="M3 19 L4 15 M5 18 L6 14 M7 17 L8 14" fill="none" stroke="#d4af37" strokeWidth="0.2" />
-        {/* Feuille d'acanthe supérieure */}
-        <path className="museum-element-micro stroke-tiny" d="M22 2 Q18 5 14 4 Q16 7 20 6 Q17 9 13 8 Q15 11 19 10 Q21 6 22 2" fill="none" stroke="#d4af37" strokeWidth="0.35" />
-        <path className="museum-element-micro stroke-micro" d="M19 3 L15 4 M18 5 L14 6 M17 7 L14 8" fill="none" stroke="#d4af37" strokeWidth="0.2" />
-        {/* Volute centrale */}
-        <path className="museum-element-detail stroke-short" d="M10 10 Q6 6 10 3 Q14 3 13 7 Q12 11 8 10 Q5 9 6 6 Q7 4 10 5" fill="none" stroke="#d4af37" strokeWidth="0.5" />
-        <circle className="museum-element-micro stroke-micro" cx="9" cy="6.5" r="1.5" fill="none" stroke="#d4af37" strokeWidth="0.25" />
-        {/* Fleuron */}
-        <path className="museum-element-micro stroke-micro" d="M9 6.5 L7 4 M9 6.5 L11 4 M9 6.5 L9 3" fill="none" stroke="#d4af37" strokeWidth="0.2" />
+        {/* Structure principale du coin avec courbes multiples */}
+        <path className="museum-element-detail stroke-medium" d={`M0 ${cornerSize} Q0 0 ${cornerSize} 0 Q${cornerSize - 8} ${cornerSize - 8} 0 ${cornerSize}`} fill="none" stroke="#d4af37" strokeWidth="1" />
+        <path className="museum-element-detail stroke-short" d={`M3 ${cornerSize - 3} Q3 3 ${cornerSize - 3} 3 Q${cornerSize - 10} ${cornerSize - 10} 3 ${cornerSize - 3}`} fill="none" stroke="#d4af37" strokeWidth="0.7" />
+        <path className="museum-element-micro stroke-tiny" d={`M6 ${cornerSize - 6} Q6 6 ${cornerSize - 6} 6 Q${cornerSize - 12} ${cornerSize - 12} 6 ${cornerSize - 6}`} fill="none" stroke="#d4af37" strokeWidth="0.4" />
+
+        {/* Feuille d'acanthe gauche - ultra-détaillée */}
+        <path className="museum-element-micro stroke-tiny" d="M2 26 Q5 22 4 17 Q7 19 6 24 Q9 20 8 15 Q11 18 10 23 Q13 19 12 14 Q15 17 14 22 Q7 25 2 26" fill="none" stroke="#d4af37" strokeWidth="0.35" />
+        <path className="museum-element-micro stroke-micro" d="M3 23 L4 18 M5 22 L6 16 M7 21 L8 15 M9 20 L10 14 M11 19 L12 15" fill="none" stroke="#d4af37" strokeWidth="0.18" />
+        {/* Nervures des feuilles */}
+        <path className="museum-element-micro stroke-micro" d="M4 20 Q5 19 6 20 M6 18 Q7 17 8 18 M8 16 Q9 15 10 16" fill="none" stroke="#d4af37" strokeWidth="0.12" strokeOpacity="0.6" />
+
+        {/* Feuille d'acanthe supérieure - ultra-détaillée */}
+        <path className="museum-element-micro stroke-tiny" d="M26 2 Q22 5 17 4 Q19 7 24 6 Q20 9 15 8 Q18 11 23 10 Q19 13 14 12 Q17 15 22 14 Q25 7 26 2" fill="none" stroke="#d4af37" strokeWidth="0.35" />
+        <path className="museum-element-micro stroke-micro" d="M23 3 L18 4 M22 5 L16 6 M21 7 L15 8 M20 9 L14 10 M19 11 L15 12" fill="none" stroke="#d4af37" strokeWidth="0.18" />
+
+        {/* Volute centrale élaborée */}
+        <path className="museum-element-detail stroke-short" d="M12 12 Q7 7 12 3 Q17 2 16 7 Q15 12 10 11 Q6 10 7 6 Q8 3 12 4 Q15 5 14 8 Q13 10 10 9 Q8 8 9 6" fill="none" stroke="#d4af37" strokeWidth="0.55" />
+        <circle className="museum-element-micro stroke-micro" cx="11" cy="7" r="2" fill="none" stroke="#d4af37" strokeWidth="0.3" />
+        <circle className="museum-element-micro stroke-micro" cx="11" cy="7" r="1" fill="none" stroke="#d4af37" strokeWidth="0.2" />
+        <circle cx="11" cy="7" r="0.5" fill="#d4af37" fillOpacity="0.4" />
+
+        {/* Fleuron central */}
+        <path className="museum-element-micro stroke-micro" d="M11 7 L8 4 M11 7 L14 4 M11 7 L11 3 M11 7 L9 5 M11 7 L13 5" fill="none" stroke="#d4af37" strokeWidth="0.18" />
+
+        {/* Petites rosettes décoratives */}
+        <circle className="museum-element-micro stroke-micro" cx="5" cy="10" r="1.2" fill="none" stroke="#d4af37" strokeWidth="0.15" />
+        <circle className="museum-element-micro stroke-micro" cx="10" cy="5" r="1.2" fill="none" stroke="#d4af37" strokeWidth="0.15" />
       </g>
 
       {/* === COIN SUPÉRIEUR DROIT === */}
       <g transform={`translate(${width}, 0) scale(-1, 1)`}>
-        <path className="museum-element-detail stroke-medium" d={`M0 ${cornerSize} Q0 0 ${cornerSize} 0 Q${cornerSize - 6} ${cornerSize - 6} 0 ${cornerSize}`} fill="none" stroke="#d4af37" strokeWidth="0.9" />
-        <path className="museum-element-detail stroke-short" d={`M4 ${cornerSize - 4} Q4 4 ${cornerSize - 4} 4 Q${cornerSize - 9} ${cornerSize - 9} 4 ${cornerSize - 4}`} fill="none" stroke="#d4af37" strokeWidth="0.6" />
-        <path className="museum-element-micro stroke-tiny" d="M2 22 Q5 18 4 14 Q7 16 6 20 Q9 17 8 13 Q11 15 10 19 Q6 21 2 22" fill="none" stroke="#d4af37" strokeWidth="0.35" />
-        <path className="museum-element-micro stroke-tiny" d="M22 2 Q18 5 14 4 Q16 7 20 6 Q17 9 13 8 Q15 11 19 10 Q21 6 22 2" fill="none" stroke="#d4af37" strokeWidth="0.35" />
-        <path className="museum-element-detail stroke-short" d="M10 10 Q6 6 10 3 Q14 3 13 7 Q12 11 8 10 Q5 9 6 6 Q7 4 10 5" fill="none" stroke="#d4af37" strokeWidth="0.5" />
-        <circle className="museum-element-micro stroke-micro" cx="9" cy="6.5" r="1.5" fill="none" stroke="#d4af37" strokeWidth="0.25" />
+        <path className="museum-element-detail stroke-medium" d={`M0 ${cornerSize} Q0 0 ${cornerSize} 0 Q${cornerSize - 8} ${cornerSize - 8} 0 ${cornerSize}`} fill="none" stroke="#d4af37" strokeWidth="1" />
+        <path className="museum-element-detail stroke-short" d={`M3 ${cornerSize - 3} Q3 3 ${cornerSize - 3} 3 Q${cornerSize - 10} ${cornerSize - 10} 3 ${cornerSize - 3}`} fill="none" stroke="#d4af37" strokeWidth="0.7" />
+        <path className="museum-element-micro stroke-tiny" d={`M6 ${cornerSize - 6} Q6 6 ${cornerSize - 6} 6 Q${cornerSize - 12} ${cornerSize - 12} 6 ${cornerSize - 6}`} fill="none" stroke="#d4af37" strokeWidth="0.4" />
+        <path className="museum-element-micro stroke-tiny" d="M2 26 Q5 22 4 17 Q7 19 6 24 Q9 20 8 15 Q11 18 10 23 Q13 19 12 14 Q15 17 14 22 Q7 25 2 26" fill="none" stroke="#d4af37" strokeWidth="0.35" />
+        <path className="museum-element-micro stroke-micro" d="M3 23 L4 18 M5 22 L6 16 M7 21 L8 15 M9 20 L10 14 M11 19 L12 15" fill="none" stroke="#d4af37" strokeWidth="0.18" />
+        <path className="museum-element-micro stroke-tiny" d="M26 2 Q22 5 17 4 Q19 7 24 6 Q20 9 15 8 Q18 11 23 10 Q19 13 14 12 Q17 15 22 14 Q25 7 26 2" fill="none" stroke="#d4af37" strokeWidth="0.35" />
+        <path className="museum-element-detail stroke-short" d="M12 12 Q7 7 12 3 Q17 2 16 7 Q15 12 10 11 Q6 10 7 6 Q8 3 12 4 Q15 5 14 8 Q13 10 10 9" fill="none" stroke="#d4af37" strokeWidth="0.55" />
+        <circle className="museum-element-micro stroke-micro" cx="11" cy="7" r="2" fill="none" stroke="#d4af37" strokeWidth="0.3" />
+        <circle className="museum-element-micro stroke-micro" cx="11" cy="7" r="1" fill="none" stroke="#d4af37" strokeWidth="0.2" />
       </g>
 
       {/* === COINS INFÉRIEURS === */}
       <g transform={`translate(0, ${height}) scale(1, -1)`}>
-        <path className="museum-element-detail stroke-medium" d={`M0 ${cornerSize} Q0 0 ${cornerSize} 0 Q${cornerSize - 6} ${cornerSize - 6} 0 ${cornerSize}`} fill="none" stroke="#d4af37" strokeWidth="0.9" />
-        <path className="museum-element-micro stroke-tiny" d="M2 22 Q5 18 4 14 Q7 16 6 20 Q9 17 8 13 Q11 15 10 19 Q6 21 2 22" fill="none" stroke="#d4af37" strokeWidth="0.35" />
-        <path className="museum-element-detail stroke-short" d="M10 10 Q6 6 10 3 Q14 3 13 7 Q12 11 8 10" fill="none" stroke="#d4af37" strokeWidth="0.5" />
+        <path className="museum-element-detail stroke-medium" d={`M0 ${cornerSize} Q0 0 ${cornerSize} 0 Q${cornerSize - 8} ${cornerSize - 8} 0 ${cornerSize}`} fill="none" stroke="#d4af37" strokeWidth="1" />
+        <path className="museum-element-detail stroke-short" d={`M3 ${cornerSize - 3} Q3 3 ${cornerSize - 3} 3 Q${cornerSize - 10} ${cornerSize - 10} 3 ${cornerSize - 3}`} fill="none" stroke="#d4af37" strokeWidth="0.7" />
+        <path className="museum-element-micro stroke-tiny" d="M2 26 Q5 22 4 17 Q7 19 6 24 Q9 20 8 15 Q11 18 10 23 Q7 25 2 26" fill="none" stroke="#d4af37" strokeWidth="0.35" />
+        <path className="museum-element-micro stroke-micro" d="M3 23 L4 18 M5 22 L6 16 M7 21 L8 15" fill="none" stroke="#d4af37" strokeWidth="0.18" />
+        <path className="museum-element-detail stroke-short" d="M12 12 Q7 7 12 3 Q17 2 16 7 Q15 12 10 11" fill="none" stroke="#d4af37" strokeWidth="0.55" />
+        <circle className="museum-element-micro stroke-micro" cx="11" cy="7" r="1.5" fill="none" stroke="#d4af37" strokeWidth="0.25" />
       </g>
       <g transform={`translate(${width}, ${height}) scale(-1, -1)`}>
-        <path className="museum-element-detail stroke-medium" d={`M0 ${cornerSize} Q0 0 ${cornerSize} 0 Q${cornerSize - 6} ${cornerSize - 6} 0 ${cornerSize}`} fill="none" stroke="#d4af37" strokeWidth="0.9" />
-        <path className="museum-element-micro stroke-tiny" d="M2 22 Q5 18 4 14 Q7 16 6 20 Q9 17 8 13 Q11 15 10 19 Q6 21 2 22" fill="none" stroke="#d4af37" strokeWidth="0.35" />
-        <path className="museum-element-detail stroke-short" d="M10 10 Q6 6 10 3 Q14 3 13 7 Q12 11 8 10" fill="none" stroke="#d4af37" strokeWidth="0.5" />
+        <path className="museum-element-detail stroke-medium" d={`M0 ${cornerSize} Q0 0 ${cornerSize} 0 Q${cornerSize - 8} ${cornerSize - 8} 0 ${cornerSize}`} fill="none" stroke="#d4af37" strokeWidth="1" />
+        <path className="museum-element-detail stroke-short" d={`M3 ${cornerSize - 3} Q3 3 ${cornerSize - 3} 3 Q${cornerSize - 10} ${cornerSize - 10} 3 ${cornerSize - 3}`} fill="none" stroke="#d4af37" strokeWidth="0.7" />
+        <path className="museum-element-micro stroke-tiny" d="M2 26 Q5 22 4 17 Q7 19 6 24 Q9 20 8 15 Q11 18 10 23 Q7 25 2 26" fill="none" stroke="#d4af37" strokeWidth="0.35" />
+        <path className="museum-element-micro stroke-micro" d="M3 23 L4 18 M5 22 L6 16 M7 21 L8 15" fill="none" stroke="#d4af37" strokeWidth="0.18" />
+        <path className="museum-element-detail stroke-short" d="M12 12 Q7 7 12 3 Q17 2 16 7 Q15 12 10 11" fill="none" stroke="#d4af37" strokeWidth="0.55" />
+        <circle className="museum-element-micro stroke-micro" cx="11" cy="7" r="1.5" fill="none" stroke="#d4af37" strokeWidth="0.25" />
       </g>
 
-      {/* === CARTOUCHE SUPÉRIEUR AVEC FLEUR DE LYS === */}
+      {/* === CARTOUCHE SUPÉRIEUR AVEC FLEUR DE LYS ÉLABORÉE === */}
       <g transform={`translate(${width / 2}, 0)`}>
-        <path className="museum-element-secondary stroke-medium" d="M0 -12 Q-18 -12 -24 -2 Q-20 4 -14 2 Q-8 8 -4 4 Q0 10 4 4 Q8 8 14 2 Q20 4 24 -2 Q18 -12 0 -12" fill="none" stroke="#d4af37" strokeWidth="0.8" />
-        <path className="museum-element-detail stroke-short" d="M0 -10 Q-12 -10 -16 -2 Q-12 2 -8 0 Q-4 4 0 2 Q4 4 8 0 Q12 2 16 -2 Q12 -10 0 -10" fill="none" stroke="#d4af37" strokeWidth="0.5" />
-        {/* Fleur de lys détaillée */}
-        <path className="museum-element-micro stroke-tiny" d="M0 -1 L0 -7 M-1 -6 L0 -8 L1 -6 M-3 -5 Q-1 -7 0 -8 Q1 -7 3 -5 M-2 -4 Q0 -2 2 -4 M-4 -3 Q-2 -5 0 -6 Q2 -5 4 -3" fill="none" stroke="#d4af37" strokeWidth="0.3" />
-        {/* Perles décoratives */}
-        <circle className="museum-element-micro stroke-micro" cx="-10" cy="-2" r="0.8" fill="none" stroke="#d4af37" strokeWidth="0.2" />
-        <circle className="museum-element-micro stroke-micro" cx="10" cy="-2" r="0.8" fill="none" stroke="#d4af37" strokeWidth="0.2" />
+        {/* Forme externe du cartouche */}
+        <path className="museum-element-secondary stroke-medium" d="M0 -16 Q-22 -16 -30 -4 Q-26 4 -18 2 Q-12 10 -6 5 Q0 14 6 5 Q12 10 18 2 Q26 4 30 -4 Q22 -16 0 -16" fill="none" stroke="#d4af37" strokeWidth="0.9" />
+        <path className="museum-element-detail stroke-short" d="M0 -13 Q-16 -13 -22 -3 Q-18 3 -12 1 Q-8 7 -4 3 Q0 10 4 3 Q8 7 12 1 Q18 3 22 -3 Q16 -13 0 -13" fill="none" stroke="#d4af37" strokeWidth="0.55" />
+        <path className="museum-element-micro stroke-tiny" d="M0 -10 Q-10 -10 -14 -2 Q-10 2 -6 0 Q-3 4 0 2 Q3 4 6 0 Q10 2 14 -2 Q10 -10 0 -10" fill="none" stroke="#d4af37" strokeWidth="0.35" />
+
+        {/* Fleur de lys ultra-détaillée */}
+        <path className="museum-element-micro stroke-tiny" d="M0 0 L0 -9 M-1.5 -7 L0 -10 L1.5 -7" fill="none" stroke="#d4af37" strokeWidth="0.35" />
+        <path className="museum-element-micro stroke-micro" d="M-4 -6 Q-2 -8 0 -10 Q2 -8 4 -6 M-3 -5 Q0 -3 3 -5 M-5 -4 Q-3 -6 0 -7 Q3 -6 5 -4" fill="none" stroke="#d4af37" strokeWidth="0.25" />
+        <path className="museum-element-micro stroke-micro" d="M-2 -2 Q-1 -4 0 -5 Q1 -4 2 -2 M0 -5 Q-1 -6 -1.5 -7 M0 -5 Q1 -6 1.5 -7" fill="none" stroke="#d4af37" strokeWidth="0.2" />
+
+        {/* Perles décoratives autour */}
+        <circle className="museum-element-micro stroke-micro" cx="-14" cy="-3" r="1" fill="none" stroke="#d4af37" strokeWidth="0.2" />
+        <circle className="museum-element-micro stroke-micro" cx="14" cy="-3" r="1" fill="none" stroke="#d4af37" strokeWidth="0.2" />
+        <circle className="museum-element-micro stroke-micro" cx="-8" cy="-1" r="0.7" fill="none" stroke="#d4af37" strokeWidth="0.15" />
+        <circle className="museum-element-micro stroke-micro" cx="8" cy="-1" r="0.7" fill="none" stroke="#d4af37" strokeWidth="0.15" />
+
+        {/* Volutes latérales */}
+        <path className="museum-element-micro stroke-micro" d="M-20 -2 Q-22 -4 -20 -6 Q-18 -6 -18 -4 Q-18 -2 -20 -2" fill="none" stroke="#d4af37" strokeWidth="0.18" />
+        <path className="museum-element-micro stroke-micro" d="M20 -2 Q22 -4 20 -6 Q18 -6 18 -4 Q18 -2 20 -2" fill="none" stroke="#d4af37" strokeWidth="0.18" />
       </g>
 
-      {/* === CARTOUCHE INFÉRIEUR AVEC COQUILLE === */}
+      {/* === CARTOUCHE INFÉRIEUR AVEC COQUILLE ÉLABORÉE === */}
       <g transform={`translate(${width / 2}, ${height})`}>
-        <path className="museum-element-secondary stroke-medium" d="M0 12 Q-18 12 -24 2 Q-20 -4 -14 -2 Q-8 -8 -4 -4 Q0 -10 4 -4 Q8 -8 14 -2 Q20 -4 24 2 Q18 12 0 12" fill="none" stroke="#d4af37" strokeWidth="0.8" />
-        {/* Coquille Saint-Jacques détaillée */}
-        <path className="museum-element-detail stroke-short" d="M-10 5 Q-6 8 -3 5 Q0 8 3 5 Q6 8 10 5" fill="none" stroke="#d4af37" strokeWidth="0.4" />
-        <path className="museum-element-micro stroke-tiny" d="M-8 6 L0 2 L8 6 M-6 6 L0 3 L6 6 M-4 6 L0 4 L4 6" fill="none" stroke="#d4af37" strokeWidth="0.25" />
+        <path className="museum-element-secondary stroke-medium" d="M0 16 Q-22 16 -30 4 Q-26 -4 -18 -2 Q-12 -10 -6 -5 Q0 -14 6 -5 Q12 -10 18 -2 Q26 -4 30 4 Q22 16 0 16" fill="none" stroke="#d4af37" strokeWidth="0.9" />
+        <path className="museum-element-detail stroke-short" d="M0 13 Q-16 13 -22 3 Q-18 -3 -12 -1 Q-8 -7 -4 -3 Q0 -10 4 -3 Q8 -7 12 -1 Q18 -3 22 3 Q16 13 0 13" fill="none" stroke="#d4af37" strokeWidth="0.55" />
+
+        {/* Coquille Saint-Jacques ultra-détaillée */}
+        <path className="museum-element-detail stroke-short" d="M-14 7 Q-10 10 -5 7 Q0 11 5 7 Q10 10 14 7" fill="none" stroke="#d4af37" strokeWidth="0.45" />
+        <path className="museum-element-micro stroke-tiny" d="M-12 8 L0 3 L12 8 M-10 8 L0 4 L10 8 M-8 8 L0 5 L8 8 M-6 8 L0 6 L6 8" fill="none" stroke="#d4af37" strokeWidth="0.28" />
         {/* Rayons de la coquille */}
-        <path className="museum-element-micro stroke-micro" d="M0 2 L-9 7 M0 2 L-6 7 M0 2 L-3 7 M0 2 L0 7 M0 2 L3 7 M0 2 L6 7 M0 2 L9 7" fill="none" stroke="#d4af37" strokeWidth="0.15" />
+        <path className="museum-element-micro stroke-micro" d="M0 3 L-13 9 M0 3 L-10 9 M0 3 L-7 9 M0 3 L-4 9 M0 3 L0 9 M0 3 L4 9 M0 3 L7 9 M0 3 L10 9 M0 3 L13 9" fill="none" stroke="#d4af37" strokeWidth="0.15" />
+        {/* Perle centrale */}
+        <circle className="museum-element-micro stroke-micro" cx="0" cy="2" r="1.5" fill="none" stroke="#d4af37" strokeWidth="0.2" />
+
+        {/* Volutes latérales */}
+        <path className="museum-element-micro stroke-micro" d="M-20 2 Q-22 4 -20 6 Q-18 6 -18 4 Q-18 2 -20 2" fill="none" stroke="#d4af37" strokeWidth="0.18" />
+        <path className="museum-element-micro stroke-micro" d="M20 2 Q22 4 20 6 Q18 6 18 4 Q18 2 20 2" fill="none" stroke="#d4af37" strokeWidth="0.18" />
       </g>
 
-      {/* === GUIRLANDES LATÉRALES AVEC FEUILLES ET RUBANS === */}
-      <path className="museum-element-detail stroke-short" d={`M-2 ${height * 0.25} Q-8 ${height * 0.3} -5 ${height * 0.38} Q-10 ${height * 0.45} -6 ${height * 0.52} Q-10 ${height * 0.6} -5 ${height * 0.68} Q-8 ${height * 0.72} -2 ${height * 0.75}`} fill="none" stroke="#d4af37" strokeWidth="0.5" />
-      {/* Feuilles sur guirlande gauche */}
-      <path className="museum-element-micro stroke-tiny" d={`M-5 ${height * 0.32} Q-8 ${height * 0.34} -6 ${height * 0.38} M-6 ${height * 0.48} Q-9 ${height * 0.5} -7 ${height * 0.54} M-5 ${height * 0.64} Q-8 ${height * 0.66} -6 ${height * 0.7}`} fill="none" stroke="#d4af37" strokeWidth="0.25" />
+      {/* === GUIRLANDES LATÉRALES ULTRA-DÉTAILLÉES === */}
+      {/* Guirlande gauche */}
+      <path className="museum-element-detail stroke-short" d={`M-3 ${height * 0.22} Q-10 ${height * 0.28} -7 ${height * 0.36} Q-12 ${height * 0.42} -8 ${height * 0.5} Q-12 ${height * 0.58} -7 ${height * 0.66} Q-10 ${height * 0.72} -3 ${height * 0.78}`} fill="none" stroke="#d4af37" strokeWidth="0.55" />
+      {/* Feuilles et fleurs sur guirlande gauche */}
+      <path className="museum-element-micro stroke-tiny" d={`M-6 ${height * 0.28} Q-10 ${height * 0.3} -8 ${height * 0.35} Q-6 ${height * 0.33} -6 ${height * 0.28}`} fill="none" stroke="#d4af37" strokeWidth="0.28" />
+      <path className="museum-element-micro stroke-tiny" d={`M-8 ${height * 0.44} Q-12 ${height * 0.46} -10 ${height * 0.51} Q-8 ${height * 0.49} -8 ${height * 0.44}`} fill="none" stroke="#d4af37" strokeWidth="0.28" />
+      <path className="museum-element-micro stroke-tiny" d={`M-6 ${height * 0.6} Q-10 ${height * 0.62} -8 ${height * 0.67} Q-6 ${height * 0.65} -6 ${height * 0.6}`} fill="none" stroke="#d4af37" strokeWidth="0.28" />
+      {/* Petites fleurs */}
+      <circle className="museum-element-micro stroke-micro" cx="-9" cy={height * 0.36} r="1.2" fill="none" stroke="#d4af37" strokeWidth="0.15" />
+      <circle className="museum-element-micro stroke-micro" cx="-10" cy={height * 0.5} r="1.2" fill="none" stroke="#d4af37" strokeWidth="0.15" />
+      <circle className="museum-element-micro stroke-micro" cx="-9" cy={height * 0.64} r="1.2" fill="none" stroke="#d4af37" strokeWidth="0.15" />
+      {/* Ruban */}
+      <path className="museum-element-micro stroke-micro" d={`M-4 ${height * 0.22} Q-6 ${height * 0.2} -5 ${height * 0.18} M-4 ${height * 0.78} Q-6 ${height * 0.8} -5 ${height * 0.82}`} fill="none" stroke="#d4af37" strokeWidth="0.18" />
 
-      <path className="museum-element-detail stroke-short" d={`M${width + 2} ${height * 0.25} Q${width + 8} ${height * 0.3} ${width + 5} ${height * 0.38} Q${width + 10} ${height * 0.45} ${width + 6} ${height * 0.52} Q${width + 10} ${height * 0.6} ${width + 5} ${height * 0.68} Q${width + 8} ${height * 0.72} ${width + 2} ${height * 0.75}`} fill="none" stroke="#d4af37" strokeWidth="0.5" />
+      {/* Guirlande droite */}
+      <path className="museum-element-detail stroke-short" d={`M${width + 3} ${height * 0.22} Q${width + 10} ${height * 0.28} ${width + 7} ${height * 0.36} Q${width + 12} ${height * 0.42} ${width + 8} ${height * 0.5} Q${width + 12} ${height * 0.58} ${width + 7} ${height * 0.66} Q${width + 10} ${height * 0.72} ${width + 3} ${height * 0.78}`} fill="none" stroke="#d4af37" strokeWidth="0.55" />
       {/* Feuilles sur guirlande droite */}
-      <path className="museum-element-micro stroke-tiny" d={`M${width + 5} ${height * 0.32} Q${width + 8} ${height * 0.34} ${width + 6} ${height * 0.38} M${width + 6} ${height * 0.48} Q${width + 9} ${height * 0.5} ${width + 7} ${height * 0.54} M${width + 5} ${height * 0.64} Q${width + 8} ${height * 0.66} ${width + 6} ${height * 0.7}`} fill="none" stroke="#d4af37" strokeWidth="0.25" />
+      <path className="museum-element-micro stroke-tiny" d={`M${width + 6} ${height * 0.28} Q${width + 10} ${height * 0.3} ${width + 8} ${height * 0.35} Q${width + 6} ${height * 0.33} ${width + 6} ${height * 0.28}`} fill="none" stroke="#d4af37" strokeWidth="0.28" />
+      <path className="museum-element-micro stroke-tiny" d={`M${width + 8} ${height * 0.44} Q${width + 12} ${height * 0.46} ${width + 10} ${height * 0.51} Q${width + 8} ${height * 0.49} ${width + 8} ${height * 0.44}`} fill="none" stroke="#d4af37" strokeWidth="0.28" />
+      <path className="museum-element-micro stroke-tiny" d={`M${width + 6} ${height * 0.6} Q${width + 10} ${height * 0.62} ${width + 8} ${height * 0.67} Q${width + 6} ${height * 0.65} ${width + 6} ${height * 0.6}`} fill="none" stroke="#d4af37" strokeWidth="0.28" />
+      {/* Petites fleurs */}
+      <circle className="museum-element-micro stroke-micro" cx={width + 9} cy={height * 0.36} r="1.2" fill="none" stroke="#d4af37" strokeWidth="0.15" />
+      <circle className="museum-element-micro stroke-micro" cx={width + 10} cy={height * 0.5} r="1.2" fill="none" stroke="#d4af37" strokeWidth="0.15" />
+      <circle className="museum-element-micro stroke-micro" cx={width + 9} cy={height * 0.64} r="1.2" fill="none" stroke="#d4af37" strokeWidth="0.15" />
 
       {/* Contenu du cadre */}
       {children}
@@ -223,7 +293,7 @@ const BaroqueFrame = ({ x, y, width = 120, height = 150, delay = 0, children }) 
 };
 
 // ========================================
-// TABLEAU/PEINTURE INTÉRIEUR
+// TABLEAU/PEINTURE INTÉRIEUR - ULTRA-DÉTAILLÉ
 // ========================================
 const PaintingContent = ({ width, height, type = 'landscape' }) => {
   const innerX = 18;
@@ -234,170 +304,686 @@ const PaintingContent = ({ width, height, type = 'landscape' }) => {
   const paintings = {
     landscape: (
       <g>
-        {/* Ciel */}
+        {/* === CIEL AVEC NUAGES DÉTAILLÉS === */}
+        {/* Fond de ciel */}
         <path
           className="museum-element-detail stroke-medium"
-          d={`M${innerX} ${innerY} L${innerX + innerW} ${innerY} L${innerX + innerW} ${innerY + innerH * 0.4} Q${innerX + innerW * 0.5} ${innerY + innerH * 0.35} ${innerX} ${innerY + innerH * 0.45} Z`}
-          fill="none"
-          stroke="#d4af37"
-          strokeWidth="0.4"
-          strokeOpacity="0.5"
-        />
-        {/* Montagnes */}
-        <path
-          className="museum-element-detail stroke-medium"
-          d={`M${innerX} ${innerY + innerH * 0.5}
-              L${innerX + innerW * 0.2} ${innerY + innerH * 0.3}
-              L${innerX + innerW * 0.35} ${innerY + innerH * 0.45}
-              L${innerX + innerW * 0.5} ${innerY + innerH * 0.25}
-              L${innerX + innerW * 0.7} ${innerY + innerH * 0.4}
-              L${innerX + innerW * 0.85} ${innerY + innerH * 0.3}
-              L${innerX + innerW} ${innerY + innerH * 0.5}`}
-          fill="none"
-          stroke="#d4af37"
-          strokeWidth="0.5"
-        />
-        {/* Arbres */}
-        <path
-          className="museum-element-detail stroke-short"
-          d={`M${innerX + innerW * 0.15} ${innerY + innerH * 0.9}
-              L${innerX + innerW * 0.15} ${innerY + innerH * 0.6}
-              M${innerX + innerW * 0.1} ${innerY + innerH * 0.65}
-              Q${innerX + innerW * 0.15} ${innerY + innerH * 0.55} ${innerX + innerW * 0.2} ${innerY + innerH * 0.65}
-              M${innerX + innerW * 0.12} ${innerY + innerH * 0.7}
-              Q${innerX + innerW * 0.15} ${innerY + innerH * 0.62} ${innerX + innerW * 0.18} ${innerY + innerH * 0.7}`}
-          fill="none"
-          stroke="#d4af37"
-          strokeWidth="0.4"
-        />
-        {/* Lac/rivière */}
-        <path
-          className="museum-element-detail stroke-medium"
-          d={`M${innerX} ${innerY + innerH * 0.7}
-              Q${innerX + innerW * 0.3} ${innerY + innerH * 0.65} ${innerX + innerW * 0.5} ${innerY + innerH * 0.7}
-              Q${innerX + innerW * 0.7} ${innerY + innerH * 0.75} ${innerX + innerW} ${innerY + innerH * 0.68}`}
+          d={`M${innerX} ${innerY} L${innerX + innerW} ${innerY} L${innerX + innerW} ${innerY + innerH * 0.42} L${innerX} ${innerY + innerH * 0.45} Z`}
           fill="none"
           stroke="#d4af37"
           strokeWidth="0.3"
-          strokeOpacity="0.6"
+          strokeOpacity="0.3"
+        />
+        {/* Nuages - premier groupe */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.1} ${innerY + innerH * 0.12}
+              Q${innerX + innerW * 0.15} ${innerY + innerH * 0.08} ${innerX + innerW * 0.22} ${innerY + innerH * 0.1}
+              Q${innerX + innerW * 0.28} ${innerY + innerH * 0.06} ${innerX + innerW * 0.35} ${innerY + innerH * 0.09}
+              Q${innerX + innerW * 0.4} ${innerY + innerH * 0.05} ${innerX + innerW * 0.45} ${innerY + innerH * 0.1}
+              Q${innerX + innerW * 0.42} ${innerY + innerH * 0.14} ${innerX + innerW * 0.35} ${innerY + innerH * 0.15}
+              Q${innerX + innerW * 0.25} ${innerY + innerH * 0.16} ${innerX + innerW * 0.18} ${innerY + innerH * 0.14}
+              Q${innerX + innerW * 0.12} ${innerY + innerH * 0.15} ${innerX + innerW * 0.1} ${innerY + innerH * 0.12}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.25" strokeOpacity="0.5"
+        />
+        {/* Nuages - deuxième groupe */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.55} ${innerY + innerH * 0.08}
+              Q${innerX + innerW * 0.62} ${innerY + innerH * 0.04} ${innerX + innerW * 0.7} ${innerY + innerH * 0.07}
+              Q${innerX + innerW * 0.78} ${innerY + innerH * 0.03} ${innerX + innerW * 0.85} ${innerY + innerH * 0.08}
+              Q${innerX + innerW * 0.82} ${innerY + innerH * 0.12} ${innerX + innerW * 0.72} ${innerY + innerH * 0.13}
+              Q${innerX + innerW * 0.62} ${innerY + innerH * 0.14} ${innerX + innerW * 0.55} ${innerY + innerH * 0.08}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.25" strokeOpacity="0.5"
+        />
+        {/* Oiseaux lointains */}
+        <path
+          className="museum-element-micro stroke-micro"
+          d={`M${innerX + innerW * 0.3} ${innerY + innerH * 0.2} Q${innerX + innerW * 0.32} ${innerY + innerH * 0.18} ${innerX + innerW * 0.34} ${innerY + innerH * 0.2}
+              M${innerX + innerW * 0.36} ${innerY + innerH * 0.19} Q${innerX + innerW * 0.38} ${innerY + innerH * 0.17} ${innerX + innerW * 0.4} ${innerY + innerH * 0.19}
+              M${innerX + innerW * 0.72} ${innerY + innerH * 0.22} Q${innerX + innerW * 0.74} ${innerY + innerH * 0.2} ${innerX + innerW * 0.76} ${innerY + innerH * 0.22}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.15" strokeOpacity="0.6"
+        />
+
+        {/* === MONTAGNES AVEC RELIEF ET OMBRES === */}
+        {/* Montagne arrière-plan (lointaine) */}
+        <path
+          className="museum-element-detail stroke-medium"
+          d={`M${innerX} ${innerY + innerH * 0.48}
+              L${innerX + innerW * 0.12} ${innerY + innerH * 0.38}
+              L${innerX + innerW * 0.22} ${innerY + innerH * 0.42}
+              L${innerX + innerW * 0.35} ${innerY + innerH * 0.32}
+              L${innerX + innerW * 0.48} ${innerY + innerH * 0.4}
+              L${innerX + innerW * 0.58} ${innerY + innerH * 0.28}
+              L${innerX + innerW * 0.72} ${innerY + innerH * 0.35}
+              L${innerX + innerW * 0.82} ${innerY + innerH * 0.3}
+              L${innerX + innerW * 0.92} ${innerY + innerH * 0.36}
+              L${innerX + innerW} ${innerY + innerH * 0.44}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.5"
+        />
+        {/* Ombrage des montagnes */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.35} ${innerY + innerH * 0.32} L${innerX + innerW * 0.38} ${innerY + innerH * 0.45}
+              M${innerX + innerW * 0.58} ${innerY + innerH * 0.28} L${innerX + innerW * 0.62} ${innerY + innerH * 0.42}
+              M${innerX + innerW * 0.82} ${innerY + innerH * 0.3} L${innerX + innerW * 0.85} ${innerY + innerH * 0.42}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.2" strokeOpacity="0.4"
+        />
+        {/* Neige sur sommets */}
+        <path
+          className="museum-element-micro stroke-micro"
+          d={`M${innerX + innerW * 0.33} ${innerY + innerH * 0.33} L${innerX + innerW * 0.35} ${innerY + innerH * 0.32} L${innerX + innerW * 0.37} ${innerY + innerH * 0.34}
+              M${innerX + innerW * 0.56} ${innerY + innerH * 0.29} L${innerX + innerW * 0.58} ${innerY + innerH * 0.28} L${innerX + innerW * 0.6} ${innerY + innerH * 0.3}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.2" strokeOpacity="0.7"
+        />
+
+        {/* === COLLINES INTERMÉDIAIRES === */}
+        <path
+          className="museum-element-detail stroke-medium"
+          d={`M${innerX} ${innerY + innerH * 0.55}
+              Q${innerX + innerW * 0.15} ${innerY + innerH * 0.48} ${innerX + innerW * 0.3} ${innerY + innerH * 0.52}
+              Q${innerX + innerW * 0.45} ${innerY + innerH * 0.46} ${innerX + innerW * 0.6} ${innerY + innerH * 0.5}
+              Q${innerX + innerW * 0.8} ${innerY + innerH * 0.44} ${innerX + innerW} ${innerY + innerH * 0.52}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.4"
+        />
+
+        {/* === ARBRES DÉTAILLÉS - PREMIER PLAN GAUCHE === */}
+        {/* Tronc principal */}
+        <path
+          className="museum-element-detail stroke-short"
+          d={`M${innerX + innerW * 0.12} ${innerY + innerH * 0.95}
+              L${innerX + innerW * 0.12} ${innerY + innerH * 0.52}
+              M${innerX + innerW * 0.11} ${innerY + innerH * 0.95} L${innerX + innerW * 0.13} ${innerY + innerH * 0.95}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.5"
+        />
+        {/* Branches et feuillage */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.12} ${innerY + innerH * 0.55}
+              Q${innerX + innerW * 0.08} ${innerY + innerH * 0.48} ${innerX + innerW * 0.05} ${innerY + innerH * 0.5}
+              M${innerX + innerW * 0.12} ${innerY + innerH * 0.55}
+              Q${innerX + innerW * 0.16} ${innerY + innerH * 0.46} ${innerX + innerW * 0.2} ${innerY + innerH * 0.48}
+              M${innerX + innerW * 0.12} ${innerY + innerH * 0.6}
+              Q${innerX + innerW * 0.06} ${innerY + innerH * 0.55} ${innerX + innerW * 0.03} ${innerY + innerH * 0.58}
+              M${innerX + innerW * 0.12} ${innerY + innerH * 0.6}
+              Q${innerX + innerW * 0.18} ${innerY + innerH * 0.54} ${innerX + innerW * 0.22} ${innerY + innerH * 0.56}
+              M${innerX + innerW * 0.12} ${innerY + innerH * 0.65}
+              Q${innerX + innerW * 0.07} ${innerY + innerH * 0.62} ${innerX + innerW * 0.04} ${innerY + innerH * 0.64}
+              M${innerX + innerW * 0.12} ${innerY + innerH * 0.65}
+              Q${innerX + innerW * 0.17} ${innerY + innerH * 0.6} ${innerX + innerW * 0.21} ${innerY + innerH * 0.62}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.3"
+        />
+        {/* Feuillage détaillé */}
+        <path
+          className="museum-element-micro stroke-micro"
+          d={`M${innerX + innerW * 0.06} ${innerY + innerH * 0.48} Q${innerX + innerW * 0.08} ${innerY + innerH * 0.45} ${innerX + innerW * 0.1} ${innerY + innerH * 0.47}
+              M${innerX + innerW * 0.14} ${innerY + innerH * 0.46} Q${innerX + innerW * 0.16} ${innerY + innerH * 0.43} ${innerX + innerW * 0.18} ${innerY + innerH * 0.45}
+              M${innerX + innerW * 0.04} ${innerY + innerH * 0.54} Q${innerX + innerW * 0.06} ${innerY + innerH * 0.51} ${innerX + innerW * 0.08} ${innerY + innerH * 0.53}
+              M${innerX + innerW * 0.18} ${innerY + innerH * 0.52} Q${innerX + innerW * 0.2} ${innerY + innerH * 0.49} ${innerX + innerW * 0.22} ${innerY + innerH * 0.51}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.15" strokeOpacity="0.7"
+        />
+
+        {/* === ARBRE DROITE === */}
+        <path
+          className="museum-element-detail stroke-short"
+          d={`M${innerX + innerW * 0.88} ${innerY + innerH * 0.95}
+              L${innerX + innerW * 0.88} ${innerY + innerH * 0.58}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.4"
+        />
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.88} ${innerY + innerH * 0.6}
+              Q${innerX + innerW * 0.82} ${innerY + innerH * 0.54} ${innerX + innerW * 0.78} ${innerY + innerH * 0.56}
+              M${innerX + innerW * 0.88} ${innerY + innerH * 0.6}
+              Q${innerX + innerW * 0.94} ${innerY + innerH * 0.52} ${innerX + innerW * 0.98} ${innerY + innerH * 0.55}
+              M${innerX + innerW * 0.88} ${innerY + innerH * 0.66}
+              Q${innerX + innerW * 0.83} ${innerY + innerH * 0.62} ${innerX + innerW * 0.8} ${innerY + innerH * 0.64}
+              M${innerX + innerW * 0.88} ${innerY + innerH * 0.66}
+              Q${innerX + innerW * 0.93} ${innerY + innerH * 0.6} ${innerX + innerW * 0.97} ${innerY + innerH * 0.62}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.25"
+        />
+
+        {/* === LAC AVEC REFLETS === */}
+        {/* Contour du lac */}
+        <path
+          className="museum-element-detail stroke-medium"
+          d={`M${innerX + innerW * 0.25} ${innerY + innerH * 0.72}
+              Q${innerX + innerW * 0.35} ${innerY + innerH * 0.68} ${innerX + innerW * 0.5} ${innerY + innerH * 0.7}
+              Q${innerX + innerW * 0.65} ${innerY + innerH * 0.66} ${innerX + innerW * 0.75} ${innerY + innerH * 0.7}
+              Q${innerX + innerW * 0.72} ${innerY + innerH * 0.76} ${innerX + innerW * 0.6} ${innerY + innerH * 0.78}
+              Q${innerX + innerW * 0.45} ${innerY + innerH * 0.8} ${innerX + innerW * 0.35} ${innerY + innerH * 0.77}
+              Q${innerX + innerW * 0.28} ${innerY + innerH * 0.75} ${innerX + innerW * 0.25} ${innerY + innerH * 0.72}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.4"
+        />
+        {/* Reflets dans l'eau */}
+        <path
+          className="museum-element-micro stroke-micro"
+          d={`M${innerX + innerW * 0.35} ${innerY + innerH * 0.72} L${innerX + innerW * 0.38} ${innerY + innerH * 0.74}
+              M${innerX + innerW * 0.45} ${innerY + innerH * 0.71} L${innerX + innerW * 0.48} ${innerY + innerH * 0.73}
+              M${innerX + innerW * 0.55} ${innerY + innerH * 0.7} L${innerX + innerW * 0.58} ${innerY + innerH * 0.72}
+              M${innerX + innerW * 0.65} ${innerY + innerH * 0.71} L${innerX + innerW * 0.68} ${innerY + innerH * 0.73}
+              M${innerX + innerW * 0.4} ${innerY + innerH * 0.75} L${innerX + innerW * 0.42} ${innerY + innerH * 0.76}
+              M${innerX + innerW * 0.52} ${innerY + innerH * 0.74} L${innerX + innerW * 0.54} ${innerY + innerH * 0.75}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.15" strokeOpacity="0.5"
+        />
+
+        {/* === PRAIRIE ET HERBES AU PREMIER PLAN === */}
+        <path
+          className="museum-element-detail stroke-short"
+          d={`M${innerX} ${innerY + innerH * 0.82}
+              Q${innerX + innerW * 0.2} ${innerY + innerH * 0.78} ${innerX + innerW * 0.4} ${innerY + innerH * 0.82}
+              Q${innerX + innerW * 0.6} ${innerY + innerH * 0.79} ${innerX + innerW * 0.8} ${innerY + innerH * 0.83}
+              Q${innerX + innerW * 0.9} ${innerY + innerH * 0.8} ${innerX + innerW} ${innerY + innerH * 0.84}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.35"
+        />
+        {/* Herbes détaillées */}
+        <path
+          className="museum-element-micro stroke-micro"
+          d={`M${innerX + innerW * 0.02} ${innerY + innerH * 0.95} L${innerX + innerW * 0.02} ${innerY + innerH * 0.88}
+              M${innerX + innerW * 0.04} ${innerY + innerH * 0.95} L${innerX + innerW * 0.05} ${innerY + innerH * 0.86}
+              M${innerX + innerW * 0.28} ${innerY + innerH * 0.95} L${innerX + innerW * 0.27} ${innerY + innerH * 0.88}
+              M${innerX + innerW * 0.3} ${innerY + innerH * 0.95} L${innerX + innerW * 0.31} ${innerY + innerH * 0.87}
+              M${innerX + innerW * 0.55} ${innerY + innerH * 0.95} L${innerX + innerW * 0.54} ${innerY + innerH * 0.89}
+              M${innerX + innerW * 0.57} ${innerY + innerH * 0.95} L${innerX + innerW * 0.58} ${innerY + innerH * 0.88}
+              M${innerX + innerW * 0.75} ${innerY + innerH * 0.95} L${innerX + innerW * 0.74} ${innerY + innerH * 0.9}
+              M${innerX + innerW * 0.77} ${innerY + innerH * 0.95} L${innerX + innerW * 0.78} ${innerY + innerH * 0.89}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.12" strokeOpacity="0.6"
+        />
+
+        {/* === CHEMIN SINUEUX === */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.45} ${innerY + innerH * 0.95}
+              Q${innerX + innerW * 0.48} ${innerY + innerH * 0.88} ${innerX + innerW * 0.52} ${innerY + innerH * 0.85}
+              Q${innerX + innerW * 0.5} ${innerY + innerH * 0.8} ${innerX + innerW * 0.55} ${innerY + innerH * 0.75}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.2" strokeOpacity="0.5"
+        />
+
+        {/* === PETITE MAISON/MOULIN AU LOIN === */}
+        <path
+          className="museum-element-micro stroke-micro"
+          d={`M${innerX + innerW * 0.7} ${innerY + innerH * 0.48}
+              L${innerX + innerW * 0.72} ${innerY + innerH * 0.42}
+              L${innerX + innerW * 0.74} ${innerY + innerH * 0.48}
+              L${innerX + innerW * 0.74} ${innerY + innerH * 0.52}
+              L${innerX + innerW * 0.7} ${innerY + innerH * 0.52} Z
+              M${innerX + innerW * 0.715} ${innerY + innerH * 0.49} L${innerX + innerW * 0.715} ${innerY + innerH * 0.52}
+              M${innerX + innerW * 0.725} ${innerY + innerH * 0.49} L${innerX + innerW * 0.725} ${innerY + innerH * 0.52}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.15" strokeOpacity="0.7"
         />
       </g>
     ),
     portrait: (
       <g>
-        {/* Ovale du visage */}
+        {/* === FOND AVEC DRAPÉ === */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX} ${innerY}
+              Q${innerX + innerW * 0.1} ${innerY + innerH * 0.1} ${innerX} ${innerY + innerH * 0.2}
+              M${innerX + innerW} ${innerY}
+              Q${innerX + innerW * 0.9} ${innerY + innerH * 0.1} ${innerX + innerW} ${innerY + innerH * 0.2}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.2" strokeOpacity="0.3"
+        />
+
+        {/* === OVALE DU VISAGE AVEC CONTOUR PRÉCIS === */}
         <ellipse
           className="museum-element-detail stroke-medium"
           cx={innerX + innerW / 2}
-          cy={innerY + innerH * 0.35}
-          rx={innerW * 0.25}
-          ry={innerH * 0.22}
+          cy={innerY + innerH * 0.33}
+          rx={innerW * 0.24}
+          ry={innerH * 0.2}
           fill="none"
           stroke="#d4af37"
           strokeWidth="0.5"
         />
-        {/* Cheveux/perruque */}
+        {/* Contour intérieur du visage pour le volume */}
+        <path
+          className="museum-element-micro stroke-micro"
+          d={`M${innerX + innerW * 0.32} ${innerY + innerH * 0.28}
+              Q${innerX + innerW * 0.35} ${innerY + innerH * 0.35} ${innerX + innerW * 0.38} ${innerY + innerH * 0.42}
+              M${innerX + innerW * 0.68} ${innerY + innerH * 0.28}
+              Q${innerX + innerW * 0.65} ${innerY + innerH * 0.35} ${innerX + innerW * 0.62} ${innerY + innerH * 0.42}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.15" strokeOpacity="0.4"
+        />
+
+        {/* === PERRUQUE 18ÈME SIÈCLE ULTRA-DÉTAILLÉE === */}
+        {/* Contour principal de la perruque */}
         <path
           className="museum-element-detail stroke-medium"
-          d={`M${innerX + innerW * 0.25} ${innerY + innerH * 0.3}
-              Q${innerX + innerW * 0.2} ${innerY + innerH * 0.15} ${innerX + innerW * 0.35} ${innerY + innerH * 0.12}
-              Q${innerX + innerW * 0.5} ${innerY + innerH * 0.08} ${innerX + innerW * 0.65} ${innerY + innerH * 0.12}
-              Q${innerX + innerW * 0.8} ${innerY + innerH * 0.15} ${innerX + innerW * 0.75} ${innerY + innerH * 0.3}`}
-          fill="none"
-          stroke="#d4af37"
-          strokeWidth="0.4"
+          d={`M${innerX + innerW * 0.26} ${innerY + innerH * 0.28}
+              Q${innerX + innerW * 0.22} ${innerY + innerH * 0.18} ${innerX + innerW * 0.28} ${innerY + innerH * 0.1}
+              Q${innerX + innerW * 0.38} ${innerY + innerH * 0.04} ${innerX + innerW * 0.5} ${innerY + innerH * 0.05}
+              Q${innerX + innerW * 0.62} ${innerY + innerH * 0.04} ${innerX + innerW * 0.72} ${innerY + innerH * 0.1}
+              Q${innerX + innerW * 0.78} ${innerY + innerH * 0.18} ${innerX + innerW * 0.74} ${innerY + innerH * 0.28}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.45"
         />
-        {/* Épaules et buste */}
+        {/* Boucles de la perruque - côté gauche */}
         <path
-          className="museum-element-detail stroke-medium"
-          d={`M${innerX + innerW * 0.2} ${innerY + innerH}
-              L${innerX + innerW * 0.2} ${innerY + innerH * 0.7}
-              Q${innerX + innerW * 0.25} ${innerY + innerH * 0.55} ${innerX + innerW * 0.4} ${innerY + innerH * 0.52}
-              L${innerX + innerW * 0.6} ${innerY + innerH * 0.52}
-              Q${innerX + innerW * 0.75} ${innerY + innerH * 0.55} ${innerX + innerW * 0.8} ${innerY + innerH * 0.7}
-              L${innerX + innerW * 0.8} ${innerY + innerH}`}
-          fill="none"
-          stroke="#d4af37"
-          strokeWidth="0.5"
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.26} ${innerY + innerH * 0.3}
+              Q${innerX + innerW * 0.2} ${innerY + innerH * 0.32} ${innerX + innerW * 0.22} ${innerY + innerH * 0.38}
+              Q${innerX + innerW * 0.18} ${innerY + innerH * 0.4} ${innerX + innerW * 0.2} ${innerY + innerH * 0.46}
+              Q${innerX + innerW * 0.16} ${innerY + innerH * 0.48} ${innerX + innerW * 0.18} ${innerY + innerH * 0.52}
+              M${innerX + innerW * 0.24} ${innerY + innerH * 0.34}
+              Q${innerX + innerW * 0.22} ${innerY + innerH * 0.38} ${innerX + innerW * 0.24} ${innerY + innerH * 0.42}
+              Q${innerX + innerW * 0.22} ${innerY + innerH * 0.46} ${innerX + innerW * 0.24} ${innerY + innerH * 0.5}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.25"
         />
-        {/* Traits du visage */}
+        {/* Boucles de la perruque - côté droit */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.74} ${innerY + innerH * 0.3}
+              Q${innerX + innerW * 0.8} ${innerY + innerH * 0.32} ${innerX + innerW * 0.78} ${innerY + innerH * 0.38}
+              Q${innerX + innerW * 0.82} ${innerY + innerH * 0.4} ${innerX + innerW * 0.8} ${innerY + innerH * 0.46}
+              Q${innerX + innerW * 0.84} ${innerY + innerH * 0.48} ${innerX + innerW * 0.82} ${innerY + innerH * 0.52}
+              M${innerX + innerW * 0.76} ${innerY + innerH * 0.34}
+              Q${innerX + innerW * 0.78} ${innerY + innerH * 0.38} ${innerX + innerW * 0.76} ${innerY + innerH * 0.42}
+              Q${innerX + innerW * 0.78} ${innerY + innerH * 0.46} ${innerX + innerW * 0.76} ${innerY + innerH * 0.5}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.25"
+        />
+        {/* Ondulations du haut de la perruque */}
+        <path
+          className="museum-element-micro stroke-micro"
+          d={`M${innerX + innerW * 0.32} ${innerY + innerH * 0.12}
+              Q${innerX + innerW * 0.36} ${innerY + innerH * 0.08} ${innerX + innerW * 0.42} ${innerY + innerH * 0.1}
+              Q${innerX + innerW * 0.48} ${innerY + innerH * 0.06} ${innerX + innerW * 0.54} ${innerY + innerH * 0.08}
+              Q${innerX + innerW * 0.6} ${innerY + innerH * 0.06} ${innerX + innerW * 0.66} ${innerY + innerH * 0.1}
+              M${innerX + innerW * 0.35} ${innerY + innerH * 0.16}
+              Q${innerX + innerW * 0.42} ${innerY + innerH * 0.12} ${innerX + innerW * 0.5} ${innerY + innerH * 0.14}
+              Q${innerX + innerW * 0.58} ${innerY + innerH * 0.12} ${innerX + innerW * 0.65} ${innerY + innerH * 0.16}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.18" strokeOpacity="0.7"
+        />
+        {/* Ruban dans les cheveux */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.42} ${innerY + innerH * 0.08}
+              Q${innerX + innerW * 0.45} ${innerY + innerH * 0.05} ${innerX + innerW * 0.5} ${innerY + innerH * 0.06}
+              Q${innerX + innerW * 0.55} ${innerY + innerH * 0.05} ${innerX + innerW * 0.58} ${innerY + innerH * 0.08}
+              M${innerX + innerW * 0.48} ${innerY + innerH * 0.04} L${innerX + innerW * 0.46} ${innerY + innerH * 0.02}
+              M${innerX + innerW * 0.52} ${innerY + innerH * 0.04} L${innerX + innerW * 0.54} ${innerY + innerH * 0.02}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.2"
+        />
+
+        {/* === TRAITS DU VISAGE DÉTAILLÉS === */}
+        {/* Sourcils arqués */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.38} ${innerY + innerH * 0.27}
+              Q${innerX + innerW * 0.42} ${innerY + innerH * 0.25} ${innerX + innerW * 0.46} ${innerY + innerH * 0.27}
+              M${innerX + innerW * 0.54} ${innerY + innerH * 0.27}
+              Q${innerX + innerW * 0.58} ${innerY + innerH * 0.25} ${innerX + innerW * 0.62} ${innerY + innerH * 0.27}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.25"
+        />
+        {/* Yeux avec détails */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.39} ${innerY + innerH * 0.31}
+              Q${innerX + innerW * 0.42} ${innerY + innerH * 0.29} ${innerX + innerW * 0.45} ${innerY + innerH * 0.31}
+              Q${innerX + innerW * 0.42} ${innerY + innerH * 0.33} ${innerX + innerW * 0.39} ${innerY + innerH * 0.31}
+              M${innerX + innerW * 0.55} ${innerY + innerH * 0.31}
+              Q${innerX + innerW * 0.58} ${innerY + innerH * 0.29} ${innerX + innerW * 0.61} ${innerY + innerH * 0.31}
+              Q${innerX + innerW * 0.58} ${innerY + innerH * 0.33} ${innerX + innerW * 0.55} ${innerY + innerH * 0.31}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.25"
+        />
+        {/* Pupilles */}
+        <circle className="museum-element-micro stroke-micro" cx={innerX + innerW * 0.42} cy={innerY + innerH * 0.31} r={innerW * 0.012} fill="none" stroke="#d4af37" strokeWidth="0.15" />
+        <circle className="museum-element-micro stroke-micro" cx={innerX + innerW * 0.58} cy={innerY + innerH * 0.31} r={innerW * 0.012} fill="none" stroke="#d4af37" strokeWidth="0.15" />
+        {/* Nez élégant */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.5} ${innerY + innerH * 0.32}
+              L${innerX + innerW * 0.49} ${innerY + innerH * 0.38}
+              Q${innerX + innerW * 0.47} ${innerY + innerH * 0.4} ${innerX + innerW * 0.48} ${innerY + innerH * 0.41}
+              M${innerX + innerW * 0.48} ${innerY + innerH * 0.41}
+              Q${innerX + innerW * 0.5} ${innerY + innerH * 0.42} ${innerX + innerW * 0.52} ${innerY + innerH * 0.41}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.22"
+        />
+        {/* Bouche avec détails */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.44} ${innerY + innerH * 0.46}
+              Q${innerX + innerW * 0.47} ${innerY + innerH * 0.45} ${innerX + innerW * 0.5} ${innerY + innerH * 0.46}
+              Q${innerX + innerW * 0.53} ${innerY + innerH * 0.45} ${innerX + innerW * 0.56} ${innerY + innerH * 0.46}
+              M${innerX + innerW * 0.46} ${innerY + innerH * 0.47}
+              Q${innerX + innerW * 0.5} ${innerY + innerH * 0.49} ${innerX + innerW * 0.54} ${innerY + innerH * 0.47}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.22"
+        />
+        {/* Menton */}
+        <path
+          className="museum-element-micro stroke-micro"
+          d={`M${innerX + innerW * 0.48} ${innerY + innerH * 0.5}
+              Q${innerX + innerW * 0.5} ${innerY + innerH * 0.52} ${innerX + innerW * 0.52} ${innerY + innerH * 0.5}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.15" strokeOpacity="0.5"
+        />
+
+        {/* === COU ET DÉCOLLETÉ === */}
         <path
           className="museum-element-detail stroke-short"
-          d={`M${innerX + innerW * 0.42} ${innerY + innerH * 0.32} L${innerX + innerW * 0.46} ${innerY + innerH * 0.32}
-              M${innerX + innerW * 0.54} ${innerY + innerH * 0.32} L${innerX + innerW * 0.58} ${innerY + innerH * 0.32}
-              M${innerX + innerW * 0.5} ${innerY + innerH * 0.38} L${innerX + innerW * 0.5} ${innerY + innerH * 0.42}
-              M${innerX + innerW * 0.45} ${innerY + innerH * 0.48} Q${innerX + innerW * 0.5} ${innerY + innerH * 0.5} ${innerX + innerW * 0.55} ${innerY + innerH * 0.48}`}
-          fill="none"
-          stroke="#d4af37"
-          strokeWidth="0.3"
+          d={`M${innerX + innerW * 0.42} ${innerY + innerH * 0.52}
+              L${innerX + innerW * 0.4} ${innerY + innerH * 0.58}
+              M${innerX + innerW * 0.58} ${innerY + innerH * 0.52}
+              L${innerX + innerW * 0.6} ${innerY + innerH * 0.58}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.35"
         />
+
+        {/* === BUSTE ET VÊTEMENT ÉLABORÉ === */}
+        {/* Épaules */}
+        <path
+          className="museum-element-detail stroke-medium"
+          d={`M${innerX + innerW * 0.15} ${innerY + innerH}
+              L${innerX + innerW * 0.15} ${innerY + innerH * 0.72}
+              Q${innerX + innerW * 0.2} ${innerY + innerH * 0.62} ${innerX + innerW * 0.32} ${innerY + innerH * 0.58}
+              L${innerX + innerW * 0.4} ${innerY + innerH * 0.58}
+              M${innerX + innerW * 0.85} ${innerY + innerH}
+              L${innerX + innerW * 0.85} ${innerY + innerH * 0.72}
+              Q${innerX + innerW * 0.8} ${innerY + innerH * 0.62} ${innerX + innerW * 0.68} ${innerY + innerH * 0.58}
+              L${innerX + innerW * 0.6} ${innerY + innerH * 0.58}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.5"
+        />
+        {/* Décolleté */}
+        <path
+          className="museum-element-detail stroke-short"
+          d={`M${innerX + innerW * 0.4} ${innerY + innerH * 0.58}
+              Q${innerX + innerW * 0.45} ${innerY + innerH * 0.64} ${innerX + innerW * 0.5} ${innerY + innerH * 0.66}
+              Q${innerX + innerW * 0.55} ${innerY + innerH * 0.64} ${innerX + innerW * 0.6} ${innerY + innerH * 0.58}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.4"
+        />
+        {/* Dentelle sur le décolleté */}
+        <path
+          className="museum-element-micro stroke-micro"
+          d={`M${innerX + innerW * 0.35} ${innerY + innerH * 0.6}
+              Q${innerX + innerW * 0.38} ${innerY + innerH * 0.62} ${innerX + innerW * 0.42} ${innerY + innerH * 0.6}
+              Q${innerX + innerW * 0.46} ${innerY + innerH * 0.63} ${innerX + innerW * 0.5} ${innerY + innerH * 0.61}
+              Q${innerX + innerW * 0.54} ${innerY + innerH * 0.63} ${innerX + innerW * 0.58} ${innerY + innerH * 0.6}
+              Q${innerX + innerW * 0.62} ${innerY + innerH * 0.62} ${innerX + innerW * 0.65} ${innerY + innerH * 0.6}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.15"
+        />
+        {/* Plis du vêtement */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.25} ${innerY + innerH * 0.7}
+              Q${innerX + innerW * 0.28} ${innerY + innerH * 0.8} ${innerX + innerW * 0.25} ${innerY + innerH * 0.9}
+              M${innerX + innerW * 0.35} ${innerY + innerH * 0.68}
+              Q${innerX + innerW * 0.37} ${innerY + innerH * 0.8} ${innerX + innerW * 0.35} ${innerY + innerH * 0.95}
+              M${innerX + innerW * 0.65} ${innerY + innerH * 0.68}
+              Q${innerX + innerW * 0.63} ${innerY + innerH * 0.8} ${innerX + innerW * 0.65} ${innerY + innerH * 0.95}
+              M${innerX + innerW * 0.75} ${innerY + innerH * 0.7}
+              Q${innerX + innerW * 0.72} ${innerY + innerH * 0.8} ${innerX + innerW * 0.75} ${innerY + innerH * 0.9}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.2" strokeOpacity="0.6"
+        />
+
+        {/* === BIJOUX === */}
+        {/* Collier */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.38} ${innerY + innerH * 0.56}
+              Q${innerX + innerW * 0.44} ${innerY + innerH * 0.58} ${innerX + innerW * 0.5} ${innerY + innerH * 0.59}
+              Q${innerX + innerW * 0.56} ${innerY + innerH * 0.58} ${innerX + innerW * 0.62} ${innerY + innerH * 0.56}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.25"
+        />
+        {/* Pendentif */}
+        <circle className="museum-element-micro stroke-micro" cx={innerX + innerW * 0.5} cy={innerY + innerH * 0.61} r={innerW * 0.02} fill="none" stroke="#d4af37" strokeWidth="0.2" />
+        {/* Boucles d'oreilles */}
+        <circle className="museum-element-micro stroke-micro" cx={innerX + innerW * 0.28} cy={innerY + innerH * 0.36} r={innerW * 0.015} fill="none" stroke="#d4af37" strokeWidth="0.15" />
+        <circle className="museum-element-micro stroke-micro" cx={innerX + innerW * 0.72} cy={innerY + innerH * 0.36} r={innerW * 0.015} fill="none" stroke="#d4af37" strokeWidth="0.15" />
       </g>
     ),
     stillLife: (
       <g>
-        {/* Table/surface */}
+        {/* === FOND AVEC TEXTURE MURALE === */}
+        <path
+          className="museum-element-micro stroke-micro"
+          d={`M${innerX} ${innerY + innerH * 0.1} L${innerX + innerW} ${innerY + innerH * 0.1}
+              M${innerX} ${innerY + innerH * 0.2} L${innerX + innerW} ${innerY + innerH * 0.2}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.1" strokeOpacity="0.2"
+        />
+
+        {/* === TABLE AVEC PERSPECTIVE === */}
         <path
           className="museum-element-detail stroke-medium"
-          d={`M${innerX} ${innerY + innerH * 0.65} L${innerX + innerW} ${innerY + innerH * 0.65}`}
-          fill="none"
-          stroke="#d4af37"
-          strokeWidth="0.5"
+          d={`M${innerX} ${innerY + innerH * 0.62}
+              L${innerX + innerW} ${innerY + innerH * 0.62}
+              L${innerX + innerW * 0.95} ${innerY + innerH * 0.68}
+              L${innerX + innerW * 0.05} ${innerY + innerH * 0.68}
+              Z`}
+          fill="none" stroke="#d4af37" strokeWidth="0.5"
         />
-        {/* Vase */}
+        {/* Bordure de table */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.05} ${innerY + innerH * 0.68}
+              L${innerX + innerW * 0.05} ${innerY + innerH * 0.72}
+              L${innerX + innerW * 0.95} ${innerY + innerH * 0.72}
+              L${innerX + innerW * 0.95} ${innerY + innerH * 0.68}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.3"
+        />
+        {/* Pieds de table */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.1} ${innerY + innerH * 0.72} L${innerX + innerW * 0.1} ${innerY + innerH * 0.95}
+              M${innerX + innerW * 0.9} ${innerY + innerH * 0.72} L${innerX + innerW * 0.9} ${innerY + innerH * 0.95}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.25"
+        />
+
+        {/* === NAPPE DRAPÉE ULTRA-DÉTAILLÉE === */}
+        <path
+          className="museum-element-detail stroke-short"
+          d={`M${innerX} ${innerY + innerH * 0.64}
+              Q${innerX + innerW * 0.08} ${innerY + innerH * 0.7} ${innerX + innerW * 0.15} ${innerY + innerH * 0.66}
+              Q${innerX + innerW * 0.22} ${innerY + innerH * 0.74} ${innerX + innerW * 0.28} ${innerY + innerH * 0.68}
+              Q${innerX + innerW * 0.35} ${innerY + innerH * 0.78} ${innerX + innerW * 0.42} ${innerY + innerH * 0.7}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.35"
+        />
+        {/* Plis de la nappe */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.1} ${innerY + innerH * 0.68}
+              Q${innerX + innerW * 0.12} ${innerY + innerH * 0.8} ${innerX + innerW * 0.1} ${innerY + innerH * 0.92}
+              M${innerX + innerW * 0.2} ${innerY + innerH * 0.7}
+              Q${innerX + innerW * 0.22} ${innerY + innerH * 0.82} ${innerX + innerW * 0.2} ${innerY + innerH * 0.95}
+              M${innerX + innerW * 0.32} ${innerY + innerH * 0.72}
+              Q${innerX + innerW * 0.34} ${innerY + innerH * 0.84} ${innerX + innerW * 0.32} ${innerY + innerH * 0.95}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.2" strokeOpacity="0.6"
+        />
+        {/* Frange de la nappe */}
+        <path
+          className="museum-element-micro stroke-micro"
+          d={`M${innerX + innerW * 0.05} ${innerY + innerH * 0.92} L${innerX + innerW * 0.05} ${innerY + innerH * 0.95}
+              M${innerX + innerW * 0.08} ${innerY + innerH * 0.92} L${innerX + innerW * 0.08} ${innerY + innerH * 0.95}
+              M${innerX + innerW * 0.11} ${innerY + innerH * 0.92} L${innerX + innerW * 0.11} ${innerY + innerH * 0.95}
+              M${innerX + innerW * 0.14} ${innerY + innerH * 0.93} L${innerX + innerW * 0.14} ${innerY + innerH * 0.95}
+              M${innerX + innerW * 0.17} ${innerY + innerH * 0.93} L${innerX + innerW * 0.17} ${innerY + innerH * 0.95}
+              M${innerX + innerW * 0.2} ${innerY + innerH * 0.94} L${innerX + innerW * 0.2} ${innerY + innerH * 0.95}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.1"
+        />
+
+        {/* === VASE ÉLÉGANT AVEC DÉTAILS === */}
+        {/* Corps du vase */}
         <path
           className="museum-element-detail stroke-medium"
-          d={`M${innerX + innerW * 0.35} ${innerY + innerH * 0.65}
-              Q${innerX + innerW * 0.3} ${innerY + innerH * 0.5} ${innerX + innerW * 0.35} ${innerY + innerH * 0.4}
-              L${innerX + innerW * 0.38} ${innerY + innerH * 0.35}
-              L${innerX + innerW * 0.42} ${innerY + innerH * 0.35}
-              L${innerX + innerW * 0.45} ${innerY + innerH * 0.4}
-              Q${innerX + innerW * 0.5} ${innerY + innerH * 0.5} ${innerX + innerW * 0.45} ${innerY + innerH * 0.65}`}
-          fill="none"
-          stroke="#d4af37"
-          strokeWidth="0.5"
+          d={`M${innerX + innerW * 0.28} ${innerY + innerH * 0.62}
+              Q${innerX + innerW * 0.22} ${innerY + innerH * 0.52} ${innerX + innerW * 0.25} ${innerY + innerH * 0.42}
+              Q${innerX + innerW * 0.27} ${innerY + innerH * 0.36} ${innerX + innerW * 0.3} ${innerY + innerH * 0.32}
+              L${innerX + innerW * 0.32} ${innerY + innerH * 0.28}
+              L${innerX + innerW * 0.38} ${innerY + innerH * 0.28}
+              L${innerX + innerW * 0.4} ${innerY + innerH * 0.32}
+              Q${innerX + innerW * 0.43} ${innerY + innerH * 0.36} ${innerX + innerW * 0.45} ${innerY + innerH * 0.42}
+              Q${innerX + innerW * 0.48} ${innerY + innerH * 0.52} ${innerX + innerW * 0.42} ${innerY + innerH * 0.62}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.5"
         />
-        {/* Fleurs */}
+        {/* Anses du vase */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.26} ${innerY + innerH * 0.42}
+              Q${innerX + innerW * 0.2} ${innerY + innerH * 0.4} ${innerX + innerW * 0.2} ${innerY + innerH * 0.48}
+              Q${innerX + innerW * 0.2} ${innerY + innerH * 0.54} ${innerX + innerW * 0.25} ${innerY + innerH * 0.52}
+              M${innerX + innerW * 0.44} ${innerY + innerH * 0.42}
+              Q${innerX + innerW * 0.5} ${innerY + innerH * 0.4} ${innerX + innerW * 0.5} ${innerY + innerH * 0.48}
+              Q${innerX + innerW * 0.5} ${innerY + innerH * 0.54} ${innerX + innerW * 0.45} ${innerY + innerH * 0.52}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.25"
+        />
+        {/* Motif sur le vase */}
+        <path
+          className="museum-element-micro stroke-micro"
+          d={`M${innerX + innerW * 0.28} ${innerY + innerH * 0.48}
+              Q${innerX + innerW * 0.32} ${innerY + innerH * 0.46} ${innerX + innerW * 0.35} ${innerY + innerH * 0.48}
+              Q${innerX + innerW * 0.38} ${innerY + innerH * 0.46} ${innerX + innerW * 0.42} ${innerY + innerH * 0.48}
+              M${innerX + innerW * 0.3} ${innerY + innerH * 0.54}
+              Q${innerX + innerW * 0.35} ${innerY + innerH * 0.52} ${innerX + innerW * 0.4} ${innerY + innerH * 0.54}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.12" strokeOpacity="0.6"
+        />
+
+        {/* === BOUQUET DE FLEURS ULTRA-DÉTAILLÉ === */}
+        {/* Tiges */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.35} ${innerY + innerH * 0.28}
+              L${innerX + innerW * 0.32} ${innerY + innerH * 0.15}
+              M${innerX + innerW * 0.35} ${innerY + innerH * 0.28}
+              L${innerX + innerW * 0.38} ${innerY + innerH * 0.12}
+              M${innerX + innerW * 0.35} ${innerY + innerH * 0.28}
+              L${innerX + innerW * 0.28} ${innerY + innerH * 0.18}
+              M${innerX + innerW * 0.35} ${innerY + innerH * 0.28}
+              L${innerX + innerW * 0.42} ${innerY + innerH * 0.16}
+              M${innerX + innerW * 0.35} ${innerY + innerH * 0.28}
+              L${innerX + innerW * 0.25} ${innerY + innerH * 0.22}
+              M${innerX + innerW * 0.35} ${innerY + innerH * 0.28}
+              L${innerX + innerW * 0.45} ${innerY + innerH * 0.2}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.2"
+        />
+        {/* Rose centrale */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.38} ${innerY + innerH * 0.12}
+              Q${innerX + innerW * 0.36} ${innerY + innerH * 0.08} ${innerX + innerW * 0.38} ${innerY + innerH * 0.06}
+              Q${innerX + innerW * 0.42} ${innerY + innerH * 0.04} ${innerX + innerW * 0.44} ${innerY + innerH * 0.08}
+              Q${innerX + innerW * 0.42} ${innerY + innerH * 0.1} ${innerX + innerW * 0.38} ${innerY + innerH * 0.12}
+              M${innerX + innerW * 0.37} ${innerY + innerH * 0.1}
+              Q${innerX + innerW * 0.39} ${innerY + innerH * 0.08} ${innerX + innerW * 0.41} ${innerY + innerH * 0.1}
+              M${innerX + innerW * 0.39} ${innerY + innerH * 0.09}
+              Q${innerX + innerW * 0.4} ${innerY + innerH * 0.07} ${innerX + innerW * 0.41} ${innerY + innerH * 0.09}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.2"
+        />
+        {/* Tulipe gauche */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.28} ${innerY + innerH * 0.18}
+              Q${innerX + innerW * 0.26} ${innerY + innerH * 0.14} ${innerX + innerW * 0.28} ${innerY + innerH * 0.1}
+              Q${innerX + innerW * 0.3} ${innerY + innerH * 0.08} ${innerX + innerW * 0.32} ${innerY + innerH * 0.1}
+              Q${innerX + innerW * 0.34} ${innerY + innerH * 0.14} ${innerX + innerW * 0.32} ${innerY + innerH * 0.18}
+              M${innerX + innerW * 0.29} ${innerY + innerH * 0.12} L${innerX + innerW * 0.31} ${innerY + innerH * 0.12}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.18"
+        />
+        {/* Tulipe droite */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.42} ${innerY + innerH * 0.16}
+              Q${innerX + innerW * 0.4} ${innerY + innerH * 0.12} ${innerX + innerW * 0.42} ${innerY + innerH * 0.08}
+              Q${innerX + innerW * 0.44} ${innerY + innerH * 0.06} ${innerX + innerW * 0.46} ${innerY + innerH * 0.08}
+              Q${innerX + innerW * 0.48} ${innerY + innerH * 0.12} ${innerX + innerW * 0.46} ${innerY + innerH * 0.16}
+              M${innerX + innerW * 0.43} ${innerY + innerH * 0.1} L${innerX + innerW * 0.45} ${innerY + innerH * 0.1}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.18"
+        />
+        {/* Feuilles */}
+        <path
+          className="museum-element-micro stroke-micro"
+          d={`M${innerX + innerW * 0.25} ${innerY + innerH * 0.22}
+              Q${innerX + innerW * 0.22} ${innerY + innerH * 0.2} ${innerX + innerW * 0.23} ${innerY + innerH * 0.16}
+              Q${innerX + innerW * 0.26} ${innerY + innerH * 0.18} ${innerX + innerW * 0.25} ${innerY + innerH * 0.22}
+              M${innerX + innerW * 0.45} ${innerY + innerH * 0.2}
+              Q${innerX + innerW * 0.48} ${innerY + innerH * 0.18} ${innerX + innerW * 0.47} ${innerY + innerH * 0.14}
+              Q${innerX + innerW * 0.44} ${innerY + innerH * 0.16} ${innerX + innerW * 0.45} ${innerY + innerH * 0.2}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.15"
+        />
+
+        {/* === FRUITS DÉTAILLÉS === */}
+        {/* Grande pomme */}
+        <ellipse
+          className="museum-element-detail stroke-short"
+          cx={innerX + innerW * 0.62}
+          cy={innerY + innerH * 0.56}
+          rx={innerW * 0.09}
+          ry={innerH * 0.06}
+          fill="none" stroke="#d4af37" strokeWidth="0.4"
+        />
+        <path
+          className="museum-element-micro stroke-micro"
+          d={`M${innerX + innerW * 0.62} ${innerY + innerH * 0.5}
+              L${innerX + innerW * 0.62} ${innerY + innerH * 0.48}
+              M${innerX + innerW * 0.6} ${innerY + innerH * 0.49}
+              Q${innerX + innerW * 0.58} ${innerY + innerH * 0.48} ${innerX + innerW * 0.57} ${innerY + innerH * 0.5}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.15"
+        />
+        {/* Reflet sur pomme */}
+        <path
+          className="museum-element-micro stroke-micro"
+          d={`M${innerX + innerW * 0.58} ${innerY + innerH * 0.54}
+              Q${innerX + innerW * 0.59} ${innerY + innerH * 0.52} ${innerX + innerW * 0.6} ${innerY + innerH * 0.54}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.1" strokeOpacity="0.5"
+        />
+
+        {/* Poire */}
         <path
           className="museum-element-detail stroke-short"
-          d={`M${innerX + innerW * 0.4} ${innerY + innerH * 0.35}
-              Q${innerX + innerW * 0.35} ${innerY + innerH * 0.25} ${innerX + innerW * 0.4} ${innerY + innerH * 0.18}
-              M${innerX + innerW * 0.4} ${innerY + innerH * 0.35}
-              Q${innerX + innerW * 0.45} ${innerY + innerH * 0.22} ${innerX + innerW * 0.5} ${innerY + innerH * 0.2}
-              M${innerX + innerW * 0.4} ${innerY + innerH * 0.35}
-              Q${innerX + innerW * 0.3} ${innerY + innerH * 0.28} ${innerX + innerW * 0.28} ${innerY + innerH * 0.22}`}
-          fill="none"
-          stroke="#d4af37"
-          strokeWidth="0.4"
+          d={`M${innerX + innerW * 0.75} ${innerY + innerH * 0.6}
+              Q${innerX + innerW * 0.7} ${innerY + innerH * 0.58} ${innerX + innerW * 0.72} ${innerY + innerH * 0.52}
+              Q${innerX + innerW * 0.74} ${innerY + innerH * 0.46} ${innerX + innerW * 0.76} ${innerY + innerH * 0.44}
+              Q${innerX + innerW * 0.78} ${innerY + innerH * 0.46} ${innerX + innerW * 0.8} ${innerY + innerH * 0.52}
+              Q${innerX + innerW * 0.82} ${innerY + innerH * 0.58} ${innerX + innerW * 0.77} ${innerY + innerH * 0.6}
+              Q${innerX + innerW * 0.76} ${innerY + innerH * 0.61} ${innerX + innerW * 0.75} ${innerY + innerH * 0.6}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.35"
         />
-        {/* Fruits */}
-        <circle
-          className="museum-element-detail stroke-short"
-          cx={innerX + innerW * 0.65}
-          cy={innerY + innerH * 0.58}
-          r={innerW * 0.08}
-          fill="none"
-          stroke="#d4af37"
-          strokeWidth="0.4"
+        <path
+          className="museum-element-micro stroke-micro"
+          d={`M${innerX + innerW * 0.76} ${innerY + innerH * 0.44}
+              L${innerX + innerW * 0.76} ${innerY + innerH * 0.42}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.15"
         />
-        <circle
-          className="museum-element-detail stroke-short"
-          cx={innerX + innerW * 0.75}
-          cy={innerY + innerH * 0.55}
-          r={innerW * 0.06}
-          fill="none"
-          stroke="#d4af37"
-          strokeWidth="0.4"
+
+        {/* Grappe de raisin */}
+        <g>
+          <circle className="museum-element-micro stroke-micro" cx={innerX + innerW * 0.85} cy={innerY + innerH * 0.52} r={innerW * 0.018} fill="none" stroke="#d4af37" strokeWidth="0.15" />
+          <circle className="museum-element-micro stroke-micro" cx={innerX + innerW * 0.88} cy={innerY + innerH * 0.53} r={innerW * 0.018} fill="none" stroke="#d4af37" strokeWidth="0.15" />
+          <circle className="museum-element-micro stroke-micro" cx={innerX + innerW * 0.865} cy={innerY + innerH * 0.56} r={innerW * 0.018} fill="none" stroke="#d4af37" strokeWidth="0.15" />
+          <circle className="museum-element-micro stroke-micro" cx={innerX + innerW * 0.84} cy={innerY + innerH * 0.55} r={innerW * 0.018} fill="none" stroke="#d4af37" strokeWidth="0.15" />
+          <circle className="museum-element-micro stroke-micro" cx={innerX + innerW * 0.89} cy={innerY + innerH * 0.57} r={innerW * 0.018} fill="none" stroke="#d4af37" strokeWidth="0.15" />
+          <circle className="museum-element-micro stroke-micro" cx={innerX + innerW * 0.855} cy={innerY + innerH * 0.59} r={innerW * 0.018} fill="none" stroke="#d4af37" strokeWidth="0.15" />
+          <path className="museum-element-micro stroke-micro" d={`M${innerX + innerW * 0.865} ${innerY + innerH * 0.5} L${innerX + innerW * 0.865} ${innerY + innerH * 0.48}`} fill="none" stroke="#d4af37" strokeWidth="0.12" />
+        </g>
+
+        {/* === COUTEAU === */}
+        <path
+          className="museum-element-micro stroke-tiny"
+          d={`M${innerX + innerW * 0.55} ${innerY + innerH * 0.6}
+              L${innerX + innerW * 0.52} ${innerY + innerH * 0.58}
+              L${innerX + innerW * 0.54} ${innerY + innerH * 0.56}
+              L${innerX + innerW * 0.62} ${innerY + innerH * 0.58}
+              M${innerX + innerW * 0.62} ${innerY + innerH * 0.58}
+              L${innerX + innerW * 0.68} ${innerY + innerH * 0.56}
+              L${innerX + innerW * 0.7} ${innerY + innerH * 0.58}
+              L${innerX + innerW * 0.62} ${innerY + innerH * 0.6}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.2"
         />
-        {/* Nappe drapée */}
+
+        {/* === VERRE À VIN === */}
         <path
           className="museum-element-detail stroke-short"
-          d={`M${innerX} ${innerY + innerH * 0.68}
-              Q${innerX + innerW * 0.1} ${innerY + innerH * 0.75} ${innerX + innerW * 0.2} ${innerY + innerH * 0.7}
-              Q${innerX + innerW * 0.3} ${innerY + innerH * 0.8} ${innerX + innerW * 0.4} ${innerY + innerH * 0.72}`}
-          fill="none"
-          stroke="#d4af37"
-          strokeWidth="0.3"
-          strokeOpacity="0.6"
+          d={`M${innerX + innerW * 0.88} ${innerY + innerH * 0.62}
+              L${innerX + innerW * 0.88} ${innerY + innerH * 0.5}
+              M${innerX + innerW * 0.85} ${innerY + innerH * 0.5}
+              Q${innerX + innerW * 0.84} ${innerY + innerH * 0.42} ${innerX + innerW * 0.86} ${innerY + innerH * 0.36}
+              Q${innerX + innerW * 0.88} ${innerY + innerH * 0.32} ${innerX + innerW * 0.9} ${innerY + innerH * 0.36}
+              Q${innerX + innerW * 0.92} ${innerY + innerH * 0.42} ${innerX + innerW * 0.91} ${innerY + innerH * 0.5}
+              M${innerX + innerW * 0.85} ${innerY + innerH * 0.62}
+              L${innerX + innerW * 0.91} ${innerY + innerH * 0.62}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.3"
+        />
+        {/* Vin dans le verre */}
+        <path
+          className="museum-element-micro stroke-micro"
+          d={`M${innerX + innerW * 0.855} ${innerY + innerH * 0.44}
+              Q${innerX + innerW * 0.88} ${innerY + innerH * 0.42} ${innerX + innerW * 0.905} ${innerY + innerH * 0.44}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.15" strokeOpacity="0.6"
         />
       </g>
     ),
@@ -412,7 +998,7 @@ const PaintingContent = ({ width, height, type = 'landscape' }) => {
 const GreekAmphora = ({ x, y, scale = 1, delay = 0, pattern = 'geometric' }) => (
   <g
     transform={`translate(${x}, ${y}) scale(${scale})`}
-    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '0.5s' }}
+    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '2.8s' }}
     className="museum-decor-container"
   >
     {/* === CORPS PRINCIPAL AVEC DOUBLE CONTOUR === */}
@@ -457,7 +1043,7 @@ const GreekAmphora = ({ x, y, scale = 1, delay = 0, pattern = 'geometric' }) => 
 
     {/* === MOTIFS GÉOMÉTRIQUES - MÉANDRE COMPLEXE === */}
     {pattern === 'geometric' && (
-      <g style={{ '--draw-delay': `${delay + 0.15}s` }}>
+      <g style={{ '--draw-delay': `${delay + 0.8}s` }}>
         {/* Méandre zone haute */}
         {[...Array(5)].map((_, i) => (
           <path
@@ -492,7 +1078,7 @@ const GreekAmphora = ({ x, y, scale = 1, delay = 0, pattern = 'geometric' }) => 
 
     {/* === MOTIFS FIGURATIFS - SCÈNE MYTHOLOGIQUE === */}
     {pattern === 'figures' && (
-      <g style={{ '--draw-delay': `${delay + 0.15}s` }}>
+      <g style={{ '--draw-delay': `${delay + 0.8}s` }}>
         {/* Guerrier avec bouclier et lance */}
         <path className="museum-element-detail stroke-short" d="M16 95 Q18 92 20 95 Q18 98 16 95" fill="none" stroke="#d4af37" strokeWidth="0.4" />
         <path className="museum-element-micro stroke-tiny" d="M18 98 L18 108 M16 108 L18 118 L17 128 M20 108 L18 118 L19 128 M14 105 L22 105 M18 100 L12 100 L12 110 L14 108 M22 102 L26 98 L26 130" fill="none" stroke="#d4af37" strokeWidth="0.3" />
@@ -746,7 +1332,7 @@ const GreekStatue = ({ x, y, scale = 1, delay = 0, type = 'venus' }) => {
   return (
     <g
       transform={`translate(${x}, ${y}) scale(${scale})`}
-      style={{ '--draw-delay': `${delay}s`, '--draw-duration': '0.6s' }}
+      style={{ '--draw-delay': `${delay}s`, '--draw-duration': '3.2s' }}
       className="museum-decor-container"
     >
       {statues[type] || statues.venus}
@@ -764,7 +1350,7 @@ const GreekMeander = ({ x, y, width = 200, delay = 0 }) => {
   return (
     <g
       transform={`translate(${x}, ${y})`}
-      style={{ '--draw-delay': `${delay}s`, '--draw-duration': '0.4s' }}
+      style={{ '--draw-delay': `${delay}s`, '--draw-duration': '2.2s' }}
     >
       {/* Bordures avec moulures */}
       <line className="museum-element stroke-medium" x1="-2" y1="-2" x2={width + 2} y2="-2" stroke="#d4af37" strokeWidth="0.8" />
@@ -774,7 +1360,7 @@ const GreekMeander = ({ x, y, width = 200, delay = 0 }) => {
 
       {/* Motif méandre précis répété */}
       {[...Array(repeatCount)].map((_, i) => (
-        <g key={i} style={{ '--draw-delay': `${delay + i * 0.02}s` }}>
+        <g key={i} style={{ '--draw-delay': `${delay + i * 0.08}s` }}>
           {/* Méandre principal - clé grecque */}
           <path
             className="museum-element-detail stroke-short"
@@ -821,7 +1407,7 @@ const GreekMeander = ({ x, y, width = 200, delay = 0 }) => {
 const LaurelWreath = ({ x, y, scale = 1, delay = 0 }) => (
   <g
     transform={`translate(${x}, ${y}) scale(${scale})`}
-    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '0.5s' }}
+    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '2.6s' }}
     className="museum-decor-container"
   >
     {/* Branche gauche */}
@@ -885,7 +1471,7 @@ const LaurelWreath = ({ x, y, scale = 1, delay = 0 }) => (
 const OrnateCandelabra = ({ x, y, scale = 1, delay = 0 }) => (
   <g
     transform={`translate(${x}, ${y}) scale(${scale})`}
-    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '0.5s' }}
+    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '2.6s' }}
   >
     {/* Base */}
     <path
@@ -995,7 +1581,7 @@ const OrnateCandelabra = ({ x, y, scale = 1, delay = 0 }) => (
 const DecorativeRosette = ({ x, y, scale = 1, delay = 0 }) => (
   <g
     transform={`translate(${x}, ${y}) scale(${scale})`}
-    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '0.4s' }}
+    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '2.2s' }}
   >
     {/* Cercles concentriques multiples */}
     <circle className="museum-element stroke-medium" cx="30" cy="30" r="29" fill="none" stroke="#d4af37" strokeWidth="0.9" />
@@ -1016,7 +1602,7 @@ const DecorativeRosette = ({ x, y, scale = 1, delay = 0 }) => (
       const cy2 = 30 + Math.sin(angle - 0.25) * 15;
 
       return (
-        <g key={i} style={{ '--draw-delay': `${delay + i * 0.015}s` }}>
+        <g key={i} style={{ '--draw-delay': `${delay + i * 0.08}s` }}>
           <path
             className="museum-element-detail stroke-short"
             d={`M${x1} ${y1} Q${cx1} ${cy1} ${x2} ${y2} Q${cx2} ${cy2} ${x1} ${y1}`}
@@ -1050,7 +1636,7 @@ const DecorativeRosette = ({ x, y, scale = 1, delay = 0 }) => (
           className="museum-element-micro stroke-tiny"
           d={`M${x1} ${y1} Q${cx1} ${cy1} ${x2} ${y2} Q${cx2} ${cy2} ${x1} ${y1}`}
           fill="none" stroke="#d4af37" strokeWidth="0.3"
-          style={{ '--draw-delay': `${delay + 0.2 + i * 0.01}s` }}
+          style={{ '--draw-delay': `${delay + 1.0 + i * 0.06}s` }}
         />
       );
     })}
@@ -1111,71 +1697,71 @@ const CabinetBackground = () => {
 
         {/* ===== COLONNES IONIQUES ===== */}
         {/* Colonne gauche */}
-        <IonicColumn x={50} y={300} scale={1.2} delay={0.05} />
+        <IonicColumn x={50} y={300} scale={1.2} delay={0.2} />
         {/* Colonne droite (miroir) */}
-        <IonicColumn x={1820} y={300} scale={1.2} delay={0.1} mirror={true} />
+        <IonicColumn x={1820} y={300} scale={1.2} delay={0.5} mirror={true} />
 
         {/* ===== FRISES MÉANDRES ===== */}
         {/* Frise supérieure */}
-        <GreekMeander x={200} y={80} width={400} delay={0.15} />
-        <GreekMeander x={1320} y={80} width={400} delay={0.18} />
+        <GreekMeander x={200} y={80} width={400} delay={0.8} />
+        <GreekMeander x={1320} y={80} width={400} delay={1.0} />
         {/* Frise inférieure */}
-        <GreekMeander x={300} y={980} width={500} delay={0.2} />
-        <GreekMeander x={1120} y={980} width={500} delay={0.22} />
+        <GreekMeander x={300} y={980} width={500} delay={1.2} />
+        <GreekMeander x={1120} y={980} width={500} delay={1.4} />
 
         {/* ===== CADRES/TABLEAUX 18ÈME SIÈCLE ===== */}
         {/* Grand tableau central - paysage */}
-        <BaroqueFrame x={700} y={120} width={180} height={220} delay={0.25}>
+        <BaroqueFrame x={700} y={120} width={180} height={220} delay={1.6}>
           <PaintingContent width={180} height={220} type="landscape" />
         </BaroqueFrame>
 
         {/* Tableau portrait - côté gauche */}
-        <BaroqueFrame x={250} y={180} width={140} height={180} delay={0.3}>
+        <BaroqueFrame x={250} y={180} width={140} height={180} delay={2.0}>
           <PaintingContent width={140} height={180} type="portrait" />
         </BaroqueFrame>
 
         {/* Tableau nature morte - côté droit */}
-        <BaroqueFrame x={1530} y={180} width={140} height={180} delay={0.32}>
+        <BaroqueFrame x={1530} y={180} width={140} height={180} delay={2.4}>
           <PaintingContent width={140} height={180} type="stillLife" />
         </BaroqueFrame>
 
         {/* Petit cadre décoratif */}
-        <BaroqueFrame x={1050} y={150} width={100} height={130} delay={0.35}>
+        <BaroqueFrame x={1050} y={150} width={100} height={130} delay={2.8}>
           <PaintingContent width={100} height={130} type="portrait" />
         </BaroqueFrame>
 
         {/* ===== AMPHORES GRECQUES ===== */}
         {/* Amphore gauche avec motifs géométriques */}
-        <GreekAmphora x={180} y={600} scale={1.1} delay={0.4} pattern="geometric" />
+        <GreekAmphora x={180} y={600} scale={1.1} delay={3.2} pattern="geometric" />
         {/* Amphore droite avec figures */}
-        <GreekAmphora x={1680} y={620} scale={1} delay={0.42} pattern="figures" />
+        <GreekAmphora x={1680} y={620} scale={1} delay={3.6} pattern="figures" />
         {/* Petite amphore centrale */}
-        <GreekAmphora x={920} y={720} scale={0.7} delay={0.45} pattern="geometric" />
+        <GreekAmphora x={920} y={720} scale={0.7} delay={4.0} pattern="geometric" />
 
         {/* ===== STATUES GRECQUES ===== */}
         {/* Vénus - grande statue gauche */}
-        <GreekStatue x={350} y={480} scale={1.3} delay={0.48} type="venus" />
+        <GreekStatue x={350} y={480} scale={1.3} delay={4.4} type="venus" />
         {/* Buste romain - droite */}
-        <GreekStatue x={1450} y={520} scale={1.2} delay={0.5} type="bust" />
+        <GreekStatue x={1450} y={520} scale={1.2} delay={4.8} type="bust" />
 
         {/* ===== COURONNES DE LAURIER ===== */}
-        <LaurelWreath x={580} y={60} scale={0.8} delay={0.52} />
-        <LaurelWreath x={1260} y={60} scale={0.8} delay={0.54} />
+        <LaurelWreath x={580} y={60} scale={0.8} delay={5.2} />
+        <LaurelWreath x={1260} y={60} scale={0.8} delay={5.5} />
 
         {/* ===== CANDÉLABRES ===== */}
-        <OrnateCandelabra x={480} y={700} scale={1} delay={0.56} />
-        <OrnateCandelabra x={1380} y={700} scale={1} delay={0.58} />
+        <OrnateCandelabra x={480} y={700} scale={1} delay={5.8} />
+        <OrnateCandelabra x={1380} y={700} scale={1} delay={6.2} />
 
         {/* ===== ROSACES DÉCORATIVES ===== */}
-        <DecorativeRosette x={100} y={150} scale={0.8} delay={0.6} />
-        <DecorativeRosette x={1760} y={150} scale={0.8} delay={0.62} />
-        <DecorativeRosette x={600} y={450} scale={0.6} delay={0.64} />
-        <DecorativeRosette x={1250} y={450} scale={0.6} delay={0.66} />
+        <DecorativeRosette x={100} y={150} scale={0.8} delay={6.6} />
+        <DecorativeRosette x={1760} y={150} scale={0.8} delay={6.9} />
+        <DecorativeRosette x={600} y={450} scale={0.6} delay={7.2} />
+        <DecorativeRosette x={1250} y={450} scale={0.6} delay={7.5} />
 
         {/* ===== ÉLÉMENTS DÉCORATIFS SUPPLÉMENTAIRES ===== */}
         {/* Petites colonnes décoratives */}
-        <IonicColumn x={550} y={550} scale={0.5} delay={0.68} />
-        <IonicColumn x={1320} y={550} scale={0.5} delay={0.7} />
+        <IonicColumn x={550} y={550} scale={0.5} delay={7.8} />
+        <IonicColumn x={1320} y={550} scale={0.5} delay={8.2} />
 
         {/* Lignes décoratives fines */}
         <line
@@ -1187,7 +1773,7 @@ const CabinetBackground = () => {
           stroke="#d4af37"
           strokeWidth="0.5"
           strokeOpacity="0.4"
-          style={{ '--draw-delay': '0.72s', '--draw-duration': '0.3s' }}
+          style={{ '--draw-delay': '8.5s', '--draw-duration': '1.5s' }}
         />
         <line
           className="museum-element stroke-medium"
@@ -1198,7 +1784,7 @@ const CabinetBackground = () => {
           stroke="#d4af37"
           strokeWidth="0.5"
           strokeOpacity="0.4"
-          style={{ '--draw-delay': '0.74s', '--draw-duration': '0.3s' }}
+          style={{ '--draw-delay': '8.8s', '--draw-duration': '1.5s' }}
         />
       </svg>
 

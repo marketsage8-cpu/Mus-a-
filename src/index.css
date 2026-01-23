@@ -285,3 +285,153 @@ input:focus-visible {
   opacity: 0.03;
   pointer-events: none;
 }
+
+/* ===== Pattern Movement Animations ===== */
+
+/* Floating animation - gentle vertical drift */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8px) rotate(0.5deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-8px) rotate(-0.5deg);
+  }
+}
+
+/* Slow drift animation - horizontal movement */
+@keyframes drift {
+  0%, 100% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(10px) translateY(-5px);
+  }
+  50% {
+    transform: translateX(15px) translateY(0);
+  }
+  75% {
+    transform: translateX(10px) translateY(5px);
+  }
+}
+
+/* Gentle rotation animation */
+@keyframes gentle-rotate {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(2deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-2deg);
+  }
+}
+
+/* Subtle scale pulsation */
+@keyframes scale-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 0.75;
+  }
+}
+
+/* Golden glow animation */
+@keyframes golden-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(212, 175, 55, 0.3));
+    opacity: 0.5;
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));
+    opacity: 0.7;
+  }
+}
+
+/* Sparkle effect */
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+}
+
+/* Slow wave motion */
+@keyframes wave {
+  0%, 100% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+  33% {
+    transform: translateX(5px) translateY(-10px) rotate(1deg);
+  }
+  66% {
+    transform: translateX(-5px) translateY(-5px) rotate(-1deg);
+  }
+}
+
+/* Pattern animation classes */
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float 12s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-drift {
+  animation: drift 15s ease-in-out infinite;
+}
+
+.animate-drift-slow {
+  animation: drift 20s ease-in-out infinite;
+}
+
+.animate-gentle-rotate {
+  animation: gentle-rotate 10s ease-in-out infinite;
+}
+
+.animate-scale-pulse {
+  animation: scale-pulse 6s ease-in-out infinite;
+}
+
+.animate-golden-glow {
+  animation: golden-glow 4s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 3s ease-in-out infinite;
+}
+
+.animate-wave {
+  animation: wave 10s ease-in-out infinite;
+}
+
+/* Animation delay utilities */
+.animation-delay-1 { animation-delay: 0.5s; }
+.animation-delay-2 { animation-delay: 1s; }
+.animation-delay-3 { animation-delay: 1.5s; }
+.animation-delay-4 { animation-delay: 2s; }
+.animation-delay-5 { animation-delay: 2.5s; }
+.animation-delay-6 { animation-delay: 3s; }
+.animation-delay-7 { animation-delay: 4s; }
+.animation-delay-8 { animation-delay: 5s; }

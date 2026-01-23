@@ -435,3 +435,60 @@ input:focus-visible {
 .animation-delay-6 { animation-delay: 3s; }
 .animation-delay-7 { animation-delay: 4s; }
 .animation-delay-8 { animation-delay: 5s; }
+
+/* ===== Image Reveal Animation ===== */
+
+/* Clip-path reveal from left to right - like drawing */
+@keyframes reveal-left-to-right {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+/* Alternative: mask-based reveal with gradient edge */
+@keyframes reveal-mask-left-to-right {
+  0% {
+    -webkit-mask-position: -100% 0;
+    mask-position: -100% 0;
+  }
+  100% {
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+  }
+}
+
+/* Reveal animation class */
+.animate-reveal {
+  animation: reveal-left-to-right 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Mask-based reveal with soft edge for drawing effect */
+.animate-reveal-mask {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    black 0%,
+    black 40%,
+    transparent 60%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    black 0%,
+    black 40%,
+    transparent 60%,
+    transparent 100%
+  );
+  -webkit-mask-size: 300% 100%;
+  mask-size: 300% 100%;
+  -webkit-mask-position: -100% 0;
+  mask-position: -100% 0;
+  animation: reveal-mask-left-to-right 3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}

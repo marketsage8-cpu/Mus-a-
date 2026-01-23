@@ -20,7 +20,7 @@ function App() {
   return (
     <UserProvider>
       <Router>
-        <div className="min-h-screen font-body text-amber-50 relative" style={{ zIndex: 1 }}>
+        <div className="min-h-screen font-body text-amber-50 relative bg-night-950" style={{ zIndex: 1 }}>
           {/* Header navigation */}
           <Navigation />
 

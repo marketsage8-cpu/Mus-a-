@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
-  MapPin, Heart, Settings,
-  Trophy, Sparkles, Calendar
+  MapPin, Heart, Settings, User, Bookmark,
+  Trophy, Sparkles, Calendar, Bell, Shield, Globe, Moon, ChevronRight
 } from 'lucide-react';
 import { useUser } from '../context/UserContext';
 import PlaceDetailModal from '../components/modals/PlaceDetailModal';
@@ -38,12 +38,63 @@ const InterestTag = ({ interest }) => (
 );
 
 /**
+ * Option de paramètre avec toggle ou chevron
+ */
+const SettingOption = ({ icon: Icon, label, description, hasToggle, isEnabled, onToggle, onClick }) => (
+  <button
+    onClick={onClick || onToggle}
+    className="w-full flex items-center gap-4 p-4 bg-night-800/30 hover:bg-night-800/50 border border-night-700/30 rounded-xl transition-all group"
+  >
+    <div className="p-2.5 rounded-xl bg-gold-500/10 border border-gold-500/20">
+      <Icon className="w-5 h-5 text-gold-400" />
+    </div>
+    <div className="flex-1 text-left">
+      <h4 className="text-sand-200 font-medium">{label}</h4>
+      {description && <p className="text-sand-500 text-sm">{description}</p>}
+    </div>
+    {hasToggle ? (
+      <div
+        className={`w-12 h-6 rounded-full transition-all ${isEnabled ? 'bg-gold-500' : 'bg-night-700'}`}
+        onClick={(e) => { e.stopPropagation(); onToggle?.(); }}
+      >
+        <div className={`w-5 h-5 rounded-full bg-white shadow-md transform transition-transform mt-0.5 ${isEnabled ? 'translate-x-6' : 'translate-x-0.5'}`} />
+      </div>
+    ) : (
+      <ChevronRight className="w-5 h-5 text-sand-500 group-hover:text-gold-400 transition-colors" />
+    )}
+  </button>
+);
+
+/**
  * Page de profil - Design condensé et élégant
  * Présentation sobre pour permettre aux visiteurs de voir l'essentiel rapidement
  */
 const ProfilePage = () => {
   const { userData, stats, userBadges, setUserData } = useUser();
   const [selectedPlace, setSelectedPlace] = useState(null);
+  const [activeTab, setActiveTab] = useState('profil'); // 'profil', 'favoris', 'parametres'
+  const [showUnderline, setShowUnderline] = useState(true);
+  const [selectedSetting, setSelectedSetting] = useState(null);
+
+  // Paramètres toggles
+  const [notifications, setNotifications] = useState(true);
+  const [darkMode, setDarkMode] = useState(true);
+  const [locationEnabled, setLocationEnabled] = useState(true);
+
+  // Gérer la barre sous les onglets - disparaît dans paramètres, réapparaît sur sélection
+  useEffect(() => {
+    if (activeTab === 'parametres') {
+      setShowUnderline(false);
+    } else {
+      setShowUnderline(true);
+    }
+  }, [activeTab]);
+
+  // Quand on sélectionne un paramètre, la barre réapparaît
+  const handleSettingClick = (settingId) => {
+    setSelectedSetting(settingId === selectedSetting ? null : settingId);
+    setShowUnderline(true);
+  };
 
   // Données du profil
   const userProfile = {
@@ -72,12 +123,60 @@ const ProfilePage = () => {
     }));
   };
 
+  // Onglets disponibles
+  const tabs = [
+    { id: 'profil', label: 'Profil', icon: User },
+    { id: 'favoris', label: 'Favoris', icon: Bookmark },
+    { id: 'parametres', label: 'Paramètres', icon: Settings }
+  ];
+
   return (
     <div className="relative min-h-screen">
       <ProfileBackground />
 
       <div className="relative z-10 pb-24 md:pb-8">
-        {/* Carte de profil principale */}
+        {/* Onglets avec barre animée */}
+        <div className="sticky top-16 z-20 bg-night-950/80 backdrop-blur-xl border-b border-night-800/50">
+          <div className="max-w-2xl mx-auto px-6">
+            <div className="flex items-center justify-center gap-2 py-3 relative">
+              {tabs.map((tab) => {
+                const Icon = tab.icon;
+                const isActive = activeTab === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => {
+                      setActiveTab(tab.id);
+                      setSelectedSetting(null);
+                    }}
+                    className={`
+                      flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm
+                      transition-all duration-300
+                      ${isActive
+                        ? 'text-gold-400'
+                        : 'text-sand-400 hover:text-sand-200'
+                      }
+                    `}
+                  >
+                    <Icon className="w-4 h-4" />
+                    {tab.label}
+                  </button>
+                );
+              })}
+            </div>
+            {/* Barre sous les onglets - disparaît/réapparaît */}
+            <div
+              className={`
+                h-0.5 bg-gradient-to-r from-transparent via-gold-500 to-transparent
+                transition-all duration-500 ease-in-out
+                ${showUnderline ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}
+              `}
+            />
+          </div>
+        </div>
+
+        {/* Contenu selon l'onglet actif */}
+        {activeTab === 'profil' && (
         <div className="max-w-2xl mx-auto px-6 pt-10">
           <div className="bg-gradient-to-br from-night-800/70 to-night-900/50 backdrop-blur-xl border border-night-700/50 rounded-3xl p-8 shadow-2xl">
 
@@ -181,6 +280,106 @@ const ProfilePage = () => {
             </div>
           </div>
         </div>
+        )}
+
+        {/* Onglet Favoris */}
+        {activeTab === 'favoris' && (
+          <div className="max-w-2xl mx-auto px-6 pt-10">
+            <div className="bg-gradient-to-br from-night-800/70 to-night-900/50 backdrop-blur-xl border border-night-700/50 rounded-3xl p-8 shadow-2xl">
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <Heart className="w-6 h-6 text-gold-400" />
+                <h2 className="font-display text-2xl font-bold text-sand-100">Mes Favoris</h2>
+              </div>
+              <p className="text-center text-sand-400 mb-6">
+                Vous avez {stats.totalFavorites} lieu{stats.totalFavorites > 1 ? 'x' : ''} en favoris.
+              </p>
+              <div className="flex justify-center">
+                <a
+                  href="/favoris"
+                  className="px-6 py-3 bg-gradient-to-r from-gold-500 to-gold-600 text-night-950 rounded-xl font-semibold hover:from-gold-400 hover:to-gold-500 transition-all"
+                >
+                  Voir tous mes favoris
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Onglet Paramètres */}
+        {activeTab === 'parametres' && (
+          <div className="max-w-2xl mx-auto px-6 pt-10 pb-8">
+            <div className="space-y-4">
+              {/* Section Compte */}
+              <div className="bg-gradient-to-br from-night-800/50 to-night-900/30 backdrop-blur-lg border border-night-700/40 rounded-2xl p-6">
+                <h3 className="text-sand-300 text-sm uppercase tracking-widest mb-4">Compte</h3>
+                <div className="space-y-3">
+                  <SettingOption
+                    icon={User}
+                    label="Modifier le profil"
+                    description="Nom, photo, bio"
+                    onClick={() => handleSettingClick('profile')}
+                  />
+                  <SettingOption
+                    icon={Shield}
+                    label="Confidentialité"
+                    description="Gérer vos données"
+                    onClick={() => handleSettingClick('privacy')}
+                  />
+                </div>
+              </div>
+
+              {/* Section Préférences */}
+              <div className="bg-gradient-to-br from-night-800/50 to-night-900/30 backdrop-blur-lg border border-night-700/40 rounded-2xl p-6">
+                <h3 className="text-sand-300 text-sm uppercase tracking-widest mb-4">Préférences</h3>
+                <div className="space-y-3">
+                  <SettingOption
+                    icon={Bell}
+                    label="Notifications"
+                    description="Alertes et rappels"
+                    hasToggle
+                    isEnabled={notifications}
+                    onToggle={() => {
+                      setNotifications(!notifications);
+                      handleSettingClick('notifications');
+                    }}
+                  />
+                  <SettingOption
+                    icon={Moon}
+                    label="Mode sombre"
+                    description="Apparence de l'application"
+                    hasToggle
+                    isEnabled={darkMode}
+                    onToggle={() => {
+                      setDarkMode(!darkMode);
+                      handleSettingClick('darkmode');
+                    }}
+                  />
+                  <SettingOption
+                    icon={Globe}
+                    label="Géolocalisation"
+                    description="Lieux à proximité"
+                    hasToggle
+                    isEnabled={locationEnabled}
+                    onToggle={() => {
+                      setLocationEnabled(!locationEnabled);
+                      handleSettingClick('location');
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Indicateur de sélection */}
+              {selectedSetting && (
+                <div className="text-center py-4 animate-fade-in">
+                  <p className="text-gold-400 text-sm">
+                    <Sparkles className="w-4 h-4 inline mr-2" />
+                    Paramètre "{selectedSetting}" sélectionné
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
 
       <PlaceDetailModal

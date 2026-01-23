@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Zap, MapPin, Clock, Footprints, Car, Heart, ChevronLeft, ChevronRight, Calendar, Euro, X, Landmark, Castle, Palette } from 'lucide-react';
+import { Search, Zap, MapPin, Clock, Footprints, Car, Heart, ChevronLeft, ChevronRight, Calendar, Euro, X, Landmark, Castle, Palette, Star } from 'lucide-react';
 import { places } from '../data/places';
 import InteractiveMap from '../components/map/InteractiveMap';
 import { useUser } from '../context/UserContext';
 import CabinetBackground from '../components/backgrounds/CabinetBackground';
 import ChateauBackground from '../components/backgrounds/ChateauBackground';
 import ExpositionBackground from '../components/backgrounds/ExpositionBackground';
+import PlaceDetailModal from '../components/modals/PlaceDetailModal';
 
 /**
  * Page d'accueil avec hero, carte floue et section Musea Now
@@ -19,6 +20,10 @@ const HomePage = () => {
   const [nearbyPlaces, setNearbyPlaces] = useState([]);
   const [selectedBentoCard, setSelectedBentoCard] = useState(null);
   const [activeCategory, setActiveCategory] = useState('musée'); // 'musée', 'château', 'exposition'
+  const [searchResults, setSearchResults] = useState([]);
+  const [showSearchResults, setShowSearchResults] = useState(false);
+  const [selectedPlace, setSelectedPlace] = useState(null);
+  const searchRef = useRef(null);
 
   // Catégories pour Muzea Now
   const categories = [
@@ -147,11 +152,46 @@ const HomePage = () => {
     }
   };
 
+  // Filtrer les lieux selon la recherche
+  useEffect(() => {
+    if (searchQuery.trim().length >= 2) {
+      const query = searchQuery.toLowerCase();
+      const filtered = places.filter(place =>
+        place.name.toLowerCase().includes(query) ||
+        place.location.toLowerCase().includes(query) ||
+        place.type.toLowerCase().includes(query)
+      ).slice(0, 8); // Limiter à 8 résultats
+      setSearchResults(filtered);
+      setShowSearchResults(true);
+    } else {
+      setSearchResults([]);
+      setShowSearchResults(false);
+    }
+  }, [searchQuery]);
+
+  // Fermer les résultats quand on clique ailleurs
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setShowSearchResults(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       navigate(`/explore?search=${encodeURIComponent(searchQuery)}`);
     }
+  };
+
+  // Sélectionner un lieu depuis les résultats de recherche
+  const handleSelectSearchResult = (place) => {
+    setSelectedPlace(place);
+    setShowSearchResults(false);
+    setSearchQuery('');
   };
 
   // Carousel 3D navigation
@@ -263,32 +303,95 @@ const HomePage = () => {
               Musées, expositions et lieux culturels, visibles en temps réel autour de vous.
             </p>
 
-            {/* Search bar - white */}
-            <form
-              onSubmit={handleSearch}
+            {/* Search bar - white avec autocomplétion */}
+            <div
+              ref={searchRef}
               className="relative max-w-xl mx-auto mb-6 animate-slide-up"
               style={{ animationDelay: '200ms' }}
             >
-              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Rechercher un site, musée..."
-                className="
-                  w-full
-                  py-4 px-6 pl-14
-                  bg-white
-                  rounded-full
-                  text-gray-800
-                  placeholder-gray-400
-                  shadow-lg
-                  focus:outline-none
-                  focus:ring-2 focus:ring-[#d4a574]/50
-                  transition-all
-                "
-              />
-            </form>
+              <form onSubmit={handleSearch}>
+                <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 z-10" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onFocus={() => searchQuery.length >= 2 && setShowSearchResults(true)}
+                  placeholder="Rechercher un musée, château..."
+                  className={`
+                    w-full
+                    py-4 px-6 pl-14
+                    bg-white
+                    ${showSearchResults && searchResults.length > 0 ? 'rounded-t-3xl rounded-b-none' : 'rounded-full'}
+                    text-gray-800
+                    placeholder-gray-400
+                    shadow-lg
+                    focus:outline-none
+                    focus:ring-2 focus:ring-[#d4a574]/50
+                    transition-all
+                  `}
+                />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSearchQuery('');
+                      setShowSearchResults(false);
+                    }}
+                    className="absolute right-5 top-1/2 -translate-y-1/2 p-1 hover:bg-gray-100 rounded-full transition-colors"
+                  >
+                    <X className="w-4 h-4 text-gray-400" />
+                  </button>
+                )}
+              </form>
+
+              {/* Dropdown des résultats de recherche */}
+              {showSearchResults && searchResults.length > 0 && (
+                <div className="absolute top-full left-0 right-0 bg-white rounded-b-3xl shadow-2xl overflow-hidden z-50 border-t border-gray-100">
+                  {searchResults.map((place) => (
+                    <button
+                      key={place.id}
+                      onClick={() => handleSelectSearchResult(place)}
+                      className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors text-left border-b border-gray-50 last:border-b-0"
+                    >
+                      <img
+                        src={place.image}
+                        alt={place.name}
+                        className="w-14 h-14 rounded-xl object-cover"
+                      />
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-gray-800 font-semibold truncate">{place.name}</h4>
+                        <p className="text-gray-500 text-sm flex items-center gap-1 truncate">
+                          <MapPin className="w-3 h-3 flex-shrink-0" />
+                          {place.location}
+                        </p>
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className={`
+                            px-2 py-0.5 text-xs rounded-full capitalize
+                            ${place.type === 'musée' ? 'bg-turquoise-100 text-turquoise-700' :
+                              place.type === 'château' ? 'bg-amber-100 text-amber-700' :
+                              place.type === 'monument' ? 'bg-terracotta-100 text-terracotta-700' :
+                              'bg-purple-100 text-purple-700'}
+                          `}>
+                            {place.type}
+                          </span>
+                          <span className="flex items-center gap-1 text-xs text-amber-500">
+                            <Star className="w-3 h-3 fill-amber-400" />
+                            {place.rating}
+                          </span>
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                  <button
+                    onClick={handleSearch}
+                    className="w-full py-3 px-4 bg-gray-50 text-[#d4a574] font-medium text-sm hover:bg-gray-100 transition-colors flex items-center justify-center gap-2"
+                  >
+                    <Search className="w-4 h-4" />
+                    Voir tous les résultats pour "{searchQuery}"
+                  </button>
+                </div>
+              )}
+            </div>
 
           </div>
         </div>
@@ -700,6 +803,13 @@ const HomePage = () => {
           )}
         </div>
       </section>
+
+      {/* Modal de détails du lieu */}
+      <PlaceDetailModal
+        place={selectedPlace}
+        isOpen={!!selectedPlace}
+        onClose={() => setSelectedPlace(null)}
+      />
     </div>
   );
 };

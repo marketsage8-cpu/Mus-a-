@@ -234,84 +234,73 @@ const DailyArtPage = () => {
         </div>
       </div>
 
-      {/* Contenu principal */}
+      {/* Contenu principal - Version compacte et sobre */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 py-6" key={animationKey}>
-        {/* Header avec animation */}
-        <div className="text-center mb-10">
-          <AnimatedText delay={0}>
-            <div className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#d4a574]/20 via-[#d4a574]/30 to-[#d4a574]/20 rounded-full border border-[#d4a574]/40 mb-5 shadow-lg shadow-[#d4a574]/10">
-              <Sparkles className="w-4 h-4 text-[#d4a574]" />
-              <span className="text-[#d4a574] text-sm font-semibold uppercase tracking-wider">L'Œuvre du Jour</span>
-            </div>
-          </AnimatedText>
+        {/* Header minimaliste */}
+        <div className="text-center mb-6">
           <AnimatedText delay={100}>
-            <h1 className="font-serif-italic text-3xl sm:text-4xl lg:text-5xl text-white mb-3">
-              Découverte Quotidienne
+            <h1 className="font-serif-italic text-3xl sm:text-4xl text-[#d4a574] mb-2">
+              Découverte
             </h1>
-          </AnimatedText>
-          <AnimatedText delay={200}>
-            <p className="text-gray-400 text-base max-w-lg mx-auto">
-              Chaque jour, une nouvelle œuvre à explorer et à comprendre
-            </p>
           </AnimatedText>
         </div>
 
-        {/* Œuvre principale */}
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-          {/* Image de l'œuvre */}
-          <div className="relative">
+        {/* Œuvre principale - Layout révisé avec image plus grande */}
+        <div className="grid lg:grid-cols-5 gap-6 lg:gap-8">
+          {/* Image de l'œuvre - Plus grande (3/5 de la largeur) */}
+          <div className="lg:col-span-3 relative">
             <AnimatedText delay={150}>
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/40 group ring-1 ring-white/10">
+              <div className="relative rounded-xl overflow-hidden shadow-2xl shadow-black/50 group">
                 <img
                   src={currentArtwork.image}
                   alt={currentArtwork.title}
-                  className="w-full h-[400px] sm:h-[500px] object-cover transition-all duration-700 group-hover:scale-105"
+                  className="w-full h-[500px] sm:h-[600px] lg:h-[700px] object-cover transition-all duration-700 group-hover:scale-105"
                 />
 
-                {/* Overlay gradient doux */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                {/* Overlay très subtil */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
-                {/* Navigation arrows - plus douce */}
+                {/* Navigation arrows minimaliste */}
                 <button
                   onClick={() => navigateArtwork('prev')}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 p-3.5 bg-white/10 hover:bg-white/20 rounded-full backdrop-blur-md transition-all duration-300 opacity-0 group-hover:opacity-100 border border-white/20"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 bg-black/30 hover:bg-black/50 rounded-full backdrop-blur-sm transition-all duration-300 opacity-0 group-hover:opacity-100"
                 >
-                  <ChevronLeft className="w-6 h-6 text-white" />
+                  <ChevronLeft className="w-5 h-5 text-white" />
                 </button>
                 <button
                   onClick={() => navigateArtwork('next')}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 p-3.5 bg-white/10 hover:bg-white/20 rounded-full backdrop-blur-md transition-all duration-300 opacity-0 group-hover:opacity-100 border border-white/20"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 bg-black/30 hover:bg-black/50 rounded-full backdrop-blur-sm transition-all duration-300 opacity-0 group-hover:opacity-100"
                 >
-                  <ChevronRight className="w-6 h-6 text-white" />
+                  <ChevronRight className="w-5 h-5 text-white" />
                 </button>
 
-                {/* Actions */}
-                <div className="absolute top-4 right-4 flex gap-2.5">
+                {/* Actions discrètes */}
+                <div className="absolute top-3 right-3 flex gap-2">
                   <button
                     onClick={() => setIsLiked(!isLiked)}
-                    className={`p-3 rounded-full backdrop-blur-md transition-all duration-300 border ${
+                    className={`p-2.5 rounded-full backdrop-blur-sm transition-all duration-300 ${
                       isLiked
-                        ? 'bg-red-500/90 text-white border-red-400/50 shadow-lg shadow-red-500/30'
-                        : 'bg-white/10 hover:bg-white/20 text-white border-white/20'
+                        ? 'bg-red-500/80 text-white'
+                        : 'bg-black/30 hover:bg-black/50 text-white'
                     }`}
                   >
-                    <Heart className={`w-5 h-5 transition-transform ${isLiked ? 'fill-current scale-110' : ''}`} />
+                    <Heart className={`w-4 h-4 ${isLiked ? 'fill-current' : ''}`} />
                   </button>
                   <button
                     onClick={() => setIsSaved(!isSaved)}
-                    className={`p-3 rounded-full backdrop-blur-md transition-all duration-300 border ${
+                    className={`p-2.5 rounded-full backdrop-blur-sm transition-all duration-300 ${
                       isSaved
-                        ? 'bg-[#d4a574]/90 text-[#1a2640] border-[#d4a574]/50 shadow-lg shadow-[#d4a574]/30'
-                        : 'bg-white/10 hover:bg-white/20 text-white border-white/20'
+                        ? 'bg-[#d4a574]/80 text-[#1a2640]'
+                        : 'bg-black/30 hover:bg-black/50 text-white'
                     }`}
                   >
-                    <Bookmark className={`w-5 h-5 transition-transform ${isSaved ? 'fill-current scale-110' : ''}`} />
+                    <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-current' : ''}`} />
                   </button>
                 </div>
 
-                {/* Badge style - plus élégant */}
-                <div className="absolute top-4 left-4">
-                  <span className="px-4 py-2 bg-gradient-to-r from-[#d4a574] to-[#c49464] text-[#1a2640] text-xs font-bold rounded-full uppercase tracking-wider shadow-lg">
+                {/* Badge style discret */}
+                <div className="absolute bottom-3 left-3">
+                  <span className="px-3 py-1.5 bg-black/40 backdrop-blur-sm text-white text-xs font-medium rounded-full">
                     {currentArtwork.style}
                   </span>
                 </div>
@@ -319,120 +308,83 @@ const DailyArtPage = () => {
             </AnimatedText>
           </div>
 
-          {/* Informations sur l'œuvre avec animations fluides */}
-          <div className="flex flex-col space-y-6">
+          {/* Informations sur l'œuvre - Version compacte et sobre (2/5 de la largeur) */}
+          <div className="lg:col-span-2 flex flex-col space-y-4">
             {/* Titre et artiste */}
             <div>
               <AnimatedText delay={250}>
-                <h2 className="font-serif-italic text-3xl sm:text-4xl text-[#d4a574] mb-3 leading-tight">
+                <h2 className="font-serif-italic text-2xl sm:text-3xl text-[#d4a574] mb-2 leading-tight">
                   {currentArtwork.title}
                 </h2>
               </AnimatedText>
               <AnimatedText delay={350}>
-                <p className="text-white text-xl flex items-center gap-2">
+                <p className="text-white text-lg">
                   {currentArtwork.artist}
-                  <span className="text-gray-400 text-lg">
-                    ({currentArtwork.year < 0 ? `${Math.abs(currentArtwork.year)} av. J.-C.` : currentArtwork.year})
+                  <span className="text-gray-500 text-base ml-2">
+                    {currentArtwork.year < 0 ? `${Math.abs(currentArtwork.year)} av. J.-C.` : currentArtwork.year}
                   </span>
                 </p>
               </AnimatedText>
             </div>
 
-            {/* Détails techniques - animation décalée */}
+            {/* Détails techniques compacts */}
             <AnimatedText delay={450}>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:border-[#d4a574]/30 transition-colors">
-                  <p className="text-[#d4a574]/70 text-xs uppercase tracking-wide mb-1.5">Technique</p>
-                  <p className="text-white font-medium">{currentArtwork.medium}</p>
-                </div>
-                <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:border-[#d4a574]/30 transition-colors">
-                  <p className="text-[#d4a574]/70 text-xs uppercase tracking-wide mb-1.5">Dimensions</p>
-                  <p className="text-white font-medium">{currentArtwork.dimensions}</p>
-                </div>
+              <div className="flex flex-wrap gap-2 text-sm">
+                <span className="px-3 py-1.5 bg-white/5 text-gray-300 rounded-lg">{currentArtwork.medium}</span>
+                <span className="px-3 py-1.5 bg-white/5 text-gray-300 rounded-lg">{currentArtwork.dimensions}</span>
               </div>
             </AnimatedText>
 
-            {/* Localisation */}
+            {/* Localisation sobre */}
             <AnimatedText delay={550}>
-              <div className="flex items-center gap-3 text-gray-300 bg-white/5 rounded-xl px-4 py-3 border border-white/10">
-                <MapPin className="w-5 h-5 text-[#d4a574]" />
-                <span className="font-medium">{currentArtwork.location}</span>
-              </div>
+              <p className="text-gray-400 text-sm flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-[#d4a574]" />
+                {currentArtwork.location}
+              </p>
             </AnimatedText>
 
-            {/* Description avec animation progressive */}
-            <div>
-              <AnimatedText delay={650}>
-                <h3 className="text-white font-semibold mb-3 flex items-center gap-2">
-                  <Info className="w-5 h-5 text-[#d4a574]" />
-                  Description
-                </h3>
-              </AnimatedText>
-              <AnimatedParagraph
-                text={currentArtwork.description}
-                baseDelay={700}
-                className="text-gray-300 leading-relaxed"
-              />
-            </div>
-
-            {/* Message / Signification */}
-            <AnimatedText delay={1200}>
-              <div className="bg-gradient-to-r from-[#d4a574]/15 to-[#d4a574]/5 rounded-xl p-5 border-l-4 border-[#d4a574] shadow-inner">
-                <h3 className="text-[#d4a574] font-semibold mb-2 flex items-center gap-2">
-                  <Sparkles className="w-4 h-4" />
-                  Le message de l'œuvre
-                </h3>
-                <p className="text-gray-300 leading-relaxed italic">
-                  {currentArtwork.message}
-                </p>
-              </div>
+            {/* Description sans titre */}
+            <AnimatedText delay={650}>
+              <p className="text-gray-300 text-sm leading-relaxed">
+                {currentArtwork.description}
+              </p>
             </AnimatedText>
 
-            {/* Fun fact */}
-            <AnimatedText delay={1400}>
-              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-5 border border-white/10">
-                <h3 className="text-white font-semibold mb-2 flex items-center gap-2">
-                  <span className="text-xl">💡</span>
-                  Le saviez-vous ?
-                </h3>
-                <p className="text-gray-400 leading-relaxed">
-                  {currentArtwork.funFact}
-                </p>
-              </div>
+            {/* Message sobre */}
+            <AnimatedText delay={900}>
+              <p className="text-gray-400 text-sm italic leading-relaxed pl-3 border-l-2 border-[#d4a574]/40">
+                {currentArtwork.message}
+              </p>
+            </AnimatedText>
+
+            {/* Fun fact compact */}
+            <AnimatedText delay={1100}>
+              <p className="text-gray-500 text-xs leading-relaxed">
+                💡 {currentArtwork.funFact}
+              </p>
             </AnimatedText>
           </div>
         </div>
 
-        {/* Section des œuvres précédentes */}
-        <AnimatedText delay={1600}>
-          <div className="mt-16">
-            <h3 className="text-white text-xl font-semibold mb-6 flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-[#d4a574]" />
-              Œuvres précédentes
-            </h3>
+        {/* Section des œuvres précédentes - Version compacte */}
+        <AnimatedText delay={1300}>
+          <div className="mt-10">
+            <p className="text-gray-500 text-sm mb-4">Précédentes</p>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-              {previousArtworks.map((artwork, index) => (
+            <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+              {previousArtworks.map((artwork) => (
                 <button
                   key={artwork.id}
                   onClick={() => selectArtwork(artwork)}
-                  className="group relative rounded-xl overflow-hidden aspect-[3/4] ring-1 ring-white/10 hover:ring-[#d4a574]/50 transition-all duration-300 shadow-lg hover:shadow-xl"
-                  style={{ animationDelay: `${1700 + index * 100}ms` }}
+                  className="group relative flex-shrink-0 w-24 h-32 rounded-lg overflow-hidden hover:opacity-80 transition-opacity"
                 >
                   <img
                     src={artwork.image}
                     alt={artwork.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-3">
-                    <p className="text-white text-xs font-medium line-clamp-1">{artwork.title}</p>
-                    <p className="text-gray-400 text-[10px]">
-                      Il y a {artwork.daysAgo} jour{artwork.daysAgo > 1 ? 's' : ''}
-                    </p>
-                  </div>
-                  {/* Overlay hover élégant */}
-                  <div className="absolute inset-0 bg-[#d4a574]/0 group-hover:bg-[#d4a574]/20 transition-colors duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                  <p className="absolute bottom-2 left-2 right-2 text-white text-[10px] line-clamp-2">{artwork.title}</p>
                 </button>
               ))}
             </div>

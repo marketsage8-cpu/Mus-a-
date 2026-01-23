@@ -375,6 +375,88 @@ const ExplorePage = () => {
             <span className="text-sm font-medium">{showSidebar ? 'Masquer' : 'Liste'}</span>
           </button>
 
+          {/* Cadre baroque 18ème siècle autour de la carte */}
+          <div className="absolute inset-4 lg:inset-8 z-10 pointer-events-none">
+            {/* Cadre extérieur doré */}
+            <div className="absolute inset-0 rounded-lg border-[12px] lg:border-[20px] border-transparent"
+              style={{
+                borderImage: `linear-gradient(135deg, #d4a574 0%, #f5deb3 20%, #d4a574 40%, #8b6914 50%, #d4a574 60%, #f5deb3 80%, #d4a574 100%) 1`,
+                boxShadow: `
+                  inset 0 0 20px rgba(139, 105, 20, 0.5),
+                  inset 0 0 40px rgba(212, 165, 116, 0.3),
+                  0 8px 32px rgba(0, 0, 0, 0.5),
+                  0 4px 16px rgba(139, 105, 20, 0.3)
+                `
+              }}
+            />
+
+            {/* Moulure intérieure */}
+            <div className="absolute inset-[12px] lg:inset-[20px] rounded border-[4px] lg:border-[6px] border-transparent"
+              style={{
+                borderImage: `linear-gradient(180deg, #8b6914 0%, #d4a574 30%, #f5deb3 50%, #d4a574 70%, #8b6914 100%) 1`
+              }}
+            />
+
+            {/* Coins ornementaux - Style baroque/rococo */}
+            <svg className="absolute -top-2 -left-2 w-20 h-20 lg:w-28 lg:h-28 text-gold-500 drop-shadow-lg" viewBox="0 0 100 100" fill="none">
+              <path d="M10,50 Q10,10 50,10 L50,20 Q25,20 20,50 Z" fill="currentColor" opacity="0.9"/>
+              <path d="M15,45 Q15,20 45,15 L42,25 Q28,28 25,42 Z" fill="#f5deb3" opacity="0.7"/>
+              <circle cx="35" cy="35" r="8" fill="currentColor" opacity="0.6"/>
+              <circle cx="35" cy="35" r="4" fill="#f5deb3" opacity="0.8"/>
+              {/* Volutes */}
+              <path d="M50,25 Q40,30 35,50 Q45,35 55,35" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.7"/>
+              <path d="M25,50 Q30,40 50,35 Q35,45 35,55" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.7"/>
+            </svg>
+
+            <svg className="absolute -top-2 -right-2 w-20 h-20 lg:w-28 lg:h-28 text-gold-500 drop-shadow-lg transform scale-x-[-1]" viewBox="0 0 100 100" fill="none">
+              <path d="M10,50 Q10,10 50,10 L50,20 Q25,20 20,50 Z" fill="currentColor" opacity="0.9"/>
+              <path d="M15,45 Q15,20 45,15 L42,25 Q28,28 25,42 Z" fill="#f5deb3" opacity="0.7"/>
+              <circle cx="35" cy="35" r="8" fill="currentColor" opacity="0.6"/>
+              <circle cx="35" cy="35" r="4" fill="#f5deb3" opacity="0.8"/>
+              <path d="M50,25 Q40,30 35,50 Q45,35 55,35" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.7"/>
+              <path d="M25,50 Q30,40 50,35 Q35,45 35,55" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.7"/>
+            </svg>
+
+            <svg className="absolute -bottom-2 -left-2 w-20 h-20 lg:w-28 lg:h-28 text-gold-500 drop-shadow-lg transform scale-y-[-1]" viewBox="0 0 100 100" fill="none">
+              <path d="M10,50 Q10,10 50,10 L50,20 Q25,20 20,50 Z" fill="currentColor" opacity="0.9"/>
+              <path d="M15,45 Q15,20 45,15 L42,25 Q28,28 25,42 Z" fill="#f5deb3" opacity="0.7"/>
+              <circle cx="35" cy="35" r="8" fill="currentColor" opacity="0.6"/>
+              <circle cx="35" cy="35" r="4" fill="#f5deb3" opacity="0.8"/>
+              <path d="M50,25 Q40,30 35,50 Q45,35 55,35" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.7"/>
+              <path d="M25,50 Q30,40 50,35 Q35,45 35,55" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.7"/>
+            </svg>
+
+            <svg className="absolute -bottom-2 -right-2 w-20 h-20 lg:w-28 lg:h-28 text-gold-500 drop-shadow-lg transform scale-[-1]" viewBox="0 0 100 100" fill="none">
+              <path d="M10,50 Q10,10 50,10 L50,20 Q25,20 20,50 Z" fill="currentColor" opacity="0.9"/>
+              <path d="M15,45 Q15,20 45,15 L42,25 Q28,28 25,42 Z" fill="#f5deb3" opacity="0.7"/>
+              <circle cx="35" cy="35" r="8" fill="currentColor" opacity="0.6"/>
+              <circle cx="35" cy="35" r="4" fill="#f5deb3" opacity="0.8"/>
+              <path d="M50,25 Q40,30 35,50 Q45,35 55,35" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.7"/>
+              <path d="M25,50 Q30,40 50,35 Q35,45 35,55" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.7"/>
+            </svg>
+
+            {/* Ornements centraux sur les côtés */}
+            <svg className="absolute top-1/2 -left-1 w-8 h-16 lg:w-10 lg:h-20 -translate-y-1/2 text-gold-500" viewBox="0 0 30 60" fill="none">
+              <ellipse cx="15" cy="30" rx="12" ry="25" fill="currentColor" opacity="0.8"/>
+              <ellipse cx="15" cy="30" rx="6" ry="15" fill="#f5deb3" opacity="0.6"/>
+            </svg>
+
+            <svg className="absolute top-1/2 -right-1 w-8 h-16 lg:w-10 lg:h-20 -translate-y-1/2 text-gold-500" viewBox="0 0 30 60" fill="none">
+              <ellipse cx="15" cy="30" rx="12" ry="25" fill="currentColor" opacity="0.8"/>
+              <ellipse cx="15" cy="30" rx="6" ry="15" fill="#f5deb3" opacity="0.6"/>
+            </svg>
+
+            <svg className="absolute -top-1 left-1/2 w-16 h-8 lg:w-20 lg:h-10 -translate-x-1/2 text-gold-500" viewBox="0 0 60 30" fill="none">
+              <ellipse cx="30" cy="15" rx="25" ry="12" fill="currentColor" opacity="0.8"/>
+              <ellipse cx="30" cy="15" rx="15" ry="6" fill="#f5deb3" opacity="0.6"/>
+            </svg>
+
+            <svg className="absolute -bottom-1 left-1/2 w-16 h-8 lg:w-20 lg:h-10 -translate-x-1/2 text-gold-500" viewBox="0 0 60 30" fill="none">
+              <ellipse cx="30" cy="15" rx="25" ry="12" fill="currentColor" opacity="0.8"/>
+              <ellipse cx="30" cy="15" rx="15" ry="6" fill="#f5deb3" opacity="0.6"/>
+            </svg>
+          </div>
+
           {/* Map */}
           {filteredPlaces.length > 0 && (
             <InteractiveMap

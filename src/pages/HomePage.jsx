@@ -166,8 +166,8 @@ const HomePage = () => {
         {/* Background image - Vitraux colorés style Galeries Lafayette */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=1920&q=80"
-            alt="Vitraux colorés"
+            src="https://images.unsplash.com/photo-1520350094754-f0fdcac35c1c?w=1920&q=80"
+            alt="Vitraux colorés style Galeries Lafayette"
             className="w-full h-full object-cover"
           />
           {/* Gradient overlay - effet "bavure" fluide depuis la navbar bleu marine (style Culturio) */}

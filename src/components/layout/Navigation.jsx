@@ -59,10 +59,9 @@ const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center group">
             <img
-              src="/logo-muzea.svg"
+              src="/images/MBA_2022_39.jpg"
               alt="Muzea - Culture Nearby"
-              className="h-12 w-auto group-hover:scale-105 transition-transform"
-              style={{ filter: 'brightness(0) invert(1)' }}
+              className="h-12 w-auto group-hover:scale-105 transition-transform rounded-lg object-cover"
             />
           </Link>
 

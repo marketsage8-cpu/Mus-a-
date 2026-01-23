@@ -90,6 +90,7 @@ const SettingOption = ({ icon: Icon, label, description, hasToggle, isEnabled, o
 
 /**
  * Page de profil - Design Culturio
+ * Refonte complète selon les spécifications du design
  */
 const ProfilePage = () => {
   const { userData, stats, setUserData } = useUser();

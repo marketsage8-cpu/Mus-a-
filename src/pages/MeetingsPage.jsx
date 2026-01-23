@@ -369,35 +369,28 @@ const MeetingsPage = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-[#1a1f2e]/20 via-transparent to-[#1a1f2e]/20" />
       </div>
 
-      {/* Hero Section avec photo en fond et barre de recherche intégrée */}
+      {/* Hero Section avec photo en fond et barre de recherche intégrée - PLUS HAUTE */}
       <div className="relative z-10">
-        {/* Photo en arrière-plan plein écran */}
-        <div className="absolute inset-0 h-[55vh] min-h-[450px]">
+        {/* Photo en arrière-plan plein écran - Plus grande */}
+        <div className="absolute inset-0 h-[65vh] min-h-[550px]">
           <img
             src="https://images.unsplash.com/photo-1564399580075-5dfe19c205f3?w=1200&q=80"
             alt="Visiteurs admirant des œuvres au musée"
             className="w-full h-full object-cover"
           />
           {/* Overlay gradient pour lisibilité */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1a1f2e]/40 via-[#1a1f2e]/20 to-[#1a1f2e]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1a1f2e]/20 via-transparent to-[#1a1f2e]/20" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1a1f2e]/30 via-[#1a1f2e]/10 to-[#1a1f2e]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1a1f2e]/10 via-transparent to-[#1a1f2e]/10" />
         </div>
 
-        {/* Contenu du header avec barre de recherche SUR la photo */}
-        <div className="relative max-w-6xl mx-auto px-4 py-8 h-[55vh] min-h-[450px] flex flex-col justify-center">
+        {/* Contenu du header avec barre de recherche HAUTE SUR la photo */}
+        <div className="relative max-w-6xl mx-auto px-4 h-[65vh] min-h-[550px] flex flex-col justify-start pt-12">
           <div className="text-center">
-            <h1 className="font-serif-italic text-3xl sm:text-4xl lg:text-5xl mb-4 drop-shadow-lg" style={{ color: '#d4a574' }}>
-              Trouvez des compagnons de visite
-            </h1>
-            <p className="text-white/90 max-w-2xl mx-auto text-lg drop-shadow-md mb-8">
-              Ne visitez plus seul ! Rencontrez des passionnés de culture et partagez vos découvertes.
-            </p>
-
-            {/* Barre de recherche POSITIONNÉE SUR LA PHOTO */}
+            {/* Barre de recherche EN HAUT de la photo */}
             {!selectedPlace && (
-              <div className="max-w-2xl mx-auto">
+              <div className="max-w-2xl mx-auto mb-10">
                 <div className="relative">
-                  <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400" />
+                  <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400 z-10" />
                   <input
                     type="text"
                     value={searchQuery}
@@ -415,8 +408,15 @@ const MeetingsPage = () => {
               </div>
             )}
 
+            <h1 className="font-serif-italic text-3xl sm:text-4xl lg:text-5xl mb-4 drop-shadow-lg" style={{ color: '#d4a574' }}>
+              Trouvez des compagnons de visite
+            </h1>
+            <p className="text-white/90 max-w-2xl mx-auto text-lg drop-shadow-md mb-8">
+              Ne visitez plus seul ! Rencontrez des passionnés de culture et partagez vos découvertes.
+            </p>
+
             {/* Citation */}
-            <p className="text-white/70 font-serif-italic text-lg mt-8 drop-shadow-lg">
+            <p className="text-white/70 font-serif-italic text-lg mt-auto drop-shadow-lg">
               "L'art est le plus beau des partages"
             </p>
           </div>

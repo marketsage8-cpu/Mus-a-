@@ -1581,84 +1581,495 @@ const OrnateCandelabra = ({ x, y, scale = 1, delay = 0 }) => (
 const DecorativeRosette = ({ x, y, scale = 1, delay = 0 }) => (
   <g
     transform={`translate(${x}, ${y}) scale(${scale})`}
-    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '2.2s' }}
+    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '4s' }}
   >
-    {/* Cercles concentriques multiples */}
-    <circle className="museum-element stroke-medium" cx="30" cy="30" r="29" fill="none" stroke="#d4af37" strokeWidth="0.9" />
-    <circle className="museum-element stroke-short" cx="30" cy="30" r="27" fill="none" stroke="#d4af37" strokeWidth="0.5" />
-    <circle className="museum-element-secondary stroke-short" cx="30" cy="30" r="24" fill="none" stroke="#d4af37" strokeWidth="0.4" />
-    <circle className="museum-element-secondary stroke-short" cx="30" cy="30" r="21" fill="none" stroke="#d4af37" strokeWidth="0.35" />
+    {/* Cercles concentriques multiples avec précision */}
+    <circle className="museum-element stroke-medium" cx="30" cy="30" r="29" fill="none" stroke="#d4af37" strokeWidth="0.7" />
+    <circle className="museum-element stroke-short" cx="30" cy="30" r="27.5" fill="none" stroke="#d4af37" strokeWidth="0.35" />
+    <circle className="museum-element-secondary stroke-short" cx="30" cy="30" r="24" fill="none" stroke="#d4af37" strokeWidth="0.3" />
+    <circle className="museum-element-secondary stroke-short" cx="30" cy="30" r="21" fill="none" stroke="#d4af37" strokeWidth="0.25" />
+    <circle className="museum-element-detail stroke-short" cx="30" cy="30" r="18" fill="none" stroke="#d4af37" strokeWidth="0.2" />
 
-    {/* Pétales principaux (12) */}
-    {[...Array(12)].map((_, i) => {
-      const angle = (i * 30 * Math.PI) / 180;
-      const x1 = 30 + Math.cos(angle) * 7;
-      const y1 = 30 + Math.sin(angle) * 7;
+    {/* Pétales principaux (16 pour plus de détail) */}
+    {[...Array(16)].map((_, i) => {
+      const angle = (i * 22.5 * Math.PI) / 180;
+      const x1 = 30 + Math.cos(angle) * 6;
+      const y1 = 30 + Math.sin(angle) * 6;
       const x2 = 30 + Math.cos(angle) * 23;
       const y2 = 30 + Math.sin(angle) * 23;
-      const cx1 = 30 + Math.cos(angle + 0.25) * 15;
-      const cy1 = 30 + Math.sin(angle + 0.25) * 15;
-      const cx2 = 30 + Math.cos(angle - 0.25) * 15;
-      const cy2 = 30 + Math.sin(angle - 0.25) * 15;
+      const cx1 = 30 + Math.cos(angle + 0.2) * 14;
+      const cy1 = 30 + Math.sin(angle + 0.2) * 14;
+      const cx2 = 30 + Math.cos(angle - 0.2) * 14;
+      const cy2 = 30 + Math.sin(angle - 0.2) * 14;
 
       return (
-        <g key={i} style={{ '--draw-delay': `${delay + i * 0.08}s` }}>
+        <g key={i} style={{ '--draw-delay': `${delay + i * 0.06}s` }}>
           <path
             className="museum-element-detail stroke-short"
             d={`M${x1} ${y1} Q${cx1} ${cy1} ${x2} ${y2} Q${cx2} ${cy2} ${x1} ${y1}`}
-            fill="none" stroke="#d4af37" strokeWidth="0.5"
+            fill="none" stroke="#d4af37" strokeWidth="0.35"
           />
           {/* Nervure centrale du pétale */}
           <line
             className="museum-element-micro stroke-micro"
             x1={x1} y1={y1} x2={x2} y2={y2}
-            stroke="#d4af37" strokeWidth="0.2" strokeOpacity="0.6"
+            stroke="#d4af37" strokeWidth="0.12" strokeOpacity="0.5"
+          />
+          {/* Nervures latérales */}
+          <path
+            className="museum-element-micro stroke-micro"
+            d={`M${30 + Math.cos(angle) * 10} ${30 + Math.sin(angle) * 10} Q${30 + Math.cos(angle + 0.1) * 16} ${30 + Math.sin(angle + 0.1) * 16} ${30 + Math.cos(angle) * 20} ${30 + Math.sin(angle) * 20}`}
+            fill="none" stroke="#d4af37" strokeWidth="0.08" strokeOpacity="0.4"
           />
         </g>
       );
     })}
 
-    {/* Pétales secondaires (12 décalés) */}
-    {[...Array(12)].map((_, i) => {
-      const angle = ((i * 30 + 15) * Math.PI) / 180;
-      const x1 = 30 + Math.cos(angle) * 10;
-      const y1 = 30 + Math.sin(angle) * 10;
-      const x2 = 30 + Math.cos(angle) * 19;
-      const y2 = 30 + Math.sin(angle) * 19;
-      const cx1 = 30 + Math.cos(angle + 0.15) * 14;
-      const cy1 = 30 + Math.sin(angle + 0.15) * 14;
-      const cx2 = 30 + Math.cos(angle - 0.15) * 14;
-      const cy2 = 30 + Math.sin(angle - 0.15) * 14;
+    {/* Pétales secondaires (16 décalés) */}
+    {[...Array(16)].map((_, i) => {
+      const angle = ((i * 22.5 + 11.25) * Math.PI) / 180;
+      const x1 = 30 + Math.cos(angle) * 9;
+      const y1 = 30 + Math.sin(angle) * 9;
+      const x2 = 30 + Math.cos(angle) * 17;
+      const y2 = 30 + Math.sin(angle) * 17;
+      const cx1 = 30 + Math.cos(angle + 0.12) * 13;
+      const cy1 = 30 + Math.sin(angle + 0.12) * 13;
+      const cx2 = 30 + Math.cos(angle - 0.12) * 13;
+      const cy2 = 30 + Math.sin(angle - 0.12) * 13;
 
       return (
         <path
           key={`sec-${i}`}
           className="museum-element-micro stroke-tiny"
           d={`M${x1} ${y1} Q${cx1} ${cy1} ${x2} ${y2} Q${cx2} ${cy2} ${x1} ${y1}`}
-          fill="none" stroke="#d4af37" strokeWidth="0.3"
-          style={{ '--draw-delay': `${delay + 1.0 + i * 0.06}s` }}
+          fill="none" stroke="#d4af37" strokeWidth="0.2"
+          style={{ '--draw-delay': `${delay + 1.2 + i * 0.04}s` }}
         />
       );
     })}
 
-    {/* Centre élaboré */}
-    <circle className="museum-element-detail stroke-short" cx="30" cy="30" r="6" fill="none" stroke="#d4af37" strokeWidth="0.6" />
-    <circle className="museum-element-micro stroke-tiny" cx="30" cy="30" r="4" fill="none" stroke="#d4af37" strokeWidth="0.4" />
-    <circle className="museum-element-micro stroke-micro" cx="30" cy="30" r="2.5" fill="none" stroke="#d4af37" strokeWidth="0.3" />
-    <circle cx="30" cy="30" r="1.5" fill="#d4af37" fillOpacity="0.5" />
+    {/* Centre élaboré multi-couches */}
+    <circle className="museum-element-detail stroke-short" cx="30" cy="30" r="5.5" fill="none" stroke="#d4af37" strokeWidth="0.4" />
+    <circle className="museum-element-micro stroke-tiny" cx="30" cy="30" r="4" fill="none" stroke="#d4af37" strokeWidth="0.3" />
+    <circle className="museum-element-micro stroke-micro" cx="30" cy="30" r="2.8" fill="none" stroke="#d4af37" strokeWidth="0.2" />
+    <circle className="museum-element-micro stroke-micro" cx="30" cy="30" r="1.8" fill="none" stroke="#d4af37" strokeWidth="0.15" />
+    <circle cx="30" cy="30" r="1" fill="#d4af37" fillOpacity="0.4" />
+
+    {/* Étoile centrale */}
+    {[...Array(8)].map((_, i) => {
+      const angle = (i * 45 * Math.PI) / 180;
+      return (
+        <line
+          key={`star-${i}`}
+          className="museum-element-micro stroke-micro"
+          x1={30 + Math.cos(angle) * 1.5}
+          y1={30 + Math.sin(angle) * 1.5}
+          x2={30 + Math.cos(angle) * 3.5}
+          y2={30 + Math.sin(angle) * 3.5}
+          stroke="#d4af37" strokeWidth="0.1" strokeOpacity="0.6"
+        />
+      );
+    })}
 
     {/* Points décoratifs sur cercle externe */}
-    {[...Array(24)].map((_, i) => {
-      const angle = (i * 15 * Math.PI) / 180;
+    {[...Array(32)].map((_, i) => {
+      const angle = (i * 11.25 * Math.PI) / 180;
       const px = 30 + Math.cos(angle) * 26;
       const py = 30 + Math.sin(angle) * 26;
-      return <circle key={`dot-${i}`} cx={px} cy={py} r="0.4" fill="#d4af37" fillOpacity="0.4" />;
+      return <circle key={`dot-${i}`} cx={px} cy={py} r="0.3" fill="#d4af37" fillOpacity="0.35" />;
+    })}
+
+    {/* Perles décoratives intermédiaires */}
+    {[...Array(16)].map((_, i) => {
+      const angle = (i * 22.5 * Math.PI) / 180;
+      const px = 30 + Math.cos(angle) * 19.5;
+      const py = 30 + Math.sin(angle) * 19.5;
+      return <circle key={`pearl-${i}`} className="museum-element-micro stroke-micro" cx={px} cy={py} r="0.5" fill="none" stroke="#d4af37" strokeWidth="0.1" />;
     })}
   </g>
 );
 
 // ========================================
-// COMPOSANT PRINCIPAL
+// FRISE D'OVES ET DARDS ULTRA-PRÉCISE
+// ========================================
+const OvesDardsFrieze = ({ x, y, width = 300, delay = 0 }) => {
+  const oveCount = Math.floor(width / 18);
+
+  return (
+    <g
+      transform={`translate(${x}, ${y})`}
+      style={{ '--draw-delay': `${delay}s`, '--draw-duration': '4.5s' }}
+    >
+      {/* Lignes encadrant la frise */}
+      <line className="museum-element stroke-long" x1="0" y1="0" x2={width} y2="0" stroke="#d4af37" strokeWidth="0.5" />
+      <line className="museum-element stroke-long" x1="0" y1="20" x2={width} y2="20" stroke="#d4af37" strokeWidth="0.5" />
+      <line className="museum-element-secondary stroke-medium" x1="0" y1="2" x2={width} y2="2" stroke="#d4af37" strokeWidth="0.25" />
+      <line className="museum-element-secondary stroke-medium" x1="0" y1="18" x2={width} y2="18" stroke="#d4af37" strokeWidth="0.25" />
+
+      {/* Oves (œufs) avec ombres et reflets */}
+      {[...Array(oveCount)].map((_, i) => (
+        <g key={`ove-${i}`} style={{ '--draw-delay': `${delay + 0.3 + i * 0.08}s` }}>
+          {/* Ove principal */}
+          <ellipse
+            className="museum-element-detail stroke-short"
+            cx={9 + i * 18} cy="10" rx="5" ry="7"
+            fill="none" stroke="#d4af37" strokeWidth="0.35"
+          />
+          {/* Contour intérieur pour volume */}
+          <ellipse
+            className="museum-element-micro stroke-tiny"
+            cx={9 + i * 18} cy="10" rx="3.5" ry="5"
+            fill="none" stroke="#d4af37" strokeWidth="0.2" strokeOpacity="0.6"
+          />
+          {/* Reflet lumineux */}
+          <path
+            className="museum-element-micro stroke-micro"
+            d={`M${7 + i * 18} 7 Q${9 + i * 18} 5 ${11 + i * 18} 7`}
+            fill="none" stroke="#d4af37" strokeWidth="0.12" strokeOpacity="0.5"
+          />
+          {/* Base de l'ove */}
+          <path
+            className="museum-element-micro stroke-micro"
+            d={`M${5 + i * 18} 15 Q${9 + i * 18} 18 ${13 + i * 18} 15`}
+            fill="none" stroke="#d4af37" strokeWidth="0.15"
+          />
+        </g>
+      ))}
+
+      {/* Dards (flèches) entre les oves */}
+      {[...Array(oveCount - 1)].map((_, i) => (
+        <g key={`dard-${i}`} style={{ '--draw-delay': `${delay + 0.5 + i * 0.08}s` }}>
+          {/* Tige du dard */}
+          <line
+            className="museum-element-micro stroke-tiny"
+            x1={18 + i * 18} y1="4" x2={18 + i * 18} y2="16"
+            stroke="#d4af37" strokeWidth="0.2"
+          />
+          {/* Pointe lancéolée supérieure */}
+          <path
+            className="museum-element-micro stroke-micro"
+            d={`M${16 + i * 18} 6 L${18 + i * 18} 3 L${20 + i * 18} 6`}
+            fill="none" stroke="#d4af37" strokeWidth="0.15"
+          />
+          {/* Feuille du dard */}
+          <path
+            className="museum-element-micro stroke-micro"
+            d={`M${18 + i * 18} 8 Q${16.5 + i * 18} 10 ${18 + i * 18} 12 Q${19.5 + i * 18} 10 ${18 + i * 18} 8`}
+            fill="none" stroke="#d4af37" strokeWidth="0.12"
+          />
+        </g>
+      ))}
+    </g>
+  );
+};
+
+// ========================================
+// FRISE DE PALMETTES ULTRA-DÉTAILLÉE
+// ========================================
+const PalmetteFrieze = ({ x, y, width = 300, delay = 0 }) => {
+  const palmetteCount = Math.floor(width / 35);
+
+  return (
+    <g
+      transform={`translate(${x}, ${y})`}
+      style={{ '--draw-delay': `${delay}s`, '--draw-duration': '5s' }}
+    >
+      {/* Cadre de la frise */}
+      <rect className="museum-element stroke-long" x="0" y="0" width={width} height="40" fill="none" stroke="#d4af37" strokeWidth="0.4" />
+      <rect className="museum-element-secondary stroke-medium" x="2" y="2" width={width - 4} height="36" fill="none" stroke="#d4af37" strokeWidth="0.2" />
+
+      {/* Palmettes */}
+      {[...Array(palmetteCount)].map((_, i) => (
+        <g key={`palmette-${i}`} transform={`translate(${17.5 + i * 35}, 35)`} style={{ '--draw-delay': `${delay + 0.4 + i * 0.12}s` }}>
+          {/* Tige centrale */}
+          <line className="museum-element-detail stroke-short" x1="0" y1="0" x2="0" y2="-28" stroke="#d4af37" strokeWidth="0.3" />
+
+          {/* Feuilles de palmette symétriques - 7 de chaque côté */}
+          {[...Array(7)].map((_, j) => {
+            const spread = 3 + j * 3;
+            const height = 8 + j * 2.5;
+            return (
+              <g key={`leaf-${j}`}>
+                <path
+                  className="museum-element-micro stroke-tiny"
+                  d={`M0 -${4 + j * 3} Q${-spread} -${height + 8} ${-spread - 2} -${height + 18}`}
+                  fill="none" stroke="#d4af37" strokeWidth="0.18"
+                />
+                <path
+                  className="museum-element-micro stroke-tiny"
+                  d={`M0 -${4 + j * 3} Q${spread} -${height + 8} ${spread + 2} -${height + 18}`}
+                  fill="none" stroke="#d4af37" strokeWidth="0.18"
+                />
+              </g>
+            );
+          })}
+
+          {/* Cœur de la palmette */}
+          <ellipse className="museum-element-micro stroke-micro" cx="0" cy="-3" rx="2" ry="3" fill="none" stroke="#d4af37" strokeWidth="0.15" />
+
+          {/* Volutes à la base */}
+          <path className="museum-element-micro stroke-micro" d="M-4 0 Q-6 -2 -4 -4 Q-2 -4 -2 -2 Q-2 0 -4 0" fill="none" stroke="#d4af37" strokeWidth="0.12" />
+          <path className="museum-element-micro stroke-micro" d="M4 0 Q6 -2 4 -4 Q2 -4 2 -2 Q2 0 4 0" fill="none" stroke="#d4af37" strokeWidth="0.12" />
+        </g>
+      ))}
+
+      {/* Lotus entre les palmettes */}
+      {[...Array(palmetteCount - 1)].map((_, i) => (
+        <g key={`lotus-${i}`} transform={`translate(${35 + i * 35}, 35)`} style={{ '--draw-delay': `${delay + 0.6 + i * 0.1}s` }}>
+          <path className="museum-element-micro stroke-tiny" d="M0 0 L0 -15" stroke="#d4af37" strokeWidth="0.15" />
+          <path className="museum-element-micro stroke-micro" d="M0 -15 Q-3 -18 -2 -22 Q0 -20 0 -15 Q0 -20 2 -22 Q3 -18 0 -15" fill="none" stroke="#d4af37" strokeWidth="0.12" />
+          <circle className="museum-element-micro stroke-micro" cx="0" cy="-18" r="1" fill="none" stroke="#d4af37" strokeWidth="0.1" />
+        </g>
+      ))}
+    </g>
+  );
+};
+
+// ========================================
+// MÉDAILLON ORNÉ AVEC BUSTE
+// ========================================
+const OrnateMedallion = ({ x, y, scale = 1, delay = 0, type = 'profile' }) => (
+  <g
+    transform={`translate(${x}, ${y}) scale(${scale})`}
+    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '4.5s' }}
+  >
+    {/* Cercles concentriques du cadre */}
+    <circle className="museum-element stroke-long" cx="40" cy="40" r="38" fill="none" stroke="#d4af37" strokeWidth="0.8" />
+    <circle className="museum-element stroke-medium" cx="40" cy="40" r="36" fill="none" stroke="#d4af37" strokeWidth="0.5" />
+    <circle className="museum-element-secondary stroke-medium" cx="40" cy="40" r="33" fill="none" stroke="#d4af37" strokeWidth="0.35" />
+    <circle className="museum-element-secondary stroke-short" cx="40" cy="40" r="30" fill="none" stroke="#d4af37" strokeWidth="0.3" />
+
+    {/* Couronne de laurier autour */}
+    {[...Array(24)].map((_, i) => {
+      const angle = (i * 15 * Math.PI) / 180;
+      const x1 = 40 + Math.cos(angle) * 32;
+      const y1 = 40 + Math.sin(angle) * 32;
+      const x2 = 40 + Math.cos(angle) * 36;
+      const y2 = 40 + Math.sin(angle) * 36;
+      const cx = 40 + Math.cos(angle + 0.15) * 34;
+      const cy = 40 + Math.sin(angle + 0.15) * 34;
+
+      return (
+        <path
+          key={`laurel-${i}`}
+          className="museum-element-micro stroke-tiny"
+          d={`M${x1} ${y1} Q${cx} ${cy} ${x2} ${y2}`}
+          fill="none" stroke="#d4af37" strokeWidth="0.15"
+          style={{ '--draw-delay': `${delay + 0.5 + i * 0.03}s` }}
+        />
+      );
+    })}
+
+    {/* Profil classique */}
+    {type === 'profile' && (
+      <g style={{ '--draw-delay': `${delay + 1}s` }}>
+        {/* Contour du profil */}
+        <path
+          className="museum-element-detail stroke-medium"
+          d="M30 60 Q28 55 30 50 Q32 45 35 42 Q34 38 36 35 Q38 32 42 32 Q44 30 46 32 Q50 30 52 34 Q55 32 54 38 Q52 40 50 42 L48 50 Q50 55 48 60"
+          fill="none" stroke="#d4af37" strokeWidth="0.4"
+        />
+        {/* Œil */}
+        <path className="museum-element-micro stroke-tiny" d="M44 38 Q46 37 48 38 Q46 39 44 38" fill="none" stroke="#d4af37" strokeWidth="0.2" />
+        {/* Nez */}
+        <path className="museum-element-micro stroke-tiny" d="M50 42 L48 46 Q46 47 47 48" fill="none" stroke="#d4af37" strokeWidth="0.18" />
+        {/* Bouche */}
+        <path className="museum-element-micro stroke-micro" d="M44 52 Q46 51 48 52" fill="none" stroke="#d4af37" strokeWidth="0.15" />
+        {/* Chevelure */}
+        <path className="museum-element-micro stroke-tiny" d="M36 35 Q34 30 38 26 Q44 22 50 26 Q54 28 52 34" fill="none" stroke="#d4af37" strokeWidth="0.2" />
+        <path className="museum-element-micro stroke-micro" d="M38 28 Q40 25 44 26 M46 25 Q48 24 50 26" fill="none" stroke="#d4af37" strokeWidth="0.12" />
+      </g>
+    )}
+
+    {/* Perles décoratives sur le bord externe */}
+    {[...Array(36)].map((_, i) => {
+      const angle = (i * 10 * Math.PI) / 180;
+      const px = 40 + Math.cos(angle) * 37.5;
+      const py = 40 + Math.sin(angle) * 37.5;
+      return <circle key={`bead-${i}`} cx={px} cy={py} r="0.4" fill="#d4af37" fillOpacity="0.3" />;
+    })}
+
+    {/* Nœud de ruban en bas */}
+    <g style={{ '--draw-delay': `${delay + 1.5}s` }}>
+      <path className="museum-element-micro stroke-tiny" d="M32 72 Q36 74 40 72 Q44 74 48 72" fill="none" stroke="#d4af37" strokeWidth="0.25" />
+      <path className="museum-element-micro stroke-micro" d="M36 74 Q34 78 32 82 M44 74 Q46 78 48 82" fill="none" stroke="#d4af37" strokeWidth="0.15" />
+      <ellipse className="museum-element-micro stroke-micro" cx="40" cy="74" rx="3" ry="2" fill="none" stroke="#d4af37" strokeWidth="0.12" />
+    </g>
+  </g>
+);
+
+// ========================================
+// CARTOUCHE ORNÉ AVEC VOLUTES
+// ========================================
+const OrnateCartouche = ({ x, y, width = 100, height = 60, delay = 0 }) => (
+  <g
+    transform={`translate(${x}, ${y})`}
+    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '4s' }}
+  >
+    {/* Forme centrale du cartouche */}
+    <path
+      className="museum-element stroke-long"
+      d={`M${width * 0.15} 0
+          Q0 0 0 ${height * 0.3}
+          Q0 ${height * 0.7} ${width * 0.15} ${height}
+          L${width * 0.85} ${height}
+          Q${width} ${height * 0.7} ${width} ${height * 0.3}
+          Q${width} 0 ${width * 0.85} 0 Z`}
+      fill="none" stroke="#d4af37" strokeWidth="0.6"
+    />
+
+    {/* Contour intérieur */}
+    <path
+      className="museum-element-secondary stroke-medium"
+      d={`M${width * 0.18} 4
+          Q6 4 6 ${height * 0.3}
+          Q6 ${height * 0.7 - 2} ${width * 0.18} ${height - 4}
+          L${width * 0.82} ${height - 4}
+          Q${width - 6} ${height * 0.7 - 2} ${width - 6} ${height * 0.3}
+          Q${width - 6} 4 ${width * 0.82} 4 Z`}
+      fill="none" stroke="#d4af37" strokeWidth="0.35"
+    />
+
+    {/* Volutes supérieures */}
+    <path
+      className="museum-element-detail stroke-short"
+      d={`M${width * 0.3} -8 Q${width * 0.2} -12 ${width * 0.15} -8 Q${width * 0.1} -4 ${width * 0.15} 0`}
+      fill="none" stroke="#d4af37" strokeWidth="0.35"
+    />
+    <path
+      className="museum-element-detail stroke-short"
+      d={`M${width * 0.7} -8 Q${width * 0.8} -12 ${width * 0.85} -8 Q${width * 0.9} -4 ${width * 0.85} 0`}
+      fill="none" stroke="#d4af37" strokeWidth="0.35"
+    />
+
+    {/* Coquille centrale supérieure */}
+    <g transform={`translate(${width / 2}, -5)`}>
+      <path className="museum-element-micro stroke-tiny" d="M-12 5 Q-8 8 0 5 Q8 8 12 5" fill="none" stroke="#d4af37" strokeWidth="0.25" />
+      <path className="museum-element-micro stroke-micro" d="M0 5 L-10 2 M0 5 L-6 1 M0 5 L-2 0 M0 5 L2 0 M0 5 L6 1 M0 5 L10 2" fill="none" stroke="#d4af37" strokeWidth="0.12" />
+      <circle className="museum-element-micro stroke-micro" cx="0" cy="5" r="1.5" fill="none" stroke="#d4af37" strokeWidth="0.1" />
+    </g>
+
+    {/* Volutes inférieures */}
+    <path
+      className="museum-element-detail stroke-short"
+      d={`M${width * 0.3} ${height + 8} Q${width * 0.2} ${height + 12} ${width * 0.15} ${height + 8} Q${width * 0.1} ${height + 4} ${width * 0.15} ${height}`}
+      fill="none" stroke="#d4af37" strokeWidth="0.35"
+    />
+    <path
+      className="museum-element-detail stroke-short"
+      d={`M${width * 0.7} ${height + 8} Q${width * 0.8} ${height + 12} ${width * 0.85} ${height + 8} Q${width * 0.9} ${height + 4} ${width * 0.85} ${height}`}
+      fill="none" stroke="#d4af37" strokeWidth="0.35"
+    />
+
+    {/* Guirlande inférieure */}
+    <path
+      className="museum-element-micro stroke-tiny"
+      d={`M${width * 0.25} ${height + 6} Q${width * 0.35} ${height + 12} ${width * 0.5} ${height + 8} Q${width * 0.65} ${height + 12} ${width * 0.75} ${height + 6}`}
+      fill="none" stroke="#d4af37" strokeWidth="0.2"
+    />
+
+    {/* Feuilles d'acanthe latérales */}
+    <g style={{ '--draw-delay': `${delay + 0.8}s` }}>
+      {/* Gauche */}
+      <path className="museum-element-micro stroke-tiny" d={`M-8 ${height * 0.3} Q-14 ${height * 0.4} -10 ${height * 0.5} Q-16 ${height * 0.55} -12 ${height * 0.65}`} fill="none" stroke="#d4af37" strokeWidth="0.2" />
+      <path className="museum-element-micro stroke-micro" d={`M-10 ${height * 0.35} L-6 ${height * 0.38} M-12 ${height * 0.5} L-8 ${height * 0.52}`} fill="none" stroke="#d4af37" strokeWidth="0.1" />
+      {/* Droite */}
+      <path className="museum-element-micro stroke-tiny" d={`M${width + 8} ${height * 0.3} Q${width + 14} ${height * 0.4} ${width + 10} ${height * 0.5} Q${width + 16} ${height * 0.55} ${width + 12} ${height * 0.65}`} fill="none" stroke="#d4af37" strokeWidth="0.2" />
+      <path className="museum-element-micro stroke-micro" d={`M${width + 10} ${height * 0.35} L${width + 6} ${height * 0.38} M${width + 12} ${height * 0.5} L${width + 8} ${height * 0.52}`} fill="none" stroke="#d4af37" strokeWidth="0.1" />
+    </g>
+  </g>
+);
+
+// ========================================
+// FILIGRANE DÉCORATIF
+// ========================================
+const Filigree = ({ x, y, width = 200, delay = 0 }) => (
+  <g
+    transform={`translate(${x}, ${y})`}
+    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '5s' }}
+  >
+    {/* Ligne centrale */}
+    <line className="museum-element stroke-long" x1="0" y1="15" x2={width} y2="15" stroke="#d4af37" strokeWidth="0.3" />
+
+    {/* Volutes et arabesques */}
+    {[...Array(Math.floor(width / 50))].map((_, i) => (
+      <g key={`filigree-${i}`} transform={`translate(${25 + i * 50}, 15)`} style={{ '--draw-delay': `${delay + 0.3 + i * 0.15}s` }}>
+        {/* Volute supérieure gauche */}
+        <path className="museum-element-detail stroke-short" d="M0 0 Q-8 -5 -12 -12 Q-10 -18 -4 -16 Q2 -14 0 -8 Q-2 -4 0 0" fill="none" stroke="#d4af37" strokeWidth="0.25" />
+        {/* Volute supérieure droite */}
+        <path className="museum-element-detail stroke-short" d="M0 0 Q8 -5 12 -12 Q10 -18 4 -16 Q-2 -14 0 -8 Q2 -4 0 0" fill="none" stroke="#d4af37" strokeWidth="0.25" />
+        {/* Volute inférieure gauche */}
+        <path className="museum-element-detail stroke-short" d="M0 0 Q-8 5 -12 12 Q-10 18 -4 16 Q2 14 0 8 Q-2 4 0 0" fill="none" stroke="#d4af37" strokeWidth="0.25" />
+        {/* Volute inférieure droite */}
+        <path className="museum-element-detail stroke-short" d="M0 0 Q8 5 12 12 Q10 18 4 16 Q-2 14 0 8 Q2 4 0 0" fill="none" stroke="#d4af37" strokeWidth="0.25" />
+
+        {/* Petites feuilles */}
+        <path className="museum-element-micro stroke-micro" d="M-6 -10 Q-8 -8 -6 -6 M6 -10 Q8 -8 6 -6 M-6 10 Q-8 8 -6 6 M6 10 Q8 8 6 6" fill="none" stroke="#d4af37" strokeWidth="0.12" />
+
+        {/* Centre décoratif */}
+        <circle className="museum-element-micro stroke-micro" cx="0" cy="0" r="2" fill="none" stroke="#d4af37" strokeWidth="0.15" />
+        <circle cx="0" cy="0" r="0.8" fill="#d4af37" fillOpacity="0.3" />
+      </g>
+    ))}
+
+    {/* Points de connexion */}
+    {[...Array(Math.floor(width / 50) + 1)].map((_, i) => (
+      <circle key={`dot-${i}`} cx={i * 50} cy="15" r="1" fill="#d4af37" fillOpacity="0.4" />
+    ))}
+  </g>
+);
+
+// ========================================
+// RAIS-DE-CŒUR (BORDURE CLASSIQUE)
+// ========================================
+const RaisDeCoeur = ({ x, y, width = 200, delay = 0 }) => {
+  const heartCount = Math.floor(width / 12);
+
+  return (
+    <g
+      transform={`translate(${x}, ${y})`}
+      style={{ '--draw-delay': `${delay}s`, '--draw-duration': '4s' }}
+    >
+      {/* Lignes encadrantes */}
+      <line className="museum-element stroke-medium" x1="0" y1="0" x2={width} y2="0" stroke="#d4af37" strokeWidth="0.3" />
+      <line className="museum-element stroke-medium" x1="0" y1="14" x2={width} y2="14" stroke="#d4af37" strokeWidth="0.3" />
+
+      {/* Cœurs (rais) */}
+      {[...Array(heartCount)].map((_, i) => (
+        <g key={`heart-${i}`} style={{ '--draw-delay': `${delay + 0.2 + i * 0.05}s` }}>
+          <path
+            className="museum-element-detail stroke-short"
+            d={`M${6 + i * 12} 12
+                Q${4 + i * 12} 8 ${6 + i * 12} 4
+                Q${8 + i * 12} 2 ${6 + i * 12} 2
+                Q${4 + i * 12} 2 ${6 + i * 12} 4
+                Q${8 + i * 12} 8 ${6 + i * 12} 12`}
+            fill="none" stroke="#d4af37" strokeWidth="0.25"
+          />
+          {/* Nervure centrale */}
+          <line
+            className="museum-element-micro stroke-micro"
+            x1={6 + i * 12} y1="4" x2={6 + i * 12} y2="10"
+            stroke="#d4af37" strokeWidth="0.1"
+          />
+        </g>
+      ))}
+
+      {/* Perles entre les cœurs */}
+      {[...Array(heartCount - 1)].map((_, i) => (
+        <circle
+          key={`pearl-${i}`}
+          className="museum-element-micro stroke-micro"
+          cx={12 + i * 12} cy="7" r="1.2"
+          fill="none" stroke="#d4af37" strokeWidth="0.12"
+        />
+      ))}
+    </g>
+  );
+};
+
+// ========================================
+// COMPOSANT PRINCIPAL - ULTRA-DÉTAILLÉ
 // ========================================
 const CabinetBackground = () => {
   return (
@@ -1671,7 +2082,7 @@ const CabinetBackground = () => {
       <div
         className="absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse at center, rgba(26, 39, 68, 0.3) 0%, rgba(10, 15, 26, 0.8) 100%)',
+          background: 'radial-gradient(ellipse at center, rgba(26, 39, 68, 0.25) 0%, rgba(10, 15, 26, 0.85) 100%)',
         }}
       />
 
@@ -1696,112 +2107,153 @@ const CabinetBackground = () => {
         </defs>
 
         {/* ===== COLONNES IONIQUES ===== */}
-        {/* Colonne gauche */}
-        <IonicColumn x={50} y={300} scale={1.2} delay={0.2} />
-        {/* Colonne droite (miroir) */}
-        <IonicColumn x={1820} y={300} scale={1.2} delay={0.5} mirror={true} />
+        <IonicColumn x={50} y={300} scale={1.2} delay={0.3} />
+        <IonicColumn x={1820} y={300} scale={1.2} delay={0.6} mirror={true} />
+        {/* Colonnes secondaires */}
+        <IonicColumn x={180} y={380} scale={0.8} delay={0.9} />
+        <IonicColumn x={1690} y={380} scale={0.8} delay={1.1} mirror={true} />
 
-        {/* ===== FRISES MÉANDRES ===== */}
-        {/* Frise supérieure */}
-        <GreekMeander x={200} y={80} width={400} delay={0.8} />
-        <GreekMeander x={1320} y={80} width={400} delay={1.0} />
-        {/* Frise inférieure */}
-        <GreekMeander x={300} y={980} width={500} delay={1.2} />
-        <GreekMeander x={1120} y={980} width={500} delay={1.4} />
+        {/* ===== FRISES DÉCORATIVES MULTIPLES ===== */}
+        {/* Frises méandres - haut */}
+        <GreekMeander x={200} y={60} width={450} delay={1.0} />
+        <GreekMeander x={1270} y={60} width={450} delay={1.2} />
+        {/* Frises méandres - bas */}
+        <GreekMeander x={250} y={1000} width={550} delay={1.4} />
+        <GreekMeander x={1120} y={1000} width={550} delay={1.6} />
+
+        {/* ===== FRISES D'OVES ET DARDS ===== */}
+        <OvesDardsFrieze x={660} y={45} width={280} delay={1.8} />
+        <OvesDardsFrieze x={980} y={45} width={280} delay={2.0} />
+        <OvesDardsFrieze x={800} y={1020} width={320} delay={2.2} />
+
+        {/* ===== FRISES DE PALMETTES ===== */}
+        <PalmetteFrieze x={300} y={95} width={350} delay={2.4} />
+        <PalmetteFrieze x={1270} y={95} width={350} delay={2.6} />
+
+        {/* ===== RAIS-DE-CŒUR ===== */}
+        <RaisDeCoeur x={400} y={140} width={240} delay={2.8} />
+        <RaisDeCoeur x={1280} y={140} width={240} delay={3.0} />
+        <RaisDeCoeur x={700} y={950} width={520} delay={3.2} />
+
+        {/* ===== FILIGRANE DÉCORATIF ===== */}
+        <Filigree x={150} y={170} width={250} delay={3.4} />
+        <Filigree x={1520} y={170} width={250} delay={3.6} />
+        <Filigree x={500} y={920} width={300} delay={3.8} />
+        <Filigree x={1120} y={920} width={300} delay={4.0} />
 
         {/* ===== CADRES/TABLEAUX 18ÈME SIÈCLE ===== */}
         {/* Grand tableau central - paysage */}
-        <BaroqueFrame x={700} y={120} width={180} height={220} delay={1.6}>
-          <PaintingContent width={180} height={220} type="landscape" />
+        <BaroqueFrame x={720} y={160} width={200} height={250} delay={4.2}>
+          <PaintingContent width={200} height={250} type="landscape" />
         </BaroqueFrame>
 
         {/* Tableau portrait - côté gauche */}
-        <BaroqueFrame x={250} y={180} width={140} height={180} delay={2.0}>
-          <PaintingContent width={140} height={180} type="portrait" />
+        <BaroqueFrame x={300} y={200} width={150} height={190} delay={4.6}>
+          <PaintingContent width={150} height={190} type="portrait" />
         </BaroqueFrame>
 
         {/* Tableau nature morte - côté droit */}
-        <BaroqueFrame x={1530} y={180} width={140} height={180} delay={2.4}>
-          <PaintingContent width={140} height={180} type="stillLife" />
+        <BaroqueFrame x={1470} y={200} width={150} height={190} delay={5.0}>
+          <PaintingContent width={150} height={190} type="stillLife" />
         </BaroqueFrame>
 
-        {/* Petit cadre décoratif */}
-        <BaroqueFrame x={1050} y={150} width={100} height={130} delay={2.8}>
-          <PaintingContent width={100} height={130} type="portrait" />
+        {/* Petits cadres décoratifs supplémentaires */}
+        <BaroqueFrame x={1000} y={180} width={110} height={140} delay={5.4}>
+          <PaintingContent width={110} height={140} type="portrait" />
         </BaroqueFrame>
+        <BaroqueFrame x={1180} y={200} width={100} height={120} delay={5.8}>
+          <PaintingContent width={100} height={120} type="landscape" />
+        </BaroqueFrame>
+
+        {/* ===== MÉDAILLONS ORNÉS ===== */}
+        <OrnateMedallion x={550} y={350} scale={0.9} delay={6.0} type="profile" />
+        <OrnateMedallion x={1290} y={350} scale={0.9} delay={6.3} type="profile" />
+        <OrnateMedallion x={140} y={550} scale={0.7} delay={6.6} type="profile" />
+        <OrnateMedallion x={1700} y={550} scale={0.7} delay={6.9} type="profile" />
+
+        {/* ===== CARTOUCHES ORNÉS ===== */}
+        <OrnateCartouche x={680} y={450} width={120} height={70} delay={7.2} />
+        <OrnateCartouche x={1120} y={450} width={120} height={70} delay={7.5} />
+        <OrnateCartouche x={860} y={850} width={200} height={80} delay={7.8} />
 
         {/* ===== AMPHORES GRECQUES ===== */}
-        {/* Amphore gauche avec motifs géométriques */}
-        <GreekAmphora x={180} y={600} scale={1.1} delay={3.2} pattern="geometric" />
-        {/* Amphore droite avec figures */}
-        <GreekAmphora x={1680} y={620} scale={1} delay={3.6} pattern="figures" />
-        {/* Petite amphore centrale */}
-        <GreekAmphora x={920} y={720} scale={0.7} delay={4.0} pattern="geometric" />
+        <GreekAmphora x={220} y={620} scale={1.0} delay={8.0} pattern="geometric" />
+        <GreekAmphora x={1650} y={620} scale={1.0} delay={8.3} pattern="figures" />
+        <GreekAmphora x={450} y={700} scale={0.7} delay={8.6} pattern="figures" />
+        <GreekAmphora x={1420} y={700} scale={0.7} delay={8.9} pattern="geometric" />
+        <GreekAmphora x={920} y={730} scale={0.65} delay={9.2} pattern="geometric" />
 
         {/* ===== STATUES GRECQUES ===== */}
-        {/* Vénus - grande statue gauche */}
-        <GreekStatue x={350} y={480} scale={1.3} delay={4.4} type="venus" />
-        {/* Buste romain - droite */}
-        <GreekStatue x={1450} y={520} scale={1.2} delay={4.8} type="bust" />
+        <GreekStatue x={380} y={500} scale={1.2} delay={9.5} type="venus" />
+        <GreekStatue x={1480} y={520} scale={1.1} delay={9.8} type="bust" />
+        <GreekStatue x={620} y={580} scale={0.8} delay={10.1} type="bust" />
+        <GreekStatue x={1240} y={580} scale={0.8} delay={10.4} type="venus" />
 
         {/* ===== COURONNES DE LAURIER ===== */}
-        <LaurelWreath x={580} y={60} scale={0.8} delay={5.2} />
-        <LaurelWreath x={1260} y={60} scale={0.8} delay={5.5} />
+        <LaurelWreath x={600} y={50} scale={0.75} delay={10.7} />
+        <LaurelWreath x={1240} y={50} scale={0.75} delay={10.9} />
+        <LaurelWreath x={200} y={480} scale={0.5} delay={11.1} />
+        <LaurelWreath x={1640} y={480} scale={0.5} delay={11.3} />
 
         {/* ===== CANDÉLABRES ===== */}
-        <OrnateCandelabra x={480} y={700} scale={1} delay={5.8} />
-        <OrnateCandelabra x={1380} y={700} scale={1} delay={6.2} />
+        <OrnateCandelabra x={500} y={680} scale={0.95} delay={11.5} />
+        <OrnateCandelabra x={1370} y={680} scale={0.95} delay={11.8} />
+        <OrnateCandelabra x={100} y={750} scale={0.7} delay={12.0} />
+        <OrnateCandelabra x={1770} y={750} scale={0.7} delay={12.2} />
 
         {/* ===== ROSACES DÉCORATIVES ===== */}
-        <DecorativeRosette x={100} y={150} scale={0.8} delay={6.6} />
-        <DecorativeRosette x={1760} y={150} scale={0.8} delay={6.9} />
-        <DecorativeRosette x={600} y={450} scale={0.6} delay={7.2} />
-        <DecorativeRosette x={1250} y={450} scale={0.6} delay={7.5} />
+        <DecorativeRosette x={100} y={180} scale={0.7} delay={12.4} />
+        <DecorativeRosette x={1760} y={180} scale={0.7} delay={12.6} />
+        <DecorativeRosette x={620} y={480} scale={0.55} delay={12.8} />
+        <DecorativeRosette x={1220} y={480} scale={0.55} delay={13.0} />
+        <DecorativeRosette x={350} y={850} scale={0.6} delay={13.2} />
+        <DecorativeRosette x={1510} y={850} scale={0.6} delay={13.4} />
+        <DecorativeRosette x={780} y={600} scale={0.4} delay={13.6} />
+        <DecorativeRosette x={1080} y={600} scale={0.4} delay={13.8} />
 
-        {/* ===== ÉLÉMENTS DÉCORATIFS SUPPLÉMENTAIRES ===== */}
-        {/* Petites colonnes décoratives */}
-        <IonicColumn x={550} y={550} scale={0.5} delay={7.8} />
-        <IonicColumn x={1320} y={550} scale={0.5} delay={8.2} />
+        {/* ===== COLONNES DÉCORATIVES SUPPLÉMENTAIRES ===== */}
+        <IonicColumn x={580} y={560} scale={0.45} delay={14.0} />
+        <IonicColumn x={1290} y={560} scale={0.45} delay={14.2} />
+        <IonicColumn x={750} y={620} scale={0.35} delay={14.4} />
+        <IonicColumn x={1120} y={620} scale={0.35} delay={14.6} />
 
-        {/* Lignes décoratives fines */}
-        <line
-          className="museum-element stroke-medium"
-          x1="200"
-          y1="450"
-          x2="500"
-          y2="450"
-          stroke="#d4af37"
-          strokeWidth="0.5"
-          strokeOpacity="0.4"
-          style={{ '--draw-delay': '8.5s', '--draw-duration': '1.5s' }}
-        />
-        <line
-          className="museum-element stroke-medium"
-          x1="1420"
-          y1="450"
-          x2="1720"
-          y2="450"
-          stroke="#d4af37"
-          strokeWidth="0.5"
-          strokeOpacity="0.4"
-          style={{ '--draw-delay': '8.8s', '--draw-duration': '1.5s' }}
-        />
+        {/* ===== LIGNES DÉCORATIVES FINES ===== */}
+        <line className="museum-element stroke-medium" x1="200" y1="430" x2="500" y2="430" stroke="#d4af37" strokeWidth="0.35" strokeOpacity="0.35" style={{ '--draw-delay': '14.8s', '--draw-duration': '2s' }} />
+        <line className="museum-element stroke-medium" x1="1420" y1="430" x2="1720" y2="430" stroke="#d4af37" strokeWidth="0.35" strokeOpacity="0.35" style={{ '--draw-delay': '15.0s', '--draw-duration': '2s' }} />
+        <line className="museum-element stroke-medium" x1="300" y1="880" x2="600" y2="880" stroke="#d4af37" strokeWidth="0.35" strokeOpacity="0.35" style={{ '--draw-delay': '15.2s', '--draw-duration': '2s' }} />
+        <line className="museum-element stroke-medium" x1="1320" y1="880" x2="1620" y2="880" stroke="#d4af37" strokeWidth="0.35" strokeOpacity="0.35" style={{ '--draw-delay': '15.4s', '--draw-duration': '2s' }} />
+
+        {/* ===== DÉTAILS ARCHITECTURAUX FINS ===== */}
+        {/* Arcs décoratifs */}
+        <path className="museum-element-detail stroke-medium" d="M400 550 Q450 520 500 550" fill="none" stroke="#d4af37" strokeWidth="0.3" strokeOpacity="0.4" style={{ '--draw-delay': '15.6s', '--draw-duration': '2s' }} />
+        <path className="museum-element-detail stroke-medium" d="M1420 550 Q1470 520 1520 550" fill="none" stroke="#d4af37" strokeWidth="0.3" strokeOpacity="0.4" style={{ '--draw-delay': '15.8s', '--draw-duration': '2s' }} />
+
+        {/* Points décoratifs en diamant */}
+        {[...Array(12)].map((_, i) => (
+          <g key={`diamond-${i}`} style={{ '--draw-delay': `${16 + i * 0.1}s` }}>
+            <path
+              className="museum-element-micro stroke-tiny"
+              d={`M${160 + i * 150} 520 L${165 + i * 150} 525 L${160 + i * 150} 530 L${155 + i * 150} 525 Z`}
+              fill="none" stroke="#d4af37" strokeWidth="0.2" strokeOpacity="0.3"
+            />
+          </g>
+        ))}
       </svg>
 
-      {/* Particules dorées flottantes */}
+      {/* Particules dorées flottantes - plus nombreuses */}
       <div className="absolute inset-0">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(35)].map((_, i) => (
           <div
             key={`particle-${i}`}
             className={`absolute rounded-full animate-sparkle`}
             style={{
-              left: `${5 + (i * 4.7) % 90}%`,
-              top: `${10 + (i * 7.3) % 80}%`,
-              width: 2 + (i % 3),
-              height: 2 + (i % 3),
+              left: `${3 + (i * 2.8) % 94}%`,
+              top: `${5 + (i * 5.1) % 90}%`,
+              width: 1.5 + (i % 3) * 0.5,
+              height: 1.5 + (i % 3) * 0.5,
               backgroundColor: '#d4af37',
-              opacity: 0.2 + (i % 4) * 0.1,
-              animationDelay: `${i * 0.3}s`,
+              opacity: 0.15 + (i % 5) * 0.08,
+              animationDelay: `${i * 0.25}s`,
             }}
           />
         ))}
@@ -1812,8 +2264,8 @@ const CabinetBackground = () => {
         className="absolute inset-0"
         style={{
           background: `
-            radial-gradient(ellipse 80% 60% at 50% 50%, transparent 0%, rgba(10, 13, 26, 0.4) 100%),
-            linear-gradient(to bottom, rgba(10, 13, 26, 0.2) 0%, transparent 15%, transparent 85%, rgba(10, 13, 26, 0.3) 100%)
+            radial-gradient(ellipse 85% 65% at 50% 50%, transparent 0%, rgba(10, 13, 26, 0.35) 100%),
+            linear-gradient(to bottom, rgba(10, 13, 26, 0.15) 0%, transparent 12%, transparent 88%, rgba(10, 13, 26, 0.25) 100%)
           `,
         }}
       />

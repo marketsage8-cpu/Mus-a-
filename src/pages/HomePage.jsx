@@ -299,8 +299,20 @@ const HomePage = () => {
       {/* ============================================
           SECTION 3: MUZEA NOW
           ============================================ */}
-      <section className="relative py-20 px-4">
-        <div className="max-w-6xl mx-auto">
+      <section className="relative py-20 px-4 overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: 'url(/photos/Gemini_Generated_Image_w7vo9ww7vo9ww7vo.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        />
+        {/* Overlay sombre pour lisibilité */}
+        <div className="absolute inset-0 z-0 bg-[#0a0d1a]/70" />
+        <div className="max-w-6xl mx-auto relative z-10">
           {/* Section header - Muzea Now centered layout */}
           <div className="text-center mb-12">
             {/* Muzea now - avec encadrement stylé */}

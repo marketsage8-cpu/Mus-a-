@@ -241,6 +241,18 @@ const HomePage = () => {
         {/* Hero Content - centered */}
         <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 pt-20 pb-32">
           <div className="max-w-3xl mx-auto text-center">
+            {/* Logo Muzea */}
+            <div className="mb-8 animate-slide-up">
+              <img
+                src="/logo-muzea.svg"
+                alt="Muzea - Culture Nearby"
+                className="w-32 h-auto mx-auto drop-shadow-lg"
+                style={{
+                  filter: 'brightness(0) invert(1) drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3))'
+                }}
+              />
+            </div>
+
             {/* Main title - Italic serif golden */}
             <h1
               className="font-serif-italic text-4xl sm:text-5xl lg:text-6xl mb-6 animate-slide-up"

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Moon, Sun, Menu, X, User, Heart } from 'lucide-react';
+import { Moon, Sun, Menu, X, User } from 'lucide-react';
 
 /**
  * Navigation principale avec design transparent fusionnant avec le hero
@@ -18,7 +18,6 @@ const Navigation = () => {
     { path: '/explore', label: 'Carte' },
     { path: '/guides', label: 'Guides' },
     { path: '/decouverte', label: 'Découverte' },
-    { path: '/favoris', label: 'Favoris' },
     { path: '/events', label: 'Rencontres' }
   ];
 
@@ -59,9 +58,12 @@ const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center group">
             <img
-              src="/images/MBA_2022_39.jpg"
+              src="/logo-muzea.svg"
               alt="Muzea - Culture Nearby"
-              className="h-12 w-auto group-hover:scale-105 transition-transform rounded-lg object-cover"
+              className="h-10 w-auto group-hover:scale-105 transition-transform"
+              style={{
+                filter: 'brightness(0) invert(1)'
+              }}
             />
           </Link>
 
@@ -109,15 +111,6 @@ const Navigation = () => {
             >
               {isDarkMode ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
             </button>
-
-            {/* Favorites Button */}
-            <Link
-              to="/favoris"
-              className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white transition-all hover:scale-105"
-              aria-label="Mes favoris"
-            >
-              <Heart className="w-5 h-5" />
-            </Link>
 
             {/* Profile Button */}
             <Link

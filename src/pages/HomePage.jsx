@@ -193,12 +193,6 @@ const HomePage = () => {
     }, 300);
   };
 
-  const filterButtons = [
-    { label: 'Ouvert maintenant', variant: 'green' },
-    { label: 'Gratuit', variant: 'light' },
-    { label: 'Bowsites', variant: 'light' },
-    { label: 'Lilin et al imps', variant: 'light' }
-  ];
 
   return (
     <div className="animate-fade-in relative">
@@ -296,27 +290,6 @@ const HomePage = () => {
               />
             </form>
 
-            {/* Filter buttons */}
-            <div
-              className="flex flex-wrap justify-center gap-3 animate-slide-up"
-              style={{ animationDelay: '300ms' }}
-            >
-              {filterButtons.map((btn, index) => (
-                <button
-                  key={index}
-                  className={`
-                    px-5 py-2.5 rounded-full text-sm font-medium
-                    transition-all hover:scale-105
-                    ${btn.variant === 'green'
-                      ? 'bg-[#2d4a3e] text-white'
-                      : 'bg-white/90 text-gray-800 border border-gray-200'
-                    }
-                  `}
-                >
-                  {btn.label}
-                </button>
-              ))}
-            </div>
           </div>
         </div>
 

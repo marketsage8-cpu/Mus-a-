@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Search, MapPin, Clock, Calendar, Euro, Star, User, ChevronLeft, ChevronDown, Filter, MessageCircle, CheckCircle } from 'lucide-react';
 import { places } from '../data/places';
 import { frenchMuseums, frenchRegions } from '../data/frenchMuseums';
@@ -132,6 +133,7 @@ const allPlaces = [
  * Page Guides - Réserver une visite guidée
  */
 const GuidesPage = () => {
+  const [searchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
@@ -142,6 +144,20 @@ const GuidesPage = () => {
   const [priceFilter, setPriceFilter] = useState('all');
 
   const availableDays = getNextDays();
+
+  // Pré-sélectionner le lieu depuis l'URL
+  useEffect(() => {
+    const placeParam = searchParams.get('place');
+    if (placeParam && !selectedPlace) {
+      const foundPlace = allPlaces.find(p =>
+        p.name.toLowerCase() === placeParam.toLowerCase() ||
+        p.name.toLowerCase().includes(placeParam.toLowerCase())
+      );
+      if (foundPlace) {
+        setSelectedPlace(foundPlace);
+      }
+    }
+  }, [searchParams]);
 
   // Filtrer les lieux
   useEffect(() => {

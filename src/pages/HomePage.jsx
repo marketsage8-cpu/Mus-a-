@@ -206,11 +206,11 @@ const HomePage = () => {
           SECTION 1: HERO
           ============================================ */}
       <section className="relative min-h-screen flex flex-col">
-        {/* Background image - Intérieur grandiose du Musée du Louvre */}
+        {/* Background image - Art coloré et vibrant */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1565060169194-19fabf63012c?w=1920&q=80"
-            alt="Grande Galerie du Louvre avec ses tableaux et plafonds dorés"
+            src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=1920&q=80"
+            alt="Art moderne coloré et vibrant"
             className="w-full h-full object-cover"
           />
           {/* Gradient overlay - effet "bavure" fluide depuis la navbar bleu marine (style Culturio) */}
@@ -432,14 +432,13 @@ const HomePage = () => {
             {/* Large card - left side (spans 7 columns ~60%) */}
             {nearbyPlaces[0] && (
               <div
-                className={`lg:col-span-7 h-[450px] lg:h-[520px] transition-transform duration-300 ${
-                  selectedBentoCard === 0 ? 'scale-105 z-10' : ''
+                className={`lg:col-span-7 h-[380px] lg:h-[420px] transition-transform duration-300 ${
+                  selectedBentoCard === 0 ? 'scale-[1.02] z-10' : ''
                 }`}
               >
                 <BentoCard
                   museum={nearbyPlaces[0]}
                   size="large"
-                  badges={[{ text: '#1 Recommandé', variant: 'gold' }]}
                   distanceInfo={getDistanceText(nearbyPlaces[0].distance)}
                   onClick={() => handleBentoClick(0)}
                   showCTA={true}
@@ -448,18 +447,17 @@ const HomePage = () => {
               </div>
             )}
 
-            {/* Right side - 2 smaller cards stacked (spans 5 columns ~40%) */}
-            <div className="lg:col-span-5 flex flex-col gap-4 lg:gap-5">
+            {/* Right side - 2 smaller cards stacked */}
+            <div className="lg:col-span-5 flex flex-col gap-3">
               {nearbyPlaces[1] && (
                 <div
-                  className={`h-[280px] lg:h-[250px] transition-transform duration-300 ${
-                    selectedBentoCard === 1 ? 'scale-105 z-10' : ''
+                  className={`h-[200px] lg:h-[200px] transition-transform duration-300 ${
+                    selectedBentoCard === 1 ? 'scale-[1.02] z-10' : ''
                   }`}
                 >
                   <BentoCard
                     museum={nearbyPlaces[1]}
                     size="small"
-                    badges={[{ text: 'Proche', variant: 'glass' }]}
                     distanceInfo={getDistanceText(nearbyPlaces[1].distance)}
                     onClick={() => handleBentoClick(1)}
                     isSelected={selectedBentoCard === 1}
@@ -468,14 +466,13 @@ const HomePage = () => {
               )}
               {nearbyPlaces[2] && (
                 <div
-                  className={`h-[280px] lg:h-[250px] transition-transform duration-300 ${
-                    selectedBentoCard === 2 ? 'scale-105 z-10' : ''
+                  className={`h-[200px] lg:h-[200px] transition-transform duration-300 ${
+                    selectedBentoCard === 2 ? 'scale-[1.02] z-10' : ''
                   }`}
                 >
                   <BentoCard
                     museum={nearbyPlaces[2]}
                     size="small"
-                    badges={[{ text: 'À découvrir', variant: 'glass' }]}
                     distanceInfo={getDistanceText(nearbyPlaces[2].distance)}
                     onClick={() => handleBentoClick(2)}
                     isSelected={selectedBentoCard === 2}
@@ -723,140 +720,76 @@ const HomePage = () => {
 };
 
 /**
- * Bento Card Component for Découverte Spontanée section
- * Design: Full background image with badges, gradient overlay, and hover zoom effect
- * z-index élevé pour s'assurer que les cartes sont au-dessus des motifs décoratifs
+ * Bento Card Component - Version simplifiée et sobre
  */
-const BentoCard = ({ museum, size = 'small', badges = [], distanceInfo, onClick, showCTA = false, isSelected = false }) => {
+const BentoCard = ({ museum, size = 'small', distanceInfo, onClick, showCTA = false, isSelected = false }) => {
   const DistanceIcon = distanceInfo?.icon || MapPin;
 
   return (
     <div
       className={`
-        relative w-full h-full rounded-2xl xl:rounded-3xl overflow-hidden group cursor-pointer shadow-xl
-        transition-all duration-300 ease-out isolate
-        ${isSelected ? 'ring-4 ring-[#d4a574] shadow-2xl shadow-[#d4a574]/30' : ''}
+        relative w-full h-full rounded-2xl overflow-hidden group cursor-pointer
+        transition-all duration-300 ease-out
+        ${isSelected ? 'ring-2 ring-[#d4a574]/50' : ''}
       `}
       onClick={onClick}
       style={{ zIndex: 10 }}
     >
-      {/* Background image with hover zoom effect and click zoom */}
+      {/* Background image */}
       <img
         src={museum.image}
         alt={museum.name}
         className={`
           absolute inset-0 w-full h-full object-cover
-          transition-transform duration-700 ease-out
-          ${isSelected ? 'scale-110' : 'group-hover:scale-110'}
+          transition-transform duration-500
+          group-hover:scale-105
         `}
       />
 
-      {/* Gradient overlay - darker at bottom for text readability */}
+      {/* Gradient overlay simple */}
       <div
         className="absolute inset-0"
         style={{
           background: `linear-gradient(to top,
-            rgba(0, 0, 0, 0.92) 0%,
-            rgba(0, 0, 0, 0.75) 25%,
-            rgba(0, 0, 0, 0.4) 50%,
-            rgba(0, 0, 0, 0.15) 75%,
+            rgba(0, 0, 0, 0.85) 0%,
+            rgba(0, 0, 0, 0.4) 40%,
             transparent 100%)`
         }}
       />
 
-      {/* Badges - top left with backdrop blur (pill shape) */}
-      {badges.length > 0 && (
-        <div className="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
-          {badges.map((badge, index) => (
-            <span
-              key={index}
-              className={`
-                px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide
-                backdrop-blur-md shadow-lg
-                ${badge.variant === 'gold'
-                  ? 'bg-[#d4a574]/90 text-[#243350]'
-                  : 'bg-white/20 text-white border border-white/30'
-                }
-              `}
-            >
-              {badge.text}
-            </span>
-          ))}
-        </div>
-      )}
-
-      {/* Content overlay - bottom */}
-      <div className={`absolute bottom-0 left-0 right-0 p-5 ${size === 'large' ? 'sm:p-8' : 'sm:p-5'}`}>
+      {/* Content - bottom */}
+      <div className={`absolute bottom-0 left-0 right-0 p-5 ${size === 'large' ? 'sm:p-6' : ''}`}>
         {/* Museum name */}
         <h3
           className={`
-            font-bold text-white leading-tight mb-3
-            ${size === 'large' ? 'text-2xl sm:text-3xl lg:text-4xl' : 'text-xl sm:text-2xl'}
+            font-semibold text-white leading-tight mb-2
+            ${size === 'large' ? 'text-xl sm:text-2xl' : 'text-lg'}
           `}
         >
           {museum.name}
         </h3>
 
-        {/* Distance / Travel time with icon */}
-        <div className="flex items-center gap-2 text-white/80 mb-3">
-          <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm">
-            <DistanceIcon className="w-4 h-4" />
-          </div>
-          <span className="text-sm font-medium">{distanceInfo?.text || museum.location}</span>
-        </div>
-
-        {/* Three detailed parameters - Tarif, Horaires, Période */}
-        <div className={`grid ${size === 'large' ? 'grid-cols-3' : 'grid-cols-3'} gap-2 mb-4`}>
-          {/* Tarif */}
-          <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-lg px-2.5 py-2">
-            <Euro className={`${size === 'large' ? 'w-4 h-4' : 'w-3.5 h-3.5'} text-[#d4a574]`} />
-            <div className="flex flex-col">
-              <span className={`${size === 'large' ? 'text-xs' : 'text-[10px]'} text-white/50 leading-none`}>Tarif</span>
-              <span className={`${size === 'large' ? 'text-sm' : 'text-xs'} text-white font-semibold leading-tight`}>{museum.price}</span>
-            </div>
-          </div>
-          {/* Horaires */}
-          <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-lg px-2.5 py-2">
-            <Clock className={`${size === 'large' ? 'w-4 h-4' : 'w-3.5 h-3.5'} text-[#d4a574]`} />
-            <div className="flex flex-col">
-              <span className={`${size === 'large' ? 'text-xs' : 'text-[10px]'} text-white/50 leading-none`}>Horaires</span>
-              <span className={`${size === 'large' ? 'text-xs' : 'text-[10px]'} text-white font-medium leading-tight truncate`}>{museum.hours}</span>
-            </div>
-          </div>
-          {/* Période */}
-          <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-lg px-2.5 py-2">
-            <Calendar className={`${size === 'large' ? 'w-4 h-4' : 'w-3.5 h-3.5'} text-[#d4a574]`} />
-            <div className="flex flex-col">
-              <span className={`${size === 'large' ? 'text-xs' : 'text-[10px]'} text-white/50 leading-none`}>Période</span>
-              <span className={`${size === 'large' ? 'text-xs' : 'text-[10px]'} text-white font-medium leading-tight truncate`}>{museum.period}</span>
-            </div>
-          </div>
+        {/* Distance simple */}
+        <div className="flex items-center gap-2 text-white/70 text-sm">
+          <DistanceIcon className="w-4 h-4" />
+          <span>{distanceInfo?.text || museum.location}</span>
         </div>
 
         {/* CTA Button - only for large card */}
         {showCTA && (
           <button
             className="
-              w-full py-4
+              mt-4 w-full py-3
               bg-[#d4a574] hover:bg-[#c49464]
-              text-[#243350] font-bold text-lg
-              rounded-xl
-              transition-all duration-300
-              hover:scale-[1.02] hover:shadow-lg
-              active:scale-[0.98]
+              text-[#243350] font-semibold
+              rounded-lg
+              transition-colors
             "
           >
-            Commencer la visite
+            Voir ce lieu
           </button>
         )}
       </div>
-
-      {/* Subtle border glow on hover */}
-      <div className={`
-        absolute inset-0 rounded-2xl xl:rounded-3xl
-        border transition-all duration-500 pointer-events-none
-        ${isSelected ? 'border-[#d4a574]/50' : 'border-white/0 group-hover:border-white/20'}
-      `} />
     </div>
   );
 };

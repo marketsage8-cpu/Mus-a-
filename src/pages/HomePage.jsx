@@ -209,7 +209,7 @@ const HomePage = () => {
         {/* Background image - Art coloré et vibrant */}
         <div className="absolute inset-0">
           <img
-            src="/images/home-background.png"
+            src="/images/Gemini_Generated_Image_x7ebzox7ebzox7eb.png"
             alt="Illustration élégante d'œuvres d'art classiques"
             className="w-full h-full object-cover"
           />

@@ -250,7 +250,7 @@ const InteractiveMap = ({
   };
 
   return (
-    <div className={`rounded-xl overflow-hidden border border-stone-700/30 relative ${className}`}>
+    <div className={`relative ${className}`} style={{ height }}>
       {/* Message d'erreur */}
       {locationError && (
         <div className="absolute top-2 left-1/2 -translate-x-1/2 z-[1000] bg-red-900/90 text-white px-4 py-2 rounded-lg text-sm shadow-lg">
@@ -260,7 +260,7 @@ const InteractiveMap = ({
 
       {/* Indicateur de position active */}
       {userLocation && (
-        <div className="absolute bottom-2 left-2 z-[1000] flex items-center gap-2 bg-blue-600/90 text-white px-3 py-1.5 rounded-lg text-xs shadow-lg backdrop-blur-sm">
+        <div className="absolute bottom-20 left-2 z-[1000] flex items-center gap-2 bg-blue-600/90 text-white px-3 py-1.5 rounded-lg text-xs shadow-lg backdrop-blur-sm">
           <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
           Position active
         </div>
@@ -269,7 +269,7 @@ const InteractiveMap = ({
       <MapContainer
         center={center}
         zoom={zoom}
-        style={{ height, width: '100%' }}
+        style={{ height: '100%', width: '100%' }}
         className="z-0"
       >
         {/* Tuiles style sombre */}

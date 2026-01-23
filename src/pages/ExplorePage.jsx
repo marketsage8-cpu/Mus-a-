@@ -113,16 +113,21 @@ const ExplorePage = () => {
 
       {/* Main content */}
       <div className="max-w-7xl mx-auto px-4 py-6">
-        {/* Map */}
+        {/* Map - Limite à 10 lieux les plus proches pour optimiser l'affichage */}
         {showMap && filteredPlaces.length > 0 && (
           <div className="mb-6">
             <InteractiveMap
-              places={filteredPlaces}
+              places={filteredPlaces.slice(0, 10)}
               onPlaceClick={setSelectedPlace}
               height="350px"
               autoLocate={true}
               showUserLocation={true}
             />
+            {filteredPlaces.length > 10 && (
+              <p className="text-center text-stone-400 text-sm mt-2">
+                Affichage des 10 lieux les plus proches sur la carte ({filteredPlaces.length} résultats au total)
+              </p>
+            )}
           </div>
         )}
 

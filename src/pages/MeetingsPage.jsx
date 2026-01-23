@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { Search, MapPin, Users, MessageCircle, X, Send, Heart, Calendar, Clock, ChevronLeft, Star, User } from 'lucide-react';
+import { Search, MapPin, Users, MessageCircle, X, Send, Heart, Calendar, Clock, ChevronLeft, Star, User, Filter, ChevronDown } from 'lucide-react';
 import { places } from '../data/places';
+import { frenchMuseums, frenchRegions, placeTypes } from '../data/frenchMuseums';
 
 /**
  * Données fictives des utilisateurs cherchant des compagnons de visite
@@ -97,11 +98,26 @@ const meetupUsers = [
 ];
 
 /**
+ * Combiner les places existantes avec la nouvelle base de données française
+ */
+const allPlaces = [
+  ...places.map(p => ({
+    id: p.id,
+    name: p.name,
+    type: p.type,
+    city: p.location.split(',')[0].trim(),
+    region: p.location.split(',')[1]?.trim() || 'France',
+    image: p.image
+  })),
+  ...frenchMuseums
+];
+
+/**
  * Association lieu -> utilisateurs disponibles
  */
 const generatePlaceMeetups = () => {
   const placeMeetups = {};
-  places.forEach(place => {
+  allPlaces.forEach(place => {
     // Chaque lieu a entre 2 et 6 utilisateurs disponibles aléatoirement
     const numUsers = Math.floor(Math.random() * 5) + 2;
     const shuffled = [...meetupUsers].sort(() => 0.5 - Math.random());
@@ -150,22 +166,30 @@ const MeetingsPage = () => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [filteredPlaces, setFilteredPlaces] = useState([]);
+  const [selectedRegion, setSelectedRegion] = useState('');
+  const [selectedType, setSelectedType] = useState('');
+  const [showFilters, setShowFilters] = useState(false);
   const messagesEndRef = useRef(null);
 
-  // Filtrer les lieux selon la recherche
+  // Filtrer les lieux selon la recherche, région et type
   useEffect(() => {
-    if (searchQuery.trim()) {
+    if (searchQuery.trim() || selectedRegion || selectedType) {
       const query = searchQuery.toLowerCase();
-      const filtered = places.filter(place =>
-        place.name.toLowerCase().includes(query) ||
-        place.location.toLowerCase().includes(query) ||
-        place.type.toLowerCase().includes(query)
-      );
-      setFilteredPlaces(filtered.slice(0, 10));
+      const filtered = allPlaces.filter(place => {
+        const matchesQuery = !searchQuery.trim() ||
+          place.name.toLowerCase().includes(query) ||
+          place.city?.toLowerCase().includes(query) ||
+          place.region?.toLowerCase().includes(query) ||
+          place.type.toLowerCase().includes(query);
+        const matchesRegion = !selectedRegion || place.region === selectedRegion;
+        const matchesType = !selectedType || place.type === selectedType;
+        return matchesQuery && matchesRegion && matchesType;
+      });
+      setFilteredPlaces(filtered.slice(0, 20));
     } else {
       setFilteredPlaces([]);
     }
-  }, [searchQuery]);
+  }, [searchQuery, selectedRegion, selectedType]);
 
   // Scroll vers le bas des messages
   useEffect(() => {
@@ -263,28 +287,93 @@ const MeetingsPage = () => {
           </p>
         </div>
 
-        {/* Barre de recherche */}
+        {/* Barre de recherche et filtres */}
         {!selectedPlace && (
-          <div className="max-w-2xl mx-auto mb-12 relative">
-            <div className="relative">
+          <div className="max-w-4xl mx-auto mb-12">
+            {/* Barre de recherche principale */}
+            <div className="relative mb-4">
               <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Rechercher un musée, château, exposition..."
-                className="w-full py-4 px-6 pl-14 bg-[#1a1a2e] border border-[#d4a574]/30 rounded-2xl text-white placeholder-gray-500 focus:outline-none focus:border-[#d4a574] focus:ring-2 focus:ring-[#d4a574]/20 transition-all"
+                placeholder="Rechercher parmi 250+ musées et châteaux de France..."
+                className="w-full py-4 px-6 pl-14 pr-14 bg-[#1a1a2e] border border-[#d4a574]/30 rounded-2xl text-white placeholder-gray-500 focus:outline-none focus:border-[#d4a574] focus:ring-2 focus:ring-[#d4a574]/20 transition-all"
               />
+              <button
+                onClick={() => setShowFilters(!showFilters)}
+                className={`absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-lg transition-colors ${showFilters ? 'bg-[#d4a574] text-[#1a1a2e]' : 'bg-white/10 text-gray-400 hover:text-white'}`}
+              >
+                <Filter className="w-5 h-5" />
+              </button>
             </div>
+
+            {/* Filtres déroulants */}
+            {showFilters && (
+              <div className="flex flex-wrap gap-4 mb-4 p-4 bg-[#1a1a2e]/50 rounded-xl border border-[#d4a574]/20 animate-fade-in">
+                {/* Filtre par région */}
+                <div className="flex-1 min-w-[200px]">
+                  <label className="text-gray-400 text-xs mb-1 block">Région</label>
+                  <div className="relative">
+                    <select
+                      value={selectedRegion}
+                      onChange={(e) => setSelectedRegion(e.target.value)}
+                      className="w-full py-3 px-4 pr-10 bg-[#1a1a2e] border border-[#d4a574]/30 rounded-xl text-white appearance-none cursor-pointer focus:outline-none focus:border-[#d4a574]"
+                    >
+                      <option value="">Toutes les régions</option>
+                      {frenchRegions.map(region => (
+                        <option key={region} value={region}>{region}</option>
+                      ))}
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+                  </div>
+                </div>
+
+                {/* Filtre par type */}
+                <div className="flex-1 min-w-[200px]">
+                  <label className="text-gray-400 text-xs mb-1 block">Type de lieu</label>
+                  <div className="relative">
+                    <select
+                      value={selectedType}
+                      onChange={(e) => setSelectedType(e.target.value)}
+                      className="w-full py-3 px-4 pr-10 bg-[#1a1a2e] border border-[#d4a574]/30 rounded-xl text-white appearance-none cursor-pointer focus:outline-none focus:border-[#d4a574]"
+                    >
+                      <option value="">Tous les types</option>
+                      {placeTypes.map(type => (
+                        <option key={type} value={type} className="capitalize">{type.charAt(0).toUpperCase() + type.slice(1)}</option>
+                      ))}
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+                  </div>
+                </div>
+
+                {/* Bouton réinitialiser */}
+                {(selectedRegion || selectedType) && (
+                  <button
+                    onClick={() => { setSelectedRegion(''); setSelectedType(''); }}
+                    className="self-end py-3 px-4 text-[#d4a574] hover:text-white transition-colors"
+                  >
+                    Réinitialiser
+                  </button>
+                )}
+              </div>
+            )}
+
+            {/* Compteur de résultats */}
+            {(searchQuery || selectedRegion || selectedType) && filteredPlaces.length > 0 && (
+              <p className="text-gray-400 text-sm mb-2">
+                {filteredPlaces.length} lieu{filteredPlaces.length > 1 ? 'x' : ''} trouvé{filteredPlaces.length > 1 ? 's' : ''}
+              </p>
+            )}
 
             {/* Résultats de recherche */}
             {filteredPlaces.length > 0 && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-[#1a1a2e] border border-[#d4a574]/30 rounded-2xl overflow-hidden shadow-2xl z-50 max-h-[400px] overflow-y-auto">
+              <div className="bg-[#1a1a2e] border border-[#d4a574]/30 rounded-2xl overflow-hidden shadow-2xl max-h-[500px] overflow-y-auto">
                 {filteredPlaces.map(place => (
                   <button
                     key={place.id}
                     onClick={() => handleSelectPlace(place)}
-                    className="w-full flex items-center gap-4 p-4 hover:bg-[#d4a574]/10 transition-colors text-left"
+                    className="w-full flex items-center gap-4 p-4 hover:bg-[#d4a574]/10 transition-colors text-left border-b border-white/5 last:border-b-0"
                   >
                     <img
                       src={place.image}
@@ -295,7 +384,7 @@ const MeetingsPage = () => {
                       <h3 className="text-white font-semibold">{place.name}</h3>
                       <p className="text-gray-400 text-sm flex items-center gap-1">
                         <MapPin className="w-3 h-3" />
-                        {place.location}
+                        {place.city}{place.region ? `, ${place.region}` : ''}
                       </p>
                       <div className="flex items-center gap-2 mt-1">
                         <span className="px-2 py-0.5 bg-[#d4a574]/20 text-[#d4a574] text-xs rounded-full capitalize">
@@ -313,23 +402,26 @@ const MeetingsPage = () => {
             )}
 
             {/* Message si pas de résultat */}
-            {searchQuery && filteredPlaces.length === 0 && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-[#1a1a2e] border border-[#d4a574]/30 rounded-2xl p-6 text-center">
-                <p className="text-gray-400">Aucun lieu trouvé pour "{searchQuery}"</p>
+            {(searchQuery || selectedRegion || selectedType) && filteredPlaces.length === 0 && (
+              <div className="bg-[#1a1a2e] border border-[#d4a574]/30 rounded-2xl p-6 text-center">
+                <p className="text-gray-400">Aucun lieu trouvé avec ces critères</p>
               </div>
             )}
           </div>
         )}
 
         {/* Suggestions populaires */}
-        {!selectedPlace && !searchQuery && (
+        {!selectedPlace && !searchQuery && !selectedRegion && !selectedType && (
           <div className="mb-12">
             <h2 className="text-white text-xl font-semibold mb-6 flex items-center gap-2">
               <Star className="w-5 h-5 text-[#d4a574]" />
               Lieux populaires pour les rencontres
             </h2>
+            <p className="text-gray-400 text-sm mb-4">
+              Plus de 250 musées, châteaux et monuments à découvrir en France
+            </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {places.slice(0, 6).map(place => (
+              {allPlaces.slice(0, 9).map(place => (
                 <button
                   key={place.id}
                   onClick={() => handleSelectPlace(place)}
@@ -345,7 +437,7 @@ const MeetingsPage = () => {
                     <h3 className="text-white font-bold text-lg">{place.name}</h3>
                     <p className="text-gray-300 text-sm flex items-center gap-1">
                       <MapPin className="w-3 h-3" />
-                      {place.location}
+                      {place.city}{place.region ? `, ${place.region}` : ''}
                     </p>
                     <div className="flex items-center gap-2 mt-2">
                       <span className="px-2 py-1 bg-[#d4a574] text-[#1a1a2e] text-xs font-semibold rounded-full flex items-center gap-1">
@@ -387,7 +479,7 @@ const MeetingsPage = () => {
                   <h2 className="text-white text-2xl sm:text-3xl font-bold">{selectedPlace.name}</h2>
                   <p className="text-gray-300 flex items-center gap-1 mt-1">
                     <MapPin className="w-4 h-4" />
-                    {selectedPlace.location}
+                    {selectedPlace.city}{selectedPlace.region ? `, ${selectedPlace.region}` : (selectedPlace.location || '')}
                   </p>
                 </div>
               </div>

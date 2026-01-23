@@ -304,6 +304,23 @@ const PaintingContent = ({ width, height, type = 'landscape' }) => {
   const paintings = {
     landscape: (
       <g>
+        {/* === FOND COLORÉ DU TABLEAU - PAYSAGE === */}
+        <rect
+          x={innerX}
+          y={innerY}
+          width={innerW}
+          height={innerH}
+          fill="url(#landscapeGradient)"
+          fillOpacity="0.35"
+        />
+        <defs>
+          <linearGradient id="landscapeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#87CEEB" stopOpacity="0.4" />
+            <stop offset="40%" stopColor="#98D8C8" stopOpacity="0.35" />
+            <stop offset="70%" stopColor="#90EE90" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#8B4513" stopOpacity="0.25" />
+          </linearGradient>
+        </defs>
         {/* === CIEL AVEC NUAGES DÉTAILLÉS === */}
         {/* Fond de ciel */}
         <path
@@ -311,8 +328,8 @@ const PaintingContent = ({ width, height, type = 'landscape' }) => {
           d={`M${innerX} ${innerY} L${innerX + innerW} ${innerY} L${innerX + innerW} ${innerY + innerH * 0.42} L${innerX} ${innerY + innerH * 0.45} Z`}
           fill="none"
           stroke="#d4af37"
-          strokeWidth="0.3"
-          strokeOpacity="0.3"
+          strokeWidth="0.6"
+          strokeOpacity="0.7"
         />
         {/* Nuages - premier groupe */}
         <path
@@ -515,6 +532,22 @@ const PaintingContent = ({ width, height, type = 'landscape' }) => {
     ),
     portrait: (
       <g>
+        {/* === FOND COLORÉ DU TABLEAU - PORTRAIT === */}
+        <rect
+          x={innerX}
+          y={innerY}
+          width={innerW}
+          height={innerH}
+          fill="url(#portraitGradient)"
+          fillOpacity="0.4"
+        />
+        <defs>
+          <linearGradient id="portraitGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#2C1810" stopOpacity="0.5" />
+            <stop offset="50%" stopColor="#4A3728" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="#1A0F0A" stopOpacity="0.5" />
+          </linearGradient>
+        </defs>
         {/* === FOND AVEC DRAPÉ === */}
         <path
           className="museum-element-micro stroke-tiny"
@@ -522,7 +555,7 @@ const PaintingContent = ({ width, height, type = 'landscape' }) => {
               Q${innerX + innerW * 0.1} ${innerY + innerH * 0.1} ${innerX} ${innerY + innerH * 0.2}
               M${innerX + innerW} ${innerY}
               Q${innerX + innerW * 0.9} ${innerY + innerH * 0.1} ${innerX + innerW} ${innerY + innerH * 0.2}`}
-          fill="none" stroke="#d4af37" strokeWidth="0.2" strokeOpacity="0.3"
+          fill="none" stroke="#d4af37" strokeWidth="0.4" strokeOpacity="0.6"
         />
 
         {/* === OVALE DU VISAGE AVEC CONTOUR PRÉCIS === */}
@@ -532,9 +565,10 @@ const PaintingContent = ({ width, height, type = 'landscape' }) => {
           cy={innerY + innerH * 0.33}
           rx={innerW * 0.24}
           ry={innerH * 0.2}
-          fill="none"
+          fill="#d4af37"
+          fillOpacity="0.15"
           stroke="#d4af37"
-          strokeWidth="0.5"
+          strokeWidth="0.8"
         />
         {/* Contour intérieur du visage pour le volume */}
         <path
@@ -730,12 +764,28 @@ const PaintingContent = ({ width, height, type = 'landscape' }) => {
     ),
     stillLife: (
       <g>
+        {/* === FOND COLORÉ DU TABLEAU - NATURE MORTE === */}
+        <rect
+          x={innerX}
+          y={innerY}
+          width={innerW}
+          height={innerH}
+          fill="url(#stillLifeGradient)"
+          fillOpacity="0.4"
+        />
+        <defs>
+          <linearGradient id="stillLifeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#2D2D2D" stopOpacity="0.5" />
+            <stop offset="60%" stopColor="#3D2914" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="#5C4033" stopOpacity="0.45" />
+          </linearGradient>
+        </defs>
         {/* === FOND AVEC TEXTURE MURALE === */}
         <path
           className="museum-element-micro stroke-micro"
           d={`M${innerX} ${innerY + innerH * 0.1} L${innerX + innerW} ${innerY + innerH * 0.1}
               M${innerX} ${innerY + innerH * 0.2} L${innerX + innerW} ${innerY + innerH * 0.2}`}
-          fill="none" stroke="#d4af37" strokeWidth="0.1" strokeOpacity="0.2"
+          fill="none" stroke="#d4af37" strokeWidth="0.2" strokeOpacity="0.4"
         />
 
         {/* === TABLE AVEC PERSPECTIVE === */}
@@ -746,7 +796,9 @@ const PaintingContent = ({ width, height, type = 'landscape' }) => {
               L${innerX + innerW * 0.95} ${innerY + innerH * 0.68}
               L${innerX + innerW * 0.05} ${innerY + innerH * 0.68}
               Z`}
-          fill="none" stroke="#d4af37" strokeWidth="0.5"
+          fill="#d4af37"
+          fillOpacity="0.1"
+          stroke="#d4af37" strokeWidth="0.7"
         />
         {/* Bordure de table */}
         <path

@@ -311,15 +311,15 @@ const HomePage = () => {
           SECTION 3: MUZEA NOW
           ============================================ */}
       <section className="relative py-20 px-4 overflow-hidden">
-        {/* Background dynamique selon la catégorie */}
+        {/* Background dynamique selon la catégorie - z-index 0 */}
         <div className="absolute inset-0 z-0 bg-[#0a0d1a]" />
         {activeCategory === 'musée' && <CabinetBackground />}
         {activeCategory === 'château' && <ChateauBackground />}
         {activeCategory === 'exposition' && <ExpositionBackground />}
-        {/* Overlay sombre pour lisibilité */}
-        <div className="absolute inset-0 z-[2] bg-[#0a0d1a]/50" />
+        {/* Overlay sombre pour lisibilité - z-index 2 */}
+        <div className="absolute inset-0 z-[2] bg-[#0a0d1a]/40 pointer-events-none" />
 
-        <div className="max-w-6xl mx-auto relative z-10">
+        <div className="max-w-6xl mx-auto relative z-[5]">
           {/* Section header - Muzea Now centered layout */}
           <div className="text-center mb-8">
             {/* Muzea now - avec encadrement stylé */}
@@ -588,6 +588,7 @@ const HomePage = () => {
 /**
  * Bento Card Component for Découverte Spontanée section
  * Design: Full background image with badges, gradient overlay, and hover zoom effect
+ * z-index élevé pour s'assurer que les cartes sont au-dessus des motifs décoratifs
  */
 const BentoCard = ({ museum, size = 'small', badges = [], distanceInfo, onClick, showCTA = false, isSelected = false }) => {
   const DistanceIcon = distanceInfo?.icon || MapPin;
@@ -596,10 +597,11 @@ const BentoCard = ({ museum, size = 'small', badges = [], distanceInfo, onClick,
     <div
       className={`
         relative w-full h-full rounded-2xl xl:rounded-3xl overflow-hidden group cursor-pointer shadow-xl
-        transition-all duration-300 ease-out
+        transition-all duration-300 ease-out isolate
         ${isSelected ? 'ring-4 ring-[#d4a574] shadow-2xl shadow-[#d4a574]/30' : ''}
       `}
       onClick={onClick}
+      style={{ zIndex: 10 }}
     >
       {/* Background image with hover zoom effect and click zoom */}
       <img
@@ -617,16 +619,17 @@ const BentoCard = ({ museum, size = 'small', badges = [], distanceInfo, onClick,
         className="absolute inset-0"
         style={{
           background: `linear-gradient(to top,
-            rgba(0, 0, 0, 0.85) 0%,
-            rgba(0, 0, 0, 0.6) 30%,
-            rgba(0, 0, 0, 0.2) 60%,
+            rgba(0, 0, 0, 0.92) 0%,
+            rgba(0, 0, 0, 0.75) 25%,
+            rgba(0, 0, 0, 0.4) 50%,
+            rgba(0, 0, 0, 0.15) 75%,
             transparent 100%)`
         }}
       />
 
       {/* Badges - top left with backdrop blur (pill shape) */}
       {badges.length > 0 && (
-        <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+        <div className="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
           {badges.map((badge, index) => (
             <span
               key={index}
@@ -658,11 +661,39 @@ const BentoCard = ({ museum, size = 'small', badges = [], distanceInfo, onClick,
         </h3>
 
         {/* Distance / Travel time with icon */}
-        <div className="flex items-center gap-2 text-white/80 mb-4">
+        <div className="flex items-center gap-2 text-white/80 mb-3">
           <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm">
             <DistanceIcon className="w-4 h-4" />
           </div>
           <span className="text-sm font-medium">{distanceInfo?.text || museum.location}</span>
+        </div>
+
+        {/* Three detailed parameters - Tarif, Horaires, Période */}
+        <div className={`grid ${size === 'large' ? 'grid-cols-3' : 'grid-cols-3'} gap-2 mb-4`}>
+          {/* Tarif */}
+          <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-lg px-2.5 py-2">
+            <Euro className={`${size === 'large' ? 'w-4 h-4' : 'w-3.5 h-3.5'} text-[#d4a574]`} />
+            <div className="flex flex-col">
+              <span className={`${size === 'large' ? 'text-xs' : 'text-[10px]'} text-white/50 leading-none`}>Tarif</span>
+              <span className={`${size === 'large' ? 'text-sm' : 'text-xs'} text-white font-semibold leading-tight`}>{museum.price}</span>
+            </div>
+          </div>
+          {/* Horaires */}
+          <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-lg px-2.5 py-2">
+            <Clock className={`${size === 'large' ? 'w-4 h-4' : 'w-3.5 h-3.5'} text-[#d4a574]`} />
+            <div className="flex flex-col">
+              <span className={`${size === 'large' ? 'text-xs' : 'text-[10px]'} text-white/50 leading-none`}>Horaires</span>
+              <span className={`${size === 'large' ? 'text-xs' : 'text-[10px]'} text-white font-medium leading-tight truncate`}>{museum.hours}</span>
+            </div>
+          </div>
+          {/* Période */}
+          <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-lg px-2.5 py-2">
+            <Calendar className={`${size === 'large' ? 'w-4 h-4' : 'w-3.5 h-3.5'} text-[#d4a574]`} />
+            <div className="flex flex-col">
+              <span className={`${size === 'large' ? 'text-xs' : 'text-[10px]'} text-white/50 leading-none`}>Période</span>
+              <span className={`${size === 'large' ? 'text-xs' : 'text-[10px]'} text-white font-medium leading-tight truncate`}>{museum.period}</span>
+            </div>
+          </div>
         </div>
 
         {/* CTA Button - only for large card */}

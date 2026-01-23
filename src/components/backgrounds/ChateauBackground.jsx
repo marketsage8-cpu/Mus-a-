@@ -7,6 +7,11 @@
  * - Frontons et gables
  * - Fenêtres à meneaux
  * - Blasons et héraldique
+ * - Échauguettes et tourelles
+ * - Remparts et merlons
+ * - Bannières et étendards
+ * - Balustrades et balcons
+ * - Torchères et candélabres
  */
 
 // ========================================
@@ -321,6 +326,304 @@ const Drawbridge = ({ x, y, scale = 1, delay = 0 }) => (
 );
 
 // ========================================
+// ÉCHAUGUETTE (TOURELLE EN ENCORBELLEMENT)
+// ========================================
+const Echauguette = ({ x, y, scale = 1, delay = 0, mirror = false }) => (
+  <g
+    transform={`translate(${x}, ${y}) scale(${mirror ? -scale : scale}, ${scale})`}
+    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '2s' }}
+  >
+    {/* Corps de l'échauguette */}
+    <path
+      className="museum-element stroke-long"
+      d="M0 80 L0 20 L5 15 L35 15 L40 20 L40 80"
+      fill="none" stroke="#d4af37" strokeWidth="1"
+    />
+
+    {/* Console en encorbellement */}
+    <path className="museum-element-secondary stroke-medium" d="M-5 80 Q0 70 5 65 L35 65 Q40 70 45 80" fill="none" stroke="#d4af37" strokeWidth="0.6" />
+    <path className="museum-element-micro stroke-tiny" d="M0 75 Q5 70 10 68 M40 75 Q35 70 30 68" fill="none" stroke="#d4af37" strokeWidth="0.25" />
+
+    {/* Toit pointu */}
+    <path className="museum-element stroke-medium" d="M-3 15 L20 -10 L43 15" fill="none" stroke="#d4af37" strokeWidth="0.8" />
+    <path className="museum-element-secondary stroke-short" d="M2 15 L20 -5 L38 15" fill="none" stroke="#d4af37" strokeWidth="0.4" />
+
+    {/* Girouette */}
+    <path className="museum-element-detail stroke-short" d="M20 -10 L20 -25" fill="none" stroke="#d4af37" strokeWidth="0.5" />
+    <path className="museum-element-micro stroke-tiny" d="M16 -20 L24 -20 L20 -25 Z" fill="none" stroke="#d4af37" strokeWidth="0.3" />
+
+    {/* Fenêtre meurtrière */}
+    <path className="museum-element-detail stroke-short" d="M18 30 L18 55 L22 55 L22 30 Z" fill="none" stroke="#d4af37" strokeWidth="0.4" />
+    <path className="museum-element-micro stroke-tiny" d="M16 40 L24 40 M16 45 L24 45" fill="none" stroke="#d4af37" strokeWidth="0.2" />
+
+    {/* Créneaux miniatures */}
+    <path className="museum-element-micro stroke-tiny" d="M5 15 L5 12 L10 12 L10 15 M15 15 L15 12 L25 12 L25 15 M30 15 L30 12 L35 12 L35 15" fill="none" stroke="#d4af37" strokeWidth="0.25" />
+  </g>
+);
+
+// ========================================
+// REMPART AVEC CHEMIN DE RONDE
+// ========================================
+const Rampart = ({ x, y, width = 200, delay = 0 }) => (
+  <g
+    transform={`translate(${x}, ${y})`}
+    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '3s' }}
+  >
+    {/* Mur principal */}
+    <path
+      className="museum-element stroke-very-long"
+      d={`M0 60 L0 0 L${width} 0 L${width} 60`}
+      fill="none" stroke="#d4af37" strokeWidth="1.2"
+    />
+
+    {/* Créneaux */}
+    {[...Array(Math.floor(width / 20))].map((_, i) => (
+      <path
+        key={`crenel-${i}`}
+        className="museum-element-detail stroke-short"
+        d={`M${5 + i * 20} 0 L${5 + i * 20} -10 L${15 + i * 20} -10 L${15 + i * 20} 0`}
+        fill="none" stroke="#d4af37" strokeWidth="0.5"
+      />
+    ))}
+
+    {/* Chemin de ronde */}
+    <path className="museum-element-secondary stroke-medium" d={`M0 10 L${width} 10`} fill="none" stroke="#d4af37" strokeWidth="0.4" />
+
+    {/* Joints de pierre */}
+    {[...Array(Math.floor(width / 30))].map((_, i) => (
+      <g key={`joint-${i}`}>
+        <path className="museum-element-micro stroke-tiny" d={`M${15 + i * 30} 15 L${15 + i * 30} 55`} fill="none" stroke="#d4af37" strokeWidth="0.2" strokeOpacity="0.4" />
+        <path className="museum-element-micro stroke-tiny" d={`M${i * 30} 35 L${30 + i * 30} 35`} fill="none" stroke="#d4af37" strokeWidth="0.2" strokeOpacity="0.4" />
+      </g>
+    ))}
+
+    {/* Meurtrières */}
+    {[...Array(Math.floor(width / 50))].map((_, i) => (
+      <path
+        key={`meurtriere-${i}`}
+        className="museum-element-micro stroke-tiny"
+        d={`M${25 + i * 50} 25 L${25 + i * 50} 45 M${23 + i * 50} 35 L${27 + i * 50} 35`}
+        fill="none" stroke="#d4af37" strokeWidth="0.3"
+      />
+    ))}
+  </g>
+);
+
+// ========================================
+// BANNIÈRE / ÉTENDARD
+// ========================================
+const Banner = ({ x, y, scale = 1, delay = 0, flip = false }) => (
+  <g
+    transform={`translate(${x}, ${y}) scale(${flip ? -scale : scale}, ${scale})`}
+    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '1.5s' }}
+  >
+    {/* Hampe */}
+    <path className="museum-element stroke-medium" d="M0 0 L0 80" fill="none" stroke="#d4af37" strokeWidth="0.8" />
+
+    {/* Pomme de la hampe */}
+    <circle className="museum-element-detail stroke-short" cx="0" cy="-5" r="4" fill="none" stroke="#d4af37" strokeWidth="0.4" />
+    <path className="museum-element-micro stroke-tiny" d="M0 -9 L0 -12 M-3 -5 L3 -5" fill="none" stroke="#d4af37" strokeWidth="0.25" />
+
+    {/* Étendard ondulant */}
+    <path
+      className="museum-element stroke-long"
+      d="M0 5 Q15 8 25 5 Q35 2 40 8 L40 45 Q30 42 20 45 Q10 48 0 45 Z"
+      fill="none" stroke="#d4af37" strokeWidth="0.7"
+    />
+
+    {/* Motif fleur de lys */}
+    <path className="museum-element-micro stroke-tiny" d="M20 20 L20 30 M16 25 Q20 20 24 25 M14 28 L20 22 M26 28 L20 22" fill="none" stroke="#d4af37" strokeWidth="0.25" />
+
+    {/* Franges */}
+    <path className="museum-element-micro stroke-micro" d="M3 45 L3 50 M8 46 L8 51 M13 46 L13 51 M18 46 L18 51 M23 46 L23 51 M28 45 L28 50 M33 44 L33 49 M38 45 L38 50" fill="none" stroke="#d4af37" strokeWidth="0.15" />
+  </g>
+);
+
+// ========================================
+// BALUSTRADE ORNÉE
+// ========================================
+const Balustrade = ({ x, y, width = 120, delay = 0 }) => (
+  <g
+    transform={`translate(${x}, ${y})`}
+    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '2s' }}
+  >
+    {/* Main courante */}
+    <path className="museum-element stroke-long" d={`M0 0 L${width} 0`} fill="none" stroke="#d4af37" strokeWidth="1" />
+    <path className="museum-element-secondary stroke-medium" d={`M0 3 L${width} 3`} fill="none" stroke="#d4af37" strokeWidth="0.4" />
+
+    {/* Plinthe */}
+    <path className="museum-element stroke-medium" d={`M0 45 L${width} 45`} fill="none" stroke="#d4af37" strokeWidth="0.8" />
+    <path className="museum-element-secondary stroke-short" d={`M0 42 L${width} 42`} fill="none" stroke="#d4af37" strokeWidth="0.3" />
+
+    {/* Balustres */}
+    {[...Array(Math.floor(width / 15))].map((_, i) => (
+      <g key={`balustre-${i}`}>
+        {/* Forme du balustre - vase renversé */}
+        <path
+          className="museum-element-detail stroke-short"
+          d={`M${7 + i * 15} 5 Q${4 + i * 15} 12 ${5 + i * 15} 20 Q${4 + i * 15} 28 ${7 + i * 15} 35 Q${10 + i * 15} 38 ${7 + i * 15} 42`}
+          fill="none" stroke="#d4af37" strokeWidth="0.4"
+        />
+        <path
+          className="museum-element-detail stroke-short"
+          d={`M${9 + i * 15} 5 Q${12 + i * 15} 12 ${11 + i * 15} 20 Q${12 + i * 15} 28 ${9 + i * 15} 35 Q${6 + i * 15} 38 ${9 + i * 15} 42`}
+          fill="none" stroke="#d4af37" strokeWidth="0.4"
+        />
+        {/* Détails centraux */}
+        <ellipse className="museum-element-micro stroke-micro" cx={8 + i * 15} cy="20" rx="2" ry="3" fill="none" stroke="#d4af37" strokeWidth="0.2" />
+      </g>
+    ))}
+
+    {/* Pilastres aux extrémités */}
+    <rect className="museum-element-secondary stroke-medium" x="-3" y="-5" width="8" height="55" fill="none" stroke="#d4af37" strokeWidth="0.5" />
+    <rect className="museum-element-secondary stroke-medium" x={width - 5} y="-5" width="8" height="55" fill="none" stroke="#d4af37" strokeWidth="0.5" />
+
+    {/* Boules sur pilastres */}
+    <circle className="museum-element-micro stroke-tiny" cx="1" cy="-8" r="4" fill="none" stroke="#d4af37" strokeWidth="0.3" />
+    <circle className="museum-element-micro stroke-tiny" cx={width - 1} cy="-8" r="4" fill="none" stroke="#d4af37" strokeWidth="0.3" />
+  </g>
+);
+
+// ========================================
+// TORCHÈRE / CHANDELIER MURAL
+// ========================================
+const Torchiere = ({ x, y, scale = 1, delay = 0, mirror = false }) => (
+  <g
+    transform={`translate(${x}, ${y}) scale(${mirror ? -scale : scale}, ${scale})`}
+    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '1.5s' }}
+  >
+    {/* Support mural */}
+    <path className="museum-element stroke-medium" d="M0 0 L0 15 Q5 20 10 15 L10 0" fill="none" stroke="#d4af37" strokeWidth="0.6" />
+
+    {/* Bras de la torchère */}
+    <path className="museum-element-secondary stroke-short" d="M5 15 Q10 20 15 18 Q25 15 30 20" fill="none" stroke="#d4af37" strokeWidth="0.5" />
+    <path className="museum-element-secondary stroke-short" d="M5 18 Q10 23 15 21 Q25 18 30 23" fill="none" stroke="#d4af37" strokeWidth="0.3" />
+
+    {/* Coupelle */}
+    <path className="museum-element-detail stroke-short" d="M25 18 Q30 15 35 18 L35 22 Q30 25 25 22 Z" fill="none" stroke="#d4af37" strokeWidth="0.4" />
+
+    {/* Flamme */}
+    <path className="museum-element-micro stroke-tiny animate-shimmer" d="M30 15 Q28 10 30 5 Q32 8 31 12 Q33 8 32 5 Q34 10 30 15" fill="none" stroke="#d4af37" strokeWidth="0.3" />
+
+    {/* Gouttes décoratives */}
+    <path className="museum-element-micro stroke-micro" d="M27 25 L27 30 M30 26 L30 32 M33 25 L33 30" fill="none" stroke="#d4af37" strokeWidth="0.2" />
+
+    {/* Volute décorative */}
+    <path className="museum-element-micro stroke-tiny" d="M8 22 Q12 25 10 30 Q8 28 8 25" fill="none" stroke="#d4af37" strokeWidth="0.25" />
+  </g>
+);
+
+// ========================================
+// VITRAIL GOTHIQUE
+// ========================================
+const GothicWindow = ({ x, y, scale = 1, delay = 0 }) => (
+  <g
+    transform={`translate(${x}, ${y}) scale(${scale})`}
+    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '2.5s' }}
+  >
+    {/* Cadre extérieur ogival */}
+    <path
+      className="museum-element stroke-long"
+      d="M0 100 L0 30 Q0 0 25 -20 Q50 0 50 30 L50 100 Z"
+      fill="none" stroke="#d4af37" strokeWidth="1"
+    />
+
+    {/* Meneau central */}
+    <path className="museum-element-secondary stroke-medium" d="M25 100 L25 -15" fill="none" stroke="#d4af37" strokeWidth="0.6" />
+
+    {/* Divisions horizontales */}
+    <path className="museum-element-detail stroke-short" d="M3 30 L47 30 M3 55 L47 55 M3 80 L47 80" fill="none" stroke="#d4af37" strokeWidth="0.4" />
+
+    {/* Rosace supérieure */}
+    <circle className="museum-element-secondary stroke-medium" cx="25" cy="10" r="12" fill="none" stroke="#d4af37" strokeWidth="0.5" />
+    <circle className="museum-element-detail stroke-short" cx="25" cy="10" r="8" fill="none" stroke="#d4af37" strokeWidth="0.35" />
+    <circle className="museum-element-micro stroke-tiny" cx="25" cy="10" r="4" fill="none" stroke="#d4af37" strokeWidth="0.25" />
+
+    {/* Rayons de la rosace */}
+    {[...Array(8)].map((_, i) => (
+      <path
+        key={`ray-${i}`}
+        className="museum-element-micro stroke-micro"
+        d={`M25 10 L${25 + 11 * Math.cos(i * Math.PI / 4)} ${10 + 11 * Math.sin(i * Math.PI / 4)}`}
+        fill="none" stroke="#d4af37" strokeWidth="0.2"
+      />
+    ))}
+
+    {/* Motifs de trèfle dans les sections */}
+    <path className="museum-element-micro stroke-tiny" d="M12 42 Q10 38 12 35 Q14 38 12 42 Q8 40 12 42 Q12 38 12 42" fill="none" stroke="#d4af37" strokeWidth="0.25" />
+    <path className="museum-element-micro stroke-tiny" d="M38 42 Q36 38 38 35 Q40 38 38 42 Q34 40 38 42 Q38 38 38 42" fill="none" stroke="#d4af37" strokeWidth="0.25" />
+    <path className="museum-element-micro stroke-tiny" d="M12 67 Q10 63 12 60 Q14 63 12 67 Q8 65 12 67" fill="none" stroke="#d4af37" strokeWidth="0.25" />
+    <path className="museum-element-micro stroke-tiny" d="M38 67 Q36 63 38 60 Q40 63 38 67 Q34 65 38 67" fill="none" stroke="#d4af37" strokeWidth="0.25" />
+  </g>
+);
+
+// ========================================
+// DOUVE AVEC REFLETS
+// ========================================
+const Moat = ({ x, y, width = 300, delay = 0 }) => (
+  <g
+    transform={`translate(${x}, ${y})`}
+    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '2s' }}
+  >
+    {/* Contour de la douve */}
+    <path
+      className="museum-element stroke-long"
+      d={`M0 0 Q${width * 0.25} 5 ${width * 0.5} 0 Q${width * 0.75} -5 ${width} 0`}
+      fill="none" stroke="#d4af37" strokeWidth="0.8"
+    />
+    <path
+      className="museum-element-secondary stroke-medium"
+      d={`M0 20 Q${width * 0.25} 15 ${width * 0.5} 20 Q${width * 0.75} 25 ${width} 20`}
+      fill="none" stroke="#d4af37" strokeWidth="0.6"
+    />
+
+    {/* Reflets d'eau */}
+    {[...Array(8)].map((_, i) => (
+      <path
+        key={`reflet-${i}`}
+        className="museum-element-micro stroke-tiny"
+        d={`M${20 + i * 35} 8 Q${25 + i * 35} 6 ${30 + i * 35} 8`}
+        fill="none" stroke="#d4af37" strokeWidth="0.2" strokeOpacity="0.5"
+      />
+    ))}
+
+    {/* Ondulations */}
+    <path className="museum-element-micro stroke-micro" d={`M10 12 Q${width * 0.3} 10 ${width * 0.6} 12 Q${width * 0.8} 14 ${width - 10} 12`} fill="none" stroke="#d4af37" strokeWidth="0.15" strokeOpacity="0.4" />
+  </g>
+);
+
+// ========================================
+// COURONNE ROYALE
+// ========================================
+const RoyalCrown = ({ x, y, scale = 1, delay = 0 }) => (
+  <g
+    transform={`translate(${x}, ${y}) scale(${scale})`}
+    style={{ '--draw-delay': `${delay}s`, '--draw-duration': '2s' }}
+  >
+    {/* Bandeau */}
+    <path className="museum-element stroke-long" d="M0 30 Q15 32 30 30 Q45 28 60 30" fill="none" stroke="#d4af37" strokeWidth="0.8" />
+    <path className="museum-element-secondary stroke-medium" d="M0 35 Q15 37 30 35 Q45 33 60 35" fill="none" stroke="#d4af37" strokeWidth="0.5" />
+
+    {/* Fleurons */}
+    <path className="museum-element-detail stroke-short" d="M5 30 L8 15 L12 25 L15 5 L18 25 L22 15 L25 30" fill="none" stroke="#d4af37" strokeWidth="0.5" />
+    <path className="museum-element-detail stroke-short" d="M35 30 L38 15 L42 25 L45 5 L48 25 L52 15 L55 30" fill="none" stroke="#d4af37" strokeWidth="0.5" />
+
+    {/* Croix centrale */}
+    <path className="museum-element-secondary stroke-medium" d="M28 20 L32 20 M30 15 L30 25 M30 5 L30 0 L28 3 L30 0 L32 3" fill="none" stroke="#d4af37" strokeWidth="0.4" />
+
+    {/* Pierres précieuses */}
+    <circle className="museum-element-micro stroke-tiny" cx="15" cy="10" r="2" fill="none" stroke="#d4af37" strokeWidth="0.3" />
+    <circle className="museum-element-micro stroke-tiny" cx="30" cy="8" r="2.5" fill="none" stroke="#d4af37" strokeWidth="0.3" />
+    <circle className="museum-element-micro stroke-tiny" cx="45" cy="10" r="2" fill="none" stroke="#d4af37" strokeWidth="0.3" />
+
+    {/* Perles sur le bandeau */}
+    {[...Array(12)].map((_, i) => (
+      <circle key={`pearl-${i}`} className="museum-element-micro stroke-micro" cx={3 + i * 5} cy="32" r="1" fill="none" stroke="#d4af37" strokeWidth="0.15" />
+    ))}
+  </g>
+);
+
+// ========================================
 // COMPOSANT PRINCIPAL
 // ========================================
 const ChateauBackground = () => {
@@ -342,43 +645,107 @@ const ChateauBackground = () => {
         {/* Fond atmosphérique */}
         <rect width="100%" height="100%" fill="url(#chateau-vignette)" />
 
-        {/* Tours aux coins */}
-        <CastleTower x={50} y={50} scale={0.7} delay={0} />
-        <CastleTower x={1050} y={50} scale={0.7} delay={0.5} mirror />
+        {/* ===== NIVEAU SUPÉRIEUR - TOURS PRINCIPALES ===== */}
+        <CastleTower x={30} y={30} scale={0.65} delay={0} />
+        <CastleTower x={1070} y={30} scale={0.65} delay={0.3} mirror />
 
-        {/* Arches gothiques */}
-        <GothicArch x={200} y={450} scale={0.8} delay={1} />
-        <GothicArch x={900} y={450} scale={0.8} delay={1.5} />
+        {/* Tours secondaires */}
+        <CastleTower x={250} y={80} scale={0.45} delay={0.6} />
+        <CastleTower x={850} y={80} scale={0.45} delay={0.9} mirror />
 
-        {/* Fronton central */}
-        <ClassicPediment x={520} y={100} scale={1} delay={2} />
+        {/* ===== REMPARTS ===== */}
+        <Rampart x={100} y={320} width={180} delay={1} />
+        <Rampart x={920} y={320} width={180} delay={1.2} />
 
-        {/* Blasons */}
-        <HeraldryShield x={100} y={550} scale={0.9} delay={2.5} />
-        <HeraldryShield x={1040} y={550} scale={0.9} delay={3} />
+        {/* Rempart central décoratif */}
+        <Rampart x={450} y={200} width={300} delay={1.4} />
 
-        {/* Fenêtres */}
-        <RenaissanceWindow x={400} y={300} scale={0.9} delay={3.5} />
-        <RenaissanceWindow x={700} y={300} scale={0.9} delay={4} />
+        {/* ===== ÉCHAUGUETTES ===== */}
+        <Echauguette x={280} y={280} scale={0.7} delay={1.6} />
+        <Echauguette x={880} y={280} scale={0.7} delay={1.8} mirror />
 
-        {/* Pont-levis */}
-        <Drawbridge x={550} y={550} scale={0.8} delay={4.5} />
+        {/* ===== ARCHES GOTHIQUES ===== */}
+        <GothicArch x={150} y={520} scale={0.75} delay={2} />
+        <GothicArch x={950} y={520} scale={0.75} delay={2.2} />
 
-        {/* Particules dorées flottantes */}
-        {[...Array(25)].map((_, i) => (
+        {/* Arche centrale majestueuse */}
+        <GothicArch x={520} y={480} scale={0.9} delay={2.4} />
+
+        {/* ===== FRONTON CENTRAL ===== */}
+        <ClassicPediment x={520} y={80} scale={1} delay={2.6} />
+
+        {/* ===== VITRAUX GOTHIQUES ===== */}
+        <GothicWindow x={380} y={280} scale={0.6} delay={2.8} />
+        <GothicWindow x={760} y={280} scale={0.6} delay={3} />
+
+        {/* ===== FENÊTRES RENAISSANCE ===== */}
+        <RenaissanceWindow x={320} y={400} scale={0.7} delay={3.2} />
+        <RenaissanceWindow x={800} y={400} scale={0.7} delay={3.4} />
+
+        {/* ===== BLASONS ===== */}
+        <HeraldryShield x={80} y={600} scale={0.8} delay={3.6} />
+        <HeraldryShield x={1050} y={600} scale={0.8} delay={3.8} />
+
+        {/* Blason central */}
+        <HeraldryShield x={570} y={580} scale={1} delay={4} />
+
+        {/* ===== COURONNE ROYALE ===== */}
+        <RoyalCrown x={560} y={540} scale={0.9} delay={4.2} />
+
+        {/* ===== PONT-LEVIS ===== */}
+        <Drawbridge x={540} y={650} scale={0.7} delay={4.4} />
+
+        {/* ===== BALUSTRADES ===== */}
+        <Balustrade x={50} y={450} width={100} delay={4.6} />
+        <Balustrade x={1050} y={450} width={100} delay={4.8} />
+        <Balustrade x={450} y={380} width={140} delay={5} />
+        <Balustrade x={610} y={380} width={140} delay={5.1} />
+
+        {/* ===== BANNIÈRES ===== */}
+        <Banner x={180} y={150} scale={0.8} delay={5.2} />
+        <Banner x={1000} y={150} scale={0.8} delay={5.3} flip />
+        <Banner x={400} y={100} scale={0.65} delay={5.4} />
+        <Banner x={780} y={100} scale={0.65} delay={5.5} flip />
+
+        {/* ===== TORCHÈRES ===== */}
+        <Torchiere x={120} y={380} scale={0.9} delay={5.6} />
+        <Torchiere x={1020} y={380} scale={0.9} delay={5.7} mirror />
+        <Torchiere x={350} y={340} scale={0.7} delay={5.8} />
+        <Torchiere x={810} y={340} scale={0.7} delay={5.9} mirror />
+
+        {/* ===== DOUVE ===== */}
+        <Moat x={350} y={750} width={500} delay={6} />
+
+        {/* ===== PARTICULES DORÉES FLOTTANTES ===== */}
+        {[...Array(35)].map((_, i) => (
           <circle
             key={`particle-${i}`}
-            cx={100 + Math.random() * 1000}
-            cy={100 + Math.random() * 600}
-            r={0.8 + Math.random() * 1.2}
+            cx={80 + Math.random() * 1040}
+            cy={80 + Math.random() * 640}
+            r={0.6 + Math.random() * 1.4}
             fill="#d4af37"
-            opacity={0.15 + Math.random() * 0.25}
+            opacity={0.12 + Math.random() * 0.28}
             className="animate-float"
             style={{
-              animationDelay: `${Math.random() * 8}s`,
-              animationDuration: `${6 + Math.random() * 6}s`
+              animationDelay: `${Math.random() * 10}s`,
+              animationDuration: `${5 + Math.random() * 7}s`
             }}
           />
+        ))}
+
+        {/* Étoiles scintillantes */}
+        {[...Array(15)].map((_, i) => (
+          <g key={`star-${i}`}>
+            <path
+              d={`M${100 + i * 70} ${50 + (i % 3) * 30} l2 0 l-1 2 l-1 -2 M${100 + i * 70} ${50 + (i % 3) * 30} l0 2 l2 -1 l-2 -1`}
+              fill="none"
+              stroke="#d4af37"
+              strokeWidth="0.2"
+              opacity={0.3 + Math.random() * 0.4}
+              className="animate-sparkle"
+              style={{ animationDelay: `${Math.random() * 5}s` }}
+            />
+          </g>
         ))}
       </svg>
     </div>

@@ -1,9 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Zap, MapPin, Clock, Footprints, Car, Heart, ChevronLeft, ChevronRight, Calendar, Euro, X } from 'lucide-react';
+import { Search, Zap, MapPin, Clock, Footprints, Car, Heart, ChevronLeft, ChevronRight, Calendar, Euro, X, Landmark, Castle, Palette } from 'lucide-react';
 import { places } from '../data/places';
 import InteractiveMap from '../components/map/InteractiveMap';
 import { useUser } from '../context/UserContext';
+import CabinetBackground from '../components/backgrounds/CabinetBackground';
+import ChateauBackground from '../components/backgrounds/ChateauBackground';
+import ExpositionBackground from '../components/backgrounds/ExpositionBackground';
 
 /**
  * Page d'accueil avec hero, carte floue et section Musea Now
@@ -13,8 +16,16 @@ const HomePage = () => {
   const { toggleFavorite, isFavorite } = useUser();
   const [searchQuery, setSearchQuery] = useState('');
   const [userLocation, setUserLocation] = useState(null);
-  const [nearbyMuseums, setNearbyMuseums] = useState([]);
+  const [nearbyPlaces, setNearbyPlaces] = useState([]);
   const [selectedBentoCard, setSelectedBentoCard] = useState(null);
+  const [activeCategory, setActiveCategory] = useState('musée'); // 'musée', 'château', 'exposition'
+
+  // Catégories pour Muzea Now
+  const categories = [
+    { id: 'musée', label: 'Musées', icon: Landmark },
+    { id: 'château', label: 'Châteaux', icon: Castle },
+    { id: 'exposition', label: 'Expositions', icon: Palette }
+  ];
 
   // Expositions éphémères (filtrer par type "exposition")
   const exhibitions = places.filter(p => p.type === 'exposition');
@@ -45,26 +56,26 @@ const HomePage = () => {
     }
   }, []);
 
-  // Calculate nearby museums when location changes
+  // Calculate nearby places when location or category changes
   useEffect(() => {
     if (userLocation) {
-      const museumsWithDistance = places
-        .filter(p => p.type === 'musée')
-        .map(museum => ({
-          ...museum,
+      const placesWithDistance = places
+        .filter(p => p.type === activeCategory)
+        .map(place => ({
+          ...place,
           distance: calculateDistance(
             userLocation.lat,
             userLocation.lng,
-            museum.coordinates.lat,
-            museum.coordinates.lng
+            place.coordinates.lat,
+            place.coordinates.lng
           )
         }))
         .sort((a, b) => a.distance - b.distance)
         .slice(0, 3);
 
-      setNearbyMuseums(museumsWithDistance);
+      setNearbyPlaces(placesWithDistance);
     }
-  }, [userLocation]);
+  }, [userLocation, activeCategory]);
 
   // Haversine formula to calculate distance in km
   const calculateDistance = (lat1, lng1, lat2, lng2) => {
@@ -300,21 +311,17 @@ const HomePage = () => {
           SECTION 3: MUZEA NOW
           ============================================ */}
       <section className="relative py-20 px-4 overflow-hidden">
-        {/* Background Image */}
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: 'url(/photos/Gemini_Generated_Image_w7vo9ww7vo9ww7vo.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-          }}
-        />
+        {/* Background dynamique selon la catégorie */}
+        <div className="absolute inset-0 z-0 bg-[#0a0d1a]" />
+        {activeCategory === 'musée' && <CabinetBackground />}
+        {activeCategory === 'château' && <ChateauBackground />}
+        {activeCategory === 'exposition' && <ExpositionBackground />}
         {/* Overlay sombre pour lisibilité */}
-        <div className="absolute inset-0 z-0 bg-[#0a0d1a]/70" />
+        <div className="absolute inset-0 z-[2] bg-[#0a0d1a]/50" />
+
         <div className="max-w-6xl mx-auto relative z-10">
           {/* Section header - Muzea Now centered layout */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             {/* Muzea now - avec encadrement stylé */}
             <div className="inline-flex items-center justify-center mb-4">
               <div className="relative px-6 py-2">
@@ -341,25 +348,52 @@ const HomePage = () => {
               Que puis-je visiter maintenant ?
             </h2>
             {/* Description - beaucoup plus petit */}
-            <p className="text-xs sm:text-sm text-gray-500 max-w-md mx-auto">
+            <p className="text-xs sm:text-sm text-gray-500 max-w-md mx-auto mb-8">
               3 propositions optimales basées sur votre position et l'heure actuelle
             </p>
+
+            {/* Tabs de catégories */}
+            <div className="flex justify-center gap-2 sm:gap-4">
+              {categories.map((cat) => {
+                const Icon = cat.icon;
+                const isActive = activeCategory === cat.id;
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => setActiveCategory(cat.id)}
+                    className={`
+                      flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full
+                      font-medium text-sm sm:text-base
+                      transition-all duration-300 ease-out
+                      ${isActive
+                        ? 'bg-[#d4a574] text-[#1a1a2e] shadow-lg shadow-[#d4a574]/30 scale-105'
+                        : 'bg-white/10 text-white/70 hover:bg-white/20 hover:text-white border border-white/20'
+                      }
+                    `}
+                  >
+                    <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <span className="hidden sm:inline">{cat.label}</span>
+                    <span className="sm:hidden">{cat.label.slice(0, 3)}.</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           {/* Bento Box Grid: 65% left, 35% right */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5 mt-8">
             {/* Large card - left side (spans 7 columns ~60%) */}
-            {nearbyMuseums[0] && (
+            {nearbyPlaces[0] && (
               <div
                 className={`lg:col-span-7 h-[450px] lg:h-[520px] transition-transform duration-300 ${
                   selectedBentoCard === 0 ? 'scale-105 z-10' : ''
                 }`}
               >
                 <BentoCard
-                  museum={nearbyMuseums[0]}
+                  museum={nearbyPlaces[0]}
                   size="large"
                   badges={[{ text: '#1 Recommandé', variant: 'gold' }]}
-                  distanceInfo={getDistanceText(nearbyMuseums[0].distance)}
+                  distanceInfo={getDistanceText(nearbyPlaces[0].distance)}
                   onClick={() => handleBentoClick(0)}
                   showCTA={true}
                   isSelected={selectedBentoCard === 0}
@@ -369,42 +403,48 @@ const HomePage = () => {
 
             {/* Right side - 2 smaller cards stacked (spans 5 columns ~40%) */}
             <div className="lg:col-span-5 flex flex-col gap-4 lg:gap-5">
-              {nearbyMuseums[1] && (
+              {nearbyPlaces[1] && (
                 <div
                   className={`h-[280px] lg:h-[250px] transition-transform duration-300 ${
                     selectedBentoCard === 1 ? 'scale-105 z-10' : ''
                   }`}
                 >
                   <BentoCard
-                    museum={nearbyMuseums[1]}
+                    museum={nearbyPlaces[1]}
                     size="small"
-                    badges={[{ text: 'Gratuit', variant: 'glass' }]}
-                    distanceInfo={getDistanceText(nearbyMuseums[1].distance)}
+                    badges={[{ text: 'Proche', variant: 'glass' }]}
+                    distanceInfo={getDistanceText(nearbyPlaces[1].distance)}
                     onClick={() => handleBentoClick(1)}
                     isSelected={selectedBentoCard === 1}
                   />
                 </div>
               )}
-              {nearbyMuseums[2] && (
+              {nearbyPlaces[2] && (
                 <div
                   className={`h-[280px] lg:h-[250px] transition-transform duration-300 ${
                     selectedBentoCard === 2 ? 'scale-105 z-10' : ''
                   }`}
                 >
                   <BentoCard
-                    museum={nearbyMuseums[2]}
+                    museum={nearbyPlaces[2]}
                     size="small"
-                    badges={[
-                      { text: 'Gratuit', variant: 'glass' },
-                      { text: '#1 Recommandé', variant: 'gold' }
-                    ]}
-                    distanceInfo={getDistanceText(nearbyMuseums[2].distance)}
+                    badges={[{ text: 'À découvrir', variant: 'glass' }]}
+                    distanceInfo={getDistanceText(nearbyPlaces[2].distance)}
                     onClick={() => handleBentoClick(2)}
                     isSelected={selectedBentoCard === 2}
                   />
                 </div>
               )}
             </div>
+
+            {/* Message si pas de résultats */}
+            {nearbyPlaces.length === 0 && (
+              <div className="lg:col-span-12 text-center py-16">
+                <p className="text-gray-400 text-lg">
+                  Aucun {activeCategory === 'musée' ? 'musée' : activeCategory === 'château' ? 'château' : 'exposition'} trouvé à proximité.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </section>

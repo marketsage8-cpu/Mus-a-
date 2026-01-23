@@ -2,12 +2,32 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Zap, MapPin, Clock, Footprints, Car, Heart, ChevronLeft, ChevronRight, Calendar, Euro, X, Landmark, Castle, Palette, Star } from 'lucide-react';
 import { places } from '../data/places';
+import { frenchMuseums } from '../data/frenchMuseums';
 import InteractiveMap from '../components/map/InteractiveMap';
 import { useUser } from '../context/UserContext';
 import CabinetBackground from '../components/backgrounds/CabinetBackground';
 import ChateauBackground from '../components/backgrounds/ChateauBackground';
 import ExpositionBackground from '../components/backgrounds/ExpositionBackground';
 import PlaceDetailModal from '../components/modals/PlaceDetailModal';
+
+// Combiner tous les lieux pour la recherche
+const allSearchablePlaces = [
+  ...places,
+  ...frenchMuseums.map(m => ({
+    id: m.id,
+    name: m.name,
+    type: m.type,
+    location: `${m.city}, ${m.region}`,
+    city: m.city,
+    region: m.region,
+    image: m.image,
+    rating: (Math.random() * 0.5 + 4.5).toFixed(1), // Rating aléatoire entre 4.5 et 5.0
+    description: `Découvrez ${m.name}, un magnifique ${m.type} situé à ${m.city} en ${m.region}.`,
+    coordinates: { lat: 48.8566, lng: 2.3522 }, // Coordonnées par défaut
+    price: m.type === 'musée' ? '12€ - 18€' : m.type === 'château' ? '10€ - 15€' : 'Gratuit',
+    hours: '10h00 - 18h00'
+  }))
+];
 
 /**
  * Page d'accueil avec hero, carte floue et section Musea Now
@@ -152,15 +172,17 @@ const HomePage = () => {
     }
   };
 
-  // Filtrer les lieux selon la recherche
+  // Filtrer les lieux selon la recherche (inclut frenchMuseums)
   useEffect(() => {
     if (searchQuery.trim().length >= 2) {
       const query = searchQuery.toLowerCase();
-      const filtered = places.filter(place =>
+      const filtered = allSearchablePlaces.filter(place =>
         place.name.toLowerCase().includes(query) ||
-        place.location.toLowerCase().includes(query) ||
+        place.location?.toLowerCase().includes(query) ||
+        place.city?.toLowerCase().includes(query) ||
+        place.region?.toLowerCase().includes(query) ||
         place.type.toLowerCase().includes(query)
-      ).slice(0, 8); // Limiter à 8 résultats
+      ).slice(0, 12); // Limiter à 12 résultats pour plus de choix
       setSearchResults(filtered);
       setShowSearchResults(true);
     } else {

@@ -369,45 +369,46 @@ const MeetingsPage = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-[#1a1f2e]/20 via-transparent to-[#1a1f2e]/20" />
       </div>
 
-      {/* Hero Section avec photo en fond et barre de recherche intégrée - PLUS HAUTE */}
+      {/* Hero Section avec photo en fond et barre de recherche TRÈS HAUTE sur la photo */}
       <div className="relative z-10">
-        {/* Photo en arrière-plan plein écran - Plus grande */}
-        <div className="absolute inset-0 h-[65vh] min-h-[550px]">
+        {/* Photo en arrière-plan plein écran */}
+        <div className="absolute inset-0 h-[70vh] min-h-[600px]">
           <img
             src="https://images.unsplash.com/photo-1564399580075-5dfe19c205f3?w=1200&q=80"
             alt="Visiteurs admirant des œuvres au musée"
             className="w-full h-full object-cover"
           />
-          {/* Overlay gradient pour lisibilité */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1a1f2e]/30 via-[#1a1f2e]/10 to-[#1a1f2e]" />
+          {/* Overlay gradient pour lisibilité - plus léger en haut pour voir la photo */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1a1f2e]/20 via-[#1a1f2e]/30 to-[#1a1f2e]" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1a1f2e]/10 via-transparent to-[#1a1f2e]/10" />
         </div>
 
-        {/* Contenu du header avec barre de recherche HAUTE SUR la photo */}
-        <div className="relative max-w-6xl mx-auto px-4 h-[65vh] min-h-[550px] flex flex-col justify-start pt-12">
-          <div className="text-center">
-            {/* Barre de recherche EN HAUT de la photo */}
-            {!selectedPlace && (
-              <div className="max-w-2xl mx-auto mb-10">
-                <div className="relative">
-                  <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400 z-10" />
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Rechercher parmi 250+ musées et châteaux..."
-                    className="w-full py-5 px-6 pl-16 pr-16 bg-white/95 backdrop-blur-md border-2 border-white/50 rounded-2xl text-gray-800 placeholder-gray-500 focus:outline-none focus:border-[#d4a574] focus:ring-4 focus:ring-[#d4a574]/20 transition-all text-lg shadow-2xl"
-                  />
-                  <button
-                    onClick={() => setShowFilters(!showFilters)}
-                    className={`absolute right-4 top-1/2 -translate-y-1/2 p-2.5 rounded-xl transition-colors ${showFilters ? 'bg-[#d4a574] text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}
-                  >
-                    <Filter className="w-5 h-5" />
-                  </button>
-                </div>
+        {/* Contenu du header avec barre de recherche TRÈS HAUTE sur la photo */}
+        <div className="relative max-w-6xl mx-auto px-4 h-[70vh] min-h-[600px] flex flex-col pt-4">
+          {/* Barre de recherche TOUT EN HAUT de la photo - position fixe en haut */}
+          {!selectedPlace && (
+            <div className="max-w-2xl mx-auto w-full mb-auto">
+              <div className="relative">
+                <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400 z-10" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Rechercher parmi 250+ musées et châteaux..."
+                  className="w-full py-5 px-6 pl-16 pr-16 bg-white/95 backdrop-blur-md border-2 border-white/50 rounded-2xl text-gray-800 placeholder-gray-500 focus:outline-none focus:border-[#d4a574] focus:ring-4 focus:ring-[#d4a574]/20 transition-all text-lg shadow-2xl"
+                />
+                <button
+                  onClick={() => setShowFilters(!showFilters)}
+                  className={`absolute right-4 top-1/2 -translate-y-1/2 p-2.5 rounded-xl transition-colors ${showFilters ? 'bg-[#d4a574] text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}
+                >
+                  <Filter className="w-5 h-5" />
+                </button>
               </div>
-            )}
+            </div>
+          )}
 
+          {/* Texte centré verticalement dans l'espace restant */}
+          <div className="flex-1 flex flex-col justify-center text-center -mt-16">
             <h1 className="font-serif-italic text-3xl sm:text-4xl lg:text-5xl mb-4 drop-shadow-lg" style={{ color: '#d4a574' }}>
               Trouvez des compagnons de visite
             </h1>
@@ -416,7 +417,7 @@ const MeetingsPage = () => {
             </p>
 
             {/* Citation */}
-            <p className="text-white/70 font-serif-italic text-lg mt-auto drop-shadow-lg">
+            <p className="text-white/70 font-serif-italic text-lg drop-shadow-lg">
               "L'art est le plus beau des partages"
             </p>
           </div>

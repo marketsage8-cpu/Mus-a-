@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 import {
   MapPin, Heart, Settings, User, Bookmark, Camera, Edit3, Check, X,
   Trophy, Sparkles, Calendar, Bell, Shield, Globe, Moon, ChevronRight,
-  Languages, Compass, Clock, Zap, Coffee, Footprints
+  Languages, Compass, Clock, Zap, Coffee, Footprints, Map
 } from 'lucide-react';
 import { useUser } from '../context/UserContext';
 import PlaceDetailModal from '../components/modals/PlaceDetailModal';
 import ProfileBackground from '../components/backgrounds/ProfileBackground';
+import InteractiveMap from '../components/map/InteractiveMap';
+import { places } from '../data/places';
 
 /**
  * Option de paramètre avec toggle ou chevron
@@ -671,6 +673,112 @@ const ProfilePage = () => {
                   </p>
                 </div>
               )}
+
+              {/* Section Carte - Cadre Tableau 18ème siècle */}
+              <div className="bg-gradient-to-br from-night-800/50 to-night-900/30 backdrop-blur-lg border border-night-700/40 rounded-2xl p-6">
+                <h3 className="text-sand-300 text-sm uppercase tracking-widest mb-4 flex items-center gap-2">
+                  <Map className="w-4 h-4 text-gold-400" />
+                  Ma Position
+                </h3>
+
+                {/* Cadre de tableau 18ème siècle - Style baroque/rococo */}
+                <div className="relative">
+                  {/* Cadre extérieur avec ornements */}
+                  <div className="relative p-3 sm:p-4 rounded-lg"
+                    style={{
+                      background: 'linear-gradient(135deg, #8B7355 0%, #6B5344 20%, #8B7355 40%, #A08060 50%, #8B7355 60%, #6B5344 80%, #8B7355 100%)',
+                      boxShadow: 'inset 0 2px 4px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.3), 0 8px 32px rgba(0,0,0,0.5)'
+                    }}
+                  >
+                    {/* Ornements des coins - Style rococo */}
+                    <div className="absolute top-1 left-1 w-8 h-8 sm:w-12 sm:h-12">
+                      <svg viewBox="0 0 50 50" className="w-full h-full text-[#d4a574] opacity-80">
+                        <path d="M5,5 Q15,5 20,15 Q15,20 5,20 Q5,15 5,5" fill="currentColor" />
+                        <path d="M5,5 Q25,0 25,25 Q0,25 5,5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                        <circle cx="10" cy="10" r="3" fill="currentColor" opacity="0.6" />
+                      </svg>
+                    </div>
+                    <div className="absolute top-1 right-1 w-8 h-8 sm:w-12 sm:h-12 transform scale-x-[-1]">
+                      <svg viewBox="0 0 50 50" className="w-full h-full text-[#d4a574] opacity-80">
+                        <path d="M5,5 Q15,5 20,15 Q15,20 5,20 Q5,15 5,5" fill="currentColor" />
+                        <path d="M5,5 Q25,0 25,25 Q0,25 5,5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                        <circle cx="10" cy="10" r="3" fill="currentColor" opacity="0.6" />
+                      </svg>
+                    </div>
+                    <div className="absolute bottom-1 left-1 w-8 h-8 sm:w-12 sm:h-12 transform scale-y-[-1]">
+                      <svg viewBox="0 0 50 50" className="w-full h-full text-[#d4a574] opacity-80">
+                        <path d="M5,5 Q15,5 20,15 Q15,20 5,20 Q5,15 5,5" fill="currentColor" />
+                        <path d="M5,5 Q25,0 25,25 Q0,25 5,5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                        <circle cx="10" cy="10" r="3" fill="currentColor" opacity="0.6" />
+                      </svg>
+                    </div>
+                    <div className="absolute bottom-1 right-1 w-8 h-8 sm:w-12 sm:h-12 transform scale-[-1]">
+                      <svg viewBox="0 0 50 50" className="w-full h-full text-[#d4a574] opacity-80">
+                        <path d="M5,5 Q15,5 20,15 Q15,20 5,20 Q5,15 5,5" fill="currentColor" />
+                        <path d="M5,5 Q25,0 25,25 Q0,25 5,5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                        <circle cx="10" cy="10" r="3" fill="currentColor" opacity="0.6" />
+                      </svg>
+                    </div>
+
+                    {/* Bordure intérieure dorée avec moulures */}
+                    <div className="relative p-1.5 sm:p-2 rounded"
+                      style={{
+                        background: 'linear-gradient(135deg, #d4a574 0%, #c9956c 25%, #e8c9a0 50%, #c9956c 75%, #d4a574 100%)',
+                        boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.5), inset 0 -1px 2px rgba(0,0,0,0.3)'
+                      }}
+                    >
+                      {/* Ligne de moulure */}
+                      <div className="absolute inset-2 border border-[#8B7355]/50 rounded pointer-events-none" />
+
+                      {/* Cadre intérieur sombre */}
+                      <div className="relative p-1 rounded"
+                        style={{
+                          background: 'linear-gradient(135deg, #4a3f35 0%, #3d342c 50%, #4a3f35 100%)',
+                          boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.5)'
+                        }}
+                      >
+                        {/* La carte elle-même */}
+                        <div className="relative rounded overflow-hidden"
+                          style={{ boxShadow: 'inset 0 0 20px rgba(0,0,0,0.3)' }}
+                        >
+                          <InteractiveMap
+                            places={places.slice(0, 10)}
+                            height="250px"
+                            center={[46.603354, 1.888334]}
+                            zoom={5}
+                            showUserLocation={true}
+                            autoLocate={true}
+                          />
+
+                          {/* Effet vieilli/patine sur la carte */}
+                          <div className="absolute inset-0 pointer-events-none"
+                            style={{
+                              background: 'radial-gradient(ellipse at center, transparent 40%, rgba(139,115,85,0.15) 100%)',
+                              mixBlendMode: 'multiply'
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Plaque décorative en bas du cadre */}
+                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 px-4 py-1 rounded-sm"
+                      style={{
+                        background: 'linear-gradient(180deg, #d4a574 0%, #b8956a 50%, #c9956c 100%)',
+                        boxShadow: '0 2px 4px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.3)'
+                      }}
+                    >
+                      <span className="text-[10px] sm:text-xs font-serif text-[#3d342c] tracking-wider uppercase">
+                        Carte de France
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <p className="text-sand-500 text-xs text-center mt-4">
+                  Activez la géolocalisation pour voir les lieux culturels près de chez vous
+                </p>
+              </div>
             </div>
           </div>
         )}

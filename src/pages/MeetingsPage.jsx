@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Search, MapPin, Users, MessageCircle, X, Send, Heart, Calendar, Clock, ChevronLeft, Star, User, Filter, ChevronDown } from 'lucide-react';
 import { places } from '../data/places';
 import { frenchMuseums, frenchRegions, placeTypes } from '../data/frenchMuseums';
@@ -159,6 +160,7 @@ const placeMeetups = generatePlaceMeetups();
  * Page Rencontres - Trouver des compagnons de visite
  */
 const MeetingsPage = () => {
+  const [searchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -170,6 +172,20 @@ const MeetingsPage = () => {
   const [selectedType, setSelectedType] = useState('');
   const [showFilters, setShowFilters] = useState(false);
   const messagesEndRef = useRef(null);
+
+  // Pré-sélectionner le lieu depuis l'URL
+  useEffect(() => {
+    const placeParam = searchParams.get('place');
+    if (placeParam && !selectedPlace) {
+      const foundPlace = allPlaces.find(p =>
+        p.name.toLowerCase() === placeParam.toLowerCase() ||
+        p.name.toLowerCase().includes(placeParam.toLowerCase())
+      );
+      if (foundPlace) {
+        setSelectedPlace(foundPlace);
+      }
+    }
+  }, [searchParams]);
 
   // Filtrer les lieux selon la recherche, région et type
   useEffect(() => {

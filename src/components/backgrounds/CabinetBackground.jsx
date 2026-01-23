@@ -2074,8 +2074,8 @@ const RaisDeCoeur = ({ x, y, width = 200, delay = 0 }) => {
 const CabinetBackground = () => {
   return (
     <div
-      className="fixed inset-0 pointer-events-none overflow-hidden"
-      style={{ zIndex: 0 }}
+      className="absolute inset-0 pointer-events-none overflow-hidden"
+      style={{ zIndex: 1 }}
       aria-hidden="true"
     >
       {/* Fond subtil */}

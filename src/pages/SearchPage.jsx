@@ -24,15 +24,15 @@ const SearchPage = () => {
   });
 
   return (
-    <div className="animate-fade-in">
+    <div className="min-h-screen pt-20 pb-24 md:pb-8 animate-fade-in bg-night-950">
       {/* Header */}
-      <div className="bg-stone-900/50 border-b border-stone-800/50">
+      <div className="bg-night-900/80 border-b border-night-800/50">
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="text-center mb-8">
             <h1 className="font-display text-4xl font-bold text-amber-50 mb-2">
               Recherche
             </h1>
-            <p className="text-stone-400">
+            <p className="text-sand-300/70">
               Trouvez des musées, monuments et sites culturels
             </p>
           </div>
@@ -51,7 +51,7 @@ const SearchPage = () => {
       <div className="max-w-7xl mx-auto px-4 py-6">
         {searchQuery.trim() ? (
           <>
-            <p className="text-stone-400 mb-6">
+            <p className="text-sand-300/70 mb-6">
               {filteredPlaces.length} résultat{filteredPlaces.length > 1 ? 's' : ''} pour "{searchQuery}"
             </p>
 
@@ -67,13 +67,13 @@ const SearchPage = () => {
               </div>
             ) : (
               <div className="text-center py-20">
-                <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-stone-800/50 flex items-center justify-center">
-                  <MapPin className="w-10 h-10 text-stone-600" />
+                <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-night-800/50 flex items-center justify-center">
+                  <MapPin className="w-10 h-10 text-sand-400" />
                 </div>
                 <h3 className="font-display text-2xl font-semibold text-amber-50 mb-2">
                   Aucun résultat
                 </h3>
-                <p className="text-stone-400 max-w-md mx-auto">
+                <p className="text-sand-300/70 max-w-md mx-auto">
                   Aucun lieu ne correspond à votre recherche. Essayez d'autres termes.
                 </p>
               </div>
@@ -81,13 +81,13 @@ const SearchPage = () => {
           </>
         ) : (
           <div className="text-center py-20">
-            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-stone-800/50 flex items-center justify-center">
-              <Search className="w-10 h-10 text-stone-600" />
+            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-night-800/50 flex items-center justify-center">
+              <Search className="w-10 h-10 text-sand-400" />
             </div>
             <h3 className="font-display text-2xl font-semibold text-amber-50 mb-2">
               Commencez votre recherche
             </h3>
-            <p className="text-stone-400 max-w-md mx-auto">
+            <p className="text-sand-300/70 max-w-md mx-auto">
               Tapez un nom de lieu, une ville ou une période pour découvrir des sites culturels.
             </p>
           </div>

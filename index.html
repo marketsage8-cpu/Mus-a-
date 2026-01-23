@@ -4,11 +4,20 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Muzea - Culture Nearby</title>
+    <meta name="description" content="Découvrez les musées, expositions et lieux culturels autour de vous" />
+    <meta name="theme-color" content="#0a0f1a" />
 
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
-
+    <!-- Fallback background while CSS loads -->
+    <style>
+      html, body, #root {
+        background-color: #0a0f1a;
+        min-height: 100vh;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

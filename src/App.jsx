@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { UserProvider } from './context/UserContext';
 import Navigation from './components/layout/Navigation';
 import MobileNav from './components/layout/MobileNav';
-import CabinetBackground from './components/backgrounds/CabinetBackground';
 import HomePage from './pages/HomePage';
 import ExplorePage from './pages/ExplorePage';
 import FavoritesPage from './pages/FavoritesPage';
@@ -18,9 +17,6 @@ function App() {
   return (
     <UserProvider>
       <Router>
-        {/* Arrière-plan décoratif "Cabinet de curiosités" - au niveau racine */}
-        <CabinetBackground />
-
         <div className="min-h-screen font-body text-amber-50 relative" style={{ zIndex: 1 }}>
           {/* Header navigation */}
           <Navigation />

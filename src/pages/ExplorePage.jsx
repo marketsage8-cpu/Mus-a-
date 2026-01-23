@@ -119,7 +119,9 @@ const ExplorePage = () => {
             <InteractiveMap
               places={filteredPlaces}
               onPlaceClick={setSelectedPlace}
-              height="256px"
+              height="350px"
+              autoLocate={true}
+              showUserLocation={true}
             />
           </div>
         )}

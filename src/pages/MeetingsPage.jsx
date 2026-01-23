@@ -265,68 +265,92 @@ const MeetingsPage = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20 pb-24 md:pb-8 relative overflow-hidden" style={{ backgroundColor: '#0a0d1a' }}>
-      {/* Fond décoratif avec motifs tapisserie vintage */}
+    <div className="min-h-screen pt-20 pb-24 md:pb-8 relative overflow-hidden" style={{ backgroundColor: '#1a1f2e' }}>
+      {/* Fond décoratif avec motifs tapisserie 19ème siècle - Style victorien */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Motifs tapisserie style années 70-80 */}
+        {/* Fond base avec teinte chaude */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#2a2a3a] via-[#252535] to-[#1a1f2e]" />
+
+        {/* Motifs tapisserie style 19ème siècle - Damassé victorien */}
         <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
           <defs>
-            <linearGradient id="vintageGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#8b5a2b" stopOpacity="0.12" />
-              <stop offset="50%" stopColor="#a0522d" stopOpacity="0.08" />
-              <stop offset="100%" stopColor="#8b5a2b" stopOpacity="0.12" />
+            {/* Gradients dorés riches */}
+            <linearGradient id="goldGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#d4a574" stopOpacity="0.4" />
+              <stop offset="50%" stopColor="#c9956c" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="#d4a574" stopOpacity="0.4" />
             </linearGradient>
-            <linearGradient id="vintageGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#d4a574" stopOpacity="0.1" />
-              <stop offset="50%" stopColor="#c9956c" stopOpacity="0.15" />
-              <stop offset="100%" stopColor="#d4a574" stopOpacity="0.1" />
+            <linearGradient id="goldGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#e8c9a0" stopOpacity="0.35" />
+              <stop offset="50%" stopColor="#d4a574" stopOpacity="0.25" />
+              <stop offset="100%" stopColor="#b8956a" stopOpacity="0.35" />
             </linearGradient>
-            {/* Motif tapisserie damassé */}
-            <pattern id="damaskPattern" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
-              {/* Fleur de lys stylisée centrale */}
-              <path d="M60,10 Q70,25 60,40 Q50,25 60,10" fill="url(#vintageGradient1)" stroke="#d4a574" strokeWidth="0.5" opacity="0.3" />
-              <path d="M60,40 L60,55" stroke="#d4a574" strokeWidth="0.5" opacity="0.25" />
-              <path d="M50,35 Q60,45 70,35" fill="none" stroke="#d4a574" strokeWidth="0.5" opacity="0.25" />
-              {/* Feuilles d'acanthe */}
-              <path d="M30,60 Q40,50 50,60 Q40,70 30,60" fill="none" stroke="#d4a574" strokeWidth="0.8" opacity="0.2" />
-              <path d="M70,60 Q80,50 90,60 Q80,70 70,60" fill="none" stroke="#d4a574" strokeWidth="0.8" opacity="0.2" />
-              {/* Volutes */}
-              <path d="M20,30 Q30,20 40,30 Q30,35 25,30" fill="none" stroke="#d4a574" strokeWidth="0.5" opacity="0.15" />
-              <path d="M80,30 Q90,20 100,30 Q90,35 85,30" fill="none" stroke="#d4a574" strokeWidth="0.5" opacity="0.15" />
-              <path d="M20,90 Q30,80 40,90 Q30,95 25,90" fill="none" stroke="#d4a574" strokeWidth="0.5" opacity="0.15" />
-              <path d="M80,90 Q90,80 100,90 Q90,95 85,90" fill="none" stroke="#d4a574" strokeWidth="0.5" opacity="0.15" />
-              {/* Motif losange central */}
-              <path d="M60,70 L75,85 L60,100 L45,85 Z" fill="none" stroke="#d4a574" strokeWidth="0.5" opacity="0.2" />
-              <circle cx="60" cy="85" r="5" fill="none" stroke="#d4a574" strokeWidth="0.5" opacity="0.15" />
-              {/* Points décoratifs */}
-              <circle cx="10" cy="10" r="2" fill="#d4a574" opacity="0.1" />
-              <circle cx="110" cy="10" r="2" fill="#d4a574" opacity="0.1" />
-              <circle cx="10" cy="110" r="2" fill="#d4a574" opacity="0.1" />
-              <circle cx="110" cy="110" r="2" fill="#d4a574" opacity="0.1" />
+
+            {/* Motif damassé principal - Style William Morris */}
+            <pattern id="damaskVictorian" x="0" y="0" width="160" height="200" patternUnits="userSpaceOnUse">
+              {/* Médaillon central orné */}
+              <ellipse cx="80" cy="100" rx="45" ry="55" fill="none" stroke="url(#goldGradient1)" strokeWidth="1.5" opacity="0.5" />
+              <ellipse cx="80" cy="100" rx="35" ry="42" fill="none" stroke="#d4a574" strokeWidth="0.8" opacity="0.4" />
+
+              {/* Fleur de lys centrale */}
+              <path d="M80,55 Q92,75 80,95 Q68,75 80,55" fill="url(#goldGradient2)" stroke="#d4a574" strokeWidth="1" opacity="0.6" />
+              <path d="M80,95 L80,120" stroke="#d4a574" strokeWidth="1.2" opacity="0.5" />
+              <path d="M70,105 Q80,115 90,105" fill="none" stroke="#d4a574" strokeWidth="1" opacity="0.45" />
+              <circle cx="80" cy="125" r="4" fill="#d4a574" opacity="0.35" />
+
+              {/* Feuilles d'acanthe stylisées */}
+              <path d="M30,100 Q50,80 65,100 Q50,115 35,100 Q45,100 30,100" fill="url(#goldGradient1)" stroke="#d4a574" strokeWidth="0.8" opacity="0.45" />
+              <path d="M130,100 Q110,80 95,100 Q110,115 125,100 Q115,100 130,100" fill="url(#goldGradient1)" stroke="#d4a574" strokeWidth="0.8" opacity="0.45" />
+
+              {/* Volutes et arabesques */}
+              <path d="M25,50 Q45,35 55,55 Q45,60 35,55 C30,52 25,55 25,50" fill="none" stroke="#d4a574" strokeWidth="1" opacity="0.4" />
+              <path d="M135,50 Q115,35 105,55 Q115,60 125,55 C130,52 135,55 135,50" fill="none" stroke="#d4a574" strokeWidth="1" opacity="0.4" />
+              <path d="M25,150 Q45,165 55,145 Q45,140 35,145 C30,148 25,145 25,150" fill="none" stroke="#d4a574" strokeWidth="1" opacity="0.4" />
+              <path d="M135,150 Q115,165 105,145 Q115,140 125,145 C130,148 135,145 135,150" fill="none" stroke="#d4a574" strokeWidth="1" opacity="0.4" />
+
+              {/* Motifs de connexion verticaux */}
+              <path d="M80,0 L80,35 M80,165 L80,200" stroke="#d4a574" strokeWidth="0.8" opacity="0.3" />
+              <circle cx="80" cy="20" r="6" fill="none" stroke="#d4a574" strokeWidth="0.8" opacity="0.35" />
+              <circle cx="80" cy="180" r="6" fill="none" stroke="#d4a574" strokeWidth="0.8" opacity="0.35" />
+
+              {/* Ornements des coins */}
+              <path d="M10,10 Q25,20 20,35 M150,10 Q135,20 140,35" fill="none" stroke="#d4a574" strokeWidth="0.6" opacity="0.3" />
+              <path d="M10,190 Q25,180 20,165 M150,190 Q135,180 140,165" fill="none" stroke="#d4a574" strokeWidth="0.6" opacity="0.3" />
+
+              {/* Petites rosaces décoratives */}
+              <circle cx="20" cy="100" r="8" fill="none" stroke="#d4a574" strokeWidth="0.8" opacity="0.35" />
+              <circle cx="140" cy="100" r="8" fill="none" stroke="#d4a574" strokeWidth="0.8" opacity="0.35" />
+              <circle cx="20" cy="100" r="3" fill="#d4a574" opacity="0.25" />
+              <circle cx="140" cy="100" r="3" fill="#d4a574" opacity="0.25" />
             </pattern>
-            {/* Motif rayures verticales subtiles */}
-            <pattern id="stripePattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-              <line x1="0" y1="0" x2="0" y2="40" stroke="#d4a574" strokeWidth="0.3" opacity="0.08" />
-              <line x1="20" y1="0" x2="20" y2="40" stroke="#d4a574" strokeWidth="0.3" opacity="0.08" />
-              <line x1="40" y1="0" x2="40" y2="40" stroke="#d4a574" strokeWidth="0.3" opacity="0.08" />
+
+            {/* Motif de bordure grecque/victorienne */}
+            <pattern id="victorianBorder" x="0" y="0" width="80" height="20" patternUnits="userSpaceOnUse">
+              <path d="M0,10 Q10,2 20,10 Q30,18 40,10 Q50,2 60,10 Q70,18 80,10" fill="none" stroke="#d4a574" strokeWidth="1.2" opacity="0.35" />
+              <circle cx="20" cy="10" r="2.5" fill="#d4a574" opacity="0.3" />
+              <circle cx="60" cy="10" r="2.5" fill="#d4a574" opacity="0.3" />
             </pattern>
-            {/* Bordure ornementale */}
-            <pattern id="borderPattern" x="0" y="0" width="60" height="15" patternUnits="userSpaceOnUse">
-              <path d="M0,7.5 Q15,0 30,7.5 Q45,15 60,7.5" fill="none" stroke="#d4a574" strokeWidth="0.8" opacity="0.2" />
-              <circle cx="30" cy="7.5" r="2" fill="#d4a574" opacity="0.15" />
+
+            {/* Fines rayures verticales de soie */}
+            <pattern id="silkStripes" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="0" y2="30" stroke="#d4a574" strokeWidth="0.5" opacity="0.12" />
+              <line x1="15" y1="0" x2="15" y2="30" stroke="#d4a574" strokeWidth="0.3" opacity="0.08" />
+              <line x1="30" y1="0" x2="30" y2="30" stroke="#d4a574" strokeWidth="0.5" opacity="0.12" />
             </pattern>
           </defs>
-          {/* Fond rayures */}
-          <rect width="100%" height="100%" fill="url(#stripePattern)" />
-          {/* Fond damassé */}
-          <rect width="100%" height="100%" fill="url(#damaskPattern)" />
-          {/* Bordures ornementales */}
-          <rect x="0" y="60" width="100%" height="15" fill="url(#borderPattern)" />
+
+          {/* Couche de rayures de soie */}
+          <rect width="100%" height="100%" fill="url(#silkStripes)" />
+          {/* Couche de motifs damassés */}
+          <rect width="100%" height="100%" fill="url(#damaskVictorian)" />
+          {/* Bordures ornementales en haut et en bas */}
+          <rect x="0" y="80" width="100%" height="20" fill="url(#victorianBorder)" />
+          <rect x="0" y="0" width="100%" height="20" fill="url(#victorianBorder)" opacity="0.5" />
         </svg>
 
-        {/* Effet vignette vintage */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0d1a]/50 via-transparent to-[#0a0d1a]/70" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0d1a]/30 via-transparent to-[#0a0d1a]/30" />
+        {/* Effet vignette subtil pour profondeur */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1a1f2e]/30 via-transparent to-[#1a1f2e]/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1a1f2e]/20 via-transparent to-[#1a1f2e]/20" />
       </div>
 
       {/* Hero Section avec photo en fond */}
@@ -339,23 +363,13 @@ const MeetingsPage = () => {
             className="w-full h-full object-cover"
           />
           {/* Overlay gradient pour lisibilité */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0d1a]/60 via-[#0a0d1a]/40 to-[#0a0d1a]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0a0d1a]/30 via-transparent to-[#0a0d1a]/30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1a1f2e]/50 via-[#1a1f2e]/30 to-[#1a1f2e]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1a1f2e]/20 via-transparent to-[#1a1f2e]/20" />
         </div>
 
         {/* Contenu du header */}
         <div className="relative max-w-6xl mx-auto px-4 py-8">
           <div className="text-center mb-8 pt-8">
-            <div className="inline-flex items-center justify-center mb-4">
-              <div className="relative px-6 py-2">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#d4a574]/30 via-[#d4a574]/20 to-[#d4a574]/30 rounded-lg backdrop-blur-sm" />
-                <div className="absolute inset-0 border border-[#d4a574]/60 rounded-lg" />
-                <p className="relative text-sm uppercase tracking-[0.3em] text-[#d4a574] font-semibold flex items-center gap-2">
-                  <Users className="w-4 h-4" />
-                  Rencontres
-                </p>
-              </div>
-            </div>
             <h1 className="font-serif-italic text-3xl sm:text-4xl lg:text-5xl mb-4 drop-shadow-lg" style={{ color: '#d4a574' }}>
               Trouvez des compagnons de visite
             </h1>

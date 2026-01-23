@@ -9,6 +9,8 @@ import EventsPage from './pages/EventsPage';
 import MeetingsPage from './pages/MeetingsPage';
 import ProfilePage from './pages/ProfilePage';
 import SearchPage from './pages/SearchPage';
+import GuidesPage from './pages/GuidesPage';
+import DailyArtPage from './pages/DailyArtPage';
 
 /**
  * Application principale Muzea
@@ -29,7 +31,10 @@ function App() {
               <Route path="/search" element={<SearchPage />} />
               <Route path="/explore" element={<ExplorePage />} />
               <Route path="/favorites" element={<FavoritesPage />} />
+              <Route path="/favoris" element={<FavoritesPage />} />
               <Route path="/events" element={<MeetingsPage />} />
+              <Route path="/guides" element={<GuidesPage />} />
+              <Route path="/decouverte" element={<DailyArtPage />} />
               <Route path="/profile" element={<ProfilePage />} />
             </Routes>
           </main>

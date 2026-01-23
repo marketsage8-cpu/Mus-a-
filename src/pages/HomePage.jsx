@@ -163,11 +163,11 @@ const HomePage = () => {
           SECTION 1: HERO
           ============================================ */}
       <section className="relative min-h-screen flex flex-col">
-        {/* Background image - Intérieur majestueux du Louvre */}
+        {/* Background image - Galerie colorée avec œuvres d'art */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1499426600726-ac56a50b6667?w=1920&q=80"
-            alt="Grand escalier du musée du Louvre"
+            src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&q=80"
+            alt="Galerie d'art colorée avec Nymphéas de Monet"
             className="w-full h-full object-cover"
           />
           {/* Gradient overlay - effet "bavure" fluide depuis la navbar bleu marine (style Culturio) */}

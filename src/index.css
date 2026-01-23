@@ -542,33 +542,42 @@ input:focus-visible {
   }
 }
 
-/* Museum element base class - stroke drawing effect */
+/* Museum element base class - stroke drawing effect - ULTRA FAST */
 .museum-element {
   stroke-dasharray: var(--stroke-length, 1000);
   stroke-dashoffset: var(--stroke-length, 1000);
   animation:
-    draw-stroke var(--draw-duration, 4s) cubic-bezier(0.4, 0, 0.2, 1) forwards,
-    fill-fade var(--draw-duration, 4s) ease-out forwards,
-    post-draw-glow var(--draw-duration, 4s) ease-out forwards;
+    draw-stroke var(--draw-duration, 0.8s) cubic-bezier(0.2, 0, 0.1, 1) forwards,
+    fill-fade var(--draw-duration, 0.8s) ease-out forwards,
+    post-draw-glow var(--draw-duration, 0.8s) ease-out forwards;
   animation-delay: var(--draw-delay, 0s);
 }
 
-/* Secondary strokes - drawn after main element */
+/* Secondary strokes - drawn rapidly after main */
 .museum-element-secondary {
   stroke-dasharray: var(--stroke-length, 500);
   stroke-dashoffset: var(--stroke-length, 500);
   animation:
-    draw-stroke calc(var(--draw-duration, 4s) * 0.6) cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  animation-delay: calc(var(--draw-delay, 0s) + var(--draw-duration, 4s) * 0.4);
+    draw-stroke calc(var(--draw-duration, 0.8s) * 0.5) cubic-bezier(0.2, 0, 0.1, 1) forwards;
+  animation-delay: calc(var(--draw-delay, 0s) + var(--draw-duration, 0.8s) * 0.3);
 }
 
-/* Detail strokes - finest details drawn last */
+/* Detail strokes - ultra-fine details drawn quickly */
 .museum-element-detail {
   stroke-dasharray: var(--stroke-length, 200);
   stroke-dashoffset: var(--stroke-length, 200);
   animation:
-    draw-stroke calc(var(--draw-duration, 4s) * 0.4) cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  animation-delay: calc(var(--draw-delay, 0s) + var(--draw-duration, 4s) * 0.7);
+    draw-stroke calc(var(--draw-duration, 0.8s) * 0.3) cubic-bezier(0.2, 0, 0.1, 1) forwards;
+  animation-delay: calc(var(--draw-delay, 0s) + var(--draw-duration, 0.8s) * 0.5);
+}
+
+/* Micro-detail strokes - finest precision elements */
+.museum-element-micro {
+  stroke-dasharray: var(--stroke-length, 100);
+  stroke-dashoffset: var(--stroke-length, 100);
+  animation:
+    draw-stroke calc(var(--draw-duration, 0.8s) * 0.2) cubic-bezier(0.2, 0, 0.1, 1) forwards;
+  animation-delay: calc(var(--draw-delay, 0s) + var(--draw-duration, 0.8s) * 0.6);
 }
 
 /* Continuous shimmer after drawing completes */
@@ -577,29 +586,33 @@ input:focus-visible {
   animation-delay: calc(var(--draw-delay, 0s) + var(--draw-duration, 4s) + 0.5s);
 }
 
-/* Staggered draw delays for multiple elements */
-.draw-delay-1 { --draw-delay: 0.3s; }
-.draw-delay-2 { --draw-delay: 0.8s; }
-.draw-delay-3 { --draw-delay: 1.3s; }
-.draw-delay-4 { --draw-delay: 1.8s; }
-.draw-delay-5 { --draw-delay: 2.3s; }
-.draw-delay-6 { --draw-delay: 2.8s; }
-.draw-delay-7 { --draw-delay: 3.5s; }
-.draw-delay-8 { --draw-delay: 4.2s; }
-.draw-delay-9 { --draw-delay: 5s; }
-.draw-delay-10 { --draw-delay: 6s; }
+/* Staggered draw delays - RAPID SUCCESSION */
+.draw-delay-1 { --draw-delay: 0.05s; }
+.draw-delay-2 { --draw-delay: 0.1s; }
+.draw-delay-3 { --draw-delay: 0.15s; }
+.draw-delay-4 { --draw-delay: 0.2s; }
+.draw-delay-5 { --draw-delay: 0.25s; }
+.draw-delay-6 { --draw-delay: 0.3s; }
+.draw-delay-7 { --draw-delay: 0.4s; }
+.draw-delay-8 { --draw-delay: 0.5s; }
+.draw-delay-9 { --draw-delay: 0.6s; }
+.draw-delay-10 { --draw-delay: 0.8s; }
 
-/* Draw duration variants */
-.draw-slow { --draw-duration: 6s; }
-.draw-medium { --draw-duration: 4s; }
-.draw-fast { --draw-duration: 2.5s; }
+/* Draw duration variants - ULTRA RAPID */
+.draw-slow { --draw-duration: 1.2s; }
+.draw-medium { --draw-duration: 0.8s; }
+.draw-fast { --draw-duration: 0.4s; }
+.draw-instant { --draw-duration: 0.2s; }
 
 /* Stroke length presets for different element complexities */
-.stroke-short { --stroke-length: 300; }
-.stroke-medium { --stroke-length: 800; }
-.stroke-long { --stroke-length: 1500; }
-.stroke-very-long { --stroke-length: 2500; }
-.stroke-ultra { --stroke-length: 4000; }
+.stroke-micro { --stroke-length: 50; }
+.stroke-tiny { --stroke-length: 100; }
+.stroke-short { --stroke-length: 200; }
+.stroke-medium { --stroke-length: 400; }
+.stroke-long { --stroke-length: 800; }
+.stroke-very-long { --stroke-length: 1200; }
+.stroke-ultra { --stroke-length: 2000; }
+.stroke-massive { --stroke-length: 3000; }
 
 /* Museum element hover interaction */
 .museum-decor-container:hover .museum-element {

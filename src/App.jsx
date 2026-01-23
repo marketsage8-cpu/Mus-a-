@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import ExplorePage from './pages/ExplorePage';
 import FavoritesPage from './pages/FavoritesPage';
 import EventsPage from './pages/EventsPage';
+import MeetingsPage from './pages/MeetingsPage';
 import ProfilePage from './pages/ProfilePage';
 import SearchPage from './pages/SearchPage';
 
@@ -28,7 +29,7 @@ function App() {
               <Route path="/search" element={<SearchPage />} />
               <Route path="/explore" element={<ExplorePage />} />
               <Route path="/favorites" element={<FavoritesPage />} />
-              <Route path="/events" element={<EventsPage />} />
+              <Route path="/events" element={<MeetingsPage />} />
               <Route path="/profile" element={<ProfilePage />} />
             </Routes>
           </main>

@@ -1,12 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
-import { User, MapPin, Heart, Award, Clock, Settings, ChevronRight, Lock, Star, Trophy, Sparkles, TrendingUp, Calendar, Crown } from 'lucide-react';
+import {
+  User, MapPin, Heart, Award, Clock, Settings, ChevronRight, Lock, Star,
+  Trophy, Sparkles, TrendingUp, Calendar, Crown, Mail, ExternalLink,
+  BookOpen, Compass, Palette, Globe, Quote, ArrowUpRight, Instagram,
+  Twitter, Linkedin, Building, GraduationCap, Eye
+} from 'lucide-react';
 import { useUser } from '../context/UserContext';
 import { places } from '../data/places';
 import PlaceDetailModal from '../components/modals/PlaceDetailModal';
 import ProfileBackground from '../components/backgrounds/ProfileBackground';
 
 /**
- * Composant de compteur animé
+ * Composant de compteur animé avec effet élégant
  */
 const AnimatedCounter = ({ value, duration = 1500, className = '' }) => {
   const [count, setCount] = useState(0);
@@ -38,53 +43,216 @@ const AnimatedCounter = ({ value, duration = 1500, className = '' }) => {
 };
 
 /**
- * Composant de carte statistique avec effet glassmorphism
+ * Séparateur élégant avec ligne fine dorée
  */
-const StatCard = ({ icon: Icon, label, value, color, delay = 0 }) => {
-  const colorClasses = {
-    gold: 'from-gold-400/20 to-gold-600/10 border-gold-500/30 text-gold-400',
-    turquoise: 'from-turquoise-400/20 to-turquoise-600/10 border-turquoise-500/30 text-turquoise-400',
-    terracotta: 'from-terracotta-400/20 to-terracotta-600/10 border-terracotta-500/30 text-terracotta-400',
-    purple: 'from-purple-400/20 to-purple-600/10 border-purple-500/30 text-purple-400',
+const ElegantDivider = ({ className = '' }) => (
+  <div className={`flex items-center justify-center gap-4 py-8 ${className}`}>
+    <div className="h-px w-16 bg-gradient-to-r from-transparent to-gold-500/40" />
+    <div className="w-1.5 h-1.5 rounded-full bg-gold-500/60" />
+    <div className="h-px w-16 bg-gradient-to-l from-transparent to-gold-500/40" />
+  </div>
+);
+
+/**
+ * Section titre avec typographie marquée
+ */
+const SectionTitle = ({ icon: Icon, title, subtitle, align = 'center' }) => (
+  <div className={`mb-10 ${align === 'center' ? 'text-center' : 'text-left'}`}>
+    {Icon && (
+      <div className={`inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-gold-500/15 to-gold-600/5 border border-gold-500/20 mb-4`}>
+        <Icon className="w-5 h-5 text-gold-400" />
+      </div>
+    )}
+    <h2 className="font-display text-2xl md:text-3xl font-semibold text-sand-100 tracking-wide mb-2">
+      {title}
+    </h2>
+    {subtitle && (
+      <p className="font-serif-italic text-sand-400/80 text-base">
+        {subtitle}
+      </p>
+    )}
+  </div>
+);
+
+/**
+ * Carte de statistique minimaliste
+ */
+const MinimalStatCard = ({ value, label, icon: Icon, delay = 0 }) => (
+  <div
+    className="group text-center animate-fade-in"
+    style={{ animationDelay: `${delay}ms` }}
+  >
+    <div className="relative inline-flex items-center justify-center w-16 h-16 mb-3">
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-night-800/60 to-night-900/40 border border-night-700/40 group-hover:border-gold-500/30 transition-colors duration-500" />
+      <Icon className="w-6 h-6 text-gold-400/80 relative z-10" />
+    </div>
+    <p className="font-display text-3xl font-bold text-sand-100 mb-1">
+      <AnimatedCounter value={value} />
+    </p>
+    <p className="text-sm text-sand-500 tracking-wide uppercase">{label}</p>
+  </div>
+);
+
+/**
+ * Carte de parcours/expérience culturelle
+ */
+const JourneyCard = ({ year, title, description, icon: Icon, index }) => (
+  <div
+    className="group relative pl-8 pb-10 last:pb-0 animate-slide-up"
+    style={{ animationDelay: `${index * 100}ms` }}
+  >
+    {/* Ligne verticale */}
+    <div className="absolute left-[11px] top-8 bottom-0 w-px bg-gradient-to-b from-gold-500/40 via-gold-500/20 to-transparent group-last:hidden" />
+
+    {/* Point sur la timeline */}
+    <div className="absolute left-0 top-1 w-6 h-6 rounded-full bg-night-900 border-2 border-gold-500/50 flex items-center justify-center group-hover:border-gold-400 group-hover:scale-110 transition-all duration-300">
+      <div className="w-2 h-2 rounded-full bg-gold-500/80" />
+    </div>
+
+    <div className="ml-4">
+      <span className="text-xs font-medium text-gold-500/70 tracking-widest uppercase">{year}</span>
+      <h4 className="font-display text-lg font-semibold text-sand-100 mt-1 mb-2 group-hover:text-gold-400 transition-colors duration-300">
+        {title}
+      </h4>
+      <p className="text-sand-400/80 text-sm leading-relaxed">{description}</p>
+    </div>
+  </div>
+);
+
+/**
+ * Badge de compétence élégant
+ */
+const SkillBadge = ({ skill, level, index }) => {
+  const levelColors = {
+    expert: 'from-gold-500/25 to-gold-600/10 border-gold-500/40 text-gold-400',
+    avancé: 'from-turquoise-500/20 to-turquoise-600/10 border-turquoise-500/30 text-turquoise-400',
+    intermédiaire: 'from-sand-500/15 to-sand-600/5 border-sand-500/25 text-sand-300',
   };
 
   return (
     <div
       className={`
-        relative overflow-hidden p-6 rounded-2xl
-        bg-gradient-to-br ${colorClasses[color]}
-        border backdrop-blur-xl
-        transform hover:scale-105 hover:-translate-y-1
-        transition-all duration-500 ease-out
-        group cursor-default
-        animate-slide-up
+        px-5 py-3 rounded-xl
+        bg-gradient-to-br ${levelColors[level]}
+        border backdrop-blur-sm
+        transform hover:scale-105 hover:-translate-y-0.5
+        transition-all duration-300 ease-out
+        animate-fade-in
       `}
-      style={{ animationDelay: `${delay}ms` }}
+      style={{ animationDelay: `${index * 50}ms` }}
     >
-      {/* Glow effect on hover */}
-      <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br ${colorClasses[color]} blur-xl`} />
-
-      {/* Icon background */}
-      <div className={`absolute -top-4 -right-4 w-24 h-24 rounded-full bg-gradient-to-br ${colorClasses[color]} opacity-20 blur-2xl group-hover:scale-150 transition-transform duration-700`} />
-
-      <div className="relative z-10">
-        <Icon className={`w-8 h-8 mb-3 ${colorClasses[color].split(' ').pop()}`} />
-        <p className="text-4xl font-bold text-sand-100 mb-1">
-          <AnimatedCounter value={value} />
-        </p>
-        <p className="text-sm text-sand-300/70">{label}</p>
-      </div>
-
-      {/* Shine effect */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-        <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      </div>
+      <span className="text-sm font-medium">{skill}</span>
     </div>
   );
 };
 
 /**
- * Composant de badge avec effets
+ * Carte de collection/projet avec effet premium
+ */
+const CollectionCard = ({ collection, index }) => (
+  <div
+    className="
+      group relative overflow-hidden rounded-2xl
+      bg-gradient-to-br from-night-800/70 to-night-900/50
+      border border-night-700/40 hover:border-gold-500/30
+      backdrop-blur-sm
+      transform hover:scale-[1.02] hover:-translate-y-1
+      transition-all duration-500 ease-out
+      animate-slide-up
+    "
+    style={{ animationDelay: `${index * 100}ms` }}
+  >
+    {/* Image avec overlay */}
+    <div className="relative h-48 overflow-hidden">
+      <img
+        src={collection.image}
+        alt={collection.title}
+        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-night-950 via-night-950/60 to-transparent" />
+
+      {/* Badge catégorie */}
+      <div className="absolute top-4 left-4">
+        <span className="px-3 py-1.5 text-xs font-medium tracking-wide uppercase rounded-full bg-night-900/80 backdrop-blur-sm border border-night-700/50 text-sand-300">
+          {collection.category}
+        </span>
+      </div>
+
+      {/* Compteur */}
+      <div className="absolute bottom-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-night-900/80 backdrop-blur-sm">
+        <Eye className="w-3.5 h-3.5 text-gold-400" />
+        <span className="text-xs font-medium text-sand-200">{collection.count}</span>
+      </div>
+    </div>
+
+    {/* Contenu */}
+    <div className="p-5">
+      <h4 className="font-display font-semibold text-sand-100 mb-2 group-hover:text-gold-400 transition-colors duration-300">
+        {collection.title}
+      </h4>
+      <p className="text-sm text-sand-400/80 line-clamp-2 leading-relaxed">
+        {collection.description}
+      </p>
+    </div>
+
+    {/* Effet de brillance au survol */}
+    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+      <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+    </div>
+  </div>
+);
+
+/**
+ * Lien social élégant
+ */
+const SocialLink = ({ icon: Icon, label, href, index }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="
+      group flex items-center gap-3 px-5 py-3.5 rounded-xl
+      bg-gradient-to-br from-night-800/50 to-night-900/30
+      border border-night-700/40 hover:border-gold-500/40
+      backdrop-blur-sm
+      transform hover:scale-[1.02] hover:-translate-y-0.5
+      transition-all duration-300 ease-out
+      animate-fade-in
+    "
+    style={{ animationDelay: `${index * 80}ms` }}
+  >
+    <div className="p-2 rounded-lg bg-night-800/60 group-hover:bg-gold-500/15 transition-colors duration-300">
+      <Icon className="w-4 h-4 text-sand-400 group-hover:text-gold-400 transition-colors duration-300" />
+    </div>
+    <span className="text-sm font-medium text-sand-300 group-hover:text-sand-100 transition-colors duration-300">
+      {label}
+    </span>
+    <ArrowUpRight className="w-4 h-4 ml-auto text-sand-600 group-hover:text-gold-400 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+  </a>
+);
+
+/**
+ * Tag de centre d'intérêt
+ */
+const InterestTag = ({ interest, index }) => (
+  <span
+    className="
+      inline-flex items-center gap-2 px-4 py-2 rounded-full
+      bg-night-800/40 border border-night-700/30
+      text-sand-300 text-sm
+      hover:border-gold-500/30 hover:text-gold-400
+      transition-all duration-300
+      animate-fade-in
+    "
+    style={{ animationDelay: `${index * 40}ms` }}
+  >
+    <span className="text-base">{interest.icon}</span>
+    {interest.name}
+  </span>
+);
+
+/**
+ * Carte de badge avec effet premium
  */
 const BadgeCard = ({ badge, index }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -104,14 +272,12 @@ const BadgeCard = ({ badge, index }) => {
       `}
       style={{ animationDelay: `${index * 80}ms` }}
     >
-      {/* Lock icon for locked badges */}
       {!badge.unlocked && (
         <div className="absolute top-3 right-3 p-1.5 rounded-full bg-night-700/80">
           <Lock className="w-3 h-3 text-night-400" />
         </div>
       )}
 
-      {/* Glow ring for unlocked badges */}
       {badge.unlocked && (
         <div className="absolute inset-0 rounded-2xl">
           <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br from-gold-400/20 to-transparent opacity-0 ${isHovered ? 'opacity-100' : ''} transition-opacity duration-500`} />
@@ -119,12 +285,8 @@ const BadgeCard = ({ badge, index }) => {
         </div>
       )}
 
-      {/* Content */}
       <div className="relative z-10">
-        <div className={`
-          text-5xl mb-3 transition-transform duration-500
-          ${badge.unlocked && isHovered ? 'scale-110 animate-bounce-slow' : ''}
-        `}>
+        <div className={`text-4xl mb-3 transition-transform duration-500 ${badge.unlocked && isHovered ? 'scale-110 animate-bounce-slow' : ''}`}>
           {badge.icon}
         </div>
         <p className={`font-semibold text-sm mb-1 ${badge.unlocked ? 'text-sand-100' : 'text-night-500'}`}>
@@ -134,7 +296,6 @@ const BadgeCard = ({ badge, index }) => {
           {badge.condition}
         </p>
 
-        {/* Sparkle effect for unlocked */}
         {badge.unlocked && isHovered && (
           <Sparkles className="absolute top-2 left-2 w-4 h-4 text-gold-400 animate-pulse" />
         )}
@@ -144,86 +305,54 @@ const BadgeCard = ({ badge, index }) => {
 };
 
 /**
- * Composant de carte de visite
- */
-const VisitCard = ({ visit, onClick, index }) => {
-  const { place, visitedAt } = visit;
-
-  return (
-    <div
-      onClick={onClick}
-      className="
-        flex-shrink-0 w-72 group cursor-pointer
-        bg-gradient-to-br from-night-800/80 to-night-900/80
-        border border-night-700/50 hover:border-gold-500/50
-        rounded-2xl overflow-hidden
-        transform hover:scale-[1.02] hover:-translate-y-1
-        transition-all duration-500 ease-out
-        backdrop-blur-sm
-        animate-slide-up
-      "
-      style={{ animationDelay: `${index * 100}ms` }}
-    >
-      {/* Image */}
-      <div className="relative h-40 overflow-hidden">
-        <img
-          src={place.image}
-          alt={place.name}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-night-950 via-night-950/50 to-transparent" />
-
-        {/* Type badge */}
-        <div className="absolute top-3 left-3">
-          <span className="px-3 py-1 text-xs font-medium rounded-full bg-night-900/80 backdrop-blur-sm border border-night-700/50 text-sand-200">
-            {place.type}
-          </span>
-        </div>
-
-        {/* Rating */}
-        <div className="absolute bottom-3 right-3 flex items-center gap-1 px-2 py-1 rounded-full bg-night-900/80 backdrop-blur-sm">
-          <Star className="w-3 h-3 text-gold-400 fill-gold-400" />
-          <span className="text-xs font-medium text-sand-100">{place.rating}</span>
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="p-4">
-        <h4 className="font-display font-semibold text-sand-100 mb-1 group-hover:text-gold-400 transition-colors">
-          {place.name}
-        </h4>
-        <p className="text-sm text-sand-400 flex items-center gap-1 mb-2">
-          <MapPin className="w-3 h-3" />
-          {place.location}
-        </p>
-        <div className="flex items-center gap-2 text-xs text-sand-500">
-          <Calendar className="w-3 h-3" />
-          Visité le {new Date(visitedAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' })}
-        </div>
-      </div>
-
-      {/* Hover shine effect */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-        <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/5 to-transparent" />
-      </div>
-    </div>
-  );
-};
-
-/**
- * Page de profil utilisateur avec stats, badges et historique
+ * Page de profil - Design élégant et minimaliste
  */
 const ProfilePage = () => {
   const { userData, stats, userBadges, recentVisits, setUserData } = useUser();
   const [selectedPlace, setSelectedPlace] = useState(null);
 
-  // Stats par type
-  const typeStats = [
-    { type: 'musée', label: 'Musées', icon: '🏛️', count: stats.byCategory['musée'] || 0, color: 'turquoise' },
-    { type: 'château', label: 'Châteaux', icon: '🏰', count: stats.byCategory['château'] || 0, color: 'gold' },
-    { type: 'monument', label: 'Monuments', icon: '⛪', count: stats.byCategory['monument'] || 0, color: 'terracotta' },
-    { type: 'exposition', label: 'Expositions', icon: '🎨', count: stats.byCategory['exposition'] || 0, color: 'purple' }
-  ];
+  // Données du profil utilisateur (bio, parcours, etc.)
+  const userProfile = {
+    bio: "Passionné d'art et d'histoire, je parcours les musées et monuments de France à la découverte de notre patrimoine culturel. Chaque visite est une nouvelle aventure intellectuelle.",
+    location: "Paris, France",
+    memberSince: "Janvier 2026",
+    journey: [
+      { year: '2026', title: 'Début de l\'aventure Muzea', description: 'Première exploration des trésors culturels français avec l\'application.' },
+      { year: '2025', title: 'Découverte des châteaux de la Loire', description: 'Un voyage inoubliable au cœur de la Renaissance française.' },
+      { year: '2024', title: 'Passion pour l\'Impressionnisme', description: 'Exploration approfondie du mouvement à Orsay et Giverny.' },
+    ],
+    skills: [
+      { name: 'Art Renaissance', level: 'expert' },
+      { name: 'Architecture Gothique', level: 'avancé' },
+      { name: 'Histoire Médiévale', level: 'expert' },
+      { name: 'Art Contemporain', level: 'intermédiaire' },
+      { name: 'Impressionnisme', level: 'avancé' },
+      { name: 'Antiquité Grecque', level: 'intermédiaire' },
+    ],
+    collections: [
+      { title: 'Chefs-d\'œuvre du Louvre', category: 'Musée', count: 24, image: 'https://images.unsplash.com/photo-1499426600726-ac2c87f337d7?w=800', description: 'Ma sélection des œuvres incontournables du plus grand musée du monde.' },
+      { title: 'Route des Châteaux', category: 'Parcours', count: 12, image: 'https://images.unsplash.com/photo-1551410224-699683e15636?w=800', description: 'Les plus beaux châteaux de la Loire et leurs jardins extraordinaires.' },
+      { title: 'Art Sacré de France', category: 'Thématique', count: 18, image: 'https://images.unsplash.com/photo-1548690596-f7c1f2a59c24?w=800', description: 'Cathédrales, abbayes et trésors religieux à travers les siècles.' },
+    ],
+    interests: [
+      { name: 'Renaissance', icon: '🎨' },
+      { name: 'Architecture', icon: '🏛️' },
+      { name: 'Photographie', icon: '📷' },
+      { name: 'Histoire', icon: '📚' },
+      { name: 'Jardins', icon: '🌿' },
+      { name: 'Musique classique', icon: '🎵' },
+    ],
+    socialLinks: [
+      { icon: Mail, label: 'Contact', href: 'mailto:contact@example.com' },
+      { icon: Instagram, label: 'Instagram', href: '#' },
+      { icon: Twitter, label: 'Twitter', href: '#' },
+      { icon: Linkedin, label: 'LinkedIn', href: '#' },
+    ],
+  };
+
+  const unlockedBadgesCount = userBadges.filter(b => b.unlocked).length;
+  const totalBadges = userBadges.length;
+  const progressPercentage = (unlockedBadgesCount / totalBadges) * 100;
 
   // Préférences disponibles
   const allPreferences = ['Renaissance', 'Médiéval', 'Baroque', 'Gothique', 'Impressionnisme', 'Art moderne', 'Antiquité', 'Contemporain'];
@@ -237,161 +366,187 @@ const ProfilePage = () => {
     }));
   };
 
-  const unlockedBadgesCount = userBadges.filter(b => b.unlocked).length;
-  const totalBadges = userBadges.length;
-  const progressPercentage = (unlockedBadgesCount / totalBadges) * 100;
-
   return (
     <div className="relative min-h-screen">
-      {/* Animated Background */}
+      {/* Background animé */}
       <ProfileBackground />
 
-      {/* Content */}
+      {/* Contenu principal - Axe vertical fluide */}
       <div className="relative z-10 pb-24 md:pb-8">
-        {/* Hero Section */}
-        <div className="relative overflow-hidden">
-          {/* Gradient overlay */}
+
+        {/* ═══════════════════════════════════════════════════════════════
+            SECTION HERO - Photo, Nom, Titre, Bio
+        ═══════════════════════════════════════════════════════════════ */}
+        <section className="relative overflow-hidden">
+          {/* Overlay gradient subtil */}
           <div className="absolute inset-0 bg-gradient-to-b from-gold-500/5 via-transparent to-transparent" />
 
-          <div className="max-w-6xl mx-auto px-4 pt-8 pb-12">
-            <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8">
-              {/* Avatar Section */}
-              <div className="relative group animate-fade-in">
-                {/* Animated ring */}
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-gold-400 via-gold-500 to-gold-600 animate-spin-slow opacity-75 blur-sm scale-105" style={{ animationDuration: '8s' }} />
+          <div className="max-w-4xl mx-auto px-6 pt-12 pb-8">
+            {/* Contenu centré - Axe vertical */}
+            <div className="flex flex-col items-center text-center">
 
-                {/* Avatar container */}
-                <div className="relative w-32 h-32 lg:w-40 lg:h-40 rounded-3xl bg-gradient-to-br from-gold-400 via-gold-500 to-gold-600 flex items-center justify-center shadow-2xl shadow-gold-500/30 transform group-hover:scale-105 transition-transform duration-500">
-                  <span className="text-6xl lg:text-7xl font-display font-bold text-night-950">
-                    {userData.name.charAt(0)}
-                  </span>
+              {/* Photo de profil - Mise en valeur sobre */}
+              <div className="relative group mb-8 animate-fade-in">
+                {/* Anneau animé subtil */}
+                <div className="absolute inset-[-4px] rounded-full bg-gradient-to-br from-gold-400/60 via-gold-500/40 to-gold-600/60 animate-spin-slow opacity-60" style={{ animationDuration: '12s' }} />
 
-                  {/* Crown for high achievers */}
-                  {unlockedBadgesCount >= 3 && (
-                    <div className="absolute -top-3 -right-3 p-2 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 shadow-lg animate-bounce-slow">
-                      <Crown className="w-5 h-5 text-night-950" />
-                    </div>
-                  )}
+                {/* Container photo */}
+                <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-night-900 shadow-2xl shadow-gold-500/20">
+                  <div className="w-full h-full bg-gradient-to-br from-gold-400 via-gold-500 to-gold-600 flex items-center justify-center">
+                    <span className="text-6xl md:text-7xl font-display font-bold text-night-950">
+                      {userData.name.charAt(0)}
+                    </span>
+                  </div>
                 </div>
 
-                {/* Settings button */}
-                <button className="absolute -bottom-2 -right-2 p-3 bg-night-800/90 backdrop-blur-sm border border-night-700/50 rounded-xl text-sand-400 hover:text-gold-400 hover:bg-night-700/90 hover:border-gold-500/50 transition-all duration-300 shadow-lg">
-                  <Settings className="w-5 h-5" />
+                {/* Badge premium pour achievers */}
+                {unlockedBadgesCount >= 3 && (
+                  <div className="absolute -bottom-1 -right-1 p-2.5 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 shadow-lg border-2 border-night-900 animate-pulse">
+                    <Crown className="w-4 h-4 text-night-950" />
+                  </div>
+                )}
+
+                {/* Bouton settings discret */}
+                <button className="absolute -bottom-1 -left-1 p-2.5 bg-night-800/90 backdrop-blur-sm border border-night-700/50 rounded-full text-sand-400 hover:text-gold-400 hover:border-gold-500/50 transition-all duration-300 shadow-lg opacity-0 group-hover:opacity-100">
+                  <Settings className="w-4 h-4" />
                 </button>
               </div>
 
-              {/* User Info */}
-              <div className="flex-1 text-center lg:text-left animate-slide-up" style={{ animationDelay: '100ms' }}>
-                <h1 className="font-display text-4xl lg:text-5xl font-bold text-sand-100 mb-2">
-                  {userData.name}
-                </h1>
-                <p className="text-sand-400 text-lg mb-6 flex items-center justify-center lg:justify-start gap-2">
-                  <Sparkles className="w-5 h-5 text-gold-400" />
-                  Explorateur culturel depuis janvier 2026
+              {/* Nom - Typographie marquée */}
+              <h1 className="font-display text-4xl md:text-5xl font-bold text-sand-100 tracking-wide mb-3 animate-slide-up" style={{ animationDelay: '100ms' }}>
+                {userData.name}
+              </h1>
+
+              {/* Titre / Rôle */}
+              <p className="flex items-center gap-2 text-gold-400/90 text-lg font-medium mb-4 animate-slide-up" style={{ animationDelay: '150ms' }}>
+                <Sparkles className="w-4 h-4" />
+                Explorateur Culturel
+              </p>
+
+              {/* Localisation & Date */}
+              <div className="flex items-center gap-4 text-sand-500 text-sm mb-6 animate-slide-up" style={{ animationDelay: '200ms' }}>
+                <span className="flex items-center gap-1.5">
+                  <MapPin className="w-3.5 h-3.5" />
+                  {userProfile.location}
+                </span>
+                <span className="w-1 h-1 rounded-full bg-sand-600" />
+                <span className="flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5" />
+                  Membre depuis {userProfile.memberSince}
+                </span>
+              </div>
+
+              {/* Bio - Courte description élégante */}
+              <div className="max-w-2xl animate-slide-up" style={{ animationDelay: '250ms' }}>
+                <p className="font-serif-italic text-sand-300/90 text-lg leading-relaxed">
+                  "{userProfile.bio}"
                 </p>
+              </div>
 
-                {/* Level / Progress Bar */}
-                <div className="max-w-md mx-auto lg:mx-0 mb-8">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-medium text-sand-300">Niveau Explorateur</span>
-                    <span className="text-sm font-medium text-gold-400">{unlockedBadgesCount}/{totalBadges} badges</span>
-                  </div>
-                  <div className="h-3 bg-night-800/80 rounded-full overflow-hidden border border-night-700/50">
-                    <div
-                      className="h-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 rounded-full transition-all duration-1000 ease-out relative overflow-hidden"
-                      style={{ width: `${progressPercentage}%` }}
-                    >
-                      {/* Shine animation */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Quick Stats Cards */}
-                <div className="grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0">
-                  <StatCard
-                    icon={MapPin}
-                    label="Visites"
-                    value={stats.totalVisits}
-                    color="turquoise"
-                    delay={200}
-                  />
-                  <StatCard
-                    icon={Heart}
-                    label="Favoris"
-                    value={stats.totalFavorites}
-                    color="terracotta"
-                    delay={300}
-                  />
-                  <StatCard
-                    icon={Trophy}
-                    label="Badges"
-                    value={unlockedBadgesCount}
-                    color="gold"
-                    delay={400}
-                  />
-                </div>
+              {/* Statistiques minimalistes */}
+              <div className="flex items-center justify-center gap-12 md:gap-16 mt-12 animate-fade-in" style={{ animationDelay: '350ms' }}>
+                <MinimalStatCard icon={MapPin} value={stats.totalVisits} label="Visites" delay={400} />
+                <MinimalStatCard icon={Heart} value={stats.totalFavorites} label="Favoris" delay={450} />
+                <MinimalStatCard icon={Trophy} value={unlockedBadgesCount} label="Badges" delay={500} />
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* Stats by Category */}
-        <section className="max-w-6xl mx-auto px-4 py-8">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="p-2.5 rounded-xl bg-gradient-to-br from-gold-500/20 to-gold-600/10 border border-gold-500/30">
-              <TrendingUp className="w-5 h-5 text-gold-400" />
-            </div>
-            <h2 className="font-display text-2xl font-bold text-sand-100">
-              Statistiques par catégorie
-            </h2>
-          </div>
+        <ElegantDivider />
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {typeStats.map(({ type, label, icon, count, color }, index) => (
-              <div
-                key={type}
-                className={`
-                  relative overflow-hidden p-6 rounded-2xl
-                  bg-gradient-to-br from-night-800/80 to-night-900/60
-                  border border-night-700/50 hover:border-gold-500/30
-                  backdrop-blur-sm
-                  transform hover:scale-[1.02] hover:-translate-y-1
-                  transition-all duration-500 ease-out
-                  group cursor-default
-                  animate-slide-up
-                `}
-                style={{ animationDelay: `${index * 100 + 500}ms` }}
-              >
-                {/* Background glow */}
-                <div className={`absolute -top-10 -right-10 w-32 h-32 rounded-full bg-${color === 'gold' ? 'gold' : color === 'turquoise' ? 'turquoise' : color === 'terracotta' ? 'terracotta' : 'purple'}-400/10 blur-2xl group-hover:scale-150 transition-transform duration-700`} />
+        {/* ═══════════════════════════════════════════════════════════════
+            SECTION PARCOURS CULTUREL
+        ═══════════════════════════════════════════════════════════════ */}
+        <section className="max-w-4xl mx-auto px-6 py-8">
+          <SectionTitle
+            icon={Compass}
+            title="Parcours Culturel"
+            subtitle="Une aventure à travers le patrimoine français"
+          />
 
-                <div className="relative z-10 text-center">
-                  <span className="text-4xl mb-3 block transform group-hover:scale-110 transition-transform duration-300">{icon}</span>
-                  <p className="text-3xl font-bold text-sand-100 mb-1">
-                    <AnimatedCounter value={count} duration={1500 + index * 200} />
-                  </p>
-                  <p className="text-sm text-sand-400">{label}</p>
-                </div>
-              </div>
+          <div className="max-w-xl mx-auto">
+            {userProfile.journey.map((item, index) => (
+              <JourneyCard
+                key={index}
+                year={item.year}
+                title={item.title}
+                description={item.description}
+                index={index}
+              />
             ))}
           </div>
         </section>
 
-        {/* Badges Section */}
-        <section className="max-w-6xl mx-auto px-4 py-8">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-gradient-to-br from-gold-500/20 to-gold-600/10 border border-gold-500/30">
-                <Award className="w-5 h-5 text-gold-400" />
+        <ElegantDivider />
+
+        {/* ═══════════════════════════════════════════════════════════════
+            SECTION COMPÉTENCES CULTURELLES
+        ═══════════════════════════════════════════════════════════════ */}
+        <section className="max-w-4xl mx-auto px-6 py-8">
+          <SectionTitle
+            icon={GraduationCap}
+            title="Expertises Culturelles"
+            subtitle="Domaines de connaissance et centres d'intérêt"
+          />
+
+          <div className="flex flex-wrap justify-center gap-3">
+            {userProfile.skills.map((skill, index) => (
+              <SkillBadge
+                key={skill.name}
+                skill={skill.name}
+                level={skill.level}
+                index={index}
+              />
+            ))}
+          </div>
+        </section>
+
+        <ElegantDivider />
+
+        {/* ═══════════════════════════════════════════════════════════════
+            SECTION COLLECTIONS / PROJETS
+        ═══════════════════════════════════════════════════════════════ */}
+        <section className="max-w-5xl mx-auto px-6 py-8">
+          <SectionTitle
+            icon={BookOpen}
+            title="Mes Collections"
+            subtitle="Parcours thématiques et sélections personnelles"
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {userProfile.collections.map((collection, index) => (
+              <CollectionCard
+                key={collection.title}
+                collection={collection}
+                index={index}
+              />
+            ))}
+          </div>
+        </section>
+
+        <ElegantDivider />
+
+        {/* ═══════════════════════════════════════════════════════════════
+            SECTION BADGES
+        ═══════════════════════════════════════════════════════════════ */}
+        <section className="max-w-5xl mx-auto px-6 py-8">
+          <SectionTitle
+            icon={Award}
+            title="Collection de Badges"
+            subtitle={`${unlockedBadgesCount} sur ${totalBadges} débloqués`}
+          />
+
+          {/* Barre de progression élégante */}
+          <div className="max-w-md mx-auto mb-10">
+            <div className="h-2 bg-night-800/60 rounded-full overflow-hidden border border-night-700/40">
+              <div
+                className="h-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 rounded-full transition-all duration-1000 ease-out relative overflow-hidden"
+                style={{ width: `${progressPercentage}%` }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" />
               </div>
-              <h2 className="font-display text-2xl font-bold text-sand-100">
-                Collection de badges
-              </h2>
             </div>
-            <span className="text-sm text-sand-400 bg-night-800/50 px-3 py-1 rounded-full border border-night-700/50">
-              {unlockedBadgesCount} débloqués
-            </span>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -401,90 +556,83 @@ const ProfilePage = () => {
           </div>
         </section>
 
-        {/* Recent Visits */}
-        <section className="max-w-6xl mx-auto px-4 py-8">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-gradient-to-br from-gold-500/20 to-gold-600/10 border border-gold-500/30">
-                <Clock className="w-5 h-5 text-gold-400" />
-              </div>
-              <h2 className="font-display text-2xl font-bold text-sand-100">
-                Visites récentes
-              </h2>
-            </div>
-            {recentVisits.length > 0 && (
-              <button className="flex items-center gap-1 text-sm text-gold-400 hover:text-gold-300 transition-colors">
-                Voir tout
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            )}
+        <ElegantDivider />
+
+        {/* ═══════════════════════════════════════════════════════════════
+            SECTION CENTRES D'INTÉRÊT
+        ═══════════════════════════════════════════════════════════════ */}
+        <section className="max-w-4xl mx-auto px-6 py-8">
+          <SectionTitle
+            icon={Heart}
+            title="Centres d'Intérêt"
+            subtitle="Ce qui nourrit ma curiosité culturelle"
+          />
+
+          <div className="flex flex-wrap justify-center gap-3">
+            {userProfile.interests.map((interest, index) => (
+              <InterestTag key={interest.name} interest={interest} index={index} />
+            ))}
           </div>
 
-          {recentVisits.length > 0 ? (
-            <div className="flex gap-5 overflow-x-auto pb-4 scrollbar-hide -mx-4 px-4">
-              {recentVisits.map((visit, index) => (
-                <VisitCard
-                  key={visit.placeId}
-                  visit={visit}
-                  onClick={() => setSelectedPlace(visit.place)}
-                  index={index}
-                />
+          {/* Préférences artistiques interactives */}
+          <div className="mt-12">
+            <h3 className="text-center text-sand-400 text-sm uppercase tracking-widest mb-6">
+              Préférences artistiques
+            </h3>
+            <div className="flex flex-wrap justify-center gap-3">
+              {allPreferences.map((pref, index) => (
+                <button
+                  key={pref}
+                  onClick={() => togglePreference(pref)}
+                  className={`
+                    relative px-5 py-2.5 rounded-xl text-sm font-medium
+                    transition-all duration-300 ease-out
+                    transform hover:scale-105
+                    animate-fade-in
+                    ${userData.preferences.includes(pref)
+                      ? 'bg-gradient-to-br from-gold-500/20 to-gold-600/10 border border-gold-500/50 text-gold-400 shadow-lg shadow-gold-500/10'
+                      : 'bg-night-800/40 border border-night-700/40 text-sand-400 hover:border-gold-500/30 hover:text-sand-300'
+                    }
+                  `}
+                  style={{ animationDelay: `${index * 40}ms` }}
+                >
+                  {pref}
+                  {userData.preferences.includes(pref) && (
+                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-gold-400 rounded-full animate-pulse" />
+                  )}
+                </button>
               ))}
             </div>
-          ) : (
-            <div className="text-center py-16 animate-fade-in">
-              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-night-800/80 to-night-900/60 border border-night-700/50 flex items-center justify-center">
-                <MapPin className="w-10 h-10 text-night-600" />
-              </div>
-              <h3 className="font-display text-xl font-semibold text-sand-200 mb-2">
-                Aucune visite enregistrée
-              </h3>
-              <p className="text-sand-500 max-w-md mx-auto">
-                Commencez à explorer les lieux culturels pour voir apparaître votre historique ici.
-              </p>
-            </div>
-          )}
+          </div>
         </section>
 
-        {/* Preferences */}
-        <section className="max-w-6xl mx-auto px-4 py-8">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="p-2.5 rounded-xl bg-gradient-to-br from-gold-500/20 to-gold-600/10 border border-gold-500/30">
-              <Heart className="w-5 h-5 text-gold-400" />
-            </div>
-            <h2 className="font-display text-2xl font-bold text-sand-100">
-              Mes préférences artistiques
-            </h2>
-          </div>
+        <ElegantDivider />
 
-          <div className="flex flex-wrap gap-3">
-            {allPreferences.map((pref, index) => (
-              <button
-                key={pref}
-                onClick={() => togglePreference(pref)}
-                className={`
-                  relative px-5 py-2.5 rounded-xl text-sm font-medium
-                  transition-all duration-300 ease-out
-                  transform hover:scale-105
-                  animate-slide-up
-                  ${userData.preferences.includes(pref)
-                    ? 'bg-gradient-to-br from-gold-500/20 to-gold-600/10 border border-gold-500/50 text-gold-400 shadow-lg shadow-gold-500/10'
-                    : 'bg-night-800/50 border border-night-700/50 text-sand-400 hover:border-night-600/80 hover:text-sand-300'
-                  }
-                `}
-                style={{ animationDelay: `${index * 50}ms` }}
-              >
-                {pref}
-                {userData.preferences.includes(pref) && (
-                  <span className="absolute -top-1 -right-1 w-2 h-2 bg-gold-400 rounded-full animate-pulse" />
-                )}
-              </button>
+        {/* ═══════════════════════════════════════════════════════════════
+            SECTION CONTACT / LIENS EXTERNES
+        ═══════════════════════════════════════════════════════════════ */}
+        <section className="max-w-2xl mx-auto px-6 py-8 pb-16">
+          <SectionTitle
+            icon={Globe}
+            title="Me Contacter"
+            subtitle="Restons connectés"
+          />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {userProfile.socialLinks.map((link, index) => (
+              <SocialLink
+                key={link.label}
+                icon={link.icon}
+                label={link.label}
+                href={link.href}
+                index={index}
+              />
             ))}
           </div>
         </section>
       </div>
 
-      {/* Detail Modal */}
+      {/* Modal de détail de lieu */}
       <PlaceDetailModal
         place={selectedPlace}
         isOpen={!!selectedPlace}

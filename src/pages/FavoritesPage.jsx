@@ -62,7 +62,7 @@ const FavoritesPage = () => {
               <Heart className="w-10 h-10 text-red-400 fill-red-400" />
             </div>
 
-            {favoritePlaces.length > 0 ? (
+            {favoritePlaces.length > 0 && (
               <>
                 <h1 className="font-serif-italic text-3xl sm:text-4xl lg:text-5xl mb-4" style={{ color: '#d4a574' }}>
                   Vos Favoris
@@ -74,10 +74,6 @@ const FavoritesPage = () => {
                   </span>
                 </p>
               </>
-            ) : (
-              <p className="text-gray-400 max-w-xl mx-auto text-lg">
-                Vous n'avez pas encore de favoris
-              </p>
             )}
           </div>
 

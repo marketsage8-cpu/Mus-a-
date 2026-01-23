@@ -266,110 +266,114 @@ const MeetingsPage = () => {
 
   return (
     <div className="min-h-screen pt-20 pb-24 md:pb-8 relative overflow-hidden" style={{ backgroundColor: '#0a0d1a' }}>
-      {/* Fond décoratif avec motifs dorés */}
+      {/* Fond décoratif avec motifs tapisserie vintage */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Motifs dorés SVG en arrière-plan */}
+        {/* Motifs tapisserie style années 70-80 */}
         <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
           <defs>
-            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#d4a574" stopOpacity="0.15" />
-              <stop offset="50%" stopColor="#f5d76e" stopOpacity="0.08" />
-              <stop offset="100%" stopColor="#d4a574" stopOpacity="0.15" />
+            <linearGradient id="vintageGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#8b5a2b" stopOpacity="0.12" />
+              <stop offset="50%" stopColor="#a0522d" stopOpacity="0.08" />
+              <stop offset="100%" stopColor="#8b5a2b" stopOpacity="0.12" />
             </linearGradient>
-            <pattern id="goldPattern" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
-              {/* Arabesque centrale */}
-              <path d="M100,20 Q130,50 100,80 Q70,50 100,20" fill="none" stroke="url(#goldGradient)" strokeWidth="1.5" opacity="0.4" />
-              <path d="M100,120 Q130,150 100,180 Q70,150 100,120" fill="none" stroke="url(#goldGradient)" strokeWidth="1.5" opacity="0.4" />
-              {/* Ornements latéraux */}
-              <circle cx="30" cy="100" r="15" fill="none" stroke="#d4a574" strokeWidth="1" opacity="0.2" />
-              <circle cx="170" cy="100" r="15" fill="none" stroke="#d4a574" strokeWidth="1" opacity="0.2" />
-              {/* Petits losanges décoratifs */}
-              <path d="M50,50 L60,60 L50,70 L40,60 Z" fill="none" stroke="#d4a574" strokeWidth="0.5" opacity="0.3" />
-              <path d="M150,50 L160,60 L150,70 L140,60 Z" fill="none" stroke="#d4a574" strokeWidth="0.5" opacity="0.3" />
-              <path d="M50,150 L60,160 L50,170 L40,160 Z" fill="none" stroke="#d4a574" strokeWidth="0.5" opacity="0.3" />
-              <path d="M150,150 L160,160 L150,170 L140,160 Z" fill="none" stroke="#d4a574" strokeWidth="0.5" opacity="0.3" />
+            <linearGradient id="vintageGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#d4a574" stopOpacity="0.1" />
+              <stop offset="50%" stopColor="#c9956c" stopOpacity="0.15" />
+              <stop offset="100%" stopColor="#d4a574" stopOpacity="0.1" />
+            </linearGradient>
+            {/* Motif tapisserie damassé */}
+            <pattern id="damaskPattern" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
+              {/* Fleur de lys stylisée centrale */}
+              <path d="M60,10 Q70,25 60,40 Q50,25 60,10" fill="url(#vintageGradient1)" stroke="#d4a574" strokeWidth="0.5" opacity="0.3" />
+              <path d="M60,40 L60,55" stroke="#d4a574" strokeWidth="0.5" opacity="0.25" />
+              <path d="M50,35 Q60,45 70,35" fill="none" stroke="#d4a574" strokeWidth="0.5" opacity="0.25" />
+              {/* Feuilles d'acanthe */}
+              <path d="M30,60 Q40,50 50,60 Q40,70 30,60" fill="none" stroke="#d4a574" strokeWidth="0.8" opacity="0.2" />
+              <path d="M70,60 Q80,50 90,60 Q80,70 70,60" fill="none" stroke="#d4a574" strokeWidth="0.8" opacity="0.2" />
+              {/* Volutes */}
+              <path d="M20,30 Q30,20 40,30 Q30,35 25,30" fill="none" stroke="#d4a574" strokeWidth="0.5" opacity="0.15" />
+              <path d="M80,30 Q90,20 100,30 Q90,35 85,30" fill="none" stroke="#d4a574" strokeWidth="0.5" opacity="0.15" />
+              <path d="M20,90 Q30,80 40,90 Q30,95 25,90" fill="none" stroke="#d4a574" strokeWidth="0.5" opacity="0.15" />
+              <path d="M80,90 Q90,80 100,90 Q90,95 85,90" fill="none" stroke="#d4a574" strokeWidth="0.5" opacity="0.15" />
+              {/* Motif losange central */}
+              <path d="M60,70 L75,85 L60,100 L45,85 Z" fill="none" stroke="#d4a574" strokeWidth="0.5" opacity="0.2" />
+              <circle cx="60" cy="85" r="5" fill="none" stroke="#d4a574" strokeWidth="0.5" opacity="0.15" />
+              {/* Points décoratifs */}
+              <circle cx="10" cy="10" r="2" fill="#d4a574" opacity="0.1" />
+              <circle cx="110" cy="10" r="2" fill="#d4a574" opacity="0.1" />
+              <circle cx="10" cy="110" r="2" fill="#d4a574" opacity="0.1" />
+              <circle cx="110" cy="110" r="2" fill="#d4a574" opacity="0.1" />
             </pattern>
-            {/* Motif de bordure ornementale */}
-            <pattern id="borderPattern" x="0" y="0" width="100" height="20" patternUnits="userSpaceOnUse">
-              <path d="M0,10 Q25,0 50,10 Q75,20 100,10" fill="none" stroke="#d4a574" strokeWidth="1" opacity="0.3" />
+            {/* Motif rayures verticales subtiles */}
+            <pattern id="stripePattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="0" y2="40" stroke="#d4a574" strokeWidth="0.3" opacity="0.08" />
+              <line x1="20" y1="0" x2="20" y2="40" stroke="#d4a574" strokeWidth="0.3" opacity="0.08" />
+              <line x1="40" y1="0" x2="40" y2="40" stroke="#d4a574" strokeWidth="0.3" opacity="0.08" />
+            </pattern>
+            {/* Bordure ornementale */}
+            <pattern id="borderPattern" x="0" y="0" width="60" height="15" patternUnits="userSpaceOnUse">
+              <path d="M0,7.5 Q15,0 30,7.5 Q45,15 60,7.5" fill="none" stroke="#d4a574" strokeWidth="0.8" opacity="0.2" />
+              <circle cx="30" cy="7.5" r="2" fill="#d4a574" opacity="0.15" />
             </pattern>
           </defs>
-          {/* Fond avec motif */}
-          <rect width="100%" height="100%" fill="url(#goldPattern)" />
+          {/* Fond rayures */}
+          <rect width="100%" height="100%" fill="url(#stripePattern)" />
+          {/* Fond damassé */}
+          <rect width="100%" height="100%" fill="url(#damaskPattern)" />
           {/* Bordures ornementales */}
-          <rect x="0" y="0" width="100%" height="30" fill="url(#borderPattern)" />
-          <rect x="0" y="100%" width="100%" height="30" fill="url(#borderPattern)" transform="rotate(180, 50%, 100%)" style={{ transformOrigin: 'center bottom' }} />
+          <rect x="0" y="60" width="100%" height="15" fill="url(#borderPattern)" />
         </svg>
 
-        {/* Grands cercles dorés décoratifs */}
-        <div className="absolute top-20 left-10 w-64 h-64 border border-[#d4a574]/10 rounded-full" />
-        <div className="absolute top-40 left-20 w-48 h-48 border border-[#d4a574]/15 rounded-full" />
-        <div className="absolute bottom-40 right-10 w-72 h-72 border border-[#d4a574]/10 rounded-full" />
-        <div className="absolute bottom-60 right-20 w-56 h-56 border border-[#d4a574]/15 rounded-full" />
-
-        {/* Coins décoratifs dorés */}
-        <div className="absolute top-0 left-0 w-32 h-32">
-          <svg viewBox="0 0 100 100" className="w-full h-full">
-            <path d="M0,0 L100,0 L100,20 Q50,20 20,50 L20,100 L0,100 Z" fill="none" stroke="#d4a574" strokeWidth="1" opacity="0.2" />
-            <path d="M0,0 L80,0 L80,15 Q40,15 15,40 L15,80 L0,80 Z" fill="none" stroke="#d4a574" strokeWidth="0.5" opacity="0.15" />
-          </svg>
-        </div>
-        <div className="absolute top-0 right-0 w-32 h-32 transform scale-x-[-1]">
-          <svg viewBox="0 0 100 100" className="w-full h-full">
-            <path d="M0,0 L100,0 L100,20 Q50,20 20,50 L20,100 L0,100 Z" fill="none" stroke="#d4a574" strokeWidth="1" opacity="0.2" />
-            <path d="M0,0 L80,0 L80,15 Q40,15 15,40 L15,80 L0,80 Z" fill="none" stroke="#d4a574" strokeWidth="0.5" opacity="0.15" />
-          </svg>
-        </div>
-
-        {/* Lignes dorées verticales subtiles */}
-        <div className="absolute left-[10%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#d4a574]/10 to-transparent" />
-        <div className="absolute right-[10%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#d4a574]/10 to-transparent" />
+        {/* Effet vignette vintage */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0d1a]/50 via-transparent to-[#0a0d1a]/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0d1a]/30 via-transparent to-[#0a0d1a]/30" />
       </div>
 
-      {/* Header */}
-      <div className="max-w-6xl mx-auto px-4 py-8 relative z-10">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center mb-4">
-            <div className="relative px-6 py-2">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#d4a574]/30 via-[#d4a574]/20 to-[#d4a574]/30 rounded-lg" />
-              <div className="absolute inset-0 border border-[#d4a574]/60 rounded-lg" />
-              <p className="relative text-sm uppercase tracking-[0.3em] text-[#d4a574] font-semibold flex items-center gap-2">
-                <Users className="w-4 h-4" />
-                Rencontres
+      {/* Hero Section avec photo en fond */}
+      <div className="relative z-10">
+        {/* Photo en arrière-plan plein écran */}
+        <div className="absolute inset-0 h-[50vh] min-h-[400px]">
+          <img
+            src="https://images.unsplash.com/photo-1564399580075-5dfe19c205f3?w=1200&q=80"
+            alt="Visiteurs admirant des œuvres au musée"
+            className="w-full h-full object-cover"
+          />
+          {/* Overlay gradient pour lisibilité */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0d1a]/60 via-[#0a0d1a]/40 to-[#0a0d1a]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0a0d1a]/30 via-transparent to-[#0a0d1a]/30" />
+        </div>
+
+        {/* Contenu du header */}
+        <div className="relative max-w-6xl mx-auto px-4 py-8">
+          <div className="text-center mb-8 pt-8">
+            <div className="inline-flex items-center justify-center mb-4">
+              <div className="relative px-6 py-2">
+                <div className="absolute inset-0 bg-gradient-to-r from-[#d4a574]/30 via-[#d4a574]/20 to-[#d4a574]/30 rounded-lg backdrop-blur-sm" />
+                <div className="absolute inset-0 border border-[#d4a574]/60 rounded-lg" />
+                <p className="relative text-sm uppercase tracking-[0.3em] text-[#d4a574] font-semibold flex items-center gap-2">
+                  <Users className="w-4 h-4" />
+                  Rencontres
+                </p>
+              </div>
+            </div>
+            <h1 className="font-serif-italic text-3xl sm:text-4xl lg:text-5xl mb-4 drop-shadow-lg" style={{ color: '#d4a574' }}>
+              Trouvez des compagnons de visite
+            </h1>
+            <p className="text-white/90 max-w-2xl mx-auto text-lg drop-shadow-md">
+              Ne visitez plus seul ! Rencontrez des passionnés de culture et partagez vos découvertes.
+            </p>
+            {/* Citation */}
+            <div className="mt-12 mb-8">
+              <p className="text-[#d4a574] font-serif-italic text-xl sm:text-2xl drop-shadow-lg">
+                "L'art est le plus beau des partages"
               </p>
             </div>
           </div>
-          <h1 className="font-serif-italic text-3xl sm:text-4xl lg:text-5xl mb-4" style={{ color: '#d4a574' }}>
-            Trouvez des compagnons de visite
-          </h1>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Ne visitez plus seul ! Rencontrez des passionnés de culture et partagez vos découvertes.
-          </p>
-
-          {/* Photo inspirante de musée pour aérer la page */}
-          <div className="mt-8 max-w-4xl mx-auto">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl group">
-              <img
-                src="https://images.unsplash.com/photo-1564399580075-5dfe19c205f3?w=1200&q=80"
-                alt="Visiteurs admirant des œuvres au musée"
-                className="w-full h-64 sm:h-80 object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              {/* Overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0d1a]/80 via-transparent to-[#0a0d1a]/30" />
-              {/* Texte inspirant */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-center">
-                <p className="text-[#d4a574] font-serif-italic text-xl sm:text-2xl mb-2">
-                  "L'art est le plus beau des partages"
-                </p>
-                <p className="text-white/70 text-sm">
-                  Découvrez les trésors culturels français avec de nouveaux compagnons
-                </p>
-              </div>
-              {/* Cadre doré décoratif */}
-              <div className="absolute inset-4 border border-[#d4a574]/30 rounded-2xl pointer-events-none" />
-            </div>
-          </div>
         </div>
+      </div>
+
+      {/* Contenu principal */}
+      <div className="max-w-6xl mx-auto px-4 py-8 relative z-10" style={{ marginTop: '25vh' }}>
 
         {/* Barre de recherche et filtres */}
         {!selectedPlace && (
@@ -492,36 +496,38 @@ const MeetingsPage = () => {
               </div>
             )}
 
-            {/* Section Comment ça marche - sous la barre de recherche */}
-            <div className="mt-8 bg-[#1a1a2e]/80 backdrop-blur-sm border border-[#d4a574]/30 rounded-3xl p-8">
-              <h2 className="text-white text-2xl font-bold mb-6 text-center">Comment ça marche ?</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#d4a574]/20 border border-[#d4a574]/30 flex items-center justify-center">
-                    <Search className="w-8 h-8 text-[#d4a574]" />
+            {/* Section Comment ça marche - version compacte */}
+            <div className="mt-6 bg-[#1a1a2e]/60 backdrop-blur-sm border border-[#d4a574]/20 rounded-2xl p-4">
+              <h2 className="text-white text-lg font-semibold mb-3 text-center">Comment ça marche ?</h2>
+              <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-[#d4a574]/20 border border-[#d4a574]/30 flex items-center justify-center flex-shrink-0">
+                    <Search className="w-5 h-5 text-[#d4a574]" />
                   </div>
-                  <h3 className="text-white font-semibold mb-2">1. Recherchez un lieu</h3>
-                  <p className="text-gray-400 text-sm">
-                    Trouvez le musée, château ou exposition que vous souhaitez visiter.
-                  </p>
+                  <div>
+                    <h3 className="text-white text-sm font-medium">1. Recherchez</h3>
+                    <p className="text-gray-400 text-xs">Trouvez un lieu</p>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#d4a574]/20 border border-[#d4a574]/30 flex items-center justify-center">
-                    <Users className="w-8 h-8 text-[#d4a574]" />
+                <div className="hidden md:block text-[#d4a574]/40">→</div>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-[#d4a574]/20 border border-[#d4a574]/30 flex items-center justify-center flex-shrink-0">
+                    <Users className="w-5 h-5 text-[#d4a574]" />
                   </div>
-                  <h3 className="text-white font-semibold mb-2">2. Découvrez les profils</h3>
-                  <p className="text-gray-400 text-sm">
-                    Consultez les profils des personnes disponibles et leurs centres d'intérêt.
-                  </p>
+                  <div>
+                    <h3 className="text-white text-sm font-medium">2. Découvrez</h3>
+                    <p className="text-gray-400 text-xs">Les profils disponibles</p>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#d4a574]/20 border border-[#d4a574]/30 flex items-center justify-center">
-                    <MessageCircle className="w-8 h-8 text-[#d4a574]" />
+                <div className="hidden md:block text-[#d4a574]/40">→</div>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-[#d4a574]/20 border border-[#d4a574]/30 flex items-center justify-center flex-shrink-0">
+                    <MessageCircle className="w-5 h-5 text-[#d4a574]" />
                   </div>
-                  <h3 className="text-white font-semibold mb-2">3. Échangez et planifiez</h3>
-                  <p className="text-gray-400 text-sm">
-                    Discutez et organisez votre visite ensemble pour une expérience enrichissante.
-                  </p>
+                  <div>
+                    <h3 className="text-white text-sm font-medium">3. Échangez</h3>
+                    <p className="text-gray-400 text-xs">Planifiez votre visite</p>
+                  </div>
                 </div>
               </div>
             </div>

@@ -9,7 +9,6 @@ import { useUser } from '../context/UserContext';
 import PlaceDetailModal from '../components/modals/PlaceDetailModal';
 import ProfileBackground from '../components/backgrounds/ProfileBackground';
 import InteractiveMap from '../components/map/InteractiveMap';
-import { places } from '../data/places';
 
 /**
  * Option de paramètre avec toggle ou chevron
@@ -737,12 +736,12 @@ const ProfilePage = () => {
                           boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.5)'
                         }}
                       >
-                        {/* La carte elle-même */}
+                        {/* La carte elle-même - SANS marqueurs ni recherche */}
                         <div className="relative rounded overflow-hidden"
                           style={{ boxShadow: 'inset 0 0 20px rgba(0,0,0,0.3)' }}
                         >
                           <InteractiveMap
-                            places={places.slice(0, 10)}
+                            places={[]}
                             height="250px"
                             center={[46.603354, 1.888334]}
                             zoom={5}

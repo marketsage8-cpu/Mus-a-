@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { MapPin, Heart, ChevronLeft, ChevronRight, Bookmark, Sparkles } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { MapPin, Heart, ChevronLeft, ChevronRight, Bookmark } from 'lucide-react';
 
 /**
- * Base de données des œuvres d'art pour la découverte
+ * Base de données des œuvres d'art pour la découverte quotidienne
  */
 const artworks = [
   {
@@ -29,7 +29,7 @@ const artworks = [
     dimensions: "89 × 93 cm",
     location: "Musée de l'Orangerie, Paris",
     description: "Les Nymphéas sont une série d'environ 250 peintures à l'huile réalisées par Monet dans son jardin de Giverny.",
-    funFact: "Monet a continué à peindre les Nymphéas même après avoir développé une cataracte."
+    funFact: "Monet a continué à peindre les Nymphéas même après avoir développé une cataracte qui altérait sa vision des couleurs."
   },
   {
     id: 3,
@@ -42,7 +42,7 @@ const artworks = [
     dimensions: "186 × 102 × 144 cm",
     location: "Musée Rodin, Paris",
     description: "Initialement nommé 'Le Poète', cette sculpture faisait partie d'une commande pour un portail monumental appelé 'La Porte de l'Enfer'.",
-    funFact: "Il existe plus de 25 copies originales en bronze du Penseur à travers le monde."
+    funFact: "Il existe plus de 25 copies originales en bronze du Penseur dispersées dans les musées du monde entier."
   },
   {
     id: 4,
@@ -68,7 +68,7 @@ const artworks = [
     dimensions: "202 cm de hauteur",
     location: "Musée du Louvre, Paris",
     description: "Découverte en 1820 sur l'île de Milos en Grèce, cette sculpture représente probablement Aphrodite, déesse de l'amour.",
-    funFact: "Personne ne sait avec certitude ce que tenaient ses bras disparus."
+    funFact: "Personne ne sait avec certitude ce que tenaient ses bras disparus - une pomme, un bouclier, ou peut-être un miroir."
   },
   {
     id: 6,
@@ -81,7 +81,7 @@ const artworks = [
     dimensions: "621 × 979 cm",
     location: "Musée du Louvre, Paris",
     description: "Cette immense toile représente le couronnement de Napoléon Ier à Notre-Dame de Paris le 2 décembre 1804.",
-    funFact: "La mère de Napoléon apparaît au centre de la peinture, mais elle n'était pas présente à la cérémonie."
+    funFact: "La mère de Napoléon apparaît au centre de la peinture, mais elle n'était pas présente à la cérémonie - David l'a ajoutée sur demande de l'empereur."
   },
   {
     id: 7,
@@ -94,33 +94,46 @@ const artworks = [
     dimensions: "491 × 716 cm",
     location: "Musée du Louvre, Paris",
     description: "Cette œuvre monumentale dépeint le naufrage de la frégate Méduse en 1816 et les survivants du radeau.",
-    funFact: "Géricault a étudié des cadavres à la morgue et construit un radeau grandeur nature dans son atelier."
+    funFact: "Géricault a étudié des cadavres à la morgue et construit un radeau grandeur nature dans son atelier pour plus de réalisme."
   }
 ];
 
 /**
- * Page Découverte - Version épurée avec grandes images
+ * Calculer la date de publication pour une œuvre
+ */
+const getPublicationDate = (daysAgo) => {
+  const date = new Date();
+  date.setDate(date.getDate() - daysAgo);
+  return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+};
+
+/**
+ * Page Découverte - Version épurée avec grandes images et carrousel de dates
  */
 const DailyArtPage = () => {
   const [currentArtwork, setCurrentArtwork] = useState(null);
   const [previousArtworks, setPreviousArtworks] = useState([]);
   const [isLiked, setIsLiked] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  const [currentArtworkIndex, setCurrentArtworkIndex] = useState(0);
+  const carouselRef = useRef(null);
 
-  // Déterminer l'œuvre basée sur la date
+  // Déterminer l'œuvre basée sur la date (change à minuit)
   useEffect(() => {
     const today = new Date();
     const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
     const artworkIndex = dayOfYear % artworks.length;
     setCurrentArtwork(artworks[artworkIndex]);
+    setCurrentArtworkIndex(artworkIndex);
 
-    // Générer les œuvres précédentes
+    // Générer les œuvres précédentes avec leurs dates de publication
     const previous = [];
-    for (let i = 1; i <= 6; i++) {
+    for (let i = 1; i <= artworks.length - 1; i++) {
       const prevIndex = (artworkIndex - i + artworks.length) % artworks.length;
       previous.push({
         ...artworks[prevIndex],
-        daysAgo: i
+        daysAgo: i,
+        publicationDate: getPublicationDate(i)
       });
     }
     setPreviousArtworks(previous);
@@ -140,7 +153,7 @@ const DailyArtPage = () => {
     setIsSaved(false);
   };
 
-  // Sélectionner une œuvre
+  // Sélectionner une œuvre depuis le carrousel
   const selectArtwork = (artwork) => {
     setCurrentArtwork(artwork);
     setIsLiked(false);
@@ -148,11 +161,22 @@ const DailyArtPage = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Scroll du carrousel
+  const scrollCarousel = (direction) => {
+    if (carouselRef.current) {
+      const scrollAmount = 200;
+      carouselRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   if (!currentArtwork) {
     return (
       <div className="min-h-screen pt-20 pb-24 flex items-center justify-center" style={{ backgroundColor: '#1e2a42' }}>
         <div className="flex items-center gap-3 text-[#d4a574]">
-          <Sparkles className="w-6 h-6 animate-pulse" />
+          <div className="w-6 h-6 border-2 border-[#d4a574] border-t-transparent rounded-full animate-spin" />
           <span>Chargement...</span>
         </div>
       </div>
@@ -160,7 +184,7 @@ const DailyArtPage = () => {
   }
 
   return (
-    <div className="min-h-screen pt-20 pb-24 md:pb-8" style={{ backgroundColor: '#1e2a42' }}>
+    <div className="min-h-screen pt-16 pb-24 md:pb-8" style={{ backgroundColor: '#1e2a42' }}>
       {/* Fond avec blur de l'image */}
       <div className="fixed inset-0 pointer-events-none">
         <div
@@ -171,156 +195,170 @@ const DailyArtPage = () => {
       </div>
 
       {/* Contenu principal */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4">
+      <div className="relative z-10">
         {/* Titre simple */}
-        <div className="text-center pt-4 pb-6">
-          <h1 className="font-serif-italic text-3xl text-[#d4a574]">
+        <div className="text-center py-4">
+          <h1 className="font-serif-italic text-2xl sm:text-3xl text-[#d4a574]">
             Découverte
           </h1>
+          <p className="text-gray-500 text-xs mt-1">
+            Nouvelle œuvre chaque jour à minuit
+          </p>
         </div>
 
-        {/* Layout principal - Image très grande */}
-        <div className="grid lg:grid-cols-3 gap-6">
-          {/* Image principale - 2/3 de la largeur */}
-          <div className="lg:col-span-2">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
-              <img
-                src={currentArtwork.image}
-                alt={currentArtwork.title}
-                className="w-full h-[60vh] lg:h-[75vh] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-              />
+        {/* Image principale - TRÈS GRANDE */}
+        <div className="relative max-w-5xl mx-auto px-2 sm:px-4">
+          <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl group">
+            <img
+              src={currentArtwork.image}
+              alt={currentArtwork.title}
+              className="w-full h-[50vh] sm:h-[65vh] lg:h-[75vh] object-contain bg-black/50 transition-transform duration-700"
+            />
 
-              {/* Gradient overlay subtil */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
+            {/* Navigation arrows */}
+            <button
+              onClick={() => navigateArtwork('prev')}
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-black/40 hover:bg-black/60 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
+            >
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            </button>
+            <button
+              onClick={() => navigateArtwork('next')}
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-black/40 hover:bg-black/60 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
+            >
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            </button>
 
-              {/* Navigation arrows */}
+            {/* Actions en haut */}
+            <div className="absolute top-3 right-3 flex gap-2">
               <button
-                onClick={() => navigateArtwork('prev')}
-                className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/30 hover:bg-black/50 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
+                onClick={() => setIsLiked(!isLiked)}
+                className={`p-2.5 rounded-full backdrop-blur-sm transition-all ${
+                  isLiked ? 'bg-red-500/90 text-white' : 'bg-black/40 hover:bg-black/60 text-white'
+                }`}
               >
-                <ChevronLeft className="w-6 h-6 text-white" />
+                <Heart className={`w-5 h-5 ${isLiked ? 'fill-current' : ''}`} />
               </button>
               <button
-                onClick={() => navigateArtwork('next')}
-                className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/30 hover:bg-black/50 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
+                onClick={() => setIsSaved(!isSaved)}
+                className={`p-2.5 rounded-full backdrop-blur-sm transition-all ${
+                  isSaved ? 'bg-[#d4a574]/90 text-[#1a2640]' : 'bg-black/40 hover:bg-black/60 text-white'
+                }`}
               >
-                <ChevronRight className="w-6 h-6 text-white" />
+                <Bookmark className={`w-5 h-5 ${isSaved ? 'fill-current' : ''}`} />
               </button>
-
-              {/* Actions en haut */}
-              <div className="absolute top-4 right-4 flex gap-2">
-                <button
-                  onClick={() => setIsLiked(!isLiked)}
-                  className={`p-3 rounded-full backdrop-blur-sm transition-all ${
-                    isLiked ? 'bg-red-500/80 text-white' : 'bg-black/30 hover:bg-black/50 text-white'
-                  }`}
-                >
-                  <Heart className={`w-5 h-5 ${isLiked ? 'fill-current' : ''}`} />
-                </button>
-                <button
-                  onClick={() => setIsSaved(!isSaved)}
-                  className={`p-3 rounded-full backdrop-blur-sm transition-all ${
-                    isSaved ? 'bg-[#d4a574]/80 text-[#1a2640]' : 'bg-black/30 hover:bg-black/50 text-white'
-                  }`}
-                >
-                  <Bookmark className={`w-5 h-5 ${isSaved ? 'fill-current' : ''}`} />
-                </button>
-              </div>
-
-              {/* Style badge en bas à gauche */}
-              <div className="absolute bottom-4 left-4">
-                <span className="px-4 py-2 bg-black/40 backdrop-blur-sm text-white text-sm font-medium rounded-full">
-                  {currentArtwork.style}
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Infos - 1/3 de la largeur */}
-          <div className="lg:col-span-1 flex flex-col">
-            {/* Titre et artiste */}
-            <div className="mb-4">
-              <h2 className="font-serif-italic text-2xl lg:text-3xl text-[#d4a574] leading-tight mb-2">
-                {currentArtwork.title}
-              </h2>
-              <p className="text-white text-lg">
-                {currentArtwork.artist}
-                <span className="text-gray-500 text-base ml-2">
-                  {currentArtwork.year < 0 ? `${Math.abs(currentArtwork.year)} av. J.-C.` : currentArtwork.year}
-                </span>
-              </p>
             </div>
 
-            {/* Détails compacts */}
-            <div className="flex flex-wrap gap-2 mb-4">
-              <span className="px-3 py-1.5 bg-white/5 text-gray-300 text-sm rounded-lg">{currentArtwork.medium}</span>
-              <span className="px-3 py-1.5 bg-white/5 text-gray-300 text-sm rounded-lg">{currentArtwork.dimensions}</span>
-            </div>
-
-            {/* Localisation */}
-            <p className="text-gray-400 text-sm flex items-center gap-2 mb-4">
-              <MapPin className="w-4 h-4 text-[#d4a574]" />
-              {currentArtwork.location}
-            </p>
-
-            {/* Description courte */}
-            <p className="text-gray-300 text-sm leading-relaxed mb-4">
-              {currentArtwork.description}
-            </p>
-
-            {/* Fun fact */}
-            <p className="text-gray-500 text-xs leading-relaxed mb-6">
-              💡 {currentArtwork.funFact}
-            </p>
-
-            {/* Œuvres précédentes */}
-            <div className="mt-auto">
-              <p className="text-gray-500 text-xs uppercase tracking-wider mb-3">Voir aussi</p>
-              <div className="grid grid-cols-3 gap-2">
-                {previousArtworks.slice(0, 3).map((artwork) => (
-                  <button
-                    key={artwork.id}
-                    onClick={() => selectArtwork(artwork)}
-                    className="relative aspect-square rounded-lg overflow-hidden group/thumb"
-                  >
-                    <img
-                      src={artwork.image}
-                      alt={artwork.title}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover/thumb:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                  </button>
-                ))}
-              </div>
+            {/* Style badge */}
+            <div className="absolute bottom-3 left-3">
+              <span className="px-3 py-1.5 bg-black/50 backdrop-blur-sm text-white text-xs sm:text-sm font-medium rounded-full">
+                {currentArtwork.style}
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Galerie horizontale des autres œuvres */}
-        <div className="mt-8 pb-4">
-          <p className="text-gray-500 text-sm mb-4">Autres œuvres</p>
-          <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide">
+        {/* Infos compactes sous l'image */}
+        <div className="max-w-3xl mx-auto px-4 mt-4">
+          {/* Titre et artiste */}
+          <div className="text-center mb-3">
+            <h2 className="font-serif-italic text-xl sm:text-2xl text-[#d4a574] leading-tight">
+              {currentArtwork.title}
+            </h2>
+            <p className="text-white text-sm sm:text-base mt-1">
+              {currentArtwork.artist}
+              <span className="text-gray-500 ml-2">
+                {currentArtwork.year < 0 ? `${Math.abs(currentArtwork.year)} av. J.-C.` : currentArtwork.year}
+              </span>
+            </p>
+          </div>
+
+          {/* Détails en ligne */}
+          <div className="flex flex-wrap justify-center gap-2 mb-3">
+            <span className="px-2.5 py-1 bg-white/5 text-gray-400 text-xs rounded-lg">{currentArtwork.medium}</span>
+            <span className="px-2.5 py-1 bg-white/5 text-gray-400 text-xs rounded-lg">{currentArtwork.dimensions}</span>
+          </div>
+
+          {/* Localisation */}
+          <p className="text-gray-500 text-xs text-center flex items-center justify-center gap-1 mb-4">
+            <MapPin className="w-3 h-3 text-[#d4a574]" />
+            {currentArtwork.location}
+          </p>
+
+          {/* Le point histoire - Fun fact mis en valeur */}
+          <div className="bg-gradient-to-br from-[#d4a574]/10 to-[#d4a574]/5 border border-[#d4a574]/20 rounded-xl p-4 mb-6">
+            <p className="text-gray-300 text-sm leading-relaxed italic">
+              "{currentArtwork.funFact}"
+            </p>
+          </div>
+        </div>
+
+        {/* Carrousel des œuvres précédentes avec dates de publication */}
+        <div className="max-w-5xl mx-auto px-4 mt-8">
+          <div className="flex items-center justify-between mb-4">
+            <p className="text-gray-500 text-xs uppercase tracking-wider">Archives</p>
+            <div className="flex gap-2">
+              <button
+                onClick={() => scrollCarousel('left')}
+                className="p-1.5 bg-white/5 hover:bg-white/10 rounded-full transition-colors"
+              >
+                <ChevronLeft className="w-4 h-4 text-gray-400" />
+              </button>
+              <button
+                onClick={() => scrollCarousel('right')}
+                className="p-1.5 bg-white/5 hover:bg-white/10 rounded-full transition-colors"
+              >
+                <ChevronRight className="w-4 h-4 text-gray-400" />
+              </button>
+            </div>
+          </div>
+
+          {/* Carrousel défilant */}
+          <div
+            ref={carouselRef}
+            className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide scroll-smooth"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
             {previousArtworks.map((artwork) => (
               <button
                 key={artwork.id}
                 onClick={() => selectArtwork(artwork)}
-                className="group relative flex-shrink-0 w-36 h-48 rounded-xl overflow-hidden"
+                className="group relative flex-shrink-0 w-28 sm:w-32 rounded-xl overflow-hidden transition-transform hover:scale-105"
               >
-                <img
-                  src={artwork.image}
-                  alt={artwork.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-3">
-                  <p className="text-white text-xs font-medium line-clamp-2">{artwork.title}</p>
-                  <p className="text-gray-400 text-[10px] mt-0.5">{artwork.artist}</p>
+                {/* Image carrée */}
+                <div className="aspect-square relative">
+                  <img
+                    src={artwork.image}
+                    alt={artwork.title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 </div>
+
+                {/* Date de publication */}
+                <div className="absolute bottom-0 left-0 right-0 p-2 text-center">
+                  <p className="text-[#d4a574] text-xs font-semibold">
+                    {artwork.publicationDate}
+                  </p>
+                  <p className="text-white text-[10px] line-clamp-1 mt-0.5 opacity-80">
+                    {artwork.title}
+                  </p>
+                </div>
+
+                {/* Hover effet */}
+                <div className="absolute inset-0 bg-[#d4a574]/0 group-hover:bg-[#d4a574]/10 transition-colors" />
               </button>
             ))}
           </div>
         </div>
       </div>
+
+      {/* CSS pour cacher la scrollbar */}
+      <style>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </div>
   );
 };

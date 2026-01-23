@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Compass, Moon, Sun, Menu, X, User, Heart } from 'lucide-react';
+import { Moon, Sun, Menu, X, User, Heart } from 'lucide-react';
 
 /**
  * Navigation principale avec design transparent fusionnant avec le hero
@@ -57,11 +57,13 @@ const Navigation = () => {
       <nav className="relative max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#d4a574] to-[#b8956a] flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-              <Compass className="w-6 h-6 text-[#1a1a2e]" />
-            </div>
-            <span className="text-xl font-bold text-white">Muzea</span>
+          <Link to="/" className="flex items-center group">
+            <img
+              src="/logo-muzea.svg"
+              alt="Muzea - Culture Nearby"
+              className="h-12 w-auto group-hover:scale-105 transition-transform"
+              style={{ filter: 'brightness(0) invert(1)' }}
+            />
           </Link>
 
           {/* Desktop Navigation - Centered */}

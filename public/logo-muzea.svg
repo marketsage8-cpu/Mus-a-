@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" fill="none">
+  <!-- Outer circle -->
+  <circle cx="100" cy="90" r="70" stroke="#2d2d2d" stroke-width="2" fill="none"/>
+
+  <!-- Inner circle -->
+  <circle cx="100" cy="90" r="50" stroke="#2d2d2d" stroke-width="1.5" fill="none"/>
+
+  <!-- Compass points - North -->
+  <path d="M100 20 L106 55 L100 50 L94 55 Z" fill="#2d2d2d"/>
+
+  <!-- Compass points - South -->
+  <path d="M100 160 L106 125 L100 130 L94 125 Z" fill="#2d2d2d"/>
+
+  <!-- Compass points - East -->
+  <path d="M170 90 L135 84 L140 90 L135 96 Z" fill="#2d2d2d"/>
+
+  <!-- Compass points - West -->
+  <path d="M30 90 L65 84 L60 90 L65 96 Z" fill="#2d2d2d"/>
+
+  <!-- Diagonal lines NE -->
+  <line x1="145" y1="45" x2="120" y2="65" stroke="#2d2d2d" stroke-width="1.5"/>
+
+  <!-- Diagonal lines SE -->
+  <line x1="145" y1="135" x2="120" y2="115" stroke="#2d2d2d" stroke-width="1.5"/>
+
+  <!-- Diagonal lines SW -->
+  <line x1="55" y1="135" x2="80" y2="115" stroke="#2d2d2d" stroke-width="1.5"/>
+
+  <!-- Diagonal lines NW -->
+  <line x1="55" y1="45" x2="80" y2="65" stroke="#2d2d2d" stroke-width="1.5"/>
+
+  <!-- Center circle background -->
+  <circle cx="100" cy="90" r="28" fill="#f5f0e6" stroke="#2d2d2d" stroke-width="1.5"/>
+
+  <!-- Museum/Temple building -->
+  <!-- Roof/Triangle -->
+  <path d="M100 68 L118 80 L82 80 Z" fill="none" stroke="#2d2d2d" stroke-width="1.5"/>
+
+  <!-- Columns -->
+  <line x1="87" y1="82" x2="87" y2="105" stroke="#2d2d2d" stroke-width="2"/>
+  <line x1="95" y1="82" x2="95" y2="105" stroke="#2d2d2d" stroke-width="2"/>
+  <line x1="105" y1="82" x2="105" y2="105" stroke="#2d2d2d" stroke-width="2"/>
+  <line x1="113" y1="82" x2="113" y2="105" stroke="#2d2d2d" stroke-width="2"/>
+
+  <!-- Base -->
+  <line x1="82" y1="105" x2="118" y2="105" stroke="#2d2d2d" stroke-width="2"/>
+
+  <!-- Column tops -->
+  <line x1="82" y1="82" x2="118" y2="82" stroke="#2d2d2d" stroke-width="1.5"/>
+
+  <!-- MUZEA text -->
+  <text x="100" y="195" text-anchor="middle" font-family="'Times New Roman', Georgia, serif" font-size="28" font-weight="400" letter-spacing="6" fill="#2d2d2d">MUZEA</text>
+
+  <!-- Culture Nearby tagline -->
+  <text x="100" y="218" text-anchor="middle" font-family="'Times New Roman', Georgia, serif" font-size="12" letter-spacing="2" fill="#2d2d2d">Culture Nearby</text>
+</svg>

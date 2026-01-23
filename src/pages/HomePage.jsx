@@ -163,11 +163,11 @@ const HomePage = () => {
           SECTION 1: HERO
           ============================================ */}
       <section className="relative min-h-screen flex flex-col">
-        {/* Background image - Paris with Eiffel Tower at twilight */}
+        {/* Background image - Vitraux colorés style Galeries Lafayette */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1920&q=80"
-            alt="Paris au crépuscule"
+            src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=1920&q=80"
+            alt="Vitraux colorés"
             className="w-full h-full object-cover"
           />
           {/* Gradient overlay - effet "bavure" fluide depuis la navbar bleu marine (style Culturio) */}

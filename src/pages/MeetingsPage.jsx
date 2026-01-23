@@ -369,66 +369,70 @@ const MeetingsPage = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-[#1a1f2e]/20 via-transparent to-[#1a1f2e]/20" />
       </div>
 
-      {/* Hero Section avec photo en fond */}
+      {/* Hero Section avec photo en fond et barre de recherche intégrée */}
       <div className="relative z-10">
         {/* Photo en arrière-plan plein écran */}
-        <div className="absolute inset-0 h-[50vh] min-h-[400px]">
+        <div className="absolute inset-0 h-[55vh] min-h-[450px]">
           <img
             src="https://images.unsplash.com/photo-1564399580075-5dfe19c205f3?w=1200&q=80"
             alt="Visiteurs admirant des œuvres au musée"
             className="w-full h-full object-cover"
           />
           {/* Overlay gradient pour lisibilité */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1a1f2e]/50 via-[#1a1f2e]/30 to-[#1a1f2e]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1a1f2e]/40 via-[#1a1f2e]/20 to-[#1a1f2e]" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1a1f2e]/20 via-transparent to-[#1a1f2e]/20" />
         </div>
 
-        {/* Contenu du header */}
-        <div className="relative max-w-6xl mx-auto px-4 py-8">
-          <div className="text-center mb-8 pt-8">
+        {/* Contenu du header avec barre de recherche SUR la photo */}
+        <div className="relative max-w-6xl mx-auto px-4 py-8 h-[55vh] min-h-[450px] flex flex-col justify-center">
+          <div className="text-center">
             <h1 className="font-serif-italic text-3xl sm:text-4xl lg:text-5xl mb-4 drop-shadow-lg" style={{ color: '#d4a574' }}>
               Trouvez des compagnons de visite
             </h1>
-            <p className="text-white/90 max-w-2xl mx-auto text-lg drop-shadow-md">
+            <p className="text-white/90 max-w-2xl mx-auto text-lg drop-shadow-md mb-8">
               Ne visitez plus seul ! Rencontrez des passionnés de culture et partagez vos découvertes.
             </p>
+
+            {/* Barre de recherche POSITIONNÉE SUR LA PHOTO */}
+            {!selectedPlace && (
+              <div className="max-w-2xl mx-auto">
+                <div className="relative">
+                  <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400" />
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Rechercher parmi 250+ musées et châteaux..."
+                    className="w-full py-5 px-6 pl-16 pr-16 bg-white/95 backdrop-blur-md border-2 border-white/50 rounded-2xl text-gray-800 placeholder-gray-500 focus:outline-none focus:border-[#d4a574] focus:ring-4 focus:ring-[#d4a574]/20 transition-all text-lg shadow-2xl"
+                  />
+                  <button
+                    onClick={() => setShowFilters(!showFilters)}
+                    className={`absolute right-4 top-1/2 -translate-y-1/2 p-2.5 rounded-xl transition-colors ${showFilters ? 'bg-[#d4a574] text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}
+                  >
+                    <Filter className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+            )}
+
             {/* Citation */}
-            <div className="mt-12 mb-8">
-              <p className="text-[#d4a574] font-serif-italic text-xl sm:text-2xl drop-shadow-lg">
-                "L'art est le plus beau des partages"
-              </p>
-            </div>
+            <p className="text-white/70 font-serif-italic text-lg mt-8 drop-shadow-lg">
+              "L'art est le plus beau des partages"
+            </p>
           </div>
         </div>
       </div>
 
       {/* Contenu principal */}
-      <div className="max-w-6xl mx-auto px-4 py-8 relative z-10" style={{ marginTop: '25vh' }}>
+      <div className="max-w-6xl mx-auto px-4 py-8 relative z-10">
 
-        {/* Barre de recherche et filtres */}
+        {/* Filtres et résultats */}
         {!selectedPlace && (
           <div className="max-w-4xl mx-auto mb-12">
-            {/* Barre de recherche principale */}
-            <div className="relative mb-4">
-              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Rechercher parmi 250+ musées et châteaux de France..."
-                className="w-full py-4 px-6 pl-14 pr-14 bg-[#1a1a2e] border border-[#d4a574]/30 rounded-2xl text-white placeholder-gray-500 focus:outline-none focus:border-[#d4a574] focus:ring-2 focus:ring-[#d4a574]/20 transition-all"
-              />
-              <button
-                onClick={() => setShowFilters(!showFilters)}
-                className={`absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-lg transition-colors ${showFilters ? 'bg-[#d4a574] text-[#1a1a2e]' : 'bg-white/10 text-gray-400 hover:text-white'}`}
-              >
-                <Filter className="w-5 h-5" />
-              </button>
-            </div>
 
             {/* Filtres déroulants */}
             {showFilters && (
-              <div className="flex flex-wrap gap-4 mb-4 p-4 bg-[#1a1a2e]/50 rounded-xl border border-[#d4a574]/20 animate-fade-in">
+              <div className="flex flex-wrap gap-4 mb-4 p-4 bg-[#1a1a2e]/80 backdrop-blur-md rounded-xl border border-[#d4a574]/20 animate-fade-in -mt-4">
                 {/* Filtre par région */}
                 <div className="flex-1 min-w-[200px]">
                   <label className="text-gray-400 text-xs mb-1 block">Région</label>

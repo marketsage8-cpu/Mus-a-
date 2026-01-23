@@ -3,6 +3,9 @@
  *
  * Utilise l'image PNG avec gravures dorées style musée
  * Avec des motifs animés flottants pour un effet dynamique
+ *
+ * L'image de fond se révèle progressivement de gauche à droite
+ * avec un effet de dessin utilisant un mask CSS animé
  */
 
 // Motifs SVG décoratifs classiques
@@ -101,11 +104,11 @@ const CabinetBackground = () => {
       style={{ zIndex: 0 }}
       aria-hidden="true"
     >
-      {/* Image de fond avec gravures dorées */}
+      {/* Image de fond avec effet de révélation progressive */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 animate-reveal-mask"
         style={{
-          backgroundImage: 'url(/museum-background.png)',
+          backgroundImage: 'url(/images/museum-pattern.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',

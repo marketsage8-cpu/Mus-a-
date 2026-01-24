@@ -3,6 +3,7 @@ import { MapPin, Heart, ChevronLeft, ChevronRight, Bookmark, Sparkles } from 'lu
 
 /**
  * Base de données des œuvres d'art pour la découverte
+ * Enrichie avec analyses approfondies et biographies des artistes
  */
 const artworks = [
   {
@@ -15,8 +16,15 @@ const artworks = [
     medium: "Huile sur toile",
     dimensions: "260 × 325 cm",
     location: "Musée du Louvre, Paris",
-    description: "Cette œuvre emblématique commémore les Trois Glorieuses, les journées révolutionnaires des 27, 28 et 29 juillet 1830 à Paris.",
-    funFact: "Le tableau a été caché pendant plusieurs années car jugé trop subversif par les autorités."
+    description: "Cette œuvre emblématique commémore les Trois Glorieuses, les journées révolutionnaires des 27, 28 et 29 juillet 1830 à Paris. Delacroix fusionne allégorie et réalisme dans une composition pyramidale saisissante : la figure de la Liberté, à la fois déesse antique et femme du peuple, brandit le drapeau tricolore au sommet d'une barricade jonchée de corps. La palette contrastée — le bleu, blanc, rouge éclatant sur les tons terreux et sombres — crée un effet dramatique puissant. Cette œuvre incarne le manifeste du romantisme pictural français, où l'émotion et le mouvement priment sur la raison classique.",
+    funFact: "Le tableau a été caché pendant plusieurs années car jugé trop subversif par les autorités. Delacroix s'est représenté lui-même comme le bourgeois au chapeau haut-de-forme.",
+    artistImage: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Eug%C3%A8ne_Delacroix_%28Nadar%29.jpg",
+    artistBio: "Eugène Delacroix (1798-1863), chef de file du romantisme français, était un coloriste virtuose admiré de Van Gogh et Cézanne. Fils supposé de Talleyrand, il a mené une vie mondaine tout en peignant avec passion. Son voyage au Maroc en 1832 a profondément influencé sa palette. Il écrivait dans son journal : « Ce qu'il y a de plus réel pour moi, ce sont les illusions que je crée avec ma peinture. »",
+    artistAnecdotes: [
+      "Il portait toujours sur lui un petit carnet pour croquer les scènes de rue",
+      "Il entretenait une rivalité artistique féroce avec Ingres, le chef du néoclassicisme",
+      "Son atelier parisien est aujourd'hui un musée dédié à son œuvre"
+    ]
   },
   {
     id: 2,
@@ -28,8 +36,15 @@ const artworks = [
     medium: "Huile sur toile",
     dimensions: "89 × 93 cm",
     location: "Musée de l'Orangerie, Paris",
-    description: "Les Nymphéas sont une série d'environ 250 peintures à l'huile réalisées par Monet dans son jardin de Giverny.",
-    funFact: "Monet a continué à peindre les Nymphéas même après avoir développé une cataracte."
+    description: "Les Nymphéas représentent l'aboutissement de quarante années d'observation obsessionnelle de la lumière sur l'eau. Dans cette toile, Monet abolit la distinction traditionnelle entre sujet et fond : le ciel se reflète dans l'étang, les nénuphars flottent dans un espace sans horizon ni perspective. La touche visible et fragmentée capte les vibrations lumineuses à différents moments de la journée. Cette série révolutionnaire annonce l'abstraction du XXe siècle — Mark Rothko et les expressionnistes abstraits s'en réclameront. Monet disait vouloir peindre « l'instantanéité, l'enveloppe surtout, la même lumière répandue partout ».",
+    funFact: "Monet a continué à peindre les Nymphéas même après avoir développé une cataracte, produisant des œuvres aux teintes rouges inhabituelles dues à sa vision altérée. Il a fait détruire certaines toiles qu'il jugeait indignes.",
+    artistImage: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Claude_Monet_1899_Nadar.jpg",
+    artistBio: "Claude Monet (1840-1926), fondateur de l'impressionnisme, a consacré sa vie à capturer les variations infinies de la lumière. Après une jeunesse difficile, il a créé à Giverny le jardin qui deviendrait son ultime sujet. Marié deux fois, père de huit enfants, il a traversé des périodes de pauvreté extrême avant de connaître le succès. À la fin de sa vie, presque aveugle, il peignait encore, guidé par l'étiquette des tubes de peinture.",
+    artistAnecdotes: [
+      "Il se levait à 3h30 du matin pour peindre l'aube sur ses nymphéas",
+      "Il a fait creuser l'étang de Giverny et détourner un ruisseau pour créer son jardin d'eau",
+      "Clemenceau l'a convaincu de faire don des grandes toiles des Nymphéas à l'État français"
+    ]
   },
   {
     id: 3,
@@ -41,8 +56,15 @@ const artworks = [
     medium: "Bronze",
     dimensions: "186 × 102 × 144 cm",
     location: "Musée Rodin, Paris",
-    description: "Initialement nommé 'Le Poète', cette sculpture faisait partie d'une commande pour un portail monumental appelé 'La Porte de l'Enfer'.",
-    funFact: "Il existe plus de 25 copies originales en bronze du Penseur à travers le monde."
+    description: "Initialement nommé 'Le Poète', cette sculpture représentait Dante contemplant les cercles de l'Enfer au sommet de La Porte de l'Enfer. La tension musculaire extraordinaire du corps nu contraste avec l'immobilité méditative de la pose. Rodin a révolutionné la sculpture en montrant l'effort physique de la pensée — le menton appuyé sur le dos de la main (non sur la paume, geste plus naturel), les orteils crispés, le dos courbé. Cette anatomie tourmentée exprime que penser est un acte corporel total, une lutte de l'esprit contre la matière.",
+    funFact: "Il existe plus de 25 tirages originaux en bronze du Penseur à travers le monde. L'un d'eux, placé sur la tombe de Rodin à Meudon, veille éternellement sur le sculpteur.",
+    artistImage: "https://upload.wikimedia.org/wikipedia/commons/8/82/Auguste_Rodin_by_George_Charles_Beresford_%28NPG_x6573%29.jpg",
+    artistBio: "Auguste Rodin (1840-1917), le plus célèbre sculpteur de la modernité, a transformé cet art figé en expression vivante. Recalé trois fois à l'École des Beaux-Arts, il a travaillé comme artisan avant d'être accusé de moulage sur nature pour L'Âge d'airain — preuve de son réalisme troublant. Sa relation passionnée avec Camille Claudel a marqué son œuvre. À sa mort, il a légué son atelier et ses œuvres à l'État français.",
+    artistAnecdotes: [
+      "Il modelait souvent les yeux caves pour que la lumière y crée des ombres expressives",
+      "Ses sculptures étaient jugées si réalistes qu'on l'accusa de mouler des corps vivants",
+      "Il gardait des dizaines de mains et pieds sculptés dans son atelier pour les assembler"
+    ]
   },
   {
     id: 4,
@@ -54,8 +76,15 @@ const artworks = [
     medium: "Huile sur toile",
     dimensions: "73,7 × 92,1 cm",
     location: "MoMA, New York",
-    description: "Peinte depuis la fenêtre de sa chambre à l'asile de Saint-Rémy-de-Provence, cette œuvre représente le village sous un ciel nocturne tourbillonnant.",
-    funFact: "Van Gogh considérait cette peinture comme un échec, mais elle est aujourd'hui l'une des plus célèbres au monde."
+    description: "Peinte depuis la fenêtre de sa chambre à l'asile de Saint-Rémy-de-Provence après sa crise de folie, cette œuvre transcende la réalité observable. Le ciel occupe les deux tiers de la composition, animé de spirales cosmiques et d'étoiles irradiantes qui semblent pulser d'une énergie surnaturelle. Le cyprès au premier plan, flamme sombre montant vers le ciel, fait le lien entre le village endormi et le cosmos en mouvement. Van Gogh y exprime sa quête spirituelle : « Regarder les étoiles me fait toujours rêver. Pourquoi les points lumineux du ciel nous seraient-ils moins accessibles que les points noirs sur la carte de France ? » Cette vision hallucinée préfigure l'expressionnisme.",
+    funFact: "Van Gogh considérait cette peinture comme un échec, lui préférant des œuvres plus réalistes. Il ne l'a jamais vendue. Aujourd'hui, elle est l'une des images les plus reproduites de l'histoire de l'art.",
+    artistImage: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_%28454045%29.jpg",
+    artistBio: "Vincent van Gogh (1853-1890), génie incompris de son vivant, n'a vendu qu'un seul tableau. Après des échecs comme marchand d'art et prédicateur, il s'est consacré à la peinture à 27 ans, produisant plus de 2000 œuvres en seulement dix ans. Sa correspondance avec son frère Théo révèle un homme cultivé et passionné. Sa vie tragique — pauvreté, maladie mentale, suicide à 37 ans — a contribué au mythe de l'artiste maudit.",
+    artistAnecdotes: [
+      "Il a réalisé plus de 30 autoportraits car il n'avait pas d'argent pour payer des modèles",
+      "Il mangeait parfois sa peinture, ce qui a pu aggraver son état mental",
+      "Son oreille coupée reste un mystère — automutilation ou bagarre avec Gauguin ?"
+    ]
   },
   {
     id: 5,
@@ -67,8 +96,15 @@ const artworks = [
     medium: "Marbre de Paros",
     dimensions: "202 cm de hauteur",
     location: "Musée du Louvre, Paris",
-    description: "Découverte en 1820 sur l'île de Milos en Grèce, cette sculpture représente probablement Aphrodite, déesse de l'amour.",
-    funFact: "Personne ne sait avec certitude ce que tenaient ses bras disparus."
+    description: "Découverte en 1820 par un paysan sur l'île de Milos, cette sculpture incarne l'idéal de beauté féminine depuis deux millénaires. Son attribution reste débattue : œuvre d'Alexandros d'Antioche ou création plus tardive ? La position en contrapposto (hanches et épaules désaxées) crée une torsion dynamique du corps. Le drapé glissant sur les hanches, à la limite de la chute, ajoute une tension érotique subtile. L'absence des bras, loin d'être un défaut, confère à la statue son mystère : tenait-elle une pomme, un miroir, un bouclier ? Cette incomplétude invite le regard à compléter mentalement l'œuvre.",
+    funFact: "Personne ne sait avec certitude ce que tenaient ses bras disparus. Lors de son transport vers la France, les bras ont peut-être été perdus dans une bagarre entre Français et Turcs.",
+    artistImage: "https://upload.wikimedia.org/wikipedia/commons/9/93/Bust_Homer_BM_1825.jpg",
+    artistBio: "L'artiste de la Vénus de Milo reste anonyme, comme la plupart des sculpteurs grecs dont les œuvres nous sont parvenues. Une inscription mentionnant « Alexandros d'Antioche » a été retrouvée près de la statue, mais sa connexion avec l'œuvre est contestée. La période hellénistique (323-31 av. J.-C.) se caractérise par un réalisme accru et une recherche de l'émotion, rompant avec l'idéalisme classique.",
+    artistAnecdotes: [
+      "Les sculpteurs grecs peignaient leurs statues de couleurs vives — la blancheur du marbre est un accident de l'histoire",
+      "Les proportions de la Vénus suivent le canon de Polyclète, mais avec des adaptations hellénistiques",
+      "Elle a inspiré des milliers d'artistes, de Botticelli à Dalí"
+    ]
   },
   {
     id: 6,
@@ -80,8 +116,15 @@ const artworks = [
     medium: "Huile sur toile",
     dimensions: "621 × 979 cm",
     location: "Musée du Louvre, Paris",
-    description: "Cette immense toile représente le couronnement de Napoléon Ier à Notre-Dame de Paris le 2 décembre 1804.",
-    funFact: "La mère de Napoléon apparaît au centre de la peinture, mais elle n'était pas présente à la cérémonie."
+    description: "Cette toile monumentale — la plus grande du Louvre — représente le couronnement de Napoléon à Notre-Dame le 2 décembre 1804. David, peintre officiel de l'Empereur, y déploie une mise en scène théâtrale de la légitimité impériale. L'instant choisi est symbolique : Napoléon couronne lui-même Joséphine, affirmant son pouvoir face au pape Pie VII, relégué à un rôle de simple spectateur. Les 191 personnages identifiables forment un document historique autant qu'une œuvre d'art. La lumière dorée, les tissus somptueux, l'architecture grandiose créent une atmosphère de sacralité laïque, fusion de l'héritage révolutionnaire et de la pompe monarchique.",
+    funFact: "La mère de Napoléon, Letizia, apparaît au centre de la tribune, mais elle n'était pas présente à la cérémonie — elle boudait le mariage de son fils. Napoléon a exigé son inclusion.",
+    artistImage: "https://upload.wikimedia.org/wikipedia/commons/2/27/David_Self_Portrait.jpg",
+    artistBio: "Jacques-Louis David (1748-1825), maître du néoclassicisme, fut le peintre de trois régimes : la monarchie, la Révolution (dont il fut un acteur politique votant la mort du roi) et l'Empire. Ses tableaux d'histoire ont façonné l'imagerie révolutionnaire et napoléonienne. Exilé à Bruxelles après Waterloo, il y mourut sans avoir revu Paris. Son influence sur l'art académique a perduré un siècle.",
+    artistAnecdotes: [
+      "Il a mis trois ans à peindre Le Sacre, travaillant dans une église désaffectée",
+      "Napoléon a visité l'atelier et s'est exclamé : « C'est bien, très bien, David ! »",
+      "Il avait une tumeur à la joue qui déformait son visage et affectait son élocution"
+    ]
   },
   {
     id: 7,
@@ -93,8 +136,15 @@ const artworks = [
     medium: "Huile sur toile",
     dimensions: "491 × 716 cm",
     location: "Musée du Louvre, Paris",
-    description: "Cette œuvre monumentale dépeint le naufrage de la frégate Méduse en 1816 et les survivants du radeau.",
-    funFact: "Géricault a étudié des cadavres à la morgue et construit un radeau grandeur nature dans son atelier."
+    description: "Cette œuvre monumentale dépeint le naufrage de la frégate Méduse en 1816 et l'agonie de 147 personnes abandonnées sur un radeau pendant 13 jours. Géricault a choisi le moment où les survivants aperçoivent le navire Argus à l'horizon — un instant entre désespoir et espoir. La composition pyramidale, culminant vers le personnage noir agitant un tissu, exprime cette tension. Les corps entrelacés, entre vivants, mourants et morts, créent une chorégraphie macabre. Le scandale politique (l'incompétence d'un capitaine royaliste) se mue en méditation universelle sur la condition humaine face à l'adversité.",
+    funFact: "Géricault a étudié des cadavres à la morgue et fait construire un radeau grandeur nature dans son atelier. Il a rasé ses cheveux pour s'isoler du monde et interviewer les survivants.",
+    artistImage: "https://upload.wikimedia.org/wikipedia/commons/6/6c/Horace_Vernet_-_Jean_Louis_Th%C3%A9odore_G%C3%A9ricault_on_his_Deathbed_-_WGA25026.jpg",
+    artistBio: "Théodore Géricault (1791-1824), météore du romantisme français, est mort à 32 ans après une chute de cheval. Riche héritier, passionné de chevaux, il a brûlé sa vie avec intensité. Son Radeau de la Méduse, peint à 27 ans, a révolutionné la peinture d'histoire en traitant un fait divers comme une épopée. Ses portraits d'aliénés, réalisés à la fin de sa vie, anticipent la psychiatrie moderne.",
+    artistAnecdotes: [
+      "Il gardait des membres amputés dans son atelier pour étudier la décomposition des chairs",
+      "Il a eu une liaison secrète avec la femme de son oncle, qui lui a donné un fils",
+      "Delacroix a posé pour l'un des cadavres du premier plan du Radeau"
+    ]
   }
 ];
 
@@ -269,9 +319,44 @@ const DailyArtPage = () => {
             </p>
 
             {/* Fun fact */}
-            <p className="text-gray-500 text-xs leading-relaxed mb-6">
+            <p className="text-gray-500 text-xs leading-relaxed mb-4">
               💡 {currentArtwork.funFact}
             </p>
+
+            {/* Section Artiste */}
+            {currentArtwork.artistImage && (
+              <div className="bg-white/5 rounded-xl p-4 mb-4 border border-white/10">
+                <div className="flex gap-4 mb-3">
+                  <img
+                    src={currentArtwork.artistImage}
+                    alt={currentArtwork.artist}
+                    className="w-16 h-16 rounded-full object-cover border-2 border-[#d4a574]/50"
+                  />
+                  <div className="flex-1">
+                    <h3 className="text-[#d4a574] font-medium text-sm mb-1">L'artiste</h3>
+                    <p className="text-white text-sm font-semibold">{currentArtwork.artist}</p>
+                  </div>
+                </div>
+
+                {currentArtwork.artistBio && (
+                  <p className="text-gray-400 text-xs leading-relaxed mb-3">
+                    {currentArtwork.artistBio}
+                  </p>
+                )}
+
+                {currentArtwork.artistAnecdotes && currentArtwork.artistAnecdotes.length > 0 && (
+                  <div className="space-y-2">
+                    <p className="text-[#d4a574] text-xs font-medium uppercase tracking-wider">Anecdotes</p>
+                    {currentArtwork.artistAnecdotes.map((anecdote, index) => (
+                      <div key={index} className="flex gap-2 text-xs text-gray-400">
+                        <span className="text-[#d4a574]">•</span>
+                        <span>{anecdote}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* Œuvres précédentes */}
             <div className="mt-auto">

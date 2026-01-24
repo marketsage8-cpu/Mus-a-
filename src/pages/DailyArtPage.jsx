@@ -223,7 +223,7 @@ const DailyArtPage = () => {
       {/* Contenu principal */}
       <div className="relative z-10 max-w-[1600px] mx-auto px-4">
         {/* Titre simple */}
-        <div className="text-center pt-4 pb-6">
+        <div className="text-center pt-10 pb-6">
           <h1 className="font-serif-italic text-3xl text-[#d4a574]">
             L'œuvre du jour
           </h1>
@@ -286,7 +286,7 @@ const DailyArtPage = () => {
           </div>
 
           {/* COLONNE DROITE - Analyse du tableau */}
-          <div className="space-y-6">
+          <div className="space-y-4">
             {/* Titre et infos de l'œuvre */}
             <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
               <h2 className="font-serif-italic text-2xl lg:text-3xl text-white leading-tight mb-4">

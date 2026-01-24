@@ -232,10 +232,10 @@ const DailyArtPage = () => {
           </p>
         </div>
 
-        {/* LAYOUT PRINCIPAL - Image à gauche, Analyse à droite (plus large) */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-6">
+        {/* LAYOUT PRINCIPAL - Image à gauche, Analyse à droite (50/50) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           {/* COLONNE GAUCHE - Image de l'œuvre */}
-          <div className="relative lg:col-span-2">
+          <div className="relative">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl group sticky top-24 border-8 border-[#d4a574]/40 bg-gradient-to-br from-[#d4a574]/20 to-[#8b6914]/30 p-1">
               <img
                 src={currentArtwork.image}
@@ -285,8 +285,8 @@ const DailyArtPage = () => {
             </div>
           </div>
 
-          {/* COLONNE DROITE - Analyse du tableau (plus large) */}
-          <div className="space-y-6 lg:col-span-3">
+          {/* COLONNE DROITE - Analyse du tableau */}
+          <div className="space-y-6">
             {/* Titre et infos de l'œuvre */}
             <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
               <h2 className="font-serif-italic text-2xl lg:text-3xl text-white leading-tight mb-4">

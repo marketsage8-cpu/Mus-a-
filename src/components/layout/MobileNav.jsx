@@ -11,14 +11,14 @@ const MobileNav = () => {
   const navItems = [
     { path: '/', label: 'Accueil', icon: Home },
     { path: '/explore', label: 'Carte', icon: MapPin },
-    { path: '/decouverte', label: 'Découverte', icon: Palette },
+    { path: '/decouverte', label: 'Œuvre', icon: Palette },
     { path: '/profile', label: 'Profil', icon: User }
   ];
 
   const isActive = (path) => location.pathname === path;
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-stone-950/95 backdrop-blur-lg border-t border-stone-800/50 safe-area-bottom">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-[9999] bg-stone-950/95 backdrop-blur-lg border-t border-stone-800/50 safe-area-bottom">
       <div className="flex items-center justify-around h-16 px-2">
         {navItems.map(({ path, label, icon: Icon }) => (
           <Link

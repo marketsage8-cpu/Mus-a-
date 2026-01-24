@@ -225,137 +225,149 @@ const DailyArtPage = () => {
         {/* Titre simple */}
         <div className="text-center pt-4 pb-6">
           <h1 className="font-serif-italic text-3xl text-[#d4a574]">
-            Découverte
+            L'œuvre du jour
           </h1>
+          <p className="text-gray-400 text-sm mt-2">
+            Chaque jour, une œuvre, son histoire et sa description !
+          </p>
         </div>
 
-        {/* IMAGE DE L'ŒUVRE - Pleine largeur en haut */}
-        <div className="relative rounded-2xl overflow-hidden shadow-2xl group mb-6">
-          <img
-            src={currentArtwork.image}
-            alt={currentArtwork.title}
-            className="w-full h-[50vh] lg:h-[60vh] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-          />
-
-          {/* Gradient overlay subtil */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-70" />
-
-          {/* Navigation arrows */}
-          <button
-            onClick={() => navigateArtwork('prev')}
-            className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/30 hover:bg-black/50 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
-          >
-            <ChevronLeft className="w-6 h-6 text-white" />
-          </button>
-          <button
-            onClick={() => navigateArtwork('next')}
-            className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/30 hover:bg-black/50 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
-          >
-            <ChevronRight className="w-6 h-6 text-white" />
-          </button>
-
-          {/* Actions en haut */}
-          <div className="absolute top-4 right-4 flex gap-2">
-            <button
-              onClick={() => setIsLiked(!isLiked)}
-              className={`p-3 rounded-full backdrop-blur-sm transition-all ${
-                isLiked ? 'bg-red-500/80 text-white' : 'bg-black/30 hover:bg-black/50 text-white'
-              }`}
-            >
-              <Heart className={`w-5 h-5 ${isLiked ? 'fill-current' : ''}`} />
-            </button>
-            <button
-              onClick={() => setIsSaved(!isSaved)}
-              className={`p-3 rounded-full backdrop-blur-sm transition-all ${
-                isSaved ? 'bg-[#d4a574]/80 text-[#1a2640]' : 'bg-black/30 hover:bg-black/50 text-white'
-              }`}
-            >
-              <Bookmark className={`w-5 h-5 ${isSaved ? 'fill-current' : ''}`} />
-            </button>
-          </div>
-
-          {/* Infos de l'œuvre en bas de l'image */}
-          <div className="absolute bottom-0 left-0 right-0 p-6">
-            <div className="flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <h2 className="font-serif-italic text-2xl lg:text-4xl text-white leading-tight mb-2 drop-shadow-lg">
+        {/* LAYOUT PRINCIPAL - 2 colonnes: Infos à gauche, Image + À propos à droite */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
+          {/* COLONNE GAUCHE - Infos de l'œuvre et Artiste */}
+          <div className="lg:col-span-7 space-y-6">
+            {/* Titre et infos de l'œuvre */}
+            <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="font-serif-italic text-2xl lg:text-3xl text-white leading-tight">
                   {currentArtwork.title}
                 </h2>
-                <p className="text-white/90 text-lg">
-                  {currentArtwork.artist}
-                  <span className="text-white/60 text-base ml-2">
-                    {currentArtwork.year < 0 ? `${Math.abs(currentArtwork.year)} av. J.-C.` : currentArtwork.year}
-                  </span>
-                </p>
-                <div className="flex flex-wrap items-center gap-3 mt-2">
-                  <span className="px-3 py-1 bg-black/40 backdrop-blur-sm text-white text-sm rounded-full">
-                    {currentArtwork.style}
-                  </span>
-                  <span className="text-white/70 text-sm">{currentArtwork.medium}</span>
-                  <span className="text-white/50 text-sm flex items-center gap-1">
-                    <MapPin className="w-3 h-3" />
-                    {currentArtwork.location}
-                  </span>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setIsLiked(!isLiked)}
+                    className={`p-3 rounded-full transition-all ${
+                      isLiked ? 'bg-red-500/80 text-white' : 'bg-white/10 hover:bg-white/20 text-white'
+                    }`}
+                  >
+                    <Heart className={`w-5 h-5 ${isLiked ? 'fill-current' : ''}`} />
+                  </button>
+                  <button
+                    onClick={() => setIsSaved(!isSaved)}
+                    className={`p-3 rounded-full transition-all ${
+                      isSaved ? 'bg-[#d4a574]/80 text-[#1a2640]' : 'bg-white/10 hover:bg-white/20 text-white'
+                    }`}
+                  >
+                    <Bookmark className={`w-5 h-5 ${isSaved ? 'fill-current' : ''}`} />
+                  </button>
                 </div>
               </div>
+              <p className="text-[#d4a574] text-lg mb-3">
+                {currentArtwork.artist}
+                <span className="text-gray-400 text-base ml-2">
+                  {currentArtwork.year < 0 ? `${Math.abs(currentArtwork.year)} av. J.-C.` : currentArtwork.year}
+                </span>
+              </p>
+              <div className="flex flex-wrap items-center gap-3 mb-4">
+                <span className="px-3 py-1 bg-[#d4a574]/20 text-[#d4a574] text-sm rounded-full">
+                  {currentArtwork.style}
+                </span>
+                <span className="text-gray-400 text-sm">{currentArtwork.medium}</span>
+                <span className="text-gray-500 text-sm">{currentArtwork.dimensions}</span>
+              </div>
+              <div className="flex items-center gap-2 text-gray-400 text-sm">
+                <MapPin className="w-4 h-4 text-[#d4a574]" />
+                {currentArtwork.location}
+              </div>
             </div>
-          </div>
-        </div>
 
-        {/* SECTION ARTISTE - 3 colonnes: Photo/Nom | Biographie | Anecdotes */}
-        {currentArtwork.artistImage && (
-          <div className="bg-white/5 rounded-2xl p-6 mb-6 border border-white/10">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Colonne 1: Photo et Nom de l'artiste */}
-              <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                <img
-                  src={currentArtwork.artistImage}
-                  alt={currentArtwork.artist}
-                  className="w-24 h-24 lg:w-32 lg:h-32 rounded-full object-cover border-3 border-[#d4a574]/50 mb-4"
-                />
-                <h3 className="text-[#d4a574] font-medium text-sm mb-1 uppercase tracking-wider">L'artiste</h3>
-                <p className="text-white text-xl font-semibold">{currentArtwork.artist}</p>
-              </div>
-
-              {/* Colonne 2: Biographie */}
-              <div className="flex flex-col">
-                <h3 className="text-[#d4a574] font-medium text-sm mb-3 uppercase tracking-wider">Biographie</h3>
-                {currentArtwork.artistBio && (
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    {currentArtwork.artistBio}
-                  </p>
-                )}
-              </div>
-
-              {/* Colonne 3: Anecdotes */}
-              <div className="flex flex-col">
-                <h3 className="text-[#d4a574] font-medium text-sm mb-3 uppercase tracking-wider">Anecdotes</h3>
-                {currentArtwork.artistAnecdotes && currentArtwork.artistAnecdotes.length > 0 && (
-                  <div className="space-y-3">
-                    {currentArtwork.artistAnecdotes.map((anecdote, index) => (
-                      <div key={index} className="flex gap-3 text-sm text-gray-300">
-                        <span className="text-[#d4a574] text-lg">•</span>
-                        <span>{anecdote}</span>
-                      </div>
-                    ))}
+            {/* SECTION ARTISTE - 3 colonnes: Photo/Nom | Biographie | Anecdotes */}
+            {currentArtwork.artistImage && (
+              <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {/* Colonne 1: Photo et Nom de l'artiste */}
+                  <div className="flex flex-col items-center md:items-start text-center md:text-left">
+                    <img
+                      src={currentArtwork.artistImage}
+                      alt={currentArtwork.artist}
+                      className="w-24 h-24 lg:w-32 lg:h-32 rounded-full object-cover border-3 border-[#d4a574]/50 mb-4"
+                    />
+                    <h3 className="text-[#d4a574] font-medium text-sm mb-1 uppercase tracking-wider">L'artiste</h3>
+                    <p className="text-white text-xl font-semibold">{currentArtwork.artist}</p>
                   </div>
-                )}
+
+                  {/* Colonne 2: Biographie */}
+                  <div className="flex flex-col">
+                    <h3 className="text-[#d4a574] font-medium text-sm mb-3 uppercase tracking-wider">Biographie</h3>
+                    {currentArtwork.artistBio && (
+                      <p className="text-gray-300 text-sm leading-relaxed">
+                        {currentArtwork.artistBio}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Colonne 3: Anecdotes */}
+                  <div className="flex flex-col">
+                    <h3 className="text-[#d4a574] font-medium text-sm mb-3 uppercase tracking-wider">Anecdotes</h3>
+                    {currentArtwork.artistAnecdotes && currentArtwork.artistAnecdotes.length > 0 && (
+                      <div className="space-y-3">
+                        {currentArtwork.artistAnecdotes.map((anecdote, index) => (
+                          <div key={index} className="flex gap-3 text-sm text-gray-300">
+                            <span className="text-[#d4a574] text-lg">•</span>
+                            <span>{anecdote}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
+            )}
+
+            {/* Navigation entre les œuvres */}
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={() => navigateArtwork('prev')}
+                className="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 rounded-xl text-white transition-all"
+              >
+                <ChevronLeft className="w-5 h-5" />
+                Précédent
+              </button>
+              <button
+                onClick={() => navigateArtwork('next')}
+                className="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 rounded-xl text-white transition-all"
+              >
+                Suivant
+                <ChevronRight className="w-5 h-5" />
+              </button>
             </div>
           </div>
-        )}
 
-        {/* Description et Fun Fact */}
-        <div className="bg-white/5 rounded-2xl p-6 mb-6 border border-white/10">
-          <h3 className="text-[#d4a574] font-medium text-sm mb-3 uppercase tracking-wider">À propos de l'œuvre</h3>
-          <p className="text-gray-300 text-sm leading-relaxed mb-4">
-            {currentArtwork.description}
-          </p>
-          <div className="flex items-start gap-3 p-4 bg-[#d4a574]/10 rounded-xl">
-            <span className="text-xl">💡</span>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              {currentArtwork.funFact}
-            </p>
+          {/* COLONNE DROITE - Image et À propos de l'œuvre */}
+          <div className="lg:col-span-5 space-y-6">
+            {/* Image de l'œuvre - Rectangle vertical */}
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
+              <img
+                src={currentArtwork.image}
+                alt={currentArtwork.title}
+                className="w-full h-[400px] lg:h-[500px] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+              />
+              {/* Gradient overlay subtil */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-50" />
+            </div>
+
+            {/* À propos de l'œuvre */}
+            <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+              <h3 className="text-[#d4a574] font-medium text-sm mb-3 uppercase tracking-wider">À propos de l'œuvre</h3>
+              <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                {currentArtwork.description}
+              </p>
+              <div className="flex items-start gap-3 p-4 bg-[#d4a574]/10 rounded-xl">
+                <span className="text-xl">💡</span>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {currentArtwork.funFact}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 

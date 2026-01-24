@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muzea | Guides Conférenciers de Luxe</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+    <style>
+        /* ========================================
+           CSS RESET & BASE
+        ======================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Colors */
+            --primary-dark: #0B0E14;
+            --primary-dark-light: #151921;
+            --cream: #F9F8F4;
+            --cream-dark: #F0EDE5;
+            --gold: #D4AF37;
+            --gold-hover: #E5C04B;
+            --gold-dark: #B8962E;
+            --text-dark: #1A1A1A;
+            --text-light: #FFFFFF;
+            --text-muted: #9CA3AF;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+
+            /* Typography */
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+            /* Spacing */
+            --section-padding: 100px 0;
+            --container-max: 1280px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            color: var(--text-light);
+            background-color: var(--primary-dark);
+            overflow-x: hidden;
+        }
+
+        /* Fixed Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                linear-gradient(180deg,
+                    rgba(11, 14, 20, 0.85) 0%,
+                    rgba(11, 14, 20, 0.7) 30%,
+                    rgba(249, 248, 244, 0.95) 70%,
+                    rgba(249, 248, 244, 1) 100%
+                ),
+                url('https://images.unsplash.com/photo-1564399580075-5dfe19c205f3?w=1920&q=80') center/cover no-repeat fixed;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========================================
+           NAVBAR
+        ======================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(11, 14, 20, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--gold);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-reserve {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--primary-dark);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-reserve:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.4);
+            background: linear-gradient(135deg, var(--gold-hover) 0%, var(--gold) 100%);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text-light);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* ========================================
+           HERO SECTION
+        ======================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center top,
+                rgba(212, 175, 55, 0.08) 0%,
+                transparent 60%
+            );
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: 500;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: var(--text-light);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+        }
+
+        .hero-title span {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 48px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+        }
+
+        /* Search Bar */
+        .search-container {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto 32px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 60px;
+            padding: 8px 8px 8px 32px;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar:focus-within {
+            border-color: var(--gold);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+        }
+
+        .search-icon {
+            color: var(--text-muted);
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .search-bar input {
+            flex: 1;
+            background: none;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            color: var(--text-light);
+            font-family: var(--font-sans);
+        }
+
+        .search-bar input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-btn {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--primary-dark);
+            border: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-sans);
+        }
+
+        .search-btn:hover {
+            background: linear-gradient(135deg, var(--gold-hover) 0%, var(--gold) 100%);
+            transform: scale(1.02);
+        }
+
+        /* Filter Chips */
+        .filter-chips {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.8s forwards;
+        }
+
+        .chip {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            color: var(--text-light);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chip:hover, .chip.active {
+            background: var(--gold);
+            color: var(--primary-dark);
+            border-color: var(--gold);
+        }
+
+        /* ========================================
+           EXPERTS SECTION
+        ======================================== */
+        .experts-section {
+            padding: 80px 24px 120px;
+            background: linear-gradient(180deg,
+                transparent 0%,
+                rgba(249, 248, 244, 0.3) 50%,
+                rgba(249, 248, 244, 0.6) 100%
+            );
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 500;
+            color: var(--text-light);
+            line-height: 1.2;
+        }
+
+        .experts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .expert-card {
+            text-align: center;
+            padding: 40px 24px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            transition: all 0.4s ease;
+        }
+
+        .expert-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.15);
+        }
+
+        .expert-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--gold);
+            margin-bottom: 24px;
+            transition: transform 0.4s ease;
+        }
+
+        .expert-card:hover .expert-avatar {
+            transform: scale(1.05);
+        }
+
+        .expert-name {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            font-weight: 500;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .expert-specialty {
+            font-size: 14px;
+            color: var(--gold);
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .expert-bio {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .expert-rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            margin-top: 16px;
+        }
+
+        .star {
+            color: var(--gold);
+            font-size: 14px;
+        }
+
+        .rating-value {
+            color: var(--text-light);
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        /* ========================================
+           PLACES & CALENDAR SECTION
+        ======================================== */
+        .places-section {
+            padding: var(--section-padding);
+            background: var(--cream);
+            color: var(--text-dark);
+        }
+
+        .places-section .section-title {
+            color: var(--text-dark);
+        }
+
+        .places-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .place-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .place-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .place-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .place-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .place-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 60px 20px 20px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+        }
+
+        .place-name {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .place-location {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 12px;
+        }
+
+        .place-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gold);
+            color: var(--primary-dark);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .place-btn:hover {
+            background: var(--gold-hover);
+            transform: scale(1.05);
+        }
+
+        /* Calendar Widget */
+        .calendar-widget {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 10px 60px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 100px;
+        }
+
+        .calendar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .calendar-title {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 8px;
+        }
+
+        .calendar-nav button {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid #E5E5E5;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-nav button:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .calendar-month {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .calendar-month-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .calendar-day-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            padding: 8px 0;
+        }
+
+        .calendar-dates {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+        }
+
+        .calendar-date {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-dark);
+        }
+
+        .calendar-date:hover {
+            background: var(--cream);
+        }
+
+        .calendar-date.empty {
+            visibility: hidden;
+        }
+
+        .calendar-date.available {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold-dark);
+            font-weight: 600;
+        }
+
+        .calendar-date.available:hover {
+            background: var(--gold);
+            color: var(--primary-dark);
+        }
+
+        .calendar-date.selected {
+            background: var(--gold);
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .calendar-legend {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #E5E5E5;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .legend-dot.available {
+            background: rgba(212, 175, 55, 0.3);
+        }
+
+        .legend-dot.selected {
+            background: var(--gold);
+        }
+
+        .upcoming-sessions {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid #E5E5E5;
+        }
+
+        .upcoming-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+
+        .session-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--cream);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .session-item:hover {
+            background: var(--cream-dark);
+        }
+
+        .session-date {
+            width: 48px;
+            height: 48px;
+            background: var(--gold);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-dark);
+        }
+
+        .session-date-day {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .session-date-month {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .session-info {
+            flex: 1;
+        }
+
+        .session-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-dark);
+        }
+
+        .session-guide {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* ========================================
+           TESTIMONIALS SECTION
+        ======================================== */
+        .testimonials-section {
+            padding: var(--section-padding);
+            background: var(--cream);
+        }
+
+        .testimonials-section .section-title {
+            color: var(--text-dark);
+        }
+
+        .testimonials-slider {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 10px 60px rgba(0, 0, 0, 0.06);
+            text-align: center;
+        }
+
+        .testimonial-quote {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            font-style: italic;
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .testimonial-quote::before {
+            content: '"';
+            font-size: 80px;
+            color: var(--gold);
+            opacity: 0.3;
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-serif);
+            line-height: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .testimonial-info {
+            text-align: left;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 16px;
+        }
+
+        .testimonial-role {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 32px;
+        }
+
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #D1D5DB;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background: var(--gold);
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        /* ========================================
+           FOOTER
+        ======================================== */
+        .footer {
+            background: var(--primary-dark);
+            padding: 60px 24px 30px;
+            color: var(--text-light);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 60px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-serif);
+            font-size: 28px;
+            color: var(--gold);
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+        }
+
+        .footer-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .footer-title {
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-copyright {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--gold);
+            color: var(--primary-dark);
+        }
+
+        /* ========================================
+           ANIMATIONS
+        ======================================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========================================
+           RESPONSIVE DESIGN
+        ======================================== */
+        @media (max-width: 1024px) {
+            .places-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .calendar-widget {
+                position: static;
+                max-width: 500px;
+                margin: 40px auto 0;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .search-bar {
+                flex-direction: column;
+                padding: 16px;
+                border-radius: 24px;
+            }
+
+            .search-bar input {
+                width: 100%;
+                padding: 12px 0;
+                text-align: center;
+            }
+
+            .search-btn {
+                width: 100%;
+                margin-top: 12px;
+            }
+
+            .search-icon {
+                display: none;
+            }
+
+            .experts-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-card {
+                padding: 32px 24px;
+            }
+
+            .testimonial-quote {
+                font-size: 18px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .filter-chips {
+                gap: 8px;
+            }
+
+            .chip {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary-dark);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            font-size: 24px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-family: var(--font-serif);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--gold);
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 32px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#" class="logo">MUZEA</a>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Museum</a></li>
+                <li><a href="#">Guides</a></li>
+            </ul>
+            <a href="#" class="btn-reserve">Réserver</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()">×</button>
+        <a href="#">Home</a>
+        <a href="#">Museum</a>
+        <a href="#">Guides</a>
+        <a href="#" class="btn-reserve">Réserver</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-subtitle">Expériences Culturelles d'Exception</p>
+            <h1 class="hero-title">
+                Vivez l'Art avec nos<br>
+                <span>Guides Experts</span>
+            </h1>
+            <p class="hero-description">
+                Découvrez les plus grands musées de France accompagné par des guides conférenciers
+                passionnés. Une expérience culturelle personnalisée et inoubliable.
+            </p>
+
+            <div class="search-container">
+                <div class="search-bar">
+                    <svg class="search-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                    <input type="text" placeholder="Rechercher un musée, un guide ou une thématique...">
+                    <button class="search-btn">Rechercher</button>
+                </div>
+            </div>
+
+            <div class="filter-chips">
+                <span class="chip active">Tout</span>
+                <span class="chip">Art Moderne</span>
+                <span class="chip">Histoire</span>
+                <span class="chip">Impressionnisme</span>
+                <span class="chip">Famille</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experts Section -->
+    <section class="experts-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Nos Conférenciers</p>
+                <h2 class="section-title">Experts Passionnés</h2>
+            </div>
+
+            <div class="experts-grid">
+                <div class="expert-card">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop&crop=face" alt="Marie Dupont" class="expert-avatar">
+                    <h3 class="expert-name">Marie Dupont</h3>
+                    <p class="expert-specialty">Histoire de l'Art</p>
+                    <p class="expert-bio">Docteure en histoire de l'art, spécialiste de la Renaissance italienne et des maîtres flamands.</p>
+                    <div class="expert-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="rating-value">4.9</span>
+                    </div>
+                </div>
+
+                <div class="expert-card">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face" alt="Pierre Laurent" class="expert-avatar">
+                    <h3 class="expert-name">Pierre Laurent</h3>
+                    <p class="expert-specialty">Art Contemporain</p>
+                    <p class="expert-bio">Ancien conservateur au Centre Pompidou, passionné par les mouvements artistiques du XXe siècle.</p>
+                    <div class="expert-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="rating-value">4.8</span>
+                    </div>
+                </div>
+
+                <div class="expert-card">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face" alt="Sophie Martin" class="expert-avatar">
+                    <h3 class="expert-name">Sophie Martin</h3>
+                    <p class="expert-specialty">Visites Famille</p>
+                    <p class="expert-bio">Médiatrice culturelle certifiée, elle rend l'art accessible aux plus jeunes avec créativité.</p>
+                    <div class="expert-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="rating-value">5.0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Places & Calendar Section -->
+    <section class="places-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Destinations</p>
+                <h2 class="section-title">Lieux Populaires</h2>
+            </div>
+
+            <div class="places-layout">
+                <div class="places-grid">
+                    <div class="place-card">
+                        <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&h=450&fit=crop" alt="Musée du Louvre">
+                        <div class="place-overlay">
+                            <h3 class="place-name">Musée du Louvre</h3>
+                            <p class="place-location">Paris, France</p>
+                            <a href="#" class="place-btn">
+                                Book Now
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                    <polyline points="12,5 19,12 12,19"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="place-card">
+                        <img src="https://images.unsplash.com/photo-1591289009723-aef0a1a8a211?w=600&h=450&fit=crop" alt="Musée d'Orsay">
+                        <div class="place-overlay">
+                            <h3 class="place-name">Musée d'Orsay</h3>
+                            <p class="place-location">Paris, France</p>
+                            <a href="#" class="place-btn">
+                                Book Now
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                    <polyline points="12,5 19,12 12,19"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="place-card">
+                        <img src="https://images.unsplash.com/photo-1551038247-3d9af20df552?w=600&h=450&fit=crop" alt="Château de Versailles">
+                        <div class="place-overlay">
+                            <h3 class="place-name">Château de Versailles</h3>
+                            <p class="place-location">Versailles, France</p>
+                            <a href="#" class="place-btn">
+                                Book Now
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                    <polyline points="12,5 19,12 12,19"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="place-card">
+                        <img src="https://images.unsplash.com/photo-1569587112025-0d460e81a126?w=600&h=450&fit=crop" alt="Centre Pompidou">
+                        <div class="place-overlay">
+                            <h3 class="place-name">Centre Pompidou</h3>
+                            <p class="place-location">Paris, France</p>
+                            <a href="#" class="place-btn">
+                                Book Now
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                    <polyline points="12,5 19,12 12,19"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calendar Widget -->
+                <div class="calendar-widget">
+                    <div class="calendar-header">
+                        <h3 class="calendar-title">Prochaines Disponibilités</h3>
+                        <div class="calendar-nav">
+                            <button>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="15,18 9,12 15,6"/>
+                                </svg>
+                            </button>
+                            <button>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="9,6 15,12 9,18"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="calendar-month">
+                        <span class="calendar-month-name">Janvier 2026</span>
+                    </div>
+
+                    <div class="calendar-days">
+                        <span class="calendar-day-name">Lun</span>
+                        <span class="calendar-day-name">Mar</span>
+                        <span class="calendar-day-name">Mer</span>
+                        <span class="calendar-day-name">Jeu</span>
+                        <span class="calendar-day-name">Ven</span>
+                        <span class="calendar-day-name">Sam</span>
+                        <span class="calendar-day-name">Dim</span>
+                    </div>
+
+                    <div class="calendar-dates">
+                        <span class="calendar-date empty"></span>
+                        <span class="calendar-date empty"></span>
+                        <span class="calendar-date">1</span>
+                        <span class="calendar-date">2</span>
+                        <span class="calendar-date">3</span>
+                        <span class="calendar-date available">4</span>
+                        <span class="calendar-date available">5</span>
+                        <span class="calendar-date">6</span>
+                        <span class="calendar-date">7</span>
+                        <span class="calendar-date">8</span>
+                        <span class="calendar-date">9</span>
+                        <span class="calendar-date available">10</span>
+                        <span class="calendar-date available">11</span>
+                        <span class="calendar-date available">12</span>
+                        <span class="calendar-date">13</span>
+                        <span class="calendar-date">14</span>
+                        <span class="calendar-date">15</span>
+                        <span class="calendar-date">16</span>
+                        <span class="calendar-date available">17</span>
+                        <span class="calendar-date available">18</span>
+                        <span class="calendar-date available">19</span>
+                        <span class="calendar-date">20</span>
+                        <span class="calendar-date">21</span>
+                        <span class="calendar-date">22</span>
+                        <span class="calendar-date">23</span>
+                        <span class="calendar-date selected">24</span>
+                        <span class="calendar-date available">25</span>
+                        <span class="calendar-date available">26</span>
+                        <span class="calendar-date">27</span>
+                        <span class="calendar-date">28</span>
+                        <span class="calendar-date">29</span>
+                        <span class="calendar-date">30</span>
+                        <span class="calendar-date">31</span>
+                    </div>
+
+                    <div class="calendar-legend">
+                        <div class="legend-item">
+                            <span class="legend-dot available"></span>
+                            <span>Disponible</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot selected"></span>
+                            <span>Sélectionné</span>
+                        </div>
+                    </div>
+
+                    <div class="upcoming-sessions">
+                        <h4 class="upcoming-title">Sessions à venir</h4>
+                        <div class="session-item">
+                            <div class="session-date">
+                                <span class="session-date-day">24</span>
+                                <span class="session-date-month">Jan</span>
+                            </div>
+                            <div class="session-info">
+                                <p class="session-name">Visite du Louvre</p>
+                                <p class="session-guide">avec Marie Dupont</p>
+                            </div>
+                        </div>
+                        <div class="session-item">
+                            <div class="session-date">
+                                <span class="session-date-day">26</span>
+                                <span class="session-date-month">Jan</span>
+                            </div>
+                            <div class="session-info">
+                                <p class="session-name">Art Contemporain</p>
+                                <p class="session-guide">avec Pierre Laurent</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Témoignages</p>
+                <h2 class="section-title">Ce que disent nos visiteurs</h2>
+            </div>
+
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">
+                        Une expérience absolument magique au Louvre. Marie a su rendre chaque œuvre
+                        vivante avec ses anecdotes passionnantes. Je recommande vivement cette
+                        manière de découvrir les musées.
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="Jean-Marc B." class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <p class="testimonial-name">Jean-Marc B.</p>
+                            <p class="testimonial-role">Visite au Louvre - Décembre 2025</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slider-dots">
+                    <span class="slider-dot active"></span>
+                    <span class="slider-dot"></span>
+                    <span class="slider-dot"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 class="footer-logo">MUZEA</h3>
+                    <p class="footer-desc">
+                        Plateforme premium de réservation de guides conférenciers.
+                        Vivez des expériences culturelles inoubliables dans les plus grands musées de France.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Explorer</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Nos Guides</a></li>
+                        <li><a href="#">Musées</a></li>
+                        <li><a href="#">Thématiques</a></li>
+                        <li><a href="#">Tarifs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Compagnie</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Carrières</a></li>
+                        <li><a href="#">Partenaires</a></li>
+                        <li><a href="#">Presse</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Conditions</a></li>
+                        <li><a href="#">Confidentialité</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2026 Muzea. Tous droits réservés.</p>
+                <div class="footer-social">
+                    <a href="#">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                        </svg>
+                    </a>
+                    <a href="#">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="#">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Filter chips click handler
+        document.querySelectorAll('.chip').forEach(chip => {
+            chip.addEventListener('click', function() {
+                document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Calendar date click handler
+        document.querySelectorAll('.calendar-date:not(.empty)').forEach(date => {
+            date.addEventListener('click', function() {
+                document.querySelectorAll('.calendar-date').forEach(d => d.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        // Testimonials slider (simple version)
+        let currentSlide = 0;
+        const dots = document.querySelectorAll('.slider-dot');
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', function() {
+                dots.forEach(d => d.classList.remove('active'));
+                this.classList.add('active');
+                currentSlide = index;
+            });
+        });
+    </script>
+</body>
+</html>

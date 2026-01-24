@@ -221,7 +221,7 @@ const DailyArtPage = () => {
       </div>
 
       {/* Contenu principal */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4">
+      <div className="relative z-10 max-w-[1600px] mx-auto px-4">
         {/* Titre simple */}
         <div className="text-center pt-4 pb-6">
           <h1 className="font-serif-italic text-3xl text-[#d4a574]">
@@ -232,8 +232,8 @@ const DailyArtPage = () => {
           </p>
         </div>
 
-        {/* LAYOUT PRINCIPAL - Image à gauche, Analyse à droite (50/50) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+        {/* LAYOUT PRINCIPAL - Image à gauche, Analyse à droite (60/40) */}
+        <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6 mb-6">
           {/* COLONNE GAUCHE - Image de l'œuvre */}
           <div className="relative">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl group sticky top-24 border-8 border-[#d4a574]/40 bg-gradient-to-br from-[#d4a574]/20 to-[#8b6914]/30 p-1">

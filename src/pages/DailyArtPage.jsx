@@ -284,6 +284,50 @@ const DailyArtPage = () => {
                 </span>
               </div>
             </div>
+
+            {/* Section Artiste - Rectangle horizontal sous l'image */}
+            {currentArtwork.artistImage && (
+              <div className="mt-4 bg-white/5 rounded-xl p-4 border border-white/10">
+                <div className="flex flex-col md:flex-row gap-4">
+                  {/* Photo et nom de l'artiste */}
+                  <div className="flex items-center gap-4 md:w-64 flex-shrink-0">
+                    <img
+                      src={currentArtwork.artistImage}
+                      alt={currentArtwork.artist}
+                      className="w-20 h-20 rounded-xl object-cover border-2 border-[#d4a574]/50"
+                    />
+                    <div>
+                      <h3 className="text-[#d4a574] font-medium text-xs uppercase tracking-wider mb-1">L'artiste</h3>
+                      <p className="text-white text-lg font-semibold">{currentArtwork.artist}</p>
+                    </div>
+                  </div>
+
+                  {/* Bio de l'artiste */}
+                  {currentArtwork.artistBio && (
+                    <div className="flex-1 md:border-l md:border-white/10 md:pl-4">
+                      <p className="text-gray-300 text-sm leading-relaxed">
+                        {currentArtwork.artistBio}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Anecdotes */}
+                  {currentArtwork.artistAnecdotes && currentArtwork.artistAnecdotes.length > 0 && (
+                    <div className="md:w-72 flex-shrink-0 md:border-l md:border-white/10 md:pl-4">
+                      <p className="text-[#d4a574] text-xs font-medium uppercase tracking-wider mb-2">Anecdotes</p>
+                      <div className="space-y-1.5">
+                        {currentArtwork.artistAnecdotes.map((anecdote, index) => (
+                          <div key={index} className="flex gap-2 text-xs text-gray-400">
+                            <span className="text-[#d4a574] mt-0.5">•</span>
+                            <span>{anecdote}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Infos - 1/3 de la largeur */}
@@ -322,41 +366,6 @@ const DailyArtPage = () => {
             <p className="text-gray-500 text-xs leading-relaxed mb-4">
               💡 {currentArtwork.funFact}
             </p>
-
-            {/* Section Artiste */}
-            {currentArtwork.artistImage && (
-              <div className="bg-white/5 rounded-xl p-4 mb-4 border border-white/10">
-                <div className="flex gap-4 mb-3">
-                  <img
-                    src={currentArtwork.artistImage}
-                    alt={currentArtwork.artist}
-                    className="w-16 h-16 rounded-full object-cover border-2 border-[#d4a574]/50"
-                  />
-                  <div className="flex-1">
-                    <h3 className="text-[#d4a574] font-medium text-sm mb-1">L'artiste</h3>
-                    <p className="text-white text-sm font-semibold">{currentArtwork.artist}</p>
-                  </div>
-                </div>
-
-                {currentArtwork.artistBio && (
-                  <p className="text-gray-400 text-xs leading-relaxed mb-3">
-                    {currentArtwork.artistBio}
-                  </p>
-                )}
-
-                {currentArtwork.artistAnecdotes && currentArtwork.artistAnecdotes.length > 0 && (
-                  <div className="space-y-2">
-                    <p className="text-[#d4a574] text-xs font-medium uppercase tracking-wider">Anecdotes</p>
-                    {currentArtwork.artistAnecdotes.map((anecdote, index) => (
-                      <div key={index} className="flex gap-2 text-xs text-gray-400">
-                        <span className="text-[#d4a574]">•</span>
-                        <span>{anecdote}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
 
             {/* Œuvres précédentes */}
             <div className="mt-auto">

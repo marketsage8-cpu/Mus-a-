@@ -84,11 +84,12 @@ const ExplorePage = () => {
     'exposition': 'bg-purple-500'
   };
 
-  // Calculate map height based on viewport
+  // Calculate map height based on viewport - laisse de l'espace pour la navigation mobile en bas
   useEffect(() => {
     const updateHeight = () => {
-      const navHeight = 72;
-      setMapHeight(`calc(100vh - ${navHeight}px)`);
+      const navHeight = 72; // Navigation en haut
+      const mobileNavHeight = window.innerWidth < 768 ? 80 : 0; // Navigation mobile en bas (64px + safe area)
+      setMapHeight(`calc(100vh - ${navHeight}px - ${mobileNavHeight}px)`);
     };
     updateHeight();
     window.addEventListener('resize', updateHeight);

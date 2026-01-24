@@ -353,20 +353,32 @@
         }
 
         /* ========================================
-           EXPERTS SECTION
+           EXPERTS SECTION - ENHANCED
         ======================================== */
         .experts-section {
-            padding: 80px 24px 120px;
+            padding: 100px 24px 140px;
             background: linear-gradient(180deg,
                 transparent 0%,
                 rgba(249, 248, 244, 0.3) 50%,
                 rgba(249, 248, 244, 0.6) 100%
             );
+            position: relative;
+        }
+
+        .experts-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 70px;
         }
 
         .section-label {
@@ -386,48 +398,109 @@
             line-height: 1.2;
         }
 
+        .section-description {
+            font-size: 16px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 20px auto 0;
+            line-height: 1.7;
+        }
+
         .experts-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            max-width: 1000px;
+            gap: 32px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         .expert-card {
+            position: relative;
             text-align: center;
-            padding: 40px 24px;
+            padding: 48px 28px 32px;
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            transition: all 0.4s ease;
+            border-radius: 28px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .expert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-hover), var(--gold));
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .expert-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-12px);
             border-color: var(--gold);
-            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.15);
+            box-shadow: 0 30px 80px rgba(212, 175, 55, 0.2);
+        }
+
+        .expert-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Expert Badge */
+        .expert-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--primary-dark);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+
+        /* Expert Avatar */
+        .expert-avatar-container {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 24px;
         }
 
         .expert-avatar {
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--gold);
-            margin-bottom: 24px;
-            transition: transform 0.4s ease;
+            border: 4px solid var(--gold);
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2);
         }
 
         .expert-card:hover .expert-avatar {
             transform: scale(1.05);
+            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.3);
+        }
+
+        .expert-status {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            width: 22px;
+            height: 22px;
+            background: #10B981;
+            border: 3px solid var(--primary-dark);
+            border-radius: 50%;
         }
 
         .expert-name {
             font-family: var(--font-serif);
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 500;
             color: var(--text-light);
             margin-bottom: 8px;
@@ -436,33 +509,151 @@
         .expert-specialty {
             font-size: 14px;
             color: var(--gold);
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .expert-bio {
             font-size: 14px;
             color: var(--text-muted);
-            line-height: 1.6;
+            line-height: 1.7;
+            margin-bottom: 20px;
         }
 
+        /* Expert Stats */
+        .expert-stats {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .expert-stat {
+            text-align: center;
+        }
+
+        .expert-stat-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .expert-stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        /* Expert Rating */
         .expert-rating {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 4px;
-            margin-top: 16px;
+            gap: 6px;
+            margin-bottom: 20px;
         }
 
         .star {
             color: var(--gold);
-            font-size: 14px;
+            font-size: 16px;
         }
 
         .rating-value {
             color: var(--text-light);
-            font-weight: 600;
+            font-weight: 700;
             margin-left: 8px;
+            font-size: 15px;
+        }
+
+        .rating-count {
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        /* Expert Languages */
+        .expert-languages {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .language-tag {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Expert CTA Button */
+        .expert-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--primary-dark);
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+
+        .expert-cta:hover {
+            background: linear-gradient(135deg, var(--gold-hover), var(--gold));
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .expert-cta svg {
+            transition: transform 0.3s ease;
+        }
+
+        .expert-cta:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* View All Guides Button */
+        .view-all-guides {
+            display: flex;
+            justify-content: center;
+            margin-top: 60px;
+        }
+
+        .btn-view-all {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: transparent;
+            color: var(--text-light);
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 2px solid var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .btn-view-all:hover {
+            background: var(--gold);
+            color: var(--primary-dark);
         }
 
         /* ========================================
@@ -983,6 +1174,15 @@
             }
         }
 
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
         /* ========================================
            RESPONSIVE DESIGN
         ======================================== */
@@ -999,6 +1199,11 @@
 
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .experts-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
             }
         }
 
@@ -1039,6 +1244,11 @@
             .experts-grid {
                 grid-template-columns: 1fr;
                 max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .expert-stats {
+                gap: 16px;
             }
 
             .places-grid {
@@ -1073,6 +1283,20 @@
             .chip {
                 padding: 8px 16px;
                 font-size: 13px;
+            }
+
+            .expert-card {
+                padding: 40px 20px 28px;
+            }
+
+            .expert-avatar-container {
+                width: 110px;
+                height: 110px;
+            }
+
+            .expert-avatar {
+                width: 110px;
+                height: 110px;
             }
         }
 
@@ -1127,7 +1351,7 @@
             <ul class="nav-links">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Museum</a></li>
-                <li><a href="#">Guides</a></li>
+                <li><a href="#experts">Guides</a></li>
             </ul>
             <a href="#" class="btn-reserve">Réserver</a>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
@@ -1143,7 +1367,7 @@
         <button class="mobile-menu-close" onclick="toggleMobileMenu()">×</button>
         <a href="#">Home</a>
         <a href="#">Museum</a>
-        <a href="#">Guides</a>
+        <a href="#experts">Guides</a>
         <a href="#" class="btn-reserve">Réserver</a>
     </div>
 
@@ -1181,20 +1405,45 @@
         </div>
     </section>
 
-    <!-- Experts Section -->
-    <section class="experts-section">
+    <!-- Experts Section - Enhanced -->
+    <section class="experts-section" id="experts">
         <div class="container">
             <div class="section-header">
                 <p class="section-label">Nos Conférenciers</p>
                 <h2 class="section-title">Experts Passionnés</h2>
+                <p class="section-description">
+                    Des guides certifiés et passionnés qui transforment chaque visite
+                    en une expérience mémorable et enrichissante.
+                </p>
             </div>
 
             <div class="experts-grid">
+                <!-- Guide 1 - Marie -->
                 <div class="expert-card">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop&crop=face" alt="Marie Dupont" class="expert-avatar">
+                    <span class="expert-badge">Top Guide</span>
+                    <div class="expert-avatar-container">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop&crop=face" alt="Marie Dupont" class="expert-avatar">
+                        <span class="expert-status"></span>
+                    </div>
                     <h3 class="expert-name">Marie Dupont</h3>
                     <p class="expert-specialty">Histoire de l'Art</p>
-                    <p class="expert-bio">Docteure en histoire de l'art, spécialiste de la Renaissance italienne et des maîtres flamands.</p>
+                    <p class="expert-bio">Docteure en histoire de l'art, spécialiste de la Renaissance italienne et des maîtres flamands. 15 ans d'expérience.</p>
+
+                    <div class="expert-stats">
+                        <div class="expert-stat">
+                            <span class="expert-stat-value">850+</span>
+                            <span class="expert-stat-label">Visites</span>
+                        </div>
+                        <div class="expert-stat">
+                            <span class="expert-stat-value">12</span>
+                            <span class="expert-stat-label">Années</span>
+                        </div>
+                        <div class="expert-stat">
+                            <span class="expert-stat-value">98%</span>
+                            <span class="expert-stat-label">Satisf.</span>
+                        </div>
+                    </div>
+
                     <div class="expert-rating">
                         <span class="star">★</span>
                         <span class="star">★</span>
@@ -1202,14 +1451,50 @@
                         <span class="star">★</span>
                         <span class="star">★</span>
                         <span class="rating-value">4.9</span>
+                        <span class="rating-count">(247 avis)</span>
                     </div>
+
+                    <div class="expert-languages">
+                        <span class="language-tag">Français</span>
+                        <span class="language-tag">Anglais</span>
+                        <span class="language-tag">Italien</span>
+                    </div>
+
+                    <a href="#" class="expert-cta">
+                        Réserver avec Marie
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12,5 19,12 12,19"/>
+                        </svg>
+                    </a>
                 </div>
 
+                <!-- Guide 2 - Pierre -->
                 <div class="expert-card">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face" alt="Pierre Laurent" class="expert-avatar">
+                    <span class="expert-badge">Expert</span>
+                    <div class="expert-avatar-container">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face" alt="Pierre Laurent" class="expert-avatar">
+                        <span class="expert-status"></span>
+                    </div>
                     <h3 class="expert-name">Pierre Laurent</h3>
                     <p class="expert-specialty">Art Contemporain</p>
-                    <p class="expert-bio">Ancien conservateur au Centre Pompidou, passionné par les mouvements artistiques du XXe siècle.</p>
+                    <p class="expert-bio">Ancien conservateur au Centre Pompidou, passionné par les mouvements artistiques du XXe siècle et l'art conceptuel.</p>
+
+                    <div class="expert-stats">
+                        <div class="expert-stat">
+                            <span class="expert-stat-value">620+</span>
+                            <span class="expert-stat-label">Visites</span>
+                        </div>
+                        <div class="expert-stat">
+                            <span class="expert-stat-value">18</span>
+                            <span class="expert-stat-label">Années</span>
+                        </div>
+                        <div class="expert-stat">
+                            <span class="expert-stat-value">96%</span>
+                            <span class="expert-stat-label">Satisf.</span>
+                        </div>
+                    </div>
+
                     <div class="expert-rating">
                         <span class="star">★</span>
                         <span class="star">★</span>
@@ -1217,14 +1502,50 @@
                         <span class="star">★</span>
                         <span class="star">★</span>
                         <span class="rating-value">4.8</span>
+                        <span class="rating-count">(189 avis)</span>
                     </div>
+
+                    <div class="expert-languages">
+                        <span class="language-tag">Français</span>
+                        <span class="language-tag">Anglais</span>
+                        <span class="language-tag">Espagnol</span>
+                    </div>
+
+                    <a href="#" class="expert-cta">
+                        Réserver avec Pierre
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12,5 19,12 12,19"/>
+                        </svg>
+                    </a>
                 </div>
 
+                <!-- Guide 3 - Sophie -->
                 <div class="expert-card">
-                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face" alt="Sophie Martin" class="expert-avatar">
+                    <span class="expert-badge">Favorite</span>
+                    <div class="expert-avatar-container">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face" alt="Sophie Martin" class="expert-avatar">
+                        <span class="expert-status"></span>
+                    </div>
                     <h3 class="expert-name">Sophie Martin</h3>
                     <p class="expert-specialty">Visites Famille</p>
-                    <p class="expert-bio">Médiatrice culturelle certifiée, elle rend l'art accessible aux plus jeunes avec créativité.</p>
+                    <p class="expert-bio">Médiatrice culturelle certifiée, elle rend l'art accessible aux plus jeunes avec créativité et pédagogie interactive.</p>
+
+                    <div class="expert-stats">
+                        <div class="expert-stat">
+                            <span class="expert-stat-value">430+</span>
+                            <span class="expert-stat-label">Visites</span>
+                        </div>
+                        <div class="expert-stat">
+                            <span class="expert-stat-value">8</span>
+                            <span class="expert-stat-label">Années</span>
+                        </div>
+                        <div class="expert-stat">
+                            <span class="expert-stat-value">99%</span>
+                            <span class="expert-stat-label">Satisf.</span>
+                        </div>
+                    </div>
+
                     <div class="expert-rating">
                         <span class="star">★</span>
                         <span class="star">★</span>
@@ -1232,8 +1553,33 @@
                         <span class="star">★</span>
                         <span class="star">★</span>
                         <span class="rating-value">5.0</span>
+                        <span class="rating-count">(312 avis)</span>
                     </div>
+
+                    <div class="expert-languages">
+                        <span class="language-tag">Français</span>
+                        <span class="language-tag">Anglais</span>
+                        <span class="language-tag">LSF</span>
+                    </div>
+
+                    <a href="#" class="expert-cta">
+                        Réserver avec Sophie
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12,5 19,12 12,19"/>
+                        </svg>
+                    </a>
                 </div>
+            </div>
+
+            <div class="view-all-guides">
+                <a href="#" class="btn-view-all">
+                    Voir tous nos guides
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                        <polyline points="12,5 19,12 12,19"/>
+                    </svg>
+                </a>
             </div>
         </div>
     </section>
@@ -1557,6 +1903,23 @@
                 dots.forEach(d => d.classList.remove('active'));
                 this.classList.add('active');
                 currentSlide = index;
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
             });
         });
     </script>

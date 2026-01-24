@@ -236,11 +236,11 @@ const DailyArtPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           {/* COLONNE GAUCHE - Image de l'œuvre en super grand */}
           <div className="relative">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl group sticky top-24">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl group sticky top-24 border-8 border-[#d4a574]/40 bg-gradient-to-br from-[#d4a574]/20 to-[#8b6914]/30 p-1">
               <img
                 src={currentArtwork.image}
                 alt={currentArtwork.title}
-                className="w-full h-[500px] lg:h-[700px] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                className="w-full h-[600px] lg:h-[800px] object-cover transition-transform duration-700 group-hover:scale-[1.02] rounded-2xl"
               />
               {/* Gradient overlay subtil */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-50" />

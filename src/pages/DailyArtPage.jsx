@@ -240,7 +240,7 @@ const DailyArtPage = () => {
               <img
                 src={currentArtwork.image}
                 alt={currentArtwork.title}
-                className="w-full h-[900px] lg:h-[1150px] object-cover transition-transform duration-700 group-hover:scale-[1.02] rounded-2xl"
+                className="w-full h-[750px] lg:h-[950px] object-cover transition-transform duration-700 group-hover:scale-[1.02] rounded-2xl"
               />
               {/* Gradient overlay subtil */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-50" />

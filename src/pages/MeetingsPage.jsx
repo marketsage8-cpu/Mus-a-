@@ -383,43 +383,43 @@ const MeetingsPage = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-[#1a1f2e]/10 via-transparent to-[#1a1f2e]/10" />
         </div>
 
-        {/* Contenu du header avec barre de recherche TRÈS HAUTE sur la photo */}
-        <div className="relative max-w-6xl mx-auto px-4 h-[70vh] min-h-[600px] flex flex-col pt-4">
-          {/* Barre de recherche TOUT EN HAUT de la photo - position fixe en haut */}
-          {!selectedPlace && (
-            <div className="max-w-2xl mx-auto w-full mb-auto">
-              <div className="relative">
-                <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400 z-10" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Rechercher parmi 250+ musées et châteaux..."
-                  className="w-full py-5 px-6 pl-16 pr-16 bg-white/95 backdrop-blur-md border-2 border-white/50 rounded-2xl text-gray-800 placeholder-gray-500 focus:outline-none focus:border-[#d4a574] focus:ring-4 focus:ring-[#d4a574]/20 transition-all text-lg shadow-2xl"
-                />
-                <button
-                  onClick={() => setShowFilters(!showFilters)}
-                  className={`absolute right-4 top-1/2 -translate-y-1/2 p-2.5 rounded-xl transition-colors ${showFilters ? 'bg-[#d4a574] text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}
-                >
-                  <Filter className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* Texte centré verticalement dans l'espace restant */}
-          <div className="flex-1 flex flex-col justify-center text-center -mt-16">
+        {/* Contenu du header avec texte et barre de recherche en dessous */}
+        <div className="relative max-w-6xl mx-auto px-4 h-[70vh] min-h-[600px] flex flex-col justify-center">
+          {/* Texte centré */}
+          <div className="text-center">
             <h1 className="font-serif-italic text-3xl sm:text-4xl lg:text-5xl mb-4 drop-shadow-lg" style={{ color: '#d4a574' }}>
               Trouvez des compagnons de visite
             </h1>
-            <p className="text-white/90 max-w-2xl mx-auto text-lg drop-shadow-md mb-8">
+            <p className="text-white/90 max-w-2xl mx-auto text-lg drop-shadow-md mb-6">
               Ne visitez plus seul ! Rencontrez des passionnés de culture et partagez vos découvertes.
             </p>
 
             {/* Citation */}
-            <p className="text-white/70 font-serif-italic text-lg drop-shadow-lg">
+            <p className="text-white/70 font-serif-italic text-lg drop-shadow-lg mb-8">
               "L'art est le plus beau des partages"
             </p>
+
+            {/* Barre de recherche SOUS la citation */}
+            {!selectedPlace && (
+              <div className="max-w-2xl mx-auto w-full">
+                <div className="relative">
+                  <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400 z-10" />
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Rechercher parmi 250+ musées et châteaux..."
+                    className="w-full py-5 px-6 pl-16 pr-16 bg-white/95 backdrop-blur-md border-2 border-white/50 rounded-2xl text-gray-800 placeholder-gray-500 focus:outline-none focus:border-[#d4a574] focus:ring-4 focus:ring-[#d4a574]/20 transition-all text-lg shadow-2xl"
+                  />
+                  <button
+                    onClick={() => setShowFilters(!showFilters)}
+                    className={`absolute right-4 top-1/2 -translate-y-1/2 p-2.5 rounded-xl transition-colors ${showFilters ? 'bg-[#d4a574] text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}
+                  >
+                    <Filter className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

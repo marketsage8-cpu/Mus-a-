@@ -10,7 +10,7 @@ import { Building2, Castle, Landmark, Calendar, MapPin, X, Filter, ChevronDown }
  */
 const ExplorePage = () => {
   const [selectedPlace, setSelectedPlace] = useState(null);
-  const [mapHeight, setMapHeight] = useState('calc(100vh - 72px)');
+  const [mapHeight, setMapHeight] = useState('calc(100vh - 160px)');
   const [activeFilter, setActiveFilter] = useState('all');
   const [showFilters, setShowFilters] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -84,11 +84,12 @@ const ExplorePage = () => {
     'exposition': 'bg-purple-500'
   };
 
-  // Calculate map height based on viewport
+  // Calculate map height based on viewport - laisser espace pour navigation mobile
   useEffect(() => {
     const updateHeight = () => {
-      const navHeight = 72;
-      setMapHeight(`calc(100vh - ${navHeight}px)`);
+      const navTopHeight = 80; // pt-20 = 5rem = 80px
+      const navBottomHeight = window.innerWidth < 768 ? 96 : 32; // pb-24 mobile, pb-8 desktop
+      setMapHeight(`calc(100vh - ${navTopHeight + navBottomHeight}px)`);
     };
     updateHeight();
     window.addEventListener('resize', updateHeight);
@@ -108,9 +109,10 @@ const ExplorePage = () => {
   const hasActiveFilters = activeFilter !== 'all' || selectedRegion !== 'all' || searchQuery;
 
   return (
-    <div className="relative w-full" style={{ height: mapHeight }}>
-      {/* Barre de filtres en haut */}
-      <div className="absolute top-0 left-0 right-0 z-[1000] p-3">
+    <div className="min-h-screen pt-20 pb-24 md:pb-8" style={{ backgroundColor: '#1e2a42' }}>
+      <div className="relative w-full" style={{ height: mapHeight }}>
+        {/* Barre de filtres en haut */}
+        <div className="absolute top-0 left-0 right-0 z-[1000] p-3">
         {/* Ligne principale de filtres */}
         <div className="bg-stone-900/95 backdrop-blur-sm rounded-xl shadow-lg border border-stone-700 p-2">
           {/* Filtres par type - toujours visibles */}
@@ -216,22 +218,23 @@ const ExplorePage = () => {
         )}
       </div>
 
-      {/* Map - Full screen */}
-      <InteractiveMap
-        places={filteredPlaces}
-        onPlaceClick={setSelectedPlace}
-        height={mapHeight}
-        autoLocate={true}
-        showUserLocation={true}
-        className="w-full h-full"
-      />
+        {/* Map - Full screen */}
+        <InteractiveMap
+          places={filteredPlaces}
+          onPlaceClick={setSelectedPlace}
+          height={mapHeight}
+          autoLocate={true}
+          showUserLocation={true}
+          className="w-full h-full"
+        />
 
-      {/* Detail Modal */}
-      <PlaceDetailModal
-        place={selectedPlace}
-        isOpen={!!selectedPlace}
-        onClose={() => setSelectedPlace(null)}
-      />
+        {/* Detail Modal */}
+        <PlaceDetailModal
+          place={selectedPlace}
+          isOpen={!!selectedPlace}
+          onClose={() => setSelectedPlace(null)}
+        />
+      </div>
     </div>
   );
 };

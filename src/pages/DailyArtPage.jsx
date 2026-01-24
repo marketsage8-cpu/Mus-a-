@@ -232,15 +232,15 @@ const DailyArtPage = () => {
           </p>
         </div>
 
-        {/* LAYOUT PRINCIPAL - Image à gauche, Analyse à droite (60/40) */}
-        <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6 mb-6">
+        {/* LAYOUT PRINCIPAL - Image à gauche, Analyse à droite (70/30) */}
+        <div className="grid grid-cols-1 lg:grid-cols-[2.5fr_1fr] gap-6 mb-6">
           {/* COLONNE GAUCHE - Image de l'œuvre */}
           <div className="relative">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl group sticky top-24 border-8 border-[#d4a574]/40 bg-gradient-to-br from-[#d4a574]/20 to-[#8b6914]/30 p-1">
               <img
                 src={currentArtwork.image}
                 alt={currentArtwork.title}
-                className="w-full h-[750px] lg:h-[950px] object-cover transition-transform duration-700 group-hover:scale-[1.02] rounded-2xl"
+                className="w-full h-[750px] lg:h-[1100px] object-cover transition-transform duration-700 group-hover:scale-[1.02] rounded-2xl"
               />
               {/* Gradient overlay subtil */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-50" />
@@ -286,42 +286,42 @@ const DailyArtPage = () => {
           </div>
 
           {/* COLONNE DROITE - Analyse du tableau */}
-          <div className="space-y-4">
+          <div className="flex flex-col h-full lg:h-[1100px]">
             {/* Titre et infos de l'œuvre */}
-            <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
-              <h2 className="font-serif-italic text-2xl lg:text-3xl text-white leading-tight mb-4">
+            <div className="bg-white/5 rounded-2xl p-5 border border-white/10 mb-4">
+              <h2 className="font-serif-italic text-xl lg:text-2xl text-white leading-tight mb-3">
                 {currentArtwork.title}
               </h2>
-              <p className="text-[#d4a574] text-lg mb-3">
+              <p className="text-[#d4a574] text-base mb-2">
                 {currentArtwork.artist}
-                <span className="text-gray-400 text-base ml-2">
+                <span className="text-gray-400 text-sm ml-2">
                   {currentArtwork.year < 0 ? `${Math.abs(currentArtwork.year)} av. J.-C.` : currentArtwork.year}
                 </span>
               </p>
-              <div className="flex flex-wrap items-center gap-3 mb-4">
-                <span className="px-3 py-1 bg-[#d4a574]/20 text-[#d4a574] text-sm rounded-full">
+              <div className="flex flex-wrap items-center gap-2 mb-3">
+                <span className="px-2 py-0.5 bg-[#d4a574]/20 text-[#d4a574] text-xs rounded-full">
                   {currentArtwork.style}
                 </span>
-                <span className="text-gray-400 text-sm">{currentArtwork.medium}</span>
-                <span className="text-gray-500 text-sm">{currentArtwork.dimensions}</span>
+                <span className="text-gray-400 text-xs">{currentArtwork.medium}</span>
+                <span className="text-gray-500 text-xs">{currentArtwork.dimensions}</span>
               </div>
-              <div className="flex items-center gap-2 text-gray-400 text-sm">
-                <MapPin className="w-4 h-4 text-[#d4a574]" />
+              <div className="flex items-center gap-2 text-gray-400 text-xs">
+                <MapPin className="w-3 h-3 text-[#d4a574]" />
                 {currentArtwork.location}
               </div>
             </div>
 
-            {/* Analyse de l'œuvre */}
-            <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+            {/* Analyse de l'œuvre - prend tout l'espace restant */}
+            <div className="bg-white/5 rounded-2xl p-5 border border-white/10 flex-1 flex flex-col">
               <h3 className="text-[#d4a574] font-medium text-sm mb-4 uppercase tracking-wider">Analyse de l'œuvre</h3>
-              <p className="text-gray-300 text-base leading-relaxed mb-6">
+              <p className="text-gray-300 text-sm leading-relaxed flex-1 mb-4">
                 {currentArtwork.description}
               </p>
-              <div className="flex items-start gap-3 p-4 bg-[#d4a574]/10 rounded-xl">
+              <div className="flex items-start gap-3 p-4 bg-[#d4a574]/10 rounded-xl mt-auto">
                 <span className="text-xl">💡</span>
                 <div>
                   <p className="text-[#d4a574] text-sm font-medium mb-1">Le saviez-vous ?</p>
-                  <p className="text-gray-400 text-sm leading-relaxed">
+                  <p className="text-gray-400 text-xs leading-relaxed">
                     {currentArtwork.funFact}
                   </p>
                 </div>

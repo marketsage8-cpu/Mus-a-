@@ -87,7 +87,7 @@ const ExplorePage = () => {
   // Calculate map height based on viewport - laisse de l'espace pour la navigation mobile en bas
   useEffect(() => {
     const updateHeight = () => {
-      const navHeight = 72; // Navigation en haut
+      const navHeight = 72; // Navigation en haut (déjà gérée par mt-[72px])
       const mobileNavHeight = window.innerWidth < 768 ? 80 : 0; // Navigation mobile en bas (64px + safe area)
       setMapHeight(`calc(100vh - ${navHeight}px - ${mobileNavHeight}px)`);
     };
@@ -109,9 +109,9 @@ const ExplorePage = () => {
   const hasActiveFilters = activeFilter !== 'all' || selectedRegion !== 'all' || searchQuery;
 
   return (
-    <div className="relative w-full" style={{ height: mapHeight }}>
+    <div className="relative w-full mt-[72px]" style={{ height: mapHeight }}>
       {/* Barre de filtres en haut */}
-      <div className="absolute top-0 left-0 right-0 z-[1000] p-3">
+      <div className="absolute top-0 left-0 right-0 z-40 p-3">
         {/* Ligne principale de filtres */}
         <div className="bg-stone-900/95 backdrop-blur-sm rounded-xl shadow-lg border border-stone-700 p-2">
           {/* Filtres par type - toujours visibles */}

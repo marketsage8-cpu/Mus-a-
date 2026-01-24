@@ -229,182 +229,160 @@ const DailyArtPage = () => {
           </h1>
         </div>
 
-        {/* Layout principal - Image très grande */}
-        <div className="grid lg:grid-cols-3 gap-6">
-          {/* Image principale - 2/3 de la largeur */}
-          <div className="lg:col-span-2">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
-              <img
-                src={currentArtwork.image}
-                alt={currentArtwork.title}
-                className="w-full h-[60vh] lg:h-[75vh] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-              />
+        {/* IMAGE DE L'ŒUVRE - Pleine largeur en haut */}
+        <div className="relative rounded-2xl overflow-hidden shadow-2xl group mb-6">
+          <img
+            src={currentArtwork.image}
+            alt={currentArtwork.title}
+            className="w-full h-[50vh] lg:h-[60vh] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+          />
 
-              {/* Gradient overlay subtil */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
+          {/* Gradient overlay subtil */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-70" />
 
-              {/* Navigation arrows */}
-              <button
-                onClick={() => navigateArtwork('prev')}
-                className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/30 hover:bg-black/50 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
-              >
-                <ChevronLeft className="w-6 h-6 text-white" />
-              </button>
-              <button
-                onClick={() => navigateArtwork('next')}
-                className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/30 hover:bg-black/50 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
-              >
-                <ChevronRight className="w-6 h-6 text-white" />
-              </button>
+          {/* Navigation arrows */}
+          <button
+            onClick={() => navigateArtwork('prev')}
+            className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/30 hover:bg-black/50 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
+          >
+            <ChevronLeft className="w-6 h-6 text-white" />
+          </button>
+          <button
+            onClick={() => navigateArtwork('next')}
+            className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/30 hover:bg-black/50 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
+          >
+            <ChevronRight className="w-6 h-6 text-white" />
+          </button>
 
-              {/* Actions en haut */}
-              <div className="absolute top-4 right-4 flex gap-2">
-                <button
-                  onClick={() => setIsLiked(!isLiked)}
-                  className={`p-3 rounded-full backdrop-blur-sm transition-all ${
-                    isLiked ? 'bg-red-500/80 text-white' : 'bg-black/30 hover:bg-black/50 text-white'
-                  }`}
-                >
-                  <Heart className={`w-5 h-5 ${isLiked ? 'fill-current' : ''}`} />
-                </button>
-                <button
-                  onClick={() => setIsSaved(!isSaved)}
-                  className={`p-3 rounded-full backdrop-blur-sm transition-all ${
-                    isSaved ? 'bg-[#d4a574]/80 text-[#1a2640]' : 'bg-black/30 hover:bg-black/50 text-white'
-                  }`}
-                >
-                  <Bookmark className={`w-5 h-5 ${isSaved ? 'fill-current' : ''}`} />
-                </button>
-              </div>
+          {/* Actions en haut */}
+          <div className="absolute top-4 right-4 flex gap-2">
+            <button
+              onClick={() => setIsLiked(!isLiked)}
+              className={`p-3 rounded-full backdrop-blur-sm transition-all ${
+                isLiked ? 'bg-red-500/80 text-white' : 'bg-black/30 hover:bg-black/50 text-white'
+              }`}
+            >
+              <Heart className={`w-5 h-5 ${isLiked ? 'fill-current' : ''}`} />
+            </button>
+            <button
+              onClick={() => setIsSaved(!isSaved)}
+              className={`p-3 rounded-full backdrop-blur-sm transition-all ${
+                isSaved ? 'bg-[#d4a574]/80 text-[#1a2640]' : 'bg-black/30 hover:bg-black/50 text-white'
+              }`}
+            >
+              <Bookmark className={`w-5 h-5 ${isSaved ? 'fill-current' : ''}`} />
+            </button>
+          </div>
 
-              {/* Style badge en bas à gauche */}
-              <div className="absolute bottom-4 left-4">
-                <span className="px-4 py-2 bg-black/40 backdrop-blur-sm text-white text-sm font-medium rounded-full">
-                  {currentArtwork.style}
-                </span>
+          {/* Infos de l'œuvre en bas de l'image */}
+          <div className="absolute bottom-0 left-0 right-0 p-6">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <h2 className="font-serif-italic text-2xl lg:text-4xl text-white leading-tight mb-2 drop-shadow-lg">
+                  {currentArtwork.title}
+                </h2>
+                <p className="text-white/90 text-lg">
+                  {currentArtwork.artist}
+                  <span className="text-white/60 text-base ml-2">
+                    {currentArtwork.year < 0 ? `${Math.abs(currentArtwork.year)} av. J.-C.` : currentArtwork.year}
+                  </span>
+                </p>
+                <div className="flex flex-wrap items-center gap-3 mt-2">
+                  <span className="px-3 py-1 bg-black/40 backdrop-blur-sm text-white text-sm rounded-full">
+                    {currentArtwork.style}
+                  </span>
+                  <span className="text-white/70 text-sm">{currentArtwork.medium}</span>
+                  <span className="text-white/50 text-sm flex items-center gap-1">
+                    <MapPin className="w-3 h-3" />
+                    {currentArtwork.location}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Infos - 1/3 de la largeur */}
-          <div className="lg:col-span-1 flex flex-col">
-            {/* Titre et artiste */}
-            <div className="mb-4">
-              <h2 className="font-serif-italic text-2xl lg:text-3xl text-[#d4a574] leading-tight mb-2">
-                {currentArtwork.title}
-              </h2>
-              <p className="text-white text-lg">
-                {currentArtwork.artist}
-                <span className="text-gray-500 text-base ml-2">
-                  {currentArtwork.year < 0 ? `${Math.abs(currentArtwork.year)} av. J.-C.` : currentArtwork.year}
-                </span>
-              </p>
-            </div>
+        {/* SECTION ARTISTE - 3 colonnes: Photo/Nom | Biographie | Anecdotes */}
+        {currentArtwork.artistImage && (
+          <div className="bg-white/5 rounded-2xl p-6 mb-6 border border-white/10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Colonne 1: Photo et Nom de l'artiste */}
+              <div className="flex flex-col items-center md:items-start text-center md:text-left">
+                <img
+                  src={currentArtwork.artistImage}
+                  alt={currentArtwork.artist}
+                  className="w-24 h-24 lg:w-32 lg:h-32 rounded-full object-cover border-3 border-[#d4a574]/50 mb-4"
+                />
+                <h3 className="text-[#d4a574] font-medium text-sm mb-1 uppercase tracking-wider">L'artiste</h3>
+                <p className="text-white text-xl font-semibold">{currentArtwork.artist}</p>
+              </div>
 
-            {/* Détails compacts */}
-            <div className="flex flex-wrap gap-2 mb-4">
-              <span className="px-3 py-1.5 bg-white/5 text-gray-300 text-sm rounded-lg">{currentArtwork.medium}</span>
-              <span className="px-3 py-1.5 bg-white/5 text-gray-300 text-sm rounded-lg">{currentArtwork.dimensions}</span>
-            </div>
-
-            {/* Localisation */}
-            <p className="text-gray-400 text-sm flex items-center gap-2 mb-4">
-              <MapPin className="w-4 h-4 text-[#d4a574]" />
-              {currentArtwork.location}
-            </p>
-
-            {/* Description courte */}
-            <p className="text-gray-300 text-sm leading-relaxed mb-4">
-              {currentArtwork.description}
-            </p>
-
-            {/* Fun fact */}
-            <p className="text-gray-500 text-xs leading-relaxed mb-4">
-              💡 {currentArtwork.funFact}
-            </p>
-
-            {/* Section Artiste */}
-            {currentArtwork.artistImage && (
-              <div className="bg-white/5 rounded-xl p-4 mb-4 border border-white/10">
-                <div className="flex gap-4 mb-3">
-                  <img
-                    src={currentArtwork.artistImage}
-                    alt={currentArtwork.artist}
-                    className="w-16 h-16 rounded-full object-cover border-2 border-[#d4a574]/50"
-                  />
-                  <div className="flex-1">
-                    <h3 className="text-[#d4a574] font-medium text-sm mb-1">L'artiste</h3>
-                    <p className="text-white text-sm font-semibold">{currentArtwork.artist}</p>
-                  </div>
-                </div>
-
+              {/* Colonne 2: Biographie */}
+              <div className="flex flex-col">
+                <h3 className="text-[#d4a574] font-medium text-sm mb-3 uppercase tracking-wider">Biographie</h3>
                 {currentArtwork.artistBio && (
-                  <p className="text-gray-400 text-xs leading-relaxed mb-3">
+                  <p className="text-gray-300 text-sm leading-relaxed">
                     {currentArtwork.artistBio}
                   </p>
                 )}
+              </div>
 
+              {/* Colonne 3: Anecdotes */}
+              <div className="flex flex-col">
+                <h3 className="text-[#d4a574] font-medium text-sm mb-3 uppercase tracking-wider">Anecdotes</h3>
                 {currentArtwork.artistAnecdotes && currentArtwork.artistAnecdotes.length > 0 && (
-                  <div className="space-y-2">
-                    <p className="text-[#d4a574] text-xs font-medium uppercase tracking-wider">Anecdotes</p>
+                  <div className="space-y-3">
                     {currentArtwork.artistAnecdotes.map((anecdote, index) => (
-                      <div key={index} className="flex gap-2 text-xs text-gray-400">
-                        <span className="text-[#d4a574]">•</span>
+                      <div key={index} className="flex gap-3 text-sm text-gray-300">
+                        <span className="text-[#d4a574] text-lg">•</span>
                         <span>{anecdote}</span>
                       </div>
                     ))}
                   </div>
                 )}
               </div>
-            )}
-
-            {/* Œuvres précédentes */}
-            <div className="mt-auto">
-              <p className="text-gray-500 text-xs uppercase tracking-wider mb-3">Voir aussi</p>
-              <div className="grid grid-cols-3 gap-2">
-                {previousArtworks.slice(0, 3).map((artwork) => (
-                  <button
-                    key={artwork.id}
-                    onClick={() => selectArtwork(artwork)}
-                    className="relative aspect-square rounded-lg overflow-hidden group/thumb"
-                  >
-                    <img
-                      src={artwork.image}
-                      alt={artwork.title}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover/thumb:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                  </button>
-                ))}
-              </div>
             </div>
+          </div>
+        )}
+
+        {/* Description et Fun Fact */}
+        <div className="bg-white/5 rounded-2xl p-6 mb-6 border border-white/10">
+          <h3 className="text-[#d4a574] font-medium text-sm mb-3 uppercase tracking-wider">À propos de l'œuvre</h3>
+          <p className="text-gray-300 text-sm leading-relaxed mb-4">
+            {currentArtwork.description}
+          </p>
+          <div className="flex items-start gap-3 p-4 bg-[#d4a574]/10 rounded-xl">
+            <span className="text-xl">💡</span>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              {currentArtwork.funFact}
+            </p>
           </div>
         </div>
 
-        {/* Galerie horizontale des autres œuvres */}
-        <div className="mt-8 pb-4">
-          <p className="text-gray-500 text-sm mb-4">Autres œuvres</p>
-          <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide">
+        {/* Œuvres précédentes - grille */}
+        <div className="mb-6">
+          <p className="text-gray-500 text-sm uppercase tracking-wider mb-4">Voir aussi</p>
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
             {previousArtworks.map((artwork) => (
               <button
                 key={artwork.id}
                 onClick={() => selectArtwork(artwork)}
-                className="group relative flex-shrink-0 w-36 h-48 rounded-xl overflow-hidden"
+                className="relative aspect-square rounded-xl overflow-hidden group/thumb"
               >
                 <img
                   src={artwork.image}
                   alt={artwork.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover/thumb:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-3">
-                  <p className="text-white text-xs font-medium line-clamp-2">{artwork.title}</p>
-                  <p className="text-gray-400 text-[10px] mt-0.5">{artwork.artist}</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                <div className="absolute bottom-2 left-2 right-2">
+                  <p className="text-white text-xs font-medium line-clamp-1">{artwork.title}</p>
                 </div>
               </button>
             ))}
           </div>
         </div>
+
       </div>
     </div>
   );

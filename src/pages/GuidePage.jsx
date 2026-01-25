@@ -123,7 +123,7 @@ const GuidePage = () => {
   return (
     <div className="min-h-screen pt-20 pb-24 md:pb-8 bg-night-950">
       {/* Hero Header */}
-      <div className="relative overflow-hidden">
+      <div className="relative">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-20"
           style={{
@@ -139,20 +139,23 @@ const GuidePage = () => {
               <span className="text-[#d4af37] text-sm font-medium font-serif-italic">Guides certifiés & passionnés</span>
             </div>
 
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[#f5f0e6] mb-4">
-              Vivez l'Art avec nos{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f5d76e] to-[#d4af37]">
-                Guides Experts
-              </span>
+            <h1
+              className="font-serif-italic text-4xl md:text-5xl lg:text-6xl mb-4"
+              style={{ color: '#d4a574' }}
+            >
+              Vivez l'Art avec nos Guides Experts
             </h1>
 
-            <p className="text-[#c4b69c]/80 text-lg md:text-xl max-w-2xl mx-auto font-body">
+            <p
+              className="text-lg md:text-xl max-w-2xl mx-auto"
+              style={{ color: '#9ca3af' }}
+            >
               Découvrez les plus grands musées accompagné par des conférenciers d'exception
             </p>
           </div>
 
           {/* Barre de recherche */}
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-3xl mx-auto relative">
             <div className="relative">
               <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 text-stone-400" />
               <input
@@ -180,7 +183,7 @@ const GuidePage = () => {
 
             {/* Dropdown des résultats de recherche */}
             {searchQuery && !selectedPlace && filteredPlaces.length > 0 && (
-              <div className="absolute left-0 right-0 mt-2 mx-auto max-w-3xl bg-stone-900 border border-stone-700/50 rounded-xl shadow-2xl overflow-hidden z-50 max-h-[70vh] overflow-y-auto">
+              <div className="absolute left-0 right-0 mt-2 bg-stone-900 border border-stone-700/50 rounded-xl shadow-2xl z-50 max-h-[70vh] overflow-y-auto">
                 {filteredPlaces.map((place) => (
                   <button
                     key={place.id}
@@ -213,7 +216,7 @@ const GuidePage = () => {
 
             {/* Message si aucun résultat */}
             {searchQuery && !selectedPlace && filteredPlaces.length === 0 && (
-              <div className="absolute left-0 right-0 mt-2 mx-auto max-w-3xl bg-stone-900 border border-stone-700/50 rounded-xl p-6 text-center z-50">
+              <div className="absolute left-0 right-0 mt-2 bg-stone-900 border border-stone-700/50 rounded-xl p-6 text-center z-50">
                 <p className="text-stone-400">Aucun lieu trouvé pour "{searchQuery}"</p>
               </div>
             )}

@@ -579,21 +579,77 @@ const ProfilePage = () => {
             ============================================ */}
         {activeTab === 'favoris' && (
           <div className="max-w-2xl mx-auto px-6 pt-8">
-            <div className="bg-gradient-to-br from-night-800/70 to-night-900/50 backdrop-blur-xl border border-night-700/50 rounded-3xl p-8 shadow-2xl">
-              <div className="flex items-center justify-center gap-3 mb-6">
-                <Heart className="w-6 h-6 text-gold-400" />
-                <h2 className="font-display text-2xl font-bold text-sand-100">Mes Favoris</h2>
+            <div className="bg-gradient-to-br from-night-800/70 to-night-900/50 backdrop-blur-xl border border-night-700/50 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6">
+              {/* Header avec icône et titre */}
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center mb-4">
+                  <div className="relative px-6 py-2">
+                    <div className="absolute inset-0 bg-gradient-to-r from-gold-500/20 via-gold-500/10 to-gold-500/20 rounded-lg" />
+                    <div className="absolute inset-0 border border-gold-500/40 rounded-lg" />
+                    <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-gold-500 rounded-tl-lg" />
+                    <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-gold-500 rounded-tr-lg" />
+                    <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-gold-500 rounded-bl-lg" />
+                    <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-gold-500 rounded-br-lg" />
+                    <p className="relative text-sm uppercase tracking-[0.2em] text-gold-400 font-semibold flex items-center gap-2">
+                      <Heart className="w-4 h-4" />
+                      Collection
+                    </p>
+                  </div>
+                </div>
+                <h2 className="font-display text-2xl sm:text-3xl font-bold text-sand-100 mb-2">
+                  Mes Favoris
+                </h2>
+                <p className="text-sand-400 text-sm">
+                  Vos lieux culturels préférés
+                </p>
               </div>
-              <p className="text-center text-sand-400 mb-6">
-                Vous avez {stats.totalFavorites} lieu{stats.totalFavorites > 1 ? 'x' : ''} en favoris.
-              </p>
-              <div className="flex justify-center">
-                <Link
-                  to="/favoris"
-                  className="px-6 py-3 bg-gradient-to-r from-gold-500 to-gold-600 text-night-950 rounded-xl font-semibold hover:from-gold-400 hover:to-gold-500 transition-all"
-                >
-                  Voir tous mes favoris
-                </Link>
+
+              {/* Séparateur décoratif */}
+              <div className="h-px bg-gradient-to-r from-transparent via-gold-500/30 to-transparent" />
+
+              {/* Statistiques */}
+              <div className="grid grid-cols-3 gap-4">
+                <div className="text-center p-4 bg-night-800/40 rounded-xl border border-night-700/30">
+                  <div className="text-2xl font-bold text-gold-400">{stats.totalFavorites}</div>
+                  <div className="text-xs text-sand-500 mt-1">Favoris</div>
+                </div>
+                <div className="text-center p-4 bg-night-800/40 rounded-xl border border-night-700/30">
+                  <div className="text-2xl font-bold text-turquoise-400">{stats.totalVisited || 0}</div>
+                  <div className="text-xs text-sand-500 mt-1">Visités</div>
+                </div>
+                <div className="text-center p-4 bg-night-800/40 rounded-xl border border-night-700/30">
+                  <div className="text-2xl font-bold text-purple-400">{unlockedBadgesCount}</div>
+                  <div className="text-xs text-sand-500 mt-1">Badges</div>
+                </div>
+              </div>
+
+              {/* Séparateur décoratif */}
+              <div className="h-px bg-gradient-to-r from-transparent via-night-700/50 to-transparent" />
+
+              {/* Message et CTA */}
+              <div className="text-center space-y-4">
+                <p className="text-sand-300">
+                  {stats.totalFavorites > 0
+                    ? `Vous avez ${stats.totalFavorites} lieu${stats.totalFavorites > 1 ? 'x' : ''} en favoris.`
+                    : "Vous n'avez pas encore de favoris. Explorez la carte pour en ajouter !"
+                  }
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <Link
+                    to="/favoris"
+                    className="px-6 py-3 bg-gradient-to-r from-gold-500 to-gold-600 text-night-950 rounded-xl font-semibold hover:from-gold-400 hover:to-gold-500 transition-all shadow-lg shadow-gold-500/20 flex items-center justify-center gap-2"
+                  >
+                    <Heart className="w-5 h-5" />
+                    Voir mes favoris
+                  </Link>
+                  <Link
+                    to="/explore"
+                    className="px-6 py-3 bg-night-800/60 text-sand-200 rounded-xl font-semibold hover:bg-night-700/60 transition-all border border-night-700/50 hover:border-gold-500/30 flex items-center justify-center gap-2"
+                  >
+                    <Compass className="w-5 h-5" />
+                    Explorer la carte
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

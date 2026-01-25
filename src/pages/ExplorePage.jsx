@@ -126,23 +126,48 @@ const ExplorePage = () => {
       <div className="absolute top-0 left-0 right-0 z-40 p-3 md:p-4">
         {/* Container principal avec effet glass morphism */}
         <div className="bg-gradient-to-b from-night-900/95 to-night-950/95 backdrop-blur-md rounded-2xl shadow-2xl border border-gold-600/20 overflow-hidden">
-          {/* Header décoratif */}
+          {/* Header avec barre de recherche */}
           <div className="relative px-4 py-3 border-b border-gold-600/10">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="p-2 rounded-xl bg-gradient-to-br from-gold-500/20 to-gold-600/10 border border-gold-500/20">
-                  <MapPin className="w-5 h-5 text-gold-400" />
+            <div className="flex flex-col gap-3">
+              {/* Ligne 1: Titre et compteur */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-xl bg-gradient-to-br from-gold-500/20 to-gold-600/10 border border-gold-500/20">
+                    <MapPin className="w-5 h-5 text-gold-400" />
+                  </div>
+                  <div>
+                    <h2 className="font-display text-lg text-sand-100 tracking-wide">Explorer</h2>
+                    <p className="text-xs text-sand-300/60">Découvrez les trésors culturels</p>
+                  </div>
                 </div>
-                <div>
-                  <h2 className="font-display text-lg text-sand-100 tracking-wide">Explorer</h2>
-                  <p className="text-xs text-sand-300/60">Découvrez les trésors culturels</p>
+                {/* Compteur total avec animation */}
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-night-800/50 border border-night-700">
+                  <Sparkles className="w-4 h-4 text-gold-400 animate-pulse" />
+                  <span className="text-sm font-medium text-sand-200">{filteredPlaces.length}</span>
+                  <span className="text-xs text-sand-400">lieux</span>
                 </div>
               </div>
-              {/* Compteur total avec animation */}
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-night-800/50 border border-night-700">
-                <Sparkles className="w-4 h-4 text-gold-400 animate-pulse" />
-                <span className="text-sm font-medium text-sand-200">{filteredPlaces.length}</span>
-                <span className="text-xs text-sand-400">lieux</span>
+
+              {/* Ligne 2: Barre de recherche visible en permanence */}
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <Search className="w-5 h-5 text-gold-500/50 group-focus-within:text-gold-400 transition-colors" />
+                </div>
+                <input
+                  type="text"
+                  placeholder="Rechercher un musée, château, monument..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full bg-night-800/60 border border-night-700/50 rounded-xl pl-12 pr-10 py-2.5 text-sand-100 placeholder-sand-500/50 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500/30 transition-all font-body"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-full text-sand-500 hover:text-sand-200 hover:bg-night-700/50 transition-colors"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                )}
               </div>
             </div>
             {/* Ligne décorative dorée */}
@@ -202,28 +227,6 @@ const ExplorePage = () => {
             showFilters ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           }`}>
             <div className="px-4 pb-4 space-y-4 border-t border-gold-600/10 pt-4">
-              {/* Recherche avec style amélioré */}
-              <div className="relative group">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <Search className="w-5 h-5 text-gold-500/50 group-focus-within:text-gold-400 transition-colors" />
-                </div>
-                <input
-                  type="text"
-                  placeholder="Rechercher un musée, château, monument..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-night-800/60 border border-night-700/50 rounded-xl pl-12 pr-10 py-3 text-sand-100 placeholder-sand-500/50 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500/30 transition-all font-body"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-full text-sand-500 hover:text-sand-200 hover:bg-night-700/50 transition-colors"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                )}
-              </div>
-
               {/* Filtre par région avec style amélioré */}
               <div className="flex items-center gap-3">
                 <label className="text-sand-400 text-sm whitespace-nowrap font-body flex items-center gap-2">

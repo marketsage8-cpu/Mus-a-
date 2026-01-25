@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { X, Heart, MapPin, Star, Clock, Euro, Calendar, Check, ExternalLink, Users, Compass } from 'lucide-react';
+import { X, Heart, MapPin, Star, Clock, Euro, Calendar, Check, ExternalLink, Users } from 'lucide-react';
 import Badge, { TemporaryBadge } from '../ui/Badge';
 import { useUser } from '../../context/UserContext';
 
@@ -151,33 +151,21 @@ const PlaceDetailModal = ({ place, isOpen, onClose }) => {
             </div>
           </div>
 
-          {/* Boutons Guide et Rencontrer */}
+          {/* Bouton Rencontrer */}
           <div className="mb-6">
             <h3 className="font-display text-xl font-semibold text-amber-50 mb-3">
               Voulez-vous visiter ce lieu accompagné ?
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <button
-                onClick={() => {
-                  onClose();
-                  navigate(`/guides?place=${encodeURIComponent(place.name)}`);
-                }}
-                className="flex items-center justify-center gap-3 py-4 px-6 bg-gradient-to-r from-[#d4a574] to-[#c49464] text-[#243350] rounded-xl font-semibold transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-[#d4a574]/30"
-              >
-                <Compass className="w-5 h-5" />
-                Trouver un guide
-              </button>
-              <button
-                onClick={() => {
-                  onClose();
-                  navigate(`/events?place=${encodeURIComponent(place.name)}`);
-                }}
-                className="flex items-center justify-center gap-3 py-4 px-6 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-xl font-semibold transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-purple-500/30"
-              >
-                <Users className="w-5 h-5" />
-                Rencontrer des visiteurs
-              </button>
-            </div>
+            <button
+              onClick={() => {
+                onClose();
+                navigate(`/events?place=${encodeURIComponent(place.name)}`);
+              }}
+              className="w-full flex items-center justify-center gap-3 py-4 px-6 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-xl font-semibold transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-purple-500/30"
+            >
+              <Users className="w-5 h-5" />
+              Rencontrer des visiteurs
+            </button>
           </div>
 
           {/* Actions */}

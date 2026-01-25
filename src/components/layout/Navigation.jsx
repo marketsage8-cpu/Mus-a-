@@ -16,7 +16,6 @@ const Navigation = () => {
   const navLinks = [
     { path: '/', label: 'Accueil' },
     { path: '/explore', label: 'Carte' },
-    { path: '/guides', label: 'Guides' },
     { path: '/decouverte', label: 'Œuvre du jour' },
     { path: '/events', label: 'Rencontres' }
   ];

@@ -183,7 +183,12 @@ const GuidePage = () => {
 
             {/* Dropdown des résultats de recherche */}
             {searchQuery && !selectedPlace && filteredPlaces.length > 0 && (
-              <div className="absolute left-0 right-0 mt-2 bg-stone-900 border border-stone-700/50 rounded-xl shadow-2xl z-50 max-h-[70vh] overflow-y-auto">
+              <div
+                className="absolute left-0 right-0 mt-2 bg-stone-900 border border-stone-700/50 rounded-xl shadow-2xl z-50 max-h-[70vh] overflow-y-auto"
+                style={{
+                  animation: 'fadeInUp 0.4s ease-out 0.2s both'
+                }}
+              >
                 {filteredPlaces.map((place) => (
                   <button
                     key={place.id}
@@ -393,7 +398,14 @@ const GuidePage = () => {
 
       {/* Section par défaut - Lieux populaires */}
       {!selectedPlace && (
-        <div className="max-w-7xl mx-auto px-4 py-12">
+        <div
+          className={`transition-all duration-500 ease-out overflow-hidden ${
+            searchQuery
+              ? 'opacity-0 max-h-0 scale-95'
+              : 'opacity-100 max-h-[3000px] scale-100'
+          }`}
+        >
+          <div className="max-w-7xl mx-auto px-4 py-12">
           <div className="text-center mb-10">
             <h2 className="font-display text-3xl font-bold text-[#f5f0e6] mb-3">
               Lieux <span className="text-[#d4af37]">populaires</span>
@@ -476,6 +488,7 @@ const GuidePage = () => {
               ))}
             </div>
           </div>
+        </div>
         </div>
       )}
     </div>

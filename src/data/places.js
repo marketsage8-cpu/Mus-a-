@@ -7,9 +7,6 @@
 const PLACEHOLDER_IMAGE = "https://images.unsplash.com/photo-1594322436404-5a0526db4d13?w=800&q=80&fit=crop&txt=Photo+bient%C3%B4t+disponible&txt-color=ffffff&txt-size=24&txt-align=center,middle&bg=2d3748";
 
 export const places = [
-  // ============================================
-  // MUSÉES (50)
-  // ============================================
   {
     id: 1,
     name: "Musée du Louvre",
@@ -810,12 +807,8 @@ export const places = [
     visited: false,
     favorite: false
   },
-
-  // ============================================
-  // MUSÉES SUPPLÉMENTAIRES (100)
-  // ============================================
   {
-    id: 121,
+    id: 51,
     name: "Musée de l'Air et de l'Espace",
     type: "musée",
     image: "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=800&q=80",
@@ -831,7 +824,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 122,
+    id: 52,
     name: "Musée de la Chasse et de la Nature",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -847,7 +840,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 123,
+    id: 53,
     name: "Musée Nissim de Camondo",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -863,7 +856,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 124,
+    id: 54,
     name: "Musée de Montmartre",
     type: "musée",
     image: "https://images.unsplash.com/photo-1550340499-a6c60fc8287c?w=800&q=80",
@@ -879,7 +872,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 125,
+    id: 55,
     name: "Musée Zadkine",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -895,7 +888,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 126,
+    id: 56,
     name: "Musée Bourdelle",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -911,7 +904,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 127,
+    id: 57,
     name: "Musée de la Vie Romantique",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -927,7 +920,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 128,
+    id: 58,
     name: "Musée Cognacq-Jay",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -943,7 +936,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 129,
+    id: 59,
     name: "Musée d'Art et d'Histoire du Judaïsme",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -959,7 +952,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 130,
+    id: 60,
     name: "Musée National Jean-Jacques Henner",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -975,7 +968,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 131,
+    id: 61,
     name: "Musée Gustave Moreau",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -991,7 +984,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 132,
+    id: 62,
     name: "Musée de la Monnaie de Paris",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1007,7 +1000,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 133,
+    id: 63,
     name: "Musée Cernuschi",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1023,7 +1016,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 134,
+    id: 64,
     name: "Musée des Arts Asiatiques - Guimet",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1039,7 +1032,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 135,
+    id: 65,
     name: "Musée de la Libération de Paris",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1055,7 +1048,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 136,
+    id: 66,
     name: "Musée d'Archéologie Nationale",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1071,7 +1064,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 137,
+    id: 67,
     name: "Musée Maurice Denis",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1087,7 +1080,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 138,
+    id: 68,
     name: "Musée Français de la Photographie",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1103,7 +1096,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 139,
+    id: 69,
     name: "Musée Départemental Albert-Kahn",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1119,7 +1112,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 140,
+    id: 70,
     name: "Musée Lambinet",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1135,7 +1128,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 141,
+    id: 71,
     name: "Musée de la Céramique de Sèvres",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1151,7 +1144,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 142,
+    id: 72,
     name: "Musée Dapper",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1167,7 +1160,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 143,
+    id: 73,
     name: "Musée des Égouts de Paris",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1183,7 +1176,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 144,
+    id: 74,
     name: "Musée des Plans-Reliefs",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1199,7 +1192,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 145,
+    id: 75,
     name: "Musée Delacroix",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1215,7 +1208,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 146,
+    id: 76,
     name: "Musée de l'Assistance Publique",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1231,7 +1224,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 147,
+    id: 77,
     name: "Musée de l'Ordre de la Libération",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1247,7 +1240,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 148,
+    id: 78,
     name: "Musée National du Sport",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1263,7 +1256,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 149,
+    id: 79,
     name: "Musée Océanographique de Monaco",
     type: "musée",
     image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
@@ -1279,7 +1272,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 150,
+    id: 80,
     name: "Musée Massena",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1295,7 +1288,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 151,
+    id: 81,
     name: "Musée des Beaux-Arts de Nice",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1311,7 +1304,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 152,
+    id: 82,
     name: "MAMAC Nice",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1327,7 +1320,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 153,
+    id: 83,
     name: "Musée Cantini",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1343,7 +1336,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 154,
+    id: 84,
     name: "Musée d'Histoire de Marseille",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1359,7 +1352,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 155,
+    id: 85,
     name: "Musée Regards de Provence",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1375,7 +1368,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 156,
+    id: 86,
     name: "Musée de la Romanité",
     type: "musée",
     image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80",
@@ -1391,7 +1384,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 157,
+    id: 87,
     name: "Musée des Beaux-Arts de Nîmes",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1407,7 +1400,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 158,
+    id: 88,
     name: "Musée de l'Arles Antique",
     type: "musée",
     image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80",
@@ -1423,7 +1416,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 159,
+    id: 89,
     name: "Fondation Vincent van Gogh Arles",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1439,7 +1432,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 160,
+    id: 90,
     name: "Fondation Maeght",
     type: "musée",
     image: "https://images.unsplash.com/photo-1580981454360-3c6d3eb19b45?w=800&q=80",
@@ -1455,7 +1448,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 161,
+    id: 91,
     name: "Musée Renoir - Les Collettes",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1471,7 +1464,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 162,
+    id: 92,
     name: "Musée d'Art Moderne de Céret",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1487,7 +1480,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 163,
+    id: 93,
     name: "Musée Hyacinthe Rigaud",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1503,7 +1496,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 164,
+    id: 94,
     name: "Musée des Abattoirs",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1519,7 +1512,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 165,
+    id: 95,
     name: "Fondation Bemberg",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1535,7 +1528,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 166,
+    id: 96,
     name: "Musée Saint-Raymond",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1551,7 +1544,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 167,
+    id: 97,
     name: "Cité de l'Espace",
     type: "musée",
     image: "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=800&q=80",
@@ -1567,7 +1560,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 168,
+    id: 98,
     name: "Musée du Vieux Toulouse",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1583,7 +1576,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 169,
+    id: 99,
     name: "Musée Ingres Bourdelle",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1599,7 +1592,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 170,
+    id: 100,
     name: "Musée Basque et de l'Histoire de Bayonne",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1615,7 +1608,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 171,
+    id: 101,
     name: "Musée Bonnat-Helleu",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1631,7 +1624,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 172,
+    id: 102,
     name: "Musée d'Aquitaine",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1647,7 +1640,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 173,
+    id: 103,
     name: "Cité du Vin",
     type: "musée",
     image: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&q=80",
@@ -1663,7 +1656,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 174,
+    id: 104,
     name: "Musée des Arts Décoratifs et du Design",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1679,7 +1672,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 175,
+    id: 105,
     name: "Musée National Fernand Léger",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1695,7 +1688,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 176,
+    id: 106,
     name: "Musée Magnin",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1711,7 +1704,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 177,
+    id: 107,
     name: "Musée de la Vie Bourguignonne",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1727,7 +1720,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 178,
+    id: 108,
     name: "Musée Rolin",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1743,7 +1736,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 179,
+    id: 109,
     name: "Musée du Temps",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1759,7 +1752,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 180,
+    id: 110,
     name: "Musée des Beaux-Arts et d'Archéologie de Besançon",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1775,7 +1768,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 181,
+    id: 111,
     name: "Musée Comtois",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1791,7 +1784,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 182,
+    id: 112,
     name: "Musée du Jouet",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1807,7 +1800,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 183,
+    id: 113,
     name: "Musée d'Art Moderne et Contemporain de Strasbourg",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1823,7 +1816,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 184,
+    id: 114,
     name: "Musée de l'Œuvre Notre-Dame",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1839,7 +1832,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 185,
+    id: 115,
     name: "Musée Alsacien",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1855,7 +1848,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 186,
+    id: 116,
     name: "Musée Historique de Strasbourg",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1871,7 +1864,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 187,
+    id: 117,
     name: "Palais Rohan",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1887,7 +1880,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 188,
+    id: 118,
     name: "Musée Tomi Ungerer",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1903,7 +1896,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 189,
+    id: 119,
     name: "Musée du Chocolat",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1919,7 +1912,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 190,
+    id: 120,
     name: "Centre Pompidou-Metz",
     type: "musée",
     image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80",
@@ -1935,7 +1928,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 191,
+    id: 121,
     name: "Musée de la Cour d'Or",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1951,7 +1944,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 192,
+    id: 122,
     name: "Musée de la Chartreuse",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1967,7 +1960,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 193,
+    id: 123,
     name: "Musée des Beaux-Arts de Valenciennes",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1983,7 +1976,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 194,
+    id: 124,
     name: "Musée de Picardie",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -1999,7 +1992,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 195,
+    id: 125,
     name: "Musée de l'Hôtel Sandelin",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2015,7 +2008,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 196,
+    id: 126,
     name: "Musée des Beaux-Arts d'Arras",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2031,7 +2024,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 197,
+    id: 127,
     name: "Musée de Flandre",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2047,7 +2040,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 198,
+    id: 128,
     name: "Musée des Beaux-Arts de Tours",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2063,7 +2056,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 199,
+    id: 129,
     name: "Musée des Beaux-Arts d'Orléans",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2079,7 +2072,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 200,
+    id: 130,
     name: "Musée de Sologne",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2095,7 +2088,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 201,
+    id: 131,
     name: "Musée Dobree",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2111,7 +2104,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 202,
+    id: 132,
     name: "Musée d'Arts de Nantes",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2127,7 +2120,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 203,
+    id: 133,
     name: "Machines de l'île",
     type: "musée",
     image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
@@ -2143,7 +2136,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 204,
+    id: 134,
     name: "Musée Jean Lurçat",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2159,7 +2152,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 205,
+    id: 135,
     name: "Musée des Beaux-Arts d'Angers",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2175,7 +2168,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 206,
+    id: 136,
     name: "Musée du Mans - Tessé",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2191,7 +2184,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 207,
+    id: 137,
     name: "Musée 24 Heures du Mans",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2207,7 +2200,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 208,
+    id: 138,
     name: "Musée de Bretagne",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2223,7 +2216,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 209,
+    id: 139,
     name: "Musée des Beaux-Arts de Rennes",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2239,7 +2232,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 210,
+    id: 140,
     name: "Musée de la Pêche",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2255,7 +2248,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 211,
+    id: 141,
     name: "Musée de Pont-Aven",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2271,7 +2264,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 212,
+    id: 142,
     name: "Musée des Beaux-Arts de Quimper",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2287,7 +2280,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 213,
+    id: 143,
     name: "Musée National de la Marine - Brest",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2303,7 +2296,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 214,
+    id: 144,
     name: "Océanopolis",
     type: "musée",
     image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
@@ -2319,7 +2312,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 215,
+    id: 145,
     name: "Musée de Normandie",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2335,7 +2328,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 216,
+    id: 146,
     name: "Mémorial de Caen",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2351,7 +2344,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 217,
+    id: 147,
     name: "Musée des Beaux-Arts André Malraux",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2367,7 +2360,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 218,
+    id: 148,
     name: "Appartement témoin Perret",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2383,7 +2376,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 219,
+    id: 149,
     name: "Musée Eugène Boudin",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2399,7 +2392,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 220,
+    id: 150,
     name: "Maisons Satie",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2414,12 +2407,8 @@ export const places = [
     visited: false,
     favorite: false
   },
-
-  // ============================================
-  // MUSÉES SUPPLÉMENTAIRES (50) - France
-  // ============================================
   {
-    id: 221,
+    id: 151,
     name: "Musée de la Piscine",
     type: "musée",
     image: "https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?w=800&q=80",
@@ -2435,87 +2424,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 222,
-    name: "Musée des Confluences",
-    type: "musée",
-    image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=800&q=80",
-    description: "Sciences et sociétés dans une architecture déconstructiviste spectaculaire.",
-    location: "Lyon, Auvergne-Rhône-Alpes",
-    rating: 4.6,
-    price: "12€",
-    hours: "10h30 - 18h30 (fermé lundi)",
-    period: "Origines - Contemporain",
-    coordinates: { lat: 45.7326, lng: 4.8188 },
-    highlights: ["Architecture Coop Himmelb(l)au", "Mammouths", "Météorites"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 223,
-    name: "Musée Unterlinden",
-    type: "musée",
-    image: PLACEHOLDER_IMAGE,
-    description: "Chef-d'œuvre médiéval et art moderne dans un ancien couvent dominicain.",
-    location: "Colmar, Grand Est",
-    rating: 4.7,
-    price: "13€",
-    hours: "9h - 18h (fermé mardi)",
-    period: "Moyen Âge - XXIe siècle",
-    coordinates: { lat: 48.0794, lng: 7.3544 },
-    highlights: ["Retable d'Issenheim", "Extension Herzog & de Meuron", "Art rhénan"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 224,
-    name: "Musée Soulages",
-    type: "musée",
-    image: "https://images.unsplash.com/photo-1580981454360-3c6d3eb19b45?w=800&q=80",
-    description: "Monographie du maître de l'outrenoir dans une architecture minérale.",
-    location: "Rodez, Occitanie",
-    rating: 4.6,
-    price: "11€",
-    hours: "10h - 18h (fermé lundi)",
-    period: "XXe - XXIe siècle",
-    coordinates: { lat: 44.3533, lng: 2.5753 },
-    highlights: ["Outrenoir", "Vitraux de Conques", "Architecture RCR"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 225,
-    name: "Musée des Abattoirs",
-    type: "musée",
-    image: PLACEHOLDER_IMAGE,
-    description: "Art moderne et contemporain dans d'anciens abattoirs réhabilités.",
-    location: "Toulouse, Occitanie",
-    rating: 4.4,
-    price: "9€",
-    hours: "12h - 18h (fermé lundi)",
-    period: "XXe - XXIe siècle",
-    coordinates: { lat: 43.6006, lng: 1.4286 },
-    highlights: ["Rideau de Picasso", "Art brut", "Expositions temporaires"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 226,
-    name: "Musée des Impressionnismes Giverny",
-    type: "musée",
-    image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=800&q=80",
-    description: "L'impressionnisme international au cœur du village de Monet.",
-    location: "Giverny, Normandie",
-    rating: 4.5,
-    price: "10€",
-    hours: "10h - 18h (fermé lundi)",
-    period: "XIXe - XXe siècle",
-    coordinates: { lat: 49.0758, lng: 1.5339 },
-    highlights: ["Monet", "Impressionnisme américain", "Jardins"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 227,
+    id: 152,
     name: "Musée de la Mer",
     type: "musée",
     image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
@@ -2531,7 +2440,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 228,
+    id: 153,
     name: "Musée Lalique",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2547,7 +2456,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 229,
+    id: 154,
     name: "Musée de l'Automobile de Mulhouse",
     type: "musée",
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
@@ -2563,7 +2472,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 230,
+    id: 155,
     name: "Cité du Train",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2579,23 +2488,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 231,
-    name: "Musée de l'Air et de l'Espace",
-    type: "musée",
-    image: "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=800&q=80",
-    description: "Histoire de l'aviation sur l'aéroport du Bourget.",
-    location: "Le Bourget, Île-de-France",
-    rating: 4.5,
-    price: "Gratuit",
-    hours: "10h - 18h (fermé lundi)",
-    period: "XIXe - XXIe siècle",
-    coordinates: { lat: 48.9469, lng: 2.4389 },
-    highlights: ["Concorde", "Ariane 5", "Blériot XI"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 232,
+    id: 156,
     name: "Musée de la Grande Guerre",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2611,7 +2504,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 233,
+    id: 157,
     name: "Musée de la Bande Dessinée",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2627,7 +2520,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 234,
+    id: 158,
     name: "Musée de Préhistoire des Eyzies",
     type: "musée",
     image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80",
@@ -2643,55 +2536,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 235,
-    name: "Musée d'Art Moderne de Saint-Étienne",
-    type: "musée",
-    image: PLACEHOLDER_IMAGE,
-    description: "Deuxième collection d'art moderne en France.",
-    location: "Saint-Étienne, Auvergne-Rhône-Alpes",
-    rating: 4.4,
-    price: "6.50€",
-    hours: "10h - 18h (fermé mardi)",
-    period: "XXe - XXIe siècle",
-    coordinates: { lat: 45.4439, lng: 4.3872 },
-    highlights: ["Fernand Léger", "Andy Warhol", "Design"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 236,
-    name: "Musée Toulouse-Lautrec",
-    type: "musée",
-    image: PLACEHOLDER_IMAGE,
-    description: "La plus grande collection au monde de l'artiste albigeois.",
-    location: "Albi, Occitanie",
-    rating: 4.6,
-    price: "10€",
-    hours: "9h - 18h",
-    period: "XIXe siècle",
-    coordinates: { lat: 43.9283, lng: 2.1478 },
-    highlights: ["Affiches Moulin Rouge", "Palais de la Berbie", "Vie parisienne"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 237,
-    name: "Musée de l'École de Nancy",
-    type: "musée",
-    image: PLACEHOLDER_IMAGE,
-    description: "L'Art nouveau à son apogée dans une villa 1900.",
-    location: "Nancy, Grand Est",
-    rating: 4.5,
-    price: "6€",
-    hours: "10h - 18h (fermé mardi)",
-    period: "Art nouveau",
-    coordinates: { lat: 48.6828, lng: 6.1597 },
-    highlights: ["Émile Gallé", "Louis Majorelle", "Verreries"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 238,
+    id: 159,
     name: "Musée Lorrain",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2707,7 +2552,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 239,
+    id: 160,
     name: "Musée d'Art de Nantes",
     type: "musée",
     image: "https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?w=800&q=80",
@@ -2723,7 +2568,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 240,
+    id: 161,
     name: "Muséum d'Histoire Naturelle de Nantes",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2739,39 +2584,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 241,
-    name: "Musée de Bretagne",
-    type: "musée",
-    image: PLACEHOLDER_IMAGE,
-    description: "L'identité bretonne des origines à nos jours.",
-    location: "Rennes, Bretagne",
-    rating: 4.3,
-    price: "6€",
-    hours: "10h - 18h (fermé lundi)",
-    period: "Préhistoire - XXIe siècle",
-    coordinates: { lat: 48.1053, lng: -1.6733 },
-    highlights: ["Affaire Dreyfus", "Coiffes bretonnes", "Archéologie"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 242,
-    name: "Musée des Beaux-Arts de Rennes",
-    type: "musée",
-    image: PLACEHOLDER_IMAGE,
-    description: "Collections riches de l'Antiquité à l'art contemporain.",
-    location: "Rennes, Bretagne",
-    rating: 4.4,
-    price: "6€",
-    hours: "10h - 18h (fermé mardi)",
-    period: "Antiquité - XXIe siècle",
-    coordinates: { lat: 48.1128, lng: -1.6744 },
-    highlights: ["Rubens", "Picasso", "Cabinet de dessins"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 243,
+    id: 162,
     name: "Musée de la Tapisserie de Bayeux",
     type: "musée",
     image: "https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?w=800&q=80",
@@ -2787,23 +2600,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 244,
-    name: "Mémorial de Caen",
-    type: "musée",
-    image: "https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?w=800&q=80",
-    description: "Cité de l'Histoire pour la Paix, musée de référence sur la Seconde Guerre mondiale.",
-    location: "Caen, Normandie",
-    rating: 4.7,
-    price: "19.80€",
-    hours: "9h - 19h",
-    period: "XXe siècle",
-    coordinates: { lat: 49.1978, lng: -0.3833 },
-    highlights: ["Débarquement", "Guerre froide", "Jardins de la Paix"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 245,
+    id: 163,
     name: "Musée d'Art Contemporain de Lyon",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2819,7 +2616,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 246,
+    id: 164,
     name: "Musée des Miniatures et Décors de Cinéma",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2835,39 +2632,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 247,
-    name: "Musée des Tissus",
-    type: "musée",
-    image: PLACEHOLDER_IMAGE,
-    description: "4500 ans d'histoire textile dans deux hôtels particuliers.",
-    location: "Lyon, Auvergne-Rhône-Alpes",
-    rating: 4.4,
-    price: "10€",
-    hours: "10h - 17h30 (fermé lundi)",
-    period: "Antiquité - XXIe siècle",
-    coordinates: { lat: 45.7536, lng: 4.8319 },
-    highlights: ["Soieries lyonnaises", "Tapisseries coptes", "Haute couture"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 248,
-    name: "Musée de Grenoble",
-    type: "musée",
-    image: "https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?w=800&q=80",
-    description: "L'un des premiers musées d'art moderne de France.",
-    location: "Grenoble, Auvergne-Rhône-Alpes",
-    rating: 4.6,
-    price: "8€",
-    hours: "10h - 18h30 (fermé mardi)",
-    period: "XIIIe - XXIe siècle",
-    coordinates: { lat: 45.1947, lng: 5.7322 },
-    highlights: ["Matisse", "Picasso", "Collection égyptienne"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 249,
+    id: 165,
     name: "Musée Dauphinois",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2883,55 +2648,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 250,
-    name: "Musée Basque et de l'Histoire de Bayonne",
-    type: "musée",
-    image: PLACEHOLDER_IMAGE,
-    description: "La culture basque dans toute sa diversité.",
-    location: "Bayonne, Nouvelle-Aquitaine",
-    rating: 4.4,
-    price: "7.50€",
-    hours: "10h - 18h (fermé lundi)",
-    period: "Préhistoire - XXIe siècle",
-    coordinates: { lat: 43.4933, lng: -1.4753 },
-    highlights: ["Pelote basque", "Mythologie", "Art populaire"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 251,
-    name: "Musée d'Aquitaine",
-    type: "musée",
-    image: PLACEHOLDER_IMAGE,
-    description: "Histoire de Bordeaux et de l'Aquitaine depuis la préhistoire.",
-    location: "Bordeaux, Nouvelle-Aquitaine",
-    rating: 4.4,
-    price: "5€",
-    hours: "11h - 18h (fermé lundi)",
-    period: "Préhistoire - XXIe siècle",
-    coordinates: { lat: 44.8372, lng: -0.5739 },
-    highlights: ["Vénus de Laussel", "Commerce triangulaire", "Gallo-romain"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 252,
-    name: "Cité du Vin",
-    type: "musée",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
-    description: "Voyage sensoriel dans l'univers des vins du monde.",
-    location: "Bordeaux, Nouvelle-Aquitaine",
-    rating: 4.5,
-    price: "22€",
-    hours: "10h - 18h",
-    period: "Culture viticole",
-    coordinates: { lat: 44.8631, lng: -0.5503 },
-    highlights: ["Architecture XTU", "Dégustation panoramique", "Parcours immersif"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 253,
+    id: 166,
     name: "CAPC - Musée d'Art Contemporain",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -2947,55 +2664,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 254,
-    name: "Musée des Augustins",
-    type: "musée",
-    image: PLACEHOLDER_IMAGE,
-    description: "Beaux-arts de Toulouse dans un couvent gothique remarquable.",
-    location: "Toulouse, Occitanie",
-    rating: 4.5,
-    price: "Gratuit",
-    hours: "10h - 18h (fermé mardi)",
-    period: "Moyen Âge - XXe siècle",
-    coordinates: { lat: 43.6014, lng: 1.4464 },
-    highlights: ["Cloître gothique", "Sculptures romanes", "Delacroix"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 255,
-    name: "Cité de l'Espace",
-    type: "musée",
-    image: "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=800&q=80",
-    description: "Parc à thème dédié à la conquête spatiale.",
-    location: "Toulouse, Occitanie",
-    rating: 4.6,
-    price: "25€",
-    hours: "10h - 17h",
-    period: "Conquête spatiale",
-    coordinates: { lat: 43.5872, lng: 1.4914 },
-    highlights: ["Fusée Ariane 5", "Mir", "Planétarium IMAX"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 256,
-    name: "Musée Saint-Raymond",
-    type: "musée",
-    image: PLACEHOLDER_IMAGE,
-    description: "Archéologie antique dans un collège universitaire du XVIe siècle.",
-    location: "Toulouse, Occitanie",
-    rating: 4.3,
-    price: "Gratuit",
-    hours: "10h - 18h (fermé lundi)",
-    period: "Antiquité",
-    coordinates: { lat: 43.6050, lng: 1.4417 },
-    highlights: ["Villa de Chiragan", "Portraits romains", "Nécropoles"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 257,
+    id: 167,
     name: "Musée Fabre de Montpellier",
     type: "musée",
     image: "https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?w=800&q=80",
@@ -3005,13 +2674,13 @@ export const places = [
     price: "10€",
     hours: "10h - 18h (fermé lundi)",
     period: "XVe - XXIe siècle",
-    coordinates: { lat: 43.6114, lng: 3.8806 },
+    coordinates: { lat: 43.610000, lng: 3.883025 },
     highlights: ["Soulages", "Courbet", "Donation Bruyas"],
     visited: false,
     favorite: false
   },
   {
-    id: 258,
+    id: 168,
     name: "Musée du Vieux Marseille",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -3027,23 +2696,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 259,
-    name: "Musée Granet",
-    type: "musée",
-    image: PLACEHOLDER_IMAGE,
-    description: "Beaux-arts aixois enrichis par la donation Planque.",
-    location: "Aix-en-Provence, Provence-Alpes-Côte d'Azur",
-    rating: 4.5,
-    price: "8€",
-    hours: "10h - 18h (fermé lundi)",
-    period: "XVe - XXIe siècle",
-    coordinates: { lat: 43.5264, lng: 5.4494 },
-    highlights: ["Cézanne", "Picasso", "Collection Planque"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 260,
+    id: 169,
     name: "Atelier Cézanne",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -3059,7 +2712,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 261,
+    id: 170,
     name: "Musée Cocteau - Collection Séverin Wunderman",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -3075,7 +2728,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 262,
+    id: 171,
     name: "Villa Ephrussi de Rothschild",
     type: "musée",
     image: "https://images.unsplash.com/photo-1580981454360-3c6d3eb19b45?w=800&q=80",
@@ -3091,39 +2744,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 263,
-    name: "Musée Marc Chagall",
-    type: "musée",
-    image: "https://images.unsplash.com/photo-1580981454360-3c6d3eb19b45?w=800&q=80",
-    description: "Le Message Biblique de Chagall dans un écrin de lumière.",
-    location: "Nice, Provence-Alpes-Côte d'Azur",
-    rating: 4.6,
-    price: "10€",
-    hours: "10h - 18h (fermé mardi)",
-    period: "XXe siècle",
-    coordinates: { lat: 43.7128, lng: 7.2700 },
-    highlights: ["17 toiles bibliques", "Vitraux", "Mosaïque"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 264,
-    name: "Musée Matisse",
-    type: "musée",
-    image: PLACEHOLDER_IMAGE,
-    description: "L'œuvre de Matisse dans une villa génoise du XVIIe siècle.",
-    location: "Nice, Provence-Alpes-Côte d'Azur",
-    rating: 4.5,
-    price: "Gratuit",
-    hours: "10h - 18h (fermé mardi)",
-    period: "XXe siècle",
-    coordinates: { lat: 43.7197, lng: 7.2750 },
-    highlights: ["Papiers découpés", "Bronzes", "Chapelle de Vence"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 265,
+    id: 172,
     name: "Musée de la Photographie Charles Nègre",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -3139,7 +2760,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 266,
+    id: 173,
     name: "Musée Bonnard",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -3155,7 +2776,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 267,
+    id: 174,
     name: "Musée de la Castre",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -3171,7 +2792,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 268,
+    id: 175,
     name: "Musée Angladon",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -3187,7 +2808,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 269,
+    id: 176,
     name: "Collection Lambert",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -3203,27 +2824,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 270,
-    name: "Musée du Petit Palais",
-    type: "musée",
-    image: PLACEHOLDER_IMAGE,
-    description: "Primitifs italiens et peinture avignonnaise médiévale.",
-    location: "Avignon, Provence-Alpes-Côte d'Azur",
-    rating: 4.5,
-    price: "6€",
-    hours: "10h - 13h / 14h - 18h (fermé mardi)",
-    period: "XIIIe - XVIe siècle",
-    coordinates: { lat: 43.9514, lng: 4.8064 },
-    highlights: ["Botticelli", "Carpaccio", "École d'Avignon"],
-    visited: false,
-    favorite: false
-  },
-
-  // ============================================
-  // CHÂTEAUX (50) - Payants avec visites
-  // ============================================
-  {
-    id: 51,
+    id: 177,
     name: "Château de Versailles",
     type: "château",
     image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80",
@@ -3239,7 +2840,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 52,
+    id: 178,
     name: "Château de Chambord",
     type: "château",
     image: "https://images.unsplash.com/photo-1519677100203-a0e668c92439?w=800&q=80",
@@ -3255,7 +2856,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 53,
+    id: 179,
     name: "Château de Chenonceau",
     type: "château",
     image: "https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?w=800&q=80",
@@ -3271,7 +2872,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 54,
+    id: 180,
     name: "Château de Fontainebleau",
     type: "château",
     image: "https://images.unsplash.com/photo-1597212720801-958b60f8a29e?w=800&q=80",
@@ -3287,7 +2888,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 55,
+    id: 181,
     name: "Château d'Amboise",
     type: "château",
     image: "https://images.unsplash.com/photo-1565018054866-968e244e678d?w=800&q=80",
@@ -3303,7 +2904,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 56,
+    id: 182,
     name: "Château de Cheverny",
     type: "château",
     image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80",
@@ -3319,7 +2920,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 57,
+    id: 183,
     name: "Château de Blois",
     type: "château",
     image: "https://images.unsplash.com/photo-1586183189334-0f5da2bddc49?w=800&q=80",
@@ -3335,7 +2936,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 58,
+    id: 184,
     name: "Château d'Azay-le-Rideau",
     type: "château",
     image: "https://images.unsplash.com/photo-1565018054866-968e244e678d?w=800&q=80",
@@ -3351,7 +2952,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 59,
+    id: 185,
     name: "Château de Villandry",
     type: "château",
     image: "https://images.unsplash.com/photo-1582654454409-778f6619ddc6?w=800&q=80",
@@ -3367,7 +2968,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 60,
+    id: 186,
     name: "Château du Clos Lucé",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3383,7 +2984,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 61,
+    id: 187,
     name: "Château de Chantilly",
     type: "château",
     image: "https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?w=800&q=80",
@@ -3399,7 +3000,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 62,
+    id: 188,
     name: "Château de Pierrefonds",
     type: "château",
     image: "https://images.unsplash.com/photo-1568476247010-4c254f9df014?w=800&q=80",
@@ -3415,7 +3016,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 63,
+    id: 189,
     name: "Château de Vaux-le-Vicomte",
     type: "château",
     image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80",
@@ -3431,7 +3032,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 64,
+    id: 190,
     name: "Château de Vincennes",
     type: "château",
     image: "https://images.unsplash.com/photo-1568476247010-4c254f9df014?w=800&q=80",
@@ -3447,7 +3048,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 65,
+    id: 191,
     name: "Château d'Ussé",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3463,7 +3064,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 66,
+    id: 192,
     name: "Château de Saumur",
     type: "château",
     image: "https://images.unsplash.com/photo-1568476247010-4c254f9df014?w=800&q=80",
@@ -3479,7 +3080,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 67,
+    id: 193,
     name: "Château d'Angers",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3495,7 +3096,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 68,
+    id: 194,
     name: "Château de Langeais",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3511,7 +3112,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 69,
+    id: 195,
     name: "Château de Chinon",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3527,7 +3128,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 70,
+    id: 196,
     name: "Château de Loches",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3543,7 +3144,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 71,
+    id: 197,
     name: "Château des Ducs de Bretagne",
     type: "château",
     image: "https://images.unsplash.com/photo-1568476247010-4c254f9df014?w=800&q=80",
@@ -3559,7 +3160,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 72,
+    id: 198,
     name: "Château de Brest",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3575,7 +3176,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 73,
+    id: 199,
     name: "Château de Josselin",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3591,7 +3192,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 74,
+    id: 200,
     name: "Château de Combourg",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3607,7 +3208,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 75,
+    id: 201,
     name: "Château de Fougères",
     type: "château",
     image: "https://images.unsplash.com/photo-1568476247010-4c254f9df014?w=800&q=80",
@@ -3623,7 +3224,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 76,
+    id: 202,
     name: "Château de Caen",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3639,7 +3240,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 77,
+    id: 203,
     name: "Château de Falaise",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3655,7 +3256,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 78,
+    id: 204,
     name: "Château de Carrouges",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3671,7 +3272,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 79,
+    id: 205,
     name: "Château de Haut-Koenigsbourg",
     type: "château",
     image: "https://images.unsplash.com/photo-1568476247010-4c254f9df014?w=800&q=80",
@@ -3687,7 +3288,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 80,
+    id: 206,
     name: "Château du Haut-Barr",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3703,7 +3304,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 81,
+    id: 207,
     name: "Palais du Tau",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3719,7 +3320,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 82,
+    id: 208,
     name: "Château de Sedan",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3735,7 +3336,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 83,
+    id: 209,
     name: "Château de Malmaison",
     type: "château",
     image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80",
@@ -3751,7 +3352,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 84,
+    id: 210,
     name: "Château de Rambouillet",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3767,7 +3368,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 85,
+    id: 211,
     name: "Château de Compiègne",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3783,7 +3384,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 86,
+    id: 212,
     name: "Château de Maisons",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3799,7 +3400,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 87,
+    id: 213,
     name: "Château de Sceaux",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3815,7 +3416,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 88,
+    id: 214,
     name: "Château d'Écouen",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3831,7 +3432,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 89,
+    id: 215,
     name: "Château de Pau",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3847,7 +3448,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 90,
+    id: 216,
     name: "Château de Biron",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3863,7 +3464,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 91,
+    id: 217,
     name: "Château de Castelnaud",
     type: "château",
     image: "https://images.unsplash.com/photo-1568476247010-4c254f9df014?w=800&q=80",
@@ -3879,7 +3480,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 92,
+    id: 218,
     name: "Château de Beynac",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3895,7 +3496,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 93,
+    id: 219,
     name: "Château de Bonaguil",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3911,7 +3512,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 94,
+    id: 220,
     name: "Château de Hautefort",
     type: "château",
     image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80",
@@ -3927,7 +3528,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 95,
+    id: 221,
     name: "Palais des Papes",
     type: "château",
     image: "https://images.unsplash.com/photo-1604156425963-9be03f86a428?w=800&q=80",
@@ -3943,7 +3544,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 96,
+    id: 222,
     name: "Château d'If",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3959,7 +3560,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 97,
+    id: 223,
     name: "Château des Baux-de-Provence",
     type: "château",
     image: "https://images.unsplash.com/photo-1568476247010-4c254f9df014?w=800&q=80",
@@ -3975,7 +3576,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 98,
+    id: 224,
     name: "Château de Grignan",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -3991,7 +3592,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 99,
+    id: 225,
     name: "Château de Vizille",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4007,7 +3608,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 100,
+    id: 226,
     name: "Forteresse de Polignac",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4022,12 +3623,8 @@ export const places = [
     visited: false,
     favorite: false
   },
-
-  // ============================================
-  // CHÂTEAUX SUPPLÉMENTAIRES (100) - Payants avec visites
-  // ============================================
   {
-    id: 221,
+    id: 227,
     name: "Château de Roquetaillade",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4043,7 +3640,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 222,
+    id: 228,
     name: "Château de Puyguilhem",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4059,7 +3656,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 223,
+    id: 229,
     name: "Château de Bourdeilles",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4075,7 +3672,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 224,
+    id: 230,
     name: "Château de Jumilhac",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4091,7 +3688,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 225,
+    id: 231,
     name: "Château de Monbazillac",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4107,7 +3704,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 226,
+    id: 232,
     name: "Château de Fénelon",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4123,7 +3720,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 227,
+    id: 233,
     name: "Château de Milandes",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4139,7 +3736,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 228,
+    id: 234,
     name: "Château de Montal",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4155,7 +3752,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 229,
+    id: 235,
     name: "Château de Najac",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4171,7 +3768,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 230,
+    id: 236,
     name: "Château de Peyrelade",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4187,7 +3784,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 231,
+    id: 237,
     name: "Château de Foix",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4203,7 +3800,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 232,
+    id: 238,
     name: "Château de Montségur",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4219,7 +3816,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 233,
+    id: 239,
     name: "Château de Quéribus",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4235,7 +3832,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 234,
+    id: 240,
     name: "Château de Peyrepertuse",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4251,7 +3848,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 235,
+    id: 241,
     name: "Château de Villerouge-Termenès",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4267,7 +3864,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 236,
+    id: 242,
     name: "Cité de Carcassonne",
     type: "château",
     image: "https://images.unsplash.com/photo-1568476247010-4c254f9df014?w=800&q=80",
@@ -4283,7 +3880,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 237,
+    id: 243,
     name: "Château de Lastours",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4299,7 +3896,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 238,
+    id: 244,
     name: "Château de Flaugergues",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4315,7 +3912,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 239,
+    id: 245,
     name: "Château de la Mogère",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4331,7 +3928,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 240,
+    id: 246,
     name: "Château d'O",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4347,7 +3944,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 241,
+    id: 247,
     name: "Château de Tarascon",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4363,7 +3960,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 242,
+    id: 248,
     name: "Château de Suze-la-Rousse",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4379,7 +3976,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 243,
+    id: 249,
     name: "Château de Montélimar",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4395,7 +3992,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 244,
+    id: 250,
     name: "Château de Crussol",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4411,7 +4008,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 245,
+    id: 251,
     name: "Château de Rochemaure",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4427,7 +4024,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 246,
+    id: 252,
     name: "Château de Tournon",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4443,7 +4040,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 247,
+    id: 253,
     name: "Château de Murol",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4459,7 +4056,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 248,
+    id: 254,
     name: "Château de Val",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4475,7 +4072,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 249,
+    id: 255,
     name: "Château d'Aulteribe",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4491,7 +4088,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 250,
+    id: 256,
     name: "Château de Cordès",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4507,7 +4104,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 251,
+    id: 257,
     name: "Château de Parentignat",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4523,7 +4120,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 252,
+    id: 258,
     name: "Château de Ravel",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4539,23 +4136,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 253,
-    name: "Forteresse de Polignac",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Impressionnante forteresse volcanique dominant Le Puy.",
-    location: "Polignac, Auvergne-Rhône-Alpes",
-    rating: 4.2,
-    price: "6€",
-    hours: "10h - 19h",
-    period: "XIe siècle",
-    coordinates: { lat: 45.0700, lng: 3.8600 },
-    highlights: ["Donjon", "Site volcanique", "Vue sur Le Puy"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 254,
+    id: 259,
     name: "Château de Bazoches",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4571,7 +4152,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 255,
+    id: 260,
     name: "Château de Bussy-Rabutin",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4587,7 +4168,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 256,
+    id: 261,
     name: "Château de Tanlay",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4603,7 +4184,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 257,
+    id: 262,
     name: "Château d'Ancy-le-Franc",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4619,7 +4200,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 258,
+    id: 263,
     name: "Château de Châteauneuf-en-Auxois",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4635,7 +4216,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 259,
+    id: 264,
     name: "Château de Sully",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4651,7 +4232,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 260,
+    id: 265,
     name: "Château de Cormatin",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4667,7 +4248,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 261,
+    id: 266,
     name: "Château de Couches",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4683,7 +4264,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 262,
+    id: 267,
     name: "Château de La Rochepot",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4699,7 +4280,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 263,
+    id: 268,
     name: "Château de Brancion",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4715,7 +4296,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 264,
+    id: 269,
     name: "Château de Pierreclos",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4731,7 +4312,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 265,
+    id: 270,
     name: "Château de Joux",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4747,7 +4328,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 266,
+    id: 271,
     name: "Château de Belvoir",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4763,7 +4344,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 267,
+    id: 272,
     name: "Château de Montbéliard",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4779,7 +4360,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 268,
+    id: 273,
     name: "Château de Fleckenstein",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4795,7 +4376,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 269,
+    id: 274,
     name: "Château du Hohlandsbourg",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4811,7 +4392,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 270,
+    id: 275,
     name: "Château de Kaysersberg",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4827,7 +4408,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 271,
+    id: 276,
     name: "Château de Saint-Ulrich",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4843,7 +4424,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 272,
+    id: 277,
     name: "Château de l'Ortenbourg",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4859,7 +4440,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 273,
+    id: 278,
     name: "Château de Kintzheim",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4875,7 +4456,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 274,
+    id: 279,
     name: "Château de Lichtenberg",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4891,7 +4472,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 275,
+    id: 280,
     name: "Château de La Petite-Pierre",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4907,7 +4488,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 276,
+    id: 281,
     name: "Château de Malbrouck",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4923,7 +4504,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 277,
+    id: 282,
     name: "Château de Rohan - Saverne",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4939,7 +4520,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 278,
+    id: 283,
     name: "Château de Brézé",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4955,7 +4536,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 279,
+    id: 284,
     name: "Château de Montsoreau",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4971,7 +4552,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 280,
+    id: 285,
     name: "Château de Montreuil-Bellay",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -4987,7 +4568,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 281,
+    id: 286,
     name: "Château du Plessis-Bourré",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5003,7 +4584,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 282,
+    id: 287,
     name: "Château de Serrant",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5019,7 +4600,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 283,
+    id: 288,
     name: "Château du Lude",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5035,7 +4616,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 284,
+    id: 289,
     name: "Château de Brissac",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5051,7 +4632,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 285,
+    id: 290,
     name: "Château de Goulaine",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5067,7 +4648,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 286,
+    id: 291,
     name: "Château de Ranrouët",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5083,7 +4664,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 287,
+    id: 292,
     name: "Château de Clisson",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5099,7 +4680,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 288,
+    id: 293,
     name: "Château de Vitré",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5115,7 +4696,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 289,
+    id: 294,
     name: "Château de Suscinio",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5131,7 +4712,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 290,
+    id: 295,
     name: "Château de Tonquédec",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5147,7 +4728,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 291,
+    id: 296,
     name: "Château de la Hunaudaye",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5163,7 +4744,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 292,
+    id: 297,
     name: "Fort La Latte",
     type: "château",
     image: "https://images.unsplash.com/photo-1568476247010-4c254f9df014?w=800&q=80",
@@ -5179,7 +4760,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 293,
+    id: 298,
     name: "Château de Dinan",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5195,7 +4776,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 294,
+    id: 299,
     name: "Château de Kerjean",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5211,7 +4792,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 295,
+    id: 300,
     name: "Château de l'Hermine",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5227,23 +4808,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 296,
-    name: "Château de Carrouges",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château de briques et pierres en bocage normand.",
-    location: "Carrouges, Normandie",
-    rating: 4.3,
-    price: "7.50€",
-    hours: "10h - 18h",
-    period: "XIVe - XVIe siècle",
-    coordinates: { lat: 48.5628, lng: -0.1497 },
-    highlights: ["Châtelet", "Parc", "Briques et pierres"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 297,
+    id: 301,
     name: "Château de Crèvecœur",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5259,7 +4824,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 298,
+    id: 302,
     name: "Château de Saint-Germain-de-Livet",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5275,7 +4840,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 299,
+    id: 303,
     name: "Château de Vendeuvre",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5291,7 +4856,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 300,
+    id: 304,
     name: "Château de Bricquebec",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5307,7 +4872,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 301,
+    id: 305,
     name: "Château de Pirou",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5323,7 +4888,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 302,
+    id: 306,
     name: "Château de Gratot",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5339,7 +4904,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 303,
+    id: 307,
     name: "Château Guillaume-le-Conquérant",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5349,13 +4914,13 @@ export const places = [
     price: "9€",
     hours: "10h - 18h",
     period: "Xe - XIIIe siècle",
-    coordinates: { lat: 48.8942, lng: -0.1972 },
+    coordinates: { lat: 48.891400, lng: -0.197200 },
     highlights: ["Guillaume le Conquérant", "Tour Talbot", "Tablettes numériques"],
     visited: false,
     favorite: false
   },
   {
-    id: 304,
+    id: 308,
     name: "Château de Robert-le-Diable",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5371,7 +4936,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 305,
+    id: 309,
     name: "Château de Martainville",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5387,7 +4952,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 306,
+    id: 310,
     name: "Château de Miromesnil",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5403,7 +4968,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 307,
+    id: 311,
     name: "Château de Coucy",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5419,7 +4984,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 308,
+    id: 312,
     name: "Château de Fère-en-Tardenois",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5435,7 +5000,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 309,
+    id: 313,
     name: "Château de Folleville",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5451,7 +5016,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 310,
+    id: 314,
     name: "Château de Blérancourt",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5467,7 +5032,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 311,
+    id: 315,
     name: "Château de Condé",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5483,7 +5048,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 312,
+    id: 316,
     name: "Château de Bagatelle",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5499,7 +5064,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 313,
+    id: 317,
     name: "Château de Long",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5515,7 +5080,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 314,
+    id: 318,
     name: "Château d'Hardelot",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5531,7 +5096,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 315,
+    id: 319,
     name: "Château d'Olhain",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5547,7 +5112,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 316,
+    id: 320,
     name: "Château de Rambures",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5563,23 +5128,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 317,
-    name: "Château de Villandry",
-    type: "château",
-    image: "https://images.unsplash.com/photo-1582654454409-778f6619ddc6?w=800&q=80",
-    description: "Célèbre pour ses jardins Renaissance.",
-    location: "Villandry, Centre-Val de Loire",
-    rating: 4.7,
-    price: "12€",
-    hours: "9h - 18h30",
-    period: "XVIe siècle",
-    coordinates: { lat: 47.3400, lng: 0.5139 },
-    highlights: ["Jardins à la française", "Potager ornemental", "Vue panoramique"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 318,
+    id: 321,
     name: "Château de Valençay",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5595,7 +5144,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 319,
+    id: 322,
     name: "Château de Sully-sur-Loire",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5611,7 +5160,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 320,
+    id: 323,
     name: "Château de Chamerolles",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5626,76 +5175,8 @@ export const places = [
     visited: false,
     favorite: false
   },
-
-  // ============================================
-  // CHÂTEAUX VISITABLES SUPPLÉMENTAIRES (50)
-  // ============================================
   {
-    id: 421,
-    name: "Château de Biron",
-    type: "château",
-    image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80",
-    description: "Imposante forteresse périgourdine, huit siècles d'architecture.",
-    location: "Biron, Nouvelle-Aquitaine",
-    rating: 4.5,
-    price: "9€",
-    hours: "10h - 18h",
-    period: "XIIe - XVIIIe siècle",
-    coordinates: { lat: 44.6306, lng: 0.8686 },
-    highlights: ["Chapelle à deux étages", "Donjon", "Vue sur le Périgord"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 422,
-    name: "Château de Bonaguil",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "La dernière forteresse médiévale de France, jamais conquise.",
-    location: "Saint-Front-sur-Lémance, Nouvelle-Aquitaine",
-    rating: 4.6,
-    price: "9€",
-    hours: "10h - 18h",
-    period: "XVe - XVIe siècle",
-    coordinates: { lat: 44.5369, lng: 1.0128 },
-    highlights: ["Architecture défensive", "Souterrains", "Tour maîtresse"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 423,
-    name: "Château de Peyrepertuse",
-    type: "château",
-    image: "https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?w=800&q=80",
-    description: "Citadelle cathare vertigineuse dans les Corbières.",
-    location: "Duilhac-sous-Peyrepertuse, Occitanie",
-    rating: 4.7,
-    price: "9€",
-    hours: "9h - 20h (été)",
-    period: "XIe - XIIIe siècle",
-    coordinates: { lat: 42.8706, lng: 2.5561 },
-    highlights: ["Citadelle du vertige", "Croisade albigeoise", "Panorama Pyrénées"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 424,
-    name: "Château de Quéribus",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Le dernier bastion cathare, perché sur un éperon rocheux.",
-    location: "Cucugnan, Occitanie",
-    rating: 4.6,
-    price: "8.50€",
-    hours: "9h - 19h",
-    period: "XIe - XIIIe siècle",
-    coordinates: { lat: 42.8392, lng: 2.6278 },
-    highlights: ["Dernier refuge cathare", "Salle du pilier", "Vue 360°"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 425,
+    id: 324,
     name: "Château de Monségur",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5711,23 +5192,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 426,
-    name: "Château de Foix",
-    type: "château",
-    image: "https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?w=800&q=80",
-    description: "Forteresse des comtes de Foix dominant la ville.",
-    location: "Foix, Occitanie",
-    rating: 4.4,
-    price: "8€",
-    hours: "10h - 18h",
-    period: "Xe - XVe siècle",
-    coordinates: { lat: 42.9658, lng: 1.6053 },
-    highlights: ["Trois tours", "Gaston Phébus", "Musée départemental"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 427,
+    id: 325,
     name: "Château de Puilaurens",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5743,231 +5208,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 428,
-    name: "Château d'Angers",
-    type: "château",
-    image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80",
-    description: "Forteresse aux 17 tours abritant la tapisserie de l'Apocalypse.",
-    location: "Angers, Pays de la Loire",
-    rating: 4.6,
-    price: "11€",
-    hours: "10h - 18h",
-    period: "XIIIe siècle",
-    coordinates: { lat: 47.4697, lng: -0.5600 },
-    highlights: ["Tapisserie de l'Apocalypse", "17 tours", "Jardins"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 429,
-    name: "Château de Saumur",
-    type: "château",
-    image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80",
-    description: "Le château des Très Riches Heures du Duc de Berry.",
-    location: "Saumur, Pays de la Loire",
-    rating: 4.4,
-    price: "9€",
-    hours: "10h - 18h (fermé lundi)",
-    period: "XIVe - XVIe siècle",
-    coordinates: { lat: 47.2589, lng: -0.0731 },
-    highlights: ["Vue sur Loire", "Musée du cheval", "Très Riches Heures"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 430,
-    name: "Château de Brissac",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Le plus haut château de France avec sept étages.",
-    location: "Brissac-Loire-Aubance, Pays de la Loire",
-    rating: 4.5,
-    price: "14€",
-    hours: "10h - 18h",
-    period: "XVe - XVIIe siècle",
-    coordinates: { lat: 47.3539, lng: -0.4508 },
-    highlights: ["203 pièces", "Théâtre Belle Époque", "Vignoble"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 431,
-    name: "Château de Montreuil-Bellay",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château médiéval et Renaissance sur les bords du Thouet.",
-    location: "Montreuil-Bellay, Pays de la Loire",
-    rating: 4.3,
-    price: "10€",
-    hours: "10h - 18h (fermé mardi)",
-    period: "XIe - XVe siècle",
-    coordinates: { lat: 47.1314, lng: -0.1522 },
-    highlights: ["Cuisines médiévales", "Collégiale", "Douves"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 432,
-    name: "Château du Plessis-Bourré",
-    type: "château",
-    image: "https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?w=800&q=80",
-    description: "Joyau de la première Renaissance, intact depuis le XVe siècle.",
-    location: "Écuillé, Pays de la Loire",
-    rating: 4.6,
-    price: "11€",
-    hours: "10h - 18h",
-    period: "XVe siècle",
-    coordinates: { lat: 47.5339, lng: -0.5497 },
-    highlights: ["Plafond alchimique", "Douves en eau", "Pont-levis"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 433,
-    name: "Château de Serrant",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "L'un des plus beaux châteaux meublés de la Loire.",
-    location: "Saint-Georges-sur-Loire, Pays de la Loire",
-    rating: 4.5,
-    price: "13€",
-    hours: "10h - 18h",
-    period: "XVIe - XVIIIe siècle",
-    coordinates: { lat: 47.4069, lng: -0.7656 },
-    highlights: ["Mobilier d'exception", "Bibliothèque", "Jardins"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 434,
-    name: "Château de Josselin",
-    type: "château",
-    image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80",
-    description: "Forteresse des Rohan au bord de l'Oust.",
-    location: "Josselin, Bretagne",
-    rating: 4.5,
-    price: "10€",
-    hours: "14h - 18h",
-    period: "XIe - XIXe siècle",
-    coordinates: { lat: 47.9522, lng: -2.5481 },
-    highlights: ["Façade Renaissance", "Musée des poupées", "Jardins"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 435,
-    name: "Château de Suscinio",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Résidence des ducs de Bretagne au bord de l'océan.",
-    location: "Sarzeau, Bretagne",
-    rating: 4.4,
-    price: "9.50€",
-    hours: "10h - 19h",
-    period: "XIIIe - XVe siècle",
-    coordinates: { lat: 47.5092, lng: -2.7331 },
-    highlights: ["Marais salants", "Fresques", "Logis ducal"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 436,
-    name: "Château de Vitré",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Impressionnante forteresse triangulaire aux confins de la Bretagne.",
-    location: "Vitré, Bretagne",
-    rating: 4.4,
-    price: "Gratuit",
-    hours: "10h - 18h (fermé mardi)",
-    period: "XIe - XVIIe siècle",
-    coordinates: { lat: 48.1242, lng: -1.2136 },
-    highlights: ["Tour Saint-Laurent", "Musée du château", "Marches de Bretagne"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 437,
-    name: "Château de Fougères",
-    type: "château",
-    image: "https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?w=800&q=80",
-    description: "La plus grande forteresse médiévale d'Europe.",
-    location: "Fougères, Bretagne",
-    rating: 4.6,
-    price: "8€",
-    hours: "10h - 18h",
-    period: "XIe - XVe siècle",
-    coordinates: { lat: 48.3533, lng: -1.2028 },
-    highlights: ["13 tours", "3 enceintes", "2 hectares"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 438,
-    name: "Château de la Hunaudaye",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Ruines romantiques d'une puissante forteresse bretonne.",
-    location: "Plédéliac, Bretagne",
-    rating: 4.2,
-    price: "6€",
-    hours: "10h - 18h",
-    period: "XIIIe - XVe siècle",
-    coordinates: { lat: 48.4558, lng: -2.4006 },
-    highlights: ["5 tours", "Animations médiévales", "Forêt"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 439,
-    name: "Château de Dinan",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Donjon ducal surplombant la vallée de la Rance.",
-    location: "Dinan, Bretagne",
-    rating: 4.3,
-    price: "7€",
-    hours: "10h - 18h30 (fermé mardi)",
-    period: "XIVe siècle",
-    coordinates: { lat: 48.4542, lng: -2.0464 },
-    highlights: ["Tour du Coëtquen", "Remparts", "Du Guesclin"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 440,
-    name: "Château de Kerjean",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Élégance Renaissance au cœur du Finistère.",
-    location: "Saint-Vougay, Bretagne",
-    rating: 4.3,
-    price: "7€",
-    hours: "10h - 18h (fermé mardi)",
-    period: "XVIe siècle",
-    coordinates: { lat: 48.5581, lng: -4.0486 },
-    highlights: ["Colombier", "Chapelle", "Puits Renaissance"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 441,
-    name: "Château de Sedan",
-    type: "château",
-    image: "https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?w=800&q=80",
-    description: "La plus grande forteresse médiévale d'Europe occidentale.",
-    location: "Sedan, Grand Est",
-    rating: 4.5,
-    price: "10€",
-    hours: "10h - 18h",
-    period: "XVe - XVIIe siècle",
-    coordinates: { lat: 49.7019, lng: 4.9428 },
-    highlights: ["35 000 m²", "Hôtel 4 étoiles", "Souterrains"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 442,
+    id: 326,
     name: "Château du Haut-Koenigsbourg",
     type: "château",
     image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80",
@@ -5977,13 +5218,13 @@ export const places = [
     price: "12€",
     hours: "9h15 - 18h",
     period: "XIIe - XXe siècle",
-    coordinates: { lat: 48.2494, lng: 7.3444 },
+    coordinates: { lat: 48.246600, lng: 7.344400 },
     highlights: ["Vue sur Alsace", "Collection d'armes", "Jardins médiévaux"],
     visited: false,
     favorite: false
   },
   {
-    id: 443,
+    id: 327,
     name: "Château du Fleckenstein",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -5999,55 +5240,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 444,
-    name: "Château de Lichtenberg",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Forteresse médiévale réinventée en lieu culturel.",
-    location: "Lichtenberg, Grand Est",
-    rating: 4.3,
-    price: "5€",
-    hours: "10h - 18h",
-    period: "XIIIe - XVIe siècle",
-    coordinates: { lat: 48.9186, lng: 7.4861 },
-    highlights: ["Architecture contemporaine", "Expositions", "Vue Vosges"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 445,
-    name: "Château de Malbrouck",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Forteresse des Trois-Évêchés, lieu d'expositions prestigieuses.",
-    location: "Manderen, Grand Est",
-    rating: 4.4,
-    price: "8€",
-    hours: "10h - 18h (fermé lundi)",
-    period: "XVe siècle",
-    coordinates: { lat: 49.3628, lng: 6.4872 },
-    highlights: ["Expositions temporaires", "Jardins", "Tour lanterne"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 446,
-    name: "Palais du Tau",
-    type: "château",
-    image: "https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?w=800&q=80",
-    description: "Palais archiépiscopal des sacres royaux à Reims.",
-    location: "Reims, Grand Est",
-    rating: 4.5,
-    price: "11€",
-    hours: "9h30 - 17h (fermé lundi)",
-    period: "XVIe - XVIIe siècle",
-    coordinates: { lat: 49.2536, lng: 4.0339 },
-    highlights: ["Trésor de la cathédrale", "Sacres royaux", "Tapisseries"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 447,
+    id: 328,
     name: "Château de Falkenstein",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -6063,7 +5256,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 448,
+    id: 329,
     name: "Château de Guédelon",
     type: "château",
     image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80",
@@ -6079,55 +5272,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 449,
-    name: "Château d'Ancy-le-Franc",
-    type: "château",
-    image: "https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?w=800&q=80",
-    description: "Chef-d'œuvre de la Renaissance italienne en Bourgogne.",
-    location: "Ancy-le-Franc, Bourgogne-Franche-Comté",
-    rating: 4.5,
-    price: "13€",
-    hours: "10h30 - 18h",
-    period: "XVIe siècle",
-    coordinates: { lat: 47.7750, lng: 4.1639 },
-    highlights: ["Fresques italiennes", "Serlio", "Galerie Pharsale"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 450,
-    name: "Château de Bazoches",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Demeure de Vauban, le génie de la fortification.",
-    location: "Bazoches, Bourgogne-Franche-Comté",
-    rating: 4.4,
-    price: "11€",
-    hours: "10h - 18h",
-    period: "XIIe - XVIIe siècle",
-    coordinates: { lat: 47.3847, lng: 3.7947 },
-    highlights: ["Bureau de Vauban", "Plans de fortifications", "Vue sur Morvan"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 451,
-    name: "Château de Bussy-Rabutin",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Décors peints du libertin exilé par Louis XIV.",
-    location: "Bussy-le-Grand, Bourgogne-Franche-Comté",
-    rating: 4.3,
-    price: "7€",
-    hours: "10h - 12h / 14h - 17h",
-    period: "XIVe - XVIIe siècle",
-    coordinates: { lat: 47.5633, lng: 4.5222 },
-    highlights: ["Galerie des beautés", "Devises satiriques", "Jardins"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 452,
+    id: 330,
     name: "Château de Commarin",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -6143,167 +5288,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 453,
-    name: "Château de Cormatin",
-    type: "château",
-    image: "https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?w=800&q=80",
-    description: "Somptueux décors Louis XIII, joyau du Mâconnais.",
-    location: "Cormatin, Bourgogne-Franche-Comté",
-    rating: 4.5,
-    price: "12€",
-    hours: "10h - 18h30",
-    period: "XVIIe siècle",
-    coordinates: { lat: 46.5450, lng: 4.6853 },
-    highlights: ["Cabinet Sainte-Cécile", "Jardins labyrinthes", "Lamartine"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 454,
-    name: "Château de Joux",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Forteresse millénaire gardienne des défilés du Doubs.",
-    location: "La Cluse-et-Mijoux, Bourgogne-Franche-Comté",
-    rating: 4.5,
-    price: "9€",
-    hours: "10h - 18h",
-    period: "XIe - XIXe siècle",
-    coordinates: { lat: 46.8750, lng: 6.3764 },
-    highlights: ["Toussaint Louverture", "Vauban", "5 enceintes"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 455,
-    name: "Château de Pierrefonds",
-    type: "château",
-    image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80",
-    description: "Château de conte de fées réinventé par Viollet-le-Duc.",
-    location: "Pierrefonds, Hauts-de-France",
-    rating: 4.6,
-    price: "11€",
-    hours: "10h - 18h",
-    period: "XIXe siècle",
-    coordinates: { lat: 49.3481, lng: 2.9803 },
-    highlights: ["Viollet-le-Duc", "Napoléon III", "Décors peints"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 456,
-    name: "Château de Chantilly",
-    type: "château",
-    image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80",
-    description: "Joyau du duc d'Aumale, musée Condé exceptionnel.",
-    location: "Chantilly, Hauts-de-France",
-    rating: 4.7,
-    price: "17€",
-    hours: "10h - 18h (fermé mardi)",
-    period: "XIXe siècle",
-    coordinates: { lat: 49.1939, lng: 2.4847 },
-    highlights: ["Très Riches Heures", "Grandes Écuries", "Jardins Le Nôtre"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 457,
-    name: "Château de Compiègne",
-    type: "château",
-    image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80",
-    description: "Résidence impériale de Napoléon III et l'impératrice Eugénie.",
-    location: "Compiègne, Hauts-de-France",
-    rating: 4.5,
-    price: "9.50€",
-    hours: "10h - 18h (fermé mardi)",
-    period: "XVIIIe - XIXe siècle",
-    coordinates: { lat: 49.4172, lng: 2.8350 },
-    highlights: ["Appartements impériaux", "Musée du Second Empire", "Parc"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 458,
-    name: "Château de Coucy",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Ruines du plus puissant donjon médiéval de France.",
-    location: "Coucy-le-Château-Auffrique, Hauts-de-France",
-    rating: 4.3,
-    price: "6€",
-    hours: "10h - 13h / 14h - 17h30",
-    period: "XIIIe siècle",
-    coordinates: { lat: 49.5208, lng: 3.3258 },
-    highlights: ["Enguerrand III", "Donjon dynamité", "Enceinte"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 459,
-    name: "Château de Rambures",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Forteresse de briques aux tours rondes uniques.",
-    location: "Rambures, Hauts-de-France",
-    rating: 4.3,
-    price: "9€",
-    hours: "10h - 18h",
-    period: "XVe siècle",
-    coordinates: { lat: 49.9261, lng: 1.7417 },
-    highlights: ["Roseraie", "Mobilier ancien", "Souterrains"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 460,
-    name: "Château de Maisons",
-    type: "château",
-    image: "https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?w=800&q=80",
-    description: "Chef-d'œuvre de François Mansart, perfection classique.",
-    location: "Maisons-Laffitte, Île-de-France",
-    rating: 4.4,
-    price: "8€",
-    hours: "10h - 12h30 / 14h - 17h (fermé mardi)",
-    period: "XVIIe siècle",
-    coordinates: { lat: 48.9469, lng: 2.1453 },
-    highlights: ["Architecture Mansart", "Escalier d'honneur", "Stucs"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 461,
-    name: "Château de Vincennes",
-    type: "château",
-    image: "https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?w=800&q=80",
-    description: "Plus haut donjon de plaine d'Europe, résidence royale.",
-    location: "Vincennes, Île-de-France",
-    rating: 4.5,
-    price: "9€",
-    hours: "10h - 17h",
-    period: "XIVe - XVIIe siècle",
-    coordinates: { lat: 48.8425, lng: 2.4350 },
-    highlights: ["Donjon 52m", "Sainte-Chapelle", "Prison d'État"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 462,
-    name: "Château de Malmaison",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Résidence de Joséphine de Beauharnais, souvenirs napoléoniens.",
-    location: "Rueil-Malmaison, Île-de-France",
-    rating: 4.4,
-    price: "8€",
-    hours: "10h - 12h30 / 13h30 - 17h (fermé mardi)",
-    period: "XVIIe - XIXe siècle",
-    coordinates: { lat: 48.8694, lng: 2.1653 },
-    highlights: ["Joséphine", "Roses", "Souvenirs Napoléon"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 463,
+    id: 331,
     name: "Château de Monte-Cristo",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -6319,23 +5304,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 464,
-    name: "Château de Vaux-le-Vicomte",
-    type: "château",
-    image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80",
-    description: "Chef-d'œuvre de Le Vau, Le Brun et Le Nôtre pour Fouquet.",
-    location: "Maincy, Île-de-France",
-    rating: 4.7,
-    price: "18€",
-    hours: "10h - 18h",
-    period: "XVIIe siècle",
-    coordinates: { lat: 48.5650, lng: 2.7136 },
-    highlights: ["Jardins à la française", "Chandelles", "Dôme"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 465,
+    id: 332,
     name: "Château de Breteuil",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -6351,7 +5320,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 466,
+    id: 333,
     name: "Château de Dampierre",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -6367,7 +5336,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 467,
+    id: 334,
     name: "Château de Thoiry",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -6383,7 +5352,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 468,
+    id: 335,
     name: "Château de La Roche-Guyon",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -6399,43 +5368,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 469,
-    name: "Château de Langeais",
-    type: "château",
-    image: "https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?w=800&q=80",
-    description: "Forteresse royale du mariage d'Anne de Bretagne.",
-    location: "Langeais, Centre-Val de Loire",
-    rating: 4.5,
-    price: "11€",
-    hours: "10h - 18h",
-    period: "XVe siècle",
-    coordinates: { lat: 47.3253, lng: 0.4064 },
-    highlights: ["Mariage Anne de Bretagne", "Pont-levis", "Mobilier"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 470,
-    name: "Château de Loches",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Cité royale aux mille ans d'histoire.",
-    location: "Loches, Centre-Val de Loire",
-    rating: 4.5,
-    price: "10€",
-    hours: "9h30 - 18h",
-    period: "XIe - XVe siècle",
-    coordinates: { lat: 47.1289, lng: 0.9989 },
-    highlights: ["Donjon roman", "Agnès Sorel", "Logis royal"],
-    visited: false,
-    favorite: false
-  },
-
-  // ============================================
-  // EXPOSITIONS ÉPHÉMÈRES (20)
-  // ============================================
-  {
-    id: 101,
+    id: 336,
     name: "Manet / Degas - Musée d'Orsay",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=800&q=80",
@@ -6451,7 +5384,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 102,
+    id: 337,
     name: "Picasso et l'abstraction - Centre Pompidou",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80",
@@ -6461,13 +5394,13 @@ export const places = [
     price: "15€",
     hours: "11h - 21h (fermé mardi)",
     period: "Jusqu'au 30 juin 2026",
-    coordinates: { lat: 48.8607, lng: 2.3522 },
+    coordinates: { lat: 48.863179, lng: 2.353501 },
     highlights: ["Cubisme", "Influences mutuelles", "Documents inédits"],
     visited: false,
     favorite: false
   },
   {
-    id: 103,
+    id: 338,
     name: "Les Pharaons - Grande Halle de la Villette",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80",
@@ -6483,7 +5416,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 104,
+    id: 339,
     name: "Vermeer et les maîtres de la lumière - Louvre",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=800&q=80",
@@ -6493,13 +5426,13 @@ export const places = [
     price: "22€",
     hours: "9h - 18h (fermé mardi)",
     period: "Jusqu'au 28 février 2026",
-    coordinates: { lat: 48.8606, lng: 2.3376 },
+    coordinates: { lat: 48.863025, lng: 2.339000 },
     highlights: ["Prêts internationaux", "La Laitière", "Comparaisons inédites"],
     visited: false,
     favorite: false
   },
   {
-    id: 105,
+    id: 340,
     name: "Yayoi Kusama : Infinity - Fondation Louis Vuitton",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1580981454360-3c6d3eb19b45?w=800&q=80",
@@ -6515,7 +5448,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 106,
+    id: 341,
     name: "Van Gogh et le Japon - Musée de l'Orangerie",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=800&q=80",
@@ -6525,13 +5458,13 @@ export const places = [
     price: "14€",
     hours: "9h - 18h (fermé mardi)",
     period: "Jusqu'au 15 mai 2026",
-    coordinates: { lat: 48.8638, lng: 2.3226 },
+    coordinates: { lat: 48.865200, lng: 2.325025 },
     highlights: ["Estampes japonaises", "Correspondances", "Autoportraits"],
     visited: false,
     favorite: false
   },
   {
-    id: 107,
+    id: 342,
     name: "Banksy : Art or Vandalism? - Palais de Tokyo",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80",
@@ -6547,7 +5480,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 108,
+    id: 343,
     name: "Monet-Mitchell - Fondation Claude Monet",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=800&q=80",
@@ -6557,13 +5490,13 @@ export const places = [
     price: "12€",
     hours: "9h30 - 18h",
     period: "Avril - octobre 2026",
-    coordinates: { lat: 49.0755, lng: 1.5339 },
+    coordinates: { lat: 49.075500, lng: 1.536700 },
     highlights: ["Nymphéas", "Abstraction lyrique", "Jardins"],
     visited: false,
     favorite: false
   },
   {
-    id: 109,
+    id: 344,
     name: "L'Art du jeu vidéo - Musée des Confluences",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80",
@@ -6573,13 +5506,13 @@ export const places = [
     price: "12€",
     hours: "10h30 - 18h30 (fermé lundi)",
     period: "Jusqu'au 31 décembre 2026",
-    coordinates: { lat: 45.7327, lng: 4.8187 },
+    coordinates: { lat: 45.731300, lng: 4.821125 },
     highlights: ["Consoles rétro", "Concept arts", "Playable experiences"],
     visited: false,
     favorite: false
   },
   {
-    id: 110,
+    id: 345,
     name: "Renoir père et fils - Musée des Beaux-Arts de Lyon",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?w=800&q=80",
@@ -6589,13 +5522,13 @@ export const places = [
     price: "10€",
     hours: "10h - 18h (fermé mardi)",
     period: "Jusqu'au 30 juin 2026",
-    coordinates: { lat: 45.7666, lng: 4.8336 },
+    coordinates: { lat: 45.766600, lng: 4.836400 },
     highlights: ["Peintures", "Extraits de films", "Correspondances"],
     visited: false,
     favorite: false
   },
   {
-    id: 111,
+    id: 346,
     name: "Méditerranée antique - MuCEM",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1578469645742-46cae010e5d4?w=800&q=80",
@@ -6605,13 +5538,13 @@ export const places = [
     price: "13€",
     hours: "10h - 18h (fermé mardi)",
     period: "Jusqu'au 15 novembre 2026",
-    coordinates: { lat: 43.2966, lng: 5.3608 },
+    coordinates: { lat: 43.295200, lng: 5.363225 },
     highlights: ["Grèce antique", "Rome", "Phéniciens"],
     visited: false,
     favorite: false
   },
   {
-    id: 112,
+    id: 347,
     name: "Frida Kahlo : Connections - Musée Fabre",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -6621,13 +5554,13 @@ export const places = [
     price: "12€",
     hours: "10h - 18h (fermé lundi)",
     period: "Jusqu'au 31 mars 2026",
-    coordinates: { lat: 43.6114, lng: 3.8806 },
+    coordinates: { lat: 43.609600, lng: 3.877482 },
     highlights: ["Autoportraits", "Art mexicain", "Surréalisme"],
     visited: false,
     favorite: false
   },
   {
-    id: 113,
+    id: 348,
     name: "Nicolas de Staël - Musée Granet",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=800&q=80",
@@ -6643,7 +5576,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 114,
+    id: 349,
     name: "Les Impressionnistes et la mer - La Piscine",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1564399579730-3e5e4d189363?w=800&q=80",
@@ -6659,7 +5592,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 115,
+    id: 350,
     name: "Matisse en son temps - Musée Matisse",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=800&q=80",
@@ -6669,13 +5602,13 @@ export const places = [
     price: "12€",
     hours: "10h - 18h (fermé mardi)",
     period: "Jusqu'au 30 octobre 2026",
-    coordinates: { lat: 43.7197, lng: 7.2752 },
+    coordinates: { lat: 43.716900, lng: 7.275200 },
     highlights: ["Fauvisme", "Papiers découpés", "Riviera"],
     visited: false,
     favorite: false
   },
   {
-    id: 116,
+    id: 351,
     name: "L'Or des Incas - Musée des Beaux-Arts de Bordeaux",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80",
@@ -6685,13 +5618,13 @@ export const places = [
     price: "10€",
     hours: "11h - 18h (fermé mardi)",
     period: "Jusqu'au 28 février 2026",
-    coordinates: { lat: 44.8378, lng: -0.5792 },
+    coordinates: { lat: 44.836400, lng: -0.576775 },
     highlights: ["Orfèvrerie", "Textiles", "Céramiques"],
     visited: false,
     favorite: false
   },
   {
-    id: 117,
+    id: 352,
     name: "Chagall et la musique - Musée Marc Chagall",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1579783901586-d88db74b4fe4?w=800&q=80",
@@ -6701,13 +5634,13 @@ export const places = [
     price: "12€",
     hours: "10h - 18h (fermé mardi)",
     period: "Jusqu'au 31 août 2026",
-    coordinates: { lat: 43.7136, lng: 7.2687 },
+    coordinates: { lat: 43.710800, lng: 7.268700 },
     highlights: ["Plafond de l'Opéra", "Vitraux", "Ballet"],
     visited: false,
     favorite: false
   },
   {
-    id: 118,
+    id: 353,
     name: "La Renaissance et le Nord - Musée Unterlinden",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1580981454360-3c6d3eb19b45?w=800&q=80",
@@ -6723,7 +5656,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 119,
+    id: 354,
     name: "Néon : l'art de la lumière - LaM",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80",
@@ -6739,7 +5672,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 120,
+    id: 355,
     name: "Léonard de Vinci : Machines et rêves - Château du Clos Lucé",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -6749,17 +5682,13 @@ export const places = [
     price: "19€",
     hours: "9h - 19h",
     period: "Exposition permanente enrichie 2026",
-    coordinates: { lat: 47.4098, lng: 0.9947 },
+    coordinates: { lat: 47.407000, lng: 0.994700 },
     highlights: ["Machines volantes", "Codex", "Atelier reconstitué"],
     visited: false,
     favorite: false
   },
-
-  // ============================================
-  // EXPOSITIONS SUPPLÉMENTAIRES (100)
-  // ============================================
   {
-    id: 321,
+    id: 356,
     name: "Klimt : L'Or et la Modernité - Grand Palais",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=800&q=80",
@@ -6775,7 +5704,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 322,
+    id: 357,
     name: "Caravage : Lumière et Ténèbres - Musée du Luxembourg",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1579783901586-d88db74b4fe4?w=800&q=80",
@@ -6791,7 +5720,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 323,
+    id: 358,
     name: "Hokusai : La Grande Vague - Musée Guimet",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -6807,7 +5736,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 324,
+    id: 359,
     name: "Basquiat x Warhol : Four Hands - Fondation Louis Vuitton",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1580981454360-3c6d3eb19b45?w=800&q=80",
@@ -6823,7 +5752,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 325,
+    id: 360,
     name: "Pompéi : La Vie Avant l'Éruption - Musée de la Romanité",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80",
@@ -6833,13 +5762,13 @@ export const places = [
     price: "12€",
     hours: "10h - 18h",
     period: "Jusqu'au 15 novembre 2026",
-    coordinates: { lat: 43.8342, lng: 4.3606 },
+    coordinates: { lat: 43.832800, lng: 4.363025 },
     highlights: ["Fresques restaurées", "Objets du quotidien", "Reconstitution 3D"],
     visited: false,
     favorite: false
   },
   {
-    id: 326,
+    id: 361,
     name: "Dalí : L'Énigme sans Fin - Centre Pompidou",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80",
@@ -6849,13 +5778,13 @@ export const places = [
     price: "15€",
     hours: "11h - 21h (fermé mardi)",
     period: "Jusqu'au 30 juin 2026",
-    coordinates: { lat: 48.8607, lng: 2.3522 },
+    coordinates: { lat: 48.862745, lng: 2.355163 },
     highlights: ["Persistance de la mémoire", "Films", "Méthode paranoïaque-critique"],
     visited: false,
     favorite: false
   },
   {
-    id: 327,
+    id: 362,
     name: "Modigliani : Portraits d'Âme - Musée de l'Orangerie",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -6865,13 +5794,13 @@ export const places = [
     price: "14€",
     hours: "9h - 18h (fermé mardi)",
     period: "Jusqu'au 30 avril 2026",
-    coordinates: { lat: 48.8638, lng: 2.3226 },
+    coordinates: { lat: 48.862000, lng: 2.325718 },
     highlights: ["Portraits allongés", "École de Paris", "Montparnasse"],
     visited: false,
     favorite: false
   },
   {
-    id: 328,
+    id: 363,
     name: "L'Impressionnisme et la Seine - Musée d'Orsay",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1591289009723-aef0a1a8a211?w=800&q=80",
@@ -6887,7 +5816,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 329,
+    id: 364,
     name: "Fragonard Amoureux - Musée Jacquemart-André",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -6897,13 +5826,13 @@ export const places = [
     price: "16€",
     hours: "10h - 18h",
     period: "Jusqu'au 28 février 2026",
-    coordinates: { lat: 48.8752, lng: 2.3108 },
+    coordinates: { lat: 48.875200, lng: 2.313600 },
     highlights: ["Le Verrou", "Scènes galantes", "Rococo"],
     visited: false,
     favorite: false
   },
   {
-    id: 330,
+    id: 365,
     name: "Le Monde de Hayao Miyazaki - Cité de l'Architecture",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -6919,7 +5848,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 331,
+    id: 366,
     name: "Titien : Le Dernier Chef-d'œuvre - Louvre",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=800&q=80",
@@ -6929,13 +5858,13 @@ export const places = [
     price: "22€",
     hours: "9h - 18h (fermé mardi)",
     period: "Jusqu'au 31 mai 2026",
-    coordinates: { lat: 48.8606, lng: 2.3376 },
+    coordinates: { lat: 48.862400, lng: 2.340718 },
     highlights: ["Pietà", "Couleur vénitienne", "Renaissance tardive"],
     visited: false,
     favorite: false
   },
   {
-    id: 332,
+    id: 367,
     name: "Photographies de Robert Doisneau - MEP",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -6951,7 +5880,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 333,
+    id: 368,
     name: "L'Art du Manga - BnF",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -6967,7 +5896,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 334,
+    id: 369,
     name: "Cézanne et Provence - Musée Granet",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=800&q=80",
@@ -6983,7 +5912,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 335,
+    id: 370,
     name: "Gerhard Richter : Rétrospective - Centre Pompidou-Metz",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80",
@@ -6993,13 +5922,13 @@ export const places = [
     price: "14€",
     hours: "10h - 18h (fermé mardi)",
     period: "Jusqu'au 31 août 2026",
-    coordinates: { lat: 49.1081, lng: 6.1822 },
+    coordinates: { lat: 49.105300, lng: 6.182200 },
     highlights: ["Photo-peintures", "Abstractions", "Vitraux de Cologne"],
     visited: false,
     favorite: false
   },
   {
-    id: 336,
+    id: 371,
     name: "Toulouse-Lautrec et Montmartre - Musée Toulouse-Lautrec",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7009,13 +5938,13 @@ export const places = [
     price: "11€",
     hours: "9h - 18h (fermé lundi)",
     period: "Jusqu'au 30 novembre 2026",
-    coordinates: { lat: 43.9286, lng: 2.1436 },
+    coordinates: { lat: 43.925800, lng: 2.143600 },
     highlights: ["Moulin Rouge", "Affiches", "Vie de bohème"],
     visited: false,
     favorite: false
   },
   {
-    id: 337,
+    id: 372,
     name: "L'Or des Scythes - Musée des Confluences",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7025,13 +5954,13 @@ export const places = [
     price: "14€",
     hours: "10h30 - 18h30 (fermé lundi)",
     period: "Jusqu'au 30 septembre 2026",
-    coordinates: { lat: 45.7327, lng: 4.8187 },
+    coordinates: { lat: 45.730900, lng: 4.815582 },
     highlights: ["Orfèvrerie", "Art animalier", "Kourganes"],
     visited: false,
     favorite: false
   },
   {
-    id: 338,
+    id: 373,
     name: "Bonnard et le Japon - Musée Bonnard",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7047,7 +5976,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 339,
+    id: 374,
     name: "Versailles et la Mode - Château de Versailles",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80",
@@ -7057,13 +5986,13 @@ export const places = [
     price: "21€",
     hours: "9h - 18h30 (fermé lundi)",
     period: "Jusqu'au 31 décembre 2026",
-    coordinates: { lat: 48.8049, lng: 2.1204 },
+    coordinates: { lat: 48.803500, lng: 2.122825 },
     highlights: ["Costumes de cour", "Marie-Antoinette", "Haute couture"],
     visited: false,
     favorite: false
   },
   {
-    id: 340,
+    id: 375,
     name: "Anish Kapoor : Vide et Plein - Château de Chambord",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7079,7 +6008,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 341,
+    id: 376,
     name: "L'Égypte des Pharaons Noirs - Musée de Grenoble",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7089,13 +6018,13 @@ export const places = [
     price: "10€",
     hours: "10h - 18h30 (fermé mardi)",
     period: "Jusqu'au 31 juillet 2026",
-    coordinates: { lat: 45.1945, lng: 5.7322 },
+    coordinates: { lat: 45.191700, lng: 5.732200 },
     highlights: ["Nubie", "Statues royales", "Méroé"],
     visited: false,
     favorite: false
   },
   {
-    id: 342,
+    id: 377,
     name: "Turner et la Mer - Musée Eugène Boudin",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7105,13 +6034,13 @@ export const places = [
     price: "10€",
     hours: "10h - 18h (fermé mardi)",
     period: "Jusqu'au 30 septembre 2026",
-    coordinates: { lat: 49.4181, lng: 0.2331 },
+    coordinates: { lat: 49.415300, lng: 0.233100 },
     highlights: ["Marines", "Lumière", "Tempêtes"],
     visited: false,
     favorite: false
   },
   {
-    id: 343,
+    id: 378,
     name: "Mondrian : Évolution - LaM",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7127,7 +6056,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 344,
+    id: 379,
     name: "Le Mystère Bosch - Palais des Beaux-Arts de Lille",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7137,13 +6066,13 @@ export const places = [
     price: "12€",
     hours: "10h - 18h (fermé mardi)",
     period: "Jusqu'au 28 février 2026",
-    coordinates: { lat: 50.6319, lng: 3.0625 },
+    coordinates: { lat: 50.629100, lng: 3.062500 },
     highlights: ["Jardin des délices", "Monstres", "Symbolisme"],
     visited: false,
     favorite: false
   },
   {
-    id: 345,
+    id: 380,
     name: "Berthe Morisot : Femme Impressionniste - Musée Marmottan",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7153,13 +6082,13 @@ export const places = [
     price: "14€",
     hours: "10h - 18h (fermé lundi)",
     period: "Jusqu'au 30 juin 2026",
-    coordinates: { lat: 48.8526, lng: 2.2667 },
+    coordinates: { lat: 48.849800, lng: 2.266700 },
     highlights: ["Portraits", "Scènes familiales", "Jardins"],
     visited: false,
     favorite: false
   },
   {
-    id: 346,
+    id: 381,
     name: "Jean-Paul Gaultier : Fashion Freak Show - MAD Paris",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7175,7 +6104,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 347,
+    id: 382,
     name: "L'Âge d'Or du Cinéma Muet - Cinémathèque Française",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7191,7 +6120,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 348,
+    id: 383,
     name: "Magritte : Le Surréalisme Belge - Musée de l'Orangerie",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7201,13 +6130,13 @@ export const places = [
     price: "14€",
     hours: "9h - 18h (fermé mardi)",
     period: "Jusqu'au 30 septembre 2026",
-    coordinates: { lat: 48.8638, lng: 2.3226 },
+    coordinates: { lat: 48.859400, lng: 2.322600 },
     highlights: ["Pipe", "Chapeaux melon", "Empire des lumières"],
     visited: false,
     favorite: false
   },
   {
-    id: 349,
+    id: 384,
     name: "L'Art du Tatouage - Musée du Quai Branly",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7217,13 +6146,13 @@ export const places = [
     price: "14€",
     hours: "10h30 - 19h (fermé lundi)",
     period: "Jusqu'au 31 octobre 2026",
-    coordinates: { lat: 48.8611, lng: 2.2977 },
+    coordinates: { lat: 48.859700, lng: 2.300125 },
     highlights: ["Polynésie", "Japon", "Tatouage contemporain"],
     visited: false,
     favorite: false
   },
   {
-    id: 350,
+    id: 385,
     name: "Giacometti : L'Homme qui marche - Fondation Maeght",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7233,13 +6162,13 @@ export const places = [
     price: "18€",
     hours: "10h - 18h",
     period: "Jusqu'au 31 décembre 2026",
-    coordinates: { lat: 43.7042, lng: 7.1222 },
+    coordinates: { lat: 43.702800, lng: 7.124625 },
     highlights: ["Sculptures filiformes", "Bustes", "Atelier"],
     visited: false,
     favorite: false
   },
   {
-    id: 351,
+    id: 386,
     name: "Fernand Léger : La Ville - Musée Fernand Léger",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7249,13 +6178,13 @@ export const places = [
     price: "12€",
     hours: "10h - 17h (fermé mardi)",
     period: "Jusqu'au 30 septembre 2026",
-    coordinates: { lat: 43.6261, lng: 7.0944 },
+    coordinates: { lat: 43.623300, lng: 7.094400 },
     highlights: ["La Ville", "Machine", "Couleurs primaires"],
     visited: false,
     favorite: false
   },
   {
-    id: 352,
+    id: 387,
     name: "Picasso Céramiste - Musée Picasso Antibes",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80",
@@ -7265,13 +6194,13 @@ export const places = [
     price: "10€",
     hours: "10h - 18h (fermé lundi)",
     period: "Jusqu'au 31 octobre 2026",
-    coordinates: { lat: 43.5807, lng: 7.1273 },
+    coordinates: { lat: 43.577900, lng: 7.127300 },
     highlights: ["Vallauris", "Plats décorés", "Chouettes"],
     visited: false,
     favorite: false
   },
   {
-    id: 353,
+    id: 388,
     name: "Rembrandt : Les Dernières Années - Musée des Beaux-Arts de Lyon",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?w=800&q=80",
@@ -7281,13 +6210,13 @@ export const places = [
     price: "14€",
     hours: "10h - 18h (fermé mardi)",
     period: "Jusqu'au 31 mai 2026",
-    coordinates: { lat: 45.7666, lng: 4.8336 },
+    coordinates: { lat: 45.763000, lng: 4.833600 },
     highlights: ["Autoportraits", "Clair-obscur", "Gravures"],
     visited: false,
     favorite: false
   },
   {
-    id: 354,
+    id: 389,
     name: "L'Art des Samuraï - Musée des Arts Asiatiques",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7303,7 +6232,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 355,
+    id: 390,
     name: "L'Atelier de Rodin - Musée Rodin",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80",
@@ -7319,7 +6248,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 356,
+    id: 391,
     name: "Napoléon : L'Épopée - Château de Fontainebleau",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1597212720801-958b60f8a29e?w=800&q=80",
@@ -7329,13 +6258,13 @@ export const places = [
     price: "14€",
     hours: "9h30 - 18h (fermé mardi)",
     period: "Jusqu'au 31 décembre 2026",
-    coordinates: { lat: 48.4011, lng: 2.7009 },
+    coordinates: { lat: 48.398300, lng: 2.700900 },
     highlights: ["Sacre", "Campagnes", "Exil"],
     visited: false,
     favorite: false
   },
   {
-    id: 357,
+    id: 392,
     name: "Botticelli : Printemps Éternel - Musée des Beaux-Arts de Bordeaux",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7345,13 +6274,13 @@ export const places = [
     price: "12€",
     hours: "11h - 18h (fermé mardi)",
     period: "Jusqu'au 31 août 2026",
-    coordinates: { lat: 44.8378, lng: -0.5792 },
+    coordinates: { lat: 44.836000, lng: -0.582318 },
     highlights: ["Madones", "Mythologie", "Florence"],
     visited: false,
     favorite: false
   },
   {
-    id: 358,
+    id: 393,
     name: "L'Empire Aztèque - Musée d'Aquitaine",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7361,13 +6290,13 @@ export const places = [
     price: "10€",
     hours: "11h - 18h (fermé lundi)",
     period: "Jusqu'au 30 septembre 2026",
-    coordinates: { lat: 44.8378, lng: -0.5761 },
+    coordinates: { lat: 44.835000, lng: -0.576100 },
     highlights: ["Calendrier solaire", "Sacrifices", "Tenochtitlan"],
     visited: false,
     favorite: false
   },
   {
-    id: 359,
+    id: 394,
     name: "Degas : Danseuses et Chevaux - Musée des Beaux-Arts de Rennes",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7377,13 +6306,13 @@ export const places = [
     price: "8€",
     hours: "10h - 17h (fermé lundi)",
     period: "Jusqu'au 31 mai 2026",
-    coordinates: { lat: 48.1106, lng: -1.6744 },
+    coordinates: { lat: 48.107800, lng: -1.674400 },
     highlights: ["Petites danseuses", "Courses hippiques", "Pastels"],
     visited: false,
     favorite: false
   },
   {
-    id: 360,
+    id: 395,
     name: "Vikings : Guerriers des Mers - Mémorial de Caen",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7393,13 +6322,13 @@ export const places = [
     price: "15€",
     hours: "9h - 19h",
     period: "Jusqu'au 31 octobre 2026",
-    coordinates: { lat: 49.2139, lng: -0.3844 },
+    coordinates: { lat: 49.211100, lng: -0.384400 },
     highlights: ["Drakkars", "Runes", "Normandie viking"],
     visited: false,
     favorite: false
   },
   {
-    id: 361,
+    id: 396,
     name: "Le Corbusier : Habiter - Cité de l'Architecture",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7409,13 +6338,13 @@ export const places = [
     price: "13€",
     hours: "11h - 19h (fermé mardi)",
     period: "Jusqu'au 30 juin 2026",
-    coordinates: { lat: 48.8628, lng: 2.2889 },
+    coordinates: { lat: 48.861400, lng: 2.291325 },
     highlights: ["Unité d'habitation", "Villa Savoye", "Modulor"],
     visited: false,
     favorite: false
   },
   {
-    id: 362,
+    id: 397,
     name: "Goya : Les Peintures Noires - Musée Goya",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7431,7 +6360,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 363,
+    id: 398,
     name: "Kandinsky : Bleu de Ciel - Centre Pompidou",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7441,13 +6370,13 @@ export const places = [
     price: "15€",
     hours: "11h - 21h (fermé mardi)",
     period: "Jusqu'au 31 août 2026",
-    coordinates: { lat: 48.8607, lng: 2.3522 },
+    coordinates: { lat: 48.861230, lng: 2.356568 },
     highlights: ["Composition", "Bauhaus", "Spirituel dans l'art"],
     visited: false,
     favorite: false
   },
   {
-    id: 364,
+    id: 399,
     name: "L'Art Roman en Auvergne - Musée d'Art Roger-Quilliot",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7463,7 +6392,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 365,
+    id: 400,
     name: "Jeff Koons : Shine - Mucem",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7473,13 +6402,13 @@ export const places = [
     price: "13€",
     hours: "10h - 18h (fermé mardi)",
     period: "Jusqu'au 31 mai 2026",
-    coordinates: { lat: 43.2966, lng: 5.3608 },
+    coordinates: { lat: 43.294800, lng: 5.357682 },
     highlights: ["Balloon Dog", "Inox poli", "Pop Art"],
     visited: false,
     favorite: false
   },
   {
-    id: 366,
+    id: 401,
     name: "Manuscrits de la Mer Morte - Institut du Monde Arabe",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7495,7 +6424,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 367,
+    id: 402,
     name: "Soulages : Noir Lumière - Musée Soulages",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=800&q=80",
@@ -7505,13 +6434,13 @@ export const places = [
     price: "13€",
     hours: "10h - 18h (fermé lundi)",
     period: "Jusqu'au 31 décembre 2026",
-    coordinates: { lat: 44.3507, lng: 2.5689 },
+    coordinates: { lat: 44.347900, lng: 2.568900 },
     highlights: ["Outrenoir", "Vitraux de Conques", "Grands formats"],
     visited: false,
     favorite: false
   },
   {
-    id: 368,
+    id: 403,
     name: "Gustave Doré : Illustrateur de Génie - Musée d'Art Moderne de Strasbourg",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7521,13 +6450,13 @@ export const places = [
     price: "10€",
     hours: "10h - 18h (fermé lundi)",
     period: "Jusqu'au 30 septembre 2026",
-    coordinates: { lat: 48.5842, lng: 7.7489 },
+    coordinates: { lat: 48.581400, lng: 7.748900 },
     highlights: ["Bible", "Divine Comédie", "Contes de Perrault"],
     visited: false,
     favorite: false
   },
   {
-    id: 369,
+    id: 404,
     name: "L'Art de l'Islam - Musée des Beaux-Arts de Dijon",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7543,7 +6472,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 370,
+    id: 405,
     name: "Dufy : Couleurs de Normandie - MuMa Le Havre",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7553,13 +6482,13 @@ export const places = [
     price: "9€",
     hours: "11h - 18h (fermé mardi)",
     period: "Jusqu'au 31 octobre 2026",
-    coordinates: { lat: 49.4872, lng: 0.1042 },
+    coordinates: { lat: 49.484400, lng: 0.104200 },
     highlights: ["Régates", "Plages", "Fauvisme"],
     visited: false,
     favorite: false
   },
   {
-    id: 371,
+    id: 406,
     name: "Pompéi Immersif - Atelier des Lumières",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7575,7 +6504,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 372,
+    id: 407,
     name: "Portraits de Cour - Château de Chantilly",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7585,13 +6514,13 @@ export const places = [
     price: "17€",
     hours: "10h - 18h (fermé mardi)",
     period: "Jusqu'au 30 juin 2026",
-    coordinates: { lat: 49.1935, lng: 2.4867 },
+    coordinates: { lat: 49.190700, lng: 2.486700 },
     highlights: ["Condé", "Clouet", "Rigaud"],
     visited: false,
     favorite: false
   },
   {
-    id: 373,
+    id: 408,
     name: "Hiroshige : Les Cent Vues d'Edo - Musée des Arts Décoratifs",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7607,7 +6536,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 374,
+    id: 409,
     name: "Niki de Saint Phalle : Nanas - MAMAC Nice",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7617,13 +6546,13 @@ export const places = [
     price: "10€",
     hours: "10h - 18h (fermé lundi)",
     period: "Jusqu'au 31 août 2026",
-    coordinates: { lat: 43.7017, lng: 7.2767 },
+    coordinates: { lat: 43.698900, lng: 7.276700 },
     highlights: ["Nanas", "Fontaine Stravinsky", "Tirs"],
     visited: false,
     favorite: false
   },
   {
-    id: 375,
+    id: 410,
     name: "L'Or des Thraces - Musée de la Romanité",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7633,13 +6562,13 @@ export const places = [
     price: "11€",
     hours: "10h - 18h",
     period: "Jusqu'au 30 septembre 2026",
-    coordinates: { lat: 43.8342, lng: 4.3606 },
+    coordinates: { lat: 43.832400, lng: 4.357482 },
     highlights: ["Orfèvrerie", "Tombes royales", "Mythologie"],
     visited: false,
     favorite: false
   },
   {
-    id: 376,
+    id: 411,
     name: "Renoir Intime - Musée Renoir Cagnes",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7649,13 +6578,13 @@ export const places = [
     price: "8€",
     hours: "10h - 12h / 14h - 18h (fermé mardi)",
     period: "Jusqu'au 30 novembre 2026",
-    coordinates: { lat: 43.6625, lng: 7.1486 },
+    coordinates: { lat: 43.659700, lng: 7.148600 },
     highlights: ["Jardins", "Sculptures", "Vie quotidienne"],
     visited: false,
     favorite: false
   },
   {
-    id: 377,
+    id: 412,
     name: "Ingres : Portraits de Femmes - Musée Ingres Bourdelle",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7665,13 +6594,13 @@ export const places = [
     price: "10€",
     hours: "10h - 18h (fermé lundi)",
     period: "Jusqu'au 31 août 2026",
-    coordinates: { lat: 44.0172, lng: 1.3542 },
+    coordinates: { lat: 44.014400, lng: 1.354200 },
     highlights: ["Grande Odalisque", "Dessins", "Élégance"],
     visited: false,
     favorite: false
   },
   {
-    id: 378,
+    id: 413,
     name: "L'Art Brut au Féminin - Collection de l'Art Brut",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7687,7 +6616,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 379,
+    id: 414,
     name: "Courbet et la Nature - Musée Courbet",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7697,13 +6626,13 @@ export const places = [
     price: "10€",
     hours: "10h - 18h (fermé mardi)",
     period: "Jusqu'au 31 octobre 2026",
-    coordinates: { lat: 47.1058, lng: 6.1431 },
+    coordinates: { lat: 47.103000, lng: 6.143100 },
     highlights: ["Vallée de la Loue", "Grottes", "Réalisme"],
     visited: false,
     favorite: false
   },
   {
-    id: 380,
+    id: 415,
     name: "L'Art Nouveau à Nancy - Musée de l'École de Nancy",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7713,13 +6642,13 @@ export const places = [
     price: "10€",
     hours: "10h - 18h (fermé lundi et mardi)",
     period: "Jusqu'au 30 septembre 2026",
-    coordinates: { lat: 48.6737, lng: 6.1667 },
+    coordinates: { lat: 48.670900, lng: 6.166700 },
     highlights: ["Gallé", "Majorelle", "Verreries"],
     visited: false,
     favorite: false
   },
   {
-    id: 381,
+    id: 416,
     name: "L'Impressionnisme en Normandie - Musée des Impressionnismes Giverny",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=800&q=80",
@@ -7729,13 +6658,13 @@ export const places = [
     price: "12€",
     hours: "10h - 18h",
     period: "Avril - novembre 2026",
-    coordinates: { lat: 49.0755, lng: 1.5339 },
+    coordinates: { lat: 49.071900, lng: 1.533900 },
     highlights: ["Monet", "Pissarro", "Paysages"],
     visited: false,
     favorite: false
   },
   {
-    id: 382,
+    id: 417,
     name: "Gauguin et les Nabis - Musée de Pont-Aven",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7745,13 +6674,13 @@ export const places = [
     price: "10€",
     hours: "10h - 18h",
     period: "Jusqu'au 31 octobre 2026",
-    coordinates: { lat: 47.8553, lng: -3.7461 },
+    coordinates: { lat: 47.852500, lng: -3.746100 },
     highlights: ["Synthétisme", "Sérusier", "Talisman"],
     visited: false,
     favorite: false
   },
   {
-    id: 383,
+    id: 418,
     name: "Christo et Jeanne-Claude - Centre Pompidou",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7761,13 +6690,13 @@ export const places = [
     price: "15€",
     hours: "11h - 21h (fermé mardi)",
     period: "Jusqu'au 31 mars 2026",
-    coordinates: { lat: 48.8607, lng: 2.3522 },
+    coordinates: { lat: 48.858856, lng: 2.357062 },
     highlights: ["Pont-Neuf", "Reichstag", "Arc de Triomphe"],
     visited: false,
     favorite: false
   },
   {
-    id: 384,
+    id: 419,
     name: "La Bretagne des Peintres - Musée des Beaux-Arts de Quimper",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7777,13 +6706,13 @@ export const places = [
     price: "7€",
     hours: "9h30 - 12h / 14h - 18h (fermé mardi)",
     period: "Jusqu'au 30 septembre 2026",
-    coordinates: { lat: 47.9958, lng: -4.1019 },
+    coordinates: { lat: 47.993000, lng: -4.101900 },
     highlights: ["Sérusier", "Max Jacob", "Pardons"],
     visited: false,
     favorite: false
   },
   {
-    id: 385,
+    id: 420,
     name: "Louise Bourgeois : Cellules - LaM",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7799,7 +6728,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 386,
+    id: 421,
     name: "Le Sacre de Napoléon - Louvre",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=800&q=80",
@@ -7809,13 +6738,13 @@ export const places = [
     price: "22€",
     hours: "9h - 18h (fermé mardi)",
     period: "Jusqu'au 31 décembre 2026",
-    coordinates: { lat: 48.8606, lng: 2.3376 },
+    coordinates: { lat: 48.860600, lng: 2.342000 },
     highlights: ["David", "Cérémonie", "Empire"],
     visited: false,
     favorite: false
   },
   {
-    id: 387,
+    id: 422,
     name: "L'Art Étrusque - Musée de la Civilisation Gallo-Romaine",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7831,7 +6760,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 388,
+    id: 423,
     name: "Yves Saint Laurent : Rétrospective - Musée Yves Saint Laurent",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7847,7 +6776,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 389,
+    id: 424,
     name: "Bruegel l'Ancien : Paysages - Musée des Beaux-Arts de Valenciennes",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7857,13 +6786,13 @@ export const places = [
     price: "8€",
     hours: "10h - 18h (fermé mardi)",
     period: "Jusqu'au 31 mai 2026",
-    coordinates: { lat: 50.3578, lng: 3.5236 },
+    coordinates: { lat: 50.355000, lng: 3.523600 },
     highlights: ["Paysages", "Saisons", "Vie paysanne"],
     visited: false,
     favorite: false
   },
   {
-    id: 390,
+    id: 425,
     name: "L'Or du Rhin : Trésors Médiévaux - Musée de l'Œuvre Notre-Dame",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7873,13 +6802,13 @@ export const places = [
     price: "8€",
     hours: "10h - 18h (fermé lundi)",
     period: "Jusqu'au 30 septembre 2026",
-    coordinates: { lat: 48.5817, lng: 7.7508 },
+    coordinates: { lat: 48.578900, lng: 7.750800 },
     highlights: ["Reliquaires", "Émaux", "Trésors d'église"],
     visited: false,
     favorite: false
   },
   {
-    id: 391,
+    id: 426,
     name: "Odilon Redon : Rêveur Éveillé - Musée d'Orsay",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7895,7 +6824,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 392,
+    id: 427,
     name: "Le Greco : Mystique de Tolède - Petit Palais",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7911,7 +6840,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 393,
+    id: 428,
     name: "L'Art Maya : Splendeurs d'une Civilisation - Musée du Quai Branly",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7921,13 +6850,13 @@ export const places = [
     price: "14€",
     hours: "10h30 - 19h (fermé lundi)",
     period: "Jusqu'au 30 octobre 2026",
-    coordinates: { lat: 48.8611, lng: 2.2977 },
+    coordinates: { lat: 48.859300, lng: 2.294582 },
     highlights: ["Jade", "Calendrier", "Cités perdues"],
     visited: false,
     favorite: false
   },
   {
-    id: 394,
+    id: 429,
     name: "Félicien Rops : L'Érotisme Noir - Musée Rops",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7943,7 +6872,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 395,
+    id: 430,
     name: "Splendeurs de la Perse - Musée d'Art et d'Histoire de Genève",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7959,7 +6888,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 396,
+    id: 431,
     name: "L'Art des Années Folles - Musée des Années 30",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7975,7 +6904,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 397,
+    id: 432,
     name: "Signac : Néo-Impressionnisme - Musée de l'Annonciade",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -7985,13 +6914,13 @@ export const places = [
     price: "10€",
     hours: "10h - 18h (fermé lundi)",
     period: "Jusqu'au 30 novembre 2026",
-    coordinates: { lat: 43.2723, lng: 6.6395 },
+    coordinates: { lat: 43.269500, lng: 6.639500 },
     highlights: ["Pointillisme", "Port", "Méditerranée"],
     visited: false,
     favorite: false
   },
   {
-    id: 398,
+    id: 433,
     name: "Rubens : Le Triomphe Baroque - Musée des Beaux-Arts de Nancy",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8001,13 +6930,13 @@ export const places = [
     price: "9€",
     hours: "10h - 18h (fermé mardi)",
     period: "Jusqu'au 31 août 2026",
-    coordinates: { lat: 48.6937, lng: 6.1834 },
+    coordinates: { lat: 48.690900, lng: 6.183400 },
     highlights: ["Esquisses", "Mythologie", "Puissance"],
     visited: false,
     favorite: false
   },
   {
-    id: 399,
+    id: 434,
     name: "Le Douanier Rousseau : Rêves de Jungle - Musée d'Orsay",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8023,7 +6952,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 400,
+    id: 435,
     name: "Delacroix Romantique - Musée Delacroix",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8039,7 +6968,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 401,
+    id: 436,
     name: "L'Art Celte - Musée d'Archéologie Nationale",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8049,13 +6978,13 @@ export const places = [
     price: "11€",
     hours: "10h - 17h (fermé mardi)",
     period: "Jusqu'au 30 septembre 2026",
-    coordinates: { lat: 48.8983, lng: 2.0944 },
+    coordinates: { lat: 48.895500, lng: 2.094400 },
     highlights: ["Torques", "Char de Vix", "Art animal"],
     visited: false,
     favorite: false
   },
   {
-    id: 402,
+    id: 437,
     name: "Vermeer : Le Temps Suspendu - Musée du Louvre",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=800&q=80",
@@ -8065,13 +6994,13 @@ export const places = [
     price: "22€",
     hours: "9h - 18h (fermé mardi)",
     period: "Jusqu'au 28 février 2026",
-    coordinates: { lat: 48.8606, lng: 2.3376 },
+    coordinates: { lat: 48.858000, lng: 2.342103 },
     highlights: ["La Dentellière", "Intérieurs", "Lumière"],
     visited: false,
     favorite: false
   },
   {
-    id: 403,
+    id: 438,
     name: "Art Nouveau Bruxellois - Musée Horta",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8087,7 +7016,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 404,
+    id: 439,
     name: "Whistler et l'Esthétisme - Petit Palais",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8103,7 +7032,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 405,
+    id: 440,
     name: "L'Art de l'Ancien Égypte - Louvre",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8113,13 +7042,13 @@ export const places = [
     price: "22€",
     hours: "9h - 18h (fermé mardi)",
     period: "Jusqu'au 31 octobre 2026",
-    coordinates: { lat: 48.8606, lng: 2.3376 },
+    coordinates: { lat: 48.855404, lng: 2.340600 },
     highlights: ["Champollion", "Nouvelles fouilles", "Sarcophages"],
     visited: false,
     favorite: false
   },
   {
-    id: 406,
+    id: 441,
     name: "Man Ray : Photographie et Surréalisme - Centre Pompidou",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8129,13 +7058,13 @@ export const places = [
     price: "15€",
     hours: "11h - 21h (fermé mardi)",
     period: "Jusqu'au 30 avril 2026",
-    coordinates: { lat: 48.8607, lng: 2.3522 },
+    coordinates: { lat: 48.856209, lng: 2.356179 },
     highlights: ["Rayogrammes", "Solarisation", "Portraits"],
     visited: false,
     favorite: false
   },
   {
-    id: 407,
+    id: 442,
     name: "Gaudi : Architecture du Rêve - Cité de l'Architecture",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8145,13 +7074,13 @@ export const places = [
     price: "13€",
     hours: "11h - 19h (fermé mardi)",
     period: "Jusqu'au 31 mars 2026",
-    coordinates: { lat: 48.8628, lng: 2.2889 },
+    coordinates: { lat: 48.861000, lng: 2.285782 },
     highlights: ["Sagrada Familia", "Parc Güell", "Maquettes"],
     visited: false,
     favorite: false
   },
   {
-    id: 408,
+    id: 443,
     name: "Poussin : L'Ordre et le Chaos - Musée des Beaux-Arts de Lyon",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8161,13 +7090,13 @@ export const places = [
     price: "12€",
     hours: "10h - 18h (fermé mardi)",
     period: "Jusqu'au 30 juin 2026",
-    coordinates: { lat: 45.7666, lng: 4.8336 },
+    coordinates: { lat: 45.766600, lng: 4.829200 },
     highlights: ["Bergers d'Arcadie", "Antiquité", "Composition"],
     visited: false,
     favorite: false
   },
   {
-    id: 409,
+    id: 444,
     name: "L'Âge d'Or Flamand - Musée de Flandre",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8177,13 +7106,13 @@ export const places = [
     price: "8€",
     hours: "10h - 18h (fermé mardi)",
     period: "Jusqu'au 30 novembre 2026",
-    coordinates: { lat: 50.8003, lng: 2.4864 },
+    coordinates: { lat: 50.797500, lng: 2.486400 },
     highlights: ["Brueghel", "Van Eyck", "Vie flamande"],
     visited: false,
     favorite: false
   },
   {
-    id: 410,
+    id: 445,
     name: "Francis Bacon : Chairs et Cris - Centre Pompidou",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8193,13 +7122,13 @@ export const places = [
     price: "15€",
     hours: "11h - 21h (fermé mardi)",
     period: "Jusqu'au 31 octobre 2026",
-    coordinates: { lat: 48.8607, lng: 2.3522 },
+    coordinates: { lat: 48.854098, lng: 2.353827 },
     highlights: ["Triptyques", "Portraits", "Existentialisme"],
     visited: false,
     favorite: false
   },
   {
-    id: 411,
+    id: 446,
     name: "Trésor des Médicis - Château de Chenonceau",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8209,13 +7138,13 @@ export const places = [
     price: "17€",
     hours: "9h - 19h",
     period: "Jusqu'au 31 décembre 2026",
-    coordinates: { lat: 47.3249, lng: 1.0705 },
+    coordinates: { lat: 47.322100, lng: 1.070500 },
     highlights: ["Renaissance", "Catherine de Médicis", "Collections"],
     visited: false,
     favorite: false
   },
   {
-    id: 412,
+    id: 447,
     name: "L'Art Byzantin - Louvre",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8225,13 +7154,13 @@ export const places = [
     price: "22€",
     hours: "9h - 18h (fermé mardi)",
     period: "Jusqu'au 30 septembre 2026",
-    coordinates: { lat: 48.8606, lng: 2.3376 },
+    coordinates: { lat: 48.853800, lng: 2.337600 },
     highlights: ["Icônes", "Orfèvrerie", "Constantinople"],
     visited: false,
     favorite: false
   },
   {
-    id: 413,
+    id: 448,
     name: "Schiele : Egon et Vienne 1900 - Fondation Louis Vuitton",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8247,7 +7176,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 414,
+    id: 449,
     name: "Artemisia Gentileschi : Femme Artiste - Musée de l'Orangerie",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8257,13 +7186,13 @@ export const places = [
     price: "14€",
     hours: "9h - 18h (fermé mardi)",
     period: "Jusqu'au 31 mai 2026",
-    coordinates: { lat: 48.8638, lng: 2.3226 },
+    coordinates: { lat: 48.861200, lng: 2.318097 },
     highlights: ["Judith", "Caravagisme", "Féminisme"],
     visited: false,
     favorite: false
   },
   {
-    id: 415,
+    id: 450,
     name: "L'Art de Cour en France - Château de Versailles",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8273,13 +7202,13 @@ export const places = [
     price: "21€",
     hours: "9h - 18h30 (fermé lundi)",
     period: "Jusqu'au 30 septembre 2026",
-    coordinates: { lat: 48.8049, lng: 2.1204 },
+    coordinates: { lat: 48.803100, lng: 2.117282 },
     highlights: ["Le Brun", "Gobelins", "Faste royal"],
     visited: false,
     favorite: false
   },
   {
-    id: 416,
+    id: 451,
     name: "Edward Hopper : Solitudes Américaines - Grand Palais",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8289,13 +7218,13 @@ export const places = [
     price: "17€",
     hours: "10h - 20h (fermé mardi)",
     period: "Jusqu'au 31 août 2026",
-    coordinates: { lat: 48.8662, lng: 2.3125 },
+    coordinates: { lat: 48.867600, lng: 2.314925 },
     highlights: ["Nighthawks", "Lumière américaine", "Solitude"],
     visited: false,
     favorite: false
   },
   {
-    id: 417,
+    id: 452,
     name: "Le Bauhaus : Révolution Design - MAD Paris",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8311,7 +7240,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 418,
+    id: 453,
     name: "Venise : La Sérénissime - Musée Jacquemart-André",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8321,13 +7250,13 @@ export const places = [
     price: "16€",
     hours: "10h - 18h",
     period: "Jusqu'au 31 mars 2026",
-    coordinates: { lat: 48.8752, lng: 2.3108 },
+    coordinates: { lat: 48.871600, lng: 2.310800 },
     highlights: ["Véronèse", "Tintoret", "Vedute"],
     visited: false,
     favorite: false
   },
   {
-    id: 419,
+    id: 454,
     name: "Miro : Signes et Symboles - Fondation Maeght",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8337,13 +7266,13 @@ export const places = [
     price: "18€",
     hours: "10h - 18h",
     period: "Jusqu'au 30 novembre 2026",
-    coordinates: { lat: 43.7042, lng: 7.1222 },
+    coordinates: { lat: 43.702400, lng: 7.119082 },
     highlights: ["Constellations", "Sculptures", "Poésie visuelle"],
     visited: false,
     favorite: false
   },
   {
-    id: 420,
+    id: 455,
     name: "L'Art de la Renaissance Italienne - Musée du Petit Palais",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8358,12 +7287,8 @@ export const places = [
     visited: false,
     favorite: false
   },
-
-  // ============================================
-  // EXPOSITIONS SUPPLÉMENTAIRES (50)
-  // ============================================
   {
-    id: 471,
+    id: 456,
     name: "Klimt et l'Art Nouveau Viennois - Musée d'Orsay",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=800&q=80",
@@ -8379,7 +7304,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 472,
+    id: 457,
     name: "Frida Kahlo : Corps et Âme - Palais Galliera",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8395,7 +7320,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 473,
+    id: 458,
     name: "Basquiat x Warhol - Fondation Louis Vuitton",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80",
@@ -8411,7 +7336,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 474,
+    id: 459,
     name: "David Hockney : Normandie - Musée de l'Orangerie",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8421,13 +7346,13 @@ export const places = [
     price: "14€",
     hours: "9h - 18h (fermé mardi)",
     period: "Jusqu'au 30 septembre 2026",
-    coordinates: { lat: 48.8638, lng: 2.3226 },
+    coordinates: { lat: 48.866800, lng: 2.317404 },
     highlights: ["Art numérique", "Printemps normand", "Couleurs vives"],
     visited: false,
     favorite: false
   },
   {
-    id: 475,
+    id: 460,
     name: "Vermeer : La Lumière du Nord - Louvre",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=800&q=80",
@@ -8437,13 +7362,13 @@ export const places = [
     price: "22€",
     hours: "9h - 18h (fermé mardi)",
     period: "Jusqu'au 31 mars 2026",
-    coordinates: { lat: 48.8606, lng: 2.3376 },
+    coordinates: { lat: 48.854018, lng: 2.333800 },
     highlights: ["La Laitière", "La Dentellière", "Lumière hollandaise"],
     visited: false,
     favorite: false
   },
   {
-    id: 476,
+    id: 461,
     name: "Banksy : Art Urbain Subversif - La Villette",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8453,13 +7378,13 @@ export const places = [
     price: "18€",
     hours: "10h - 19h",
     period: "Jusqu'au 31 juillet 2026",
-    coordinates: { lat: 48.8895, lng: 2.3918 },
+    coordinates: { lat: 48.886700, lng: 2.391800 },
     highlights: ["Girl with Balloon", "Street Art", "Provocation"],
     visited: false,
     favorite: false
   },
   {
-    id: 477,
+    id: 462,
     name: "Modigliani : Portraits d'une Vie - Musée Maillol",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8475,7 +7400,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 478,
+    id: 463,
     name: "Léonard de Vinci : Dessins et Manuscrits - Institut de France",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8491,7 +7416,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 479,
+    id: 464,
     name: "Magritte : Le Mystère du Quotidien - Centre Pompidou",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8501,13 +7426,13 @@ export const places = [
     price: "15€",
     hours: "11h - 21h (fermé mardi)",
     period: "Jusqu'au 30 juin 2026",
-    coordinates: { lat: 48.8607, lng: 2.3522 },
+    coordinates: { lat: 48.853321, lng: 2.350381 },
     highlights: ["Ceci n'est pas une pipe", "Empire des lumières", "Mystère"],
     visited: false,
     favorite: false
   },
   {
-    id: 480,
+    id: 465,
     name: "Salvador Dalí : Le Théâtre de la Folie - Espace Dalí",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8523,7 +7448,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 481,
+    id: 466,
     name: "Jeff Koons : Reflets - Centre Pompidou",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8533,13 +7458,13 @@ export const places = [
     price: "15€",
     hours: "11h - 21h (fermé mardi)",
     period: "Jusqu'au 31 août 2026",
-    coordinates: { lat: 48.8607, lng: 2.3522 },
+    coordinates: { lat: 48.854413, lng: 2.346630 },
     highlights: ["Balloon Dog", "Kitsch", "Pop culture"],
     visited: false,
     favorite: false
   },
   {
-    id: 482,
+    id: 467,
     name: "Caravage : Lumière et Ténèbres - Musée Jacquemart-André",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8549,13 +7474,13 @@ export const places = [
     price: "16€",
     hours: "10h - 18h",
     period: "Jusqu'au 30 novembre 2026",
-    coordinates: { lat: 48.8752, lng: 2.3108 },
+    coordinates: { lat: 48.875200, lng: 2.306400 },
     highlights: ["Judith décapitant Holopherne", "Ténébrisme", "Violence"],
     visited: false,
     favorite: false
   },
   {
-    id: 483,
+    id: 468,
     name: "Botticelli : Printemps Florentin - Musée du Luxembourg",
     type: "exposition",
     image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=800&q=80",
@@ -8571,7 +7496,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 484,
+    id: 469,
     name: "L'Estampe Japonaise - Musée Guimet",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8587,7 +7512,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 485,
+    id: 470,
     name: "L'Art des Samourais - Musée de l'Armée",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8603,7 +7528,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 486,
+    id: 471,
     name: "Yayoi Kusama : Infini - Galeries Lafayette",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8619,7 +7544,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 487,
+    id: 472,
     name: "Ai Weiwei : Résistance - Palais de Tokyo",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8635,7 +7560,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 488,
+    id: 473,
     name: "Marina Abramović : Performance - Palais de Tokyo",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8645,13 +7570,13 @@ export const places = [
     price: "14€",
     hours: "12h - 21h (fermé mardi)",
     period: "Jusqu'au 30 juin 2026",
-    coordinates: { lat: 48.8636, lng: 2.2972 },
+    coordinates: { lat: 48.860800, lng: 2.297200 },
     highlights: ["The Artist is Present", "Endurance", "Corps"],
     visited: false,
     favorite: false
   },
   {
-    id: 489,
+    id: 474,
     name: "Turner : Tempêtes et Lumières - Musée Marmottan",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8667,7 +7592,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 490,
+    id: 475,
     name: "Géricault : Passion et Folie - Louvre",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8677,13 +7602,13 @@ export const places = [
     price: "22€",
     hours: "9h - 18h (fermé mardi)",
     period: "Jusqu'au 30 novembre 2026",
-    coordinates: { lat: 48.8606, lng: 2.3376 },
+    coordinates: { lat: 48.856400, lng: 2.330325 },
     highlights: ["Radeau de la Méduse", "Portraits d'aliénés", "Chevaux"],
     visited: false,
     favorite: false
   },
   {
-    id: 491,
+    id: 476,
     name: "Caillebotte : Paris Moderne - Musée d'Orsay",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8699,7 +7624,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 492,
+    id: 477,
     name: "Toulouse-Lautrec : Nuits Parisiennes - Grand Palais",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8709,13 +7634,13 @@ export const places = [
     price: "17€",
     hours: "10h - 20h (fermé mardi)",
     period: "Jusqu'au 30 septembre 2026",
-    coordinates: { lat: 48.8662, lng: 2.3125 },
+    coordinates: { lat: 48.864400, lng: 2.315618 },
     highlights: ["Moulin Rouge", "Jane Avril", "Affiches"],
     visited: false,
     favorite: false
   },
   {
-    id: 493,
+    id: 478,
     name: "Kandinsky : L'Abstraction Musicale - Centre Pompidou",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8725,13 +7650,13 @@ export const places = [
     price: "15€",
     hours: "11h - 21h (fermé mardi)",
     period: "Jusqu'au 31 août 2026",
-    coordinates: { lat: 48.8607, lng: 2.3522 },
+    coordinates: { lat: 48.857438, lng: 2.343598 },
     highlights: ["Composition VIII", "Bauhaus", "Musique et couleur"],
     visited: false,
     favorite: false
   },
   {
-    id: 494,
+    id: 479,
     name: "Mondrian : De Stijl - Fondation Louis Vuitton",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8747,7 +7672,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 495,
+    id: 480,
     name: "Giacometti : L'Homme Qui Marche - Institut Giacometti",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8763,7 +7688,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 496,
+    id: 481,
     name: "Niki de Saint Phalle : Nanas - Grand Palais",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8773,13 +7698,13 @@ export const places = [
     price: "17€",
     hours: "10h - 20h (fermé mardi)",
     period: "Jusqu'au 31 octobre 2026",
-    coordinates: { lat: 48.8662, lng: 2.3125 },
+    coordinates: { lat: 48.861800, lng: 2.312500 },
     highlights: ["Nanas", "Jardin des Tarots", "Tirs"],
     visited: false,
     favorite: false
   },
   {
-    id: 497,
+    id: 482,
     name: "César : Compressions - Centre Pompidou",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8789,13 +7714,13 @@ export const places = [
     price: "15€",
     hours: "11h - 21h (fermé mardi)",
     period: "Jusqu'au 31 mars 2026",
-    coordinates: { lat: 48.8607, lng: 2.3522 },
+    coordinates: { lat: 48.861905, lng: 2.342273 },
     highlights: ["Compressions", "Expansions", "Nouveau Réalisme"],
     visited: false,
     favorite: false
   },
   {
-    id: 498,
+    id: 483,
     name: "Boltanski : Mémoire - MAC Lyon",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8805,13 +7730,13 @@ export const places = [
     price: "8€",
     hours: "11h - 18h (fermé lundi et mardi)",
     period: "Jusqu'au 30 septembre 2026",
-    coordinates: { lat: 45.7844, lng: 4.8547 },
+    coordinates: { lat: 45.781600, lng: 4.854700 },
     highlights: ["Inventaires", "Monuments", "Disparition"],
     visited: false,
     favorite: false
   },
   {
-    id: 499,
+    id: 484,
     name: "Dubuffet : Art Brut - LaM",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8827,7 +7752,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 500,
+    id: 485,
     name: "Kiefer : Chute des Anges - Grand Palais",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8837,29 +7762,13 @@ export const places = [
     price: "17€",
     hours: "10h - 20h (fermé mardi)",
     period: "Jusqu'au 30 juin 2026",
-    coordinates: { lat: 48.8662, lng: 2.3125 },
+    coordinates: { lat: 48.863600, lng: 2.307997 },
     highlights: ["Mémoire allemande", "Matériaux", "Mythologie"],
     visited: false,
     favorite: false
   },
   {
-    id: 501,
-    name: "Soulages : Noir Lumière - Musée Soulages",
-    type: "exposition",
-    image: PLACEHOLDER_IMAGE,
-    description: "L'outrenoir du maître de Rodez.",
-    location: "Rodez, Occitanie",
-    rating: 4.6,
-    price: "11€",
-    hours: "10h - 18h (fermé lundi)",
-    period: "Jusqu'au 31 décembre 2026",
-    coordinates: { lat: 44.3533, lng: 2.5753 },
-    highlights: ["Outrenoir", "Lumière", "Polyptyques"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 502,
+    id: 486,
     name: "Rembrandt : Autoportraits - Musée Cognacq-Jay",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8875,7 +7784,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 503,
+    id: 487,
     name: "Raphaël : Divine Beauté - Louvre",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8885,13 +7794,13 @@ export const places = [
     price: "22€",
     hours: "9h - 18h (fermé mardi)",
     period: "Jusqu'au 30 septembre 2026",
-    coordinates: { lat: 48.8606, lng: 2.3376 },
+    coordinates: { lat: 48.860600, lng: 2.328400 },
     highlights: ["Madones", "Vatican", "Grâce"],
     visited: false,
     favorite: false
   },
   {
-    id: 504,
+    id: 488,
     name: "Vigée Le Brun : Femme Artiste - Grand Palais",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8901,13 +7810,13 @@ export const places = [
     price: "17€",
     hours: "10h - 20h (fermé mardi)",
     period: "Jusqu'au 31 août 2026",
-    coordinates: { lat: 48.8662, lng: 2.3125 },
+    coordinates: { lat: 48.869200, lng: 2.307304 },
     highlights: ["Marie-Antoinette", "Portraits féminins", "Exil"],
     visited: false,
     favorite: false
   },
   {
-    id: 505,
+    id: 489,
     name: "Boucher : Galanteries - Musée du Louvre",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8917,13 +7826,13 @@ export const places = [
     price: "22€",
     hours: "9h - 18h (fermé mardi)",
     period: "Jusqu'au 30 novembre 2026",
-    coordinates: { lat: 48.8606, lng: 2.3376 },
+    coordinates: { lat: 48.865600, lng: 2.328940 },
     highlights: ["Rococo", "Madame de Pompadour", "Pastorales"],
     visited: false,
     favorite: false
   },
   {
-    id: 506,
+    id: 490,
     name: "Watteau : Fêtes Galantes - Musée du Louvre",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8933,13 +7842,13 @@ export const places = [
     price: "22€",
     hours: "9h - 18h (fermé mardi)",
     period: "Jusqu'au 31 octobre 2026",
-    coordinates: { lat: 48.8606, lng: 2.3376 },
+    coordinates: { lat: 48.869953, lng: 2.332200 },
     highlights: ["Embarquement pour Cythère", "Commedia dell'arte", "Mélancolie"],
     visited: false,
     favorite: false
   },
   {
-    id: 507,
+    id: 491,
     name: "Chardin : Nature Morte - Petit Palais",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8955,7 +7864,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 508,
+    id: 492,
     name: "Ingres : La Ligne et la Chair - Musée Ingres Bourdelle",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8971,7 +7880,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 509,
+    id: 493,
     name: "Corot : Paysages de France - Musée des Beaux-Arts de Reims",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -8987,7 +7896,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 510,
+    id: 494,
     name: "Courbet : L'Origine du Réalisme - Musée Courbet",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -9003,7 +7912,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 511,
+    id: 495,
     name: "Sisley : La Poésie de l'Eau - Musée des Impressionnismes",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -9019,7 +7928,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 512,
+    id: 496,
     name: "Pissarro : Le Premier Impressionniste - Musée Camille Pissarro",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -9035,23 +7944,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 513,
-    name: "Berthe Morisot : Femme Impressionniste - Musée Marmottan",
-    type: "exposition",
-    image: PLACEHOLDER_IMAGE,
-    description: "L'intimité féminine vue par l'artiste impressionniste.",
-    location: "Paris, Île-de-France",
-    rating: 4.5,
-    price: "14€",
-    hours: "10h - 18h (fermé lundi)",
-    period: "Jusqu'au 31 mai 2026",
-    coordinates: { lat: 48.8600, lng: 2.2667 },
-    highlights: ["Portraits de femmes", "Jardins", "Intérieurs"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 514,
+    id: 497,
     name: "Mary Cassatt : L'Impressionnisme Américain - Musée d'Orsay",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -9067,7 +7960,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 515,
+    id: 498,
     name: "Seurat : Points de Lumière - Musée d'Orsay",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -9083,7 +7976,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 516,
+    id: 499,
     name: "Bonnard : La Couleur en Liberté - Musée Bonnard",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -9093,13 +7986,13 @@ export const places = [
     price: "7€",
     hours: "10h - 18h (fermé lundi)",
     period: "Jusqu'au 30 novembre 2026",
-    coordinates: { lat: 43.5761, lng: 7.0175 },
+    coordinates: { lat: 43.573300, lng: 7.017500 },
     highlights: ["Nus", "Intérieurs", "Jardin"],
     visited: false,
     favorite: false
   },
   {
-    id: 517,
+    id: 500,
     name: "Vuillard : Intimités - Musée d'Orsay",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -9115,7 +8008,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 518,
+    id: 501,
     name: "Maurice Denis : Art Sacré - Musée Maurice Denis",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -9131,7 +8024,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 519,
+    id: 502,
     name: "Fernand Léger : La Ville - Centre Pompidou",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -9141,13 +8034,13 @@ export const places = [
     price: "15€",
     hours: "11h - 21h (fermé mardi)",
     period: "Jusqu'au 31 mars 2026",
-    coordinates: { lat: 48.8607, lng: 2.3522 },
+    coordinates: { lat: 48.866835, lng: 2.343312 },
     highlights: ["La Ville", "Mécanisme", "Cirque"],
     visited: false,
     favorite: false
   },
   {
-    id: 520,
+    id: 503,
     name: "Robert Delaunay : Rythmes Colorés - Centre Pompidou",
     type: "exposition",
     image: PLACEHOLDER_IMAGE,
@@ -9157,16 +8050,13 @@ export const places = [
     price: "15€",
     hours: "11h - 21h (fermé mardi)",
     period: "Jusqu'au 30 juin 2026",
-    coordinates: { lat: 48.8607, lng: 2.3522 },
+    coordinates: { lat: 48.870971, lng: 2.346809 },
     highlights: ["Tour Eiffel", "Disques", "Formes circulaires"],
     visited: false,
     favorite: false
   },
-  // ============================================
-  // NOUVEAUX MUSÉES UNIQUES (64 musées)
-  // ============================================
   {
-    id: 521,
+    id: 504,
     name: "Musée de Cluny - Musée national du Moyen Âge",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9182,7 +8072,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 522,
+    id: 505,
     name: "Palais de Tokyo",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9198,7 +8088,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 523,
+    id: 506,
     name: "Musée Galliera - Musée de la Mode",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9214,7 +8104,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 524,
+    id: 507,
     name: "Musée Yves Saint Laurent Paris",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9230,7 +8120,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 525,
+    id: 508,
     name: "Cité de l'Architecture et du Patrimoine",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9246,7 +8136,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 526,
+    id: 509,
     name: "Musée National de la Marine",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9262,7 +8152,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 527,
+    id: 510,
     name: "Musée Guimet - Arts Asiatiques",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9278,7 +8168,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 528,
+    id: 511,
     name: "Musée des Arts et Métiers",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9294,7 +8184,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 529,
+    id: 512,
     name: "Musée National Delacroix",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9310,7 +8200,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 530,
+    id: 513,
     name: "Mémorial de la Shoah",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9326,7 +8216,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 531,
+    id: 514,
     name: "Institut du Monde Arabe",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9342,7 +8232,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 532,
+    id: 515,
     name: "Philharmonie de Paris - Musée de la Musique",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9358,7 +8248,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 533,
+    id: 516,
     name: "Musée Lumière",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9374,7 +8264,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 534,
+    id: 517,
     name: "Musée Gadagne - Histoire de Lyon",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9390,7 +8280,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 535,
+    id: 518,
     name: "MAMAC - Musée d'Art Moderne et d'Art Contemporain",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9406,7 +8296,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 536,
+    id: 519,
     name: "Musée de la Photographie de Mougins",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9422,7 +8312,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 537,
+    id: 520,
     name: "Musée Mer Marine",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9438,7 +8328,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 539,
+    id: 521,
     name: "Les Machines de l'Île",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9454,7 +8344,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 540,
+    id: 522,
     name: "Mémorial de l'Abolition de l'Esclavage",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9470,7 +8360,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 541,
+    id: 523,
     name: "Musée Jules Verne",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9486,7 +8376,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 542,
+    id: 524,
     name: "Fonds Hélène & Édouard Leclerc pour la Culture",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9502,7 +8392,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 543,
+    id: 525,
     name: "Musée de la Faïence de Quimper",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9518,7 +8408,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 544,
+    id: 526,
     name: "Musée de la Compagnie des Indes",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9534,7 +8424,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 545,
+    id: 527,
     name: "Musée des Beaux-Arts de Lille",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9550,7 +8440,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 546,
+    id: 528,
     name: "La Piscine - Musée d'Art et d'Industrie de Roubaix",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9566,7 +8456,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 547,
+    id: 529,
     name: "Louvre-Lens",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9582,7 +8472,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 548,
+    id: 530,
     name: "Centre Historique Minier de Lewarde",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9598,7 +8488,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 549,
+    id: 531,
     name: "Panorama XXL",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9614,7 +8504,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 550,
+    id: 532,
     name: "Historial Jeanne d'Arc",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9630,7 +8520,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 551,
+    id: 533,
     name: "MuMa - Musée d'Art Moderne André Malraux",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9646,7 +8536,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 552,
+    id: 534,
     name: "Maison et Jardins de Claude Monet",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9656,13 +8546,13 @@ export const places = [
     price: "12€",
     hours: "9h30 - 18h",
     period: "Impressionnisme",
-    coordinates: { lat: 49.0755, lng: 1.5339 },
+    coordinates: { lat: 49.075500, lng: 1.529500 },
     highlights: ["Pont japonais", "Nymphéas", "Atelier"],
     visited: false,
     favorite: false
   },
   {
-    id: 553,
+    id: 535,
     name: "Musée Airborne",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9678,7 +8568,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 554,
+    id: 536,
     name: "Musée du Débarquement Utah Beach",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9694,7 +8584,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 555,
+    id: 537,
     name: "Musée du Débarquement d'Arromanches",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9710,7 +8600,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 556,
+    id: 538,
     name: "Cimetière Américain de Colleville-sur-Mer",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9726,7 +8616,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 557,
+    id: 539,
     name: "Musée Bartholdi",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9742,7 +8632,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 558,
+    id: 540,
     name: "Mémorial Alsace-Moselle",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9758,7 +8648,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 559,
+    id: 541,
     name: "Musée de la Grande Guerre du Pays de Meaux",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9774,7 +8664,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 560,
+    id: 542,
     name: "Citadelle de Besançon",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9790,7 +8680,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 561,
+    id: 543,
     name: "Hospices de Beaune",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9806,7 +8696,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 562,
+    id: 544,
     name: "Abbaye de Cluny",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9822,7 +8712,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 563,
+    id: 545,
     name: "Musée Nicéphore Niépce",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9838,7 +8728,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 564,
+    id: 546,
     name: "Muséum de Toulouse",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9854,7 +8744,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 565,
+    id: 547,
     name: "Les Abattoirs - Musée d'Art Moderne et Contemporain",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9870,7 +8760,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 566,
+    id: 548,
     name: "Musée Aeroscopia",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9886,7 +8776,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 567,
+    id: 549,
     name: "Musée Fenaille",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9902,7 +8792,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 568,
+    id: 550,
     name: "Musée de la Préhistoire des Gorges du Verdon",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9918,7 +8808,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 569,
+    id: 551,
     name: "Musée Départemental Arles Antique",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9934,7 +8824,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 570,
+    id: 552,
     name: "LUMA Arles",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9950,7 +8840,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 571,
+    id: 553,
     name: "Carrières de Lumières",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9966,7 +8856,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 572,
+    id: 554,
     name: "Villa Méditerranée",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9982,7 +8872,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 573,
+    id: 555,
     name: "Musée Grobet-Labadié",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -9998,7 +8888,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 574,
+    id: 556,
     name: "MAC - Musée d'Art Contemporain de Marseille",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -10014,7 +8904,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 575,
+    id: 557,
     name: "Fort Saint-Jean",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -10030,7 +8920,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 576,
+    id: 558,
     name: "Musée Savoisien",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -10046,7 +8936,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 577,
+    id: 559,
     name: "Musée des Beaux-Arts de Chambéry",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -10062,7 +8952,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 578,
+    id: 560,
     name: "Musée de la Résistance et de la Déportation de l'Isère",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -10078,7 +8968,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 579,
+    id: 561,
     name: "MAGASIN - Centre National d'Art Contemporain",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -10094,7 +8984,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 580,
+    id: 562,
     name: "Musée d'Art Sacré du Gard",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -10110,7 +9000,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 581,
+    id: 563,
     name: "Musée d'Art Roger Quilliot",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -10126,7 +9016,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 582,
+    id: 564,
     name: "Vulcania",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -10142,7 +9032,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 582,
+    id: 565,
     name: "Musée de l'Aventure Peugeot",
     type: "musée",
     image: PLACEHOLDER_IMAGE,
@@ -10157,11 +9047,8 @@ export const places = [
     visited: false,
     favorite: false
   },
-  // ============================================
-  // CHÂTEAUX VISITABLES (100 nouveaux)
-  // ============================================
   {
-    id: 583,
+    id: 566,
     name: "Château de Chaumont-sur-Loire",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10177,7 +9064,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 584,
+    id: 567,
     name: "Château de Maintenon",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10193,7 +9080,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 585,
+    id: 568,
     name: "Château de Meung-sur-Loire",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10209,7 +9096,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 586,
+    id: 569,
     name: "Château de Châteaudun",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10225,7 +9112,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 587,
+    id: 570,
     name: "Château de Talcy",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10241,7 +9128,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 588,
+    id: 571,
     name: "Château de Fougères-sur-Bièvre",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10257,7 +9144,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 589,
+    id: 572,
     name: "Château de Beauregard",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10273,7 +9160,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 590,
+    id: 573,
     name: "Château de Troussay",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10289,7 +9176,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 591,
+    id: 574,
     name: "Château de Villesavin",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10305,7 +9192,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 592,
+    id: 575,
     name: "Château du Moulin",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10321,7 +9208,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 593,
+    id: 576,
     name: "Château de Gien",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10337,7 +9224,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 594,
+    id: 577,
     name: "Château de Saint-Brisson-sur-Loire",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10353,7 +9240,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 595,
+    id: 578,
     name: "Château de la Ferté-Saint-Aubin",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10369,7 +9256,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 596,
+    id: 579,
     name: "Château de Bouges",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10385,7 +9272,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 597,
+    id: 580,
     name: "Château de Nohant",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10401,7 +9288,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 598,
+    id: 581,
     name: "Château d'Ainay-le-Vieil",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10417,7 +9304,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 599,
+    id: 582,
     name: "Château de Culan",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10433,7 +9320,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 600,
+    id: 583,
     name: "Château de la Verrerie",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10449,7 +9336,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 601,
+    id: 584,
     name: "Château de Lavardin",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10465,7 +9352,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 602,
+    id: 585,
     name: "Château de Vendôme",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10481,7 +9368,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 603,
+    id: 586,
     name: "Château de Montpoupon",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10497,7 +9384,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 604,
+    id: 587,
     name: "Château de Montrésor",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10513,7 +9400,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 605,
+    id: 588,
     name: "Château du Rivau",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10529,7 +9416,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 606,
+    id: 589,
     name: "Château de l'Islette",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10545,7 +9432,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 607,
+    id: 590,
     name: "Château de Candé",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10561,7 +9448,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 608,
+    id: 591,
     name: "Forteresse de Chinon",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10577,7 +9464,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 609,
+    id: 592,
     name: "Château de la Guerche",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10593,7 +9480,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 610,
+    id: 593,
     name: "Château de Sagonne",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10609,7 +9496,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 611,
+    id: 594,
     name: "Château de Chabenet",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10625,7 +9512,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 612,
+    id: 595,
     name: "Château de Bagneux",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10641,7 +9528,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 613,
+    id: 596,
     name: "Château de Martigné-Briand",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10657,7 +9544,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 614,
+    id: 597,
     name: "Château de Montgeoffroy",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10673,7 +9560,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 615,
+    id: 598,
     name: "Château du Boumois",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10689,7 +9576,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 616,
+    id: 599,
     name: "Château des Essarts",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10705,7 +9592,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 617,
+    id: 600,
     name: "Château de Tiffauges",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10721,7 +9608,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 618,
+    id: 601,
     name: "Château de Pouzauges",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10737,7 +9624,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 619,
+    id: 602,
     name: "Château de Noirmoutier",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10753,7 +9640,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 620,
+    id: 603,
     name: "Château de Pornic",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10769,7 +9656,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 621,
+    id: 604,
     name: "Château de Châteaubriant",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10785,7 +9672,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 622,
+    id: 605,
     name: "Château de Montmirail",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10801,7 +9688,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 623,
+    id: 606,
     name: "Château de Courtanvaux",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10817,7 +9704,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 624,
+    id: 607,
     name: "Château de Sainte-Suzanne",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10833,7 +9720,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 625,
+    id: 608,
     name: "Château de Lassay",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10849,7 +9736,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 626,
+    id: 609,
     name: "Château de Craon",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10865,7 +9752,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 627,
+    id: 610,
     name: "Château de Vayres",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10881,7 +9768,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 628,
+    id: 611,
     name: "Château de Cazeneuve",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10897,7 +9784,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 629,
+    id: 612,
     name: "Château de La Brède",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10913,7 +9800,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 630,
+    id: 613,
     name: "Château de Malle",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10929,7 +9816,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 631,
+    id: 614,
     name: "Château de Villandraut",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10945,7 +9832,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 632,
+    id: 615,
     name: "Château de Rauzan",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10961,7 +9848,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 633,
+    id: 616,
     name: "Château de Laréole",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10977,7 +9864,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 634,
+    id: 617,
     name: "Château de Gavaudun",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -10993,7 +9880,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 635,
+    id: 618,
     name: "Château de Castelnau-Bretenoux",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11009,7 +9896,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 636,
+    id: 619,
     name: "Château d'Assier",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11025,7 +9912,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 637,
+    id: 620,
     name: "Château de Cénevières",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11041,7 +9928,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 638,
+    id: 621,
     name: "Château de Larroque-Toirac",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11057,7 +9944,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 639,
+    id: 622,
     name: "Château de Belcastel",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11073,7 +9960,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 640,
+    id: 623,
     name: "Château de Bournazel",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11089,7 +9976,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 641,
+    id: 624,
     name: "Château de Calmont d'Olt",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11105,7 +9992,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 642,
+    id: 625,
     name: "Château de Salses",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11121,7 +10008,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 643,
+    id: 626,
     name: "Château de Peyrelades",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11137,7 +10024,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 644,
+    id: 627,
     name: "Château de Termes",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11153,7 +10040,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 645,
+    id: 628,
     name: "Château d'Aguilar",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11169,7 +10056,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 646,
+    id: 629,
     name: "Château d'Arques",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11185,7 +10072,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 647,
+    id: 630,
     name: "Château de Saissac",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11201,7 +10088,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 648,
+    id: 631,
     name: "Château de Pennautier",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11217,7 +10104,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 649,
+    id: 632,
     name: "Château d'O - Montpellier",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11233,7 +10120,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 650,
+    id: 633,
     name: "Château de Castries",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11249,7 +10136,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 651,
+    id: 634,
     name: "Château de Vogüé",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11265,7 +10152,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 652,
+    id: 635,
     name: "Château de Largentière",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11281,7 +10168,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 653,
+    id: 636,
     name: "Château de Pesteils",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11297,7 +10184,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 654,
+    id: 637,
     name: "Château d'Anjony",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11313,7 +10200,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 655,
+    id: 638,
     name: "Château de Pont-du-Château",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11329,7 +10216,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 656,
+    id: 639,
     name: "Château de la Palice",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11345,7 +10232,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 657,
+    id: 640,
     name: "Château de Busséol",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11361,7 +10248,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 658,
+    id: 641,
     name: "Château de Billy",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11377,7 +10264,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 659,
+    id: 642,
     name: "Château de Chavaniac-Lafayette",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11393,7 +10280,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 660,
+    id: 643,
     name: "Château de Virieu",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11409,7 +10296,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 661,
+    id: 644,
     name: "Château de Longpra",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11425,7 +10312,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 662,
+    id: 645,
     name: "Château des Allymes",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11441,7 +10328,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 663,
+    id: 646,
     name: "Château de Clermont",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11457,7 +10344,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 664,
+    id: 647,
     name: "Château de Menthon-Saint-Bernard",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11473,7 +10360,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 665,
+    id: 648,
     name: "Château de Montrottier",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11489,7 +10376,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 666,
+    id: 649,
     name: "Château de Ripaille",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11505,7 +10392,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 667,
+    id: 650,
     name: "Château d'Avully",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11521,7 +10408,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 668,
+    id: 651,
     name: "Château de Thorens",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11537,7 +10424,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 669,
+    id: 652,
     name: "Château de Chabrillan",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11553,7 +10440,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 670,
+    id: 653,
     name: "Château de Montélier",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11569,7 +10456,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 671,
+    id: 654,
     name: "Château de Cléron",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11585,7 +10472,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 672,
+    id: 655,
     name: "Château de Moncley",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11601,7 +10488,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 673,
+    id: 656,
     name: "Château de Filain",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11617,7 +10504,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 674,
+    id: 657,
     name: "Château de Beaumont-sur-Vingeanne",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11633,7 +10520,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 675,
+    id: 658,
     name: "Château de Drée",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11649,7 +10536,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 676,
+    id: 659,
     name: "Château de Pierre-de-Bresse",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11665,7 +10552,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 677,
+    id: 660,
     name: "Château de Sully - Saône-et-Loire",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11681,7 +10568,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 678,
+    id: 661,
     name: "Château de Rully",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11697,7 +10584,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 679,
+    id: 662,
     name: "Château de Germolles",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11713,7 +10600,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 680,
+    id: 663,
     name: "Château de Savigny-lès-Beaune",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11729,7 +10616,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 681,
+    id: 664,
     name: "Château de Meursault",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11745,7 +10632,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 682,
+    id: 665,
     name: "Château du Clos de Vougeot",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11760,11 +10647,8 @@ export const places = [
     visited: false,
     favorite: false
   },
-  // ============================================
-  // CHÂTEAUX VISITABLES - SÉRIE 2 (100 nouveaux)
-  // ============================================
   {
-    id: 683,
+    id: 666,
     name: "Château de Saint-Fargeau",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11780,7 +10664,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 684,
+    id: 667,
     name: "Château de Ratilly",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11796,7 +10680,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 685,
+    id: 668,
     name: "Château de Druyes",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11812,7 +10696,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 686,
+    id: 669,
     name: "Château de Maulnes",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11828,7 +10712,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 687,
+    id: 670,
     name: "Château de Berzé-le-Châtel",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11844,7 +10728,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 688,
+    id: 671,
     name: "Château de Pizay",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11860,7 +10744,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 689,
+    id: 672,
     name: "Château de Jarnioux",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11876,7 +10760,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 690,
+    id: 673,
     name: "Château de Pupetières",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11892,7 +10776,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 691,
+    id: 674,
     name: "Château de Corcelles",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11908,7 +10792,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 692,
+    id: 675,
     name: "Château de Sassenage",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11924,7 +10808,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 693,
+    id: 676,
     name: "Château d'Époisses",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11940,7 +10824,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 694,
+    id: 677,
     name: "Château de Couches-Marguerite de Bourgogne",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11956,7 +10840,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 695,
+    id: 678,
     name: "Château de Bagnols",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11972,7 +10856,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 696,
+    id: 679,
     name: "Château de la Rochepot",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -11988,7 +10872,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 697,
+    id: 680,
     name: "Château de Chevagny-les-Chevrières",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12004,7 +10888,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 698,
+    id: 681,
     name: "Château de Montmélian",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12020,7 +10904,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 699,
+    id: 682,
     name: "Château de Monthelon",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12036,7 +10920,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 700,
+    id: 683,
     name: "Château de Montaner",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12052,7 +10936,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 701,
+    id: 684,
     name: "Château de Morlanne",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12068,7 +10952,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 702,
+    id: 685,
     name: "Château de Laàs",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12084,7 +10968,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 703,
+    id: 686,
     name: "Château de Momas",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12100,7 +10984,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 704,
+    id: 687,
     name: "Château de Bellocq",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12116,7 +11000,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 705,
+    id: 688,
     name: "Château d'Urtubie",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12132,7 +11016,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 706,
+    id: 689,
     name: "Château d'Abbadia",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12148,7 +11032,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 707,
+    id: 690,
     name: "Château de Mauléon",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12164,7 +11048,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 708,
+    id: 691,
     name: "Château de Bidache",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12180,7 +11064,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 709,
+    id: 692,
     name: "Château de Buzet",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12196,7 +11080,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 710,
+    id: 693,
     name: "Château de Duras",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12212,7 +11096,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 711,
+    id: 694,
     name: "Château de Lauzun",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12228,7 +11112,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 712,
+    id: 695,
     name: "Château de Lanquais",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12244,7 +11128,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 713,
+    id: 696,
     name: "Château de Bannes",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12260,7 +11144,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 714,
+    id: 697,
     name: "Château de Bridoire",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12276,7 +11160,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 715,
+    id: 698,
     name: "Château de Losse",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12292,7 +11176,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 716,
+    id: 699,
     name: "Château de Commarque",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12308,7 +11192,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 717,
+    id: 700,
     name: "Château de Puymartin",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12324,7 +11208,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 718,
+    id: 701,
     name: "Château des Bories",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12340,7 +11224,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 719,
+    id: 702,
     name: "Château de Rastignac",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12356,7 +11240,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 720,
+    id: 703,
     name: "Château de l'Herm",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12372,7 +11256,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 721,
+    id: 704,
     name: "Château de Sauvebœuf",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12388,7 +11272,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 722,
+    id: 705,
     name: "Château de Campagne",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12404,7 +11288,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 723,
+    id: 706,
     name: "Château de Berbiguières",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12420,7 +11304,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 724,
+    id: 707,
     name: "Château de Excideuil",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12436,7 +11320,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 725,
+    id: 708,
     name: "Château de Varaignes",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12452,7 +11336,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 726,
+    id: 709,
     name: "Château de Mareuil",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12468,7 +11352,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 727,
+    id: 710,
     name: "Château de la Chapelle-Faucher",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12484,7 +11368,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 728,
+    id: 711,
     name: "Château de Richemont",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12500,7 +11384,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 729,
+    id: 712,
     name: "Château de Rochechouart",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12516,7 +11400,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 730,
+    id: 713,
     name: "Château de Chalucet",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12532,7 +11416,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 731,
+    id: 714,
     name: "Château de Nexon",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12548,7 +11432,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 732,
+    id: 715,
     name: "Château de Bonneval",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12564,7 +11448,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 733,
+    id: 716,
     name: "Château de Lastours - Limousin",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12580,7 +11464,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 734,
+    id: 717,
     name: "Château de Ventadour",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12596,7 +11480,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 735,
+    id: 718,
     name: "Château de Turenne",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12612,7 +11496,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 736,
+    id: 719,
     name: "Château de Curemonte",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12628,7 +11512,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 737,
+    id: 720,
     name: "Château de Sédières",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12644,7 +11528,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 738,
+    id: 721,
     name: "Château de Pompadour",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12660,7 +11544,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 739,
+    id: 722,
     name: "Château d'Auzers",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12676,7 +11560,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 740,
+    id: 723,
     name: "Château de la Vigne",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12692,7 +11576,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 741,
+    id: 724,
     name: "Château de Messilhac",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12708,7 +11592,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 742,
+    id: 725,
     name: "Château de Cropières",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12724,7 +11608,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 743,
+    id: 726,
     name: "Château d'Alleuze",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12740,7 +11624,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 744,
+    id: 727,
     name: "Château de Trévoux",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12756,7 +11640,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 745,
+    id: 728,
     name: "Château de la Batisse",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12772,7 +11656,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 746,
+    id: 729,
     name: "Château de Villeneuve-Lembron",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12788,7 +11672,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 747,
+    id: 730,
     name: "Château d'Effiat",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12804,7 +11688,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 748,
+    id: 731,
     name: "Château de Randan",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12820,7 +11704,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 749,
+    id: 732,
     name: "Château de Chareil-Cintrat",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12836,7 +11720,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 750,
+    id: 733,
     name: "Château du Sailhant",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12852,7 +11736,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 751,
+    id: 734,
     name: "Château de Saint-Saturnin",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12868,7 +11752,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 752,
+    id: 735,
     name: "Château de Bouzols",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12884,7 +11768,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 753,
+    id: 736,
     name: "Château de Lapalisse",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12900,7 +11784,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 754,
+    id: 737,
     name: "Château de Domeyrat",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12916,7 +11800,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 755,
+    id: 738,
     name: "Château de Saint-Vidal",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12932,7 +11816,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 756,
+    id: 739,
     name: "Château de Lavoûte-Polignac",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12948,7 +11832,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 757,
+    id: 740,
     name: "Château de Léotoing",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12964,7 +11848,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 758,
+    id: 741,
     name: "Château d'Arlempdes",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12980,7 +11864,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 759,
+    id: 742,
     name: "Château de Torsiac",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -12996,7 +11880,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 760,
+    id: 743,
     name: "Château de Montgilbert",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13012,7 +11896,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 761,
+    id: 744,
     name: "Château de la Tour d'Auvergne",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13028,7 +11912,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 762,
+    id: 745,
     name: "Château de Vollore",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13044,7 +11928,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 763,
+    id: 746,
     name: "Château de Peslieres",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13060,7 +11944,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 764,
+    id: 747,
     name: "Château de Chavagnac",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13076,7 +11960,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 765,
+    id: 748,
     name: "Château de Montvianeix",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13092,7 +11976,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 766,
+    id: 749,
     name: "Château de Montmorin",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13108,7 +11992,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 767,
+    id: 750,
     name: "Château de Mauzun",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13124,7 +12008,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 768,
+    id: 751,
     name: "Château de Mardogne",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13140,7 +12024,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 769,
+    id: 752,
     name: "Château de Coppel",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13156,7 +12040,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 770,
+    id: 753,
     name: "Château de Viverols",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13172,7 +12056,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 771,
+    id: 754,
     name: "Château de la Faye",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13188,7 +12072,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 772,
+    id: 755,
     name: "Château de Codignat",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13204,7 +12088,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 773,
+    id: 756,
     name: "Château de Murols",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13220,7 +12104,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 774,
+    id: 757,
     name: "Château de Tournoël",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13236,7 +12120,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 775,
+    id: 758,
     name: "Château de Chazeron",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13252,7 +12136,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 776,
+    id: 759,
     name: "Château Dauphin",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13268,7 +12152,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 777,
+    id: 760,
     name: "Château de Cordes-sur-Ciel",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13284,7 +12168,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 778,
+    id: 761,
     name: "Château de Castelnau-de-Lévis",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13300,7 +12184,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 779,
+    id: 762,
     name: "Château du Bosc",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13316,7 +12200,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 780,
+    id: 763,
     name: "Château de Peyrusse-le-Roc",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13332,7 +12216,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 781,
+    id: 764,
     name: "Château de Brousse",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13348,7 +12232,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 782,
+    id: 765,
     name: "Château de Montaigut",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13363,27 +12247,8 @@ export const places = [
     visited: false,
     favorite: false
   },
-  // ============================================
-  // CHÂTEAUX - Batch 5 (IDs 783-832) - 50 châteaux
-  // ============================================
   {
-    id: 783,
-    name: "Château de Fleckenstein",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Forteresse semi-troglodyte des Vosges du Nord.",
-    location: "Lembach, Grand Est",
-    rating: 4.5,
-    price: "6€",
-    hours: "10h - 18h",
-    period: "XIIe siècle",
-    coordinates: { lat: 49.0333, lng: 7.7833 },
-    highlights: ["Architecture troglodyte", "Parcours aventure", "Vosges du Nord"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 784,
+    id: 766,
     name: "Château de Grandson",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13399,23 +12264,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 785,
-    name: "Château de Kintzheim",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château abritant la Volerie des Aigles.",
-    location: "Kintzheim, Grand Est",
-    rating: 4.6,
-    price: "12€",
-    hours: "10h - 18h",
-    period: "XIIe siècle",
-    coordinates: { lat: 48.2547, lng: 7.3950 },
-    highlights: ["Volerie des Aigles", "Spectacle rapaces", "Alsace"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 786,
+    id: 767,
     name: "Château du Bernstein",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13431,7 +12280,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 787,
+    id: 768,
     name: "Château de Lœwenstein",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13447,7 +12296,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 788,
+    id: 769,
     name: "Château de Wangenbourg",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13463,7 +12312,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 789,
+    id: 770,
     name: "Château de Guirbaden",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13479,7 +12328,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 790,
+    id: 771,
     name: "Château de Spesbourg",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13495,7 +12344,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 791,
+    id: 772,
     name: "Château du Landskron",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13511,7 +12360,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 792,
+    id: 773,
     name: "Château de Ferrette",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13527,7 +12376,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 793,
+    id: 774,
     name: "Château de Morimont",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13543,7 +12392,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 794,
+    id: 775,
     name: "Château de Reichenberg",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13559,7 +12408,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 795,
+    id: 776,
     name: "Château de Thanvillé",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13575,7 +12424,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 796,
+    id: 777,
     name: "Château de Wasenbourg",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13591,23 +12440,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 797,
-    name: "Château de Falkenstein",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château troglodyte sculpté dans le grès.",
-    location: "Philippsbourg, Grand Est",
-    rating: 4.4,
-    price: "4€",
-    hours: "10h - 18h",
-    period: "XIe siècle",
-    coordinates: { lat: 49.0167, lng: 7.5500 },
-    highlights: ["Troglodyte", "Grès sculpté", "Escaliers taillés"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 798,
+    id: 778,
     name: "Château de Lutzelhardt",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13623,7 +12456,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 799,
+    id: 779,
     name: "Château de Wineck",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13639,7 +12472,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 800,
+    id: 780,
     name: "Château du Schœneck",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13655,7 +12488,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 801,
+    id: 781,
     name: "Château de Frœschwiller",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13671,23 +12504,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 802,
-    name: "Château de Lichtenberg",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Forteresse restaurée avec centre culturel.",
-    location: "Lichtenberg, Grand Est",
-    rating: 4.4,
-    price: "6€",
-    hours: "10h - 18h",
-    period: "XIIIe siècle",
-    coordinates: { lat: 48.9208, lng: 7.4847 },
-    highlights: ["Architecture contemporaine", "Expositions", "Vosges"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 803,
+    id: 782,
     name: "Château de la Petite-Pierre",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13703,7 +12520,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 804,
+    id: 783,
     name: "Château d'Eguisheim",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13719,7 +12536,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 805,
+    id: 784,
     name: "Château de Husseren",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13735,7 +12552,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 806,
+    id: 785,
     name: "Château de Pflixbourg",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13751,7 +12568,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 807,
+    id: 786,
     name: "Château du Hohrupf",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13767,7 +12584,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 808,
+    id: 787,
     name: "Château du Hugstein",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13783,39 +12600,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 809,
-    name: "Château de Kaysersberg",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Donjon impérial dominant la cité médiévale.",
-    location: "Kaysersberg, Grand Est",
-    rating: 4.5,
-    price: "4€",
-    hours: "10h - 18h",
-    period: "XIIIe siècle",
-    coordinates: { lat: 48.1408, lng: 7.2636 },
-    highlights: ["Village préféré des Français", "Donjon", "Albert Schweitzer"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 810,
-    name: "Château de Saint-Ulrich",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Plus grand des trois châteaux de Ribeauvillé.",
-    location: "Ribeauvillé, Grand Est",
-    rating: 4.4,
-    price: "4€",
-    hours: "10h - 18h",
-    period: "XIe - XVe siècle",
-    coordinates: { lat: 48.2000, lng: 7.3167 },
-    highlights: ["Trois châteaux", "Chapelle romane", "Vue Alsace"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 811,
+    id: 788,
     name: "Château du Girsberg",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13831,7 +12616,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 812,
+    id: 789,
     name: "Château du Haut-Ribeaupierre",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13847,7 +12632,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 813,
+    id: 790,
     name: "Château de Frankenbourg",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13863,7 +12648,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 814,
+    id: 791,
     name: "Château de Ramstein",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13873,13 +12658,13 @@ export const places = [
     price: "3€",
     hours: "Accès libre",
     period: "XIIIe siècle",
-    coordinates: { lat: 48.2833, lng: 7.4167 },
+    coordinates: { lat: 48.280500, lng: 7.416700 },
     highlights: ["Vue vignoble", "Randonnée", "Ortenbourg voisin"],
     visited: false,
     favorite: false
   },
   {
-    id: 815,
+    id: 792,
     name: "Château d'Ortenbourg",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13895,7 +12680,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 816,
+    id: 793,
     name: "Château de Rohan-Saverne",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13911,7 +12696,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 817,
+    id: 794,
     name: "Château de Lutzelbourg",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13927,7 +12712,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 818,
+    id: 795,
     name: "Château de Turquestein",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13943,7 +12728,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 819,
+    id: 796,
     name: "Château de Pierre-Percée",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13959,7 +12744,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 820,
+    id: 797,
     name: "Château de Salm",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13975,7 +12760,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 821,
+    id: 798,
     name: "Château de Dreistein",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -13991,7 +12776,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 822,
+    id: 799,
     name: "Château du Birkenfels",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14007,7 +12792,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 823,
+    id: 800,
     name: "Château de Landsberg",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14023,7 +12808,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 824,
+    id: 801,
     name: "Château de Gréoux-les-Bains",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14039,7 +12824,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 825,
+    id: 802,
     name: "Château de Meyrargues",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14055,7 +12840,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 826,
+    id: 803,
     name: "Château de la Barben",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14071,7 +12856,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 827,
+    id: 804,
     name: "Château d'Ansouis",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14087,7 +12872,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 828,
+    id: 805,
     name: "Château de Lourmarin",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14103,7 +12888,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 829,
+    id: 806,
     name: "Château de la Tour-d'Aigues",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14119,7 +12904,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 830,
+    id: 807,
     name: "Château de l'Empéri",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14135,39 +12920,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 831,
-    name: "Château de Tarascon",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Forteresse du roi René sur les bords du Rhône.",
-    location: "Tarascon, Provence-Alpes-Côte d'Azur",
-    rating: 4.5,
-    price: "8€",
-    hours: "10h - 18h",
-    period: "XVe siècle",
-    coordinates: { lat: 43.8067, lng: 4.6550 },
-    highlights: ["Roi René", "Bords du Rhône", "Tarasque"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 832,
-    name: "Château des Baux-de-Provence",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Ruines spectaculaires dominant les Alpilles.",
-    location: "Les Baux-de-Provence, Provence-Alpes-Côte d'Azur",
-    rating: 4.6,
-    price: "12€",
-    hours: "9h - 19h",
-    period: "Xe - XVIe siècle",
-    coordinates: { lat: 43.7444, lng: 4.7958 },
-    highlights: ["Alpilles", "Machines de guerre", "Carrières de Lumières"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 833,
+    id: 808,
     name: "Château de Simiane-la-Rotonde",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14183,7 +12936,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 834,
+    id: 809,
     name: "Château de Saumane-de-Vaucluse",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14199,7 +12952,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 835,
+    id: 810,
     name: "Château de Gordes",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14215,7 +12968,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 836,
+    id: 811,
     name: "Château de Lacoste",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14231,71 +12984,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 837,
-    name: "Château de Suze-la-Rousse",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Forteresse médiévale abritant l'Université du Vin.",
-    location: "Suze-la-Rousse, Auvergne-Rhône-Alpes",
-    rating: 4.3,
-    price: "7€",
-    hours: "10h - 18h",
-    period: "XIe - XVIe siècle",
-    coordinates: { lat: 44.2900, lng: 4.8400 },
-    highlights: ["Université du Vin", "Cour Renaissance", "Drôme provençale"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 838,
-    name: "Château de Grignan",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château de Madame de Sévigné dominant la lavande.",
-    location: "Grignan, Auvergne-Rhône-Alpes",
-    rating: 4.6,
-    price: "9€",
-    hours: "10h - 18h",
-    period: "XIIe - XVIIe siècle",
-    coordinates: { lat: 44.4200, lng: 4.9100 },
-    highlights: ["Madame de Sévigné", "Lavande", "Festival de la Correspondance"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 839,
-    name: "Château de Montélimar",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château des Adhémar surplombant la capitale du nougat.",
-    location: "Montélimar, Auvergne-Rhône-Alpes",
-    rating: 4.2,
-    price: "6€",
-    hours: "10h - 18h",
-    period: "XIIe siècle",
-    coordinates: { lat: 44.5583, lng: 4.7500 },
-    highlights: ["Adhémar", "Art contemporain", "Nougat"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 840,
-    name: "Château de Vogüé",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château suspendu au-dessus de l'Ardèche.",
-    location: "Vogüé, Auvergne-Rhône-Alpes",
-    rating: 4.3,
-    price: "6€",
-    hours: "10h - 18h",
-    period: "XIIe - XVIIe siècle",
-    coordinates: { lat: 44.5500, lng: 4.4117 },
-    highlights: ["Jardins suspendus", "Village de caractère", "Ardèche"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 841,
+    id: 812,
     name: "Château d'Alba-la-Romaine",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14311,23 +13000,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 842,
-    name: "Château de Crussol",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Ruines spectaculaires dominant la vallée du Rhône.",
-    location: "Saint-Péray, Auvergne-Rhône-Alpes",
-    rating: 4.4,
-    price: "4€",
-    hours: "Accès libre",
-    period: "XIIe siècle",
-    coordinates: { lat: 44.9333, lng: 4.8333 },
-    highlights: ["Vue Rhône", "Théâtre de verdure", "Randonnée"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 843,
+    id: 813,
     name: "Château de Tournon-sur-Rhône",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14337,13 +13010,13 @@ export const places = [
     price: "5€",
     hours: "10h - 18h",
     period: "XIVe - XVIe siècle",
-    coordinates: { lat: 45.0667, lng: 4.8333 },
+    coordinates: { lat: 45.063900, lng: 4.833300 },
     highlights: ["Musée du Rhône", "Vignoble", "Passerelle Marc Seguin"],
     visited: false,
     favorite: false
   },
   {
-    id: 844,
+    id: 814,
     name: "Château de Rochecolombe",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14359,7 +13032,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 845,
+    id: 815,
     name: "Château de Boulogne",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14375,7 +13048,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 846,
+    id: 816,
     name: "Château de Montbrun-les-Bains",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14391,7 +13064,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 847,
+    id: 817,
     name: "Château de Mirmande",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14407,7 +13080,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 848,
+    id: 818,
     name: "Château de Crest",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14423,7 +13096,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 849,
+    id: 819,
     name: "Château de Pontgibaud",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14439,23 +13112,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 850,
-    name: "Château de Vollore",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château du général de La Fayette avec souvenirs historiques.",
-    location: "Vollore-Ville, Auvergne-Rhône-Alpes",
-    rating: 4.3,
-    price: "9€",
-    hours: "14h - 18h",
-    period: "XIIe - XIXe siècle",
-    coordinates: { lat: 45.7833, lng: 3.5833 },
-    highlights: ["La Fayette", "Souvenirs américains", "Livradois"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 851,
+    id: 820,
     name: "Château d'Opme",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14471,23 +13128,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 852,
-    name: "Château de Parentignat",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Le petit Versailles d'Auvergne avec mobilier XVIIIe.",
-    location: "Parentignat, Auvergne-Rhône-Alpes",
-    rating: 4.4,
-    price: "10€",
-    hours: "14h - 18h",
-    period: "XVIIe - XVIIIe siècle",
-    coordinates: { lat: 45.4667, lng: 3.2667 },
-    highlights: ["Petit Versailles", "Mobilier XVIIIe", "Tapisseries"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 853,
+    id: 821,
     name: "Château d'Apremont-sur-Allier",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14503,103 +13144,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 854,
-    name: "Château de la Verrerie",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château Renaissance des Stuart au bord d'un étang.",
-    location: "Oizon, Centre-Val de Loire",
-    rating: 4.4,
-    price: "12€",
-    hours: "10h - 18h",
-    period: "XVe - XIXe siècle",
-    coordinates: { lat: 47.4500, lng: 2.5167 },
-    highlights: ["Stuart d'Aubigny", "Étang", "Galerie Renaissance"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 855,
-    name: "Château de Bouges",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Petit Trianon berrichon avec écuries et jardins.",
-    location: "Bouges-le-Château, Centre-Val de Loire",
-    rating: 4.3,
-    price: "8€",
-    hours: "10h - 18h",
-    period: "XVIIIe siècle",
-    coordinates: { lat: 47.0333, lng: 1.6667 },
-    highlights: ["Petit Trianon", "Écuries", "Parc à l'anglaise"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 856,
-    name: "Château de Nohant",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Maison de George Sand avec son théâtre de marionnettes.",
-    location: "Nohant-Vic, Centre-Val de Loire",
-    rating: 4.4,
-    price: "8€",
-    hours: "10h - 18h",
-    period: "XVIIIe siècle",
-    coordinates: { lat: 46.6333, lng: 1.9667 },
-    highlights: ["George Sand", "Chopin", "Théâtre marionnettes"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 857,
-    name: "Château de Sagonne",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château-fort du Berry avec donjon et pont-levis.",
-    location: "Sagonne, Centre-Val de Loire",
-    rating: 4.2,
-    price: "8€",
-    hours: "14h - 18h",
-    period: "XIIe - XVe siècle",
-    coordinates: { lat: 46.8500, lng: 2.8167 },
-    highlights: ["Pont-levis", "Donjon", "Mansart"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 858,
-    name: "Château de Culan",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Forteresse médiévale sur éperon rocheux au-dessus de l'Arnon.",
-    location: "Culan, Centre-Val de Loire",
-    rating: 4.3,
-    price: "9€",
-    hours: "10h - 18h",
-    period: "XIIe - XVe siècle",
-    coordinates: { lat: 46.5500, lng: 2.3500 },
-    highlights: ["Jeanne d'Arc", "George Sand", "Arnon"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 859,
-    name: "Château d'Ainay-le-Vieil",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Le petit Carcassonne du Berry avec roseraie.",
-    location: "Ainay-le-Vieil, Centre-Val de Loire",
-    rating: 4.5,
-    price: "10€",
-    hours: "10h - 18h",
-    period: "XIVe - XVIe siècle",
-    coordinates: { lat: 46.6667, lng: 2.5500 },
-    highlights: ["Petit Carcassonne", "Roseraie", "Chartreuses"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 860,
+    id: 822,
     name: "Château de Meillant",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14615,7 +13160,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 861,
+    id: 823,
     name: "Château d'Argy",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14631,7 +13176,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 862,
+    id: 824,
     name: "Château du Bouchet",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14647,7 +13192,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 863,
+    id: 825,
     name: "Château de Palluau-sur-Indre",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14663,7 +13208,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 864,
+    id: 826,
     name: "Château de Levroux",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14679,7 +13224,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 865,
+    id: 827,
     name: "Château de Bridoré",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14695,39 +13240,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 866,
-    name: "Château de Montpoupon",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château de la vénerie avec musée du Veneur.",
-    location: "Céré-la-Ronde, Centre-Val de Loire",
-    rating: 4.3,
-    price: "10€",
-    hours: "10h - 18h",
-    period: "XVe - XVIe siècle",
-    coordinates: { lat: 47.2167, lng: 1.1667 },
-    highlights: ["Musée de la Vénerie", "Chasse à courre", "Touraine"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 867,
-    name: "Château de Montrésor",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château Renaissance avec collections polonaises.",
-    location: "Montrésor, Centre-Val de Loire",
-    rating: 4.4,
-    price: "9€",
-    hours: "10h - 18h",
-    period: "XIe - XVIe siècle",
-    coordinates: { lat: 47.1583, lng: 1.2000 },
-    highlights: ["Plus Beau Village", "Collections polonaises", "Indrois"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 868,
+    id: 828,
     name: "Château de Saint-Aignan",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14743,71 +13256,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 869,
-    name: "Château de Fougères-sur-Bièvre",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château médiéval intact sans transformation Renaissance.",
-    location: "Fougères-sur-Bièvre, Centre-Val de Loire",
-    rating: 4.3,
-    price: "7€",
-    hours: "10h - 18h",
-    period: "XVe siècle",
-    coordinates: { lat: 47.4500, lng: 1.3333 },
-    highlights: ["Médiéval intact", "Charpente", "Sologne"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 870,
-    name: "Château de Talcy",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château des muses de Ronsard et Agrippa d'Aubigné.",
-    location: "Talcy, Centre-Val de Loire",
-    rating: 4.2,
-    price: "7€",
-    hours: "10h - 18h",
-    period: "XVIe siècle",
-    coordinates: { lat: 47.7667, lng: 1.4333 },
-    highlights: ["Cassandre Salviati", "Ronsard", "Pressoir"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 871,
-    name: "Château de Meung-sur-Loire",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château des évêques d'Orléans où fut emprisonné Villon.",
-    location: "Meung-sur-Loire, Centre-Val de Loire",
-    rating: 4.3,
-    price: "11€",
-    hours: "10h - 18h",
-    period: "XIIe - XVIIIe siècle",
-    coordinates: { lat: 47.8250, lng: 1.6917 },
-    highlights: ["François Villon", "Souterrains", "Évêques d'Orléans"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 872,
-    name: "Château de Chamerolles",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château Renaissance avec musée des parfums.",
-    location: "Chilleurs-aux-Bois, Centre-Val de Loire",
-    rating: 4.3,
-    price: "8€",
-    hours: "10h - 18h",
-    period: "XVIe siècle",
-    coordinates: { lat: 48.0500, lng: 2.1333 },
-    highlights: ["Musée des parfums", "Jardins Renaissance", "Promenade des parfums"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 873,
+    id: 829,
     name: "Château de la Bussière",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14823,23 +13272,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 874,
-    name: "Château de la Ferté-Saint-Aubin",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château familial avec cuisine en activité et jeux d'antan.",
-    location: "La Ferté-Saint-Aubin, Centre-Val de Loire",
-    rating: 4.4,
-    price: "13€",
-    hours: "10h - 19h",
-    period: "XVIe - XVIIe siècle",
-    coordinates: { lat: 47.7167, lng: 1.9333 },
-    highlights: ["Madeleines", "Jeux anciens", "Écuries"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 875,
+    id: 830,
     name: "Château de Selles-sur-Cher",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14855,39 +13288,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 876,
-    name: "Château de Gien",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château d'Anne de Beaujeu avec musée de la chasse.",
-    location: "Gien, Centre-Val de Loire",
-    rating: 4.3,
-    price: "8€",
-    hours: "10h - 18h",
-    period: "XVe siècle",
-    coordinates: { lat: 47.6833, lng: 2.6333 },
-    highlights: ["Musée de la chasse", "Faïencerie", "Loire"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 877,
-    name: "Château de Saint-Brisson-sur-Loire",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château médiéval avec reconstitution de machines de guerre.",
-    location: "Saint-Brisson-sur-Loire, Centre-Val de Loire",
-    rating: 4.2,
-    price: "8€",
-    hours: "10h - 18h",
-    period: "XIIe - XVe siècle",
-    coordinates: { lat: 47.6500, lng: 2.6833 },
-    highlights: ["Machines de guerre", "Animations", "Loire"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 878,
+    id: 831,
     name: "Château du Plessis-Macé",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14903,7 +13304,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 879,
+    id: 832,
     name: "Château de Durtal",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14919,7 +13320,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 880,
+    id: 833,
     name: "Château de Baugé",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -14935,151 +13336,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 881,
-    name: "Château de Lassay",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Forteresse aux huit tours dominant l'étang.",
-    location: "Lassay-les-Châteaux, Pays de la Loire",
-    rating: 4.3,
-    price: "7€",
-    hours: "14h - 18h",
-    period: "XVe siècle",
-    coordinates: { lat: 48.4333, lng: -0.5000 },
-    highlights: ["Huit tours", "Barbacane", "Étang"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 882,
-    name: "Château de Sainte-Suzanne",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Cité médiévale qui résista à Guillaume le Conquérant.",
-    location: "Sainte-Suzanne, Pays de la Loire",
-    rating: 4.4,
-    price: "5€",
-    hours: "10h - 18h",
-    period: "XIe - XVIIe siècle",
-    coordinates: { lat: 48.0983, lng: -0.3500 },
-    highlights: ["Guillaume le Conquérant", "Plus Beau Village", "CIAP"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 883,
-    name: "Château de Craon",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Élégant château XVIIIe avec parc à l'anglaise.",
-    location: "Craon, Pays de la Loire",
-    rating: 4.2,
-    price: "9€",
-    hours: "14h - 18h",
-    period: "XVIIIe siècle",
-    coordinates: { lat: 47.8500, lng: -0.9500 },
-    highlights: ["Néoclassique", "Parc à l'anglaise", "White"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 884,
-    name: "Château de Châteaubriant",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château médiéval et Renaissance de Françoise de Foix.",
-    location: "Châteaubriant, Pays de la Loire",
-    rating: 4.3,
-    price: "6€",
-    hours: "10h - 18h",
-    period: "XIe - XVIe siècle",
-    coordinates: { lat: 47.7167, lng: -1.3833 },
-    highlights: ["Françoise de Foix", "Logis Renaissance", "Marches de Bretagne"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 885,
-    name: "Château de Clisson",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Forteresse du connétable de Clisson en ruines romantiques.",
-    location: "Clisson, Pays de la Loire",
-    rating: 4.3,
-    price: "5€",
-    hours: "10h - 18h",
-    period: "XIe - XVe siècle",
-    coordinates: { lat: 47.0872, lng: -1.2806 },
-    highlights: ["Connétable Clisson", "Italie romantique", "Sèvre"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 886,
-    name: "Château de Tiffauges",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château de Barbe-Bleue avec machines de guerre médiévales.",
-    location: "Tiffauges, Pays de la Loire",
-    rating: 4.4,
-    price: "10€",
-    hours: "10h - 19h",
-    period: "XIIe - XVe siècle",
-    coordinates: { lat: 47.0167, lng: -1.1167 },
-    highlights: ["Gilles de Rais", "Machines de guerre", "Spectacles"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 887,
-    name: "Château de Noirmoutier",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château donjon dominant l'île et ses marais salants.",
-    location: "Noirmoutier-en-l'Île, Pays de la Loire",
-    rating: 4.2,
-    price: "6€",
-    hours: "10h - 19h",
-    period: "XIIe siècle",
-    coordinates: { lat: 47.0000, lng: -2.2500 },
-    highlights: ["Musée", "Marais salants", "Passage du Gois"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 888,
-    name: "Château de Pornic",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château surplombant le vieux port de la côte de Jade.",
-    location: "Pornic, Pays de la Loire",
-    rating: 4.1,
-    price: "5€",
-    hours: "10h - 18h",
-    period: "Xe - XIXe siècle",
-    coordinates: { lat: 47.1167, lng: -2.1000 },
-    highlights: ["Port", "Gilles de Rais", "Côte de Jade"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 889,
-    name: "Château de Pouzauges",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Donjon et enceinte dominant le bocage vendéen.",
-    location: "Pouzauges, Pays de la Loire",
-    rating: 4.0,
-    price: "4€",
-    hours: "14h - 18h",
-    period: "XIe - XIIe siècle",
-    coordinates: { lat: 46.7833, lng: -0.8333 },
-    highlights: ["Donjon", "Catherine de Thouars", "Bocage vendéen"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 890,
+    id: 834,
     name: "Château de Talmont-Saint-Hilaire",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15095,7 +13352,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 891,
+    id: 835,
     name: "Château de Terre-Neuve",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15111,23 +13368,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 892,
-    name: "Château de l'Hermine",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château des ducs de Bretagne dominant le port de Vannes.",
-    location: "Vannes, Bretagne",
-    rating: 4.2,
-    price: "5€",
-    hours: "10h - 18h",
-    period: "XIVe - XVe siècle",
-    coordinates: { lat: 47.6558, lng: -2.7583 },
-    highlights: ["Ducs de Bretagne", "Remparts", "Jardin"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 893,
+    id: 836,
     name: "Château de Largoët",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15143,7 +13384,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 894,
+    id: 837,
     name: "Château de Pontivy",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15159,7 +13400,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 895,
+    id: 838,
     name: "Château de Kergroadès",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15175,7 +13416,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 896,
+    id: 839,
     name: "Château de la Roche-Jagu",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15191,23 +13432,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 897,
-    name: "Château de Tonquédec",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Imposantes ruines romantiques dominant le Léguer.",
-    location: "Tonquédec, Bretagne",
-    rating: 4.3,
-    price: "5€",
-    hours: "10h - 18h",
-    period: "XIIe - XVe siècle",
-    coordinates: { lat: 48.6667, lng: -3.4000 },
-    highlights: ["Ruines romantiques", "Léguer", "Onze tours"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 898,
+    id: 840,
     name: "Château de la Bourbansais",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15223,23 +13448,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 899,
-    name: "Château de Combourg",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château de Chateaubriand avec tour du Chat.",
-    location: "Combourg, Bretagne",
-    rating: 4.4,
-    price: "10€",
-    hours: "10h - 18h",
-    period: "XIe - XIXe siècle",
-    coordinates: { lat: 48.4117, lng: -1.7533 },
-    highlights: ["Chateaubriand", "Tour du Chat", "Romantisme"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 900,
+    id: 841,
     name: "Château de Montmuran",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15255,7 +13464,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 901,
+    id: 842,
     name: "Château de Quintin",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15271,7 +13480,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 902,
+    id: 843,
     name: "Château de Rosanbo",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15287,7 +13496,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 903,
+    id: 844,
     name: "Château du Taureau",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15303,23 +13512,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 904,
-    name: "Château de Brest",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Forteresse millénaire abritant le Musée de la Marine.",
-    location: "Brest, Bretagne",
-    rating: 4.3,
-    price: "7€",
-    hours: "10h - 18h",
-    period: "IIIe - XVIIe siècle",
-    coordinates: { lat: 48.3833, lng: -4.4950 },
-    highlights: ["Musée de la Marine", "Fortifications", "Rade de Brest"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 905,
+    id: 845,
     name: "Château de Keriolet",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15335,7 +13528,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 906,
+    id: 846,
     name: "Château de Trévarez",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15351,7 +13544,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 907,
+    id: 847,
     name: "Fort la Latte",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15367,7 +13560,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 908,
+    id: 848,
     name: "Château de Châtillon-en-Bazois",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15383,87 +13576,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 909,
-    name: "Château de Bazoches",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Demeure de Vauban au cœur du Morvan.",
-    location: "Bazoches, Bourgogne-Franche-Comté",
-    rating: 4.4,
-    price: "10€",
-    hours: "10h - 18h",
-    period: "XIIe - XVIIe siècle",
-    coordinates: { lat: 47.3833, lng: 3.8000 },
-    highlights: ["Vauban", "Cabinet de travail", "Morvan"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 910,
-    name: "Château de Ratilly",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château avec poterie d'art et expositions culturelles.",
-    location: "Treigny, Bourgogne-Franche-Comté",
-    rating: 4.2,
-    price: "6€",
-    hours: "10h - 18h",
-    period: "XIIIe siècle",
-    coordinates: { lat: 47.5333, lng: 3.2833 },
-    highlights: ["Poterie", "Grès", "Puisaye"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 911,
-    name: "Château de Saint-Fargeau",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château de la Grande Mademoiselle avec spectacle historique.",
-    location: "Saint-Fargeau, Bourgogne-Franche-Comté",
-    rating: 4.5,
-    price: "12€",
-    hours: "10h - 18h",
-    period: "Xe - XVIIe siècle",
-    coordinates: { lat: 47.6417, lng: 3.0750 },
-    highlights: ["Grande Mademoiselle", "Spectacle nocturne", "Charpente"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 912,
-    name: "Château de Maulnes",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château pentagonal unique de la Renaissance.",
-    location: "Cruzy-le-Châtel, Bourgogne-Franche-Comté",
-    rating: 4.3,
-    price: "8€",
-    hours: "10h - 18h",
-    period: "XVIe siècle",
-    coordinates: { lat: 47.8333, lng: 4.2000 },
-    highlights: ["Plan pentagonal", "Puits central", "Architecture unique"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 913,
-    name: "Château de Tanlay",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Joyau Renaissance avec galerie en trompe-l'œil.",
-    location: "Tanlay, Bourgogne-Franche-Comté",
-    rating: 4.5,
-    price: "10€",
-    hours: "10h - 18h",
-    period: "XVIe siècle",
-    coordinates: { lat: 47.8500, lng: 4.0833 },
-    highlights: ["Renaissance", "Trompe-l'œil", "Canal de Bourgogne"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 914,
+    id: 849,
     name: "Château de Bussy-le-Grand",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15479,7 +13592,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 915,
+    id: 850,
     name: "Château de Rocheprise",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15495,7 +13608,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 916,
+    id: 851,
     name: "Château de Posanges",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15511,7 +13624,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 917,
+    id: 852,
     name: "Château de Talmay",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15527,71 +13640,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 918,
-    name: "Château de Beaumont-sur-Vingeanne",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château XVIIIe avec jardins remarquables.",
-    location: "Beaumont-sur-Vingeanne, Bourgogne-Franche-Comté",
-    rating: 4.2,
-    price: "8€",
-    hours: "14h - 18h",
-    period: "XVIIIe siècle",
-    coordinates: { lat: 47.5667, lng: 5.4000 },
-    highlights: ["Jardins remarquables", "Architecture XVIIIe", "Vingeanne"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 919,
-    name: "Château de Joux",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Forteresse dominant la cluse de Pontarlier.",
-    location: "La Cluse-et-Mijoux, Bourgogne-Franche-Comté",
-    rating: 4.5,
-    price: "9€",
-    hours: "10h - 18h",
-    period: "XIe - XIXe siècle",
-    coordinates: { lat: 46.8667, lng: 6.3833 },
-    highlights: ["Toussaint Louverture", "Vauban", "Musée des armes"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 920,
-    name: "Château de Belvoir",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Forteresse comtoise dominant la vallée du Sancey.",
-    location: "Belvoir, Bourgogne-Franche-Comté",
-    rating: 4.3,
-    price: "8€",
-    hours: "14h - 18h",
-    period: "XIIe siècle",
-    coordinates: { lat: 47.3167, lng: 6.6000 },
-    highlights: ["Peintre Pierre Jouffroy", "Vue panoramique", "Doubs"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 921,
-    name: "Château de Montbéliard",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château des ducs de Wurtemberg avec musée.",
-    location: "Montbéliard, Bourgogne-Franche-Comté",
-    rating: 4.2,
-    price: "6€",
-    hours: "10h - 18h",
-    period: "XVe - XVIIIe siècle",
-    coordinates: { lat: 47.5092, lng: 6.7978 },
-    highlights: ["Wurtemberg", "Musée", "Lumières de Noël"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 922,
+    id: 853,
     name: "Château de Pesmes",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15607,7 +13656,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 923,
+    id: 854,
     name: "Château de Ray-sur-Saône",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15623,23 +13672,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 924,
-    name: "Château de Filain",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château Renaissance comtois avec tour carrée.",
-    location: "Filain, Bourgogne-Franche-Comté",
-    rating: 4.0,
-    price: "5€",
-    hours: "14h - 18h",
-    period: "XVIe siècle",
-    coordinates: { lat: 47.5500, lng: 6.1500 },
-    highlights: ["Renaissance comtoise", "Tour", "Granvelle"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 925,
+    id: 855,
     name: "Château de Vaire-le-Grand",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15655,7 +13688,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 926,
+    id: 856,
     name: "Château de Nans-sous-Sainte-Anne",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15671,7 +13704,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 927,
+    id: 857,
     name: "Château de Champlitte",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15687,7 +13720,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 928,
+    id: 858,
     name: "Château de Consolation",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15703,7 +13736,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 929,
+    id: 859,
     name: "Château de Bourlémont",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15719,7 +13752,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 930,
+    id: 860,
     name: "Château de Haroué",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15735,7 +13768,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 931,
+    id: 861,
     name: "Château de Lunéville",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15751,7 +13784,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 932,
+    id: 862,
     name: "Château de Fléville",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15767,7 +13800,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 933,
+    id: 863,
     name: "Château de Cons-la-Grandville",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15783,7 +13816,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 934,
+    id: 864,
     name: "Château de Thillombois",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15799,7 +13832,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 935,
+    id: 865,
     name: "Château de Gombervaux",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15815,7 +13848,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 936,
+    id: 866,
     name: "Château de Hattonchâtel",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15831,23 +13864,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 937,
-    name: "Château de Sedan",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Plus grand château fort d'Europe avec 35 000 m².",
-    location: "Sedan, Grand Est",
-    rating: 4.5,
-    price: "10€",
-    hours: "10h - 18h",
-    period: "XVe - XVIIe siècle",
-    coordinates: { lat: 49.7019, lng: 4.9419 },
-    highlights: ["Plus grand d'Europe", "35 000 m²", "Turenne"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 938,
+    id: 867,
     name: "Château de Montmort",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15863,7 +13880,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 939,
+    id: 868,
     name: "Château de Condé-en-Brie",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15879,23 +13896,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 940,
-    name: "Château de Coucy",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Ruines du plus grand donjon médiéval de France.",
-    location: "Coucy-le-Château-Auffrique, Hauts-de-France",
-    rating: 4.4,
-    price: "7€",
-    hours: "10h - 18h",
-    period: "XIIIe siècle",
-    coordinates: { lat: 49.5208, lng: 3.3236 },
-    highlights: ["Plus grand donjon", "Enguerrand III", "Ruines"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 941,
+    id: 869,
     name: "Château de Septmonts",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15911,71 +13912,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 942,
-    name: "Château de Fère-en-Tardenois",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Ruines Renaissance avec pont-galerie monumental.",
-    location: "Fère-en-Tardenois, Hauts-de-France",
-    rating: 4.2,
-    price: "5€",
-    hours: "10h - 18h",
-    period: "XIIIe - XVIe siècle",
-    coordinates: { lat: 49.2000, lng: 3.5167 },
-    highlights: ["Pont-galerie", "Anne de Montmorency", "Ruines"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 943,
-    name: "Château de Blérancourt",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Musée franco-américain dans un château Renaissance.",
-    location: "Blérancourt, Hauts-de-France",
-    rating: 4.2,
-    price: "6€",
-    hours: "10h - 18h",
-    period: "XVIIe siècle",
-    coordinates: { lat: 49.5167, lng: 3.1500 },
-    highlights: ["Musée franco-américain", "Anne Morgan", "Salomon de Brosse"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 944,
-    name: "Château de Bagatelle",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Folie XVIIIe dans un parc remarquable.",
-    location: "Abbeville, Hauts-de-France",
-    rating: 4.2,
-    price: "8€",
-    hours: "14h - 18h",
-    period: "XVIIIe siècle",
-    coordinates: { lat: 50.1000, lng: 1.8333 },
-    highlights: ["Folie", "Parc remarquable", "Chinoiseries"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 945,
-    name: "Château de Long",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château Louis XV avec jardins à la française.",
-    location: "Long, Hauts-de-France",
-    rating: 4.1,
-    price: "7€",
-    hours: "14h - 18h",
-    period: "XVIIIe siècle",
-    coordinates: { lat: 50.0333, lng: 1.9833 },
-    highlights: ["Louis XV", "Jardins", "Somme"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 946,
+    id: 870,
     name: "Château de Bertangles",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -15991,39 +13928,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 947,
-    name: "Château de Coucy",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Impressionnantes ruines de la plus grande forteresse médiévale.",
-    location: "Coucy-le-Château, Hauts-de-France",
-    rating: 4.4,
-    price: "7€",
-    hours: "10h - 18h",
-    period: "XIIIe - XVIIe siècle",
-    coordinates: { lat: 49.5208, lng: 3.3236 },
-    highlights: ["Plus grand donjon", "Enguerrand III", "31 mètres diamètre"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 948,
-    name: "Château d'Olhain",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Forteresse médiévale entourée de douves dans l'Artois.",
-    location: "Fresnicourt-le-Dolmen, Hauts-de-France",
-    rating: 4.3,
-    price: "7€",
-    hours: "14h - 18h",
-    period: "XIIIe siècle",
-    coordinates: { lat: 50.4333, lng: 2.5500 },
-    highlights: ["Douves", "Pont-levis", "Artois"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 949,
+    id: 871,
     name: "Château d'Esquelbecq",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -16039,7 +13944,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 950,
+    id: 872,
     name: "Château de Boulogne-sur-Mer",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -16055,7 +13960,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 951,
+    id: 873,
     name: "Château de Hardelot",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -16071,7 +13976,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 952,
+    id: 874,
     name: "Château de Maisons-Laffitte",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -16087,87 +13992,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 953,
-    name: "Château de Monte-Cristo",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Demeure d'Alexandre Dumas avec château d'If miniature.",
-    location: "Port-Marly, Île-de-France",
-    rating: 4.3,
-    price: "9€",
-    hours: "10h - 18h",
-    period: "XIXe siècle",
-    coordinates: { lat: 48.8833, lng: 2.0833 },
-    highlights: ["Alexandre Dumas", "Château d'If", "Cabinet de travail"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 954,
-    name: "Château de Breteuil",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château des contes de Perrault avec personnages de cire.",
-    location: "Choisel, Île-de-France",
-    rating: 4.4,
-    price: "15€",
-    hours: "10h - 18h",
-    period: "XVIIe siècle",
-    coordinates: { lat: 48.6833, lng: 1.9667 },
-    highlights: ["Contes de Perrault", "Personnages de cire", "Parc"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 955,
-    name: "Château de Dampierre",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château des ducs de Luynes par Hardouin-Mansart.",
-    location: "Dampierre-en-Yvelines, Île-de-France",
-    rating: 4.3,
-    price: "12€",
-    hours: "10h - 18h",
-    period: "XVIIe siècle",
-    coordinates: { lat: 48.7000, lng: 1.9833 },
-    highlights: ["Hardouin-Mansart", "Ducs de Luynes", "Siècle d'Or d'Ingres"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 956,
-    name: "Château de Rambouillet",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Résidence présidentielle avec laiterie de la Reine.",
-    location: "Rambouillet, Île-de-France",
-    rating: 4.4,
-    price: "9€",
-    hours: "10h - 18h",
-    period: "XIVe - XIXe siècle",
-    coordinates: { lat: 48.6500, lng: 1.8167 },
-    highlights: ["Résidence présidentielle", "Laiterie", "Forêt"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 957,
-    name: "Château de Thoiry",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château Renaissance avec parc zoologique.",
-    location: "Thoiry, Île-de-France",
-    rating: 4.5,
-    price: "32€",
-    hours: "10h - 18h",
-    period: "XVIe siècle",
-    coordinates: { lat: 48.8667, lng: 1.8000 },
-    highlights: ["Zoo safari", "Solstices", "Archives"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 958,
+    id: 875,
     name: "Château de Grosbois",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -16183,7 +14008,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 959,
+    id: 876,
     name: "Château de Courances",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -16199,7 +14024,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 960,
+    id: 877,
     name: "Château de Fleury-en-Bière",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -16215,7 +14040,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 961,
+    id: 878,
     name: "Château de Blandy-les-Tours",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -16231,7 +14056,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 962,
+    id: 879,
     name: "Château de la Roche-Guyon",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -16247,7 +14072,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 963,
+    id: 880,
     name: "Château d'Auvers-sur-Oise",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -16263,7 +14088,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 964,
+    id: 881,
     name: "Château de Champs-sur-Marne",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -16279,23 +14104,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 965,
-    name: "Château d'Écouen",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Musée national de la Renaissance.",
-    location: "Écouen, Île-de-France",
-    rating: 4.5,
-    price: "8€",
-    hours: "10h - 17h",
-    period: "XVIe siècle",
-    coordinates: { lat: 49.0167, lng: 2.3833 },
-    highlights: ["Musée Renaissance", "Connétable", "Tapisseries David et Bethsabée"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 966,
+    id: 882,
     name: "Château de Nemours",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -16311,7 +14120,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 967,
+    id: 883,
     name: "Château de Rosa Bonheur",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -16327,23 +14136,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 968,
-    name: "Château de Bussy-Rabutin",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château du comte exilé avec galerie de portraits satiriques.",
-    location: "Bussy-le-Grand, Bourgogne-Franche-Comté",
-    rating: 4.4,
-    price: "8€",
-    hours: "10h - 18h",
-    period: "XIVe - XVIIe siècle",
-    coordinates: { lat: 47.5667, lng: 4.5333 },
-    highlights: ["Portraits satiriques", "Roger de Rabutin", "Exil"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 969,
+    id: 884,
     name: "Château de Digoine",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -16359,103 +14152,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 970,
-    name: "Château de Drée",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Petit Versailles du Brionnais avec jardins remarquables.",
-    location: "Curbigny, Bourgogne-Franche-Comté",
-    rating: 4.4,
-    price: "12€",
-    hours: "10h - 18h",
-    period: "XVIIe siècle",
-    coordinates: { lat: 46.3333, lng: 4.2500 },
-    highlights: ["Jardins remarquables", "Petit Versailles", "Brionnais"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 971,
-    name: "Château de Sully - Saône-et-Loire",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Berceau de la famille MacMahon au cœur du Morvan.",
-    location: "Sully, Bourgogne-Franche-Comté",
-    rating: 4.3,
-    price: "10€",
-    hours: "10h - 18h",
-    period: "XVIe - XVIIIe siècle",
-    coordinates: { lat: 47.0094, lng: 4.4428 },
-    highlights: ["MacMahon", "Fontainebleau bourguignon", "Parc"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 972,
-    name: "Château de Pierre-de-Bresse",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Écomusée de la Bresse bourguignonne.",
-    location: "Pierre-de-Bresse, Bourgogne-Franche-Comté",
-    rating: 4.2,
-    price: "7€",
-    hours: "10h - 18h",
-    period: "XVIIe siècle",
-    coordinates: { lat: 46.8817, lng: 5.2594 },
-    highlights: ["Écomusée", "Bresse bourguignonne", "Parc"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 973,
-    name: "Château de Berzé-le-Châtel",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Forteresse protégeant Cluny avec treize tours.",
-    location: "Berzé-le-Châtel, Bourgogne-Franche-Comté",
-    rating: 4.3,
-    price: "8€",
-    hours: "10h - 18h",
-    period: "XIIIe siècle",
-    coordinates: { lat: 46.3833, lng: 4.6833 },
-    highlights: ["Treize tours", "Cluny", "Chapelle carolingienne"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 974,
-    name: "Château de Pierreclos",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château de la légende de Lamartine et Laurence.",
-    location: "Pierreclos, Bourgogne-Franche-Comté",
-    rating: 4.2,
-    price: "8€",
-    hours: "10h - 18h",
-    period: "XIIe - XVIIe siècle",
-    coordinates: { lat: 46.3333, lng: 4.7167 },
-    highlights: ["Lamartine", "Laurence", "Mâconnais"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 975,
-    name: "Château de Corcelles",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château viticole du Beaujolais avec cuvage historique.",
-    location: "Corcelles-en-Beaujolais, Auvergne-Rhône-Alpes",
-    rating: 4.2,
-    price: "7€",
-    hours: "10h - 18h",
-    period: "XVe siècle",
-    coordinates: { lat: 46.1667, lng: 4.7167 },
-    highlights: ["Beaujolais", "Cuvage", "Cour Renaissance"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 976,
+    id: 885,
     name: "Château de Fléchères",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -16471,23 +14168,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 977,
-    name: "Château des Allymes",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Forteresse médiévale dominant la plaine de l'Ain.",
-    location: "Ambérieu-en-Bugey, Auvergne-Rhône-Alpes",
-    rating: 4.2,
-    price: "5€",
-    hours: "14h - 18h",
-    period: "XIIIe siècle",
-    coordinates: { lat: 45.9667, lng: 5.3667 },
-    highlights: ["Bugey", "Vue panoramique", "Médiéval"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 978,
+    id: 886,
     name: "Château de Fallavier",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -16503,23 +14184,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 979,
-    name: "Château de Vogüé",
-    type: "château",
-    image: PLACEHOLDER_IMAGE,
-    description: "Château dominant un des plus beaux villages d'Ardèche.",
-    location: "Vogüé, Auvergne-Rhône-Alpes",
-    rating: 4.3,
-    price: "6€",
-    hours: "10h - 18h",
-    period: "XIIe - XVIIe siècle",
-    coordinates: { lat: 44.5500, lng: 4.4117 },
-    highlights: ["Plus Beau Village", "Ardèche", "Jardins suspendus"],
-    visited: false,
-    favorite: false
-  },
-  {
-    id: 980,
+    id: 887,
     name: "Château de Bouligneux",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -16535,7 +14200,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 981,
+    id: 888,
     name: "Château de Saint-Bernard",
     type: "château",
     image: PLACEHOLDER_IMAGE,
@@ -16551,7 +14216,7 @@ export const places = [
     favorite: false
   },
   {
-    id: 982,
+    id: 889,
     name: "Château de Rochebonne",
     type: "château",
     image: PLACEHOLDER_IMAGE,

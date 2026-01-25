@@ -208,6 +208,168 @@ export const frenchMuseums = [
   { id: 'cvl-3', name: "Cathédrale de Chartres", type: "monument", city: "Chartres", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1548104189-5933a71ed0a6?w=800&q=80" },
   { id: 'cvl-4', name: "Cathédrale de Bourges", type: "monument", city: "Bourges", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
   { id: 'cvl-5', name: "Palais Jacques-Coeur", type: "monument", city: "Bourges", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" },
+
+  // ============================================
+  // MUSÉES SUPPLÉMENTAIRES - ÎLE-DE-FRANCE
+  // ============================================
+  { id: 'idf-26', name: "Musée de la Vie Romantique", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=800&q=80" },
+  { id: 'idf-27', name: "Musée Nissim de Camondo", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?w=800&q=80" },
+  { id: 'idf-28', name: "Musée de la Chasse et de la Nature", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1584037079828-7c545a9ad6a0?w=800&q=80" },
+  { id: 'idf-29', name: "Musée Cognacq-Jay", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
+  { id: 'idf-30', name: "Musée Gustave Moreau", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'idf-31', name: "Musée Zadkine", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'idf-32', name: "Musée Bourdelle", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'idf-33', name: "Musée d'Art et d'Histoire du Judaïsme", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
+  { id: 'idf-34', name: "Musée de Montmartre", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80" },
+  { id: 'idf-35', name: "Musée des Arts Forains", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=800&q=80" },
+  { id: 'idf-36', name: "Musée de la Monnaie de Paris", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1565799557186-1158b1bd9e23?w=800&q=80" },
+  { id: 'idf-37', name: "Musée National de la Marine", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80" },
+  { id: 'idf-38', name: "Musée de la Mode", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" },
+  { id: 'idf-39', name: "Musée de la Musique", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=800&q=80" },
+  { id: 'idf-40', name: "Musée National du Moyen Âge", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1573455494060-c5595004fb6c?w=800&q=80" },
+
+  // ============================================
+  // MUSÉES SUPPLÉMENTAIRES - PACA
+  // ============================================
+  { id: 'paca-15', name: "Musée Cantini", type: "musée", city: "Marseille", region: "PACA", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
+  { id: 'paca-16', name: "Musée d'Histoire de Marseille", type: "musée", city: "Marseille", region: "PACA", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'paca-17', name: "Musée Regards de Provence", type: "musée", city: "Marseille", region: "PACA", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'paca-18', name: "Musée des Beaux-Arts de Nice", type: "musée", city: "Nice", region: "PACA", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'paca-19', name: "Musée Massena", type: "musée", city: "Nice", region: "PACA", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
+  { id: 'paca-20', name: "Musée d'Art Classique de Mougins", type: "musée", city: "Mougins", region: "PACA", image: "https://images.unsplash.com/photo-1579783928621-7a13d66a62b1?w=800&q=80" },
+  { id: 'paca-21', name: "Musée Renoir", type: "musée", city: "Cagnes-sur-Mer", region: "PACA", image: "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=800&q=80" },
+  { id: 'paca-22', name: "Musée de la Préhistoire des Gorges du Verdon", type: "musée", city: "Quinson", region: "PACA", image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80" },
+  { id: 'paca-23', name: "Musée Jean Cocteau", type: "musée", city: "Menton", region: "PACA", image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80" },
+  { id: 'paca-24', name: "Musée Océanographique de Monaco", type: "musée", city: "Monaco", region: "PACA", image: "https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=800&q=80" },
+
+  // ============================================
+  // MUSÉES SUPPLÉMENTAIRES - AUVERGNE-RHÔNE-ALPES
+  // ============================================
+  { id: 'ara-13', name: "Musée des Tissus", type: "musée", city: "Lyon", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" },
+  { id: 'ara-14', name: "Musée Gadagne", type: "musée", city: "Lyon", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
+  { id: 'ara-15', name: "Musée de l'Imprimerie", type: "musée", city: "Lyon", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1573455494060-c5595004fb6c?w=800&q=80" },
+  { id: 'ara-16', name: "Musée des Miniatures et Décors de Cinéma", type: "musée", city: "Lyon", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&q=80" },
+  { id: 'ara-17', name: "Musée d'Art Sacré du Gard", type: "musée", city: "Pont-Saint-Esprit", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
+  { id: 'ara-18', name: "Musée de la Civilisation Gallo-Romaine", type: "musée", city: "Lyon", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80" },
+  { id: 'ara-19', name: "Musée Bargoin", type: "musée", city: "Clermont-Ferrand", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'ara-20', name: "Musée d'Art Roger-Quilliot", type: "musée", city: "Clermont-Ferrand", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'ara-21', name: "Musée Dauphinois", type: "musée", city: "Grenoble", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'ara-22', name: "Musée Savoisien", type: "musée", city: "Chambéry", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1579783928621-7a13d66a62b1?w=800&q=80" },
+
+  // ============================================
+  // MUSÉES SUPPLÉMENTAIRES - NOUVELLE-AQUITAINE
+  // ============================================
+  { id: 'na-15', name: "Musée des Beaux-Arts de Limoges", type: "musée", city: "Limoges", region: "Nouvelle-Aquitaine", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
+  { id: 'na-16', name: "Musée National Adrien Dubouché", type: "musée", city: "Limoges", region: "Nouvelle-Aquitaine", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'na-17', name: "Musée de la Bande Dessinée", type: "musée", city: "Angoulême", region: "Nouvelle-Aquitaine", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'na-18', name: "Musée du Papier", type: "musée", city: "Angoulême", region: "Nouvelle-Aquitaine", image: "https://images.unsplash.com/photo-1573455494060-c5595004fb6c?w=800&q=80" },
+  { id: 'na-19', name: "Musée des Beaux-Arts de Pau", type: "musée", city: "Pau", region: "Nouvelle-Aquitaine", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'na-20', name: "Musée Basque", type: "musée", city: "Bayonne", region: "Nouvelle-Aquitaine", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
+  { id: 'na-21', name: "Musée de la Mer", type: "musée", city: "Biarritz", region: "Nouvelle-Aquitaine", image: "https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=800&q=80" },
+  { id: 'na-22', name: "Centre International de la Mer", type: "musée", city: "Rochefort", region: "Nouvelle-Aquitaine", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80" },
+  { id: 'na-23', name: "Musée National de la Préhistoire", type: "musée", city: "Les Eyzies", region: "Nouvelle-Aquitaine", image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80" },
+  { id: 'na-24', name: "Écomusée de la Grande Lande", type: "musée", city: "Sabres", region: "Nouvelle-Aquitaine", image: "https://images.unsplash.com/photo-1499002238440-d264edd596ec?w=800&q=80" },
+
+  // ============================================
+  // MUSÉES SUPPLÉMENTAIRES - OCCITANIE
+  // ============================================
+  { id: 'occ-13', name: "Musée des Beaux-Arts de Toulouse", type: "musée", city: "Toulouse", region: "Occitanie", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
+  { id: 'occ-14', name: "Musée Saint-Raymond", type: "musée", city: "Toulouse", region: "Occitanie", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'occ-15', name: "Aeroscopia", type: "musée", city: "Blagnac", region: "Occitanie", image: "https://images.unsplash.com/photo-1474302770737-173ee21bab63?w=800&q=80" },
+  { id: 'occ-16', name: "Musée Ingres Bourdelle", type: "musée", city: "Montauban", region: "Occitanie", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'occ-17', name: "Musée Goya", type: "musée", city: "Castres", region: "Occitanie", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'occ-18', name: "Musée du Jouet", type: "musée", city: "Pézenas", region: "Occitanie", image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=800&q=80" },
+  { id: 'occ-19', name: "Musée Atger", type: "musée", city: "Montpellier", region: "Occitanie", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
+  { id: 'occ-20', name: "Carré d'Art", type: "musée", city: "Nîmes", region: "Occitanie", image: "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=800&q=80" },
+  { id: 'occ-21', name: "Musée de la Romanité", type: "musée", city: "Nîmes", region: "Occitanie", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
+  { id: 'occ-22', name: "Musée des Beaux-Arts de Carcassonne", type: "musée", city: "Carcassonne", region: "Occitanie", image: "https://images.unsplash.com/photo-1579783928621-7a13d66a62b1?w=800&q=80" },
+
+  // ============================================
+  // MUSÉES SUPPLÉMENTAIRES - BRETAGNE
+  // ============================================
+  { id: 'bre-12', name: "Musée de la Pêche", type: "musée", city: "Concarneau", region: "Bretagne", image: "https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=800&q=80" },
+  { id: 'bre-13', name: "Musée Départemental Breton", type: "musée", city: "Quimper", region: "Bretagne", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'bre-14', name: "Musée des Beaux-Arts de Quimper", type: "musée", city: "Quimper", region: "Bretagne", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'bre-15', name: "Musée de la Compagnie des Indes", type: "musée", city: "Port-Louis", region: "Bretagne", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80" },
+  { id: 'bre-16', name: "Écomusée du Pays de Rennes", type: "musée", city: "Rennes", region: "Bretagne", image: "https://images.unsplash.com/photo-1499002238440-d264edd596ec?w=800&q=80" },
+  { id: 'bre-17', name: "Musée d'Art et d'Histoire de Saint-Brieuc", type: "musée", city: "Saint-Brieuc", region: "Bretagne", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'bre-18', name: "Musée des Phares et Balises", type: "musée", city: "Ouessant", region: "Bretagne", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
+  { id: 'bre-19', name: "Musée du Loup", type: "musée", city: "Le Cloître-Saint-Thégonnec", region: "Bretagne", image: "https://images.unsplash.com/photo-1584037079828-7c545a9ad6a0?w=800&q=80" },
+
+  // ============================================
+  // MUSÉES SUPPLÉMENTAIRES - PAYS DE LA LOIRE
+  // ============================================
+  { id: 'pdl-17', name: "Musée Jules Verne", type: "musée", city: "Nantes", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&q=80" },
+  { id: 'pdl-18', name: "Musée Dobrée", type: "musée", city: "Nantes", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'pdl-19', name: "Musée Jean Lurçat", type: "musée", city: "Angers", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'pdl-20', name: "Musée des Beaux-Arts d'Angers", type: "musée", city: "Angers", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'pdl-21', name: "Musée de l'Automobile du Mans", type: "musée", city: "Le Mans", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80" },
+  { id: 'pdl-22', name: "Carré Plantagenêt", type: "musée", city: "Le Mans", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
+  { id: 'pdl-23', name: "Musée de la Vigne et du Vin d'Anjou", type: "musée", city: "Saint-Lambert-du-Lattay", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1506377585622-bedcbb027afc?w=800&q=80" },
+  { id: 'pdl-24', name: "Musée des 24 Heures du Mans", type: "musée", city: "Le Mans", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80" },
+
+  // ============================================
+  // MUSÉES SUPPLÉMENTAIRES - NORMANDIE
+  // ============================================
+  { id: 'nor-12', name: "Musée d'Art Moderne André Malraux", type: "musée", city: "Le Havre", region: "Normandie", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
+  { id: 'nor-13', name: "Musée Eugène Boudin", type: "musée", city: "Honfleur", region: "Normandie", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'nor-14', name: "Musée Christian Dior", type: "musée", city: "Granville", region: "Normandie", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" },
+  { id: 'nor-15', name: "Musée Le Secq des Tournelles", type: "musée", city: "Rouen", region: "Normandie", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'nor-16', name: "Musée de Normandie", type: "musée", city: "Caen", region: "Normandie", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'nor-17', name: "Musée des Beaux-Arts de Caen", type: "musée", city: "Caen", region: "Normandie", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
+  { id: 'nor-18', name: "Airborne Museum", type: "musée", city: "Sainte-Mère-Église", region: "Normandie", image: "https://images.unsplash.com/photo-1474302770737-173ee21bab63?w=800&q=80" },
+  { id: 'nor-19', name: "Musée du Débarquement", type: "musée", city: "Arromanches", region: "Normandie", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80" },
+
+  // ============================================
+  // MUSÉES SUPPLÉMENTAIRES - HAUTS-DE-FRANCE
+  // ============================================
+  { id: 'hdf-10', name: "Musée de la Grande Guerre", type: "musée", city: "Meaux", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80" },
+  { id: 'hdf-11', name: "Musée de l'Hôtel Sandelin", type: "musée", city: "Saint-Omer", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'hdf-12', name: "Musée des Beaux-Arts de Valenciennes", type: "musée", city: "Valenciennes", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'hdf-13', name: "Musée de la Dentelle", type: "musée", city: "Calais", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" },
+  { id: 'hdf-14', name: "Musée des Beaux-Arts de Dunkerque", type: "musée", city: "Dunkerque", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'hdf-15', name: "Musée Henri-Martin", type: "musée", city: "Cahors", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
+  { id: 'hdf-16', name: "Musée Condé", type: "musée", city: "Chantilly", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1579783928621-7a13d66a62b1?w=800&q=80" },
+  { id: 'hdf-17', name: "Historial de la Grande Guerre", type: "musée", city: "Péronne", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80" },
+
+  // ============================================
+  // MUSÉES SUPPLÉMENTAIRES - GRAND EST
+  // ============================================
+  { id: 'ge-11', name: "Musée des Beaux-Arts de Nancy", type: "musée", city: "Nancy", region: "Grand Est", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
+  { id: 'ge-12', name: "Musée de l'École de Nancy", type: "musée", city: "Nancy", region: "Grand Est", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'ge-13', name: "Musée Lorrain", type: "musée", city: "Nancy", region: "Grand Est", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'ge-14', name: "Musée de la Cour d'Or", type: "musée", city: "Metz", region: "Grand Est", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'ge-15', name: "Musée Tomi Ungerer", type: "musée", city: "Strasbourg", region: "Grand Est", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
+  { id: 'ge-16', name: "Musée Alsacien", type: "musée", city: "Strasbourg", region: "Grand Est", image: "https://images.unsplash.com/photo-1499002238440-d264edd596ec?w=800&q=80" },
+  { id: 'ge-17', name: "Musée Bartholdi", type: "musée", city: "Colmar", region: "Grand Est", image: "https://images.unsplash.com/photo-1565799557186-1158b1bd9e23?w=800&q=80" },
+  { id: 'ge-18', name: "Cité de l'Automobile", type: "musée", city: "Mulhouse", region: "Grand Est", image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80" },
+
+  // ============================================
+  // MUSÉES SUPPLÉMENTAIRES - BOURGOGNE-FRANCHE-COMTÉ
+  // ============================================
+  { id: 'bfc-10', name: "Musée du Temps", type: "musée", city: "Besançon", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1565799557186-1158b1bd9e23?w=800&q=80" },
+  { id: 'bfc-11', name: "Musée des Beaux-Arts et d'Archéologie", type: "musée", city: "Besançon", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
+  { id: 'bfc-12', name: "Musée Nicéphore Niépce", type: "musée", city: "Chalon-sur-Saône", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'bfc-13', name: "Musée du Château de Dijon", type: "musée", city: "Dijon", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'bfc-14', name: "Musée de la Vie Bourguignonne", type: "musée", city: "Dijon", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
+  { id: 'bfc-15', name: "Musée du Jouet", type: "musée", city: "Moirans-en-Montagne", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=800&q=80" },
+
+  // ============================================
+  // MUSÉES SUPPLÉMENTAIRES - CORSE
+  // ============================================
+  { id: 'cor-6', name: "Musée de Bastia", type: "musée", city: "Bastia", region: "Corse", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
+  { id: 'cor-7', name: "Musée d'Archéologie d'Aléria", type: "musée", city: "Aléria", region: "Corse", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
+  { id: 'cor-8', name: "Musée de l'Alta Rocca", type: "musée", city: "Levie", region: "Corse", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'cor-9', name: "Musée Pascal Paoli", type: "musée", city: "Morosaglia", region: "Corse", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80" },
+
+  // ============================================
+  // MUSÉES SUPPLÉMENTAIRES - CENTRE-VAL DE LOIRE
+  // ============================================
+  { id: 'cvl-6', name: "Musée des Beaux-Arts de Tours", type: "musée", city: "Tours", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
+  { id: 'cvl-7', name: "Musée des Beaux-Arts d'Orléans", type: "musée", city: "Orléans", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'cvl-8', name: "Musée de la Chasse", type: "musée", city: "Gien", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1584037079828-7c545a9ad6a0?w=800&q=80" },
+  { id: 'cvl-9', name: "Musée de la Faïence", type: "musée", city: "Gien", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'cvl-10', name: "Musée du Compagnonnage", type: "musée", city: "Tours", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
 ];
 
 // Liste des régions de France pour le filtrage

@@ -127,7 +127,7 @@ const GuidePage = () => {
         <div
           className="absolute inset-0 bg-cover bg-center opacity-25"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1564399580075-5dfe19c205f3?w=1920&h=600&fit=crop')"
+            backgroundImage: "url('https://images.unsplash.com/photo-1554907984-15263bfd63bd?w=1920&h=600&fit=crop')"
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#1e2a42]/50 via-[#1e2a42]/80 to-[#1e2a42]" />

@@ -491,7 +491,10 @@ const MeetingsPage = () => {
 
             {/* Résultats de recherche */}
             {filteredPlaces.length > 0 && (
-              <div className="bg-[#1a1a2e] border border-[#d4a574]/30 rounded-2xl overflow-hidden shadow-2xl max-h-[500px] overflow-y-auto">
+              <div
+                className="bg-[#1a1a2e] border border-[#d4a574]/30 rounded-2xl overflow-hidden shadow-2xl max-h-[500px] overflow-y-auto"
+                style={{ animation: 'fadeInUp 0.4s ease-out 0.2s both' }}
+              >
                 {filteredPlaces.map(place => (
                   <button
                     key={place.id}
@@ -570,7 +573,14 @@ const MeetingsPage = () => {
         )}
 
         {/* Suggestions populaires */}
-        {!selectedPlace && !searchQuery && !selectedRegion && !selectedType && (
+        {!selectedPlace && (
+          <div
+            className={`transition-all duration-500 ease-out overflow-hidden ${
+              searchQuery || selectedRegion || selectedType
+                ? 'opacity-0 max-h-0 scale-95'
+                : 'opacity-100 max-h-[2000px] scale-100'
+            }`}
+          >
           <div className="mb-12">
             <h2 className="text-white text-xl font-semibold mb-6 flex items-center gap-2">
               <Star className="w-5 h-5 text-[#d4a574]" />
@@ -608,6 +618,7 @@ const MeetingsPage = () => {
                 </button>
               ))}
             </div>
+          </div>
           </div>
         )}
 

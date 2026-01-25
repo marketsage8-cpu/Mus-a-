@@ -134,19 +134,19 @@ const GuidePage = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 py-16">
           <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-600/20 border border-amber-600/30 rounded-full mb-6">
-              <Users className="w-4 h-4 text-amber-400" />
-              <span className="text-amber-400 text-sm font-medium">Guides certifiés & passionnés</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#d4af37]/15 border border-[#d4af37]/30 rounded-full mb-6">
+              <Users className="w-4 h-4 text-[#d4af37]" />
+              <span className="text-[#d4af37] text-sm font-medium font-serif-italic">Guides certifiés & passionnés</span>
             </div>
 
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-amber-50 mb-4">
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[#f5f0e6] mb-4">
               Vivez l'Art avec nos{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f5d76e] to-[#d4af37]">
                 Guides Experts
               </span>
             </h1>
 
-            <p className="text-sand-300/70 text-lg md:text-xl max-w-2xl mx-auto">
+            <p className="text-[#c4b69c]/80 text-lg md:text-xl max-w-2xl mx-auto font-body">
               Découvrez les plus grands musées accompagné par des conférenciers d'exception
             </p>
           </div>
@@ -166,7 +166,7 @@ const GuidePage = () => {
                   }
                 }}
                 placeholder="Rechercher un musée, un monument, un château..."
-                className="w-full py-4 pl-14 pr-12 bg-stone-800/50 border border-stone-700/50 rounded-2xl text-amber-50 placeholder-stone-500 focus:outline-none focus:border-amber-600/50 focus:ring-2 focus:ring-amber-600/20 transition-all text-lg"
+                className="w-full py-4 pl-14 pr-12 bg-stone-800/50 border border-stone-700/50 rounded-2xl text-[#f5f0e6] placeholder-stone-500 focus:outline-none focus:border-[#d4af37]/50 focus:ring-2 focus:ring-[#d4af37]/20 transition-all text-lg font-body"
               />
               {searchQuery && (
                 <button
@@ -180,7 +180,7 @@ const GuidePage = () => {
 
             {/* Dropdown des résultats de recherche */}
             {searchQuery && !selectedPlace && filteredPlaces.length > 0 && (
-              <div className="absolute left-0 right-0 mt-2 mx-auto max-w-3xl bg-stone-900 border border-stone-700/50 rounded-xl shadow-2xl overflow-hidden z-50">
+              <div className="absolute left-0 right-0 mt-2 mx-auto max-w-3xl bg-stone-900 border border-stone-700/50 rounded-xl shadow-2xl overflow-hidden z-50 max-h-[70vh] overflow-y-auto">
                 {filteredPlaces.map((place) => (
                   <button
                     key={place.id}
@@ -190,22 +190,22 @@ const GuidePage = () => {
                     <img
                       src={place.image}
                       alt={place.name}
-                      className="w-16 h-16 rounded-xl object-cover"
+                      className="w-16 h-16 rounded-xl object-cover flex-shrink-0"
                     />
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-display font-semibold text-amber-50 truncate">{place.name}</h4>
-                      <div className="flex items-center gap-3 text-sm text-stone-400">
+                    <div className="flex-1">
+                      <h4 className="font-display font-semibold text-[#f5f0e6]">{place.name}</h4>
+                      <div className="flex flex-wrap items-center gap-3 text-sm text-stone-400 mt-1">
                         <span className="flex items-center gap-1">
-                          <MapPin className="w-3 h-3" />
-                          {place.location}
+                          <MapPin className="w-3 h-3 flex-shrink-0" />
+                          <span>{place.location}</span>
                         </span>
                         <span className="flex items-center gap-1">
-                          <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
+                          <Star className="w-3 h-3 text-[#d4af37] fill-[#d4af37]" />
                           {place.rating}
                         </span>
                       </div>
                     </div>
-                    <ChevronRight className="w-5 h-5 text-stone-500" />
+                    <ChevronRight className="w-5 h-5 text-stone-500 flex-shrink-0" />
                   </button>
                 ))}
               </div>
@@ -233,22 +233,22 @@ const GuidePage = () => {
                 className="w-full md:w-64 h-40 rounded-xl object-cover"
               />
               <div className="flex-1">
-                <h2 className="font-display text-2xl font-bold text-amber-50 mb-2">{selectedPlace.name}</h2>
-                <p className="text-sand-300/70 mb-4">{selectedPlace.description}</p>
+                <h2 className="font-display text-2xl font-bold text-[#f5f0e6] mb-2">{selectedPlace.name}</h2>
+                <p className="text-[#c4b69c]/80 mb-4 font-body">{selectedPlace.description}</p>
                 <div className="flex flex-wrap items-center gap-4 text-sm text-stone-400">
                   <span className="flex items-center gap-1">
                     <MapPin className="w-4 h-4" />
                     {selectedPlace.location}
                   </span>
                   <span className="flex items-center gap-1">
-                    <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
+                    <Star className="w-4 h-4 text-[#d4af37] fill-[#d4af37]" />
                     {selectedPlace.rating}
                   </span>
                   <span className="flex items-center gap-1">
                     <Clock className="w-4 h-4" />
                     {selectedPlace.hours}
                   </span>
-                  <span className="text-amber-400 font-semibold">{selectedPlace.price}</span>
+                  <span className="text-[#d4af37] font-semibold">{selectedPlace.price}</span>
                 </div>
               </div>
             </div>
@@ -257,14 +257,14 @@ const GuidePage = () => {
           {/* Filtres: Date et Heure */}
           <div className="bg-stone-900/50 border border-stone-700/30 rounded-2xl p-6 mb-8">
             <div className="flex items-center gap-2 mb-6">
-              <Filter className="w-5 h-5 text-amber-400" />
-              <h3 className="font-display text-xl font-semibold text-amber-50">Choisissez votre créneau</h3>
+              <Filter className="w-5 h-5 text-[#d4af37]" />
+              <h3 className="font-display text-xl font-semibold text-[#f5f0e6]">Choisissez votre créneau</h3>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
               {/* Sélection de la date */}
               <div>
-                <label className="block text-sm font-medium text-sand-300/70 mb-3">
+                <label className="block text-sm font-medium text-[#c4b69c]/80 mb-3 font-body">
                   <Calendar className="w-4 h-4 inline mr-2" />
                   Jour de visite
                 </label>
@@ -275,8 +275,8 @@ const GuidePage = () => {
                       onClick={() => setSelectedDate(date.value)}
                       className={`p-3 rounded-xl text-sm font-medium transition-all ${
                         selectedDate === date.value
-                          ? 'bg-gradient-to-r from-amber-600 to-amber-700 text-white'
-                          : 'bg-stone-800/50 border border-stone-700/50 text-stone-300 hover:border-amber-600/50'
+                          ? 'bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-[#0a0f1a]'
+                          : 'bg-stone-800/50 border border-stone-700/50 text-stone-300 hover:border-[#d4af37]/50'
                       }`}
                     >
                       {date.label}
@@ -287,7 +287,7 @@ const GuidePage = () => {
 
               {/* Sélection de l'heure */}
               <div>
-                <label className="block text-sm font-medium text-sand-300/70 mb-3">
+                <label className="block text-sm font-medium text-[#c4b69c]/80 mb-3 font-body">
                   <Clock className="w-4 h-4 inline mr-2" />
                   Heure de début
                 </label>
@@ -298,8 +298,8 @@ const GuidePage = () => {
                       onClick={() => setSelectedTime(selectedTime === time ? '' : time)}
                       className={`p-3 rounded-xl text-sm font-medium transition-all ${
                         selectedTime === time
-                          ? 'bg-gradient-to-r from-amber-600 to-amber-700 text-white'
-                          : 'bg-stone-800/50 border border-stone-700/50 text-stone-300 hover:border-amber-600/50'
+                          ? 'bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-[#0a0f1a]'
+                          : 'bg-stone-800/50 border border-stone-700/50 text-stone-300 hover:border-[#d4af37]/50'
                       }`}
                     >
                       {time}
@@ -313,10 +313,10 @@ const GuidePage = () => {
           {/* Liste des guides */}
           <div>
             <div className="flex items-center justify-between mb-6">
-              <h3 className="font-display text-2xl font-semibold text-amber-50">
+              <h3 className="font-display text-2xl font-semibold text-[#f5f0e6]">
                 Nos guides disponibles
               </h3>
-              <span className="text-sand-300/70 text-sm">
+              <span className="text-[#c4b69c]/70 text-sm font-body">
                 {filteredGuides.length} guide{filteredGuides.length > 1 ? 's' : ''} disponible{filteredGuides.length > 1 ? 's' : ''}
               </span>
             </div>
@@ -325,22 +325,22 @@ const GuidePage = () => {
               {filteredGuides.map((guide) => (
                 <div
                   key={guide.id}
-                  className="group bg-stone-800/30 border border-stone-700/30 rounded-2xl overflow-hidden hover:border-amber-800/30 transition-all duration-300"
+                  className="group bg-stone-800/30 border border-stone-700/30 rounded-2xl overflow-hidden hover:border-[#d4af37]/30 transition-all duration-300"
                 >
                   <div className="p-6">
                     <div className="flex items-start gap-4 mb-4">
                       <img
                         src={guide.image}
                         alt={guide.name}
-                        className="w-20 h-20 rounded-full object-cover border-2 border-amber-600/30"
+                        className="w-20 h-20 rounded-full object-cover border-2 border-[#d4af37]/30"
                       />
                       <div className="flex-1">
-                        <h4 className="font-display font-semibold text-amber-50 text-lg">{guide.name}</h4>
-                        <p className="text-amber-400 text-sm mb-2">{guide.specialty}</p>
+                        <h4 className="font-display font-semibold text-[#f5f0e6] text-lg">{guide.name}</h4>
+                        <p className="text-[#d4af37] text-sm mb-2 font-serif-italic">{guide.specialty}</p>
                         <div className="flex items-center gap-2">
                           <div className="flex items-center gap-1">
-                            <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
-                            <span className="text-amber-50 font-semibold">{guide.rating}</span>
+                            <Star className="w-4 h-4 text-[#d4af37] fill-[#d4af37]" />
+                            <span className="text-[#f5f0e6] font-semibold">{guide.rating}</span>
                           </div>
                           <span className="text-stone-500 text-sm">({guide.reviews} avis)</span>
                         </div>
@@ -350,7 +350,7 @@ const GuidePage = () => {
                     <div className="space-y-3 mb-4">
                       <div className="flex items-center gap-2 text-sm text-stone-400">
                         <span className="text-stone-500">Langues:</span>
-                        <span className="text-sand-300">{guide.languages.join(', ')}</span>
+                        <span className="text-[#c4b69c]">{guide.languages.join(', ')}</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm">
                         <span className="text-stone-500">Créneaux:</span>
@@ -360,7 +360,7 @@ const GuidePage = () => {
                               key={time}
                               className={`px-2 py-0.5 rounded text-xs ${
                                 selectedTime === time
-                                  ? 'bg-amber-600/30 text-amber-400'
+                                  ? 'bg-[#d4af37]/30 text-[#d4af37]'
                                   : 'bg-stone-700/50 text-stone-400'
                               }`}
                             >
@@ -373,10 +373,10 @@ const GuidePage = () => {
 
                     <div className="flex items-center justify-between pt-4 border-t border-stone-700/30">
                       <div>
-                        <span className="text-2xl font-bold text-amber-400">{guide.price}€</span>
+                        <span className="text-2xl font-bold text-[#d4af37]">{guide.price}€</span>
                         <span className="text-stone-500 text-sm"> / personne</span>
                       </div>
-                      <button className="px-6 py-2.5 bg-gradient-to-r from-amber-600 to-amber-700 text-white rounded-xl font-semibold hover:from-amber-500 hover:to-amber-600 transition-all">
+                      <button className="px-6 py-2.5 bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-[#0a0f1a] rounded-xl font-semibold hover:from-[#e5c349] hover:to-[#d4af37] transition-all">
                         Réserver
                       </button>
                     </div>
@@ -392,10 +392,10 @@ const GuidePage = () => {
       {!selectedPlace && (
         <div className="max-w-7xl mx-auto px-4 py-12">
           <div className="text-center mb-10">
-            <h2 className="font-display text-3xl font-bold text-amber-50 mb-3">
-              Lieux <span className="text-amber-400">populaires</span>
+            <h2 className="font-display text-3xl font-bold text-[#f5f0e6] mb-3">
+              Lieux <span className="text-[#d4af37]">populaires</span>
             </h2>
-            <p className="text-sand-300/70">
+            <p className="text-[#c4b69c]/70 font-body">
               Les destinations les plus prisées par nos visiteurs
             </p>
           </div>
@@ -405,7 +405,7 @@ const GuidePage = () => {
               <button
                 key={place.id}
                 onClick={() => handlePlaceSelect(place)}
-                className="group relative bg-stone-800/30 border border-stone-700/30 rounded-2xl overflow-hidden hover:border-amber-800/30 transition-all duration-300 text-left"
+                className="group relative bg-stone-800/30 border border-stone-700/30 rounded-2xl overflow-hidden hover:border-[#d4af37]/30 transition-all duration-300 text-left"
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
@@ -415,13 +415,13 @@ const GuidePage = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/50 to-transparent" />
 
-                  <div className="absolute top-3 right-3 px-3 py-1 bg-gradient-to-r from-amber-600 to-amber-700 rounded-full">
-                    <span className="text-white text-xs font-semibold">Dès {place.price}</span>
+                  <div className="absolute top-3 right-3 px-3 py-1 bg-gradient-to-r from-[#d4af37] to-[#b8962e] rounded-full">
+                    <span className="text-[#0a0f1a] text-xs font-semibold">Dès {place.price}</span>
                   </div>
                 </div>
 
                 <div className="p-4">
-                  <h3 className="font-display font-semibold text-amber-50 mb-2 group-hover:text-amber-400 transition-colors">
+                  <h3 className="font-display font-semibold text-[#f5f0e6] mb-2 group-hover:text-[#d4af37] transition-colors">
                     {place.name}
                   </h3>
                   <div className="flex items-center gap-3 text-sm text-stone-400">
@@ -430,7 +430,7 @@ const GuidePage = () => {
                       {place.location.split(',')[0]}
                     </span>
                     <span className="flex items-center gap-1">
-                      <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
+                      <Star className="w-3 h-3 text-[#d4af37] fill-[#d4af37]" />
                       {place.rating}
                     </span>
                   </div>
@@ -442,10 +442,10 @@ const GuidePage = () => {
           {/* Section Experts */}
           <div className="mt-16">
             <div className="text-center mb-10">
-              <h2 className="font-display text-3xl font-bold text-amber-50 mb-3">
-                Nos <span className="text-amber-400">experts</span> passionnés
+              <h2 className="font-display text-3xl font-bold text-[#f5f0e6] mb-3">
+                Nos <span className="text-[#d4af37]">experts</span> passionnés
               </h2>
-              <p className="text-sand-300/70">
+              <p className="text-[#c4b69c]/70 font-body">
                 Des guides conférenciers triés sur le volet pour des expériences uniques
               </p>
             </div>
@@ -454,21 +454,21 @@ const GuidePage = () => {
               {guides.map((guide) => (
                 <div
                   key={guide.id}
-                  className="group text-center p-6 bg-stone-800/20 border border-stone-700/30 rounded-2xl hover:border-amber-800/30 transition-all"
+                  className="group text-center p-6 bg-stone-800/20 border border-stone-700/30 rounded-2xl hover:border-[#d4af37]/30 transition-all"
                 >
                   <div className="relative inline-block mb-4">
                     <img
                       src={guide.image}
                       alt={guide.name}
-                      className="w-24 h-24 rounded-full object-cover border-2 border-amber-600/30 group-hover:border-amber-400 transition-colors"
+                      className="w-24 h-24 rounded-full object-cover border-2 border-[#d4af37]/30 group-hover:border-[#d4af37] transition-colors"
                     />
-                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-gradient-to-r from-amber-600 to-amber-700 rounded-full flex items-center gap-1">
-                      <Star className="w-3 h-3 text-white fill-white" />
-                      <span className="text-white text-xs font-bold">{guide.rating}</span>
+                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8962e] rounded-full flex items-center gap-1">
+                      <Star className="w-3 h-3 text-[#0a0f1a] fill-[#0a0f1a]" />
+                      <span className="text-[#0a0f1a] text-xs font-bold">{guide.rating}</span>
                     </div>
                   </div>
-                  <h4 className="font-display font-semibold text-amber-50">{guide.name}</h4>
-                  <p className="text-amber-400 text-sm">{guide.specialty}</p>
+                  <h4 className="font-display font-semibold text-[#f5f0e6]">{guide.name}</h4>
+                  <p className="text-[#d4af37] text-sm font-serif-italic">{guide.specialty}</p>
                 </div>
               ))}
             </div>

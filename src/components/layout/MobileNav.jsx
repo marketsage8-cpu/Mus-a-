@@ -31,7 +31,7 @@ const MobileNav = () => {
               rounded-lg
               transition-all duration-300
               ${isActive(path)
-                ? 'text-amber-400'
+                ? 'text-[#d4af37]'
                 : 'text-stone-500 hover:text-stone-300'
               }
             `}
@@ -39,7 +39,7 @@ const MobileNav = () => {
             <Icon className={`w-5 h-5 ${isActive(path) ? 'scale-110' : ''} transition-transform`} />
             <span className="text-[10px] mt-1 font-medium">{label}</span>
             {isActive(path) && (
-              <span className="absolute bottom-1 w-1 h-1 bg-amber-400 rounded-full" />
+              <span className="absolute bottom-1 w-1 h-1 bg-[#d4af37] rounded-full" />
             )}
           </Link>
         ))}

@@ -12,16 +12,14 @@ const Navigation = () => {
   const linkRefs = useRef({});
   const location = useLocation();
 
-  // Navigation principale (gauche/centre)
+  // Navigation principale - toutes les pages dans l'ordre
   const navLinks = [
     { path: '/', label: 'Accueil' },
     { path: '/explore', label: 'Carte' },
-    { path: '/guides', label: 'Guides' },
-    { path: '/events', label: 'Rencontres' }
+    { path: '/events', label: 'Rencontres' },
+    { path: '/decouverte', label: 'Œuvre du jour' },
+    { path: '/guides', label: 'Guides' }
   ];
-
-  // Lien "Œuvre du jour" séparé pour le placer à droite
-  const dailyArtLink = { path: '/decouverte', label: 'Œuvre du jour' };
 
   const isActive = (path) => location.pathname === path;
 
@@ -105,23 +103,6 @@ const Navigation = () => {
 
           {/* Right Actions */}
           <div className="flex items-center gap-3">
-            {/* Œuvre du jour - à droite */}
-            <Link
-              to={dailyArtLink.path}
-              className={`
-                hidden md:flex items-center gap-2 px-4 py-2
-                text-sm font-medium
-                transition-all duration-300
-                ${isActive(dailyArtLink.path)
-                  ? 'text-[#d4a574] bg-[#d4a574]/10 border border-[#d4a574]/30 rounded-full'
-                  : 'text-gray-400 hover:text-[#d4a574] hover:bg-[#d4a574]/5 border border-transparent rounded-full'
-                }
-              `}
-            >
-              <span className="w-2 h-2 bg-[#d4a574] rounded-full animate-pulse" />
-              {dailyArtLink.label}
-            </Link>
-
             {/* Profile Button */}
             <Link
               to="/profile"
@@ -162,22 +143,6 @@ const Navigation = () => {
                 {label}
               </Link>
             ))}
-            {/* Œuvre du jour - avec style spécial */}
-            <Link
-              to={dailyArtLink.path}
-              onClick={() => setIsMenuOpen(false)}
-              className={`
-                flex items-center gap-2 px-4 py-3
-                transition-all
-                ${isActive(dailyArtLink.path)
-                  ? 'text-[#d4a574] border-l-2 border-[#d4a574] bg-[#d4a574]/10'
-                  : 'text-[#d4a574]/80 hover:text-[#d4a574] hover:bg-[#d4a574]/5'
-                }
-              `}
-            >
-              <span className="w-2 h-2 bg-[#d4a574] rounded-full animate-pulse" />
-              {dailyArtLink.label}
-            </Link>
             <Link
               to="/profile"
               onClick={() => setIsMenuOpen(false)}

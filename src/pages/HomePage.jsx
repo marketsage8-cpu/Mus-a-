@@ -68,6 +68,11 @@ const HomePage = () => {
 
   // Filtrer les expositions selon les critères
   const exhibitions = allExhibitions.filter(exhibition => {
+    // Vérification de sécurité pour les coordonnées
+    if (!exhibition.coordinates || typeof exhibition.coordinates.lat !== 'number' || typeof exhibition.coordinates.lng !== 'number') {
+      return exhibitionDistanceFilter === 'all'; // Inclure seulement si pas de filtre distance
+    }
+
     // Filtre par ville
     if (exhibitionCityFilter !== 'all') {
       const exhibitionCity = exhibition.location.split(',').pop().trim();
@@ -76,17 +81,22 @@ const HomePage = () => {
 
     // Filtre par distance (nécessite la géolocalisation)
     if (exhibitionDistanceFilter !== 'all' && userLocation) {
-      const distance = calculateDistance(
-        userLocation.lat,
-        userLocation.lng,
-        exhibition.coordinates.lat,
-        exhibition.coordinates.lng
-      );
-      const maxDistance = exhibitionDistanceFilter === '500m' ? 0.5
-        : exhibitionDistanceFilter === '5km' ? 5
-        : exhibitionDistanceFilter === '10km' ? 10
-        : Infinity;
-      if (distance > maxDistance) return false;
+      try {
+        const distance = calculateDistance(
+          userLocation.lat,
+          userLocation.lng,
+          exhibition.coordinates.lat,
+          exhibition.coordinates.lng
+        );
+        const maxDistance = exhibitionDistanceFilter === '500m' ? 0.5
+          : exhibitionDistanceFilter === '5km' ? 5
+          : exhibitionDistanceFilter === '10km' ? 10
+          : Infinity;
+        if (distance > maxDistance) return false;
+      } catch (error) {
+        console.error('Erreur calcul distance:', error);
+        return false;
+      }
     }
 
     return true;
@@ -826,15 +836,29 @@ const HomePage = () => {
               <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
                 <Palette className="w-10 h-10 text-gray-500" />
               </div>
-              <h3 className="text-xl text-white mb-3">Aucune exposition trouvée</h3>
-              <p className="text-gray-400 mb-6 max-w-md mx-auto">
-                Aucune exposition ne correspond à vos critères de recherche.
-                {exhibitionDistanceFilter !== 'all' && !userLocation && (
-                  <span className="block mt-2 text-red-400 text-sm">
-                    Activez la géolocalisation pour filtrer par distance.
-                  </span>
-                )}
-              </p>
+              {exhibitionDistanceFilter !== 'all' && userLocation ? (
+                <>
+                  <h3 className="text-xl text-white mb-3">Oups !</h3>
+                  <p className="text-gray-400 mb-6 max-w-md mx-auto">
+                    Aucune exposition n'est aux alentours de vous !
+                    <span className="block mt-2 text-[#d4a574] text-sm">
+                      Essayez d'augmenter le rayon de recherche ou explorez d'autres villes.
+                    </span>
+                  </p>
+                </>
+              ) : (
+                <>
+                  <h3 className="text-xl text-white mb-3">Aucune exposition trouvée</h3>
+                  <p className="text-gray-400 mb-6 max-w-md mx-auto">
+                    Aucune exposition ne correspond à vos critères de recherche.
+                    {exhibitionDistanceFilter !== 'all' && !userLocation && (
+                      <span className="block mt-2 text-red-400 text-sm">
+                        Activez la géolocalisation pour filtrer par distance.
+                      </span>
+                    )}
+                  </p>
+                </>
+              )}
               <button
                 onClick={() => {
                   setExhibitionDistanceFilter('all');

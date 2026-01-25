@@ -10,6 +10,7 @@ import MeetingsPage from './pages/MeetingsPage';
 import ProfilePage from './pages/ProfilePage';
 import SearchPage from './pages/SearchPage';
 import DailyArtPage from './pages/DailyArtPage';
+import GuidePage from './pages/GuidePage';
 
 /**
  * Application principale Muzea
@@ -33,6 +34,7 @@ function App() {
               <Route path="/favoris" element={<FavoritesPage />} />
               <Route path="/events" element={<MeetingsPage />} />
               <Route path="/decouverte" element={<DailyArtPage />} />
+              <Route path="/guides" element={<GuidePage />} />
               <Route path="/profile" element={<ProfilePage />} />
             </Routes>
           </main>

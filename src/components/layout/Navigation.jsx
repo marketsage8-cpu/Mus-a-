@@ -16,9 +16,9 @@ const Navigation = () => {
   const navLinks = [
     { path: '/', label: 'Accueil' },
     { path: '/explore', label: 'Carte' },
+    { path: '/guides', label: 'Guides' },
     { path: '/events', label: 'Rencontres' },
-    { path: '/decouverte', label: 'Œuvre du jour' },
-    { path: '/guides', label: 'Guides' }
+    { path: '/decouverte', label: 'Œuvre du jour' }
   ];
 
   const isActive = (path) => location.pathname === path;

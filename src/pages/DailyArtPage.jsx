@@ -378,27 +378,46 @@ const DailyArtPage = () => {
           </div>
         )}
 
-        {/* Œuvres précédentes - grille */}
+        {/* Œuvres précédentes - Carrousel */}
         <div className="mb-6">
           <p className="text-gray-500 text-sm uppercase tracking-wider mb-4">Voir aussi</p>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
-            {previousArtworks.map((artwork) => (
-              <button
-                key={artwork.id}
-                onClick={() => selectArtwork(artwork)}
-                className="relative aspect-square rounded-xl overflow-hidden group/thumb"
-              >
-                <img
-                  src={artwork.image}
-                  alt={artwork.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover/thumb:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                <div className="absolute bottom-2 left-2 right-2">
-                  <p className="text-white text-xs font-medium line-clamp-1">{artwork.title}</p>
-                </div>
-              </button>
-            ))}
+          <div className="relative">
+            <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory">
+              {previousArtworks.map((artwork) => {
+                // Calculer le nom du jour
+                const date = new Date();
+                date.setDate(date.getDate() - artwork.daysAgo);
+                const dayName = date.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'short' });
+
+                return (
+                  <button
+                    key={artwork.id}
+                    onClick={() => selectArtwork(artwork)}
+                    className="relative flex-shrink-0 w-48 md:w-56 rounded-2xl overflow-hidden group/thumb snap-start"
+                  >
+                    <div className="aspect-[3/4]">
+                      <img
+                        src={artwork.image}
+                        alt={artwork.title}
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/thumb:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    </div>
+                    <div className="absolute top-3 left-3">
+                      <span className="px-2 py-1 bg-[#d4a574]/90 text-[#1a2640] text-xs font-semibold rounded-full capitalize">
+                        {dayName}
+                      </span>
+                    </div>
+                    <div className="absolute bottom-3 left-3 right-3">
+                      <p className="text-white text-sm font-semibold line-clamp-2 mb-1">{artwork.title}</p>
+                      <p className="text-gray-300 text-xs">{artwork.artist}</p>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+            {/* Indicateur de scroll */}
+            <div className="absolute right-0 top-0 bottom-4 w-16 bg-gradient-to-l from-[#1e2a42] to-transparent pointer-events-none" />
           </div>
         </div>
 

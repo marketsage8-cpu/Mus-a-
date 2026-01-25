@@ -370,6 +370,208 @@ export const frenchMuseums = [
   { id: 'cvl-8', name: "Musée de la Chasse", type: "musée", city: "Gien", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1584037079828-7c545a9ad6a0?w=800&q=80" },
   { id: 'cvl-9', name: "Musée de la Faïence", type: "musée", city: "Gien", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
   { id: 'cvl-10', name: "Musée du Compagnonnage", type: "musée", city: "Tours", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+
+  // ============================================
+  // NOUVEAUX MUSÉES - ÎLE-DE-FRANCE (20)
+  // ============================================
+  { id: 'idf-41', name: "Musée d'Art Moderne de Paris", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
+  { id: 'idf-42', name: "Musée de la Poste", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'idf-43', name: "Musée des Égouts de Paris", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'idf-44', name: "Musée Édith Piaf", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=800&q=80" },
+  { id: 'idf-45', name: "Musée du Parfum Fragonard", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" },
+  { id: 'idf-46', name: "Musée Cernuschi", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'idf-47', name: "Musée de l'Éventail", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
+  { id: 'idf-48', name: "Musée des Plans-Reliefs", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1579783928621-7a13d66a62b1?w=800&q=80" },
+  { id: 'idf-49', name: "Musée Delacroix", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=800&q=80" },
+  { id: 'idf-50', name: "Musée du Vin", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1506377585622-bedcbb027afc?w=800&q=80" },
+  { id: 'idf-51', name: "Musée d'Ennery", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1573455494060-c5595004fb6c?w=800&q=80" },
+  { id: 'idf-52', name: "Musée de la Contrefaçon", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1565799557186-1158b1bd9e23?w=800&q=80" },
+  { id: 'idf-53', name: "Musée du Général Leclerc", type: "musée", city: "Paris", region: "Île-de-France", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80" },
+  { id: 'idf-54', name: "Musée de l'Air et de l'Espace", type: "musée", city: "Le Bourget", region: "Île-de-France", image: "https://images.unsplash.com/photo-1474302770737-173ee21bab63?w=800&q=80" },
+  { id: 'idf-55', name: "Musée National de la Renaissance", type: "musée", city: "Écouen", region: "Île-de-France", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" },
+  { id: 'idf-56', name: "Musée Départemental Albert-Kahn", type: "musée", city: "Boulogne-Billancourt", region: "Île-de-France", image: "https://images.unsplash.com/photo-1499002238440-d264edd596ec?w=800&q=80" },
+  { id: 'idf-57', name: "Musée de la Grande Guerre", type: "musée", city: "Meaux", region: "Île-de-France", image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80" },
+  { id: 'idf-58', name: "Musée Français de la Photographie", type: "musée", city: "Bièvres", region: "Île-de-France", image: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=800&q=80" },
+  { id: 'idf-59', name: "Musée du Domaine de Sceaux", type: "musée", city: "Sceaux", region: "Île-de-France", image: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80" },
+  { id: 'idf-60', name: "Musée de Port-Royal des Champs", type: "musée", city: "Magny-les-Hameaux", region: "Île-de-France", image: "https://images.unsplash.com/photo-1548104189-5933a71ed0a6?w=800&q=80" },
+
+  // ============================================
+  // NOUVEAUX MUSÉES - PACA (15)
+  // ============================================
+  { id: 'paca-25', name: "Musée d'Art de Toulon", type: "musée", city: "Toulon", region: "PACA", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
+  { id: 'paca-26', name: "Musée National de la Marine Toulon", type: "musée", city: "Toulon", region: "PACA", image: "https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=800&q=80" },
+  { id: 'paca-27', name: "Musée de la Camargue", type: "musée", city: "Arles", region: "PACA", image: "https://images.unsplash.com/photo-1499002238440-d264edd596ec?w=800&q=80" },
+  { id: 'paca-28', name: "Musée Réattu", type: "musée", city: "Arles", region: "PACA", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'paca-29', name: "Musée de l'Arles Antique", type: "musée", city: "Arles", region: "PACA", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
+  { id: 'paca-30', name: "Musée Angladon", type: "musée", city: "Avignon", region: "PACA", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'paca-31', name: "Collection Lambert", type: "musée", city: "Avignon", region: "PACA", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'paca-32', name: "Musée du Petit Palais", type: "musée", city: "Avignon", region: "PACA", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
+  { id: 'paca-33', name: "Musée Bonnard", type: "musée", city: "Le Cannet", region: "PACA", image: "https://images.unsplash.com/photo-1579783928621-7a13d66a62b1?w=800&q=80" },
+  { id: 'paca-34', name: "Musée National Fernand Léger", type: "musée", city: "Biot", region: "PACA", image: "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=800&q=80" },
+  { id: 'paca-35', name: "Musée de la Photographie", type: "musée", city: "Mougins", region: "PACA", image: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=800&q=80" },
+  { id: 'paca-36', name: "Musée des Merveilles", type: "musée", city: "Tende", region: "PACA", image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80" },
+  { id: 'paca-37', name: "Musée Extraordinaire", type: "musée", city: "Ansouis", region: "PACA", image: "https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=800&q=80" },
+  { id: 'paca-38', name: "Musée d'Histoire de Saint-Tropez", type: "musée", city: "Saint-Tropez", region: "PACA", image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80" },
+  { id: 'paca-39', name: "Musée de l'Annonciade", type: "musée", city: "Saint-Tropez", region: "PACA", image: "https://images.unsplash.com/photo-1573455494060-c5595004fb6c?w=800&q=80" },
+
+  // ============================================
+  // NOUVEAUX MUSÉES - AUVERGNE-RHÔNE-ALPES (15)
+  // ============================================
+  { id: 'ara-23', name: "Musée de l'Automobile Henri Malartre", type: "musée", city: "Rochetaillée-sur-Saône", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80" },
+  { id: 'ara-24', name: "Musée des Arts de la Marionnette", type: "musée", city: "Lyon", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=800&q=80" },
+  { id: 'ara-25', name: "Musée Urbain Tony Garnier", type: "musée", city: "Lyon", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
+  { id: 'ara-26', name: "Musée de la Mine", type: "musée", city: "Saint-Étienne", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80" },
+  { id: 'ara-27', name: "Musée d'Art Moderne de Saint-Étienne", type: "musée", city: "Saint-Étienne", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'ara-28', name: "Musée d'Art et d'Industrie", type: "musée", city: "Saint-Étienne", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'ara-29', name: "Muséum d'Histoire Naturelle", type: "musée", city: "Grenoble", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'ara-30', name: "Musée Archéologique", type: "musée", city: "Grenoble", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
+  { id: 'ara-31', name: "Musée Hébert", type: "musée", city: "La Tronche", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
+  { id: 'ara-32', name: "Musée de l'Ancien Évêché", type: "musée", city: "Grenoble", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1579783928621-7a13d66a62b1?w=800&q=80" },
+  { id: 'ara-33', name: "Musée des Beaux-Arts de Chambéry", type: "musée", city: "Chambéry", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=800&q=80" },
+  { id: 'ara-34', name: "Musée Faure", type: "musée", city: "Aix-les-Bains", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1573455494060-c5595004fb6c?w=800&q=80" },
+  { id: 'ara-35', name: "Musée des Beaux-Arts de Valence", type: "musée", city: "Valence", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1565799557186-1158b1bd9e23?w=800&q=80" },
+  { id: 'ara-36', name: "Cité du Chocolat Valrhona", type: "musée", city: "Tain-l'Hermitage", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1511381939415-e44015466834?w=800&q=80" },
+  { id: 'ara-37', name: "Musée de la Chaussure", type: "musée", city: "Romans-sur-Isère", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" },
+
+  // ============================================
+  // NOUVEAUX MUSÉES - NOUVELLE-AQUITAINE (12)
+  // ============================================
+  { id: 'na-25', name: "Musée des Arts Décoratifs de Bordeaux", type: "musée", city: "Bordeaux", region: "Nouvelle-Aquitaine", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
+  { id: 'na-26', name: "Musée National des Douanes", type: "musée", city: "Bordeaux", region: "Nouvelle-Aquitaine", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'na-27', name: "Musée d'Art Contemporain de Bordeaux", type: "musée", city: "Bordeaux", region: "Nouvelle-Aquitaine", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'na-28', name: "Écomusée du Libournais", type: "musée", city: "Libourne", region: "Nouvelle-Aquitaine", image: "https://images.unsplash.com/photo-1499002238440-d264edd596ec?w=800&q=80" },
+  { id: 'na-29', name: "Musée des Beaux-Arts d'Agen", type: "musée", city: "Agen", region: "Nouvelle-Aquitaine", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'na-30', name: "Musée de la Résistance de Limoges", type: "musée", city: "Limoges", region: "Nouvelle-Aquitaine", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80" },
+  { id: 'na-31', name: "Musée du Périgord", type: "musée", city: "Périgueux", region: "Nouvelle-Aquitaine", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
+  { id: 'na-32', name: "Musée Vesunna", type: "musée", city: "Périgueux", region: "Nouvelle-Aquitaine", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
+  { id: 'na-33', name: "Musée de la Franc-Maçonnerie", type: "musée", city: "La Rochelle", region: "Nouvelle-Aquitaine", image: "https://images.unsplash.com/photo-1579783928621-7a13d66a62b1?w=800&q=80" },
+  { id: 'na-34', name: "Musée Maritime de La Rochelle", type: "musée", city: "La Rochelle", region: "Nouvelle-Aquitaine", image: "https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=800&q=80" },
+  { id: 'na-35', name: "Musée d'Archéologie Nationale", type: "musée", city: "Saintes", region: "Nouvelle-Aquitaine", image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80" },
+  { id: 'na-36', name: "Musée des Tumulus de Bougon", type: "musée", city: "Bougon", region: "Nouvelle-Aquitaine", image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80" },
+
+  // ============================================
+  // NOUVEAUX MUSÉES - OCCITANIE (12)
+  // ============================================
+  { id: 'occ-23', name: "Musée Georges Labit", type: "musée", city: "Toulouse", region: "Occitanie", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
+  { id: 'occ-24', name: "Musée Paul Dupuy", type: "musée", city: "Toulouse", region: "Occitanie", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'occ-25', name: "Musée du Vieux Toulouse", type: "musée", city: "Toulouse", region: "Occitanie", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'occ-26', name: "Musée Fenaille", type: "musée", city: "Rodez", region: "Occitanie", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'occ-27', name: "Musée des Beaux-Arts de Nîmes", type: "musée", city: "Nîmes", region: "Occitanie", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
+  { id: 'occ-28', name: "Musée du Vieux Nîmes", type: "musée", city: "Nîmes", region: "Occitanie", image: "https://images.unsplash.com/photo-1579783928621-7a13d66a62b1?w=800&q=80" },
+  { id: 'occ-29', name: "Musée des Vallées Cévenoles", type: "musée", city: "Saint-Jean-du-Gard", region: "Occitanie", image: "https://images.unsplash.com/photo-1499002238440-d264edd596ec?w=800&q=80" },
+  { id: 'occ-30', name: "Musée de l'Éphèbe", type: "musée", city: "Agde", region: "Occitanie", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
+  { id: 'occ-31', name: "Musée Rigaud", type: "musée", city: "Perpignan", region: "Occitanie", image: "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=800&q=80" },
+  { id: 'occ-32', name: "Musée d'Art Moderne de Céret", type: "musée", city: "Céret", region: "Occitanie", image: "https://images.unsplash.com/photo-1573455494060-c5595004fb6c?w=800&q=80" },
+  { id: 'occ-33', name: "Musée de Préhistoire de Tautavel", type: "musée", city: "Tautavel", region: "Occitanie", image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80" },
+  { id: 'occ-34', name: "Musée Champollion", type: "musée", city: "Figeac", region: "Occitanie", image: "https://images.unsplash.com/photo-1565799557186-1158b1bd9e23?w=800&q=80" },
+
+  // ============================================
+  // NOUVEAUX MUSÉES - BRETAGNE (12)
+  // ============================================
+  { id: 'bre-20', name: "Musée de la Résistance Bretonne", type: "musée", city: "Saint-Marcel", region: "Bretagne", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80" },
+  { id: 'bre-21', name: "Musée du Cidre", type: "musée", city: "Pleudihen-sur-Rance", region: "Bretagne", image: "https://images.unsplash.com/photo-1506377585622-bedcbb027afc?w=800&q=80" },
+  { id: 'bre-22', name: "Musée des Marais Salants", type: "musée", city: "Batz-sur-Mer", region: "Bretagne", image: "https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=800&q=80" },
+  { id: 'bre-23', name: "Musée de la Préhistoire Finistérienne", type: "musée", city: "Penmarch", region: "Bretagne", image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80" },
+  { id: 'bre-24', name: "Musée Bigouden", type: "musée", city: "Pont-l'Abbé", region: "Bretagne", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'bre-25', name: "Musée des Jacobins", type: "musée", city: "Morlaix", region: "Bretagne", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'bre-26', name: "Musée de la Faïence", type: "musée", city: "Quimper", region: "Bretagne", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'bre-27', name: "Musée de la Fraise", type: "musée", city: "Plougastel-Daoulas", region: "Bretagne", image: "https://images.unsplash.com/photo-1499002238440-d264edd596ec?w=800&q=80" },
+  { id: 'bre-28', name: "Musée de l'Ancienne Abbaye", type: "musée", city: "Landévennec", region: "Bretagne", image: "https://images.unsplash.com/photo-1548104189-5933a71ed0a6?w=800&q=80" },
+  { id: 'bre-29', name: "Musée du Château des Rohan", type: "musée", city: "Pontivy", region: "Bretagne", image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80" },
+  { id: 'bre-30', name: "Maison des Mégalithes", type: "musée", city: "Carnac", region: "Bretagne", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
+  { id: 'bre-31', name: "Musée de la Cohue", type: "musée", city: "Vannes", region: "Bretagne", image: "https://images.unsplash.com/photo-1579783928621-7a13d66a62b1?w=800&q=80" },
+
+  // ============================================
+  // NOUVEAUX MUSÉES - PAYS DE LA LOIRE (12)
+  // ============================================
+  { id: 'pdl-25', name: "Musée de l'Imprimerie", type: "musée", city: "Nantes", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1573455494060-c5595004fb6c?w=800&q=80" },
+  { id: 'pdl-26', name: "Mémorial de l'Abolition de l'Esclavage", type: "musée", city: "Nantes", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80" },
+  { id: 'pdl-27', name: "Musée Pincé", type: "musée", city: "Angers", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
+  { id: 'pdl-28', name: "Musée des Sciences Naturelles", type: "musée", city: "Angers", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'pdl-29', name: "Musée de la Reine Bérengère", type: "musée", city: "Le Mans", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'pdl-30', name: "Musée de Tessé", type: "musée", city: "Le Mans", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'pdl-31', name: "Musée Vert", type: "musée", city: "Le Mans", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1499002238440-d264edd596ec?w=800&q=80" },
+  { id: 'pdl-32', name: "Musée d'Art et d'Histoire de Cholet", type: "musée", city: "Cholet", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
+  { id: 'pdl-33', name: "Musée de la Vendée", type: "musée", city: "Les Lucs-sur-Boulogne", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1579783928621-7a13d66a62b1?w=800&q=80" },
+  { id: 'pdl-34', name: "Musée des Arts Naïfs", type: "musée", city: "Laval", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=800&q=80" },
+  { id: 'pdl-35', name: "Musée Estève", type: "musée", city: "Bourges", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1573455494060-c5595004fb6c?w=800&q=80" },
+  { id: 'pdl-36', name: "Musée du Sel", type: "musée", city: "Guérande", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=800&q=80" },
+
+  // ============================================
+  // NOUVEAUX MUSÉES - NORMANDIE (12)
+  // ============================================
+  { id: 'nor-20', name: "Musée des Beaux-Arts André Malraux", type: "musée", city: "Le Havre", region: "Normandie", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
+  { id: 'nor-21', name: "Musée d'Art, Histoire et Archéologie", type: "musée", city: "Évreux", region: "Normandie", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'nor-22', name: "Musée de la Céramique", type: "musée", city: "Rouen", region: "Normandie", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'nor-23', name: "Musée Flaubert", type: "musée", city: "Rouen", region: "Normandie", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'nor-24', name: "Musée Pierre Corneille", type: "musée", city: "Petit-Couronne", region: "Normandie", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
+  { id: 'nor-25', name: "Musée de Vernon", type: "musée", city: "Vernon", region: "Normandie", image: "https://images.unsplash.com/photo-1579783928621-7a13d66a62b1?w=800&q=80" },
+  { id: 'nor-26', name: "Musée du Vieux Honfleur", type: "musée", city: "Honfleur", region: "Normandie", image: "https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=800&q=80" },
+  { id: 'nor-27', name: "Musée Langlois", type: "musée", city: "Beaumont-en-Auge", region: "Normandie", image: "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=800&q=80" },
+  { id: 'nor-28', name: "Musée de la Bataille de Normandie", type: "musée", city: "Bayeux", region: "Normandie", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80" },
+  { id: 'nor-29', name: "Musée Août 44", type: "musée", city: "Falaise", region: "Normandie", image: "https://images.unsplash.com/photo-1573455494060-c5595004fb6c?w=800&q=80" },
+  { id: 'nor-30', name: "Musée du Bocage Normand", type: "musée", city: "Saint-Lô", region: "Normandie", image: "https://images.unsplash.com/photo-1499002238440-d264edd596ec?w=800&q=80" },
+  { id: 'nor-31', name: "Musée Richard Anacréon", type: "musée", city: "Granville", region: "Normandie", image: "https://images.unsplash.com/photo-1565799557186-1158b1bd9e23?w=800&q=80" },
+
+  // ============================================
+  // NOUVEAUX MUSÉES - HAUTS-DE-FRANCE (10)
+  // ============================================
+  { id: 'hdf-18', name: "Musée des Beaux-Arts de Cambrai", type: "musée", city: "Cambrai", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
+  { id: 'hdf-19', name: "Musée de la Chartreuse", type: "musée", city: "Douai", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'hdf-20', name: "Musée Henri-Martin", type: "musée", city: "Cahors", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'hdf-21', name: "Musée des Beaux-Arts de Tourcoing", type: "musée", city: "Tourcoing", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'hdf-22', name: "Musée Jeanne d'Aboville", type: "musée", city: "La Fère", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
+  { id: 'hdf-23', name: "Musée de l'Archerie", type: "musée", city: "Crépy-en-Valois", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1579783928621-7a13d66a62b1?w=800&q=80" },
+  { id: 'hdf-24', name: "Musée de Laon", type: "musée", city: "Laon", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=800&q=80" },
+  { id: 'hdf-25', name: "Musée Antoine Lécuyer", type: "musée", city: "Saint-Quentin", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1573455494060-c5595004fb6c?w=800&q=80" },
+  { id: 'hdf-26', name: "Musée des Papillons", type: "musée", city: "Saint-Quentin", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1499002238440-d264edd596ec?w=800&q=80" },
+  { id: 'hdf-27', name: "Musée Jean de La Fontaine", type: "musée", city: "Château-Thierry", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1565799557186-1158b1bd9e23?w=800&q=80" },
+
+  // ============================================
+  // NOUVEAUX MUSÉES - GRAND EST (10)
+  // ============================================
+  { id: 'ge-19', name: "Musée Aquarium de Nancy", type: "musée", city: "Nancy", region: "Grand Est", image: "https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=800&q=80" },
+  { id: 'ge-20', name: "Musée du Fer", type: "musée", city: "Jarville-la-Malgrange", region: "Grand Est", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
+  { id: 'ge-21', name: "Musée du Pays de Sarrebourg", type: "musée", city: "Sarrebourg", region: "Grand Est", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'ge-22', name: "Musée de l'Image", type: "musée", city: "Épinal", region: "Grand Est", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'ge-23', name: "Musée Départemental d'Art Ancien et Contemporain", type: "musée", city: "Épinal", region: "Grand Est", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'ge-24', name: "Musée du Bagage", type: "musée", city: "Haguenau", region: "Grand Est", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
+  { id: 'ge-25', name: "Musée de la Lutherie", type: "musée", city: "Mirecourt", region: "Grand Est", image: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=800&q=80" },
+  { id: 'ge-26', name: "Cité du Train", type: "musée", city: "Mulhouse", region: "Grand Est", image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&q=80" },
+  { id: 'ge-27', name: "Musée EDF Electropolis", type: "musée", city: "Mulhouse", region: "Grand Est", image: "https://images.unsplash.com/photo-1579783928621-7a13d66a62b1?w=800&q=80" },
+  { id: 'ge-28', name: "Musée de l'Impression sur Étoffes", type: "musée", city: "Mulhouse", region: "Grand Est", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" },
+
+  // ============================================
+  // NOUVEAUX MUSÉES - BOURGOGNE-FRANCHE-COMTÉ (8)
+  // ============================================
+  { id: 'bfc-16', name: "Musée des Beaux-Arts de Dole", type: "musée", city: "Dole", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
+  { id: 'bfc-17', name: "Musée de la Maison Natale Pasteur", type: "musée", city: "Dole", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'bfc-18', name: "Musée de l'Aventure Peugeot", type: "musée", city: "Sochaux", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80" },
+  { id: 'bfc-19', name: "Musée du Comté", type: "musée", city: "Poligny", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1506377585622-bedcbb027afc?w=800&q=80" },
+  { id: 'bfc-20', name: "Musée de la Lunetterie", type: "musée", city: "Morez", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'bfc-21', name: "Musée du Charolais", type: "musée", city: "Charolles", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'bfc-22', name: "Musée Rolin", type: "musée", city: "Autun", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
+  { id: 'bfc-23', name: "Musée Denon", type: "musée", city: "Chalon-sur-Saône", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1579783928621-7a13d66a62b1?w=800&q=80" },
+
+  // ============================================
+  // NOUVEAUX MUSÉES - CORSE (6)
+  // ============================================
+  { id: 'cor-10', name: "Musée Marc-Petit", type: "musée", city: "Aullène", region: "Corse", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
+  { id: 'cor-11', name: "Musée de la Préhistoire Corse", type: "musée", city: "Sartène", region: "Corse", image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80" },
+  { id: 'cor-12', name: "Musée de l'ADECEC", type: "musée", city: "Cervione", region: "Corse", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'cor-13', name: "Musée Ethnographique de Corse", type: "musée", city: "Bastia", region: "Corse", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'cor-14', name: "Musée National de la Maison Bonaparte", type: "musée", city: "Ajaccio", region: "Corse", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
+  { id: 'cor-15', name: "Musée A Bandera", type: "musée", city: "Ajaccio", region: "Corse", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
+
+  // ============================================
+  // NOUVEAUX MUSÉES - CENTRE-VAL DE LOIRE (6)
+  // ============================================
+  { id: 'cvl-11', name: "Musée de l'Hospice Saint-Roch", type: "musée", city: "Issoudun", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
+  { id: 'cvl-12', name: "Musée de Sologne", type: "musée", city: "Romorantin-Lanthenay", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1499002238440-d264edd596ec?w=800&q=80" },
+  { id: 'cvl-13', name: "Musée de la Magie", type: "musée", city: "Blois", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
+  { id: 'cvl-14', name: "Musée des Beaux-Arts de Blois", type: "musée", city: "Blois", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+  { id: 'cvl-15', name: "Musée Archéologique de Châteaumeillant", type: "musée", city: "Châteaumeillant", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
+  { id: 'cvl-16', name: "Musée Saint-Vic", type: "musée", city: "Saint-Amand-Montrond", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
 ];
 
 // Liste des régions de France pour le filtrage

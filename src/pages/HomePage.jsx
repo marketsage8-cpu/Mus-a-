@@ -368,7 +368,7 @@ const HomePage = () => {
 
               {/* Dropdown des résultats de recherche */}
               {showSearchResults && searchResults.length > 0 && (
-                <div className="absolute top-full left-0 right-0 bg-white rounded-b-3xl shadow-2xl overflow-hidden z-50 border-t border-gray-100">
+                <div className="absolute top-full left-0 right-0 bg-white rounded-b-3xl shadow-2xl z-50 border-t border-gray-100 max-h-[60vh] overflow-y-auto">
                   {searchResults.map((place) => (
                     <button
                       key={place.id}
@@ -378,17 +378,17 @@ const HomePage = () => {
                       <img
                         src={place.image}
                         alt={place.name}
-                        className="w-14 h-14 rounded-xl object-cover"
+                        className="w-14 h-14 rounded-xl object-cover flex-shrink-0"
                       />
-                      <div className="flex-1 min-w-0">
-                        <h4 className="text-gray-800 font-semibold truncate">{place.name}</h4>
-                        <p className="text-gray-500 text-sm flex items-center gap-1 truncate">
+                      <div className="flex-1 min-w-0 overflow-hidden">
+                        <h4 className="text-gray-800 font-semibold line-clamp-1">{place.name}</h4>
+                        <p className="text-gray-500 text-sm flex items-center gap-1">
                           <MapPin className="w-3 h-3 flex-shrink-0" />
-                          {place.location}
+                          <span className="line-clamp-1">{place.location}</span>
                         </p>
-                        <div className="flex items-center gap-2 mt-1">
+                        <div className="flex items-center gap-2 mt-1 flex-wrap">
                           <span className={`
-                            px-2 py-0.5 text-xs rounded-full capitalize
+                            px-2 py-0.5 text-xs rounded-full capitalize flex-shrink-0
                             ${place.type === 'musée' ? 'bg-turquoise-100 text-turquoise-700' :
                               place.type === 'château' ? 'bg-amber-100 text-amber-700' :
                               place.type === 'monument' ? 'bg-terracotta-100 text-terracotta-700' :
@@ -396,7 +396,7 @@ const HomePage = () => {
                           `}>
                             {place.type}
                           </span>
-                          <span className="flex items-center gap-1 text-xs text-amber-500">
+                          <span className="flex items-center gap-1 text-xs text-amber-500 flex-shrink-0">
                             <Star className="w-3 h-3 fill-amber-400" />
                             {place.rating}
                           </span>
@@ -406,7 +406,7 @@ const HomePage = () => {
                   ))}
                   <button
                     onClick={handleSearch}
-                    className="w-full py-3 px-4 bg-gray-50 text-[#d4a574] font-medium text-sm hover:bg-gray-100 transition-colors flex items-center justify-center gap-2"
+                    className="w-full py-3 px-4 bg-gray-50 text-[#d4a574] font-medium text-sm hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 sticky bottom-0"
                   >
                     <Search className="w-4 h-4" />
                     Voir tous les résultats pour "{searchQuery}"

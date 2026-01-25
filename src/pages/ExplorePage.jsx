@@ -2,11 +2,12 @@ import { useState, useEffect, useMemo } from 'react';
 import { places, placeTypes } from '../data/places';
 import InteractiveMap from '../components/map/InteractiveMap';
 import PlaceDetailModal from '../components/modals/PlaceDetailModal';
-import { Building2, Castle, Landmark, Calendar, MapPin, X, Filter, ChevronDown } from 'lucide-react';
+import { Building2, Castle, Landmark, Calendar, MapPin, X, Filter, ChevronDown, Search, Compass, Sparkles } from 'lucide-react';
 
 /**
  * Page d'exploration avec carte en plein écran et filtres
  * Affiche la carte interactive avec options de filtrage
+ * Style égyptien/culturel cohérent avec le reste de l'application
  */
 const ExplorePage = () => {
   const [selectedPlace, setSelectedPlace] = useState(null);
@@ -15,6 +16,7 @@ const ExplorePage = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('all');
+  const [isFilterAnimating, setIsFilterAnimating] = useState(false);
 
   // Extraire les régions uniques
   const regions = useMemo(() => {
@@ -68,27 +70,35 @@ const ExplorePage = () => {
 
   // Icônes pour les types
   const typeIcons = {
-    'all': MapPin,
+    'all': Compass,
     'musée': Building2,
     'château': Castle,
     'monument': Landmark,
     'exposition': Calendar
   };
 
-  // Couleurs pour les types
+  // Couleurs pour les types - palette égyptienne
   const typeColors = {
-    'all': 'bg-gray-600',
-    'musée': 'bg-blue-500',
-    'château': 'bg-amber-600',
-    'monument': 'bg-emerald-600',
+    'all': 'from-night-700 to-night-800',
+    'musée': 'from-turquoise-500 to-turquoise-600',
+    'château': 'from-gold-500 to-gold-600',
+    'monument': 'from-terracotta-400 to-terracotta-500',
+    'exposition': 'from-purple-500 to-purple-600'
+  };
+
+  const typeColorsBg = {
+    'all': 'bg-night-700',
+    'musée': 'bg-turquoise-500',
+    'château': 'bg-gold-500',
+    'monument': 'bg-terracotta-500',
     'exposition': 'bg-purple-500'
   };
 
-  // Calculate map height based on viewport - laisse de l'espace pour la navigation mobile en bas
+  // Calculate map height based on viewport
   useEffect(() => {
     const updateHeight = () => {
-      const navHeight = 72; // Navigation en haut (déjà gérée par mt-[72px])
-      const mobileNavHeight = window.innerWidth < 768 ? 80 : 0; // Navigation mobile en bas (64px + safe area)
+      const navHeight = 72;
+      const mobileNavHeight = window.innerWidth < 768 ? 80 : 0;
       setMapHeight(`calc(100vh - ${navHeight}px - ${mobileNavHeight}px)`);
     };
     updateHeight();
@@ -97,7 +107,9 @@ const ExplorePage = () => {
   }, []);
 
   const handleFilterClick = (filterId) => {
+    setIsFilterAnimating(true);
     setActiveFilter(filterId);
+    setTimeout(() => setIsFilterAnimating(false), 300);
   };
 
   const clearFilters = () => {
@@ -110,109 +122,156 @@ const ExplorePage = () => {
 
   return (
     <div className="relative w-full mt-[72px]" style={{ height: mapHeight }}>
-      {/* Barre de filtres en haut */}
-      <div className="absolute top-0 left-0 right-0 z-40 p-3">
-        {/* Ligne principale de filtres */}
-        <div className="bg-stone-900/95 backdrop-blur-sm rounded-xl shadow-lg border border-stone-700 p-2">
-          {/* Filtres par type - toujours visibles */}
-          <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide pb-2">
-            {placeTypes.map((type) => {
-              const Icon = typeIcons[type.id] || MapPin;
-              const isActive = activeFilter === type.id;
-              const colorClass = typeColors[type.id] || 'bg-gray-600';
-
-              return (
-                <button
-                  key={type.id}
-                  onClick={() => handleFilterClick(type.id)}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
-                    isActive
-                      ? `${colorClass} text-white shadow-md`
-                      : 'bg-stone-800 text-gray-300 hover:bg-stone-700'
-                  }`}
-                >
-                  <Icon className="w-4 h-4" />
-                  <span>{type.label}</span>
-                  <span className={`text-xs px-1.5 py-0.5 rounded-full ${
-                    isActive ? 'bg-white/20' : 'bg-stone-700'
-                  }`}>
-                    {counts[type.id]}
-                  </span>
-                </button>
-              );
-            })}
-
-            {/* Bouton filtres avancés */}
-            <button
-              onClick={() => setShowFilters(!showFilters)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
-                showFilters || hasActiveFilters
-                  ? 'bg-[#d4a574] text-stone-900'
-                  : 'bg-stone-800 text-gray-300 hover:bg-stone-700'
-              }`}
-            >
-              <Filter className="w-4 h-4" />
-              <span>Filtres</span>
-              <ChevronDown className={`w-4 h-4 transition-transform ${showFilters ? 'rotate-180' : ''}`} />
-            </button>
+      {/* Barre de filtres en haut - Style égyptien */}
+      <div className="absolute top-0 left-0 right-0 z-40 p-3 md:p-4">
+        {/* Container principal avec effet glass morphism */}
+        <div className="bg-gradient-to-b from-night-900/95 to-night-950/95 backdrop-blur-md rounded-2xl shadow-2xl border border-gold-600/20 overflow-hidden">
+          {/* Header décoratif */}
+          <div className="relative px-4 py-3 border-b border-gold-600/10">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-xl bg-gradient-to-br from-gold-500/20 to-gold-600/10 border border-gold-500/20">
+                  <MapPin className="w-5 h-5 text-gold-400" />
+                </div>
+                <div>
+                  <h2 className="font-display text-lg text-sand-100 tracking-wide">Explorer</h2>
+                  <p className="text-xs text-sand-300/60">Découvrez les trésors culturels</p>
+                </div>
+              </div>
+              {/* Compteur total avec animation */}
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-night-800/50 border border-night-700">
+                <Sparkles className="w-4 h-4 text-gold-400 animate-pulse" />
+                <span className="text-sm font-medium text-sand-200">{filteredPlaces.length}</span>
+                <span className="text-xs text-sand-400">lieux</span>
+              </div>
+            </div>
+            {/* Ligne décorative dorée */}
+            <div className="absolute bottom-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-gold-500/30 to-transparent" />
           </div>
 
-          {/* Filtres avancés - panneau dépliable */}
-          {showFilters && (
-            <div className="border-t border-stone-700 pt-3 mt-2 space-y-3">
-              {/* Recherche */}
-              <div className="relative">
+          {/* Filtres par type */}
+          <div className="p-3">
+            <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide pb-1">
+              {placeTypes.map((type, index) => {
+                const Icon = typeIcons[type.id] || MapPin;
+                const isActive = activeFilter === type.id;
+                const gradientClass = typeColors[type.id];
+
+                return (
+                  <button
+                    key={type.id}
+                    onClick={() => handleFilterClick(type.id)}
+                    style={{ animationDelay: `${index * 50}ms` }}
+                    className={`group flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap transition-all duration-300 transform hover:scale-105 ${
+                      isActive
+                        ? `bg-gradient-to-r ${gradientClass} text-white shadow-lg shadow-gold-500/10`
+                        : 'bg-night-800/80 text-sand-300 hover:bg-night-700/80 hover:text-sand-100 border border-night-700/50'
+                    }`}
+                  >
+                    <Icon className={`w-4 h-4 transition-transform duration-300 ${isActive ? 'scale-110' : 'group-hover:scale-110'}`} />
+                    <span className="font-body">{type.label}</span>
+                    <span className={`text-xs px-2 py-0.5 rounded-full transition-colors ${
+                      isActive
+                        ? 'bg-white/20 text-white'
+                        : 'bg-night-700/80 text-sand-400 group-hover:bg-night-600/80'
+                    }`}>
+                      {counts[type.id]}
+                    </span>
+                  </button>
+                );
+              })}
+
+              {/* Bouton filtres avancés */}
+              <button
+                onClick={() => setShowFilters(!showFilters)}
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap transition-all duration-300 transform hover:scale-105 ${
+                  showFilters || hasActiveFilters
+                    ? 'bg-gradient-to-r from-gold-500 to-gold-600 text-night-900 shadow-lg shadow-gold-500/20'
+                    : 'bg-night-800/80 text-sand-300 hover:bg-night-700/80 border border-night-700/50'
+                }`}
+              >
+                <Filter className="w-4 h-4" />
+                <span className="font-body">Filtres</span>
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${showFilters ? 'rotate-180' : ''}`} />
+              </button>
+            </div>
+          </div>
+
+          {/* Filtres avancés - panneau dépliable avec animation */}
+          <div className={`transition-all duration-300 ease-in-out overflow-hidden ${
+            showFilters ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}>
+            <div className="px-4 pb-4 space-y-4 border-t border-gold-600/10 pt-4">
+              {/* Recherche avec style amélioré */}
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <Search className="w-5 h-5 text-gold-500/50 group-focus-within:text-gold-400 transition-colors" />
+                </div>
                 <input
                   type="text"
-                  placeholder="Rechercher un lieu..."
+                  placeholder="Rechercher un musée, château, monument..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-stone-800 border border-stone-600 rounded-lg px-4 py-2 text-white placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-[#d4a574]"
+                  className="w-full bg-night-800/60 border border-night-700/50 rounded-xl pl-12 pr-10 py-3 text-sand-100 placeholder-sand-500/50 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500/30 transition-all font-body"
                 />
                 {searchQuery && (
                   <button
                     onClick={() => setSearchQuery('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-full text-sand-500 hover:text-sand-200 hover:bg-night-700/50 transition-colors"
                   >
                     <X className="w-4 h-4" />
                   </button>
                 )}
               </div>
 
-              {/* Filtre par région */}
+              {/* Filtre par région avec style amélioré */}
               <div className="flex items-center gap-3">
-                <label className="text-gray-400 text-sm whitespace-nowrap">Région :</label>
-                <select
-                  value={selectedRegion}
-                  onChange={(e) => setSelectedRegion(e.target.value)}
-                  className="flex-1 bg-stone-800 border border-stone-600 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#d4a574]"
-                >
-                  <option value="all">Toutes les régions</option>
-                  {regions.filter(r => r !== 'all').map(region => (
-                    <option key={region} value={region}>{region}</option>
-                  ))}
-                </select>
+                <label className="text-sand-400 text-sm whitespace-nowrap font-body flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-gold-500/70" />
+                  Région :
+                </label>
+                <div className="relative flex-1">
+                  <select
+                    value={selectedRegion}
+                    onChange={(e) => setSelectedRegion(e.target.value)}
+                    className="w-full bg-night-800/60 border border-night-700/50 rounded-xl px-4 py-2.5 text-sand-100 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500/30 transition-all font-body appearance-none cursor-pointer"
+                  >
+                    <option value="all">Toutes les régions</option>
+                    {regions.filter(r => r !== 'all').map(region => (
+                      <option key={region} value={region}>{region}</option>
+                    ))}
+                  </select>
+                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-sand-500 pointer-events-none" />
+                </div>
               </div>
 
-              {/* Bouton réinitialiser */}
+              {/* Bouton réinitialiser avec style amélioré */}
               {hasActiveFilters && (
                 <button
                   onClick={clearFilters}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-stone-800 hover:bg-stone-700 text-gray-300 rounded-lg text-sm transition-colors"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-night-800/60 hover:bg-night-700/60 text-sand-300 hover:text-sand-100 rounded-xl text-sm transition-all duration-300 border border-night-700/50 hover:border-terracotta-500/30 group font-body"
                 >
-                  <X className="w-4 h-4" />
+                  <X className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" />
                   Réinitialiser les filtres
                 </button>
               )}
             </div>
-          )}
+          </div>
         </div>
 
-        {/* Badge nombre de résultats */}
+        {/* Badge nombre de résultats avec animation */}
         {hasActiveFilters && (
-          <div className="mt-2 inline-flex items-center gap-2 bg-[#d4a574]/90 text-stone-900 px-3 py-1.5 rounded-lg text-sm font-medium shadow-lg">
-            <MapPin className="w-4 h-4" />
-            {filteredPlaces.length} lieu{filteredPlaces.length > 1 ? 'x' : ''} trouvé{filteredPlaces.length > 1 ? 's' : ''}
+          <div className={`mt-3 inline-flex items-center gap-2 bg-gradient-to-r from-gold-500 to-gold-600 text-night-900 px-4 py-2 rounded-xl text-sm font-medium shadow-lg shadow-gold-500/20 animate-fade-in ${
+            isFilterAnimating ? 'animate-pulse' : ''
+          }`}>
+            <div className={`p-1 rounded-lg ${typeColorsBg[activeFilter]} bg-opacity-30`}>
+              {(() => {
+                const Icon = typeIcons[activeFilter];
+                return <Icon className="w-4 h-4 text-night-900" />;
+              })()}
+            </div>
+            <span className="font-display tracking-wide">{filteredPlaces.length}</span>
+            <span className="font-body">lieu{filteredPlaces.length > 1 ? 'x' : ''} trouvé{filteredPlaces.length > 1 ? 's' : ''}</span>
           </div>
         )}
       </div>

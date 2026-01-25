@@ -124,8 +124,8 @@ const ExplorePage = () => {
     <div className="relative w-full mt-[72px]" style={{ height: mapHeight }}>
       {/* Barre de filtres en haut - Style égyptien */}
       <div className="absolute top-0 left-0 right-0 z-40 p-3 md:p-4">
-        {/* Container principal avec effet glass morphism */}
-        <div className="bg-gradient-to-b from-night-900/95 to-night-950/95 backdrop-blur-md rounded-2xl shadow-2xl border border-gold-600/20 overflow-hidden">
+        {/* Container principal avec effet glass morphism - fond allégé */}
+        <div className="bg-night-900/80 backdrop-blur-md rounded-2xl shadow-2xl border border-gold-600/20 overflow-hidden">
           {/* Header avec barre de recherche */}
           <div className="relative px-4 py-3 border-b border-gold-600/10">
             <div className="flex flex-col gap-3">
@@ -158,7 +158,7 @@ const ExplorePage = () => {
                   placeholder="Rechercher un musée, château, monument..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-night-800/60 border border-night-700/50 rounded-xl pl-12 pr-10 py-2.5 text-sand-100 placeholder-sand-500/50 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500/30 transition-all font-body"
+                  className="w-full bg-white/10 border border-white/20 rounded-xl pl-12 pr-10 py-2.5 text-sand-100 placeholder-sand-400/70 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500/30 transition-all font-body"
                 />
                 {searchQuery && (
                   <button

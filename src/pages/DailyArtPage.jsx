@@ -91,7 +91,7 @@ const artworks = [
     title: "La Vénus de Milo",
     artist: "Artiste inconnu",
     year: -130,
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Venus_de_Milo_Louvre_Ma399.jpg/800px-Venus_de_Milo_Louvre_Ma399.jpg",
+    image: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Venus_de_Milo.JPG",
     style: "Sculpture hellénistique",
     medium: "Marbre de Paros",
     dimensions: "202 cm de hauteur",

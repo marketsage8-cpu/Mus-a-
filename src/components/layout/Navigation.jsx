@@ -1,13 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Moon, Sun, Menu, X, User } from 'lucide-react';
+import { Menu, X, User } from 'lucide-react';
 
 /**
  * Navigation principale avec design transparent fusionnant avec le hero
  */
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
   const navRef = useRef(null);
   const linkRefs = useRef({});
@@ -102,15 +101,6 @@ const Navigation = () => {
 
           {/* Right Actions */}
           <div className="flex items-center gap-3">
-            {/* Theme Toggle */}
-            <button
-              onClick={() => setIsDarkMode(!isDarkMode)}
-              className="p-2 text-gray-400 hover:text-white transition-colors"
-              aria-label="Changer de thème"
-            >
-              {isDarkMode ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
-            </button>
-
             {/* Profile Button */}
             <Link
               to="/profile"

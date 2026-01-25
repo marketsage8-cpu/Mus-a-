@@ -121,16 +121,16 @@ const GuidePage = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20 pb-24 md:pb-8 bg-night-950">
+    <div className="min-h-screen pt-20 pb-24 md:pb-8" style={{ backgroundColor: '#1e2a42' }}>
       {/* Hero Header */}
       <div className="relative">
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-20"
+          className="absolute inset-0 bg-cover bg-center opacity-25"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1574246915327-271ee70f0df5?w=1920&h=600&fit=crop')"
+            backgroundImage: "url('https://images.unsplash.com/photo-1564399580075-5dfe19c205f3?w=1920&h=600&fit=crop')"
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-night-950/50 via-night-950/80 to-night-950" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1e2a42]/50 via-[#1e2a42]/80 to-[#1e2a42]" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 py-16">
           <div className="text-center mb-10">

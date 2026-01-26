@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import {
   MapPin, Heart, Settings, User, Bookmark, Camera, Edit3, Check, X,
   Trophy, Sparkles, Calendar, Bell, Shield, Globe, Moon, ChevronRight,
-  Languages, Compass, Clock, Zap, Coffee, Footprints, Map
+  Languages, Compass, Clock, Zap, Coffee, Footprints, Map,
+  Download, FileJson, FileSpreadsheet, Package
 } from 'lucide-react';
 import { useUser } from '../context/UserContext';
 import PlaceDetailModal from '../components/modals/PlaceDetailModal';
 import InteractiveMap from '../components/map/InteractiveMap';
 import { places } from '../data/places';
+import { exportPlacesJSON, exportPlacesCSV, exportUserDataJSON, exportAllJSON } from '../utils/exportData';
 
 /**
  * Option de paramètre avec toggle ou chevron
@@ -703,6 +705,79 @@ const ProfilePage = () => {
               <p className="text-gray-500 text-xs text-center mt-4">
                 Activez la géolocalisation pour voir les lieux culturels près de chez vous
               </p>
+            </div>
+
+            {/* Section Export des données */}
+            <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+              <h3 className="text-[#d4a574] font-medium text-sm uppercase tracking-wider mb-2 flex items-center gap-2">
+                <Download className="w-4 h-4" />
+                Exporter mes données
+              </h3>
+              <p className="text-gray-500 text-xs mb-5">
+                Récupérez toutes vos données pour les utiliser dans une autre application
+              </p>
+
+              <div className="space-y-3">
+                {/* Export complet */}
+                <button
+                  onClick={() => exportAllJSON(userData, stats, userBadges)}
+                  className="w-full flex items-center gap-4 p-4 bg-[#d4a574]/10 hover:bg-[#d4a574]/20 border border-[#d4a574]/30 hover:border-[#d4a574]/50 rounded-xl transition-all group"
+                >
+                  <div className="p-2.5 rounded-xl bg-[#d4a574]/20 border border-[#d4a574]/30">
+                    <Package className="w-5 h-5 text-[#d4a574]" />
+                  </div>
+                  <div className="flex-1 text-left">
+                    <h4 className="text-white font-medium">Tout exporter (JSON)</h4>
+                    <p className="text-gray-400 text-sm">Lieux, parcours, favoris, visites, profil</p>
+                  </div>
+                  <Download className="w-5 h-5 text-[#d4a574] group-hover:translate-y-0.5 transition-transform" />
+                </button>
+
+                {/* Export lieux JSON */}
+                <button
+                  onClick={exportPlacesJSON}
+                  className="w-full flex items-center gap-4 p-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all group"
+                >
+                  <div className="p-2.5 rounded-xl bg-cyan-500/20 border border-cyan-500/30">
+                    <FileJson className="w-5 h-5 text-cyan-400" />
+                  </div>
+                  <div className="flex-1 text-left">
+                    <h4 className="text-white font-medium">Lieux culturels (JSON)</h4>
+                    <p className="text-gray-400 text-sm">{places.length} musées, châteaux et expositions</p>
+                  </div>
+                  <Download className="w-5 h-5 text-gray-500 group-hover:text-cyan-400 group-hover:translate-y-0.5 transition-all" />
+                </button>
+
+                {/* Export lieux CSV */}
+                <button
+                  onClick={exportPlacesCSV}
+                  className="w-full flex items-center gap-4 p-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all group"
+                >
+                  <div className="p-2.5 rounded-xl bg-green-500/20 border border-green-500/30">
+                    <FileSpreadsheet className="w-5 h-5 text-green-400" />
+                  </div>
+                  <div className="flex-1 text-left">
+                    <h4 className="text-white font-medium">Lieux culturels (CSV)</h4>
+                    <p className="text-gray-400 text-sm">Compatible Excel, Google Sheets, etc.</p>
+                  </div>
+                  <Download className="w-5 h-5 text-gray-500 group-hover:text-green-400 group-hover:translate-y-0.5 transition-all" />
+                </button>
+
+                {/* Export données perso */}
+                <button
+                  onClick={() => exportUserDataJSON(userData, stats, userBadges)}
+                  className="w-full flex items-center gap-4 p-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all group"
+                >
+                  <div className="p-2.5 rounded-xl bg-purple-500/20 border border-purple-500/30">
+                    <User className="w-5 h-5 text-purple-400" />
+                  </div>
+                  <div className="flex-1 text-left">
+                    <h4 className="text-white font-medium">Mes données personnelles (JSON)</h4>
+                    <p className="text-gray-400 text-sm">Profil, favoris, visites et badges</p>
+                  </div>
+                  <Download className="w-5 h-5 text-gray-500 group-hover:text-purple-400 group-hover:translate-y-0.5 transition-all" />
+                </button>
+              </div>
             </div>
           </div>
         )}

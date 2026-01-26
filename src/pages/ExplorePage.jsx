@@ -1,15 +1,17 @@
 import { useState, useEffect, useMemo } from 'react';
-import { places, placeTypes } from '../data/places';
+import { placeTypes } from '../data/places';
+import { useCulturalData } from '../hooks/useCulturalData';
 import InteractiveMap from '../components/map/InteractiveMap';
 import PlaceDetailModal from '../components/modals/PlaceDetailModal';
-import { Building2, Castle, Landmark, Calendar, MapPin, X, Filter, ChevronDown, Search, Compass, Sparkles } from 'lucide-react';
+import { Building2, Castle, Landmark, Calendar, MapPin, X, Filter, ChevronDown, Search, Compass, Sparkles, RefreshCw, Loader2, Wifi } from 'lucide-react';
 
 /**
  * Page d'exploration avec carte en plein écran et filtres
- * Affiche la carte interactive avec options de filtrage
- * Style égyptien/culturel cohérent avec le reste de l'application
+ * Charge AUTOMATIQUEMENT tous les lieux depuis les APIs externes
  */
 const ExplorePage = () => {
+  const { places, loading, progress, isLiveData, error, refresh, totalStatic } = useCulturalData();
+
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [mapHeight, setMapHeight] = useState('calc(100vh - 72px)');
   const [activeFilter, setActiveFilter] = useState('all');
@@ -25,25 +27,16 @@ const ExplorePage = () => {
       return parts[parts.length - 1];
     }))].sort();
     return ['all', ...uniqueRegions];
-  }, []);
+  }, [places]);
 
   // Filtrer les lieux selon le type, la région et la recherche
   const filteredPlaces = useMemo(() => {
     return places.filter(place => {
-      // Filtre par type
-      if (activeFilter !== 'all' && place.type !== activeFilter) {
-        return false;
-      }
-
-      // Filtre par région
+      if (activeFilter !== 'all' && place.type !== activeFilter) return false;
       if (selectedRegion !== 'all') {
         const placeRegion = place.location.split(', ').pop();
-        if (placeRegion !== selectedRegion) {
-          return false;
-        }
+        if (placeRegion !== selectedRegion) return false;
       }
-
-      // Filtre par recherche
       if (searchQuery) {
         const query = searchQuery.toLowerCase();
         return (
@@ -52,10 +45,9 @@ const ExplorePage = () => {
           place.description?.toLowerCase().includes(query)
         );
       }
-
       return true;
     });
-  }, [activeFilter, selectedRegion, searchQuery]);
+  }, [places, activeFilter, selectedRegion, searchQuery]);
 
   // Compter les lieux par type
   const counts = useMemo(() => {
@@ -66,9 +58,8 @@ const ExplorePage = () => {
       }
     });
     return result;
-  }, []);
+  }, [places]);
 
-  // Icônes pour les types
   const typeIcons = {
     'all': Compass,
     'musée': Building2,
@@ -77,7 +68,6 @@ const ExplorePage = () => {
     'exposition': Calendar
   };
 
-  // Couleurs pour les types - palette égyptienne
   const typeColors = {
     'all': 'from-night-700 to-night-800',
     'musée': 'from-turquoise-500 to-turquoise-600',
@@ -94,7 +84,6 @@ const ExplorePage = () => {
     'exposition': 'bg-purple-500'
   };
 
-  // Calculate map height based on viewport
   useEffect(() => {
     const updateHeight = () => {
       const navHeight = 72;
@@ -120,11 +109,23 @@ const ExplorePage = () => {
 
   const hasActiveFilters = activeFilter !== 'all' || selectedRegion !== 'all' || searchQuery;
 
+  // Message de progression
+  const progressText = useMemo(() => {
+    if (!progress) return '';
+    if (progress.phase === 'done') return '';
+    if (progress.phase === 'dedup') return 'Dédoublonnage en cours…';
+    if (progress.phase === 'caching') return 'Mise en cache…';
+    if (progress.status) return progress.status;
+    if (progress.source && progress.total) {
+      return `${progress.source.split('/').pop()} : ${progress.loaded}/${progress.total}`;
+    }
+    return 'Chargement…';
+  }, [progress]);
+
   return (
     <div className="relative w-full mt-[72px]" style={{ height: mapHeight }}>
-      {/* Barre de filtres en haut - Style égyptien */}
+      {/* Barre de filtres en haut */}
       <div className="absolute top-0 left-0 right-0 z-40 p-3 md:p-4">
-        {/* Container principal avec effet glass morphism - fond allégé */}
         <div className="bg-night-900/80 backdrop-blur-md rounded-2xl shadow-2xl border border-gold-600/20 overflow-hidden">
           {/* Header avec barre de recherche */}
           <div className="relative px-4 py-3 border-b border-gold-600/10">
@@ -137,18 +138,53 @@ const ExplorePage = () => {
                   </div>
                   <div>
                     <h2 className="font-display text-lg text-sand-100 tracking-wide">Explorer</h2>
-                    <p className="text-xs text-sand-300/60">Découvrez les trésors culturels</p>
+                    <p className="text-xs text-sand-300/60">
+                      {loading ? progressText || 'Chargement des données…' : 'Découvrez les trésors culturels'}
+                    </p>
                   </div>
                 </div>
-                {/* Compteur total avec animation */}
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-night-800/50 border border-night-700">
-                  <Sparkles className="w-4 h-4 text-gold-400 animate-pulse" />
-                  <span className="text-sm font-medium text-sand-200">{filteredPlaces.length}</span>
-                  <span className="text-xs text-sand-400">lieux</span>
+                <div className="flex items-center gap-2">
+                  {/* Indicateur de données live */}
+                  {isLiveData && (
+                    <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/30" title="Données en direct depuis les APIs">
+                      <Wifi className="w-3 h-3 text-emerald-400" />
+                      <span className="text-[10px] text-emerald-300 font-medium">LIVE</span>
+                    </div>
+                  )}
+                  {/* Bouton rafraîchir */}
+                  <button
+                    onClick={refresh}
+                    disabled={loading}
+                    className="p-1.5 rounded-lg bg-night-800/50 border border-night-700 hover:bg-night-700 transition-colors disabled:opacity-50"
+                    title="Recharger toutes les données depuis les APIs"
+                  >
+                    {loading ? (
+                      <Loader2 className="w-4 h-4 text-gold-400 animate-spin" />
+                    ) : (
+                      <RefreshCw className="w-4 h-4 text-sand-400" />
+                    )}
+                  </button>
+                  {/* Compteur total */}
+                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-night-800/50 border border-night-700">
+                    {loading ? (
+                      <Loader2 className="w-4 h-4 text-gold-400 animate-spin" />
+                    ) : (
+                      <Sparkles className="w-4 h-4 text-gold-400 animate-pulse" />
+                    )}
+                    <span className="text-sm font-medium text-sand-200">{filteredPlaces.length}</span>
+                    <span className="text-xs text-sand-400">lieux</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Ligne 2: Barre de recherche visible en permanence */}
+              {/* Barre de progression pendant le chargement */}
+              {loading && (
+                <div className="w-full bg-night-800/50 rounded-full h-1.5 overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-gold-500 to-gold-400 rounded-full animate-pulse" style={{ width: '100%' }} />
+                </div>
+              )}
+
+              {/* Barre de recherche */}
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                   <Search className="w-5 h-5 text-gold-500/50 group-focus-within:text-gold-400 transition-colors" />
@@ -170,7 +206,6 @@ const ExplorePage = () => {
                 )}
               </div>
             </div>
-            {/* Ligne décorative dorée */}
             <div className="absolute bottom-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-gold-500/30 to-transparent" />
           </div>
 
@@ -200,13 +235,12 @@ const ExplorePage = () => {
                         ? 'bg-white/20 text-white'
                         : 'bg-night-700/80 text-sand-400 group-hover:bg-night-600/80'
                     }`}>
-                      {counts[type.id]}
+                      {counts[type.id] || 0}
                     </span>
                   </button>
                 );
               })}
 
-              {/* Bouton filtres avancés */}
               <button
                 onClick={() => setShowFilters(!showFilters)}
                 className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap transition-all duration-300 transform hover:scale-105 ${
@@ -222,12 +256,11 @@ const ExplorePage = () => {
             </div>
           </div>
 
-          {/* Filtres avancés - panneau dépliable avec animation */}
+          {/* Filtres avancés */}
           <div className={`transition-all duration-300 ease-in-out overflow-hidden ${
             showFilters ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           }`}>
             <div className="px-4 pb-4 space-y-4 border-t border-gold-600/10 pt-4">
-              {/* Filtre par région avec style amélioré */}
               <div className="flex items-center gap-3">
                 <label className="text-sand-400 text-sm whitespace-nowrap font-body flex items-center gap-2">
                   <MapPin className="w-4 h-4 text-gold-500/70" />
@@ -248,7 +281,6 @@ const ExplorePage = () => {
                 </div>
               </div>
 
-              {/* Bouton réinitialiser avec style amélioré */}
               {hasActiveFilters && (
                 <button
                   onClick={clearFilters}
@@ -262,7 +294,7 @@ const ExplorePage = () => {
           </div>
         </div>
 
-        {/* Badge nombre de résultats avec animation */}
+        {/* Badge nombre de résultats */}
         {hasActiveFilters && (
           <div className={`mt-3 inline-flex items-center gap-2 bg-gradient-to-r from-gold-500 to-gold-600 text-night-900 px-4 py-2 rounded-xl text-sm font-medium shadow-lg shadow-gold-500/20 animate-fade-in ${
             isFilterAnimating ? 'animate-pulse' : ''
@@ -279,7 +311,7 @@ const ExplorePage = () => {
         )}
       </div>
 
-      {/* Map - Full screen */}
+      {/* Map */}
       <InteractiveMap
         places={filteredPlaces}
         onPlaceClick={setSelectedPlace}

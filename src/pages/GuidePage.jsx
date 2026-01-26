@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Search, Star, MapPin, Clock, Users, ChevronRight, X, Calendar, Filter } from 'lucide-react';
+import { Search, Star, MapPin, Clock, Users, ChevronRight, X, Calendar, Filter, Check, Minus, Plus, Globe, CreditCard } from 'lucide-react';
 import { places } from '../data/places';
 
 /**
@@ -12,6 +12,9 @@ const GuidePage = () => {
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
   const [showFilters, setShowFilters] = useState(false);
+  const [bookingGuide, setBookingGuide] = useState(null);
+  const [bookingConfirmed, setBookingConfirmed] = useState(false);
+  const [nbPersons, setNbPersons] = useState(1);
 
   // Guides disponibles
   const guides = [
@@ -384,7 +387,15 @@ const GuidePage = () => {
                         <span className="text-2xl font-bold text-[#d4af37]">{guide.price}€</span>
                         <span className="text-stone-500 text-sm"> / personne</span>
                       </div>
-                      <button className="px-6 py-2.5 bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-[#0a0f1a] rounded-xl font-semibold hover:from-[#e5c349] hover:to-[#d4af37] transition-all">
+                      <button
+                        onClick={() => {
+                          setBookingGuide(guide);
+                          setBookingConfirmed(false);
+                          setNbPersons(1);
+                        }}
+                        disabled={!selectedDate}
+                        className="px-6 py-2.5 bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-[#0a0f1a] rounded-xl font-semibold hover:from-[#e5c349] hover:to-[#d4af37] transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                      >
                         Réserver
                       </button>
                     </div>
@@ -489,6 +500,165 @@ const GuidePage = () => {
             </div>
           </div>
         </div>
+        </div>
+      )}
+      {/* Modal de réservation */}
+      {bookingGuide && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          {/* Overlay */}
+          <div
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            onClick={() => setBookingGuide(null)}
+          />
+
+          {/* Modal */}
+          <div className="relative w-full max-w-lg bg-[#1a2236] border border-stone-700/50 rounded-2xl shadow-2xl overflow-hidden">
+            {/* Header */}
+            <div className="relative px-6 pt-6 pb-4 border-b border-stone-700/30">
+              <button
+                onClick={() => setBookingGuide(null)}
+                className="absolute top-4 right-4 p-2 rounded-full text-stone-400 hover:text-white hover:bg-stone-700/50 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <h3 className="font-display text-xl font-bold text-[#f5f0e6]">
+                {bookingConfirmed ? 'Réservation confirmée !' : 'Réserver une visite guidée'}
+              </h3>
+            </div>
+
+            {bookingConfirmed ? (
+              /* Confirmation */
+              <div className="p-6 text-center">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-500/20 border-2 border-emerald-500 flex items-center justify-center">
+                  <Check className="w-8 h-8 text-emerald-400" />
+                </div>
+                <h4 className="font-display text-lg font-semibold text-[#f5f0e6] mb-2">
+                  Votre visite est réservée
+                </h4>
+                <p className="text-stone-400 text-sm mb-6 font-body">
+                  Un email de confirmation vous sera envoyé avec tous les détails.
+                </p>
+                <div className="bg-stone-800/50 rounded-xl p-4 text-left space-y-2 mb-6">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-stone-400">Guide</span>
+                    <span className="text-[#f5f0e6] font-medium">{bookingGuide.name}</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-stone-400">Lieu</span>
+                    <span className="text-[#f5f0e6] font-medium">{selectedPlace?.name}</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-stone-400">Date</span>
+                    <span className="text-[#f5f0e6] font-medium">
+                      {selectedDate && new Date(selectedDate).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}
+                    </span>
+                  </div>
+                  {selectedTime && (
+                    <div className="flex justify-between text-sm">
+                      <span className="text-stone-400">Heure</span>
+                      <span className="text-[#f5f0e6] font-medium">{selectedTime}</span>
+                    </div>
+                  )}
+                  <div className="flex justify-between text-sm">
+                    <span className="text-stone-400">Personnes</span>
+                    <span className="text-[#f5f0e6] font-medium">{nbPersons}</span>
+                  </div>
+                  <div className="flex justify-between text-sm pt-2 border-t border-stone-700/30">
+                    <span className="text-stone-400 font-semibold">Total</span>
+                    <span className="text-[#d4af37] font-bold text-lg">{bookingGuide.price * nbPersons}€</span>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setBookingGuide(null)}
+                  className="w-full py-3 bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-[#0a0f1a] rounded-xl font-semibold hover:from-[#e5c349] hover:to-[#d4af37] transition-all"
+                >
+                  Fermer
+                </button>
+              </div>
+            ) : (
+              /* Formulaire de réservation */
+              <div className="p-6 space-y-5">
+                {/* Guide sélectionné */}
+                <div className="flex items-center gap-4 p-4 bg-stone-800/30 rounded-xl border border-stone-700/30">
+                  <img
+                    src={bookingGuide.image}
+                    alt={bookingGuide.name}
+                    className="w-14 h-14 rounded-full object-cover border-2 border-[#d4af37]/30"
+                  />
+                  <div className="flex-1">
+                    <h4 className="font-display font-semibold text-[#f5f0e6]">{bookingGuide.name}</h4>
+                    <p className="text-[#d4af37] text-sm font-serif-italic">{bookingGuide.specialty}</p>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Star className="w-4 h-4 text-[#d4af37] fill-[#d4af37]" />
+                    <span className="text-[#f5f0e6] font-semibold">{bookingGuide.rating}</span>
+                  </div>
+                </div>
+
+                {/* Récap lieu + date */}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 text-sm">
+                    <MapPin className="w-4 h-4 text-[#d4af37] flex-shrink-0" />
+                    <span className="text-[#f5f0e6]">{selectedPlace?.name}</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-sm">
+                    <Calendar className="w-4 h-4 text-[#d4af37] flex-shrink-0" />
+                    <span className="text-[#f5f0e6]">
+                      {selectedDate && new Date(selectedDate).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}
+                    </span>
+                  </div>
+                  {selectedTime && (
+                    <div className="flex items-center gap-3 text-sm">
+                      <Clock className="w-4 h-4 text-[#d4af37] flex-shrink-0" />
+                      <span className="text-[#f5f0e6]">{selectedTime}</span>
+                    </div>
+                  )}
+                  <div className="flex items-center gap-3 text-sm">
+                    <Globe className="w-4 h-4 text-[#d4af37] flex-shrink-0" />
+                    <span className="text-stone-400">{bookingGuide.languages.join(', ')}</span>
+                  </div>
+                </div>
+
+                {/* Nombre de personnes */}
+                <div>
+                  <label className="block text-sm font-medium text-[#c4b69c]/80 mb-3 font-body">
+                    Nombre de personnes
+                  </label>
+                  <div className="flex items-center gap-4">
+                    <button
+                      onClick={() => setNbPersons(Math.max(1, nbPersons - 1))}
+                      className="w-10 h-10 rounded-xl bg-stone-800/50 border border-stone-700/50 flex items-center justify-center text-stone-300 hover:border-[#d4af37]/50 hover:text-[#d4af37] transition-colors"
+                    >
+                      <Minus className="w-4 h-4" />
+                    </button>
+                    <span className="text-2xl font-bold text-[#f5f0e6] w-10 text-center">{nbPersons}</span>
+                    <button
+                      onClick={() => setNbPersons(Math.min(10, nbPersons + 1))}
+                      className="w-10 h-10 rounded-xl bg-stone-800/50 border border-stone-700/50 flex items-center justify-center text-stone-300 hover:border-[#d4af37]/50 hover:text-[#d4af37] transition-colors"
+                    >
+                      <Plus className="w-4 h-4" />
+                    </button>
+                    <span className="text-stone-500 text-sm ml-2">({bookingGuide.price}€ / pers.)</span>
+                  </div>
+                </div>
+
+                {/* Total + bouton confirmer */}
+                <div className="pt-4 border-t border-stone-700/30">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-stone-400 font-body">Total</span>
+                    <span className="text-2xl font-bold text-[#d4af37]">{bookingGuide.price * nbPersons}€</span>
+                  </div>
+                  <button
+                    onClick={() => setBookingConfirmed(true)}
+                    className="w-full py-3.5 bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-[#0a0f1a] rounded-xl font-semibold hover:from-[#e5c349] hover:to-[#d4af37] transition-all flex items-center justify-center gap-2"
+                  >
+                    <CreditCard className="w-5 h-5" />
+                    Confirmer la réservation
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>

@@ -1,19 +1,21 @@
 #!/usr/bin/env node
 /**
- * Script d'import massif des lieux culturels français
+ * Script d'import massif COMPLET des lieux culturels français
  *
  * Sources :
  *   - Musées de France (base Muséofile) — data.culture.gouv.fr
- *   - Monuments historiques — data.culture.gouv.fr
+ *   - Monuments historiques (classés + inscrits) — data.culture.gouv.fr
  *   - Châteaux via OpenStreetMap Overpass API
+ *   - Festivals et événements culturels — data.culture.gouv.fr
+ *   - Lieux culturels OSM (musées, galeries, théâtres) — Overpass API
+ *
+ * AUCUNE LIMITE : récupère TOUTES les données disponibles.
  *
  * Usage :
  *   node scripts/importPlaces.mjs
- *
- * Le script génère src/data/places.js avec TOUS les lieux trouvés.
  */
 
-import { writeFileSync, readFileSync, existsSync } from 'fs';
+import { writeFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -24,15 +26,34 @@ const OUTPUT_PATH = resolve(__dirname, '..', 'src', 'data', 'places.js');
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-async function fetchJSON(url, retries = 3) {
+async function fetchJSON(url, retries = 4, options = {}) {
   for (let i = 0; i < retries; i++) {
     try {
-      const res = await fetch(url);
+      const res = await fetch(url, { signal: AbortSignal.timeout(120000), ...options });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return await res.json();
     } catch (err) {
-      console.warn(`  ⚠ Tentative ${i + 1}/${retries} échouée pour ${url.slice(0, 80)}… (${err.message})`);
+      console.warn(`  ⚠ Tentative ${i + 1}/${retries} échouée (${err.message})`);
       if (i < retries - 1) await sleep(2000 * (i + 1));
+    }
+  }
+  return null;
+}
+
+async function fetchPOST(url, body, retries = 4) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body,
+        signal: AbortSignal.timeout(180000),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return await res.json();
+    } catch (err) {
+      console.warn(`  ⚠ Tentative ${i + 1}/${retries} échouée (${err.message})`);
+      if (i < retries - 1) await sleep(3000 * (i + 1));
     }
   }
   return null;
@@ -79,42 +100,65 @@ function getRegionFromDept(dept) {
   return deptToRegion[d] || '';
 }
 
-// ─── Source 1 : Musées de France (Muséofile) ────────────
+// ─── Fonction générique de pagination data.culture.gouv.fr ──
 
-async function fetchMuseums() {
-  console.log('\n📦 Import des musées de France (Muséofile)…');
-  const museums = [];
+async function fetchAllFromDataCulture(datasetId, label, processRecord, options = {}) {
+  const { refine = '', where = '' } = options;
+  console.log(`\n📦 Import : ${label}…`);
+  const results = [];
   const LIMIT = 100;
   let offset = 0;
   let total = null;
 
   while (total === null || offset < total) {
-    const url = `https://data.culture.gouv.fr/api/explore/v2.1/catalog/datasets/musees-de-france-base-museofile/records?limit=${LIMIT}&offset=${offset}`;
+    let url = `https://data.culture.gouv.fr/api/explore/v2.1/catalog/datasets/${datasetId}/records?limit=${LIMIT}&offset=${offset}`;
+    if (refine) url += `&refine=${encodeURIComponent(refine)}`;
+    if (where) url += `&where=${encodeURIComponent(where)}`;
+
     const data = await fetchJSON(url);
     if (!data || !data.results) {
-      console.warn('  ✗ Impossible de récupérer les musées depuis data.culture.gouv.fr');
+      console.warn(`  ✗ Impossible de récupérer les données depuis ${datasetId}`);
       break;
     }
     if (total === null) {
       total = data.total_count || 0;
-      console.log(`  → ${total} musées trouvés`);
+      console.log(`  → ${total} enregistrements trouvés — TOUT récupérer (aucune limite)`);
     }
     for (const r of data.results) {
+      const place = processRecord(r);
+      if (place) results.push(place);
+    }
+    offset += LIMIT;
+    process.stdout.write(`  ↳ ${Math.min(offset, total)}/${total}\r`);
+    await sleep(200);
+  }
+
+  console.log(`  ✓ ${results.length} lieux avec coordonnées importés`);
+  return results;
+}
+
+// ─── Source 1 : Musées de France (Muséofile) ────────────
+
+async function fetchMuseums() {
+  return fetchAllFromDataCulture(
+    'musees-de-france-base-museofile',
+    'Musées de France (Muséofile) — TOUS',
+    (r) => {
       const geo = r.geolocalisation || r.coordonnees_finales;
-      if (!geo) continue; // skip without coordinates
+      if (!geo) return null;
       const lat = geo.lat || geo.latitude;
       const lng = geo.lon || geo.lng || geo.longitude;
-      if (!lat || !lng) continue;
+      if (!lat || !lng) return null;
 
       const name = r.nomoff || r.nomusage || r.nom_officiel || '';
-      if (!name) continue;
+      if (!name) return null;
 
       const city = r.ville_m || r.commune || '';
       const dept = r.dpt || r.departement || '';
       const region = r.region || getRegionFromDept(dept);
       const themes = r.dompal || r.themes || '';
 
-      museums.push({
+      return {
         name: name.trim(),
         type: 'musée',
         description: themes ? `Musée spécialisé en ${themes.toLowerCase()}.` : `Musée de France situé à ${city}.`,
@@ -126,56 +170,35 @@ async function fetchMuseums() {
         highlights: themes ? themes.split(';').map(t => t.trim()).filter(Boolean).slice(0, 3) : [],
         website: r.url_m || r.sitweb || '',
         source: 'museofile',
-      });
+      };
     }
-    offset += LIMIT;
-    process.stdout.write(`  ↳ ${Math.min(offset, total)}/${total}\r`);
-    await sleep(300); // politeness delay
-  }
-
-  console.log(`  ✓ ${museums.length} musées avec coordonnées importés`);
-  return museums;
+  );
 }
 
-// ─── Source 2 : Monuments historiques ────────────────────
+// ─── Source 2 : Monuments historiques — CLASSÉS (sans limite) ──
 
-async function fetchMonuments() {
-  console.log('\n🏛️  Import des monuments historiques…');
-  const monuments = [];
-  const LIMIT = 100;
-  let offset = 0;
-  let total = null;
-
-  while (total === null || offset < total) {
-    const url = `https://data.culture.gouv.fr/api/explore/v2.1/catalog/datasets/liste-des-immeubles-proteges-au-titre-des-monuments-historiques/records?limit=${LIMIT}&offset=${offset}&refine=dpro:classé`;
-    const data = await fetchJSON(url);
-    if (!data || !data.results) {
-      console.warn('  ✗ Impossible de récupérer les monuments depuis data.culture.gouv.fr');
-      break;
-    }
-    if (total === null) {
-      total = Math.min(data.total_count || 0, 5000); // cap to avoid too large
-      console.log(`  → ${data.total_count} monuments (import limité à ${total})`);
-    }
-    for (const r of data.results) {
+async function fetchMonumentsClasses() {
+  return fetchAllFromDataCulture(
+    'liste-des-immeubles-proteges-au-titre-des-monuments-historiques',
+    'Monuments historiques CLASSÉS — TOUS',
+    (r) => {
       const geo = r.coordonnees || r.geolocalisation;
-      if (!geo) continue;
+      if (!geo) return null;
       const lat = geo.lat || geo.latitude;
       const lng = geo.lon || geo.lng || geo.longitude;
-      if (!lat || !lng) continue;
+      if (!lat || !lng) return null;
 
       const name = r.tico || r.appellation_courante || r.denominationp || '';
-      if (!name) continue;
+      if (!name) return null;
 
       const city = r.commune || r.com || '';
       const dept = r.dpt || r.departement || '';
       const region = r.reg || r.region || getRegionFromDept(dept);
       const isChateau = /ch[âa]teau/i.test(name);
       const type = isChateau ? 'château' : 'monument';
-      const dateProt = r.dpro || '';
       const siecle = r.scle || '';
 
-      monuments.push({
+      return {
         name: name.trim(),
         type,
         description: `Monument historique classé${siecle ? ` (${siecle})` : ''} situé à ${city}.`,
@@ -183,35 +206,72 @@ async function fetchMonuments() {
         coordinates: { lat: parseFloat(lat), lng: parseFloat(lng) },
         price: 'Se renseigner',
         hours: 'Se renseigner',
-        period: siecle || dateProt || 'Historique',
+        period: siecle || 'Historique',
         highlights: [],
         source: 'monuments-historiques',
-      });
-    }
-    offset += LIMIT;
-    process.stdout.write(`  ↳ ${Math.min(offset, total)}/${total}\r`);
-    await sleep(300);
-  }
-
-  console.log(`  ✓ ${monuments.length} monuments avec coordonnées importés`);
-  return monuments;
+      };
+    },
+    { refine: 'dpro:classé' }
+  );
 }
 
-// ─── Source 3 : Châteaux via Overpass (OpenStreetMap) ────
+// ─── Source 3 : Monuments historiques — INSCRITS (sans limite) ──
+
+async function fetchMonumentsInscrits() {
+  return fetchAllFromDataCulture(
+    'liste-des-immeubles-proteges-au-titre-des-monuments-historiques',
+    'Monuments historiques INSCRITS — TOUS',
+    (r) => {
+      const geo = r.coordonnees || r.geolocalisation;
+      if (!geo) return null;
+      const lat = geo.lat || geo.latitude;
+      const lng = geo.lon || geo.lng || geo.longitude;
+      if (!lat || !lng) return null;
+
+      const name = r.tico || r.appellation_courante || r.denominationp || '';
+      if (!name) return null;
+
+      const city = r.commune || r.com || '';
+      const dept = r.dpt || r.departement || '';
+      const region = r.reg || r.region || getRegionFromDept(dept);
+      const isChateau = /ch[âa]teau/i.test(name);
+      const type = isChateau ? 'château' : 'monument';
+      const siecle = r.scle || '';
+
+      return {
+        name: name.trim(),
+        type,
+        description: `Monument historique inscrit${siecle ? ` (${siecle})` : ''} situé à ${city}.`,
+        location: `${city}, ${region}`.replace(/^, |, $/g, ''),
+        coordinates: { lat: parseFloat(lat), lng: parseFloat(lng) },
+        price: 'Se renseigner',
+        hours: 'Se renseigner',
+        period: siecle || 'Historique',
+        highlights: [],
+        source: 'monuments-historiques',
+      };
+    },
+    { refine: 'dpro:inscrit' }
+  );
+}
+
+// ─── Source 4 : Châteaux via Overpass (OpenStreetMap) — TOUS ──
 
 async function fetchChateauxOSM() {
-  console.log('\n🏰 Import des châteaux depuis OpenStreetMap…');
+  console.log('\n🏰 Import des châteaux depuis OpenStreetMap — TOUS…');
   const query = `
-    [out:json][timeout:60];
+    [out:json][timeout:180];
     area["ISO3166-1"="FR"]->.fr;
     (
       nwr["historic"="castle"](area.fr);
       nwr["castle_type"](area.fr);
     );
-    out center 5000;
+    out center;
   `;
-  const url = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query.trim())}`;
-  const data = await fetchJSON(url);
+  const data = await fetchPOST(
+    'https://overpass-api.de/api/interpreter',
+    `data=${encodeURIComponent(query.trim())}`
+  );
   if (!data || !data.elements) {
     console.warn('  ✗ Impossible de récupérer les châteaux depuis Overpass');
     return [];
@@ -227,10 +287,7 @@ async function fetchChateauxOSM() {
     const name = tags.name || tags['name:fr'] || '';
     if (!name) continue;
 
-    // Avoid duplicates with monument data
     const city = tags['addr:city'] || tags['addr:municipality'] || '';
-    const wiki = tags.wikipedia || tags.wikidata || '';
-    const heritage = tags.heritage || '';
 
     chateaux.push({
       name: name.trim(),
@@ -251,36 +308,215 @@ async function fetchChateauxOSM() {
   return chateaux;
 }
 
-// ─── Dédoublonnage ──────────────────────────────────────
+// ─── Source 5 : Musées & Galeries OSM — TOUS ──
+
+async function fetchMuseumsOSM() {
+  console.log('\n🏛️  Import des musées et galeries depuis OpenStreetMap — TOUS…');
+  const query = `
+    [out:json][timeout:180];
+    area["ISO3166-1"="FR"]->.fr;
+    (
+      nwr["tourism"="museum"](area.fr);
+      nwr["tourism"="gallery"](area.fr);
+      nwr["amenity"="arts_centre"](area.fr);
+    );
+    out center;
+  `;
+  const data = await fetchPOST(
+    'https://overpass-api.de/api/interpreter',
+    `data=${encodeURIComponent(query.trim())}`
+  );
+  if (!data || !data.elements) {
+    console.warn('  ✗ Impossible de récupérer les musées OSM');
+    return [];
+  }
+
+  const museums = [];
+  for (const el of data.elements) {
+    const lat = el.lat || el.center?.lat;
+    const lng = el.lon || el.center?.lon;
+    if (!lat || !lng) continue;
+
+    const tags = el.tags || {};
+    const name = tags.name || tags['name:fr'] || '';
+    if (!name) continue;
+
+    const city = tags['addr:city'] || tags['addr:municipality'] || '';
+    const isGallery = tags.tourism === 'gallery' || tags.amenity === 'arts_centre';
+
+    museums.push({
+      name: name.trim(),
+      type: isGallery ? 'exposition' : 'musée',
+      description: tags.description || `${isGallery ? 'Galerie / Centre d\'art' : 'Musée'}${city ? ` à ${city}` : ''}, France.`,
+      location: city || 'France',
+      coordinates: { lat: parseFloat(lat), lng: parseFloat(lng) },
+      price: tags.fee === 'no' ? 'Gratuit' : 'Se renseigner',
+      hours: tags.opening_hours || 'Se renseigner',
+      period: 'Collections permanentes',
+      highlights: [],
+      website: tags.website || '',
+      source: 'openstreetmap',
+    });
+  }
+
+  console.log(`  ✓ ${museums.length} musées/galeries importés depuis OSM`);
+  return museums;
+}
+
+// ─── Source 6 : Festivals (expositions/événements) — data.culture.gouv.fr ──
+
+async function fetchFestivals() {
+  return fetchAllFromDataCulture(
+    'panorama-des-festivals',
+    'Festivals et événements culturels — TOUS',
+    (r) => {
+      const geo = r.geocodage_xy || r.geolocalisation || r.coordonnees;
+      if (!geo) return null;
+      const lat = geo.lat || geo.latitude;
+      const lng = geo.lon || geo.lng || geo.longitude;
+      if (!lat || !lng) return null;
+
+      const name = r.nom_du_festival || r.nom_manifestation || '';
+      if (!name) return null;
+
+      const city = r.commune_principale_de_deroulement || r.commune || r.ville || '';
+      const dept = r.departement_principal_de_deroulement || r.departement || '';
+      const region = r.region_principale_de_deroulement || r.region || getRegionFromDept(dept);
+      const discipline = r.discipline_dominante || r.discipline || '';
+
+      return {
+        name: name.trim(),
+        type: 'exposition',
+        description: discipline
+          ? `Festival de ${discipline.toLowerCase()}${city ? ` à ${city}` : ''}.`
+          : `Festival culturel${city ? ` à ${city}` : ''}.`,
+        location: `${city}, ${region}`.replace(/^, |, $/g, ''),
+        coordinates: { lat: parseFloat(lat), lng: parseFloat(lng) },
+        price: 'Se renseigner',
+        hours: 'Se renseigner',
+        period: r.periode_principale_de_deroulement || discipline || 'Événement culturel',
+        highlights: discipline ? [discipline] : [],
+        website: r.site_internet_du_festival || '',
+        source: 'festivals',
+      };
+    }
+  );
+}
+
+// ─── Source 7 : Monuments historiques OSM (ruines, mémoriaux, etc.) ──
+
+async function fetchMonumentsOSM() {
+  console.log('\n🗿 Import des monuments et lieux historiques depuis OpenStreetMap — TOUS…');
+  const query = `
+    [out:json][timeout:180];
+    area["ISO3166-1"="FR"]->.fr;
+    (
+      nwr["historic"="monument"](area.fr);
+      nwr["historic"="memorial"](area.fr);
+      nwr["historic"="ruins"](area.fr);
+      nwr["historic"="archaeological_site"](area.fr);
+      nwr["historic"="fort"](area.fr);
+    );
+    out center;
+  `;
+  const data = await fetchPOST(
+    'https://overpass-api.de/api/interpreter',
+    `data=${encodeURIComponent(query.trim())}`
+  );
+  if (!data || !data.elements) {
+    console.warn('  ✗ Impossible de récupérer les monuments OSM');
+    return [];
+  }
+
+  const monuments = [];
+  for (const el of data.elements) {
+    const lat = el.lat || el.center?.lat;
+    const lng = el.lon || el.center?.lon;
+    if (!lat || !lng) continue;
+
+    const tags = el.tags || {};
+    const name = tags.name || tags['name:fr'] || '';
+    if (!name) continue;
+
+    const city = tags['addr:city'] || tags['addr:municipality'] || '';
+    const historicType = tags.historic || '';
+
+    monuments.push({
+      name: name.trim(),
+      type: 'monument',
+      description: tags.description || `${historicType.charAt(0).toUpperCase() + historicType.slice(1)}${city ? ` à ${city}` : ''}, France.`,
+      location: city || 'France',
+      coordinates: { lat: parseFloat(lat), lng: parseFloat(lng) },
+      price: tags.fee === 'no' ? 'Gratuit' : 'Se renseigner',
+      hours: tags.opening_hours || 'Se renseigner',
+      period: tags.start_date || 'Historique',
+      highlights: [],
+      website: tags.website || '',
+      source: 'openstreetmap',
+    });
+  }
+
+  console.log(`  ✓ ${monuments.length} monuments importés depuis OSM`);
+  return monuments;
+}
+
+// ─── Dédoublonnage optimisé avec grille spatiale ─────────
 
 function deduplicate(allPlaces) {
   console.log('\n🔄 Dédoublonnage…');
-  const seen = new Map();
+  const nameIndex = new Set();
+  const CELL_SIZE = 0.001; // ~100m
+
+  // Grille spatiale pour la proximité
+  const grid = new Map();
+  function cellKey(lat, lng) {
+    return `${Math.floor(lat / CELL_SIZE)}_${Math.floor(lng / CELL_SIZE)}`;
+  }
+  function getNeighborCells(lat, lng) {
+    const cx = Math.floor(lat / CELL_SIZE);
+    const cy = Math.floor(lng / CELL_SIZE);
+    const cells = [];
+    for (let dx = -1; dx <= 1; dx++) {
+      for (let dy = -1; dy <= 1; dy++) {
+        const key = `${cx + dx}_${cy + dy}`;
+        if (grid.has(key)) cells.push(...grid.get(key));
+      }
+    }
+    return cells;
+  }
+
   const unique = [];
 
   for (const place of allPlaces) {
-    // Clé : nom normalisé + type
+    // 1. Clé nom normalisé + type
     const key = place.name
       .toLowerCase()
       .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
       .replace(/[^a-z0-9]/g, '') + '_' + place.type;
 
-    if (seen.has(key)) continue;
+    if (nameIndex.has(key)) continue;
 
-    // Aussi vérifier la proximité géographique (< 100m = même lieu)
+    // 2. Proximité géographique via grille
+    const neighbors = getNeighborCells(place.coordinates.lat, place.coordinates.lng);
     let tooClose = false;
-    for (const [, existing] of seen) {
+    for (const existing of neighbors) {
+      if (existing.type !== place.type) continue;
       const dlat = Math.abs(existing.coordinates.lat - place.coordinates.lat);
       const dlng = Math.abs(existing.coordinates.lng - place.coordinates.lng);
-      if (dlat < 0.001 && dlng < 0.001 && existing.type === place.type) {
+      if (dlat < 0.001 && dlng < 0.001) {
         tooClose = true;
         break;
       }
     }
     if (tooClose) continue;
 
-    seen.set(key, place);
+    nameIndex.add(key);
     unique.push(place);
+
+    // Ajouter à la grille
+    const ck = cellKey(place.coordinates.lat, place.coordinates.lng);
+    if (!grid.has(ck)) grid.set(ck, []);
+    grid.get(ck).push(place);
   }
 
   console.log(`  ✓ ${unique.length} lieux uniques (${allPlaces.length - unique.length} doublons retirés)`);
@@ -292,7 +528,6 @@ function deduplicate(allPlaces) {
 function generatePlacesFile(allPlaces) {
   console.log('\n📝 Génération de src/data/places.js…');
 
-  // Assign IDs and default values
   const places = allPlaces.map((p, i) => ({
     id: i + 1,
     name: p.name,
@@ -310,7 +545,6 @@ function generatePlacesFile(allPlaces) {
     favorite: false,
   }));
 
-  // Count by type
   const counts = {};
   for (const p of places) {
     counts[p.type] = (counts[p.type] || 0) + 1;
@@ -323,26 +557,40 @@ function generatePlacesFile(allPlaces) {
     '//',
     '// Sources :',
     '//   - Musées de France (base Muséofile) — data.culture.gouv.fr',
-    '//   - Monuments historiques classés — data.culture.gouv.fr',
+    '//   - Monuments historiques classés + inscrits — data.culture.gouv.fr',
     '//   - Châteaux — OpenStreetMap (Overpass API)',
+    '//   - Musées & galeries — OpenStreetMap (Overpass API)',
+    '//   - Monuments & sites historiques — OpenStreetMap (Overpass API)',
+    '//   - Festivals & événements culturels — data.culture.gouv.fr',
+    '//',
+    '// IMPORT COMPLET — AUCUNE LIMITE',
     '',
-    '// Types de lieux disponibles',
-    "export const placeTypes = [",
+    'export const placeTypes = [',
     "  { id: 'all', label: 'Tous', color: 'bg-night-600' },",
     "  { id: 'musée', label: 'Musées', color: 'bg-turquoise-500' },",
     "  { id: 'château', label: 'Châteaux', color: 'bg-gold-600' },",
     "  { id: 'monument', label: 'Monuments', color: 'bg-terracotta-500' },",
     "  { id: 'exposition', label: 'Expositions', color: 'bg-purple-500' }",
-    "];",
+    '];',
     '',
-    '// Base de données des lieux culturels français',
+    `export function getTypeBadgeColor(type) {`,
+    `  const colors = {`,
+    `    'musée': 'bg-turquoise-500',`,
+    `    'château': 'bg-gold-600',`,
+    `    'monument': 'bg-terracotta-500',`,
+    `    'exposition': 'bg-purple-500',`,
+    `  };`,
+    `  return colors[type] || 'bg-night-600';`,
+    `}`,
+    '',
+    '// Base de données COMPLÈTE des lieux culturels français',
     'export const places = ' + JSON.stringify(places, null, 2) + ';',
   ];
 
   writeFileSync(OUTPUT_PATH, lines.join('\n'), 'utf-8');
   console.log(`  ✓ Fichier écrit : ${OUTPUT_PATH}`);
   console.log(`  → ${places.length} lieux au total`);
-  for (const [type, count] of Object.entries(counts)) {
+  for (const [type, count] of Object.entries(counts).sort((a, b) => b[1] - a[1])) {
     console.log(`    • ${count} ${type}s`);
   }
 }
@@ -350,37 +598,66 @@ function generatePlacesFile(allPlaces) {
 // ─── Main ───────────────────────────────────────────────
 
 async function main() {
-  console.log('╔══════════════════════════════════════════════════╗');
-  console.log('║   Muzea — Import massif des lieux culturels     ║');
-  console.log('╚══════════════════════════════════════════════════╝');
+  console.log('╔════════════════════════════════════════════════════════════╗');
+  console.log('║   Muzea — Import COMPLET des lieux culturels              ║');
+  console.log('║   AUCUNE LIMITE — On prend TOUT d\'un coup                 ║');
+  console.log('╚════════════════════════════════════════════════════════════╝');
+  console.log(`\nDébut : ${new Date().toLocaleTimeString()}`);
 
   const allPlaces = [];
 
-  // 1. Musées de France
+  // 1. Musées de France (Muséofile) — TOUS
   const museums = await fetchMuseums();
   allPlaces.push(...museums);
+  console.log(`  📊 Total cumulé : ${allPlaces.length}`);
 
-  // 2. Monuments historiques classés
-  const monuments = await fetchMonuments();
-  allPlaces.push(...monuments);
+  // 2. Monuments historiques CLASSÉS — TOUS (plus de limite 5000)
+  const monumentsClasses = await fetchMonumentsClasses();
+  allPlaces.push(...monumentsClasses);
+  console.log(`  📊 Total cumulé : ${allPlaces.length}`);
 
-  // 3. Châteaux OSM
+  // 3. Monuments historiques INSCRITS — TOUS (nouveau !)
+  const monumentsInscrits = await fetchMonumentsInscrits();
+  allPlaces.push(...monumentsInscrits);
+  console.log(`  📊 Total cumulé : ${allPlaces.length}`);
+
+  // 4. Châteaux OSM — TOUS (plus de limite 5000)
   const chateaux = await fetchChateauxOSM();
   allPlaces.push(...chateaux);
+  console.log(`  📊 Total cumulé : ${allPlaces.length}`);
+
+  // 5. Musées & Galeries OSM — TOUS
+  const museumsOSM = await fetchMuseumsOSM();
+  allPlaces.push(...museumsOSM);
+  console.log(`  📊 Total cumulé : ${allPlaces.length}`);
+
+  // 6. Festivals (expositions) — TOUS
+  const festivals = await fetchFestivals();
+  allPlaces.push(...festivals);
+  console.log(`  📊 Total cumulé : ${allPlaces.length}`);
+
+  // 7. Monuments OSM (ruines, mémoriaux, forts…) — TOUS
+  const monumentsOSM = await fetchMonumentsOSM();
+  allPlaces.push(...monumentsOSM);
+  console.log(`  📊 Total cumulé : ${allPlaces.length}`);
 
   if (allPlaces.length === 0) {
     console.error('\n✗ Aucun lieu importé. Vérifiez votre connexion internet.');
     process.exit(1);
   }
 
-  // Dédoublonnage
+  console.log(`\n═══ TOTAL BRUT : ${allPlaces.length} lieux récupérés ═══`);
+
+  // Dédoublonnage optimisé
   const unique = deduplicate(allPlaces);
 
   // Génération du fichier
   generatePlacesFile(unique);
 
-  console.log('\n✅ Import terminé avec succès !');
-  console.log('   Lancez "npm run dev" pour voir les lieux sur la carte.\n');
+  console.log(`\nFin : ${new Date().toLocaleTimeString()}`);
+  console.log('\n✅ Import COMPLET terminé avec succès !');
+  console.log('   TOUS les lieux culturels de France sont sur la carte.');
+  console.log('   Lancez "npm run dev" pour voir le résultat.\n');
 }
 
 main().catch((err) => {

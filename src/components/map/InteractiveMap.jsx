@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap, Circle } from 'react-leaflet';
+import MarkerClusterGroup from 'react-leaflet-cluster';
 import L from 'leaflet';
 import { getTypeBadgeColor } from '../../data/places';
 
@@ -325,25 +326,58 @@ const InteractiveMap = ({
         {/* Ajuste les bounds aux marqueurs */}
         {places.length > 0 && <FitBounds places={places} />}
 
-        {/* Marqueurs */}
-        {places.map((place) => (
-          <Marker
-            key={place.id}
-            position={[place.coordinates.lat, place.coordinates.lng]}
-            icon={createCustomIcon(place.type)}
-            eventHandlers={{
-              click: () => onPlaceClick?.(place)
-            }}
-          >
-            <Popup className="custom-popup">
-              <div className="p-1">
-                <h4 className="font-semibold text-stone-900 mb-1">{place.name}</h4>
-                <p className="text-xs text-stone-600">{place.location}</p>
-                <p className="text-xs text-amber-600 font-medium mt-1">{place.price}</p>
-              </div>
-            </Popup>
-          </Marker>
-        ))}
+        {/* Marqueurs avec clustering pour performance */}
+        <MarkerClusterGroup
+          chunkedLoading
+          maxClusterRadius={60}
+          spiderfyOnMaxZoom
+          showCoverageOnHover={false}
+          iconCreateFunction={(cluster) => {
+            const count = cluster.getChildCount();
+            let size = 'small';
+            let dim = 36;
+            if (count >= 100) { size = 'large'; dim = 50; }
+            else if (count >= 10) { size = 'medium'; dim = 42; }
+
+            return L.divIcon({
+              html: `<div style="
+                width: ${dim}px;
+                height: ${dim}px;
+                background: linear-gradient(135deg, #d4a437, #b8860b);
+                border: 3px solid rgba(255,255,255,0.8);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-weight: bold;
+                font-size: ${count >= 1000 ? '11' : '13'}px;
+                box-shadow: 0 3px 12px rgba(0,0,0,0.4);
+              ">${count >= 1000 ? Math.round(count / 1000) + 'k' : count}</div>`,
+              className: `marker-cluster marker-cluster-${size}`,
+              iconSize: L.point(dim, dim),
+            });
+          }}
+        >
+          {places.map((place) => (
+            <Marker
+              key={place.id}
+              position={[place.coordinates.lat, place.coordinates.lng]}
+              icon={createCustomIcon(place.type)}
+              eventHandlers={{
+                click: () => onPlaceClick?.(place)
+              }}
+            >
+              <Popup className="custom-popup">
+                <div className="p-1">
+                  <h4 className="font-semibold text-stone-900 mb-1">{place.name}</h4>
+                  <p className="text-xs text-stone-600">{place.location}</p>
+                  <p className="text-xs text-amber-600 font-medium mt-1">{place.price}</p>
+                </div>
+              </Popup>
+            </Marker>
+          ))}
+        </MarkerClusterGroup>
       </MapContainer>
     </div>
   );

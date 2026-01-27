@@ -1,14 +1,17 @@
 /**
  * Service de récupération DIRECTE des données culturelles
- * depuis les APIs publiques (data.culture.gouv.fr + OpenStreetMap).
+ * depuis les APIs publiques gratuites :
+ *   - data.culture.gouv.fr (musées, monuments historiques, festivals)
+ *   - OpenStreetMap Overpass (châteaux, musées, monuments, ruines, forts)
+ *   - Wikidata SPARQL (musées, châteaux, monuments avec coordonnées)
  *
  * Le navigateur de l'utilisateur appelle directement les APIs.
- * Les données sont mises en cache dans localStorage/IndexedDB.
+ * Les données sont mises en cache dans IndexedDB (7 jours).
  */
 
 const CACHE_KEY = 'muzea_all_places';
 const CACHE_VERSION_KEY = 'muzea_cache_version';
-const CACHE_VERSION = 3;
+const CACHE_VERSION = 4;
 const CACHE_MAX_AGE = 7 * 24 * 60 * 60 * 1000; // 7 jours
 
 // ─── Helpers ─────────────────────────────────────────────
@@ -289,6 +292,108 @@ async function fetchFestivals(onProgress) {
   );
 }
 
+// ─── Source 5 : Wikidata SPARQL (musées + châteaux + monuments) ──
+
+async function fetchWikidataPlaces(onProgress) {
+  onProgress?.({ source: 'Wikidata', loaded: 0, total: 1, status: 'Chargement Wikidata…' });
+
+  // SPARQL query: museums, castles, monuments in France with coordinates
+  const sparql = `
+SELECT ?item ?itemLabel ?lat ?lon ?typeLabel ?communeLabel ?image WHERE {
+  VALUES ?type { wd:Q33506 wd:Q23413 wd:Q811979 wd:Q16970 wd:Q839954 wd:Q4989906 wd:Q207694 wd:Q57821 wd:Q3395121 }
+  ?item wdt:P17 wd:Q142 ;
+        wdt:P31 ?type ;
+        wdt:P625 ?coord .
+  BIND(geof:latitude(?coord) AS ?lat)
+  BIND(geof:longitude(?coord) AS ?lon)
+  OPTIONAL { ?item wdt:P131 ?commune . }
+  OPTIONAL { ?item wdt:P18 ?image . }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "fr,en" . }
+}
+LIMIT 10000
+`.trim();
+
+  const url = `https://query.wikidata.org/sparql?query=${encodeURIComponent(sparql)}&format=json`;
+
+  const data = await fetchJSON(url);
+  if (!data?.results?.bindings) return [];
+
+  onProgress?.({ source: 'Wikidata', loaded: 1, total: 1 });
+
+  const places = [];
+  const seen = new Set();
+
+  for (const b of data.results.bindings) {
+    const lat = parseFloat(b.lat?.value);
+    const lng = parseFloat(b.lon?.value);
+    if (!lat || !lng || isNaN(lat) || isNaN(lng)) continue;
+
+    const name = b.itemLabel?.value || '';
+    if (!name || name.startsWith('Q')) continue; // skip unnamed items
+
+    const itemId = b.item?.value || '';
+    if (seen.has(itemId)) continue;
+    seen.add(itemId);
+
+    const typeLabel = (b.typeLabel?.value || '').toLowerCase();
+    const city = b.communeLabel?.value || '';
+
+    let type = 'monument';
+    if (/mus[ée]/i.test(typeLabel) || /gallery|galerie/i.test(typeLabel)) {
+      type = 'musée';
+    } else if (/ch[âa]teau|castle|fort/i.test(typeLabel)) {
+      type = 'château';
+    } else if (/exposition|festival|galerie/i.test(typeLabel)) {
+      type = 'exposition';
+    }
+
+    places.push({
+      name: name.trim(),
+      type,
+      description: `${typeLabel ? typeLabel.charAt(0).toUpperCase() + typeLabel.slice(1) : 'Lieu culturel'}${city ? ` à ${city}` : ''}, France.`,
+      location: city || 'France',
+      coordinates: { lat, lng },
+      price: 'Se renseigner',
+      hours: 'Se renseigner',
+      period: 'Historique',
+      highlights: [],
+    });
+  }
+  return places;
+}
+
+// ─── Source 6 : Architecture remarquable (Mérimée via data.culture.gouv.fr) ──
+
+async function fetchArchitecture(onProgress) {
+  return fetchAllPages(
+    'liste-des-edifices-labellises-architecture-contemporaine-remarquable-acr',
+    (r) => {
+      const geo = r.coordonnees || r.geolocalisation;
+      if (!geo) return null;
+      const lat = geo.lat || geo.latitude;
+      const lng = geo.lon || geo.lng || geo.longitude;
+      if (!lat || !lng) return null;
+      const name = r.titre || r.appellation || r.denomination || '';
+      if (!name) return null;
+      const city = r.commune || '';
+      const dept = r.departement || '';
+      const region = getRegion(dept);
+      return {
+        name: name.trim(),
+        type: 'monument',
+        description: `Architecture contemporaine remarquable${city ? ` à ${city}` : ''}.`,
+        location: `${city}, ${region}`.replace(/^, |, $/g, ''),
+        coordinates: { lat: +lat, lng: +lng },
+        price: 'Se renseigner',
+        hours: 'Se renseigner',
+        period: 'Architecture contemporaine',
+        highlights: [],
+      };
+    },
+    onProgress
+  );
+}
+
 // ─── Dédoublonnage rapide ────────────────────────────────
 
 function deduplicate(allPlaces) {
@@ -419,16 +524,20 @@ export async function loadAllCulturalPlaces(onProgress) {
   console.log('[Muzea] Pas de cache — chargement depuis les APIs…');
   onProgress?.({ phase: 'loading', status: 'Connexion aux APIs…' });
 
-  // 2. Charger toutes les sources en parallèle
-  const [museums, monuments, osmPlaces, festivals] = await Promise.all([
-    fetchMuseums(onProgress).catch(() => []),
-    fetchMonuments(onProgress).catch(() => []),
-    fetchOSMPlaces(onProgress).catch(() => []),
-    fetchFestivals(onProgress).catch(() => []),
+  // 2. Charger toutes les sources en parallèle (6 sources)
+  const [museums, monuments, osmPlaces, festivals, wikidata, architecture] = await Promise.all([
+    fetchMuseums(onProgress).catch((e) => { console.warn('[Muzea] Musées:', e.message); return []; }),
+    fetchMonuments(onProgress).catch((e) => { console.warn('[Muzea] Monuments:', e.message); return []; }),
+    fetchOSMPlaces(onProgress).catch((e) => { console.warn('[Muzea] OSM:', e.message); return []; }),
+    fetchFestivals(onProgress).catch((e) => { console.warn('[Muzea] Festivals:', e.message); return []; }),
+    fetchWikidataPlaces(onProgress).catch((e) => { console.warn('[Muzea] Wikidata:', e.message); return []; }),
+    fetchArchitecture(onProgress).catch((e) => { console.warn('[Muzea] Architecture:', e.message); return []; }),
   ]);
 
-  const allRaw = [...museums, ...monuments, ...osmPlaces, ...festivals];
-  console.log(`[Muzea] ${allRaw.length} lieux bruts récupérés`);
+  console.log(`[Muzea] Sources: musées=${museums.length}, monuments=${monuments.length}, OSM=${osmPlaces.length}, festivals=${festivals.length}, wikidata=${wikidata.length}, archi=${architecture.length}`);
+
+  const allRaw = [...museums, ...monuments, ...osmPlaces, ...festivals, ...wikidata, ...architecture];
+  console.log(`[Muzea] ${allRaw.length} lieux bruts récupérés au total`);
 
   if (allRaw.length === 0) return null;
 

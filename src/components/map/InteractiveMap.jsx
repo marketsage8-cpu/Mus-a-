@@ -274,7 +274,7 @@ const InteractiveMap = ({
         center={center}
         zoom={zoom}
         style={{ height: '100%', width: '100%' }}
-        className="z-0 [&_.leaflet-marker-icon]:!bg-transparent [&_.leaflet-marker-icon]:!border-0"
+        className="z-0"
       >
         {/* Tuiles style sombre */}
         <TileLayer

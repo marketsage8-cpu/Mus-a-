@@ -1,9 +1,11 @@
 /**
  * Service de récupération DIRECTE des données culturelles
  * depuis les APIs publiques gratuites :
- *   - data.culture.gouv.fr (musées, monuments historiques, festivals)
- *   - OpenStreetMap Overpass (châteaux, musées, monuments, ruines, forts)
- *   - Wikidata SPARQL (musées, châteaux, monuments avec coordonnées)
+ *   - data.culture.gouv.fr (musées, monuments historiques)
+ *   - OpenStreetMap Overpass (châteaux, musées, églises)
+ *   - Wikidata SPARQL (musées, châteaux, églises)
+ *
+ * UNIQUEMENT 4 types : musée, château, exposition, église
  *
  * Le navigateur de l'utilisateur appelle directement les APIs.
  * Les données sont mises en cache dans IndexedDB (7 jours).
@@ -11,7 +13,7 @@
 
 const CACHE_KEY = 'muzea_all_places';
 const CACHE_VERSION_KEY = 'muzea_cache_version';
-const CACHE_VERSION = 4;
+const CACHE_VERSION = 5;
 const CACHE_MAX_AGE = 7 * 24 * 60 * 60 * 1000; // 7 jours
 
 // ─── Helpers ─────────────────────────────────────────────
@@ -167,11 +169,12 @@ async function fetchMonuments(onProgress) {
     const dept = r.dpt || r.departement || '';
     const region = r.reg || r.region || getRegion(dept);
     const isChateau = /ch[âa]teau/i.test(name);
-    const isEglise = /[ée]glise|cath[ée]drale|basilique|abbaye|chapelle|prieur[ée]|coll[ée]giale|clo[iî]tre/i.test(name);
+    const isEglise = /[ée]glise|cath[ée]drale|basilique|abbaye|chapelle|prieur[ée]|coll[ée]giale|clo[iî]tre|notre.?dame/i.test(name);
+    if (!isChateau && !isEglise) return null; // On ne garde que châteaux et églises
     const siecle = r.scle || '';
     return {
-      name: name.trim(), type: isChateau ? 'château' : isEglise ? 'église' : 'monument',
-      description: `Monument historique${siecle ? ` (${siecle})` : ''} situé à ${city}.`,
+      name: name.trim(), type: isChateau ? 'château' : 'église',
+      description: `${isChateau ? 'Château' : 'Édifice religieux'} historique${siecle ? ` (${siecle})` : ''} situé à ${city}.`,
       location: `${city}, ${region}`.replace(/^, |, $/g, ''),
       coordinates: { lat: +lat, lng: +lng },
       price: 'Se renseigner', hours: 'Se renseigner',
@@ -231,7 +234,7 @@ async function fetchOSMPlaces(onProgress) {
     const tourism = tags.tourism || '';
     const amenity = tags.amenity || '';
 
-    let type = 'monument';
+    let type = null;
     let desc = '';
     if (historic === 'castle' || tags.castle_type) {
       type = 'château';
@@ -242,8 +245,12 @@ async function fetchOSMPlaces(onProgress) {
     } else if (tourism === 'gallery' || amenity === 'arts_centre') {
       type = 'exposition';
       desc = `Galerie / Centre d'art${city ? ` à ${city}` : ''}, France.`;
+    } else if (/church|cathedral|abbey|chapel|monastery/i.test(tags.building || '') ||
+               /[ée]glise|cath[ée]drale|basilique|abbaye|chapelle|notre.?dame/i.test(name)) {
+      type = 'église';
+      desc = `Édifice religieux${city ? ` à ${city}` : ''}, France.`;
     } else {
-      desc = `${historic || 'Monument'}${city ? ` à ${city}` : ''}, France.`;
+      continue; // Skip: on ne veut pas de "monument" générique
     }
 
     places.push({
@@ -260,40 +267,7 @@ async function fetchOSMPlaces(onProgress) {
   return places;
 }
 
-// ─── Source 4 : Festivals ────────────────────────────────
-
-async function fetchFestivals(onProgress) {
-  return fetchAllPages(
-    'panorama-des-festivals',
-    (r) => {
-      const geo = r.geocodage_xy || r.geolocalisation || r.coordonnees;
-      if (!geo) return null;
-      const lat = geo.lat || geo.latitude;
-      const lng = geo.lon || geo.lng || geo.longitude;
-      if (!lat || !lng) return null;
-      const name = r.nom_du_festival || r.nom_manifestation || '';
-      if (!name) return null;
-      const city = r.commune_principale_de_deroulement || r.commune || r.ville || '';
-      const dept = r.departement_principal_de_deroulement || r.departement || '';
-      const region = r.region_principale_de_deroulement || r.region || getRegion(dept);
-      const discipline = r.discipline_dominante || r.discipline || '';
-      return {
-        name: name.trim(), type: 'exposition',
-        description: discipline
-          ? `Festival de ${discipline.toLowerCase()}${city ? ` à ${city}` : ''}.`
-          : `Festival culturel${city ? ` à ${city}` : ''}.`,
-        location: `${city}, ${region}`.replace(/^, |, $/g, ''),
-        coordinates: { lat: +lat, lng: +lng },
-        price: 'Se renseigner', hours: 'Se renseigner',
-        period: r.periode_principale_de_deroulement || discipline || 'Événement culturel',
-        highlights: discipline ? [discipline] : [],
-      };
-    },
-    onProgress
-  );
-}
-
-// ─── Source 5 : Wikidata SPARQL (musées + châteaux + monuments) ──
+// ─── Source 4 : Wikidata SPARQL (musées + châteaux + églises) ──
 
 async function fetchWikidataPlaces(onProgress) {
   onProgress?.({ source: 'Wikidata', loaded: 0, total: 1, status: 'Chargement Wikidata…' });
@@ -339,15 +313,17 @@ LIMIT 10000
     const typeLabel = (b.typeLabel?.value || '').toLowerCase();
     const city = b.communeLabel?.value || '';
 
-    let type = 'monument';
+    let type = null;
     if (/mus[ée]/i.test(typeLabel) || /gallery|galerie/i.test(typeLabel)) {
       type = 'musée';
     } else if (/ch[âa]teau|castle|fort/i.test(typeLabel)) {
       type = 'château';
     } else if (/[ée]glise|church|cath[ée]drale|basilique|abbaye|chapelle|prieur[ée]/i.test(typeLabel)) {
       type = 'église';
-    } else if (/exposition|festival|galerie/i.test(typeLabel)) {
+    } else if (/exposition|galerie/i.test(typeLabel)) {
       type = 'exposition';
+    } else {
+      continue; // Skip: on ne veut que musée, château, église, exposition
     }
 
     places.push({
@@ -365,7 +341,7 @@ LIMIT 10000
   return places;
 }
 
-// ─── Source 6 : Architecture remarquable (Mérimée via data.culture.gouv.fr) ──
+// ─── Source 5 : Architecture remarquable (Mérimée via data.culture.gouv.fr) ──
 
 async function fetchArchitecture(onProgress) {
   return fetchAllPages(
@@ -383,7 +359,7 @@ async function fetchArchitecture(onProgress) {
       const region = getRegion(dept);
       return {
         name: name.trim(),
-        type: 'monument',
+        type: 'exposition',
         description: `Architecture contemporaine remarquable${city ? ` à ${city}` : ''}.`,
         location: `${city}, ${region}`.replace(/^, |, $/g, ''),
         coordinates: { lat: +lat, lng: +lng },
@@ -527,19 +503,18 @@ export async function loadAllCulturalPlaces(onProgress) {
   console.log('[Muzea] Pas de cache — chargement depuis les APIs…');
   onProgress?.({ phase: 'loading', status: 'Connexion aux APIs…' });
 
-  // 2. Charger toutes les sources en parallèle (6 sources)
-  const [museums, monuments, osmPlaces, festivals, wikidata, architecture] = await Promise.all([
+  // 2. Charger toutes les sources en parallèle (5 sources — pas de festivals)
+  const [museums, monuments, osmPlaces, wikidata, architecture] = await Promise.all([
     fetchMuseums(onProgress).catch((e) => { console.warn('[Muzea] Musées:', e.message); return []; }),
     fetchMonuments(onProgress).catch((e) => { console.warn('[Muzea] Monuments:', e.message); return []; }),
     fetchOSMPlaces(onProgress).catch((e) => { console.warn('[Muzea] OSM:', e.message); return []; }),
-    fetchFestivals(onProgress).catch((e) => { console.warn('[Muzea] Festivals:', e.message); return []; }),
     fetchWikidataPlaces(onProgress).catch((e) => { console.warn('[Muzea] Wikidata:', e.message); return []; }),
     fetchArchitecture(onProgress).catch((e) => { console.warn('[Muzea] Architecture:', e.message); return []; }),
   ]);
 
-  console.log(`[Muzea] Sources: musées=${museums.length}, monuments=${monuments.length}, OSM=${osmPlaces.length}, festivals=${festivals.length}, wikidata=${wikidata.length}, archi=${architecture.length}`);
+  console.log(`[Muzea] Sources: musées=${museums.length}, monuments=${monuments.length}, OSM=${osmPlaces.length}, wikidata=${wikidata.length}, archi=${architecture.length}`);
 
-  const allRaw = [...museums, ...monuments, ...osmPlaces, ...festivals, ...wikidata, ...architecture];
+  const allRaw = [...museums, ...monuments, ...osmPlaces, ...wikidata, ...architecture];
   console.log(`[Muzea] ${allRaw.length} lieux bruts récupérés au total`);
 
   if (allRaw.length === 0) return null;

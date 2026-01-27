@@ -3,7 +3,7 @@ import { placeTypes } from '../data/places';
 import { useCulturalData } from '../hooks/useCulturalData';
 import InteractiveMap from '../components/map/InteractiveMap';
 import PlaceDetailModal from '../components/modals/PlaceDetailModal';
-import { Building2, Castle, Landmark, Calendar, MapPin, X, Filter, ChevronDown, Search, Compass, Sparkles, RefreshCw, Loader2, Wifi, Church } from 'lucide-react';
+import { Building2, Castle, Calendar, MapPin, X, Filter, ChevronDown, Search, Compass, Sparkles, RefreshCw, Loader2, Wifi, Church } from 'lucide-react';
 
 /**
  * Page d'exploration avec carte en plein écran et filtres
@@ -65,7 +65,6 @@ const ExplorePage = () => {
     'musée': Building2,
     'château': Castle,
     'église': Church,
-    'monument': Landmark,
     'exposition': Calendar
   };
 
@@ -74,7 +73,6 @@ const ExplorePage = () => {
     'musée': 'from-turquoise-500 to-turquoise-600',
     'château': 'from-gold-500 to-gold-600',
     'église': 'from-rose-500 to-rose-600',
-    'monument': 'from-terracotta-400 to-terracotta-500',
     'exposition': 'from-purple-500 to-purple-600'
   };
 
@@ -83,7 +81,6 @@ const ExplorePage = () => {
     'musée': 'bg-turquoise-500',
     'château': 'bg-gold-500',
     'église': 'bg-rose-500',
-    'monument': 'bg-terracotta-500',
     'exposition': 'bg-purple-500'
   };
 
@@ -194,7 +191,7 @@ const ExplorePage = () => {
                 </div>
                 <input
                   type="text"
-                  placeholder="Rechercher un musée, château, monument..."
+                  placeholder="Rechercher un musée, château, église..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full bg-white/10 border border-white/20 rounded-xl pl-12 pr-10 py-2.5 text-sand-100 placeholder-sand-400/70 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500/30 transition-all font-body"

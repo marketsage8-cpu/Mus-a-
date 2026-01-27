@@ -20,7 +20,6 @@ const createCustomIcon = (type) => {
     'musée': '#3b82f6',
     'château': '#d97706',
     'église': '#f43f5e',
-    'monument': '#059669',
     'exposition': '#8b5cf6'
   };
 

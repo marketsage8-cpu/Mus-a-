@@ -19,7 +19,6 @@ const FavoritesPage = () => {
     { id: 'musée', label: 'Musées', icon: Landmark, count: favoritePlaces.filter(p => p.type === 'musée').length },
     { id: 'château', label: 'Châteaux', icon: Castle, count: favoritePlaces.filter(p => p.type === 'château').length },
     { id: 'église', label: 'Églises', icon: Landmark, count: favoritePlaces.filter(p => p.type === 'église').length },
-    { id: 'monument', label: 'Monuments', icon: Landmark, count: favoritePlaces.filter(p => p.type === 'monument').length },
     { id: 'exposition', label: 'Expositions', icon: Palette, count: favoritePlaces.filter(p => p.type === 'exposition').length }
   ];
 
@@ -35,7 +34,6 @@ const FavoritesPage = () => {
       'musée': { bg: 'bg-blue-500/20', text: 'text-blue-400', border: 'border-blue-500/30' },
       'château': { bg: 'bg-amber-500/20', text: 'text-amber-400', border: 'border-amber-500/30' },
       'église': { bg: 'bg-rose-500/20', text: 'text-rose-400', border: 'border-rose-500/30' },
-      'monument': { bg: 'bg-emerald-500/20', text: 'text-emerald-400', border: 'border-emerald-500/30' },
       'exposition': { bg: 'bg-purple-500/20', text: 'text-purple-400', border: 'border-purple-500/30' }
     };
     return colors[type] || { bg: 'bg-gray-500/20', text: 'text-gray-400', border: 'border-gray-500/30' };

@@ -31,7 +31,7 @@ export const frenchMuseums = [
   { id: 'idf-22', name: "Château de Vincennes", type: "château", city: "Vincennes", region: "Île-de-France", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
   { id: 'idf-23', name: "Château de Chantilly", type: "château", city: "Chantilly", region: "Île-de-France", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" },
   { id: 'idf-24', name: "Château de Rambouillet", type: "château", city: "Rambouillet", region: "Île-de-France", image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80" },
-  { id: 'idf-25', name: "Basilique Saint-Denis", type: "monument", city: "Saint-Denis", region: "Île-de-France", image: "https://images.unsplash.com/photo-1548104189-5933a71ed0a6?w=800&q=80" },
+  { id: 'idf-25', name: "Basilique Saint-Denis", type: "église", city: "Saint-Denis", region: "Île-de-France", image: "https://images.unsplash.com/photo-1548104189-5933a71ed0a6?w=800&q=80" },
 
   // ============================================
   // PROVENCE-ALPES-CÔTE D'AZUR
@@ -44,7 +44,7 @@ export const frenchMuseums = [
   { id: 'paca-6', name: "Musée Chagall", type: "musée", city: "Nice", region: "PACA", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
   { id: 'paca-7', name: "Musée Picasso Antibes", type: "musée", city: "Antibes", region: "PACA", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
   { id: 'paca-8', name: "Villa Ephrussi", type: "musée", city: "Saint-Jean-Cap-Ferrat", region: "PACA", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" },
-  { id: 'paca-9', name: "Palais des Papes", type: "monument", city: "Avignon", region: "PACA", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
+  { id: 'paca-9', name: "Palais des Papes", type: "château", city: "Avignon", region: "PACA", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
   { id: 'paca-10', name: "Musée de la Lavande", type: "musée", city: "Coustellet", region: "PACA", image: "https://images.unsplash.com/photo-1499002238440-d264edd596ec?w=800&q=80" },
   { id: 'paca-11', name: "Château d'If", type: "château", city: "Marseille", region: "PACA", image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80" },
   { id: 'paca-12', name: "Château de Gordes", type: "château", city: "Gordes", region: "PACA", image: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80" },
@@ -62,7 +62,7 @@ export const frenchMuseums = [
   { id: 'ara-6', name: "Musée de la Résistance", type: "musée", city: "Grenoble", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80" },
   { id: 'ara-7', name: "Château de Vizille", type: "château", city: "Vizille", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" },
   { id: 'ara-8', name: "Château de Grignan", type: "château", city: "Grignan", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80" },
-  { id: 'ara-9', name: "Palais Idéal du Facteur Cheval", type: "monument", city: "Hauterives", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
+  { id: 'ara-9', name: "Palais Idéal du Facteur Cheval", type: "château", city: "Hauterives", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
   { id: 'ara-10', name: "Vulcania", type: "musée", city: "Saint-Ours-les-Roches", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80" },
   { id: 'ara-11', name: "Château de Murol", type: "château", city: "Murol", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80" },
   { id: 'ara-12', name: "Château d'Anjony", type: "château", city: "Tournemire", region: "Auvergne-Rhône-Alpes", image: "https://images.unsplash.com/photo-1594322436404-5a0526db4d13?w=800&q=80" },
@@ -94,8 +94,8 @@ export const frenchMuseums = [
   { id: 'occ-4', name: "Musée Fabre", type: "musée", city: "Montpellier", region: "Occitanie", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
   { id: 'occ-5', name: "Musée Soulages", type: "musée", city: "Rodez", region: "Occitanie", image: "https://images.unsplash.com/photo-1568313379493-7de7c6c3b6a6?w=800&q=80" },
   { id: 'occ-6', name: "Musée Toulouse-Lautrec", type: "musée", city: "Albi", region: "Occitanie", image: "https://images.unsplash.com/photo-1579783928621-7a13d66a62b1?w=800&q=80" },
-  { id: 'occ-7', name: "Cité de Carcassonne", type: "monument", city: "Carcassonne", region: "Occitanie", image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80" },
-  { id: 'occ-8', name: "Pont du Gard", type: "monument", city: "Vers-Pont-du-Gard", region: "Occitanie", image: "https://images.unsplash.com/photo-1548104189-5933a71ed0a6?w=800&q=80" },
+  { id: 'occ-7', name: "Cité de Carcassonne", type: "château", city: "Carcassonne", region: "Occitanie", image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80" },
+  { id: 'occ-8', name: "Pont du Gard", type: "château", city: "Vers-Pont-du-Gard", region: "Occitanie", image: "https://images.unsplash.com/photo-1548104189-5933a71ed0a6?w=800&q=80" },
   { id: 'occ-9', name: "Château de Quéribus", type: "château", city: "Cucugnan", region: "Occitanie", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" },
   { id: 'occ-10', name: "Château de Peyrepertuse", type: "château", city: "Duilhac-sous-Peyrepertuse", region: "Occitanie", image: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80" },
   { id: 'occ-11', name: "Château de Montségur", type: "château", city: "Montségur", region: "Occitanie", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
@@ -132,14 +132,14 @@ export const frenchMuseums = [
   { id: 'pdl-11', name: "Château de Chinon", type: "château", city: "Chinon", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1565799557186-1158b1bd9e23?w=800&q=80" },
   { id: 'pdl-12', name: "Château de Saumur", type: "château", city: "Saumur", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=800&q=80" },
   { id: 'pdl-13', name: "Château d'Angers", type: "château", city: "Angers", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1548104189-5933a71ed0a6?w=800&q=80" },
-  { id: 'pdl-14', name: "Abbaye de Fontevraud", type: "monument", city: "Fontevraud-l'Abbaye", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80" },
+  { id: 'pdl-14', name: "Abbaye de Fontevraud", type: "église", city: "Fontevraud-l'Abbaye", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80" },
   { id: 'pdl-15', name: "Les Machines de l'île", type: "musée", city: "Nantes", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=800&q=80" },
   { id: 'pdl-16', name: "Musée d'Arts de Nantes", type: "musée", city: "Nantes", region: "Pays de la Loire", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
 
   // ============================================
   // NORMANDIE
   // ============================================
-  { id: 'nor-1', name: "Mont-Saint-Michel", type: "monument", city: "Le Mont-Saint-Michel", region: "Normandie", image: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800&q=80" },
+  { id: 'nor-1', name: "Mont-Saint-Michel", type: "château", city: "Le Mont-Saint-Michel", region: "Normandie", image: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800&q=80" },
   { id: 'nor-2', name: "Mémorial de Caen", type: "musée", city: "Caen", region: "Normandie", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80" },
   { id: 'nor-3', name: "Musée des Impressionnismes", type: "musée", city: "Giverny", region: "Normandie", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
   { id: 'nor-4', name: "Maison de Claude Monet", type: "musée", city: "Giverny", region: "Normandie", image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" },
@@ -148,7 +148,7 @@ export const frenchMuseums = [
   { id: 'nor-7', name: "Musée des Beaux-Arts de Rouen", type: "musée", city: "Rouen", region: "Normandie", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
   { id: 'nor-8', name: "Château de Falaise", type: "château", city: "Falaise", region: "Normandie", image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80" },
   { id: 'nor-9', name: "Château Gaillard", type: "château", city: "Les Andelys", region: "Normandie", image: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80" },
-  { id: 'nor-10', name: "Abbaye de Jumièges", type: "monument", city: "Jumièges", region: "Normandie", image: "https://images.unsplash.com/photo-1548104189-5933a71ed0a6?w=800&q=80" },
+  { id: 'nor-10', name: "Abbaye de Jumièges", type: "église", city: "Jumièges", region: "Normandie", image: "https://images.unsplash.com/photo-1548104189-5933a71ed0a6?w=800&q=80" },
   { id: 'nor-11', name: "Château de Carrouges", type: "château", city: "Carrouges", region: "Normandie", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" },
 
   // ============================================
@@ -161,7 +161,7 @@ export const frenchMuseums = [
   { id: 'hdf-5', name: "Château de Chantilly", type: "château", city: "Chantilly", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80" },
   { id: 'hdf-6', name: "Château de Pierrefonds", type: "château", city: "Pierrefonds", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80" },
   { id: 'hdf-7', name: "Château de Compiègne", type: "château", city: "Compiègne", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" },
-  { id: 'hdf-8', name: "Cathédrale Notre-Dame d'Amiens", type: "monument", city: "Amiens", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1548104189-5933a71ed0a6?w=800&q=80" },
+  { id: 'hdf-8', name: "Cathédrale Notre-Dame d'Amiens", type: "église", city: "Amiens", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1548104189-5933a71ed0a6?w=800&q=80" },
   { id: 'hdf-9', name: "Musée de Picardie", type: "musée", city: "Amiens", region: "Hauts-de-France", image: "https://images.unsplash.com/photo-1579783928621-7a13d66a62b1?w=800&q=80" },
 
   // ============================================
@@ -170,9 +170,9 @@ export const frenchMuseums = [
   { id: 'ge-1', name: "Centre Pompidou-Metz", type: "musée", city: "Metz", region: "Grand Est", image: "https://images.unsplash.com/photo-1574246915327-5cf5cf6c6c0c?w=800&q=80" },
   { id: 'ge-2', name: "Musée Unterlinden", type: "musée", city: "Colmar", region: "Grand Est", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
   { id: 'ge-3', name: "Musée d'Art Moderne de Strasbourg", type: "musée", city: "Strasbourg", region: "Grand Est", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
-  { id: 'ge-4', name: "Cathédrale Notre-Dame de Strasbourg", type: "monument", city: "Strasbourg", region: "Grand Est", image: "https://images.unsplash.com/photo-1548104189-5933a71ed0a6?w=800&q=80" },
+  { id: 'ge-4', name: "Cathédrale Notre-Dame de Strasbourg", type: "église", city: "Strasbourg", region: "Grand Est", image: "https://images.unsplash.com/photo-1548104189-5933a71ed0a6?w=800&q=80" },
   { id: 'ge-5', name: "Palais Rohan Strasbourg", type: "musée", city: "Strasbourg", region: "Grand Est", image: "https://images.unsplash.com/photo-1579783928621-7a13d66a62b1?w=800&q=80" },
-  { id: 'ge-6', name: "Cathédrale de Reims", type: "monument", city: "Reims", region: "Grand Est", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
+  { id: 'ge-6', name: "Cathédrale de Reims", type: "église", city: "Reims", region: "Grand Est", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
   { id: 'ge-7', name: "Palais du Tau", type: "musée", city: "Reims", region: "Grand Est", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80" },
   { id: 'ge-8', name: "Château du Haut-Koenigsbourg", type: "château", city: "Orschwiller", region: "Grand Est", image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80" },
   { id: 'ge-9', name: "Château de Fleckenstein", type: "château", city: "Lembach", region: "Grand Est", image: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80" },
@@ -181,23 +181,23 @@ export const frenchMuseums = [
   // ============================================
   // BOURGOGNE-FRANCHE-COMTÉ
   // ============================================
-  { id: 'bfc-1', name: "Hospices de Beaune", type: "monument", city: "Beaune", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80" },
+  { id: 'bfc-1', name: "Hospices de Beaune", type: "château", city: "Beaune", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80" },
   { id: 'bfc-2', name: "Musée des Beaux-Arts de Dijon", type: "musée", city: "Dijon", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
   { id: 'bfc-3', name: "Musée Rolin", type: "musée", city: "Autun", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
-  { id: 'bfc-4', name: "Abbaye de Cluny", type: "monument", city: "Cluny", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1548104189-5933a71ed0a6?w=800&q=80" },
-  { id: 'bfc-5', name: "Abbaye de Fontenay", type: "monument", city: "Marmagne", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80" },
-  { id: 'bfc-6', name: "Basilique de Vézelay", type: "monument", city: "Vézelay", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
+  { id: 'bfc-4', name: "Abbaye de Cluny", type: "église", city: "Cluny", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1548104189-5933a71ed0a6?w=800&q=80" },
+  { id: 'bfc-5', name: "Abbaye de Fontenay", type: "église", city: "Marmagne", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80" },
+  { id: 'bfc-6', name: "Basilique de Vézelay", type: "église", city: "Vézelay", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
   { id: 'bfc-7', name: "Château de Guédelon", type: "château", city: "Treigny", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80" },
-  { id: 'bfc-8', name: "Saline Royale Arc-et-Senans", type: "monument", city: "Arc-et-Senans", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" },
-  { id: 'bfc-9', name: "Citadelle de Besançon", type: "monument", city: "Besançon", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80" },
+  { id: 'bfc-8', name: "Saline Royale Arc-et-Senans", type: "château", city: "Arc-et-Senans", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" },
+  { id: 'bfc-9', name: "Citadelle de Besançon", type: "château", city: "Besançon", region: "Bourgogne-Franche-Comté", image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80" },
 
   // ============================================
   // CORSE
   // ============================================
   { id: 'cor-1', name: "Musée Fesch", type: "musée", city: "Ajaccio", region: "Corse", image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80" },
   { id: 'cor-2', name: "Maison Bonaparte", type: "musée", city: "Ajaccio", region: "Corse", image: "https://images.unsplash.com/photo-1579783928621-7a13d66a62b1?w=800&q=80" },
-  { id: 'cor-3', name: "Citadelle de Bonifacio", type: "monument", city: "Bonifacio", region: "Corse", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
-  { id: 'cor-4', name: "Citadelle de Calvi", type: "monument", city: "Calvi", region: "Corse", image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80" },
+  { id: 'cor-3', name: "Citadelle de Bonifacio", type: "château", city: "Bonifacio", region: "Corse", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
+  { id: 'cor-4', name: "Citadelle de Calvi", type: "château", city: "Calvi", region: "Corse", image: "https://images.unsplash.com/photo-1551410224-699683e15636?w=800&q=80" },
   { id: 'cor-5', name: "Musée de la Corse", type: "musée", city: "Corte", region: "Corse", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80" },
 
   // ============================================
@@ -205,9 +205,9 @@ export const frenchMuseums = [
   // ============================================
   { id: 'cvl-1', name: "Château de Valençay", type: "château", city: "Valençay", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80" },
   { id: 'cvl-2', name: "Maison de George Sand", type: "musée", city: "Nohant-Vic", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1579783928621-7a13d66a62b1?w=800&q=80" },
-  { id: 'cvl-3', name: "Cathédrale de Chartres", type: "monument", city: "Chartres", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1548104189-5933a71ed0a6?w=800&q=80" },
-  { id: 'cvl-4', name: "Cathédrale de Bourges", type: "monument", city: "Bourges", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
-  { id: 'cvl-5', name: "Palais Jacques-Coeur", type: "monument", city: "Bourges", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" },
+  { id: 'cvl-3', name: "Cathédrale de Chartres", type: "église", city: "Chartres", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1548104189-5933a71ed0a6?w=800&q=80" },
+  { id: 'cvl-4', name: "Cathédrale de Bourges", type: "église", city: "Bourges", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" },
+  { id: 'cvl-5', name: "Palais Jacques-Coeur", type: "château", city: "Bourges", region: "Centre-Val de Loire", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" },
 
   // ============================================
   // MUSÉES SUPPLÉMENTAIRES - ÎLE-DE-FRANCE
@@ -592,6 +592,6 @@ export const frenchRegions = [
 ];
 
 // Types de lieux
-export const placeTypes = ["musée", "château", "monument"];
+export const placeTypes = ["musée", "château", "église", "exposition"];
 
 export default frenchMuseums;

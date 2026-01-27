@@ -58,6 +58,9 @@ const SearchPage = () => {
     { id: 'all', label: 'Tous', icon: Search },
     { id: 'musée', label: 'Musées', icon: Landmark },
     { id: 'château', label: 'Châteaux', icon: Castle },
+    { id: 'église', label: 'Églises', icon: Landmark },
+    { id: 'monument', label: 'Monuments', icon: Landmark },
+    { id: 'exposition', label: 'Expositions', icon: Landmark },
   ];
 
   return (

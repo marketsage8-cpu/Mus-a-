@@ -5,10 +5,10 @@ import { places as staticPlaces, placeTypes } from '../data/places';
 /**
  * Hook pour charger TOUTES les données culturelles.
  *
- * - Au montage : affiche les données statiques (places.js)
- * - En arrière-plan : charge TOUTES les données depuis les APIs
- * - Quand c'est prêt : remplace les données statiques par les données complètes
- * - Cache en IndexedDB pour les visites suivantes (chargement instantané)
+ * - Au montage : affiche les données statiques (places.js) — 11 000+ lieux
+ * - En arrière-plan : charge des données SUPPLÉMENTAIRES depuis les APIs
+ * - Quand c'est prêt : FUSIONNE les données API avec les statiques (dédoublonnage)
+ * - Les données statiques ne sont JAMAIS supprimées
  */
 export function useCulturalData() {
   const [places, setPlaces] = useState(staticPlaces);
@@ -22,14 +22,29 @@ export function useCulturalData() {
     setError(null);
 
     try {
-      const allPlaces = await loadAllCulturalPlaces((info) => {
+      const apiPlaces = await loadAllCulturalPlaces((info) => {
         setProgress(info);
       });
 
-      if (allPlaces && allPlaces.length > 0) {
-        setPlaces(allPlaces);
+      if (apiPlaces && apiPlaces.length > 0) {
+        // Fusionner : garder TOUTES les données statiques + ajouter les nouvelles de l'API
+        const staticNames = new Set(staticPlaces.map(p =>
+          p.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        ));
+
+        const newFromApi = apiPlaces.filter(p => {
+          const key = p.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+          return !staticNames.has(key);
+        });
+
+        // Assigner des IDs uniques aux nouveaux lieux
+        const maxId = staticPlaces.reduce((max, p) => Math.max(max, p.id), 0);
+        const numbered = newFromApi.map((p, i) => ({ ...p, id: maxId + i + 1 }));
+
+        const merged = [...staticPlaces, ...numbered];
+        setPlaces(merged);
         setIsLiveData(true);
-        console.log(`[Muzea] Carte mise à jour : ${allPlaces.length} lieux (au lieu de ${staticPlaces.length})`);
+        console.log(`[Muzea] Fusion : ${staticPlaces.length} statiques + ${numbered.length} nouveaux de l'API = ${merged.length} total`);
       }
     } catch (err) {
       console.warn('[Muzea] Erreur chargement API, données statiques conservées:', err);

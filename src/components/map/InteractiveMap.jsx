@@ -19,6 +19,7 @@ const createCustomIcon = (type) => {
   const colors = {
     'musée': '#3b82f6',
     'château': '#d97706',
+    'église': '#f43f5e',
     'monument': '#059669',
     'exposition': '#8b5cf6'
   };
@@ -207,15 +208,17 @@ const LocationControl = ({ onLocationFound, onLocationError }) => {
 };
 
 /**
- * Composant pour centrer la carte sur les marqueurs
+ * Composant pour centrer la carte sur les marqueurs (une seule fois)
  */
 const FitBounds = ({ places }) => {
   const map = useMap();
+  const hasFitted = useRef(false);
 
   useEffect(() => {
-    if (places.length > 0) {
+    if (places.length > 0 && !hasFitted.current) {
+      hasFitted.current = true;
       const bounds = L.latLngBounds(
-        places.map(p => [p.coordinates.lat, p.coordinates.lng])
+        places.slice(0, 500).map(p => [p.coordinates.lat, p.coordinates.lng])
       );
       map.fitBounds(bounds, { padding: [50, 50] });
     }
@@ -271,7 +274,7 @@ const InteractiveMap = ({
         center={center}
         zoom={zoom}
         style={{ height: '100%', width: '100%' }}
-        className="z-0"
+        className="z-0 [&_.leaflet-marker-icon]:!bg-transparent [&_.leaflet-marker-icon]:!border-0"
       >
         {/* Tuiles style sombre */}
         <TileLayer
@@ -328,6 +331,7 @@ const InteractiveMap = ({
 
         {/* Marqueurs avec clustering pour performance */}
         <MarkerClusterGroup
+          key={places.length}
           chunkedLoading
           maxClusterRadius={60}
           spiderfyOnMaxZoom

@@ -167,9 +167,10 @@ async function fetchMonuments(onProgress) {
     const dept = r.dpt || r.departement || '';
     const region = r.reg || r.region || getRegion(dept);
     const isChateau = /ch[âa]teau/i.test(name);
+    const isEglise = /[ée]glise|cath[ée]drale|basilique|abbaye|chapelle|prieur[ée]|coll[ée]giale|clo[iî]tre/i.test(name);
     const siecle = r.scle || '';
     return {
-      name: name.trim(), type: isChateau ? 'château' : 'monument',
+      name: name.trim(), type: isChateau ? 'château' : isEglise ? 'église' : 'monument',
       description: `Monument historique${siecle ? ` (${siecle})` : ''} situé à ${city}.`,
       location: `${city}, ${region}`.replace(/^, |, $/g, ''),
       coordinates: { lat: +lat, lng: +lng },
@@ -343,6 +344,8 @@ LIMIT 10000
       type = 'musée';
     } else if (/ch[âa]teau|castle|fort/i.test(typeLabel)) {
       type = 'château';
+    } else if (/[ée]glise|church|cath[ée]drale|basilique|abbaye|chapelle|prieur[ée]/i.test(typeLabel)) {
+      type = 'église';
     } else if (/exposition|festival|galerie/i.test(typeLabel)) {
       type = 'exposition';
     }

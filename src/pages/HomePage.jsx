@@ -39,7 +39,7 @@ const HomePage = () => {
   const [userLocation, setUserLocation] = useState(null);
   const [nearbyPlaces, setNearbyPlaces] = useState([]);
   const [selectedBentoCard, setSelectedBentoCard] = useState(null);
-  const [activeCategory, setActiveCategory] = useState('musée'); // 'musée', 'château', 'exposition'
+  const [activeCategory, setActiveCategory] = useState('musée');
   const [searchResults, setSearchResults] = useState([]);
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState(null);
@@ -49,6 +49,8 @@ const HomePage = () => {
   const categories = [
     { id: 'musée', label: 'Musées', icon: Landmark },
     { id: 'château', label: 'Châteaux', icon: Castle },
+    { id: 'église', label: 'Églises', icon: Landmark },
+    { id: 'monument', label: 'Monuments', icon: Landmark },
     { id: 'exposition', label: 'Expositions', icon: Palette }
   ];
 
@@ -401,6 +403,7 @@ const HomePage = () => {
                             px-2 py-0.5 text-xs rounded-full capitalize flex-shrink-0
                             ${place.type === 'musée' ? 'bg-turquoise-100 text-turquoise-700' :
                               place.type === 'château' ? 'bg-amber-100 text-amber-700' :
+                              place.type === 'église' ? 'bg-rose-100 text-rose-700' :
                               place.type === 'monument' ? 'bg-terracotta-100 text-terracotta-700' :
                               'bg-purple-100 text-purple-700'}
                           `}>

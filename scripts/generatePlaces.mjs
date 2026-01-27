@@ -726,15 +726,29 @@ const chateauSiecles = [
   "XIIe-XVe siècle","XIIIe-XVIe siècle","XVe-XVIIe siècle","XVIe-XVIIIe siècle",
 ];
 
-const monumentNames = [
+// Noms d'églises (type "église")
+const egliseNames = [
   "Cathédrale de","Basilique de","Abbaye de","Église Saint-Pierre de",
   "Église Notre-Dame de","Prieuré de","Collégiale de","Chapelle de",
+  "Église Saint-Michel de","Église Saint-Jean de","Église Sainte-Marie de",
+  "Église Saint-Paul de","Abbatiale de","Chapelle Notre-Dame de",
+  "Église Saint-Martin de","Église Saint-Nicolas de",
+];
+const egliseSiecles = [
+  "Époque romane","Époque gothique","Renaissance","XIe siècle","XIIe siècle",
+  "XIIIe siècle","XIVe siècle","XVe siècle","XVIe siècle","XVIIe siècle",
+  "XVIIIe siècle","Art roman","Art gothique","Gothique flamboyant",
+];
+
+// Noms de monuments (type "monument") — sans les églises
+const monumentNames = [
   "Tour de l'Horloge de","Remparts de","Porte fortifiée de",
   "Hôtel de Ville de","Pont médiéval de","Arc de triomphe de",
   "Thermes romains de","Amphithéâtre de","Temple de","Phare de",
   "Palais de Justice de","Halle médiévale de","Fontaine monumentale de",
   "Cloître de","Commanderie de","Lavoir monumental de","Beffroi de",
   "Maison à colombages de","Ancien hôpital de","Ancien couvent de",
+  "Obélisque de","Viaduc de","Aqueduc de","Porte de ville de",
 ];
 const monumentSiecles = [
   "Antiquité","XIe siècle","XIIe siècle","XIIIe siècle","XIVe siècle",
@@ -829,8 +843,34 @@ function generatePlaces() {
       });
     }
 
-    // --- MONUMENTS (4-7 par ville) ---
-    const nbMonuments = 4 + Math.floor(rand() * 4);
+    // --- ÉGLISES (2-4 par ville) ---
+    const nbEglises = 2 + Math.floor(rand() * 3);
+    const usedEgliseNames = new Set();
+    for (let i = 0; i < nbEglises; i++) {
+      let prefix;
+      do { prefix = pick(egliseNames); } while (usedEgliseNames.has(prefix) && usedEgliseNames.size < egliseNames.length);
+      usedEgliseNames.add(prefix);
+      const siecle = pick(egliseSiecles);
+      allPlaces.push({
+        id: id++,
+        name: `${prefix} ${city.c}`,
+        type: 'église',
+        image: '',
+        description: `Édifice religieux (${siecle}) situé à ${city.c}.`,
+        location: `${city.c}, ${city.r}`,
+        rating: +(4.0 + rand() * 0.9).toFixed(1),
+        price: 'Gratuit',
+        hours: '8h - 19h (se renseigner)',
+        period: siecle,
+        coordinates: { lat: +(city.lat + jitter()).toFixed(5), lng: +(city.lng + jitter()).toFixed(5) },
+        highlights: [siecle],
+        visited: false,
+        favorite: false,
+      });
+    }
+
+    // --- MONUMENTS (3-5 par ville) ---
+    const nbMonuments = 3 + Math.floor(rand() * 3);
     const usedMonumentNames = new Set();
     for (let i = 0; i < nbMonuments; i++) {
       let prefix;
@@ -906,6 +946,7 @@ const lines = [
   "  { id: 'all', label: 'Tous', color: 'bg-night-600' },",
   "  { id: 'musée', label: 'Musées', color: 'bg-turquoise-500' },",
   "  { id: 'château', label: 'Châteaux', color: 'bg-gold-600' },",
+  "  { id: 'église', label: 'Églises', color: 'bg-rose-500' },",
   "  { id: 'monument', label: 'Monuments', color: 'bg-terracotta-500' },",
   "  { id: 'exposition', label: 'Expositions', color: 'bg-purple-500' }",
   '];',
@@ -914,6 +955,7 @@ const lines = [
   '  const colors = {',
   "    'musée': 'bg-turquoise-500',",
   "    'château': 'bg-gold-600',",
+  "    'église': 'bg-rose-500',",
   "    'monument': 'bg-terracotta-500',",
   "    'exposition': 'bg-purple-500',",
   '  };',

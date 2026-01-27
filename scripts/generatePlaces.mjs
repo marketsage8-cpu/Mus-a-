@@ -498,6 +498,183 @@ const cities = [
   {c:"Bruniquel",r:"Occitanie",lat:44.0567,lng:1.6650},
   {c:"Puycelsi",r:"Occitanie",lat:43.9944,lng:1.7133},
   {c:"Lautrec",r:"Occitanie",lat:43.7075,lng:2.1406},
+  // ── Villes supplémentaires batch 2 — couverture massive ──
+  // Île-de-France batch 2
+  {c:"Champs-sur-Marne",r:"Île-de-France",lat:48.8533,lng:2.6003},
+  {c:"Sèvres",r:"Île-de-France",lat:48.8233,lng:2.2111},
+  {c:"Clichy",r:"Île-de-France",lat:48.9044,lng:2.3064},
+  {c:"Boulogne-Billancourt",r:"Île-de-France",lat:48.8396,lng:2.2399},
+  {c:"Issy-les-Moulineaux",r:"Île-de-France",lat:48.8239,lng:2.2700},
+  {c:"Montreuil",r:"Île-de-France",lat:48.8625,lng:2.4433},
+  {c:"Rueil-Malmaison",r:"Île-de-France",lat:48.8769,lng:2.1894},
+  {c:"Nanterre",r:"Île-de-France",lat:48.8922,lng:2.2069},
+  {c:"Créteil",r:"Île-de-France",lat:48.7908,lng:2.4556},
+  {c:"Corbeil-Essonnes",r:"Île-de-France",lat:48.6142,lng:2.4822},
+  {c:"Yerres",r:"Île-de-France",lat:48.7167,lng:2.4897},
+  {c:"Marly-le-Roi",r:"Île-de-France",lat:48.8672,lng:2.0936},
+  {c:"Jouarre",r:"Île-de-France",lat:48.9267,lng:3.1303},
+  {c:"Senlis",r:"Île-de-France",lat:49.2069,lng:2.5856},
+  // PACA batch 2
+  {c:"Vence",r:"Provence-Alpes-Côte d'Azur",lat:43.7228,lng:7.1117},
+  {c:"Roquebrune-Cap-Martin",r:"Provence-Alpes-Côte d'Azur",lat:43.7564,lng:7.4669},
+  {c:"Villefranche-sur-Mer",r:"Provence-Alpes-Côte d'Azur",lat:43.7067,lng:7.3114},
+  {c:"Beaulieu-sur-Mer",r:"Provence-Alpes-Côte d'Azur",lat:43.7078,lng:7.3325},
+  {c:"Bormes-les-Mimosas",r:"Provence-Alpes-Côte d'Azur",lat:43.1517,lng:6.3422},
+  {c:"Ramatuelle",r:"Provence-Alpes-Côte d'Azur",lat:43.2186,lng:6.6078},
+  {c:"Grimaud",r:"Provence-Alpes-Côte d'Azur",lat:43.2741,lng:6.5206},
+  {c:"Seillans",r:"Provence-Alpes-Côte d'Azur",lat:43.6300,lng:6.6333},
+  {c:"Tourrettes-sur-Loup",r:"Provence-Alpes-Côte d'Azur",lat:43.7150,lng:7.0603},
+  {c:"Peillon",r:"Provence-Alpes-Côte d'Azur",lat:43.7753,lng:7.3847},
+  {c:"Gourdon",r:"Provence-Alpes-Côte d'Azur",lat:43.7189,lng:6.9844},
+  {c:"Bargème",r:"Provence-Alpes-Côte d'Azur",lat:43.7261,lng:6.5761},
+  {c:"Entrevaux",r:"Provence-Alpes-Côte d'Azur",lat:43.9500,lng:6.8167},
+  {c:"Colmars",r:"Provence-Alpes-Côte d'Azur",lat:44.1828,lng:6.6272},
+  // Occitanie batch 2
+  {c:"Penne",r:"Occitanie",lat:44.0711,lng:1.7350},
+  {c:"Saint-Antonin-Noble-Val",r:"Occitanie",lat:44.1533,lng:1.7539},
+  {c:"Lauzerte",r:"Occitanie",lat:44.2553,lng:1.0828},
+  {c:"Auvillar",r:"Occitanie",lat:44.0686,lng:0.9003},
+  {c:"Sorèze",r:"Occitanie",lat:43.4531,lng:2.0719},
+  {c:"Saint-Bertrand-de-Comminges",r:"Occitanie",lat:43.0253,lng:0.5717},
+  {c:"Arreau",r:"Occitanie",lat:42.9050,lng:0.3614},
+  {c:"Mirande",r:"Occitanie",lat:43.5172,lng:0.4022},
+  {c:"Condom",r:"Occitanie",lat:43.9586,lng:0.3736},
+  {c:"Fleurance",r:"Occitanie",lat:43.8489,lng:0.6606},
+  {c:"Villemur-sur-Tarn",r:"Occitanie",lat:43.8667,lng:1.5028},
+  {c:"Revel",r:"Occitanie",lat:43.4578,lng:2.0039},
+  {c:"Gaillac",r:"Occitanie",lat:43.9017,lng:1.8950},
+  {c:"Rabastens",r:"Occitanie",lat:43.8233,lng:1.7267},
+  {c:"Lavaur",r:"Occitanie",lat:43.6989,lng:1.8178},
+  {c:"Mazamet",r:"Occitanie",lat:43.4897,lng:2.3761},
+  // Nouvelle-Aquitaine batch 2
+  {c:"Aubeterre-sur-Dronne",r:"Nouvelle-Aquitaine",lat:45.2714,lng:0.1686},
+  {c:"Saint-Savin",r:"Nouvelle-Aquitaine",lat:46.5672,lng:0.8653},
+  {c:"Angles-sur-l'Anglin",r:"Nouvelle-Aquitaine",lat:46.6933,lng:0.8897},
+  {c:"La Rochefoucauld",r:"Nouvelle-Aquitaine",lat:45.7389,lng:0.3847},
+  {c:"Verteuil-sur-Charente",r:"Nouvelle-Aquitaine",lat:45.9767,lng:0.2286},
+  {c:"Confolens",r:"Nouvelle-Aquitaine",lat:46.0128,lng:0.6697},
+  {c:"Nontron",r:"Nouvelle-Aquitaine",lat:45.5353,lng:0.8617},
+  {c:"Ribérac",r:"Nouvelle-Aquitaine",lat:45.2486,lng:0.3389},
+  {c:"Excideuil",r:"Nouvelle-Aquitaine",lat:45.3358,lng:1.0503},
+  {c:"Hautefort",r:"Nouvelle-Aquitaine",lat:45.2586,lng:1.1503},
+  {c:"Jumilhac-le-Grand",r:"Nouvelle-Aquitaine",lat:45.4939,lng:1.0589},
+  {c:"Mareuil",r:"Nouvelle-Aquitaine",lat:45.4508,lng:0.4511},
+  {c:"Bourdeilles",r:"Nouvelle-Aquitaine",lat:45.3219,lng:0.5875},
+  {c:"Cadillac",r:"Nouvelle-Aquitaine",lat:44.6367,lng:-0.3189},
+  {c:"Bazas",r:"Nouvelle-Aquitaine",lat:44.4308,lng:-0.2139},
+  {c:"La Réole",r:"Nouvelle-Aquitaine",lat:44.5808,lng:-0.0411},
+  // Grand Est batch 2
+  {c:"Neuf-Brisach",r:"Grand Est",lat:48.0178,lng:7.5283},
+  {c:"Ensisheim",r:"Grand Est",lat:47.8644,lng:7.3506},
+  {c:"Altkirch",r:"Grand Est",lat:47.6236,lng:7.2389},
+  {c:"Rouffach",r:"Grand Est",lat:47.9567,lng:7.3000},
+  {c:"Molsheim",r:"Grand Est",lat:48.5444,lng:7.4917},
+  {c:"Rosheim",r:"Grand Est",lat:48.4969,lng:7.4700},
+  {c:"Bouxwiller",r:"Grand Est",lat:48.8244,lng:7.4819},
+  {c:"La Petite-Pierre",r:"Grand Est",lat:48.8567,lng:7.3200},
+  {c:"Lichtenberg",r:"Grand Est",lat:48.9217,lng:7.4847},
+  {c:"Fleckenstein",r:"Grand Est",lat:49.0364,lng:7.7778},
+  {c:"Sarreguemines",r:"Grand Est",lat:49.1103,lng:7.0686},
+  {c:"Sarrebourg",r:"Grand Est",lat:48.7347,lng:7.0547},
+  {c:"Phalsbourg",r:"Grand Est",lat:48.7667,lng:7.2611},
+  {c:"Commercy",r:"Grand Est",lat:48.7614,lng:5.5917},
+  {c:"Vaucouleurs",r:"Grand Est",lat:48.6019,lng:5.6628},
+  {c:"Domrémy-la-Pucelle",r:"Grand Est",lat:48.4414,lng:5.6753},
+  // Hauts-de-France batch 2
+  {c:"Laon",r:"Hauts-de-France",lat:49.5633,lng:3.6247},
+  {c:"Guise",r:"Hauts-de-France",lat:49.9003,lng:3.6278},
+  {c:"Vervins",r:"Hauts-de-France",lat:49.8339,lng:3.9067},
+  {c:"Villers-Cotterêts",r:"Hauts-de-France",lat:49.2531,lng:3.0886},
+  {c:"Blérancourt",r:"Hauts-de-France",lat:49.5200,lng:3.1561},
+  {c:"Ham",r:"Hauts-de-France",lat:49.7478,lng:3.0722},
+  {c:"Folleville",r:"Hauts-de-France",lat:49.6897,lng:2.4467},
+  {c:"Crépy-en-Valois",r:"Hauts-de-France",lat:49.2350,lng:2.8886},
+  {c:"Ermenonville",r:"Hauts-de-France",lat:49.1275,lng:2.6922},
+  {c:"Chauny",r:"Hauts-de-France",lat:49.6158,lng:3.2186},
+  {c:"Le Cateau-Cambrésis",r:"Hauts-de-France",lat:50.1058,lng:3.5433},
+  {c:"Bavay",r:"Hauts-de-France",lat:50.2978,lng:3.7978},
+  {c:"Condé-sur-l'Escaut",r:"Hauts-de-France",lat:50.4558,lng:3.5889},
+  // Bretagne batch 2
+  {c:"Tréguier",r:"Bretagne",lat:48.7878,lng:-3.2306},
+  {c:"Ploërmel",r:"Bretagne",lat:47.9314,lng:-2.3972},
+  {c:"La Gacilly",r:"Bretagne",lat:47.7633,lng:-2.1356},
+  {c:"Malestroit",r:"Bretagne",lat:47.8100,lng:-2.3828},
+  {c:"Châteaulin",r:"Bretagne",lat:48.1975,lng:-4.0886},
+  {c:"Le Faou",r:"Bretagne",lat:48.2942,lng:-4.1803},
+  {c:"Huelgoat",r:"Bretagne",lat:48.3614,lng:-3.7444},
+  {c:"Carhaix-Plouguer",r:"Bretagne",lat:48.2756,lng:-3.5731},
+  {c:"Rostrenen",r:"Bretagne",lat:48.2350,lng:-3.3147},
+  {c:"Loudéac",r:"Bretagne",lat:48.1781,lng:-2.7542},
+  {c:"Lamballe",r:"Bretagne",lat:48.4689,lng:-2.5194},
+  {c:"Ploumanac'h",r:"Bretagne",lat:48.8347,lng:-3.4867},
+  // Normandie batch 2
+  {c:"Conches-en-Ouche",r:"Normandie",lat:48.9567,lng:1.0000},
+  {c:"Bernay",r:"Normandie",lat:49.0886,lng:0.5969},
+  {c:"Brionne",r:"Normandie",lat:49.1969,lng:0.7189},
+  {c:"Beaumesnil",r:"Normandie",lat:49.0750,lng:0.6400},
+  {c:"Orbec",r:"Normandie",lat:49.0228,lng:0.4050},
+  {c:"Vimoutiers",r:"Normandie",lat:48.9289,lng:0.1969},
+  {c:"Carrouges",r:"Normandie",lat:48.5622,lng:-0.1506},
+  {c:"Sées",r:"Normandie",lat:48.6053,lng:0.1725},
+  {c:"Saint-Lô",r:"Normandie",lat:49.1167,lng:-1.0833},
+  {c:"Villedieu-les-Poêles",r:"Normandie",lat:48.8414,lng:-1.2200},
+  {c:"Mortain",r:"Normandie",lat:48.6503,lng:-0.9408},
+  {c:"Hambye",r:"Normandie",lat:48.9450,lng:-1.2567},
+  // Pays de la Loire batch 2
+  {c:"Baugé",r:"Pays de la Loire",lat:47.5428,lng:-0.1017},
+  {c:"Doué-en-Anjou",r:"Pays de la Loire",lat:47.1956,lng:-0.2747},
+  {c:"Montreuil-Bellay",r:"Pays de la Loire",lat:47.1322,lng:-0.1536},
+  {c:"Brissac",r:"Pays de la Loire",lat:47.3522,lng:-0.4492},
+  {c:"Beaufort-en-Anjou",r:"Pays de la Loire",lat:47.4378,lng:-0.2178},
+  {c:"Le Lude",r:"Pays de la Loire",lat:47.6472,lng:0.1553},
+  {c:"Sablé-sur-Sarthe",r:"Pays de la Loire",lat:47.8403,lng:-0.3336},
+  {c:"Craon",r:"Pays de la Loire",lat:47.8467,lng:-0.9500},
+  {c:"Durtal",r:"Pays de la Loire",lat:47.6703,lng:-0.2350},
+  {c:"Pouzauges",r:"Pays de la Loire",lat:46.7789,lng:-0.8356},
+  // Centre-Val de Loire batch 2
+  {c:"Romorantin-Lanthenay",r:"Centre-Val de Loire",lat:47.3567,lng:1.7478},
+  {c:"Chaumont-sur-Loire",r:"Centre-Val de Loire",lat:47.4800,lng:1.1833},
+  {c:"Ussé",r:"Centre-Val de Loire",lat:47.2497,lng:0.2903},
+  {c:"Le Rivau",r:"Centre-Val de Loire",lat:47.1481,lng:0.3186},
+  {c:"Saché",r:"Centre-Val de Loire",lat:47.2467,lng:0.5397},
+  {c:"Le Grand-Pressigny",r:"Centre-Val de Loire",lat:46.9228,lng:0.8039},
+  {c:"Châtillon-sur-Indre",r:"Centre-Val de Loire",lat:46.9864,lng:1.1728},
+  {c:"Levroux",r:"Centre-Val de Loire",lat:46.9778,lng:1.6128},
+  {c:"Vierzon",r:"Centre-Val de Loire",lat:47.2222,lng:2.0694},
+  {c:"Sancerre",r:"Centre-Val de Loire",lat:47.3311,lng:2.8397},
+  {c:"La Charité-sur-Loire",r:"Centre-Val de Loire",lat:47.1778,lng:3.0167},
+  {c:"Aigurande",r:"Centre-Val de Loire",lat:46.4328,lng:1.8283},
+  // Bourgogne-Franche-Comté batch 2
+  {c:"Ancy-le-Franc",r:"Bourgogne-Franche-Comté",lat:47.7750,lng:4.1667},
+  {c:"Tanlay",r:"Bourgogne-Franche-Comté",lat:47.8500,lng:4.0833},
+  {c:"Époisses",r:"Bourgogne-Franche-Comté",lat:47.5050,lng:4.1703},
+  {c:"Bussy-Rabutin",r:"Bourgogne-Franche-Comté",lat:47.5667,lng:4.3000},
+  {c:"Saulieu",r:"Bourgogne-Franche-Comté",lat:47.2817,lng:4.2317},
+  {c:"Pierre-de-Bresse",r:"Bourgogne-Franche-Comté",lat:46.8822,lng:5.2622},
+  {c:"Louhans",r:"Bourgogne-Franche-Comté",lat:46.6264,lng:5.2267},
+  {c:"Cuiseaux",r:"Bourgogne-Franche-Comté",lat:46.4944,lng:5.3944},
+  {c:"Saint-Fargeau",r:"Bourgogne-Franche-Comté",lat:47.6400,lng:3.0722},
+  {c:"Guédelon",r:"Bourgogne-Franche-Comté",lat:47.5833,lng:3.1500},
+  {c:"Druyes-les-Belles-Fontaines",r:"Bourgogne-Franche-Comté",lat:47.5600,lng:3.4178},
+  {c:"Clamecy",r:"Bourgogne-Franche-Comté",lat:47.4606,lng:3.5200},
+  {c:"Château-Chinon",r:"Bourgogne-Franche-Comté",lat:47.0653,lng:3.9361},
+  {c:"Auxonne",r:"Bourgogne-Franche-Comté",lat:47.1933,lng:5.3867},
+  // Auvergne-Rhône-Alpes batch 2
+  {c:"Crémieu",r:"Auvergne-Rhône-Alpes",lat:45.7267,lng:5.2506},
+  {c:"Morestel",r:"Auvergne-Rhône-Alpes",lat:45.6747,lng:5.4672},
+  {c:"Pont-en-Royans",r:"Auvergne-Rhône-Alpes",lat:45.0617,lng:5.3422},
+  {c:"Die",r:"Auvergne-Rhône-Alpes",lat:44.7528,lng:5.3714},
+  {c:"Crest",r:"Auvergne-Rhône-Alpes",lat:44.7289,lng:5.0222},
+  {c:"Grignan",r:"Auvergne-Rhône-Alpes",lat:44.4194,lng:4.9083},
+  {c:"Suze-la-Rousse",r:"Auvergne-Rhône-Alpes",lat:44.2878,lng:4.8397},
+  {c:"Alba-la-Romaine",r:"Auvergne-Rhône-Alpes",lat:44.5564,lng:4.5986},
+  {c:"Vogüé",r:"Auvergne-Rhône-Alpes",lat:44.5514,lng:4.4089},
+  {c:"Balazuc",r:"Auvergne-Rhône-Alpes",lat:44.5100,lng:4.3700},
+  {c:"Arlempdes",r:"Auvergne-Rhône-Alpes",lat:44.8667,lng:3.9167},
+  {c:"Polignac",r:"Auvergne-Rhône-Alpes",lat:45.0700,lng:3.8600},
+  {c:"Sail-les-Bains",r:"Auvergne-Rhône-Alpes",lat:46.0311,lng:3.8417},
+  {c:"Charlieu",r:"Auvergne-Rhône-Alpes",lat:46.1600,lng:4.1722},
+  {c:"Châtillon-en-Bazois",r:"Auvergne-Rhône-Alpes",lat:47.0569,lng:3.6556},
   // Villages côtiers
   {c:"Le Croisic",r:"Pays de la Loire",lat:47.2925,lng:-2.5081},
   {c:"Piriac-sur-Mer",r:"Pays de la Loire",lat:47.3789,lng:-2.5464},
@@ -539,7 +716,9 @@ const museumThemes = [
 const chateauNames = [
   "Château de","Château fort de","Château royal de","Château des Comtes de",
   "Château des Ducs de","Manoir de","Forteresse de","Citadelle de",
-  "Palais de","Donjon de",
+  "Palais de","Donjon de","Château Renaissance de","Château médiéval de",
+  "Château des Seigneurs de","Maison forte de","Tour-château de",
+  "Château des Évêques de","Bastide de","Château des Marquis de",
 ];
 const chateauSiecles = [
   "XIe siècle","XIIe siècle","XIIIe siècle","XIVe siècle","XVe siècle",
@@ -597,8 +776,8 @@ function generatePlaces() {
   let id = 1;
 
   for (const city of cities) {
-    // --- MUSÉES (2-4 par ville) ---
-    const nbMuseums = 2 + Math.floor(rand() * 3);
+    // --- MUSÉES (3-5 par ville) ---
+    const nbMuseums = 3 + Math.floor(rand() * 3);
     const usedMuseumPrefixes = new Set();
     for (let i = 0; i < nbMuseums; i++) {
       let prefix;
@@ -624,8 +803,8 @@ function generatePlaces() {
       });
     }
 
-    // --- CHÂTEAUX (1-3 par ville) ---
-    const nbChateaux = 1 + Math.floor(rand() * 3);
+    // --- CHÂTEAUX (3-6 par ville) ---
+    const nbChateaux = 3 + Math.floor(rand() * 4);
     const usedChateauNames = new Set();
     for (let i = 0; i < nbChateaux; i++) {
       let prefix;
@@ -650,8 +829,8 @@ function generatePlaces() {
       });
     }
 
-    // --- MONUMENTS (2-5 par ville) ---
-    const nbMonuments = 2 + Math.floor(rand() * 4);
+    // --- MONUMENTS (4-7 par ville) ---
+    const nbMonuments = 4 + Math.floor(rand() * 4);
     const usedMonumentNames = new Set();
     for (let i = 0; i < nbMonuments; i++) {
       let prefix;
@@ -676,8 +855,8 @@ function generatePlaces() {
       });
     }
 
-    // --- EXPOSITIONS / FESTIVALS (1-2 par ville) ---
-    const nbExpos = 1 + Math.floor(rand() * 2);
+    // --- EXPOSITIONS / FESTIVALS (2-3 par ville) ---
+    const nbExpos = 2 + Math.floor(rand() * 2);
     const usedExpoNames = new Set();
     for (let i = 0; i < nbExpos; i++) {
       let prefix;

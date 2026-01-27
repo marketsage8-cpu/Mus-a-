@@ -5,7 +5,7 @@ import { places as staticPlaces, placeTypes } from '../data/places';
 /**
  * Hook pour charger TOUTES les données culturelles.
  *
- * - Au montage : affiche les données statiques (places.js) — 11 000+ lieux
+ * - Au montage : affiche les données statiques (places.js) — 1286 vrais lieux
  * - En arrière-plan : charge des données SUPPLÉMENTAIRES depuis les APIs
  * - Quand c'est prêt : FUSIONNE les données API avec les statiques (dédoublonnage)
  * - Les données statiques ne sont JAMAIS supprimées
@@ -28,11 +28,13 @@ export function useCulturalData() {
 
       if (apiPlaces && apiPlaces.length > 0) {
         // Fusionner : garder TOUTES les données statiques + ajouter les nouvelles de l'API
+        const VALID_TYPES = new Set(['musée', 'château', 'exposition', 'église']);
         const staticNames = new Set(staticPlaces.map(p =>
           p.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
         ));
 
         const newFromApi = apiPlaces.filter(p => {
+          if (!VALID_TYPES.has(p.type)) return false; // Uniquement les 4 types voulus
           const key = p.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
           return !staticNames.has(key);
         });

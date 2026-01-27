@@ -50,7 +50,6 @@ const HomePage = () => {
     { id: 'musée', label: 'Musées', icon: Landmark },
     { id: 'château', label: 'Châteaux', icon: Castle },
     { id: 'église', label: 'Églises', icon: Landmark },
-    { id: 'monument', label: 'Monuments', icon: Landmark },
     { id: 'exposition', label: 'Expositions', icon: Palette }
   ];
 
@@ -404,7 +403,6 @@ const HomePage = () => {
                             ${place.type === 'musée' ? 'bg-turquoise-100 text-turquoise-700' :
                               place.type === 'château' ? 'bg-amber-100 text-amber-700' :
                               place.type === 'église' ? 'bg-rose-100 text-rose-700' :
-                              place.type === 'monument' ? 'bg-terracotta-100 text-terracotta-700' :
                               'bg-purple-100 text-purple-700'}
                           `}>
                             {place.type}

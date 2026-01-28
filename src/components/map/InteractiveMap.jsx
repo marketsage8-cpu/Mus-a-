@@ -371,11 +371,42 @@ const InteractiveMap = ({
                 click: () => onPlaceClick?.(place)
               }}
             >
-              <Popup className="custom-popup">
-                <div className="p-1">
-                  <h4 className="font-semibold text-stone-900 mb-1">{place.name}</h4>
-                  <p className="text-xs text-stone-600">{place.location}</p>
-                  <p className="text-xs text-amber-600 font-medium mt-1">{place.price}</p>
+              <Popup className="custom-popup" maxWidth={320}>
+                <div className="p-2 max-w-[280px]">
+                  {/* Nom du musée */}
+                  <h4 className="font-semibold text-sand-100 mb-1 text-sm leading-tight">{place.name}</h4>
+
+                  {/* Ville / Commune */}
+                  <p className="text-xs text-stone-300 mb-1">
+                    {place.city || place.location}
+                    {place.postcode && ` (${place.postcode})`}
+                  </p>
+
+                  {/* Adresse complète si disponible */}
+                  {place.address && (
+                    <p className="text-xs text-stone-400 mb-1">{place.address}</p>
+                  )}
+
+                  {/* Thèmes / Spécialité */}
+                  {place.themes && (
+                    <p className="text-xs text-gold-400 mb-1 italic">{place.themes}</p>
+                  )}
+
+                  {/* Prix */}
+                  <p className="text-xs text-gold-500 font-medium mt-1">{place.price}</p>
+
+                  {/* Lien vers le site web */}
+                  {place.url && (
+                    <a
+                      href={place.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block mt-2 text-xs text-blue-400 hover:text-blue-300 hover:underline"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Visiter le site web
+                    </a>
+                  )}
                 </div>
               </Popup>
             </Marker>

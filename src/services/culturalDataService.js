@@ -13,7 +13,9 @@
 
 const CACHE_KEY = 'muzea_all_places';
 const CACHE_VERSION_KEY = 'muzea_cache_version';
-const CACHE_VERSION = 5;
+// Version 6: Ajout des champs enrichis pour musées (adresse, URL, téléphone, thèmes)
+// et géocodage via API BAN pour musées sans coordonnées GPS
+const CACHE_VERSION = 6;
 const CACHE_MAX_AGE = 7 * 24 * 60 * 60 * 1000; // 7 jours
 
 // ─── Helpers ─────────────────────────────────────────────
@@ -123,35 +125,174 @@ async function fetchAllPages(datasetId, processRecord, onProgress, options = {})
   return results;
 }
 
-// ─── Source 1 : Musées de France ─────────────────────────
+// ─── Source 1 : Musées de France (enrichi) ───────────────
+// API: data.culture.gouv.fr - Dataset: musees-de-france-base-museofile
+// Documentation: https://data.culture.gouv.fr/explore/dataset/musees-de-france-base-museofile/api/
+// Champs utilisés: NOMOFF, AUTNOM, ADRL1_M, LIEU_M, CP_M, VILLE_M, DPT, REGION, URL_M, TEL_M, DOMPAL, THEMES, HIST, ATOUT
+// Ce dataset contient ~1200 musées labellisés "Musée de France"
+
+// File d'attente pour géocodage des musées sans coordonnées
+const geocodeQueue = [];
+let isGeocoding = false;
+
+/**
+ * Géocode une adresse via l'API BAN (Base Adresse Nationale)
+ * API gratuite, sans clé, limite de 50 req/sec
+ * https://adresse.data.gouv.fr/api-doc/adresse
+ */
+async function geocodeAddress(address, city, postcode) {
+  if (!address && !city) return null;
+
+  const query = [address, postcode, city].filter(Boolean).join(' ').trim();
+  if (!query) return null;
+
+  try {
+    const url = `https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(query)}&limit=1`;
+    const res = await fetch(url);
+    if (!res.ok) return null;
+
+    const data = await res.json();
+    if (data.features && data.features.length > 0) {
+      const [lng, lat] = data.features[0].geometry.coordinates;
+      return { lat, lng };
+    }
+  } catch (err) {
+    console.warn(`[Muzea] Géocodage échoué pour "${query}":`, err.message);
+  }
+  return null;
+}
+
+/**
+ * Traite la file de géocodage avec rate limiting (50ms entre chaque requête)
+ */
+async function processGeocodeQueue(onProgress) {
+  if (isGeocoding || geocodeQueue.length === 0) return [];
+  isGeocoding = true;
+
+  const results = [];
+  const total = geocodeQueue.length;
+  let processed = 0;
+
+  console.log(`[Muzea] Géocodage de ${total} musées sans coordonnées via API BAN...`);
+
+  while (geocodeQueue.length > 0) {
+    const item = geocodeQueue.shift();
+    const coords = await geocodeAddress(item.address, item.city, item.postcode);
+
+    if (coords) {
+      results.push({ ...item.museum, coordinates: coords });
+    } else {
+      console.warn(`[Muzea] GPS manquant pour: ${item.museum.name} (${item.city})`);
+    }
+
+    processed++;
+    if (processed % 10 === 0) {
+      onProgress?.({ source: 'Géocodage BAN', loaded: processed, total });
+    }
+
+    // Rate limiting: 50ms entre chaque requête (20 req/sec max, bien sous la limite de 50)
+    await sleep(50);
+  }
+
+  isGeocoding = false;
+  console.log(`[Muzea] Géocodage terminé: ${results.length}/${total} musées géocodés`);
+  return results;
+}
 
 async function fetchMuseums(onProgress) {
-  return fetchAllPages(
+  const museumsWithCoords = [];
+  const museumsWithoutCoords = [];
+
+  await fetchAllPages(
     'musees-de-france-base-museofile',
     (r) => {
-      const geo = r.geolocalisation || r.coordonnees_finales;
-      if (!geo) return null;
-      const lat = geo.lat || geo.latitude;
-      const lng = geo.lon || geo.lng || geo.longitude;
-      if (!lat || !lng) return null;
-      const name = r.nomoff || r.nomusage || r.nom_officiel || '';
+      // Nom du musée (priorité: nom officiel > nom d'usage)
+      const name = (r.nomoff || r.autnom || r.nomusage || r.nom_officiel || '').trim();
       if (!name) return null;
-      const city = r.ville_m || r.commune || '';
-      const dept = r.dpt || r.departement || '';
+
+      // Adresse complète
+      const address1 = (r.adrl1_m || r.adr || '').trim();
+      const address2 = (r.lieu_m || '').trim();
+      const fullAddress = [address1, address2].filter(Boolean).join(', ');
+
+      // Localisation
+      const city = (r.ville_m || r.commune || '').trim();
+      const postcode = (r.cp_m || r.cp || '').toString().trim();
+      const dept = (r.dpt || r.departement || '').toString().trim();
       const region = r.region || getRegion(dept);
-      const themes = r.dompal || r.themes || '';
-      return {
-        name: name.trim(), type: 'musée',
-        description: themes ? `Musée spécialisé en ${themes.toLowerCase()}.` : `Musée de France situé à ${city}.`,
-        location: `${city}, ${region}`.replace(/^, |, $/g, ''),
-        coordinates: { lat: +lat, lng: +lng },
-        price: 'Se renseigner', hours: '10h - 18h (se renseigner)',
+
+      // Informations complémentaires
+      const url = (r.url_m || r.siteweb || '').trim();
+      const phone = (r.tel_m || r.telephone || '').trim();
+      const themes = (r.dompal || r.themes || '').trim();
+      const history = (r.hist || '').trim();
+      const highlights = (r.atout || '').trim();
+
+      // Construire la description enrichie
+      let description = '';
+      if (themes) {
+        description = `Musée spécialisé en ${themes.toLowerCase()}.`;
+      } else {
+        description = `Musée de France situé à ${city || 'France'}.`;
+      }
+      if (history && history.length < 200) {
+        description += ` ${history}`;
+      }
+
+      // Structure du musée normalisée
+      const museum = {
+        name,
+        type: 'musée',
+        description,
+        location: `${city}, ${region}`.replace(/^, |, $/g, '') || 'France',
+        // Champs enrichis pour les popups
+        address: fullAddress,
+        city,
+        postcode,
+        url: url.startsWith('http') ? url : (url ? `https://${url}` : ''),
+        phone,
+        themes,
+        highlights: highlights || (themes ? themes.split(';').map(t => t.trim()).filter(Boolean).slice(0, 3) : []),
+        price: 'Se renseigner',
+        hours: '10h - 18h (se renseigner)',
         period: themes || 'Collections permanentes',
-        highlights: themes ? themes.split(';').map(t => t.trim()).filter(Boolean).slice(0, 3) : [],
+        source: 'data.culture.gouv.fr'
       };
+
+      // Coordonnées GPS
+      const geo = r.geolocalisation || r.coordonnees_finales || r.coordonnees;
+      if (geo) {
+        const lat = geo.lat || geo.latitude;
+        const lng = geo.lon || geo.lng || geo.longitude;
+        if (lat && lng && !isNaN(+lat) && !isNaN(+lng)) {
+          museum.coordinates = { lat: +lat, lng: +lng };
+          museumsWithCoords.push(museum);
+          return null; // On retourne null car on gère manuellement
+        }
+      }
+
+      // Si pas de GPS, ajouter à la file de géocodage
+      museumsWithoutCoords.push({
+        museum,
+        address: fullAddress,
+        city,
+        postcode
+      });
+
+      return null;
     },
     onProgress
   );
+
+  // Ajouter les musées sans coords à la file de géocodage
+  geocodeQueue.push(...museumsWithoutCoords);
+
+  // Traiter le géocodage
+  const geocodedMuseums = await processGeocodeQueue(onProgress);
+
+  console.log(`[Muzea] Musées de France: ${museumsWithCoords.length} avec GPS, ${geocodedMuseums.length} géocodés, ${museumsWithoutCoords.length - geocodedMuseums.length} sans GPS`);
+
+  return [...museumsWithCoords, ...geocodedMuseums];
 }
 
 // ─── Source 2 : Monuments historiques (classés + inscrits) ──

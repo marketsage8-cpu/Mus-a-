@@ -2,29 +2,50 @@ import { useState, useEffect, useCallback } from 'react';
 import { loadAllCulturalPlaces, clearCache } from '../services/culturalDataService';
 import { places as staticPlaces, placeTypes } from '../data/places';
 import { wikidataMuseums } from '../data/wikidataMuseums';
+import { allFrenchMuseums } from '../data/allFrenchMuseums';
 
 /**
- * Fusionne les données statiques avec les musées Wikidata (avec coordonnées)
- * en évitant les doublons basés sur le nom normalisé
+ * Normalise un nom pour la comparaison (supprime accents, espaces, caractères spéciaux)
  */
-function mergeWithWikidataMuseums(basePlaces) {
-  const normalizedNames = new Set(
-    basePlaces.map(p =>
-      p.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '')
-    )
-  );
-
-  const newMuseums = wikidataMuseums.filter(museum => {
-    const key = museum.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
-    return !normalizedNames.has(key);
-  });
-
-  console.log(`[Muzea] Ajout de ${newMuseums.length} musées Wikidata avec coordonnées GPS`);
-  return [...basePlaces, ...newMuseums];
+function normalizeName(name) {
+  return name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
 }
 
-// Données initiales : places statiques + musées Wikidata (avec coordonnées exactes)
-const initialPlaces = mergeWithWikidataMuseums(staticPlaces);
+/**
+ * Fusionne les données statiques avec tous les musées de France (coordonnées GPS Wikipedia)
+ * en évitant les doublons basés sur le nom normalisé
+ */
+function mergeAllMuseums(basePlaces) {
+  const normalizedNames = new Set(
+    basePlaces.map(p => normalizeName(p.name))
+  );
+
+  // D'abord ajouter les musées Wikidata spécialisés
+  const newWikidataMuseums = wikidataMuseums.filter(museum => {
+    const key = normalizeName(museum.name);
+    if (normalizedNames.has(key)) return false;
+    normalizedNames.add(key);
+    return true;
+  });
+
+  // Ensuite ajouter tous les musées de France (avec dédoublonnage)
+  const newAllFrenchMuseums = allFrenchMuseums.filter(museum => {
+    const key = normalizeName(museum.name);
+    if (normalizedNames.has(key)) return false;
+    normalizedNames.add(key);
+    return true;
+  });
+
+  console.log(`[Muzea] Base: ${basePlaces.length} lieux`);
+  console.log(`[Muzea] + ${newWikidataMuseums.length} musées Wikidata spécialisés`);
+  console.log(`[Muzea] + ${newAllFrenchMuseums.length} musées de France avec coordonnées GPS`);
+  console.log(`[Muzea] = ${basePlaces.length + newWikidataMuseums.length + newAllFrenchMuseums.length} total`);
+
+  return [...basePlaces, ...newWikidataMuseums, ...newAllFrenchMuseums];
+}
+
+// Données initiales : places statiques + musées Wikidata + tous les musées de France
+const initialPlaces = mergeAllMuseums(staticPlaces);
 
 /**
  * Hook pour charger TOUTES les données culturelles.
@@ -101,6 +122,7 @@ export function useCulturalData() {
     refresh,
     totalStatic: staticPlaces.length,
     totalWikidata: wikidataMuseums.length,
+    totalAllFrenchMuseums: allFrenchMuseums.length,
     totalInitial: initialPlaces.length,
   };
 }

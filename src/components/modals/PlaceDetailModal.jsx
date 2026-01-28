@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { X, Heart, MapPin, Star, Clock, Euro, Calendar, Check, ExternalLink, Users } from 'lucide-react';
+import { X, Heart, MapPin, Star, Clock, Euro, Calendar, Check, ExternalLink, Users, BookOpen, Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
 import Badge, { TemporaryBadge } from '../ui/Badge';
 import { useUser } from '../../context/UserContext';
+import { useWikipediaEnrichment } from '../../hooks/useWikipedia';
 
 /**
  * Modal de détail d'un lieu
@@ -11,6 +12,19 @@ import { useUser } from '../../context/UserContext';
 const PlaceDetailModal = ({ place, isOpen, onClose }) => {
   const navigate = useNavigate();
   const { isFavorite, toggleFavorite, isVisited, markVisited } = useUser();
+
+  // Enrichissement Wikipedia
+  const { enrichedPlace, loading: wikiLoading } = useWikipediaEnrichment(isOpen ? place : null);
+  const wikipedia = enrichedPlace?.wikipedia;
+
+  // Galerie d'images
+  const [galleryIndex, setGalleryIndex] = useState(0);
+  const galleryImages = wikipedia?.images?.slice(0, 6) || [];
+
+  // Reset galerie quand le lieu change
+  useEffect(() => {
+    setGalleryIndex(0);
+  }, [place?.id]);
 
   // Fermeture avec Escape
   useEffect(() => {
@@ -134,21 +148,131 @@ const PlaceDetailModal = ({ place, isOpen, onClose }) => {
             </div>
           </div>
 
-          {/* Galerie placeholder */}
+          {/* Section Wikipedia */}
+          {(wikiLoading || wikipedia) && (
+            <div className="mb-6">
+              <h3 className="font-display text-xl font-semibold text-amber-50 mb-3 flex items-center gap-2">
+                <BookOpen className="w-5 h-5 text-amber-400" />
+                En savoir plus
+              </h3>
+
+              {wikiLoading ? (
+                <div className="flex items-center gap-3 text-stone-400 py-4">
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  <span>Chargement des informations Wikipedia...</span>
+                </div>
+              ) : wikipedia?.extract ? (
+                <div className="bg-stone-800/30 border border-stone-700/50 rounded-xl p-4">
+                  <p className="text-stone-300 leading-relaxed mb-3">
+                    {wikipedia.extract}
+                  </p>
+                  <a
+                    href={wikipedia.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors text-sm font-medium"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    Lire l'article complet sur Wikipedia
+                  </a>
+                </div>
+              ) : (
+                <p className="text-stone-500 text-sm">
+                  Aucune information Wikipedia disponible pour ce lieu.
+                </p>
+              )}
+            </div>
+          )}
+
+          {/* Galerie d'images Wikipedia */}
           <div className="mb-6">
             <h3 className="font-display text-xl font-semibold text-amber-50 mb-3">
               Galerie
             </h3>
-            <div className="grid grid-cols-3 gap-2">
-              {[1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className="aspect-video bg-stone-800/50 rounded-lg flex items-center justify-center text-stone-600"
-                >
-                  <span className="text-sm">Photo {i}</span>
+
+            {galleryImages.length > 0 ? (
+              <div className="space-y-3">
+                {/* Image principale */}
+                <div className="relative aspect-video bg-stone-800/50 rounded-xl overflow-hidden">
+                  <img
+                    src={galleryImages[galleryIndex]?.thumbUrl || galleryImages[galleryIndex]?.url}
+                    alt={galleryImages[galleryIndex]?.title || 'Image'}
+                    className="w-full h-full object-cover"
+                  />
+
+                  {/* Navigation */}
+                  {galleryImages.length > 1 && (
+                    <>
+                      <button
+                        onClick={() => setGalleryIndex((i) => (i - 1 + galleryImages.length) % galleryImages.length)}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-stone-900/80 hover:bg-stone-800 rounded-full text-white transition-all"
+                        aria-label="Image précédente"
+                      >
+                        <ChevronLeft className="w-5 h-5" />
+                      </button>
+                      <button
+                        onClick={() => setGalleryIndex((i) => (i + 1) % galleryImages.length)}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-stone-900/80 hover:bg-stone-800 rounded-full text-white transition-all"
+                        aria-label="Image suivante"
+                      >
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+                    </>
+                  )}
+
+                  {/* Indicateur */}
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 bg-stone-900/80 rounded-full text-xs text-white">
+                    {galleryIndex + 1} / {galleryImages.length}
+                  </div>
                 </div>
-              ))}
-            </div>
+
+                {/* Miniatures */}
+                {galleryImages.length > 1 && (
+                  <div className="flex gap-2 overflow-x-auto pb-2">
+                    {galleryImages.map((img, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setGalleryIndex(idx)}
+                        className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
+                          idx === galleryIndex
+                            ? 'border-amber-500'
+                            : 'border-transparent hover:border-stone-600'
+                        }`}
+                      >
+                        <img
+                          src={img.thumbUrl || img.url}
+                          alt={img.title || `Image ${idx + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                {/* Crédit */}
+                {galleryImages[galleryIndex]?.author && (
+                  <p className="text-xs text-stone-500">
+                    Photo: {galleryImages[galleryIndex].author} ({galleryImages[galleryIndex].license || 'Wikipedia'})
+                  </p>
+                )}
+              </div>
+            ) : wikiLoading ? (
+              <div className="flex items-center gap-3 text-stone-400 py-4">
+                <Loader2 className="w-5 h-5 animate-spin" />
+                <span>Recherche d'images...</span>
+              </div>
+            ) : (
+              <div className="grid grid-cols-3 gap-2">
+                {[1, 2, 3].map((i) => (
+                  <div
+                    key={i}
+                    className="aspect-video bg-stone-800/50 rounded-lg flex items-center justify-center text-stone-600"
+                  >
+                    <span className="text-sm">Photo {i}</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Bouton Rencontrer */}

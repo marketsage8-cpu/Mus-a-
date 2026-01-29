@@ -1,16 +1,16 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { placeTypes } from '../data/places';
-import { useCulturalData } from '../hooks/useCulturalData';
+import { useLiveData } from '../hooks/useLiveData';
 import InteractiveMap from '../components/map/InteractiveMap';
 import PlaceDetailModal from '../components/modals/PlaceDetailModal';
 import { Building2, Castle, Calendar, MapPin, X, Filter, ChevronDown, Search, Compass, Sparkles, RefreshCw, Loader2, Wifi, Church } from 'lucide-react';
 
 /**
  * Page d'exploration avec carte en plein écran et filtres
- * Charge AUTOMATIQUEMENT tous les lieux depuis les APIs externes
+ * Mode LIVE: charge uniquement les lieux de la zone visible de la carte
  */
 const ExplorePage = () => {
-  const { places, loading, progress, isLiveData, error, refresh, totalStatic } = useCulturalData();
+  const { places, loading, error, stats, loadForBounds, loadImageForPlace, refresh } = useLiveData({ debounceMs: 400 });
 
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [mapHeight, setMapHeight] = useState('calc(100vh - 72px)');
@@ -109,18 +109,17 @@ const ExplorePage = () => {
 
   const hasActiveFilters = activeFilter !== 'all' || selectedRegion !== 'all' || searchQuery;
 
-  // Message de progression
-  const progressText = useMemo(() => {
-    if (!progress) return '';
-    if (progress.phase === 'done') return '';
-    if (progress.phase === 'dedup') return 'Dédoublonnage en cours…';
-    if (progress.phase === 'caching') return 'Mise en cache…';
-    if (progress.status) return progress.status;
-    if (progress.source && progress.total) {
-      return `${progress.source.split('/').pop()} : ${progress.loaded}/${progress.total}`;
-    }
-    return 'Chargement…';
-  }, [progress]);
+  // Callback pour charger les données quand la carte bouge
+  const handleBoundsChange = useCallback((bounds) => {
+    loadForBounds(bounds);
+  }, [loadForBounds]);
+
+  // Message de statut
+  const statusText = useMemo(() => {
+    if (loading) return 'Chargement de la zone…';
+    if (stats.loaded > 0) return `${stats.loaded} lieux dans cette zone`;
+    return '';
+  }, [loading, stats]);
 
   return (
     <div className="relative w-full mt-[72px]" style={{ height: mapHeight }}>
@@ -139,18 +138,16 @@ const ExplorePage = () => {
                   <div>
                     <h2 className="font-display text-lg text-sand-100 tracking-wide">Explorer</h2>
                     <p className="text-xs text-sand-300/60">
-                      {loading ? progressText || 'Chargement des données…' : 'Découvrez les trésors culturels'}
+                      {loading ? 'Chargement de la zone…' : 'Déplacez la carte pour explorer'}
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  {/* Indicateur de données live */}
-                  {isLiveData && (
-                    <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/30" title="Données en direct depuis les APIs">
-                      <Wifi className="w-3 h-3 text-emerald-400" />
-                      <span className="text-[10px] text-emerald-300 font-medium">LIVE</span>
-                    </div>
-                  )}
+                  {/* Indicateur de mode live */}
+                  <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/30" title="Données en direct - chargement par zone">
+                    <Wifi className="w-3 h-3 text-emerald-400" />
+                    <span className="text-[10px] text-emerald-300 font-medium">LIVE</span>
+                  </div>
                   {/* Bouton rafraîchir */}
                   <button
                     onClick={refresh}
@@ -311,7 +308,7 @@ const ExplorePage = () => {
         )}
       </div>
 
-      {/* Map */}
+      {/* Map - Mode LIVE: charge dynamiquement selon la zone visible */}
       <InteractiveMap
         places={filteredPlaces}
         onPlaceClick={setSelectedPlace}
@@ -319,6 +316,10 @@ const ExplorePage = () => {
         autoLocate={true}
         showUserLocation={true}
         className="w-full h-full"
+        liveMode={true}
+        loading={loading}
+        onBoundsChange={handleBoundsChange}
+        onLoadImage={loadImageForPlace}
       />
 
       {/* Detail Modal */}

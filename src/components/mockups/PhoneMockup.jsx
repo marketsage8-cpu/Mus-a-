@@ -193,60 +193,78 @@ export const SocialMockup = () => (
           </div>
         </div>
 
-        {/* Liste de personnes */}
-        <div className="p-4 space-y-4">
+        {/* Liste de personnes avec images artistiques */}
+        <div className="p-4 space-y-3">
           {/* Personne 1 */}
-          <div className="flex items-center gap-3 p-3 bg-[#e07a5f]/10 rounded-2xl border border-[#e07a5f]/30">
-            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#e07a5f] to-[#c45a3f] flex items-center justify-center text-white font-bold">
-              M
+          <div className="bg-[#e07a5f]/10 rounded-2xl border border-[#e07a5f]/30 overflow-hidden">
+            <div className="h-20 relative overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=300&h=100&fit=crop"
+                alt="Nymphéas"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] to-transparent" />
             </div>
-            <div className="flex-1">
-              <div className="h-3 bg-white/70 rounded w-24 mb-1" />
-              <div className="h-2 bg-white/30 rounded w-32 mb-2" />
-              <div className="flex gap-1">
-                <div className="px-2 py-0.5 bg-[#e07a5f]/30 rounded-full">
-                  <div className="h-1.5 bg-[#e07a5f] rounded w-8" />
-                </div>
-                <div className="px-2 py-0.5 bg-white/10 rounded-full">
-                  <div className="h-1.5 bg-white/40 rounded w-6" />
-                </div>
+            <div className="flex items-center gap-3 p-3 -mt-6 relative">
+              <img
+                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=60&h=60&fit=crop&crop=face"
+                alt="Marie"
+                className="w-12 h-12 rounded-full object-cover border-2 border-[#e07a5f]"
+              />
+              <div className="flex-1">
+                <div className="text-white text-sm font-medium">Marie D.</div>
+                <div className="text-white/50 text-xs">Impressionnisme</div>
               </div>
+              <div className="text-[#e07a5f] text-xs">2km</div>
             </div>
-            <div className="text-[#e07a5f] text-xs">2km</div>
           </div>
 
           {/* Personne 2 */}
-          <div className="flex items-center gap-3 p-3 bg-white/5 rounded-2xl border border-white/10">
-            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center text-white font-bold">
-              S
+          <div className="bg-white/5 rounded-2xl border border-white/10 overflow-hidden">
+            <div className="h-16 relative overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1564399579883-451a5d44ec08?w=300&h=80&fit=crop"
+                alt="Versailles"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] to-transparent" />
             </div>
-            <div className="flex-1">
-              <div className="h-3 bg-white/60 rounded w-20 mb-1" />
-              <div className="h-2 bg-white/30 rounded w-28 mb-2" />
-              <div className="flex gap-1">
-                <div className="px-2 py-0.5 bg-white/10 rounded-full">
-                  <div className="h-1.5 bg-white/40 rounded w-10" />
-                </div>
+            <div className="flex items-center gap-3 p-3 -mt-5 relative">
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face"
+                alt="Thomas"
+                className="w-10 h-10 rounded-full object-cover border-2 border-white/30"
+              />
+              <div className="flex-1">
+                <div className="text-white text-sm font-medium">Thomas B.</div>
+                <div className="text-white/50 text-xs">Architecture</div>
               </div>
+              <div className="text-white/40 text-xs">5km</div>
             </div>
-            <div className="text-white/40 text-xs">5km</div>
           </div>
 
           {/* Personne 3 */}
-          <div className="flex items-center gap-3 p-3 bg-white/5 rounded-2xl border border-white/10">
-            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-cyan-500 to-cyan-700 flex items-center justify-center text-white font-bold">
-              T
+          <div className="bg-white/5 rounded-2xl border border-white/10 overflow-hidden">
+            <div className="h-16 relative overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=300&h=80&fit=crop"
+                alt="Art contemporain"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] to-transparent" />
             </div>
-            <div className="flex-1">
-              <div className="h-3 bg-white/60 rounded w-28 mb-1" />
-              <div className="h-2 bg-white/30 rounded w-24 mb-2" />
-              <div className="flex gap-1">
-                <div className="px-2 py-0.5 bg-white/10 rounded-full">
-                  <div className="h-1.5 bg-white/40 rounded w-12" />
-                </div>
+            <div className="flex items-center gap-3 p-3 -mt-5 relative">
+              <img
+                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&crop=face"
+                alt="Sophie"
+                className="w-10 h-10 rounded-full object-cover border-2 border-white/30"
+              />
+              <div className="flex-1">
+                <div className="text-white text-sm font-medium">Sophie M.</div>
+                <div className="text-white/50 text-xs">Art contemporain</div>
               </div>
+              <div className="text-white/40 text-xs">8km</div>
             </div>
-            <div className="text-white/40 text-xs">8km</div>
           </div>
         </div>
 
@@ -275,57 +293,83 @@ export const GuidesMockup = () => (
           <div className="h-2 bg-white/30 rounded w-40 mx-auto" />
         </div>
 
-        {/* Timeline du parcours */}
-        <div className="px-6 py-4">
+        {/* Timeline du parcours avec images */}
+        <div className="px-4 py-3">
           <div className="relative">
             {/* Ligne de connexion */}
-            <div className="absolute left-5 top-8 bottom-8 w-0.5 bg-gradient-to-b from-[#e07a5f] via-[#e07a5f]/50 to-white/20" />
+            <div className="absolute left-4 top-8 bottom-8 w-0.5 bg-gradient-to-b from-[#e07a5f] via-[#e07a5f]/50 to-white/20" />
 
-            {/* Étape 1 */}
-            <div className="relative flex gap-4 mb-6">
-              <div className="w-10 h-10 rounded-full bg-[#e07a5f] flex items-center justify-center text-[#0c0c0c] font-bold text-sm z-10">
+            {/* Étape 1 - Louvre */}
+            <div className="relative flex gap-3 mb-4">
+              <div className="w-8 h-8 rounded-full bg-[#e07a5f] flex items-center justify-center text-[#0c0c0c] font-bold text-xs z-10">
                 1
               </div>
-              <div className="flex-1 bg-[#e07a5f]/10 rounded-xl p-3 border border-[#e07a5f]/30">
-                <div className="h-2.5 bg-white/70 rounded w-full mb-2" />
-                <div className="h-2 bg-white/30 rounded w-3/4 mb-2" />
-                <div className="flex items-center gap-2">
-                  <div className="h-2 bg-[#e07a5f]/50 rounded w-10" />
-                  <div className="h-2 bg-white/20 rounded w-6" />
+              <div className="flex-1 bg-[#e07a5f]/10 rounded-xl overflow-hidden border border-[#e07a5f]/30">
+                <div className="h-16 relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1554907984-15263bfd63bd?w=300&h=80&fit=crop"
+                    alt="Galerie du Louvre"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] to-transparent" />
+                </div>
+                <div className="p-2 -mt-3 relative">
+                  <div className="text-white text-xs font-medium">Galerie du Louvre</div>
+                  <div className="text-white/50 text-[10px]">30 min - En cours</div>
                 </div>
               </div>
             </div>
 
-            {/* Étape 2 */}
-            <div className="relative flex gap-4 mb-6">
-              <div className="w-10 h-10 rounded-full bg-[#e07a5f]/60 flex items-center justify-center text-white font-bold text-sm z-10">
+            {/* Étape 2 - Joconde */}
+            <div className="relative flex gap-3 mb-4">
+              <div className="w-8 h-8 rounded-full bg-[#e07a5f]/60 flex items-center justify-center text-white font-bold text-xs z-10">
                 2
               </div>
-              <div className="flex-1 bg-white/5 rounded-xl p-3 border border-white/10">
-                <div className="h-2.5 bg-white/60 rounded w-full mb-2" />
-                <div className="h-2 bg-white/30 rounded w-2/3" />
+              <div className="flex-1 bg-white/5 rounded-xl overflow-hidden border border-white/10">
+                <div className="h-14 relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1580136579312-94651dfd596d?w=300&h=70&fit=crop"
+                    alt="La Joconde"
+                    className="w-full h-full object-cover opacity-70"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] to-transparent" />
+                </div>
+                <div className="p-2 -mt-2 relative">
+                  <div className="text-white/70 text-xs">La Joconde</div>
+                  <div className="text-white/40 text-[10px]">15 min</div>
+                </div>
               </div>
             </div>
 
-            {/* Étape 3 */}
-            <div className="relative flex gap-4 mb-6">
-              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white/60 font-bold text-sm z-10">
+            {/* Étape 3 - Sculptures */}
+            <div className="relative flex gap-3 mb-4">
+              <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white/60 font-bold text-xs z-10">
                 3
               </div>
-              <div className="flex-1 bg-white/5 rounded-xl p-3 border border-white/10">
-                <div className="h-2.5 bg-white/40 rounded w-full mb-2" />
-                <div className="h-2 bg-white/20 rounded w-1/2" />
+              <div className="flex-1 bg-white/5 rounded-xl overflow-hidden border border-white/10 opacity-70">
+                <div className="h-12 relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1566054757965-8c4085344c96?w=300&h=60&fit=crop"
+                    alt="Sculptures"
+                    className="w-full h-full object-cover opacity-50"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] to-transparent" />
+                </div>
+                <div className="p-2 -mt-2 relative">
+                  <div className="text-white/50 text-xs">Aile des sculptures</div>
+                  <div className="text-white/30 text-[10px]">20 min</div>
+                </div>
               </div>
             </div>
 
             {/* Étape 4 */}
-            <div className="relative flex gap-4">
-              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/40 font-bold text-sm z-10">
+            <div className="relative flex gap-3">
+              <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/40 font-bold text-xs z-10">
                 4
               </div>
-              <div className="flex-1 bg-white/5 rounded-xl p-3 border border-white/10 opacity-60">
-                <div className="h-2.5 bg-white/30 rounded w-full mb-2" />
-                <div className="h-2 bg-white/15 rounded w-2/3" />
+              <div className="flex-1 bg-white/5 rounded-xl p-3 border border-white/10 opacity-50">
+                <div className="text-white/30 text-xs">Boutique & Sortie</div>
+                <div className="text-white/20 text-[10px]">10 min</div>
               </div>
             </div>
           </div>

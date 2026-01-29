@@ -12,6 +12,8 @@ const meetupUsers = [
     name: "Marie Dupont",
     age: 28,
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80",
+    artImage: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=400&h=300&fit=crop",
+    artTitle: "Nymphéas de Monet",
     bio: "Passionnée d'art impressionniste et d'histoire.",
     interests: ["Impressionnisme", "Art moderne", "Histoire"],
     visitCount: 45,
@@ -23,6 +25,8 @@ const meetupUsers = [
     name: "Thomas Bernard",
     age: 34,
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
+    artImage: "https://images.unsplash.com/photo-1564399579883-451a5d44ec08?w=400&h=300&fit=crop",
+    artTitle: "Galerie des Glaces",
     bio: "Guide amateur, je connais Paris comme ma poche.",
     interests: ["Architecture", "Renaissance", "Châteaux"],
     visitCount: 120,
@@ -34,6 +38,8 @@ const meetupUsers = [
     name: "Sophie Martin",
     age: 25,
     avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80",
+    artImage: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=400&h=300&fit=crop",
+    artTitle: "Art contemporain",
     bio: "Étudiante en histoire de l'art.",
     interests: ["Art contemporain", "Photographie", "Sculpture"],
     visitCount: 32,
@@ -45,6 +51,8 @@ const meetupUsers = [
     name: "Lucas Petit",
     age: 31,
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80",
+    artImage: "https://images.unsplash.com/photo-1566054757965-8c4085344c96?w=400&h=300&fit=crop",
+    artTitle: "Sculpture antique",
     bio: "Photographe amateur passionné de musées.",
     interests: ["Photographie", "Art classique", "Antiquités"],
     visitCount: 67,
@@ -56,6 +64,8 @@ const meetupUsers = [
     name: "Emma Rousseau",
     age: 29,
     avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&q=80",
+    artImage: "https://images.unsplash.com/photo-1597466599360-3b9775841aec?w=400&h=300&fit=crop",
+    artTitle: "Jardins de Versailles",
     bio: "Je redécouvre le patrimoine français.",
     interests: ["Patrimoine", "Châteaux", "Jardins"],
     visitCount: 23,
@@ -67,6 +77,8 @@ const meetupUsers = [
     name: "Antoine Leroy",
     age: 42,
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80",
+    artImage: "https://images.unsplash.com/photo-1461360370896-922624d12a74?w=400&h=300&fit=crop",
+    artTitle: "Armures médiévales",
     bio: "Professeur d'histoire passionné.",
     interests: ["Histoire", "Moyen-Âge", "Révolution"],
     visitCount: 89,
@@ -227,49 +239,65 @@ const MeetingsPage = () => {
             {meetupUsers.map((user, i) => (
               <div
                 key={user.id}
-                className="animate-on-scroll opacity-0 translate-y-[30px] group p-6 bg-white/[0.02] border border-white/[0.08] rounded-2xl hover:border-[#e07a5f]/30 transition-all"
+                className="animate-on-scroll opacity-0 translate-y-[30px] group bg-white/[0.02] border border-white/[0.08] rounded-2xl hover:border-[#e07a5f]/30 transition-all overflow-hidden"
                 style={{ transitionDelay: `${200 + i * 100}ms` }}
               >
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="relative">
-                    <img
-                      src={user.avatar}
-                      alt={user.name}
-                      className="w-16 h-16 rounded-full object-cover border-2 border-[#e07a5f]/30"
-                    />
-                    {user.verified && (
-                      <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#e07a5f] rounded-full flex items-center justify-center">
-                        <svg className="w-3 h-3 text-[#0c0c0c]" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
+                {/* Image artistique favorite */}
+                <div className="relative h-36 overflow-hidden">
+                  <img
+                    src={user.artImage}
+                    alt={user.artTitle}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-transparent to-transparent" />
+                  <span className="absolute bottom-2 left-3 text-xs text-white/60 bg-black/40 px-2 py-1 rounded-full backdrop-blur-sm flex items-center gap-1">
+                    <Heart className="w-3 h-3" />
+                    {user.artTitle}
+                  </span>
+                </div>
+
+                <div className="p-5">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="relative">
+                      <img
+                        src={user.avatar}
+                        alt={user.name}
+                        className="w-14 h-14 rounded-full object-cover border-2 border-[#e07a5f]/30"
+                      />
+                      {user.verified && (
+                        <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#e07a5f] rounded-full flex items-center justify-center">
+                          <svg className="w-3 h-3 text-[#0c0c0c]" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-medium text-white group-hover:text-[#e07a5f] transition-colors">{user.name}, {user.age} ans</h4>
+                      <div className="flex items-center gap-1 text-[#e07a5f] text-sm">
+                        <Star className="w-3 h-3 fill-current" />
+                        {user.rating}
                       </div>
-                    )}
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-medium text-white group-hover:text-[#e07a5f] transition-colors">{user.name}, {user.age} ans</h4>
-                    <div className="flex items-center gap-1 text-[#e07a5f] text-sm">
-                      <Star className="w-3 h-3 fill-current" />
-                      {user.rating}
                     </div>
                   </div>
-                </div>
 
-                <p className="text-white/50 text-sm mb-4 line-clamp-2">{user.bio}</p>
+                  <p className="text-white/50 text-sm mb-4 line-clamp-2">{user.bio}</p>
 
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {user.interests.slice(0, 3).map((interest, idx) => (
-                    <span key={idx} className="px-2 py-1 bg-[#e07a5f]/10 text-[#e07a5f] text-xs rounded-full">
-                      {interest}
-                    </span>
-                  ))}
-                </div>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {user.interests.slice(0, 3).map((interest, idx) => (
+                      <span key={idx} className="px-2 py-1 bg-[#e07a5f]/10 text-[#e07a5f] text-xs rounded-full">
+                        {interest}
+                      </span>
+                    ))}
+                  </div>
 
-                <div className="flex items-center justify-between text-sm text-white/40">
-                  <span>{user.visitCount} visites</span>
-                  <button className="flex items-center gap-2 text-[#e07a5f] hover:text-[#e8968a] transition-colors">
-                    <MessageCircle className="w-4 h-4" />
-                    Contacter
-                  </button>
+                  <div className="flex items-center justify-between text-sm text-white/40 pt-3 border-t border-white/[0.08]">
+                    <span>{user.visitCount} visites</span>
+                    <button className="flex items-center gap-2 text-[#e07a5f] hover:text-[#e8968a] transition-colors">
+                      <MessageCircle className="w-4 h-4" />
+                      Contacter
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}

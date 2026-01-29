@@ -12,6 +12,8 @@ const guides = [
     name: 'Marie Dubois',
     specialty: "Histoire de l'Art",
     image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=face',
+    artImage: 'https://images.unsplash.com/photo-1554907984-15263bfd63bd?w=400&h=300&fit=crop',
+    artTitle: 'Galerie du Louvre',
     rating: 4.9,
     reviews: 127,
     languages: ['Français', 'Anglais'],
@@ -23,6 +25,8 @@ const guides = [
     name: 'Jean-Pierre Martin',
     specialty: 'Art Contemporain',
     image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face',
+    artImage: 'https://images.unsplash.com/photo-1531243269054-5ebf6f34081e?w=400&h=300&fit=crop',
+    artTitle: 'Installation contemporaine',
     rating: 5.0,
     reviews: 89,
     languages: ['Français', 'Espagnol'],
@@ -34,6 +38,8 @@ const guides = [
     name: 'Sophie Laurent',
     specialty: 'Renaissance & Classique',
     image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face',
+    artImage: 'https://images.unsplash.com/photo-1580136579312-94651dfd596d?w=400&h=300&fit=crop',
+    artTitle: 'La Joconde - Louvre',
     rating: 4.8,
     reviews: 156,
     languages: ['Français', 'Italien', 'Anglais'],
@@ -45,6 +51,8 @@ const guides = [
     name: 'Antoine Moreau',
     specialty: 'Impressionnisme',
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face',
+    artImage: 'https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=400&h=300&fit=crop',
+    artTitle: "Musée d'Orsay",
     rating: 4.7,
     reviews: 98,
     languages: ['Français', 'Allemand'],
@@ -56,6 +64,8 @@ const guides = [
     name: 'Claire Fontaine',
     specialty: 'Art Moderne',
     image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=face',
+    artImage: 'https://images.unsplash.com/photo-1577720580479-7d839d829c73?w=400&h=300&fit=crop',
+    artTitle: 'Centre Pompidou',
     rating: 4.9,
     reviews: 112,
     languages: ['Français', 'Anglais', 'Japonais'],
@@ -67,6 +77,8 @@ const guides = [
     name: 'Lucas Bernard',
     specialty: 'Patrimoine Français',
     image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face',
+    artImage: 'https://images.unsplash.com/photo-1551038247-3d9af20df552?w=400&h=300&fit=crop',
+    artTitle: 'Château de Versailles',
     rating: 4.8,
     reviews: 134,
     languages: ['Français', 'Anglais'],
@@ -227,49 +239,64 @@ const GuidePage = () => {
             {guides.map((guide, i) => (
               <div
                 key={guide.id}
-                className="animate-on-scroll opacity-0 translate-y-[30px] group p-6 bg-white/[0.02] border border-white/[0.08] rounded-2xl hover:border-[#e07a5f]/30 transition-all"
+                className="animate-on-scroll opacity-0 translate-y-[30px] group bg-white/[0.02] border border-white/[0.08] rounded-2xl hover:border-[#e07a5f]/30 transition-all overflow-hidden"
                 style={{ transitionDelay: `${200 + i * 100}ms` }}
               >
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="relative">
-                    <img
-                      src={guide.image}
-                      alt={guide.name}
-                      className="w-16 h-16 rounded-full object-cover border-2 border-[#e07a5f]/30"
-                    />
-                    {guide.verified && (
-                      <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#e07a5f] rounded-full flex items-center justify-center">
-                        <svg className="w-3 h-3 text-[#0c0c0c]" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
+                {/* Image artistique */}
+                <div className="relative h-40 overflow-hidden">
+                  <img
+                    src={guide.artImage}
+                    alt={guide.artTitle}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-transparent to-transparent" />
+                  <span className="absolute bottom-2 left-3 text-xs text-white/60 bg-black/40 px-2 py-1 rounded-full backdrop-blur-sm">
+                    {guide.artTitle}
+                  </span>
+                </div>
+
+                <div className="p-5">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="relative">
+                      <img
+                        src={guide.image}
+                        alt={guide.name}
+                        className="w-14 h-14 rounded-full object-cover border-2 border-[#e07a5f]/30"
+                      />
+                      {guide.verified && (
+                        <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#e07a5f] rounded-full flex items-center justify-center">
+                          <svg className="w-3 h-3 text-[#0c0c0c]" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-medium text-white group-hover:text-[#e07a5f] transition-colors">{guide.name}</h4>
+                      <p className="text-[#e07a5f] text-sm italic">{guide.specialty}</p>
+                      <div className="flex items-center gap-1 text-[#e07a5f] text-sm mt-1">
+                        <Star className="w-3 h-3 fill-current" />
+                        {guide.rating}
+                        <span className="text-white/40 ml-1">({guide.reviews} avis)</span>
                       </div>
-                    )}
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-medium text-white group-hover:text-[#e07a5f] transition-colors">{guide.name}</h4>
-                    <p className="text-[#e07a5f] text-sm italic">{guide.specialty}</p>
-                    <div className="flex items-center gap-1 text-[#e07a5f] text-sm mt-1">
-                      <Star className="w-3 h-3 fill-current" />
-                      {guide.rating}
-                      <span className="text-white/40 ml-1">({guide.reviews} avis)</span>
                     </div>
                   </div>
-                </div>
 
-                <div className="flex items-center gap-2 text-sm text-white/40 mb-4">
-                  <Globe className="w-4 h-4" />
-                  <span>{guide.languages.join(', ')}</span>
-                </div>
-
-                <div className="flex items-center justify-between pt-4 border-t border-white/[0.08]">
-                  <div>
-                    <span className="text-2xl font-bold text-[#e07a5f]">{guide.price}€</span>
-                    <span className="text-white/40 text-sm"> / personne</span>
+                  <div className="flex items-center gap-2 text-sm text-white/40 mb-4">
+                    <Globe className="w-4 h-4" />
+                    <span>{guide.languages.join(', ')}</span>
                   </div>
-                  <button className="flex items-center gap-2 px-4 py-2 bg-[#e07a5f]/10 text-[#e07a5f] rounded-full hover:bg-[#e07a5f]/20 transition-colors text-sm">
-                    Réserver
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
+
+                  <div className="flex items-center justify-between pt-4 border-t border-white/[0.08]">
+                    <div>
+                      <span className="text-2xl font-bold text-[#e07a5f]">{guide.price}€</span>
+                      <span className="text-white/40 text-sm"> / personne</span>
+                    </div>
+                    <button className="flex items-center gap-2 px-4 py-2 bg-[#e07a5f]/10 text-[#e07a5f] rounded-full hover:bg-[#e07a5f]/20 transition-colors text-sm">
+                      Réserver
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}

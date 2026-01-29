@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect, useMemo } from 'react';
+import { places } from '../data/places';
 import { badges, checkBadgeUnlocked } from '../data/badges';
 
 const UserContext = createContext(null);
@@ -74,13 +75,25 @@ export const UserProvider = ({ children }) => {
   // Vérifier si visité
   const isVisited = (placeId) => userData.visited.some(v => v.placeId === placeId);
 
-  // Calcul des statistiques (basé uniquement sur les IDs, les détails viennent de useCulturalData)
+  // Calcul des statistiques
   const stats = useMemo(() => {
+    const visitedIds = userData.visited.map(v => v.placeId);
+    const visitedPlaces = places.filter(p => visitedIds.includes(p.id));
+
+    // Comptage par catégorie
+    const byCategory = visitedPlaces.reduce((acc, place) => {
+      acc[place.type] = (acc[place.type] || 0) + 1;
+      return acc;
+    }, {});
+
+    // Régions uniques
+    const regions = new Set(visitedPlaces.map(p => p.location.split(',').pop().trim()));
+
     return {
-      totalVisits: userData.visited.length,
+      totalVisits: visitedIds.length,
       totalFavorites: userData.favorites.length,
-      visitedIds: userData.visited.map(v => v.placeId),
-      favoriteIds: userData.favorites
+      byCategory,
+      uniqueRegions: regions.size
     };
   }, [userData]);
 
@@ -92,16 +105,21 @@ export const UserProvider = ({ children }) => {
     }));
   }, [stats]);
 
-  // Visites récentes (uniquement les enregistrements de visite, les détails viennent de useCulturalData)
+  // Visites récentes
   const recentVisits = useMemo(() => {
     return [...userData.visited]
       .sort((a, b) => new Date(b.visitedAt) - new Date(a.visitedAt))
-      .slice(0, 5);
+      .slice(0, 5)
+      .map(v => ({
+        ...v,
+        place: places.find(p => p.id === v.placeId)
+      }))
+      .filter(v => v.place);
   }, [userData.visited]);
 
-  // IDs des lieux favoris (les détails viennent de useCulturalData)
-  const favoriteIds = useMemo(() => {
-    return userData.favorites;
+  // Lieux favoris complets
+  const favoritePlaces = useMemo(() => {
+    return places.filter(p => userData.favorites.includes(p.id));
   }, [userData.favorites]);
 
   const value = {
@@ -114,7 +132,7 @@ export const UserProvider = ({ children }) => {
     stats,
     userBadges,
     recentVisits,
-    favoriteIds,
+    favoritePlaces,
     notifications
   };
 

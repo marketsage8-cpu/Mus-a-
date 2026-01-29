@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, useMemo } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap, Circle } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 import L from 'leaflet';
-import { getTypeBadgeColor } from '../../data/placeTypes';
+import { getTypeBadgeColor } from '../../data/places';
 
 // Correction des icônes Leaflet
 delete L.Icon.Default.prototype._getIconUrl;

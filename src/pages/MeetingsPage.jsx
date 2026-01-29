@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Search, MapPin, Users, MessageCircle, X, Send, Calendar, Clock, ChevronLeft, Star } from 'lucide-react';
-import { useCulturalData } from '../hooks/useCulturalData';
+import { places } from '../data/places';
 import { frenchMuseums } from '../data/frenchMuseums';
 
 /**
@@ -98,6 +98,40 @@ const meetupUsers = [
   }
 ];
 
+/**
+ * Combiner les places existantes avec la nouvelle base de données française
+ */
+const allPlaces = [
+  ...places.map(p => ({
+    id: p.id,
+    name: p.name,
+    type: p.type,
+    city: p.location.split(',')[0].trim(),
+    region: p.location.split(',')[1]?.trim() || 'France',
+    image: p.image
+  })),
+  ...frenchMuseums
+];
+
+/**
+ * Association lieu -> utilisateurs disponibles
+ */
+const generatePlaceMeetups = () => {
+  const placeMeetups = {};
+  allPlaces.forEach(place => {
+    // Chaque lieu a entre 2 et 6 utilisateurs disponibles aléatoirement
+    const numUsers = Math.floor(Math.random() * 5) + 2;
+    const shuffled = [...meetupUsers].sort(() => 0.5 - Math.random());
+    placeMeetups[place.id] = shuffled.slice(0, numUsers).map(user => ({
+      ...user,
+      availableDate: getRandomDate(),
+      availableTime: getRandomTime(),
+      message: getRandomMessage(place.name)
+    }));
+  });
+  return placeMeetups;
+};
+
 const getRandomDate = () => {
   const dates = ["Aujourd'hui", "Demain", "Ce week-end", "Samedi prochain", "Dimanche"];
   return dates[Math.floor(Math.random() * dates.length)];
@@ -119,30 +153,13 @@ const getRandomMessage = (placeName) => {
   return messages[Math.floor(Math.random() * messages.length)];
 };
 
-/**
- * Génère les meetups pour une liste de places
- */
-const generatePlaceMeetups = (allPlaces) => {
-  const placeMeetups = {};
-  allPlaces.forEach(place => {
-    // Chaque lieu a entre 2 et 6 utilisateurs disponibles aléatoirement
-    const numUsers = Math.floor(Math.random() * 5) + 2;
-    const shuffled = [...meetupUsers].sort(() => 0.5 - Math.random());
-    placeMeetups[place.id] = shuffled.slice(0, numUsers).map(user => ({
-      ...user,
-      availableDate: getRandomDate(),
-      availableTime: getRandomTime(),
-      message: getRandomMessage(place.name)
-    }));
-  });
-  return placeMeetups;
-};
+// Générer les meetups une seule fois
+const placeMeetups = generatePlaceMeetups();
 
 /**
  * Page Rencontres - Trouver des compagnons de visite
  */
 const MeetingsPage = () => {
-  const { places } = useCulturalData();
   const [searchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedPlace, setSelectedPlace] = useState(null);
@@ -150,22 +167,6 @@ const MeetingsPage = () => {
   const [showConversation, setShowConversation] = useState(false);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
-
-  // Combiner les places avec la base de données française
-  const allPlaces = useMemo(() => [
-    ...places.map(p => ({
-      id: p.id,
-      name: p.name,
-      type: p.type,
-      city: p.location?.split(',')[0]?.trim() || '',
-      region: p.location?.split(',')[1]?.trim() || 'France',
-      image: p.image
-    })),
-    ...frenchMuseums
-  ], [places]);
-
-  // Générer les meetups (memoized pour éviter recalcul à chaque render)
-  const placeMeetups = useMemo(() => generatePlaceMeetups(allPlaces), [allPlaces]);
   const [filteredPlaces, setFilteredPlaces] = useState([]);
   const messagesEndRef = useRef(null);
 

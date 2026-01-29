@@ -2,7 +2,6 @@ import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Heart, MapPin, Trash2, Landmark, Castle, Palette, Filter, Star, Clock, Euro, Calendar } from 'lucide-react';
 import { useUser } from '../context/UserContext';
-import { useCulturalData } from '../hooks/useCulturalData';
 import PlaceDetailModal from '../components/modals/PlaceDetailModal';
 
 /**
@@ -10,15 +9,9 @@ import PlaceDetailModal from '../components/modals/PlaceDetailModal';
  */
 const FavoritesPage = () => {
   const navigate = useNavigate();
-  const { favoriteIds, userData, toggleFavorite } = useUser();
-  const { places } = useCulturalData();
+  const { favoritePlaces, userData, toggleFavorite } = useUser();
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
-
-  // Récupérer les lieux favoris à partir des IDs
-  const favoritePlaces = useMemo(() => {
-    return places.filter(p => favoriteIds.includes(p.id));
-  }, [places, favoriteIds]);
 
   // Catégories de filtres
   const categories = [

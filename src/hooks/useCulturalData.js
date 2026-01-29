@@ -3,6 +3,71 @@ import { loadAllCulturalPlaces, clearCache } from '../services/culturalDataServi
 import { places as staticPlaces, placeTypes } from '../data/places';
 import { wikidataMuseums } from '../data/wikidataMuseums';
 
+// Patterns de faux musées générés algorithmiquement
+const FAKE_MUSEUM_PATTERNS = [
+  /^Musée de la .+ de [A-Z]/i,
+  /^Musée du .+ de [A-Z]/i,
+  /^Musée des .+ de [A-Z]/i,
+  /^Musée régional de /i,
+  /^Musée municipal de /i,
+  /^Musée du Patrimoine de /i,
+  /^Musée ethnographique de /i,
+  /^Musée de la Ville de /i,
+];
+
+// Exceptions : vrais musées qui correspondent aux patterns
+const REAL_MUSEUM_EXCEPTIONS = [
+  'musée de la marine',
+  'musée de la résistance',
+  'musée de la libération',
+  'musée de la céramique',
+  'musée de la faïence',
+  'musée de la dentelle',
+  'musée de la tapisserie',
+  'musée de la chasse',
+  'musée de la pêche',
+  'musée de la mine',
+  'musée de la préhistoire',
+  'musée de la romanité',
+  'musée de la vie rurale',
+  'musée de la photographie',
+  'musée de la musique',
+  'musée de la mode',
+  'musée de la poupée',
+  'musée de la parfumerie',
+  'musée du louvre',
+  'musée du quai branly',
+  "musée d'orsay",
+  'musée de l\'orangerie',
+  'musée des beaux-arts',
+  'musée des arts décoratifs de paris',
+  'musée des confluences',
+];
+
+/**
+ * Filtre les faux musées des données statiques
+ */
+function filterFakeMuseums(places) {
+  return places.filter(p => {
+    if (p.type !== 'musée') return true;
+
+    const name = p.name || '';
+    const nameLower = name.toLowerCase();
+
+    // Garder si exception connue
+    if (REAL_MUSEUM_EXCEPTIONS.some(exc => nameLower.includes(exc))) return true;
+
+    // Garder si vérifié
+    if (p.wikidataId) return true;
+    if (p.source === 'data.culture.gouv.fr') return true;
+
+    // Exclure si pattern de faux musée
+    if (FAKE_MUSEUM_PATTERNS.some(pattern => pattern.test(name))) return false;
+
+    return true;
+  });
+}
+
 /**
  * Fusionne les données statiques avec les musées Wikidata (avec coordonnées)
  * en évitant les doublons basés sur le nom normalisé
@@ -23,8 +88,10 @@ function mergeWithWikidataMuseums(basePlaces) {
   return [...basePlaces, ...newMuseums];
 }
 
-// Données initiales : places statiques + musées Wikidata (avec coordonnées exactes)
-const initialPlaces = mergeWithWikidataMuseums(staticPlaces);
+// Données initiales : places statiques FILTRÉES + musées Wikidata (avec coordonnées exactes)
+const filteredStaticPlaces = filterFakeMuseums(staticPlaces);
+console.log(`[Muzea] ${staticPlaces.length - filteredStaticPlaces.length} faux musées exclus des données statiques`);
+const initialPlaces = mergeWithWikidataMuseums(filteredStaticPlaces);
 
 /**
  * Hook pour charger TOUTES les données culturelles.

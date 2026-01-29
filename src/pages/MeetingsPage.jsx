@@ -120,7 +120,7 @@ const MeetingsPage = () => {
         <div
           className="absolute top-0 right-0 w-[70%] h-full bg-cover bg-center hidden md:block"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1600&q=80')`
+            backgroundImage: `url('https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=1600&q=80')`
           }}
         />
 

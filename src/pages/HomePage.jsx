@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MapPin, Clock, Calendar, Star, Users, Headphones, Award, Bell, Heart, Filter, Navigation, ChevronRight, Compass, Sparkles, TrendingUp, Eye, MessageCircle, Image, Share2, Coffee } from 'lucide-react';
+import { MapPin, Clock, Calendar, Star, Users, Headphones, Award, Bell, Heart, Filter, Navigation, ChevronRight, Compass, Sparkles, TrendingUp, Eye, MessageCircle, Image, Share2, Coffee, Search } from 'lucide-react';
 import { MapMockup, RecommendationsMockup, SocialMockup, GuidesMockup } from '../components/mockups/PhoneMockup';
 
 /**
@@ -82,20 +82,44 @@ const HomePage = () => {
               </span>
             </div>
 
-            {/* CTAs */}
-            <div className="animate-on-scroll opacity-0 translate-y-[30px] flex flex-wrap gap-4" style={{ transitionDelay: '400ms' }}>
-              <button
-                onClick={() => navigate('/explore')}
-                className="px-8 py-4 bg-[#e07a5f] text-[#0c0c0c] font-medium rounded-full hover:bg-[#e8968a] transition-all hover:scale-105 shadow-lg shadow-[#e07a5f]/20"
+            {/* Barre de recherche */}
+            <div className="animate-on-scroll opacity-0 translate-y-[30px]" style={{ transitionDelay: '400ms' }}>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const query = e.target.search.value;
+                  if (query.trim()) {
+                    navigate(`/search?q=${encodeURIComponent(query)}`);
+                  }
+                }}
+                className="relative max-w-lg"
               >
-                Commencer l'exploration
-              </button>
-              <button
-                onClick={() => document.getElementById('carte').scrollIntoView({ behavior: 'smooth' })}
-                className="px-8 py-4 border border-white/20 text-white/80 font-medium rounded-full hover:bg-white/5 transition-all"
-              >
-                En savoir plus
-              </button>
+                <div className="flex items-center bg-white/[0.05] border border-white/[0.15] rounded-full overflow-hidden hover:border-[#e07a5f]/50 transition-all focus-within:border-[#e07a5f] focus-within:bg-white/[0.08]">
+                  <div className="pl-5">
+                    <Search className="w-5 h-5 text-white/40" />
+                  </div>
+                  <input
+                    type="text"
+                    name="search"
+                    placeholder="Rechercher un musée, monument, exposition..."
+                    className="flex-1 bg-transparent px-4 py-4 text-white placeholder-white/40 outline-none text-base"
+                  />
+                  <button
+                    type="submit"
+                    className="px-6 py-3 m-1 bg-[#e07a5f] text-[#0c0c0c] font-medium rounded-full hover:bg-[#e8968a] transition-all"
+                  >
+                    Rechercher
+                  </button>
+                </div>
+              </form>
+              <div className="flex flex-wrap gap-2 mt-4 text-sm">
+                <span className="text-white/40">Suggestions :</span>
+                <button onClick={() => navigate('/search?q=Louvre')} className="text-[#e07a5f] hover:underline">Louvre</button>
+                <span className="text-white/20">•</span>
+                <button onClick={() => navigate('/search?q=Orsay')} className="text-[#e07a5f] hover:underline">Musée d'Orsay</button>
+                <span className="text-white/20">•</span>
+                <button onClick={() => navigate('/search?q=Versailles')} className="text-[#e07a5f] hover:underline">Versailles</button>
+              </div>
             </div>
 
             {/* Stats */}

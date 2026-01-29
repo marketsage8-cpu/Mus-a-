@@ -29,4 +29,3 @@ Thumbs.db
 
 # Vite
 *.local
-src/data/places.backup.*.js

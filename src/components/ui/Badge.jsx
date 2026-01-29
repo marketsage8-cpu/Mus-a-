@@ -1,4 +1,4 @@
-import { getTypeBadgeColor } from '../../data/placeTypes';
+import { getTypeBadgeColor } from '../../data/places';
 
 /**
  * Badge affichant le type de lieu

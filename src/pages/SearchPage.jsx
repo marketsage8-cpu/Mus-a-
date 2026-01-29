@@ -1,38 +1,37 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { Search, MapPin, Castle, Landmark, Star } from 'lucide-react';
-import { useCulturalData } from '../hooks/useCulturalData';
+import { places } from '../data/places';
 import { frenchMuseums } from '../data/frenchMuseums';
 import SearchBar from '../components/ui/SearchBar';
 import PlaceCard from '../components/cards/PlaceCard';
 import PlaceDetailModal from '../components/modals/PlaceDetailModal';
 
+// Combiner tous les lieux pour la recherche (musées + châteaux + expositions)
+const allSearchablePlaces = [
+  ...places,
+  ...frenchMuseums.map(m => ({
+    id: m.id,
+    name: m.name,
+    type: m.type,
+    location: `${m.city}, ${m.region}`,
+    city: m.city,
+    region: m.region,
+    image: m.image,
+    rating: (Math.random() * 0.5 + 4.5).toFixed(1),
+    description: `Découvrez ${m.name}, un magnifique ${m.type} situé à ${m.city} en ${m.region}.`,
+    coordinates: { lat: 48.8566, lng: 2.3522 },
+    price: m.type === 'musée' ? '12€ - 18€' : m.type === 'château' ? '10€ - 15€' : 'Gratuit',
+    hours: '10h00 - 18h00'
+  }))
+];
+
 /**
  * Page de recherche dédiée
  */
 const SearchPage = () => {
-  const { places } = useCulturalData();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all'); // 'all', 'musée', 'château', 'exposition'
-
-  // Combiner tous les lieux pour la recherche
-  const allSearchablePlaces = useMemo(() => [
-    ...places,
-    ...frenchMuseums.map(m => ({
-      id: m.id,
-      name: m.name,
-      type: m.type,
-      location: `${m.city}, ${m.region}`,
-      city: m.city,
-      region: m.region,
-      image: m.image,
-      rating: (Math.random() * 0.5 + 4.5).toFixed(1),
-      description: `Découvrez ${m.name}, un magnifique ${m.type} situé à ${m.city} en ${m.region}.`,
-      coordinates: { lat: 48.8566, lng: 2.3522 },
-      price: m.type === 'musée' ? '12€ - 18€' : m.type === 'château' ? '10€ - 15€' : 'Gratuit',
-      hours: '10h00 - 18h00'
-    }))
-  ], [places]);
 
   const filteredPlaces = allSearchablePlaces.filter((place) => {
     if (!searchQuery.trim()) return false;

@@ -1058,7 +1058,67 @@ export async function loadAllCulturalPlaces(onProgress) {
   });
   console.log(`[Muzea] ${unique.length - filtered.length} lieux exclus (festivals/écoles/institutions)`);
 
-  // 3c. Validation Wikipedia - ne garder que les lieux vérifiés
+  // 3c. Filtrer les faux musées générés algorithmiquement
+  const FAKE_MUSEUM_PATTERNS = [
+    /^Musée de la .+ de [A-Z]/i,
+    /^Musée du .+ de [A-Z]/i,
+    /^Musée des .+ de [A-Z]/i,
+    /^Musée régional de /i,
+    /^Musée municipal de /i,
+    /^Musée du Patrimoine de /i,
+    /^Musée ethnographique de /i,
+    /^Musée de la Ville de /i,
+  ];
+
+  const REAL_MUSEUM_EXCEPTIONS = [
+    'musée de la marine',
+    'musée de la résistance',
+    'musée de la libération',
+    'musée de la céramique',
+    'musée de la faïence',
+    'musée de la dentelle',
+    'musée de la tapisserie',
+    'musée de la chasse',
+    'musée de la pêche',
+    'musée de la mine',
+    'musée de la préhistoire',
+    'musée de la romanité',
+    'musée de la vie rurale',
+    'musée de la photographie',
+    'musée de la musique',
+    'musée de la mode',
+    'musée de la poupée',
+    'musée de la parfumerie',
+    'musée du louvre',
+    'musée du quai branly',
+    "musée d'orsay",
+    'musée de l\'orangerie',
+    'musée des beaux-arts',
+    'musée des arts décoratifs de paris',
+    'musée des confluences',
+  ];
+
+  const filteredFake = filtered.filter(p => {
+    if (p.type !== 'musée') return true;
+
+    const name = p.name || '';
+    const nameLower = name.toLowerCase();
+
+    // Garder si c'est une exception connue
+    if (REAL_MUSEUM_EXCEPTIONS.some(exc => nameLower.includes(exc))) return true;
+
+    // Garder si vérifié par wikidataId ou source officielle
+    if (p.wikidataId) return true;
+    if (p.source === 'data.culture.gouv.fr') return true;
+
+    // Exclure si correspond à un pattern de faux musée
+    if (FAKE_MUSEUM_PATTERNS.some(pattern => pattern.test(name))) return false;
+
+    return true;
+  });
+  console.log(`[Muzea] ${filtered.length - filteredFake.length} faux musées exclus`);
+
+  // 3d. Validation Wikipedia - ne garder que les lieux vérifiés
   onProgress?.({ phase: 'validation', status: 'Validation des lieux via Wikipedia…' });
 
   // Fonction pour vérifier si un lieu existe via Wikipedia
@@ -1077,7 +1137,7 @@ export async function loadAllCulturalPlaces(onProgress) {
   const verified = [];
   const toCheck = [];
 
-  for (const p of filtered) {
+  for (const p of filteredFake) {
     // Lieux déjà vérifiés (ont un wikidataId ou viennent de sources fiables)
     if (p.wikidataId || p.source === 'data.culture.gouv.fr' || p.source === 'Wikidata') {
       verified.push(p);
@@ -1116,7 +1176,7 @@ export async function loadAllCulturalPlaces(onProgress) {
   const remainingUnchecked = toCheck.slice(MAX_TO_CHECK);
 
   const allValidated = [...verified, ...validatedFromCheck, ...remainingUnchecked];
-  console.log(`[Muzea] ${filtered.length - allValidated.length} lieux exclus (non trouvés sur Wikipedia)`);
+  console.log(`[Muzea] ${filteredFake.length - allValidated.length} lieux exclus (non trouvés sur Wikipedia)`);
 
   // 4. Assigner IDs et valeurs par défaut
   let places = allValidated.map((p, i) => ({

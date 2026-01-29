@@ -13,13 +13,62 @@
 
 const CACHE_KEY = 'muzea_all_places';
 const CACHE_VERSION_KEY = 'muzea_cache_version';
-// Version 7: Récupération massive de tous les musées depuis OSM + Wikidata
-// avec images Wikimedia Commons et fallback Wikipedia
-const CACHE_VERSION = 7;
+// Version 8: Filtrage strict - uniquement musées, châteaux, églises
+// Exclusion des faux positifs (écoles, institutions, festivals, etc.)
+const CACHE_VERSION = 8;
 const CACHE_MAX_AGE = 7 * 24 * 60 * 60 * 1000; // 7 jours
 
 // Image placeholder pour les musées sans image
 const PLACEHOLDER_IMAGE = 'https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?w=400&h=300&fit=crop';
+
+// ─── Filtre des faux positifs ────────────────────────────
+// Mots-clés qui indiquent que ce n'est PAS un vrai musée/château/église
+const EXCLUDED_KEYWORDS = [
+  // Établissements scolaires
+  'école', 'ecole', 'lycée', 'lycee', 'collège', 'college', 'université', 'universite',
+  'faculté', 'faculte', 'institut', 'iut', 'campus', 'académie', 'academie',
+  'conservatoire', 'école primaire', 'école maternelle', 'groupe scolaire',
+  // Institutions / Administration
+  'mairie', 'hôtel de ville', 'hotel de ville', 'préfecture', 'prefecture',
+  'conseil', 'administration', 'centre administratif', 'tribunal', 'palais de justice',
+  'commissariat', 'gendarmerie', 'pompiers', 'caserne',
+  // Santé
+  'hôpital', 'hopital', 'clinique', 'ehpad', 'maison de retraite', 'dispensaire',
+  // Commerce / Entreprises
+  'supermarché', 'supermarche', 'magasin', 'boutique', 'centre commercial',
+  'restaurant', 'café', 'bar', 'hôtel', 'hotel', 'auberge', 'gîte', 'camping',
+  // Événements / Festivals
+  'festival', 'fête', 'fete', 'salon', 'foire', 'brocante', 'marché', 'marche',
+  'concert', 'spectacle', 'événement', 'evenement',
+  // Sport / Loisirs
+  'stade', 'gymnase', 'piscine', 'tennis', 'golf', 'bowling', 'cinéma', 'cinema',
+  'théâtre', 'theatre', 'opéra', 'opera', 'salle de sport', 'fitness',
+  // Transport
+  'gare', 'aéroport', 'aeroport', 'station', 'parking', 'péage', 'autoroute',
+  // Autres faux positifs
+  'association', 'club', 'comité', 'comite', 'syndicat', 'fédération', 'federation',
+  'office de tourisme', 'point info', 'accueil', 'bibliothèque', 'bibliotheque',
+  'médiathèque', 'mediatheque', 'ludothèque', 'ludotheque', 'archives',
+  'cimetière', 'cimetiere', 'funérarium', 'funerarium', 'crématorium', 'crematorium',
+  'déchèterie', 'decheterie', 'station d\'épuration', 'usine', 'entrepôt', 'entrepot',
+  'lotissement', 'résidence', 'residence', 'immeuble', 'appartement',
+  'banque', 'caisse', 'assurance', 'notaire', 'avocat', 'cabinet',
+  'coiffeur', 'salon de', 'garage', 'carrosserie', 'pressing', 'laverie',
+  'boulangerie', 'pâtisserie', 'patisserie', 'pharmacie', 'opticien', 'dentiste',
+  'vétérinaire', 'veterinaire', 'animalerie', 'jardinerie', 'bricolage',
+  'zone industrielle', 'zone artisanale', 'zone commerciale', 'parc d\'activités',
+];
+
+/**
+ * Vérifie si un nom de lieu est un faux positif (pas un vrai musée/château/église)
+ */
+function isFalsePositive(name) {
+  if (!name) return true;
+  const normalized = name.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+  return EXCLUDED_KEYWORDS.some(keyword => normalized.includes(keyword));
+}
 
 // ─── Helpers ─────────────────────────────────────────────
 
@@ -551,10 +600,8 @@ async function fetchOSMOtherPlaces(onProgress) {
     if (historic === 'castle' || tags.castle_type) {
       type = 'château';
       desc = `Château${city ? ` situé à ${city}` : ''}, France.`;
-    } else if (tourism === 'gallery' || amenity === 'arts_centre') {
-      type = 'exposition';
-      desc = `Galerie / Centre d'art${city ? ` à ${city}` : ''}, France.`;
     } else {
+      // Ignorer les galeries et autres types (uniquement musée, château, église)
       continue;
     }
 
@@ -845,9 +892,16 @@ function deduplicate(allPlaces, onProgress) {
 
   const unique = [];
   let processed = 0;
+  let filtered = 0;
 
   for (const p of allPlaces) {
     if (!p.coordinates || !p.coordinates.lat || !p.coordinates.lng) continue;
+
+    // Filtrer les faux positifs (écoles, institutions, festivals, etc.)
+    if (isFalsePositive(p.name)) {
+      filtered++;
+      continue;
+    }
 
     const key = normalizeName(p.name) + '_' + p.type;
 
@@ -898,7 +952,7 @@ function deduplicate(allPlaces, onProgress) {
     }
   }
 
-  console.log(`[Muzea] Dédoublonnage terminé: ${unique.length} lieux uniques`);
+  console.log(`[Muzea] Dédoublonnage terminé: ${unique.length} lieux uniques (${filtered} faux positifs exclus)`);
   return unique;
 }
 
@@ -1005,10 +1059,9 @@ export async function loadAllCulturalPlaces(onProgress) {
     museofileMuseums,    // ~1200 musées officiels labellisés
     osmMuseums,          // ~3000-5000 musées OSM
     wikidataMuseums,     // ~2000-4000 musées Wikidata avec images
-    osmOther,            // Châteaux, galeries OSM
+    osmOther,            // Châteaux OSM
     wikidataOther,       // Châteaux, églises Wikidata
-    monuments,           // Monuments historiques
-    architecture         // Architecture remarquable
+    monuments            // Monuments historiques (châteaux, églises)
   ] = await Promise.all([
     fetchMuseums(onProgress).catch((e) => { console.warn('[Muzea] Muséofile:', e.message); return []; }),
     fetchOSMMuseums(onProgress).catch((e) => { console.warn('[Muzea] OSM Musées:', e.message); return []; }),
@@ -1016,17 +1069,15 @@ export async function loadAllCulturalPlaces(onProgress) {
     fetchOSMOtherPlaces(onProgress).catch((e) => { console.warn('[Muzea] OSM Autres:', e.message); return []; }),
     fetchWikidataOtherPlaces(onProgress).catch((e) => { console.warn('[Muzea] Wikidata Autres:', e.message); return []; }),
     fetchMonuments(onProgress).catch((e) => { console.warn('[Muzea] Monuments:', e.message); return []; }),
-    fetchArchitecture(onProgress).catch((e) => { console.warn('[Muzea] Architecture:', e.message); return []; }),
   ]);
 
   console.log(`[Muzea] Sources récupérées:`);
   console.log(`  - Muséofile (officiels): ${museofileMuseums.length}`);
   console.log(`  - OSM Musées: ${osmMuseums.length}`);
   console.log(`  - Wikidata Musées: ${wikidataMuseums.length}`);
-  console.log(`  - OSM Autres: ${osmOther.length}`);
-  console.log(`  - Wikidata Autres: ${wikidataOther.length}`);
-  console.log(`  - Monuments: ${monuments.length}`);
-  console.log(`  - Architecture: ${architecture.length}`);
+  console.log(`  - OSM Châteaux: ${osmOther.length}`);
+  console.log(`  - Wikidata Châteaux/Églises: ${wikidataOther.length}`);
+  console.log(`  - Monuments (châteaux/églises): ${monuments.length}`);
 
   // Ordre de priorité pour la fusion (les premiers sont prioritaires)
   // Les données officielles (Muséofile) sont prioritaires, puis Wikidata (images), puis OSM
@@ -1036,8 +1087,7 @@ export async function loadAllCulturalPlaces(onProgress) {
     ...osmMuseums,        // Priorité 3: OSM
     ...wikidataOther,
     ...osmOther,
-    ...monuments,
-    ...architecture
+    ...monuments
   ];
 
   const totalRaw = allRaw.length;
@@ -1082,7 +1132,6 @@ export async function loadAllCulturalPlaces(onProgress) {
     museums: places.filter(p => p.type === 'musée').length,
     castles: places.filter(p => p.type === 'château').length,
     churches: places.filter(p => p.type === 'église').length,
-    galleries: places.filter(p => p.type === 'exposition').length,
     withImage: places.filter(p => p.image && p.image !== PLACEHOLDER_IMAGE).length
   };
 
@@ -1091,7 +1140,6 @@ export async function loadAllCulturalPlaces(onProgress) {
   console.log(`  - Musées: ${stats.museums}`);
   console.log(`  - Châteaux: ${stats.castles}`);
   console.log(`  - Églises: ${stats.churches}`);
-  console.log(`  - Expositions/Galeries: ${stats.galleries}`);
   console.log(`  - Avec image: ${stats.withImage} (${(stats.withImage/stats.total*100).toFixed(1)}%)`);
 
   // 7. Mettre en cache

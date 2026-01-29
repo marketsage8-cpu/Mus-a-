@@ -23,8 +23,12 @@ function mergeWithWikidataMuseums(basePlaces) {
   return [...basePlaces, ...newMuseums];
 }
 
-// Données initiales : places statiques + musées Wikidata (avec coordonnées exactes)
-const initialPlaces = mergeWithWikidataMuseums(staticPlaces);
+// Types valides : uniquement musée, château, église
+const VALID_TYPES = new Set(['musée', 'château', 'église']);
+
+// Données initiales : places statiques (filtrées) + musées Wikidata (avec coordonnées exactes)
+const filteredStaticPlaces = staticPlaces.filter(p => VALID_TYPES.has(p.type));
+const initialPlaces = mergeWithWikidataMuseums(filteredStaticPlaces);
 
 /**
  * Hook pour charger TOUTES les données culturelles.
@@ -52,13 +56,12 @@ export function useCulturalData() {
 
       if (apiPlaces && apiPlaces.length > 0) {
         // Fusionner : garder TOUTES les données (statiques + Wikidata) + ajouter les nouvelles de l'API
-        const VALID_TYPES = new Set(['musée', 'château', 'exposition', 'église']);
         const existingNames = new Set(initialPlaces.map(p =>
           p.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '')
         ));
 
         const newFromApi = apiPlaces.filter(p => {
-          if (!VALID_TYPES.has(p.type)) return false; // Uniquement les 4 types voulus
+          if (!VALID_TYPES.has(p.type)) return false; // Uniquement musée, château, église
           const key = p.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
           return !existingNames.has(key);
         });

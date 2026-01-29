@@ -1,6 +1,6 @@
 // Fichier généré automatiquement — Base COMPLÈTE des lieux culturels français
-// Date : 2026-01-29T08:24:57.134Z
-// Total : 7199 lieux (2511 musées, 2822 châteaux, 1866 églises)
+// Date : 2026-01-29T12:16:25.287Z
+// Total : 7604 lieux (2511 musées, 2822 châteaux, 1866 églises, 405 expositions)
 //
 // Données générées à partir de coordonnées GPS réelles
 // de 626 villes françaises couvrant toutes les régions
@@ -9,7 +9,8 @@ export const placeTypes = [
   { id: 'all', label: 'Tous', color: 'bg-night-600' },
   { id: 'musée', label: 'Musées', color: 'bg-turquoise-500' },
   { id: 'château', label: 'Châteaux', color: 'bg-gold-600' },
-  { id: 'église', label: 'Églises', color: 'bg-rose-500' }
+  { id: 'église', label: 'Églises', color: 'bg-rose-500' },
+  { id: 'exposition', label: 'Expositions', color: 'bg-purple-500' }
 ];
 
 export const getTypeBadgeColor = (type) => {
@@ -17,6 +18,7 @@ export const getTypeBadgeColor = (type) => {
     'musée': 'bg-turquoise-500',
     'château': 'bg-gold-600',
     'église': 'bg-rose-500',
+    'exposition': 'bg-purple-500',
   };
   return colors[type] || 'bg-night-600';
 };
@@ -205,6 +207,27 @@ export const places = [
     },
     "highlights": [
       "XIVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 15,
+    "name": "Salon du Vin de Paris",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Paris.",
+    "location": "Paris, Île-de-France",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 48.85283,
+      "lng": 2.35113
+    },
+    "highlights": [
+      "Jazz & Blues"
     ],
     "visited": false,
     "favorite": false
@@ -656,6 +679,27 @@ export const places = [
     },
     "highlights": [
       "XIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 51,
+    "name": "Nuit des Musées de Saint-Denis",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de théâtre à Saint-Denis.",
+    "location": "Saint-Denis, Île-de-France",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Théâtre",
+    "coordinates": {
+      "lat": 48.94022,
+      "lng": 2.36259
+    },
+    "highlights": [
+      "Théâtre"
     ],
     "visited": false,
     "favorite": false
@@ -1358,6 +1402,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 104,
+    "name": "Fête médiévale de Provins",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Provins.",
+    "location": "Provins, Île-de-France",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 48.569,
+      "lng": 3.30155
+    },
+    "highlights": [
+      "Cirque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 105,
     "name": "Musée municipal de Rambouillet",
     "type": "musée",
@@ -1927,6 +1992,27 @@ export const places = [
     },
     "highlights": [
       "XVIIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 150,
+    "name": "Journées du Patrimoine de Vincennes",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Vincennes.",
+    "location": "Vincennes, Île-de-France",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 48.84055,
+      "lng": 2.43054
+    },
+    "highlights": [
+      "Danse contemporaine"
     ],
     "visited": false,
     "favorite": false
@@ -2730,6 +2816,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 208,
+    "name": "Nuit des Musées de Meudon",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de bande dessinée à Meudon.",
+    "location": "Meudon, Île-de-France",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Bande dessinée",
+    "coordinates": {
+      "lat": 48.81917,
+      "lng": 2.23835
+    },
+    "highlights": [
+      "Bande dessinée"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 209,
     "name": "Musée du Patrimoine de Saint-Germain-en-Laye",
     "type": "musée",
@@ -3427,6 +3534,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 258,
+    "name": "Nuit des Musées de Pontoise",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de littérature à Pontoise.",
+    "location": "Pontoise, Île-de-France",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Littérature",
+    "coordinates": {
+      "lat": 49.04558,
+      "lng": 2.09421
+    },
+    "highlights": [
+      "Littérature"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 260,
     "name": "Musée d'Art moderne de Marseille",
     "type": "musée",
@@ -4041,6 +4169,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 308,
+    "name": "Nuit des Musées de Aix-en-Provence",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de bande dessinée à Aix-en-Provence.",
+    "location": "Aix-en-Provence, Provence-Alpes-Côte d'Azur",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Bande dessinée",
+    "coordinates": {
+      "lat": 43.53845,
+      "lng": 5.45584
+    },
+    "highlights": [
+      "Bande dessinée"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 310,
     "name": "Musée du Textile de Avignon",
     "type": "musée",
@@ -4485,6 +4634,27 @@ export const places = [
     },
     "highlights": [
       "Art roman"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 344,
+    "name": "Biennale d'Art contemporain de Toulon",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Toulon.",
+    "location": "Toulon, Provence-Alpes-Côte d'Azur",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 43.13051,
+      "lng": 5.92449
+    },
+    "highlights": [
+      "Cirque"
     ],
     "visited": false,
     "favorite": false
@@ -5001,6 +5171,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 381,
+    "name": "Salon du Vin de Antibes",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Antibes.",
+    "location": "Antibes, Provence-Alpes-Côte d'Azur",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 43.5749,
+      "lng": 7.13344
+    },
+    "highlights": [
+      "Cultures du monde"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 383,
+    "name": "Nuit des Musées de Antibes",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Antibes.",
+    "location": "Antibes, Provence-Alpes-Côte d'Azur",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 43.58635,
+      "lng": 7.1171
+    },
+    "highlights": [
+      "Cirque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 384,
     "name": "Écomusée de Cannes",
     "type": "musée",
@@ -5284,6 +5496,27 @@ export const places = [
     },
     "highlights": [
       "XVIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 402,
+    "name": "Salon du Vin de Cannes",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Cannes.",
+    "location": "Cannes, Provence-Alpes-Côte d'Azur",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 43.55968,
+      "lng": 7.02458
+    },
+    "highlights": [
+      "Arts visuels"
     ],
     "visited": false,
     "favorite": false
@@ -5733,6 +5966,48 @@ export const places = [
     },
     "highlights": [
       "Époque romane"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 433,
+    "name": "Nuit des Musées de Menton",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Menton.",
+    "location": "Menton, Provence-Alpes-Côte d'Azur",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 43.77289,
+      "lng": 7.49815
+    },
+    "highlights": [
+      "Danse contemporaine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 434,
+    "name": "Fête médiévale de Menton",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de oenologie à Menton.",
+    "location": "Menton, Provence-Alpes-Côte d'Azur",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Oenologie",
+    "coordinates": {
+      "lat": 43.77452,
+      "lng": 7.50571
+    },
+    "highlights": [
+      "Oenologie"
     ],
     "visited": false,
     "favorite": false
@@ -7115,6 +7390,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 539,
+    "name": "Salon du Vin de Briançon",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Briançon.",
+    "location": "Briançon, Provence-Alpes-Côte d'Azur",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 44.89965,
+      "lng": 6.63145
+    },
+    "highlights": [
+      "Musique folk"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 540,
     "name": "Musée régional de Digne-les-Bains",
     "type": "musée",
@@ -8360,6 +8656,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 631,
+    "name": "Fête médiévale de Saint-Étienne",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de photographie à Saint-Étienne.",
+    "location": "Saint-Étienne, Auvergne-Rhône-Alpes",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Photographie",
+    "coordinates": {
+      "lat": 45.44109,
+      "lng": 4.38813
+    },
+    "highlights": [
+      "Photographie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 633,
     "name": "Musée d'Art et d'Histoire de Clermont-Ferrand",
     "type": "musée",
@@ -8577,6 +8894,27 @@ export const places = [
     },
     "highlights": [
       "XVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 648,
+    "name": "Salon du Vin de Clermont-Ferrand",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique classique à Clermont-Ferrand.",
+    "location": "Clermont-Ferrand, Auvergne-Rhône-Alpes",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique classique",
+    "coordinates": {
+      "lat": 45.78267,
+      "lng": 3.08847
+    },
+    "highlights": [
+      "Musique classique"
     ],
     "visited": false,
     "favorite": false
@@ -9357,6 +9695,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 702,
+    "name": "Nuit des Musées de Chambéry",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de oenologie à Chambéry.",
+    "location": "Chambéry, Auvergne-Rhône-Alpes",
+    "rating": 4.9,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Oenologie",
+    "coordinates": {
+      "lat": 45.56921,
+      "lng": 5.90809
+    },
+    "highlights": [
+      "Oenologie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 705,
     "name": "Musée de la Préhistoire de Bourg-en-Bresse",
     "type": "musée",
@@ -9849,6 +10208,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 741,
+    "name": "Salon du Vin de Le Puy-en-Velay",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Le Puy-en-Velay.",
+    "location": "Le Puy-en-Velay, Auvergne-Rhône-Alpes",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 45.04311,
+      "lng": 3.88303
+    },
+    "highlights": [
+      "Cirque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 742,
     "name": "Écomusée de Aurillac",
     "type": "musée",
@@ -10051,6 +10431,27 @@ export const places = [
     },
     "highlights": [
       "Époque romane"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 756,
+    "name": "Biennale d'Art contemporain de Aurillac",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique classique à Aurillac.",
+    "location": "Aurillac, Auvergne-Rhône-Alpes",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique classique",
+    "coordinates": {
+      "lat": 44.9258,
+      "lng": 2.44495
+    },
+    "highlights": [
+      "Musique classique"
     ],
     "visited": false,
     "favorite": false
@@ -10456,6 +10857,27 @@ export const places = [
     },
     "highlights": [
       "XIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 790,
+    "name": "Journées du Patrimoine de Vienne",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts numériques à Vienne.",
+    "location": "Vienne, Auvergne-Rhône-Alpes",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts numériques",
+    "coordinates": {
+      "lat": 45.52834,
+      "lng": 4.87786
+    },
+    "highlights": [
+      "Arts numériques"
     ],
     "visited": false,
     "favorite": false
@@ -12204,6 +12626,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 925,
+    "name": "Journées du Patrimoine de Pau",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique baroque à Pau.",
+    "location": "Pau, Nouvelle-Aquitaine",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique baroque",
+    "coordinates": {
+      "lat": 43.28644,
+      "lng": -0.36297
+    },
+    "highlights": [
+      "Musique baroque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 926,
     "name": "Musée de la Préhistoire de Angoulême",
     "type": "musée",
@@ -12431,6 +12874,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 942,
+    "name": "Journées du Patrimoine de Angoulême",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de oenologie à Angoulême.",
+    "location": "Angoulême, Nouvelle-Aquitaine",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Oenologie",
+    "coordinates": {
+      "lat": 45.64667,
+      "lng": 0.15928
+    },
+    "highlights": [
+      "Oenologie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 943,
+    "name": "Nuit des Musées de Angoulême",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de oenologie à Angoulême.",
+    "location": "Angoulême, Nouvelle-Aquitaine",
+    "rating": 4.9,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Oenologie",
+    "coordinates": {
+      "lat": 45.65533,
+      "lng": 0.15672
+    },
+    "highlights": [
+      "Oenologie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 945,
     "name": "Musée archéologique de Bayonne",
     "type": "musée",
@@ -12635,6 +13120,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 958,
+    "name": "Fête médiévale de Bayonne",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de opéra à Bayonne.",
+    "location": "Bayonne, Nouvelle-Aquitaine",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Opéra",
+    "coordinates": {
+      "lat": 43.48623,
+      "lng": -1.47012
+    },
+    "highlights": [
+      "Opéra"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 960,
     "name": "Musée du Patrimoine de Périgueux",
     "type": "musée",
@@ -12833,6 +13339,27 @@ export const places = [
     },
     "highlights": [
       "XVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 973,
+    "name": "Biennale d'Art contemporain de Périgueux",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de photographie à Périgueux.",
+    "location": "Périgueux, Nouvelle-Aquitaine",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Photographie",
+    "coordinates": {
+      "lat": 45.18338,
+      "lng": 0.71897
+    },
+    "highlights": [
+      "Photographie"
     ],
     "visited": false,
     "favorite": false
@@ -13084,6 +13611,27 @@ export const places = [
     },
     "highlights": [
       "Époque romane"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 993,
+    "name": "Salon du Vin de Biarritz",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts de la rue à Biarritz.",
+    "location": "Biarritz, Nouvelle-Aquitaine",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts de la rue",
+    "coordinates": {
+      "lat": 43.47398,
+      "lng": -1.56128
+    },
+    "highlights": [
+      "Arts de la rue"
     ],
     "visited": false,
     "favorite": false
@@ -13864,6 +14412,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 1049,
+    "name": "Biennale d'Art contemporain de Saintes",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de littérature à Saintes.",
+    "location": "Saintes, Nouvelle-Aquitaine",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Littérature",
+    "coordinates": {
+      "lat": 45.74728,
+      "lng": -0.64033
+    },
+    "highlights": [
+      "Littérature"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 1051,
     "name": "Musée de la Photographie de Sarlat-la-Canéda",
     "type": "musée",
@@ -14291,6 +14860,27 @@ export const places = [
     },
     "highlights": [
       "Art roman"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 1083,
+    "name": "Salon du Vin de Rochefort",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cinéma à Rochefort.",
+    "location": "Rochefort, Nouvelle-Aquitaine",
+    "rating": 4.9,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cinéma",
+    "coordinates": {
+      "lat": 45.93769,
+      "lng": -0.96777
+    },
+    "highlights": [
+      "Cinéma"
     ],
     "visited": false,
     "favorite": false
@@ -14729,6 +15319,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 1115,
+    "name": "Biennale d'Art contemporain de Oloron-Sainte-Marie",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Oloron-Sainte-Marie.",
+    "location": "Oloron-Sainte-Marie, Nouvelle-Aquitaine",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 43.1915,
+      "lng": -0.5976
+    },
+    "highlights": [
+      "Danse contemporaine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 1118,
     "name": "Musée de la Résistance de Toulouse",
     "type": "musée",
@@ -14932,6 +15543,27 @@ export const places = [
     },
     "highlights": [
       "Art roman"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 1133,
+    "name": "Nuit des Musées de Toulouse",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de oenologie à Toulouse.",
+    "location": "Toulouse, Occitanie",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Oenologie",
+    "coordinates": {
+      "lat": 43.59683,
+      "lng": 1.43747
+    },
+    "highlights": [
+      "Oenologie"
     ],
     "visited": false,
     "favorite": false
@@ -15754,6 +16386,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 1194,
+    "name": "Fête médiévale de Perpignan",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Perpignan.",
+    "location": "Perpignan, Occitanie",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 42.6944,
+      "lng": 2.88788
+    },
+    "highlights": [
+      "Arts visuels"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 1196,
     "name": "Musée régional de Béziers",
     "type": "musée",
@@ -15914,6 +16567,27 @@ export const places = [
     },
     "highlights": [
       "XIVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 1209,
+    "name": "Fête médiévale de Béziers",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Béziers.",
+    "location": "Béziers, Occitanie",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 43.33773,
+      "lng": 3.2122
+    },
+    "highlights": [
+      "Cultures du monde"
     ],
     "visited": false,
     "favorite": false
@@ -16555,6 +17229,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 1260,
+    "name": "Fête médiévale de Carcassonne",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts numériques à Carcassonne.",
+    "location": "Carcassonne, Occitanie",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts numériques",
+    "coordinates": {
+      "lat": 43.21902,
+      "lng": 2.35689
+    },
+    "highlights": [
+      "Arts numériques"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 1261,
     "name": "Musée de la Marine de Tarbes",
     "type": "musée",
@@ -16735,6 +17430,27 @@ export const places = [
     },
     "highlights": [
       "XIIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 1277,
+    "name": "Fête médiévale de Tarbes",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de patrimoine à Tarbes.",
+    "location": "Tarbes, Occitanie",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Patrimoine",
+    "coordinates": {
+      "lat": 43.23112,
+      "lng": 0.07422
+    },
+    "highlights": [
+      "Patrimoine"
     ],
     "visited": false,
     "favorite": false
@@ -17435,6 +18151,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 1328,
+    "name": "Biennale d'Art contemporain de Rodez",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts numériques à Rodez.",
+    "location": "Rodez, Occitanie",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts numériques",
+    "coordinates": {
+      "lat": 44.35248,
+      "lng": 2.56755
+    },
+    "highlights": [
+      "Arts numériques"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 1330,
     "name": "Musée de la Photographie de Mende",
     "type": "musée",
@@ -17868,6 +18605,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 1362,
+    "name": "Salon du Vin de Foix",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Foix.",
+    "location": "Foix, Occitanie",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 42.96901,
+      "lng": 1.61001
+    },
+    "highlights": [
+      "Jazz & Blues"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 1364,
     "name": "Musée de la Céramique de Sète",
     "type": "musée",
@@ -18137,6 +18895,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 1382,
+    "name": "Nuit des Musées de Sète",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique classique à Sète.",
+    "location": "Sète, Occitanie",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique classique",
+    "coordinates": {
+      "lat": 43.40952,
+      "lng": 3.68902
+    },
+    "highlights": [
+      "Musique classique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 1383,
+    "name": "Salon du Vin de Sète",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Sète.",
+    "location": "Sète, Occitanie",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 43.39979,
+      "lng": 3.70269
+    },
+    "highlights": [
+      "Jazz & Blues"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 1384,
     "name": "Musée de la Guerre de Lourdes",
     "type": "musée",
@@ -18379,6 +19179,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 1401,
+    "name": "Journées du Patrimoine de Lourdes",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de photographie à Lourdes.",
+    "location": "Lourdes, Occitanie",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Photographie",
+    "coordinates": {
+      "lat": 43.09212,
+      "lng": -0.04849
+    },
+    "highlights": [
+      "Photographie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 1402,
     "name": "Musée du Patrimoine de Cordes-sur-Ciel",
     "type": "musée",
@@ -18599,6 +19420,27 @@ export const places = [
     },
     "highlights": [
       "XVIIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 1420,
+    "name": "Biennale d'Art contemporain de Cordes-sur-Ciel",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Cordes-sur-Ciel.",
+    "location": "Cordes-sur-Ciel, Occitanie",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 44.07425,
+      "lng": 1.95904
+    },
+    "highlights": [
+      "Jazz & Blues"
     ],
     "visited": false,
     "favorite": false
@@ -19355,6 +20197,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 1476,
+    "name": "Journées du Patrimoine de Nancy",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique baroque à Nancy.",
+    "location": "Nancy, Grand Est",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique baroque",
+    "coordinates": {
+      "lat": 48.69894,
+      "lng": 6.19253
+    },
+    "highlights": [
+      "Musique baroque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 1479,
     "name": "Musée de la Photographie de Reims",
     "type": "musée",
@@ -19573,6 +20436,27 @@ export const places = [
     },
     "highlights": [
       "Art gothique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 1496,
+    "name": "Nuit des Musées de Reims",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Reims.",
+    "location": "Reims, Grand Est",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 49.25913,
+      "lng": 3.97966
+    },
+    "highlights": [
+      "Cultures du monde"
     ],
     "visited": false,
     "favorite": false
@@ -20090,6 +20974,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 1534,
+    "name": "Biennale d'Art contemporain de Colmar",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de opéra à Colmar.",
+    "location": "Colmar, Grand Est",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Opéra",
+    "coordinates": {
+      "lat": 48.07681,
+      "lng": 7.36236
+    },
+    "highlights": [
+      "Opéra"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 1535,
     "name": "Musée municipal de Troyes",
     "type": "musée",
@@ -20578,6 +21483,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 1569,
+    "name": "Journées du Patrimoine de Charleville-Mézières",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cinéma à Charleville-Mézières.",
+    "location": "Charleville-Mézières, Grand Est",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cinéma",
+    "coordinates": {
+      "lat": 49.77953,
+      "lng": 4.72147
+    },
+    "highlights": [
+      "Cinéma"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 1570,
     "name": "Musée de la Marine de Épernay",
     "type": "musée",
@@ -20844,6 +21770,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 1587,
+    "name": "Journées du Patrimoine de Épernay",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Épernay.",
+    "location": "Épernay, Grand Est",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 49.03034,
+      "lng": 3.95724
+    },
+    "highlights": [
+      "Arts visuels"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 1590,
     "name": "Musée de la Guerre de Verdun",
     "type": "musée",
@@ -21047,6 +21994,48 @@ export const places = [
     },
     "highlights": [
       "XVIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 1604,
+    "name": "Fête médiévale de Verdun",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts numériques à Verdun.",
+    "location": "Verdun, Grand Est",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts numériques",
+    "coordinates": {
+      "lat": 49.15895,
+      "lng": 5.37839
+    },
+    "highlights": [
+      "Arts numériques"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 1606,
+    "name": "Salon du Vin de Verdun",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Verdun.",
+    "location": "Verdun, Grand Est",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 49.15235,
+      "lng": 5.3789
+    },
+    "highlights": [
+      "Marionnettes"
     ],
     "visited": false,
     "favorite": false
@@ -21295,6 +22284,27 @@ export const places = [
     },
     "highlights": [
       "Art roman"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 1623,
+    "name": "Biennale d'Art contemporain de Sélestat",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Sélestat.",
+    "location": "Sélestat, Grand Est",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 48.2557,
+      "lng": 7.45725
+    },
+    "highlights": [
+      "Jazz & Blues"
     ],
     "visited": false,
     "favorite": false
@@ -21807,6 +22817,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 1660,
+    "name": "Salon du Vin de Saverne",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de théâtre à Saverne.",
+    "location": "Saverne, Grand Est",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Théâtre",
+    "coordinates": {
+      "lat": 48.74233,
+      "lng": 7.36732
+    },
+    "highlights": [
+      "Théâtre"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 1662,
+    "name": "Fête médiévale de Saverne",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique classique à Saverne.",
+    "location": "Saverne, Grand Est",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique classique",
+    "coordinates": {
+      "lat": 48.73721,
+      "lng": 7.35626
+    },
+    "highlights": [
+      "Musique classique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 1663,
     "name": "Musée de la Résistance de Langres",
     "type": "musée",
@@ -22231,6 +23283,48 @@ export const places = [
     },
     "highlights": [
       "XIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 1694,
+    "name": "Biennale d'Art contemporain de Bar-le-Duc",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de opéra à Bar-le-Duc.",
+    "location": "Bar-le-Duc, Grand Est",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Opéra",
+    "coordinates": {
+      "lat": 48.76761,
+      "lng": 5.16773
+    },
+    "highlights": [
+      "Opéra"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 1695,
+    "name": "Journées du Patrimoine de Bar-le-Duc",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique baroque à Bar-le-Duc.",
+    "location": "Bar-le-Duc, Grand Est",
+    "rating": 4.9,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique baroque",
+    "coordinates": {
+      "lat": 48.78244,
+      "lng": 5.158
+    },
+    "highlights": [
+      "Musique baroque"
     ],
     "visited": false,
     "favorite": false
@@ -22770,6 +23864,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 1733,
+    "name": "Nuit des Musées de Amiens",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Amiens.",
+    "location": "Amiens, Hauts-de-France",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 49.89751,
+      "lng": 2.30341
+    },
+    "highlights": [
+      "Jazz & Blues"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 1734,
     "name": "Musée de la Musique de Beauvais",
     "type": "musée",
@@ -22957,6 +24072,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 1747,
+    "name": "Salon du Vin de Beauvais",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique baroque à Beauvais.",
+    "location": "Beauvais, Hauts-de-France",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique baroque",
+    "coordinates": {
+      "lat": 49.42452,
+      "lng": 2.08775
+    },
+    "highlights": [
+      "Musique baroque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 1748,
     "name": "Musée d'Histoire naturelle de Compiègne",
     "type": "musée",
@@ -23134,6 +24270,48 @@ export const places = [
     },
     "highlights": [
       "XIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 1760,
+    "name": "Journées du Patrimoine de Compiègne",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de opéra à Compiègne.",
+    "location": "Compiègne, Hauts-de-France",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Opéra",
+    "coordinates": {
+      "lat": 49.41811,
+      "lng": 2.82598
+    },
+    "highlights": [
+      "Opéra"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 1761,
+    "name": "Biennale d'Art contemporain de Compiègne",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Compiègne.",
+    "location": "Compiègne, Hauts-de-France",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 49.40923,
+      "lng": 2.83616
+    },
+    "highlights": [
+      "Musique folk"
     ],
     "visited": false,
     "favorite": false
@@ -23689,6 +24867,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 1800,
+    "name": "Journées du Patrimoine de Saint-Quentin",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Saint-Quentin.",
+    "location": "Saint-Quentin, Hauts-de-France",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 49.85417,
+      "lng": 3.28911
+    },
+    "highlights": [
+      "Musique folk"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 1802,
     "name": "Musée de la Résistance de Arras",
     "type": "musée",
@@ -24202,6 +25401,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 1840,
+    "name": "Salon du Vin de Boulogne-sur-Mer",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Boulogne-sur-Mer.",
+    "location": "Boulogne-sur-Mer, Hauts-de-France",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 50.72742,
+      "lng": 1.61587
+    },
+    "highlights": [
+      "Cultures du monde"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 1841,
     "name": "Musée de la Marine de Calais",
     "type": "musée",
@@ -24652,6 +25872,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 1875,
+    "name": "Biennale d'Art contemporain de Dunkerque",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Dunkerque.",
+    "location": "Dunkerque, Hauts-de-France",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 51.02921,
+      "lng": 2.36941
+    },
+    "highlights": [
+      "Musique actuelle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 1878,
     "name": "Musée des Beaux-Arts de Senlis",
     "type": "musée",
@@ -24897,6 +26138,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 1893,
+    "name": "Biennale d'Art contemporain de Senlis",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cinéma à Senlis.",
+    "location": "Senlis, Hauts-de-France",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cinéma",
+    "coordinates": {
+      "lat": 49.20821,
+      "lng": 2.58217
+    },
+    "highlights": [
+      "Cinéma"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 1895,
     "name": "Musée des Beaux-Arts de Soissons",
     "type": "musée",
@@ -25076,6 +26338,27 @@ export const places = [
     },
     "highlights": [
       "XIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 1907,
+    "name": "Journées du Patrimoine de Soissons",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique classique à Soissons.",
+    "location": "Soissons, Hauts-de-France",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique classique",
+    "coordinates": {
+      "lat": 49.37903,
+      "lng": 3.32643
+    },
+    "highlights": [
+      "Musique classique"
     ],
     "visited": false,
     "favorite": false
@@ -25302,6 +26585,48 @@ export const places = [
     },
     "highlights": [
       "XVIIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 1925,
+    "name": "Biennale d'Art contemporain de Chantilly",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Chantilly.",
+    "location": "Chantilly, Hauts-de-France",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 49.1949,
+      "lng": 2.47081
+    },
+    "highlights": [
+      "Musique actuelle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 1926,
+    "name": "Journées du Patrimoine de Chantilly",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Chantilly.",
+    "location": "Chantilly, Hauts-de-France",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 49.20065,
+      "lng": 2.46659
+    },
+    "highlights": [
+      "Cultures du monde"
     ],
     "visited": false,
     "favorite": false
@@ -25742,6 +27067,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 1959,
+    "name": "Nuit des Musées de Rennes",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Rennes.",
+    "location": "Rennes, Bretagne",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 48.11155,
+      "lng": -1.67063
+    },
+    "highlights": [
+      "Cultures du monde"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 1961,
     "name": "Musée du Patrimoine de Brest",
     "type": "musée",
@@ -25941,6 +27287,27 @@ export const places = [
     },
     "highlights": [
       "Époque gothique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 1977,
+    "name": "Journées du Patrimoine de Brest",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de patrimoine à Brest.",
+    "location": "Brest, Bretagne",
+    "rating": 4.9,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Patrimoine",
+    "coordinates": {
+      "lat": 48.38509,
+      "lng": -4.47655
+    },
+    "highlights": [
+      "Patrimoine"
     ],
     "visited": false,
     "favorite": false
@@ -26395,6 +27762,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 2013,
+    "name": "Nuit des Musées de Vannes",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de opéra à Vannes.",
+    "location": "Vannes, Bretagne",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Opéra",
+    "coordinates": {
+      "lat": 47.65862,
+      "lng": -2.76634
+    },
+    "highlights": [
+      "Opéra"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 2015,
     "name": "Musée ethnographique de Saint-Malo",
     "type": "musée",
@@ -26653,6 +28041,48 @@ export const places = [
     },
     "highlights": [
       "Art roman"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 2031,
+    "name": "Fête médiévale de Saint-Malo",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique classique à Saint-Malo.",
+    "location": "Saint-Malo, Bretagne",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique classique",
+    "coordinates": {
+      "lat": 48.65719,
+      "lng": -2.01034
+    },
+    "highlights": [
+      "Musique classique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 2032,
+    "name": "Salon du Vin de Saint-Malo",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de opéra à Saint-Malo.",
+    "location": "Saint-Malo, Bretagne",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Opéra",
+    "coordinates": {
+      "lat": 48.64591,
+      "lng": -2.01451
+    },
+    "highlights": [
+      "Opéra"
     ],
     "visited": false,
     "favorite": false
@@ -27371,6 +28801,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 2085,
+    "name": "Journées du Patrimoine de Dinan",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts numériques à Dinan.",
+    "location": "Dinan, Bretagne",
+    "rating": 4.9,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts numériques",
+    "coordinates": {
+      "lat": 48.44769,
+      "lng": -2.04846
+    },
+    "highlights": [
+      "Arts numériques"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 2087,
     "name": "Musée d'Art moderne de Concarneau",
     "type": "musée",
@@ -27593,6 +29044,27 @@ export const places = [
     },
     "highlights": [
       "XVIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 2104,
+    "name": "Salon du Vin de Concarneau",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de littérature à Concarneau.",
+    "location": "Concarneau, Bretagne",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Littérature",
+    "coordinates": {
+      "lat": 47.87672,
+      "lng": -3.92426
+    },
+    "highlights": [
+      "Littérature"
     ],
     "visited": false,
     "favorite": false
@@ -28868,6 +30340,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 2199,
+    "name": "Journées du Patrimoine de Caen",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique baroque à Caen.",
+    "location": "Caen, Normandie",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique baroque",
+    "coordinates": {
+      "lat": 49.1802,
+      "lng": -0.38036
+    },
+    "highlights": [
+      "Musique baroque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 2200,
     "name": "Musée du Patrimoine de Le Havre",
     "type": "musée",
@@ -29338,6 +30831,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 2233,
+    "name": "Biennale d'Art contemporain de Cherbourg",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Cherbourg.",
+    "location": "Cherbourg, Normandie",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 49.62874,
+      "lng": -1.63004
+    },
+    "highlights": [
+      "Jazz & Blues"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 2236,
     "name": "Musée ethnographique de Bayeux",
     "type": "musée",
@@ -29578,6 +31092,27 @@ export const places = [
     },
     "highlights": [
       "XVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 2251,
+    "name": "Salon du Vin de Bayeux",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Bayeux.",
+    "location": "Bayeux, Normandie",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 49.27014,
+      "lng": -0.70766
+    },
+    "highlights": [
+      "Danse contemporaine"
     ],
     "visited": false,
     "favorite": false
@@ -29871,6 +31406,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 2274,
+    "name": "Journées du Patrimoine de Honfleur",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de opéra à Honfleur.",
+    "location": "Honfleur, Normandie",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Opéra",
+    "coordinates": {
+      "lat": 49.42288,
+      "lng": 0.24097
+    },
+    "highlights": [
+      "Opéra"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 2276,
     "name": "Musée de la Photographie de Giverny",
     "type": "musée",
@@ -30093,6 +31649,27 @@ export const places = [
     },
     "highlights": [
       "XIVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 2292,
+    "name": "Biennale d'Art contemporain de Giverny",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Giverny.",
+    "location": "Giverny, Normandie",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 49.06689,
+      "lng": 1.52796
+    },
+    "highlights": [
+      "Danse contemporaine"
     ],
     "visited": false,
     "favorite": false
@@ -30992,6 +32569,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 2362,
+    "name": "Nuit des Musées de Lisieux",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de opéra à Lisieux.",
+    "location": "Lisieux, Normandie",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Opéra",
+    "coordinates": {
+      "lat": 49.13596,
+      "lng": 0.23636
+    },
+    "highlights": [
+      "Opéra"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 2364,
     "name": "Musée archéologique de Falaise",
     "type": "musée",
@@ -31522,6 +33120,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 2400,
+    "name": "Journées du Patrimoine de Dieppe",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Dieppe.",
+    "location": "Dieppe, Normandie",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 49.92397,
+      "lng": 1.0866
+    },
+    "highlights": [
+      "Danse contemporaine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 2402,
     "name": "Musée de la Photographie de Nantes",
     "type": "musée",
@@ -31982,6 +33601,48 @@ export const places = [
     },
     "highlights": [
       "Art roman"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 2434,
+    "name": "Nuit des Musées de Angers",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de littérature à Angers.",
+    "location": "Angers, Pays de la Loire",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Littérature",
+    "coordinates": {
+      "lat": 47.47057,
+      "lng": -0.55847
+    },
+    "highlights": [
+      "Littérature"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 2435,
+    "name": "Journées du Patrimoine de Angers",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Angers.",
+    "location": "Angers, Pays de la Loire",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 47.46179,
+      "lng": -0.54719
+    },
+    "highlights": [
+      "Musique actuelle"
     ],
     "visited": false,
     "favorite": false
@@ -32745,6 +34406,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 2491,
+    "name": "Nuit des Musées de Saint-Nazaire",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Saint-Nazaire.",
+    "location": "Saint-Nazaire, Pays de la Loire",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 47.2809,
+      "lng": -2.20927
+    },
+    "highlights": [
+      "Musique folk"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 2494,
     "name": "Musée municipal de Saumur",
     "type": "musée",
@@ -33233,6 +34915,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 2527,
+    "name": "Salon du Vin de Laval",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de patrimoine à Laval.",
+    "location": "Laval, Pays de la Loire",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Patrimoine",
+    "coordinates": {
+      "lat": 48.07844,
+      "lng": -0.77047
+    },
+    "highlights": [
+      "Patrimoine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 2528,
     "name": "Musée municipal de Les Sables-d'Olonne",
     "type": "musée",
@@ -33516,6 +35219,48 @@ export const places = [
     },
     "highlights": [
       "Art gothique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 2546,
+    "name": "Fête médiévale de Les Sables-d'Olonne",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de photographie à Les Sables-d'Olonne.",
+    "location": "Les Sables-d'Olonne, Pays de la Loire",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Photographie",
+    "coordinates": {
+      "lat": 46.48952,
+      "lng": -1.78302
+    },
+    "highlights": [
+      "Photographie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 2547,
+    "name": "Biennale d'Art contemporain de Les Sables-d'Olonne",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts de la rue à Les Sables-d'Olonne.",
+    "location": "Les Sables-d'Olonne, Pays de la Loire",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts de la rue",
+    "coordinates": {
+      "lat": 46.48829,
+      "lng": -1.78334
+    },
+    "highlights": [
+      "Arts de la rue"
     ],
     "visited": false,
     "favorite": false
@@ -34486,6 +36231,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 2619,
+    "name": "Journées du Patrimoine de Orléans",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Orléans.",
+    "location": "Orléans, Centre-Val de Loire",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 47.90715,
+      "lng": 1.90305
+    },
+    "highlights": [
+      "Cultures du monde"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 2622,
     "name": "Musée municipal de Blois",
     "type": "musée",
@@ -34703,6 +36469,27 @@ export const places = [
     },
     "highlights": [
       "XIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 2638,
+    "name": "Biennale d'Art contemporain de Blois",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Blois.",
+    "location": "Blois, Centre-Val de Loire",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 47.58008,
+      "lng": 1.34558
+    },
+    "highlights": [
+      "Cultures du monde"
     ],
     "visited": false,
     "favorite": false
@@ -35199,6 +36986,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 2675,
+    "name": "Salon du Vin de Chartres",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts numériques à Chartres.",
+    "location": "Chartres, Centre-Val de Loire",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts numériques",
+    "coordinates": {
+      "lat": 48.46205,
+      "lng": 1.48475
+    },
+    "highlights": [
+      "Arts numériques"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 2678,
     "name": "Musée de la Ville de Chambord",
     "type": "musée",
@@ -35461,6 +37269,27 @@ export const places = [
     },
     "highlights": [
       "XIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 2694,
+    "name": "Journées du Patrimoine de Chambord",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de opéra à Chambord.",
+    "location": "Chambord, Centre-Val de Loire",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Opéra",
+    "coordinates": {
+      "lat": 47.62197,
+      "lng": 1.51494
+    },
+    "highlights": [
+      "Opéra"
     ],
     "visited": false,
     "favorite": false
@@ -35956,6 +37785,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 2732,
+    "name": "Journées du Patrimoine de Chinon",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de bande dessinée à Chinon.",
+    "location": "Chinon, Centre-Val de Loire",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Bande dessinée",
+    "coordinates": {
+      "lat": 47.16615,
+      "lng": 0.23296
+    },
+    "highlights": [
+      "Bande dessinée"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 2734,
     "name": "Musée du Textile de Chenonceaux",
     "type": "musée",
@@ -36436,6 +38286,27 @@ export const places = [
     },
     "highlights": [
       "Renaissance"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 2768,
+    "name": "Fête médiévale de Loches",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Loches.",
+    "location": "Loches, Centre-Val de Loire",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 47.1334,
+      "lng": 0.99756
+    },
+    "highlights": [
+      "Jazz & Blues"
     ],
     "visited": false,
     "favorite": false
@@ -36928,6 +38799,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 2805,
+    "name": "Journées du Patrimoine de Châteauroux",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts de la rue à Châteauroux.",
+    "location": "Châteauroux, Centre-Val de Loire",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts de la rue",
+    "coordinates": {
+      "lat": 46.81132,
+      "lng": 1.69452
+    },
+    "highlights": [
+      "Arts de la rue"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 2806,
     "name": "Musée archéologique de Azay-le-Rideau",
     "type": "musée",
@@ -37134,6 +39026,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 2820,
+    "name": "Biennale d'Art contemporain de Azay-le-Rideau",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique classique à Azay-le-Rideau.",
+    "location": "Azay-le-Rideau, Centre-Val de Loire",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique classique",
+    "coordinates": {
+      "lat": 47.25672,
+      "lng": 0.46993
+    },
+    "highlights": [
+      "Musique classique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 2822,
     "name": "Musée de la Résistance de Valencay",
     "type": "musée",
@@ -37294,6 +39207,27 @@ export const places = [
     },
     "highlights": [
       "Art roman"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 2835,
+    "name": "Fête médiévale de Valencay",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de patrimoine à Valencay.",
+    "location": "Valencay, Centre-Val de Loire",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Patrimoine",
+    "coordinates": {
+      "lat": 47.15431,
+      "lng": 1.563
+    },
+    "highlights": [
+      "Patrimoine"
     ],
     "visited": false,
     "favorite": false
@@ -37582,6 +39516,27 @@ export const places = [
     },
     "highlights": [
       "XVIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 2854,
+    "name": "Salon du Vin de Dijon",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Dijon.",
+    "location": "Dijon, Bourgogne-Franche-Comté",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 47.31693,
+      "lng": 5.04381
+    },
+    "highlights": [
+      "Cultures du monde"
     ],
     "visited": false,
     "favorite": false
@@ -38099,6 +40054,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 2892,
+    "name": "Biennale d'Art contemporain de Auxerre",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts de la rue à Auxerre.",
+    "location": "Auxerre, Bourgogne-Franche-Comté",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts de la rue",
+    "coordinates": {
+      "lat": 47.79847,
+      "lng": 3.56976
+    },
+    "highlights": [
+      "Arts de la rue"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 2893,
     "name": "Musée de la Résistance de Beaune",
     "type": "musée",
@@ -38610,6 +40586,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 2930,
+    "name": "Journées du Patrimoine de Nevers",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Nevers.",
+    "location": "Nevers, Bourgogne-Franche-Comté",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 46.99902,
+      "lng": 3.16877
+    },
+    "highlights": [
+      "Musique folk"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 2932,
+    "name": "Nuit des Musées de Nevers",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Nevers.",
+    "location": "Nevers, Bourgogne-Franche-Comté",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 46.98052,
+      "lng": 3.16459
+    },
+    "highlights": [
+      "Jazz & Blues"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 2933,
     "name": "Musée de la Céramique de Autun",
     "type": "musée",
@@ -39059,6 +41077,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 2966,
+    "name": "Nuit des Musées de Cluny",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Cluny.",
+    "location": "Cluny, Bourgogne-Franche-Comté",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 46.43388,
+      "lng": 4.65718
+    },
+    "highlights": [
+      "Jazz & Blues"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 2968,
+    "name": "Fête médiévale de Cluny",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Cluny.",
+    "location": "Cluny, Bourgogne-Franche-Comté",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 46.43966,
+      "lng": 4.66215
+    },
+    "highlights": [
+      "Musique actuelle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 2969,
     "name": "Musée des Beaux-Arts de Vézelay",
     "type": "musée",
@@ -39327,6 +41387,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 2987,
+    "name": "Journées du Patrimoine de Vézelay",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts de la rue à Vézelay.",
+    "location": "Vézelay, Bourgogne-Franche-Comté",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts de la rue",
+    "coordinates": {
+      "lat": 47.47183,
+      "lng": 3.74503
+    },
+    "highlights": [
+      "Arts de la rue"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 2989,
     "name": "Musée du Textile de Dole",
     "type": "musée",
@@ -39570,6 +41651,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 3007,
+    "name": "Journées du Patrimoine de Dole",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cinéma à Dole.",
+    "location": "Dole, Bourgogne-Franche-Comté",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cinéma",
+    "coordinates": {
+      "lat": 47.0897,
+      "lng": 5.48322
+    },
+    "highlights": [
+      "Cinéma"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 3008,
     "name": "Musée d'Art et d'Histoire de Belfort",
     "type": "musée",
@@ -39771,6 +41873,27 @@ export const places = [
     },
     "highlights": [
       "XVIIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3022,
+    "name": "Biennale d'Art contemporain de Belfort",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique classique à Belfort.",
+    "location": "Belfort, Bourgogne-Franche-Comté",
+    "rating": 4.9,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique classique",
+    "coordinates": {
+      "lat": 47.63287,
+      "lng": 6.87022
+    },
+    "highlights": [
+      "Musique classique"
     ],
     "visited": false,
     "favorite": false
@@ -40021,6 +42144,27 @@ export const places = [
     },
     "highlights": [
       "XIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3042,
+    "name": "Fête médiévale de Sens",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique baroque à Sens.",
+    "location": "Sens, Bourgogne-Franche-Comté",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique baroque",
+    "coordinates": {
+      "lat": 48.18756,
+      "lng": 3.27455
+    },
+    "highlights": [
+      "Musique baroque"
     ],
     "visited": false,
     "favorite": false
@@ -41025,6 +43169,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 3117,
+    "name": "Nuit des Musées de Corte",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de bande dessinée à Corte.",
+    "location": "Corte, Corse",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Bande dessinée",
+    "coordinates": {
+      "lat": 42.30505,
+      "lng": 9.15773
+    },
+    "highlights": [
+      "Bande dessinée"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 3118,
     "name": "Musée de la Céramique de Bonifacio",
     "type": "musée",
@@ -41250,6 +43415,69 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 3134,
+    "name": "Nuit des Musées de Bonifacio",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de bande dessinée à Bonifacio.",
+    "location": "Bonifacio, Corse",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Bande dessinée",
+    "coordinates": {
+      "lat": 41.38767,
+      "lng": 9.16498
+    },
+    "highlights": [
+      "Bande dessinée"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3135,
+    "name": "Journées du Patrimoine de Bonifacio",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Bonifacio.",
+    "location": "Bonifacio, Corse",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 41.38118,
+      "lng": 9.16623
+    },
+    "highlights": [
+      "Danse contemporaine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3136,
+    "name": "Fête médiévale de Bonifacio",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Bonifacio.",
+    "location": "Bonifacio, Corse",
+    "rating": 4.9,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 41.37782,
+      "lng": 9.15595
+    },
+    "highlights": [
+      "Jazz & Blues"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 3137,
     "name": "Musée des Beaux-Arts de Porto-Vecchio",
     "type": "musée",
@@ -41468,6 +43696,69 @@ export const places = [
     },
     "highlights": [
       "XVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3153,
+    "name": "Fête médiévale de Porto-Vecchio",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Porto-Vecchio.",
+    "location": "Porto-Vecchio, Corse",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 41.58405,
+      "lng": 9.28657
+    },
+    "highlights": [
+      "Danse contemporaine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3154,
+    "name": "Nuit des Musées de Porto-Vecchio",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Porto-Vecchio.",
+    "location": "Porto-Vecchio, Corse",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 41.59761,
+      "lng": 9.28087
+    },
+    "highlights": [
+      "Cultures du monde"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3155,
+    "name": "Biennale d'Art contemporain de Porto-Vecchio",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de bande dessinée à Porto-Vecchio.",
+    "location": "Porto-Vecchio, Corse",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Bande dessinée",
+    "coordinates": {
+      "lat": 41.59847,
+      "lng": 9.27284
+    },
+    "highlights": [
+      "Bande dessinée"
     ],
     "visited": false,
     "favorite": false
@@ -41906,6 +44197,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 3187,
+    "name": "Salon du Vin de Rocamadour",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Rocamadour.",
+    "location": "Rocamadour, Occitanie",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 44.80389,
+      "lng": 1.62109
+    },
+    "highlights": [
+      "Danse contemporaine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 3190,
     "name": "Musée des Arts décoratifs de Figeac",
     "type": "musée",
@@ -42126,6 +44438,27 @@ export const places = [
     },
     "highlights": [
       "XIVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3207,
+    "name": "Salon du Vin de Figeac",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de bande dessinée à Figeac.",
+    "location": "Figeac, Occitanie",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Bande dessinée",
+    "coordinates": {
+      "lat": 44.6182,
+      "lng": 2.02896
+    },
+    "highlights": [
+      "Bande dessinée"
     ],
     "visited": false,
     "favorite": false
@@ -42637,6 +44970,27 @@ export const places = [
     },
     "highlights": [
       "XVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3245,
+    "name": "Salon du Vin de Sisteron",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Sisteron.",
+    "location": "Sisteron, Provence-Alpes-Côte d'Azur",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 44.19269,
+      "lng": 5.94777
+    },
+    "highlights": [
+      "Musique actuelle"
     ],
     "visited": false,
     "favorite": false
@@ -43351,6 +45705,27 @@ export const places = [
     },
     "highlights": [
       "XIIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3301,
+    "name": "Salon du Vin de Pont-du-Gard",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de théâtre à Pont-du-Gard.",
+    "location": "Pont-du-Gard, Occitanie",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Théâtre",
+    "coordinates": {
+      "lat": 43.94447,
+      "lng": 4.5297
+    },
+    "highlights": [
+      "Théâtre"
     ],
     "visited": false,
     "favorite": false
@@ -44545,6 +46920,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 3392,
+    "name": "Salon du Vin de Villefranche-de-Rouergue",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de photographie à Villefranche-de-Rouergue.",
+    "location": "Villefranche-de-Rouergue, Occitanie",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Photographie",
+    "coordinates": {
+      "lat": 44.35227,
+      "lng": 2.03035
+    },
+    "highlights": [
+      "Photographie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 3394,
     "name": "Musée de la Céramique de Pézenas",
     "type": "musée",
@@ -45032,6 +47428,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 3427,
+    "name": "Journées du Patrimoine de Minerve",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Minerve.",
+    "location": "Minerve, Occitanie",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 43.34789,
+      "lng": 2.75557
+    },
+    "highlights": [
+      "Marionnettes"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 3429,
     "name": "Musée d'Art et d'Histoire de Najac",
     "type": "musée",
@@ -45250,6 +47667,27 @@ export const places = [
     },
     "highlights": [
       "Époque gothique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3445,
+    "name": "Biennale d'Art contemporain de Najac",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Najac.",
+    "location": "Najac, Occitanie",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 44.21657,
+      "lng": 1.98184
+    },
+    "highlights": [
+      "Danse contemporaine"
     ],
     "visited": false,
     "favorite": false
@@ -45722,6 +48160,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 3482,
+    "name": "Journées du Patrimoine de Auvers-sur-Oise",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de littérature à Auvers-sur-Oise.",
+    "location": "Auvers-sur-Oise, Île-de-France",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Littérature",
+    "coordinates": {
+      "lat": 49.07665,
+      "lng": 2.16937
+    },
+    "highlights": [
+      "Littérature"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 3485,
     "name": "Musée de la Musique de Maisons-Laffitte",
     "type": "musée",
@@ -46006,6 +48465,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 3505,
+    "name": "Biennale d'Art contemporain de Maisons-Laffitte",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Maisons-Laffitte.",
+    "location": "Maisons-Laffitte, Île-de-France",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 48.94326,
+      "lng": 2.16273
+    },
+    "highlights": [
+      "Cirque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3506,
+    "name": "Journées du Patrimoine de Maisons-Laffitte",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts de la rue à Maisons-Laffitte.",
+    "location": "Maisons-Laffitte, Île-de-France",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts de la rue",
+    "coordinates": {
+      "lat": 48.95507,
+      "lng": 2.14703
+    },
+    "highlights": [
+      "Arts de la rue"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 3507,
     "name": "Musée archéologique de Poissy",
     "type": "musée",
@@ -46230,6 +48731,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 3522,
+    "name": "Fête médiévale de Poissy",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Poissy.",
+    "location": "Poissy, Île-de-France",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 48.92187,
+      "lng": 2.05011
+    },
+    "highlights": [
+      "Marionnettes"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 3525,
     "name": "Musée de la Guerre de Étampes",
     "type": "musée",
@@ -46431,6 +48953,27 @@ export const places = [
     },
     "highlights": [
       "Époque romane"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3541,
+    "name": "Biennale d'Art contemporain de Étampes",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Étampes.",
+    "location": "Étampes, Île-de-France",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 48.44152,
+      "lng": 2.17076
+    },
+    "highlights": [
+      "Marionnettes"
     ],
     "visited": false,
     "favorite": false
@@ -46675,6 +49218,27 @@ export const places = [
     },
     "highlights": [
       "XVIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3561,
+    "name": "Journées du Patrimoine de Nemours",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts numériques à Nemours.",
+    "location": "Nemours, Île-de-France",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts numériques",
+    "coordinates": {
+      "lat": 48.26193,
+      "lng": 2.69876
+    },
+    "highlights": [
+      "Arts numériques"
     ],
     "visited": false,
     "favorite": false
@@ -47128,6 +49692,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 3597,
+    "name": "Nuit des Musées de Dourdan",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de théâtre à Dourdan.",
+    "location": "Dourdan, Île-de-France",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Théâtre",
+    "coordinates": {
+      "lat": 48.52595,
+      "lng": 2.01856
+    },
+    "highlights": [
+      "Théâtre"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3598,
+    "name": "Journées du Patrimoine de Dourdan",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Dourdan.",
+    "location": "Dourdan, Île-de-France",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 48.52821,
+      "lng": 2.01016
+    },
+    "highlights": [
+      "Jazz & Blues"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 3599,
     "name": "Musée d'Art et d'Histoire de Senart",
     "type": "musée",
@@ -47308,6 +49914,27 @@ export const places = [
     },
     "highlights": [
       "XIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3614,
+    "name": "Journées du Patrimoine de Senart",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Senart.",
+    "location": "Senart, Île-de-France",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 48.62234,
+      "lng": 2.53513
+    },
+    "highlights": [
+      "Jazz & Blues"
     ],
     "visited": false,
     "favorite": false
@@ -47598,6 +50225,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 3635,
+    "name": "Nuit des Musées de Fréjus",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Fréjus.",
+    "location": "Fréjus, Provence-Alpes-Côte d'Azur",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 43.43119,
+      "lng": 6.73511
+    },
+    "highlights": [
+      "Musique folk"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 3636,
     "name": "Musée d'Histoire naturelle de Saint-Tropez",
     "type": "musée",
@@ -47836,6 +50484,27 @@ export const places = [
     },
     "highlights": [
       "Époque gothique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3652,
+    "name": "Journées du Patrimoine de Saint-Tropez",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de patrimoine à Saint-Tropez.",
+    "location": "Saint-Tropez, Provence-Alpes-Côte d'Azur",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Patrimoine",
+    "coordinates": {
+      "lat": 43.26609,
+      "lng": 6.64556
+    },
+    "highlights": [
+      "Patrimoine"
     ],
     "visited": false,
     "favorite": false
@@ -48766,6 +51435,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 3722,
+    "name": "Salon du Vin de Forcalquier",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts de la rue à Forcalquier.",
+    "location": "Forcalquier, Provence-Alpes-Côte d'Azur",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts de la rue",
+    "coordinates": {
+      "lat": 43.96137,
+      "lng": 5.78741
+    },
+    "highlights": [
+      "Arts de la rue"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 3723,
     "name": "Musée de la Marine de Carpentras",
     "type": "musée",
@@ -49034,6 +51724,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 3741,
+    "name": "Salon du Vin de Carpentras",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Carpentras.",
+    "location": "Carpentras, Provence-Alpes-Côte d'Azur",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 44.05808,
+      "lng": 5.04131
+    },
+    "highlights": [
+      "Musique actuelle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 3743,
     "name": "Musée d'Histoire naturelle de Cavaillon",
     "type": "musée",
@@ -49257,6 +51968,27 @@ export const places = [
     },
     "highlights": [
       "XIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3757,
+    "name": "Journées du Patrimoine de Cavaillon",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts de la rue à Cavaillon.",
+    "location": "Cavaillon, Provence-Alpes-Côte d'Azur",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts de la rue",
+    "coordinates": {
+      "lat": 43.83976,
+      "lng": 5.03698
+    },
+    "highlights": [
+      "Arts de la rue"
     ],
     "visited": false,
     "favorite": false
@@ -49527,6 +52259,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 3776,
+    "name": "Nuit des Musées de Vaison-la-Romaine",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Vaison-la-Romaine.",
+    "location": "Vaison-la-Romaine, Provence-Alpes-Côte d'Azur",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 44.23332,
+      "lng": 5.06735
+    },
+    "highlights": [
+      "Marionnettes"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3777,
+    "name": "Journées du Patrimoine de Vaison-la-Romaine",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de théâtre à Vaison-la-Romaine.",
+    "location": "Vaison-la-Romaine, Provence-Alpes-Côte d'Azur",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Théâtre",
+    "coordinates": {
+      "lat": 44.24434,
+      "lng": 5.06678
+    },
+    "highlights": [
+      "Théâtre"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 3778,
     "name": "Musée de la Marine de Tarascon",
     "type": "musée",
@@ -49714,6 +52488,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 3792,
+    "name": "Fête médiévale de Tarascon",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Tarascon.",
+    "location": "Tarascon, Provence-Alpes-Côte d'Azur",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 43.80001,
+      "lng": 4.66749
+    },
+    "highlights": [
+      "Cultures du monde"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 3794,
     "name": "Musée de la Résistance de Istres",
     "type": "musée",
@@ -49893,6 +52688,27 @@ export const places = [
     },
     "highlights": [
       "Gothique flamboyant"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3806,
+    "name": "Salon du Vin de Istres",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Istres.",
+    "location": "Istres, Provence-Alpes-Côte d'Azur",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 43.52338,
+      "lng": 4.99485
+    },
+    "highlights": [
+      "Marionnettes"
     ],
     "visited": false,
     "favorite": false
@@ -50099,6 +52915,27 @@ export const places = [
     },
     "highlights": [
       "XIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3823,
+    "name": "Journées du Patrimoine de Martigues",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts de la rue à Martigues.",
+    "location": "Martigues, Provence-Alpes-Côte d'Azur",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts de la rue",
+    "coordinates": {
+      "lat": 43.40761,
+      "lng": 5.05581
+    },
+    "highlights": [
+      "Arts de la rue"
     ],
     "visited": false,
     "favorite": false
@@ -50901,6 +53738,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 3880,
+    "name": "Nuit des Musées de Aubagne",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de oenologie à Aubagne.",
+    "location": "Aubagne, Provence-Alpes-Côte d'Azur",
+    "rating": 4.9,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Oenologie",
+    "coordinates": {
+      "lat": 43.30125,
+      "lng": 5.57083
+    },
+    "highlights": [
+      "Oenologie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 3883,
     "name": "Musée archéologique de Embrun",
     "type": "musée",
@@ -51364,6 +54222,27 @@ export const places = [
     },
     "highlights": [
       "XIVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3918,
+    "name": "Journées du Patrimoine de Albertville",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Albertville.",
+    "location": "Albertville, Auvergne-Rhône-Alpes",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 45.67802,
+      "lng": 6.38955
+    },
+    "highlights": [
+      "Musique actuelle"
     ],
     "visited": false,
     "favorite": false
@@ -51838,6 +54717,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 3955,
+    "name": "Journées du Patrimoine de Évian-les-Bains",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Évian-les-Bains.",
+    "location": "Évian-les-Bains, Auvergne-Rhône-Alpes",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 46.40153,
+      "lng": 6.59744
+    },
+    "highlights": [
+      "Musique folk"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 3958,
     "name": "Musée municipal de Chamonix",
     "type": "musée",
@@ -52283,6 +55183,27 @@ export const places = [
     },
     "highlights": [
       "Art roman"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 3990,
+    "name": "Biennale d'Art contemporain de Megève",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Megève.",
+    "location": "Megève, Auvergne-Rhône-Alpes",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 45.8644,
+      "lng": 6.61928
+    },
+    "highlights": [
+      "Danse contemporaine"
     ],
     "visited": false,
     "favorite": false
@@ -52797,6 +55718,48 @@ export const places = [
     },
     "highlights": [
       "Art roman"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4027,
+    "name": "Nuit des Musées de Thiers",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de bande dessinée à Thiers.",
+    "location": "Thiers, Auvergne-Rhône-Alpes",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Bande dessinée",
+    "coordinates": {
+      "lat": 45.85167,
+      "lng": 3.5489
+    },
+    "highlights": [
+      "Bande dessinée"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4028,
+    "name": "Biennale d'Art contemporain de Thiers",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Thiers.",
+    "location": "Thiers, Auvergne-Rhône-Alpes",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 45.86044,
+      "lng": 3.54306
+    },
+    "highlights": [
+      "Cirque"
     ],
     "visited": false,
     "favorite": false
@@ -54034,6 +56997,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 4128,
+    "name": "Biennale d'Art contemporain de Privas",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Privas.",
+    "location": "Privas, Auvergne-Rhône-Alpes",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 44.74315,
+      "lng": 4.60722
+    },
+    "highlights": [
+      "Jazz & Blues"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 4129,
     "name": "Musée de la Marine de Largentière",
     "type": "musée",
@@ -54300,6 +57284,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 4148,
+    "name": "Journées du Patrimoine de Largentière",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de oenologie à Largentière.",
+    "location": "Largentière, Auvergne-Rhône-Alpes",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Oenologie",
+    "coordinates": {
+      "lat": 44.53364,
+      "lng": 4.30201
+    },
+    "highlights": [
+      "Oenologie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 4149,
     "name": "Musée de la Préhistoire de Saint-Flour",
     "type": "musée",
@@ -54477,6 +57482,27 @@ export const places = [
     },
     "highlights": [
       "Art gothique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4164,
+    "name": "Nuit des Musées de Saint-Flour",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Saint-Flour.",
+    "location": "Saint-Flour, Auvergne-Rhône-Alpes",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 45.02775,
+      "lng": 3.08729
+    },
+    "highlights": [
+      "Cultures du monde"
     ],
     "visited": false,
     "favorite": false
@@ -55910,6 +58936,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 4270,
+    "name": "Fête médiévale de Tulle",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Tulle.",
+    "location": "Tulle, Nouvelle-Aquitaine",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 45.27631,
+      "lng": 1.77026
+    },
+    "highlights": [
+      "Cirque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 4273,
     "name": "Musée d'Histoire naturelle de Niort",
     "type": "musée",
@@ -56109,6 +59156,27 @@ export const places = [
     },
     "highlights": [
       "Époque romane"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4287,
+    "name": "Fête médiévale de Niort",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de photographie à Niort.",
+    "location": "Niort, Nouvelle-Aquitaine",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Photographie",
+    "coordinates": {
+      "lat": 46.31559,
+      "lng": -0.46195
+    },
+    "highlights": [
+      "Photographie"
     ],
     "visited": false,
     "favorite": false
@@ -56620,6 +59688,48 @@ export const places = [
     },
     "highlights": [
       "XIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4326,
+    "name": "Nuit des Musées de Royan",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de théâtre à Royan.",
+    "location": "Royan, Nouvelle-Aquitaine",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Théâtre",
+    "coordinates": {
+      "lat": 45.62915,
+      "lng": -1.03217
+    },
+    "highlights": [
+      "Théâtre"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4327,
+    "name": "Journées du Patrimoine de Royan",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Royan.",
+    "location": "Royan, Nouvelle-Aquitaine",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 45.62216,
+      "lng": -1.03082
+    },
+    "highlights": [
+      "Jazz & Blues"
     ],
     "visited": false,
     "favorite": false
@@ -57583,6 +60693,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 4401,
+    "name": "Nuit des Musées de Marmande",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Marmande.",
+    "location": "Marmande, Nouvelle-Aquitaine",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 44.50243,
+      "lng": 0.16419
+    },
+    "highlights": [
+      "Danse contemporaine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4402,
+    "name": "Fête médiévale de Marmande",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de littérature à Marmande.",
+    "location": "Marmande, Nouvelle-Aquitaine",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Littérature",
+    "coordinates": {
+      "lat": 44.50337,
+      "lng": 0.17166
+    },
+    "highlights": [
+      "Littérature"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 4403,
     "name": "Musée de la Musique de Villeneuve-sur-Lot",
     "type": "musée",
@@ -57806,6 +60958,27 @@ export const places = [
     },
     "highlights": [
       "Gothique flamboyant"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4419,
+    "name": "Journées du Patrimoine de Villeneuve-sur-Lot",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Villeneuve-sur-Lot.",
+    "location": "Villeneuve-sur-Lot, Nouvelle-Aquitaine",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 44.40421,
+      "lng": 0.70806
+    },
+    "highlights": [
+      "Marionnettes"
     ],
     "visited": false,
     "favorite": false
@@ -58095,6 +61268,48 @@ export const places = [
     },
     "highlights": [
       "Art roman"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4439,
+    "name": "Nuit des Musées de Orthez",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique baroque à Orthez.",
+    "location": "Orthez, Nouvelle-Aquitaine",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique baroque",
+    "coordinates": {
+      "lat": 43.4951,
+      "lng": -0.77529
+    },
+    "highlights": [
+      "Musique baroque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4440,
+    "name": "Salon du Vin de Orthez",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Orthez.",
+    "location": "Orthez, Nouvelle-Aquitaine",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 43.4911,
+      "lng": -0.76995
+    },
+    "highlights": [
+      "Musique folk"
     ],
     "visited": false,
     "favorite": false
@@ -58571,6 +61786,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 4474,
+    "name": "Salon du Vin de Hendaye",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Hendaye.",
+    "location": "Hendaye, Nouvelle-Aquitaine",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 43.36635,
+      "lng": -1.78053
+    },
+    "highlights": [
+      "Cirque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 4475,
     "name": "Musée des Arts décoratifs de Uzerche",
     "type": "musée",
@@ -59019,6 +62255,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 4509,
+    "name": "Fête médiévale de Aubusson",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts de la rue à Aubusson.",
+    "location": "Aubusson, Nouvelle-Aquitaine",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts de la rue",
+    "coordinates": {
+      "lat": 45.95881,
+      "lng": 2.176
+    },
+    "highlights": [
+      "Arts de la rue"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 4511,
     "name": "Musée du Textile de Millau",
     "type": "musée",
@@ -59237,6 +62494,27 @@ export const places = [
     },
     "highlights": [
       "Gothique flamboyant"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4526,
+    "name": "Salon du Vin de Millau",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Millau.",
+    "location": "Millau, Occitanie",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 44.10133,
+      "lng": 3.08774
+    },
+    "highlights": [
+      "Arts visuels"
     ],
     "visited": false,
     "favorite": false
@@ -59792,6 +63070,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 4567,
+    "name": "Salon du Vin de Moissac",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Moissac.",
+    "location": "Moissac, Occitanie",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 44.0957,
+      "lng": 1.07696
+    },
+    "highlights": [
+      "Musique actuelle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 4569,
     "name": "Musée municipal de Montauban",
     "type": "musée",
@@ -60039,6 +63338,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 4585,
+    "name": "Nuit des Musées de Montauban",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Montauban.",
+    "location": "Montauban, Occitanie",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 44.0204,
+      "lng": 1.36382
+    },
+    "highlights": [
+      "Musique folk"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 4587,
     "name": "Musée de la Résistance de Lodève",
     "type": "musée",
@@ -60241,6 +63561,48 @@ export const places = [
     },
     "highlights": [
       "XVIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4600,
+    "name": "Nuit des Musées de Lodève",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de opéra à Lodève.",
+    "location": "Lodève, Occitanie",
+    "rating": 4.9,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Opéra",
+    "coordinates": {
+      "lat": 43.73028,
+      "lng": 3.32769
+    },
+    "highlights": [
+      "Opéra"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4601,
+    "name": "Fête médiévale de Lodève",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Lodève.",
+    "location": "Lodève, Occitanie",
+    "rating": 4.9,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 43.72723,
+      "lng": 3.32279
+    },
+    "highlights": [
+      "Arts visuels"
     ],
     "visited": false,
     "favorite": false
@@ -60548,6 +63910,27 @@ export const places = [
     },
     "highlights": [
       "Époque romane"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4622,
+    "name": "Biennale d'Art contemporain de Agde",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Agde.",
+    "location": "Agde, Occitanie",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 43.3018,
+      "lng": 3.46981
+    },
+    "highlights": [
+      "Arts visuels"
     ],
     "visited": false,
     "favorite": false
@@ -61069,6 +64452,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 4660,
+    "name": "Nuit des Musées de Mirepoix",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Mirepoix.",
+    "location": "Mirepoix, Occitanie",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 43.08662,
+      "lng": 1.88167
+    },
+    "highlights": [
+      "Danse contemporaine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4661,
+    "name": "Biennale d'Art contemporain de Mirepoix",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Mirepoix.",
+    "location": "Mirepoix, Occitanie",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 43.09216,
+      "lng": 1.86691
+    },
+    "highlights": [
+      "Marionnettes"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 4662,
     "name": "Musée de la Résistance de Villefranche-de-Conflent",
     "type": "musée",
@@ -61315,6 +64740,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 4677,
+    "name": "Nuit des Musées de Villefranche-de-Conflent",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Villefranche-de-Conflent.",
+    "location": "Villefranche-de-Conflent, Occitanie",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 42.57949,
+      "lng": 2.37765
+    },
+    "highlights": [
+      "Musique actuelle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 4680,
     "name": "Musée de la Céramique de Font-Romeu",
     "type": "musée",
@@ -61534,6 +64980,27 @@ export const places = [
     },
     "highlights": [
       "XIVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4697,
+    "name": "Nuit des Musées de Font-Romeu",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de oenologie à Font-Romeu.",
+    "location": "Font-Romeu, Occitanie",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Oenologie",
+    "coordinates": {
+      "lat": 42.49401,
+      "lng": 2.04173
+    },
+    "highlights": [
+      "Oenologie"
     ],
     "visited": false,
     "favorite": false
@@ -61759,6 +65226,48 @@ export const places = [
     },
     "highlights": [
       "XVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4715,
+    "name": "Journées du Patrimoine de Saint-Guilhem-le-Désert",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Saint-Guilhem-le-Désert.",
+    "location": "Saint-Guilhem-le-Désert, Occitanie",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 43.72952,
+      "lng": 3.53754
+    },
+    "highlights": [
+      "Cirque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4716,
+    "name": "Nuit des Musées de Saint-Guilhem-le-Désert",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Saint-Guilhem-le-Désert.",
+    "location": "Saint-Guilhem-le-Désert, Occitanie",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 43.74009,
+      "lng": 3.55254
+    },
+    "highlights": [
+      "Cultures du monde"
     ],
     "visited": false,
     "favorite": false
@@ -62728,6 +66237,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 4787,
+    "name": "Fête médiévale de L'Isle-Jourdain",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à L'Isle-Jourdain.",
+    "location": "L'Isle-Jourdain, Occitanie",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 43.61413,
+      "lng": 1.0771
+    },
+    "highlights": [
+      "Cirque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 4788,
     "name": "Musée régional de Lectoure",
     "type": "musée",
@@ -62976,6 +66506,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 4803,
+    "name": "Nuit des Musées de Lectoure",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Lectoure.",
+    "location": "Lectoure, Occitanie",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 43.93227,
+      "lng": 0.62149
+    },
+    "highlights": [
+      "Danse contemporaine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 4806,
     "name": "Musée du Patrimoine de Marciac",
     "type": "musée",
@@ -63195,6 +66746,48 @@ export const places = [
     },
     "highlights": [
       "XVIIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4820,
+    "name": "Biennale d'Art contemporain de Marciac",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts de la rue à Marciac.",
+    "location": "Marciac, Occitanie",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts de la rue",
+    "coordinates": {
+      "lat": 43.51882,
+      "lng": 0.1635
+    },
+    "highlights": [
+      "Arts de la rue"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4821,
+    "name": "Salon du Vin de Marciac",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Marciac.",
+    "location": "Marciac, Occitanie",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 43.5218,
+      "lng": 0.16333
+    },
+    "highlights": [
+      "Arts visuels"
     ],
     "visited": false,
     "favorite": false
@@ -63666,6 +67259,48 @@ export const places = [
     },
     "highlights": [
       "XIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4855,
+    "name": "Biennale d'Art contemporain de Gavarnie",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Gavarnie.",
+    "location": "Gavarnie, Occitanie",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 42.74015,
+      "lng": -0.00067
+    },
+    "highlights": [
+      "Cirque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4856,
+    "name": "Fête médiévale de Gavarnie",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Gavarnie.",
+    "location": "Gavarnie, Occitanie",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 42.73608,
+      "lng": -0.01677
+    },
+    "highlights": [
+      "Jazz & Blues"
     ],
     "visited": false,
     "favorite": false
@@ -64305,6 +67940,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 4905,
+    "name": "Journées du Patrimoine de Kaysersberg",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de bande dessinée à Kaysersberg.",
+    "location": "Kaysersberg, Grand Est",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Bande dessinée",
+    "coordinates": {
+      "lat": 48.14451,
+      "lng": 7.26765
+    },
+    "highlights": [
+      "Bande dessinée"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 4907,
     "name": "Musée ethnographique de Ribeauvillé",
     "type": "musée",
@@ -64543,6 +68199,48 @@ export const places = [
     },
     "highlights": [
       "Gothique flamboyant"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4923,
+    "name": "Fête médiévale de Ribeauvillé",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de opéra à Ribeauvillé.",
+    "location": "Ribeauvillé, Grand Est",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Opéra",
+    "coordinates": {
+      "lat": 48.20234,
+      "lng": 7.32773
+    },
+    "highlights": [
+      "Opéra"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4924,
+    "name": "Nuit des Musées de Ribeauvillé",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de patrimoine à Ribeauvillé.",
+    "location": "Ribeauvillé, Grand Est",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Patrimoine",
+    "coordinates": {
+      "lat": 48.18945,
+      "lng": 7.32218
+    },
+    "highlights": [
+      "Patrimoine"
     ],
     "visited": false,
     "favorite": false
@@ -65216,6 +68914,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 4975,
+    "name": "Salon du Vin de Lunéville",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Lunéville.",
+    "location": "Lunéville, Grand Est",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 48.59963,
+      "lng": 6.49364
+    },
+    "highlights": [
+      "Cultures du monde"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 4976,
+    "name": "Nuit des Musées de Lunéville",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Lunéville.",
+    "location": "Lunéville, Grand Est",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 48.59759,
+      "lng": 6.50208
+    },
+    "highlights": [
+      "Musique folk"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 4977,
     "name": "Musée de la Céramique de Toul",
     "type": "musée",
@@ -65421,6 +69161,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 4991,
+    "name": "Fête médiévale de Toul",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique classique à Toul.",
+    "location": "Toul, Grand Est",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique classique",
+    "coordinates": {
+      "lat": 48.67485,
+      "lng": 5.89873
+    },
+    "highlights": [
+      "Musique classique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 4993,
     "name": "Musée de la Céramique de Vitry-le-François",
     "type": "musée",
@@ -65580,6 +69341,48 @@ export const places = [
     },
     "highlights": [
       "Époque gothique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5005,
+    "name": "Journées du Patrimoine de Vitry-le-François",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Vitry-le-François.",
+    "location": "Vitry-le-François, Grand Est",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 48.71829,
+      "lng": 4.58596
+    },
+    "highlights": [
+      "Cirque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5006,
+    "name": "Nuit des Musées de Vitry-le-François",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Vitry-le-François.",
+    "location": "Vitry-le-François, Grand Est",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 48.72649,
+      "lng": 4.58815
+    },
+    "highlights": [
+      "Danse contemporaine"
     ],
     "visited": false,
     "favorite": false
@@ -67082,6 +70885,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 5118,
+    "name": "Biennale d'Art contemporain de Guebwiller",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Guebwiller.",
+    "location": "Guebwiller, Grand Est",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 47.91409,
+      "lng": 7.22057
+    },
+    "highlights": [
+      "Musique actuelle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 5119,
     "name": "Musée de la Préhistoire de Turckheim",
     "type": "musée",
@@ -67449,6 +71273,27 @@ export const places = [
     },
     "highlights": [
       "XVIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5151,
+    "name": "Journées du Patrimoine de Abbeville",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de bande dessinée à Abbeville.",
+    "location": "Abbeville, Hauts-de-France",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Bande dessinée",
+    "coordinates": {
+      "lat": 50.11496,
+      "lng": 1.83151
+    },
+    "highlights": [
+      "Bande dessinée"
     ],
     "visited": false,
     "favorite": false
@@ -68206,6 +72051,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 5207,
+    "name": "Journées du Patrimoine de Coucy-le-Château",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique baroque à Coucy-le-Château.",
+    "location": "Coucy-le-Château, Hauts-de-France",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique baroque",
+    "coordinates": {
+      "lat": 49.51741,
+      "lng": 3.3275
+    },
+    "highlights": [
+      "Musique baroque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 5209,
     "name": "Musée ethnographique de Château-Thierry",
     "type": "musée",
@@ -68386,6 +72252,27 @@ export const places = [
     },
     "highlights": [
       "Époque gothique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5223,
+    "name": "Salon du Vin de Château-Thierry",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Château-Thierry.",
+    "location": "Château-Thierry, Hauts-de-France",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 49.03717,
+      "lng": 3.40492
+    },
+    "highlights": [
+      "Marionnettes"
     ],
     "visited": false,
     "favorite": false
@@ -68991,6 +72878,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 5272,
+    "name": "Salon du Vin de Valenciennes",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de patrimoine à Valenciennes.",
+    "location": "Valenciennes, Hauts-de-France",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Patrimoine",
+    "coordinates": {
+      "lat": 50.36388,
+      "lng": 3.52575
+    },
+    "highlights": [
+      "Patrimoine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 5274,
     "name": "Musée de la Ville de Maubeuge",
     "type": "musée",
@@ -69405,6 +73313,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 5305,
+    "name": "Journées du Patrimoine de Le Touquet",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cinéma à Le Touquet.",
+    "location": "Le Touquet, Hauts-de-France",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cinéma",
+    "coordinates": {
+      "lat": 50.51837,
+      "lng": 1.59297
+    },
+    "highlights": [
+      "Cinéma"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5306,
+    "name": "Salon du Vin de Le Touquet",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique baroque à Le Touquet.",
+    "location": "Le Touquet, Hauts-de-France",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique baroque",
+    "coordinates": {
+      "lat": 50.51832,
+      "lng": 1.59619
+    },
+    "highlights": [
+      "Musique baroque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 5307,
     "name": "Musée d'Histoire naturelle de Montreuil-sur-Mer",
     "type": "musée",
@@ -69565,6 +73515,27 @@ export const places = [
     },
     "highlights": [
       "XVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5321,
+    "name": "Salon du Vin de Montreuil-sur-Mer",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique classique à Montreuil-sur-Mer.",
+    "location": "Montreuil-sur-Mer, Hauts-de-France",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique classique",
+    "coordinates": {
+      "lat": 50.47294,
+      "lng": 1.76669
+    },
+    "highlights": [
+      "Musique classique"
     ],
     "visited": false,
     "favorite": false
@@ -69835,6 +73806,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 5342,
+    "name": "Journées du Patrimoine de Lens",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de patrimoine à Lens.",
+    "location": "Lens, Hauts-de-France",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Patrimoine",
+    "coordinates": {
+      "lat": 50.42299,
+      "lng": 2.82481
+    },
+    "highlights": [
+      "Patrimoine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 5343,
     "name": "Musée archéologique de Béthune",
     "type": "musée",
@@ -70056,6 +74048,27 @@ export const places = [
     },
     "highlights": [
       "Gothique flamboyant"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5361,
+    "name": "Fête médiévale de Béthune",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de littérature à Béthune.",
+    "location": "Béthune, Hauts-de-France",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Littérature",
+    "coordinates": {
+      "lat": 50.53536,
+      "lng": 2.64387
+    },
+    "highlights": [
+      "Littérature"
     ],
     "visited": false,
     "favorite": false
@@ -70298,6 +74311,48 @@ export const places = [
     },
     "highlights": [
       "Art gothique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5377,
+    "name": "Biennale d'Art contemporain de Vitré",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Vitré.",
+    "location": "Vitré, Bretagne",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 48.12644,
+      "lng": -1.21809
+    },
+    "highlights": [
+      "Cirque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5378,
+    "name": "Nuit des Musées de Vitré",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique baroque à Vitré.",
+    "location": "Vitré, Bretagne",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique baroque",
+    "coordinates": {
+      "lat": 48.12258,
+      "lng": -1.22052
+    },
+    "highlights": [
+      "Musique baroque"
     ],
     "visited": false,
     "favorite": false
@@ -70711,6 +74766,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 5411,
+    "name": "Nuit des Musées de Combourg",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique baroque à Combourg.",
+    "location": "Combourg, Bretagne",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique baroque",
+    "coordinates": {
+      "lat": 48.41798,
+      "lng": -1.74502
+    },
+    "highlights": [
+      "Musique baroque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 5413,
     "name": "Musée des Arts décoratifs de Roscoff",
     "type": "musée",
@@ -71018,6 +75094,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 5432,
+    "name": "Salon du Vin de Roscoff",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de photographie à Roscoff.",
+    "location": "Roscoff, Bretagne",
+    "rating": 4.9,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Photographie",
+    "coordinates": {
+      "lat": 48.72678,
+      "lng": -3.98476
+    },
+    "highlights": [
+      "Photographie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 5434,
     "name": "Musée de la Marine de Morlaix",
     "type": "musée",
@@ -71261,6 +75358,48 @@ export const places = [
     },
     "highlights": [
       "Gothique flamboyant"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5452,
+    "name": "Journées du Patrimoine de Morlaix",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de photographie à Morlaix.",
+    "location": "Morlaix, Bretagne",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Photographie",
+    "coordinates": {
+      "lat": 48.58637,
+      "lng": -3.82328
+    },
+    "highlights": [
+      "Photographie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5453,
+    "name": "Fête médiévale de Morlaix",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Morlaix.",
+    "location": "Morlaix, Bretagne",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 48.57395,
+      "lng": -3.83604
+    },
+    "highlights": [
+      "Musique actuelle"
     ],
     "visited": false,
     "favorite": false
@@ -71969,6 +76108,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 5506,
+    "name": "Nuit des Musées de Guingamp",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Guingamp.",
+    "location": "Guingamp, Bretagne",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 48.56271,
+      "lng": -3.14841
+    },
+    "highlights": [
+      "Marionnettes"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5508,
+    "name": "Journées du Patrimoine de Guingamp",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts de la rue à Guingamp.",
+    "location": "Guingamp, Bretagne",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts de la rue",
+    "coordinates": {
+      "lat": 48.56612,
+      "lng": -3.1564
+    },
+    "highlights": [
+      "Arts de la rue"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 5509,
     "name": "Musée d'Art et d'Histoire de Pontivy",
     "type": "musée",
@@ -72412,6 +76593,48 @@ export const places = [
     },
     "highlights": [
       "XVIIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5544,
+    "name": "Journées du Patrimoine de Auray",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Auray.",
+    "location": "Auray, Bretagne",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 47.66651,
+      "lng": -2.99373
+    },
+    "highlights": [
+      "Arts visuels"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5545,
+    "name": "Biennale d'Art contemporain de Auray",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique classique à Auray.",
+    "location": "Auray, Bretagne",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique classique",
+    "coordinates": {
+      "lat": 47.65879,
+      "lng": -2.98082
+    },
+    "highlights": [
+      "Musique classique"
     ],
     "visited": false,
     "favorite": false
@@ -73095,6 +77318,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 5596,
+    "name": "Fête médiévale de Locronan",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique baroque à Locronan.",
+    "location": "Locronan, Bretagne",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique baroque",
+    "coordinates": {
+      "lat": 48.0897,
+      "lng": -4.21442
+    },
+    "highlights": [
+      "Musique baroque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 5599,
     "name": "Musée de la Marine de Rochefort-en-Terre",
     "type": "musée",
@@ -73567,6 +77811,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 5632,
+    "name": "Salon du Vin de Fécamp",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Fécamp.",
+    "location": "Fécamp, Normandie",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 49.75422,
+      "lng": 0.37757
+    },
+    "highlights": [
+      "Cultures du monde"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 5633,
     "name": "Musée des Arts décoratifs de Étretat",
     "type": "musée",
@@ -73833,6 +78098,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 5649,
+    "name": "Journées du Patrimoine de Étretat",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de littérature à Étretat.",
+    "location": "Étretat, Normandie",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Littérature",
+    "coordinates": {
+      "lat": 49.70241,
+      "lng": 0.19773
+    },
+    "highlights": [
+      "Littérature"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 5651,
     "name": "Musée municipal de Coutances",
     "type": "musée",
@@ -74015,6 +78301,27 @@ export const places = [
     },
     "highlights": [
       "XIIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5664,
+    "name": "Nuit des Musées de Coutances",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Coutances.",
+    "location": "Coutances, Normandie",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 49.04571,
+      "lng": -1.44135
+    },
+    "highlights": [
+      "Arts visuels"
     ],
     "visited": false,
     "favorite": false
@@ -74257,6 +78564,27 @@ export const places = [
     },
     "highlights": [
       "XVIIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5684,
+    "name": "Nuit des Musées de Granville",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de patrimoine à Granville.",
+    "location": "Granville, Normandie",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Patrimoine",
+    "coordinates": {
+      "lat": 48.83139,
+      "lng": -1.5902
+    },
+    "highlights": [
+      "Patrimoine"
     ],
     "visited": false,
     "favorite": false
@@ -74928,6 +79256,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 5738,
+    "name": "Biennale d'Art contemporain de Domfront",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Domfront.",
+    "location": "Domfront, Normandie",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 48.59534,
+      "lng": -0.63396
+    },
+    "highlights": [
+      "Cultures du monde"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 5741,
     "name": "Musée régional de Verneuil-sur-Avre",
     "type": "musée",
@@ -75418,6 +79767,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 5775,
+    "name": "Biennale d'Art contemporain de Les Andelys",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Les Andelys.",
+    "location": "Les Andelys, Normandie",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 49.23939,
+      "lng": 1.41131
+    },
+    "highlights": [
+      "Musique folk"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 5777,
     "name": "Musée municipal de Vernon",
     "type": "musée",
@@ -75621,6 +79991,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 5792,
+    "name": "Nuit des Musées de Vernon",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Vernon.",
+    "location": "Vernon, Normandie",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 49.10247,
+      "lng": 1.48265
+    },
+    "highlights": [
+      "Arts visuels"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 5794,
     "name": "Musée régional de Pont-Audemer",
     "type": "musée",
@@ -75817,6 +80208,48 @@ export const places = [
     },
     "highlights": [
       "XIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5807,
+    "name": "Nuit des Musées de Pont-Audemer",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Pont-Audemer.",
+    "location": "Pont-Audemer, Normandie",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 49.34758,
+      "lng": 0.51149
+    },
+    "highlights": [
+      "Cultures du monde"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5808,
+    "name": "Journées du Patrimoine de Pont-Audemer",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de littérature à Pont-Audemer.",
+    "location": "Pont-Audemer, Normandie",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Littérature",
+    "coordinates": {
+      "lat": 49.36416,
+      "lng": 0.51411
+    },
+    "highlights": [
+      "Littérature"
     ],
     "visited": false,
     "favorite": false
@@ -76109,6 +80542,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 5827,
+    "name": "Biennale d'Art contemporain de Eu",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cinéma à Eu.",
+    "location": "Eu, Normandie",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cinéma",
+    "coordinates": {
+      "lat": 50.05707,
+      "lng": 1.42893
+    },
+    "highlights": [
+      "Cinéma"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5828,
+    "name": "Fête médiévale de Eu",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique classique à Eu.",
+    "location": "Eu, Normandie",
+    "rating": 4.9,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique classique",
+    "coordinates": {
+      "lat": 50.04873,
+      "lng": 1.41345
+    },
+    "highlights": [
+      "Musique classique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 5829,
     "name": "Musée de la Marine de Barfleur",
     "type": "musée",
@@ -76346,6 +80821,27 @@ export const places = [
     },
     "highlights": [
       "XIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5845,
+    "name": "Journées du Patrimoine de Barfleur",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de bande dessinée à Barfleur.",
+    "location": "Barfleur, Normandie",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Bande dessinée",
+    "coordinates": {
+      "lat": 49.66832,
+      "lng": -1.26733
+    },
+    "highlights": [
+      "Bande dessinée"
     ],
     "visited": false,
     "favorite": false
@@ -76882,6 +81378,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 5885,
+    "name": "Journées du Patrimoine de Montsoreau",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cinéma à Montsoreau.",
+    "location": "Montsoreau, Pays de la Loire",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cinéma",
+    "coordinates": {
+      "lat": 47.22337,
+      "lng": 0.05536
+    },
+    "highlights": [
+      "Cinéma"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 5887,
     "name": "Musée d'Art et d'Histoire de Château-Gontier",
     "type": "musée",
@@ -77064,6 +81581,48 @@ export const places = [
     },
     "highlights": [
       "XIVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5900,
+    "name": "Journées du Patrimoine de Château-Gontier",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Château-Gontier.",
+    "location": "Château-Gontier, Pays de la Loire",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 47.82731,
+      "lng": -0.69951
+    },
+    "highlights": [
+      "Cultures du monde"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5902,
+    "name": "Salon du Vin de Château-Gontier",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Château-Gontier.",
+    "location": "Château-Gontier, Pays de la Loire",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 47.83046,
+      "lng": -0.71212
+    },
+    "highlights": [
+      "Arts visuels"
     ],
     "visited": false,
     "favorite": false
@@ -77780,6 +82339,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 5954,
+    "name": "Journées du Patrimoine de Clisson",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de théâtre à Clisson.",
+    "location": "Clisson, Pays de la Loire",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Théâtre",
+    "coordinates": {
+      "lat": 47.09464,
+      "lng": -1.28881
+    },
+    "highlights": [
+      "Théâtre"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 5956,
     "name": "Musée du Patrimoine de Pornic",
     "type": "musée",
@@ -78024,6 +82604,48 @@ export const places = [
     },
     "highlights": [
       "XVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5974,
+    "name": "Fête médiévale de Pornic",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Pornic.",
+    "location": "Pornic, Pays de la Loire",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 47.12326,
+      "lng": -2.10796
+    },
+    "highlights": [
+      "Jazz & Blues"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 5975,
+    "name": "Journées du Patrimoine de Pornic",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de bande dessinée à Pornic.",
+    "location": "Pornic, Pays de la Loire",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Bande dessinée",
+    "coordinates": {
+      "lat": 47.12063,
+      "lng": -2.09658
+    },
+    "highlights": [
+      "Bande dessinée"
     ],
     "visited": false,
     "favorite": false
@@ -78763,6 +83385,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 6026,
+    "name": "Nuit des Musées de Sainte-Suzanne",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Sainte-Suzanne.",
+    "location": "Sainte-Suzanne, Pays de la Loire",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 48.09091,
+      "lng": -0.344
+    },
+    "highlights": [
+      "Musique folk"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 6028,
     "name": "Musée de la Résistance de Cheverny",
     "type": "musée",
@@ -79214,6 +83857,27 @@ export const places = [
     },
     "highlights": [
       "XVIIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 6061,
+    "name": "Nuit des Musées de Villandry",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Villandry.",
+    "location": "Villandry, Centre-Val de Loire",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 47.3414,
+      "lng": 0.51725
+    },
+    "highlights": [
+      "Marionnettes"
     ],
     "visited": false,
     "favorite": false
@@ -80596,6 +85260,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 6168,
+    "name": "Biennale d'Art contemporain de Montargis",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Montargis.",
+    "location": "Montargis, Centre-Val de Loire",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 47.99781,
+      "lng": 2.73762
+    },
+    "highlights": [
+      "Danse contemporaine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 6170,
     "name": "Musée de la Céramique de Pithiviers",
     "type": "musée",
@@ -81101,6 +85786,27 @@ export const places = [
     },
     "highlights": [
       "Époque gothique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 6208,
+    "name": "Salon du Vin de Mehun-sur-Yèvre",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Mehun-sur-Yèvre.",
+    "location": "Mehun-sur-Yèvre, Centre-Val de Loire",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 47.14629,
+      "lng": 2.20422
+    },
+    "highlights": [
+      "Jazz & Blues"
     ],
     "visited": false,
     "favorite": false
@@ -81802,6 +86508,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 6261,
+    "name": "Fête médiévale de Tournus",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Tournus.",
+    "location": "Tournus, Bourgogne-Franche-Comté",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 46.55912,
+      "lng": 4.90042
+    },
+    "highlights": [
+      "Musique actuelle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 6262,
+    "name": "Biennale d'Art contemporain de Tournus",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Tournus.",
+    "location": "Tournus, Bourgogne-Franche-Comté",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 46.57145,
+      "lng": 4.90326
+    },
+    "highlights": [
+      "Musique folk"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 6263,
     "name": "Musée de la Guerre de Paray-le-Monial",
     "type": "musée",
@@ -82071,6 +86819,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 6280,
+    "name": "Biennale d'Art contemporain de Paray-le-Monial",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Paray-le-Monial.",
+    "location": "Paray-le-Monial, Bourgogne-Franche-Comté",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 46.44513,
+      "lng": 4.12741
+    },
+    "highlights": [
+      "Musique folk"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 6281,
     "name": "Musée de la Ville de Chalon-sur-Saône",
     "type": "musée",
@@ -82249,6 +87018,27 @@ export const places = [
     },
     "highlights": [
       "Époque romane"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 6294,
+    "name": "Journées du Patrimoine de Chalon-sur-Saône",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts numériques à Chalon-sur-Saône.",
+    "location": "Chalon-sur-Saône, Bourgogne-Franche-Comté",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts numériques",
+    "coordinates": {
+      "lat": 46.77527,
+      "lng": 4.84332
+    },
+    "highlights": [
+      "Arts numériques"
     ],
     "visited": false,
     "favorite": false
@@ -83181,6 +87971,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 6362,
+    "name": "Salon du Vin de Joigny",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Joigny.",
+    "location": "Joigny, Bourgogne-Franche-Comté",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 47.98508,
+      "lng": 3.4003
+    },
+    "highlights": [
+      "Danse contemporaine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 6363,
+    "name": "Journées du Patrimoine de Joigny",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts numériques à Joigny.",
+    "location": "Joigny, Bourgogne-Franche-Comté",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts numériques",
+    "coordinates": {
+      "lat": 47.99076,
+      "lng": 3.39004
+    },
+    "highlights": [
+      "Arts numériques"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 6364,
     "name": "Musée archéologique de Ornans",
     "type": "musée",
@@ -83400,6 +88232,27 @@ export const places = [
     },
     "highlights": [
       "XIVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 6379,
+    "name": "Salon du Vin de Ornans",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Ornans.",
+    "location": "Ornans, Bourgogne-Franche-Comté",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 47.10132,
+      "lng": 6.14417
+    },
+    "highlights": [
+      "Jazz & Blues"
     ],
     "visited": false,
     "favorite": false
@@ -83653,6 +88506,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 6395,
+    "name": "Salon du Vin de Pontarlier",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Pontarlier.",
+    "location": "Pontarlier, Bourgogne-Franche-Comté",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 46.90325,
+      "lng": 6.35971
+    },
+    "highlights": [
+      "Danse contemporaine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 6398,
     "name": "Musée municipal de Arbois",
     "type": "musée",
@@ -83901,6 +88775,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 6413,
+    "name": "Fête médiévale de Arbois",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts de la rue à Arbois.",
+    "location": "Arbois, Bourgogne-Franche-Comté",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts de la rue",
+    "coordinates": {
+      "lat": 46.90294,
+      "lng": 5.78317
+    },
+    "highlights": [
+      "Arts de la rue"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 6416,
     "name": "Musée de la Guerre de Lons-le-Saunier",
     "type": "musée",
@@ -84140,6 +89035,27 @@ export const places = [
     },
     "highlights": [
       "XIIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 6434,
+    "name": "Biennale d'Art contemporain de Lons-le-Saunier",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Lons-le-Saunier.",
+    "location": "Lons-le-Saunier, Bourgogne-Franche-Comté",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 46.68269,
+      "lng": 5.56133
+    },
+    "highlights": [
+      "Cirque"
     ],
     "visited": false,
     "favorite": false
@@ -84403,6 +89319,27 @@ export const places = [
     },
     "highlights": [
       "XVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 6454,
+    "name": "Nuit des Musées de Nuits-Saint-Georges",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Nuits-Saint-Georges.",
+    "location": "Nuits-Saint-Georges, Bourgogne-Franche-Comté",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 47.1326,
+      "lng": 4.95449
+    },
+    "highlights": [
+      "Musique folk"
     ],
     "visited": false,
     "favorite": false
@@ -85373,6 +90310,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 6527,
+    "name": "Fête médiévale de L'Île-Rousse",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de photographie à L'Île-Rousse.",
+    "location": "L'Île-Rousse, Corse",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Photographie",
+    "coordinates": {
+      "lat": 42.62777,
+      "lng": 8.94037
+    },
+    "highlights": [
+      "Photographie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 6528,
     "name": "Musée de la Ville de Saint-Florent",
     "type": "musée",
@@ -85592,6 +90550,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 6542,
+    "name": "Biennale d'Art contemporain de Saint-Florent",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Saint-Florent.",
+    "location": "Saint-Florent, Corse",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 42.68687,
+      "lng": 9.30248
+    },
+    "highlights": [
+      "Musique actuelle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 6544,
+    "name": "Journées du Patrimoine de Saint-Florent",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Saint-Florent.",
+    "location": "Saint-Florent, Corse",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 42.6813,
+      "lng": 9.29966
+    },
+    "highlights": [
+      "Marionnettes"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 6545,
     "name": "Musée des Beaux-Arts de Piana",
     "type": "musée",
@@ -85752,6 +90752,27 @@ export const places = [
     },
     "highlights": [
       "XIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 6558,
+    "name": "Journées du Patrimoine de Piana",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de patrimoine à Piana.",
+    "location": "Piana, Corse",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Patrimoine",
+    "coordinates": {
+      "lat": 42.23687,
+      "lng": 8.62468
+    },
+    "highlights": [
+      "Patrimoine"
     ],
     "visited": false,
     "favorite": false
@@ -86204,6 +91225,27 @@ export const places = [
     },
     "highlights": [
       "Époque gothique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 6592,
+    "name": "Fête médiévale de Pointe-à-Pitre",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts de la rue à Pointe-à-Pitre.",
+    "location": "Pointe-à-Pitre, Guadeloupe",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts de la rue",
+    "coordinates": {
+      "lat": 16.23433,
+      "lng": -61.53278
+    },
+    "highlights": [
+      "Arts de la rue"
     ],
     "visited": false,
     "favorite": false
@@ -87154,6 +92196,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 6663,
+    "name": "Salon du Vin de Mamoudzou",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique classique à Mamoudzou.",
+    "location": "Mamoudzou, Mayotte",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique classique",
+    "coordinates": {
+      "lat": -12.78486,
+      "lng": 45.23125
+    },
+    "highlights": [
+      "Musique classique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 6666,
     "name": "Musée d'Art et d'Histoire de Luchon",
     "type": "musée",
@@ -87781,6 +92844,27 @@ export const places = [
     },
     "highlights": [
       "Gothique flamboyant"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 6716,
+    "name": "Journées du Patrimoine de Ax-les-Thermes",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Ax-les-Thermes.",
+    "location": "Ax-les-Thermes, Occitanie",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 42.71412,
+      "lng": 1.84087
+    },
+    "highlights": [
+      "Cultures du monde"
     ],
     "visited": false,
     "favorite": false
@@ -88523,6 +93607,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 6773,
+    "name": "Biennale d'Art contemporain de Bourbon-l'Archambault",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de patrimoine à Bourbon-l'Archambault.",
+    "location": "Bourbon-l'Archambault, Auvergne-Rhône-Alpes",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Patrimoine",
+    "coordinates": {
+      "lat": 46.59314,
+      "lng": 3.05615
+    },
+    "highlights": [
+      "Patrimoine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 6775,
     "name": "Musée de la Ville de Royat",
     "type": "musée",
@@ -89034,6 +94139,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 6812,
+    "name": "Fête médiévale de Saint-Nectaire",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Saint-Nectaire.",
+    "location": "Saint-Nectaire, Auvergne-Rhône-Alpes",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 45.58606,
+      "lng": 2.9909
+    },
+    "highlights": [
+      "Danse contemporaine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 6813,
     "name": "Écomusée de Châtel-Guyon",
     "type": "musée",
@@ -89303,6 +94429,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 6831,
+    "name": "Fête médiévale de Châtel-Guyon",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Châtel-Guyon.",
+    "location": "Châtel-Guyon, Auvergne-Rhône-Alpes",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 45.92105,
+      "lng": 3.06568
+    },
+    "highlights": [
+      "Musique actuelle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 6833,
     "name": "Musée municipal de Plombières-les-Bains",
     "type": "musée",
@@ -89502,6 +94649,27 @@ export const places = [
     },
     "highlights": [
       "XIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 6847,
+    "name": "Journées du Patrimoine de Plombières-les-Bains",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de bande dessinée à Plombières-les-Bains.",
+    "location": "Plombières-les-Bains, Grand Est",
+    "rating": 4.9,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Bande dessinée",
+    "coordinates": {
+      "lat": 47.97393,
+      "lng": 6.46094
+    },
+    "highlights": [
+      "Bande dessinée"
     ],
     "visited": false,
     "favorite": false
@@ -90034,6 +95202,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 6885,
+    "name": "Fête médiévale de Contrexéville",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de oenologie à Contrexéville.",
+    "location": "Contrexéville, Grand Est",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Oenologie",
+    "coordinates": {
+      "lat": 48.1951,
+      "lng": 5.89618
+    },
+    "highlights": [
+      "Oenologie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 6888,
     "name": "Musée régional de Vittel",
     "type": "musée",
@@ -90214,6 +95403,27 @@ export const places = [
     },
     "highlights": [
       "Renaissance"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 6901,
+    "name": "Biennale d'Art contemporain de Vittel",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts numériques à Vittel.",
+    "location": "Vittel, Grand Est",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts numériques",
+    "coordinates": {
+      "lat": 48.205,
+      "lng": 5.95031
+    },
+    "highlights": [
+      "Arts numériques"
     ],
     "visited": false,
     "favorite": false
@@ -91450,6 +96660,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 6989,
+    "name": "Salon du Vin de Monpazier",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de littérature à Monpazier.",
+    "location": "Monpazier, Nouvelle-Aquitaine",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Littérature",
+    "coordinates": {
+      "lat": 44.68555,
+      "lng": 0.89409
+    },
+    "highlights": [
+      "Littérature"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 6991,
     "name": "Écomusée de Brantôme",
     "type": "musée",
@@ -91897,6 +97128,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7025,
+    "name": "Nuit des Musées de Saint-Jean-Pied-de-Port",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Saint-Jean-Pied-de-Port.",
+    "location": "Saint-Jean-Pied-de-Port, Nouvelle-Aquitaine",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 43.16478,
+      "lng": -1.23221
+    },
+    "highlights": [
+      "Cultures du monde"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7027,
     "name": "Musée d'Art et d'Histoire de Labastide-Clairence",
     "type": "musée",
@@ -92120,6 +97372,48 @@ export const places = [
     },
     "highlights": [
       "Époque romane"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 7044,
+    "name": "Journées du Patrimoine de Labastide-Clairence",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Labastide-Clairence.",
+    "location": "Labastide-Clairence, Nouvelle-Aquitaine",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 43.43707,
+      "lng": -1.23826
+    },
+    "highlights": [
+      "Musique actuelle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 7045,
+    "name": "Nuit des Musées de Labastide-Clairence",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Labastide-Clairence.",
+    "location": "Labastide-Clairence, Nouvelle-Aquitaine",
+    "rating": 4.9,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 43.42567,
+      "lng": -1.23249
+    },
+    "highlights": [
+      "Arts visuels"
     ],
     "visited": false,
     "favorite": false
@@ -92384,6 +97678,27 @@ export const places = [
     },
     "highlights": [
       "XIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 7063,
+    "name": "Nuit des Musées de Talmont-sur-Gironde",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de théâtre à Talmont-sur-Gironde.",
+    "location": "Talmont-sur-Gironde, Nouvelle-Aquitaine",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Théâtre",
+    "coordinates": {
+      "lat": 45.5434,
+      "lng": -0.89554
+    },
+    "highlights": [
+      "Théâtre"
     ],
     "visited": false,
     "favorite": false
@@ -92860,6 +98175,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7101,
+    "name": "Salon du Vin de Charroux",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique baroque à Charroux.",
+    "location": "Charroux, Nouvelle-Aquitaine",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique baroque",
+    "coordinates": {
+      "lat": 46.15185,
+      "lng": 0.39246
+    },
+    "highlights": [
+      "Musique baroque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7103,
     "name": "Musée du Patrimoine de Ars-en-Ré",
     "type": "musée",
@@ -93290,6 +98626,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7136,
+    "name": "Biennale d'Art contemporain de Saint-Martin-de-Ré",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Saint-Martin-de-Ré.",
+    "location": "Saint-Martin-de-Ré, Nouvelle-Aquitaine",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 46.20357,
+      "lng": -1.36382
+    },
+    "highlights": [
+      "Cirque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7138,
     "name": "Musée de la Résistance de Eguisheim",
     "type": "musée",
@@ -93512,6 +98869,27 @@ export const places = [
     },
     "highlights": [
       "XVIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 7153,
+    "name": "Fête médiévale de Eguisheim",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Eguisheim.",
+    "location": "Eguisheim, Grand Est",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 48.03779,
+      "lng": 7.31563
+    },
+    "highlights": [
+      "Jazz & Blues"
     ],
     "visited": false,
     "favorite": false
@@ -94047,6 +99425,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7192,
+    "name": "Nuit des Musées de Bergheim",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de patrimoine à Bergheim.",
+    "location": "Bergheim, Grand Est",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Patrimoine",
+    "coordinates": {
+      "lat": 48.20846,
+      "lng": 7.36464
+    },
+    "highlights": [
+      "Patrimoine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7193,
     "name": "Musée municipal de Mittelbergheim",
     "type": "musée",
@@ -94333,6 +99732,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7212,
+    "name": "Journées du Patrimoine de Mittelbergheim",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts de la rue à Mittelbergheim.",
+    "location": "Mittelbergheim, Grand Est",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts de la rue",
+    "coordinates": {
+      "lat": 48.39861,
+      "lng": 7.4433
+    },
+    "highlights": [
+      "Arts de la rue"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7213,
     "name": "Musée des Arts décoratifs de Saint-Véran",
     "type": "musée",
@@ -94580,6 +100000,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7230,
+    "name": "Salon du Vin de Saint-Véran",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Saint-Véran.",
+    "location": "Saint-Véran, Provence-Alpes-Côte d'Azur",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 44.70517,
+      "lng": 6.86444
+    },
+    "highlights": [
+      "Musique actuelle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7232,
     "name": "Musée du Patrimoine de Moustiers-Sainte-Marie",
     "type": "musée",
@@ -94758,6 +100199,27 @@ export const places = [
     },
     "highlights": [
       "XVIIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 7244,
+    "name": "Salon du Vin de Moustiers-Sainte-Marie",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Moustiers-Sainte-Marie.",
+    "location": "Moustiers-Sainte-Marie, Provence-Alpes-Côte d'Azur",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 43.84336,
+      "lng": 6.22311
+    },
+    "highlights": [
+      "Jazz & Blues"
     ],
     "visited": false,
     "favorite": false
@@ -95151,6 +100613,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7277,
+    "name": "Biennale d'Art contemporain de Roussillon",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Roussillon.",
+    "location": "Roussillon, Provence-Alpes-Côte d'Azur",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 43.8978,
+      "lng": 5.3021
+    },
+    "highlights": [
+      "Arts visuels"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7278,
     "name": "Écomusée de Bonneval-sur-Arc",
     "type": "musée",
@@ -95356,6 +100839,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7291,
+    "name": "Fête médiévale de Bonneval-sur-Arc",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de oenologie à Bonneval-sur-Arc.",
+    "location": "Bonneval-sur-Arc, Auvergne-Rhône-Alpes",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Oenologie",
+    "coordinates": {
+      "lat": 45.36748,
+      "lng": 7.05665
+    },
+    "highlights": [
+      "Oenologie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 7292,
+    "name": "Salon du Vin de Bonneval-sur-Arc",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts de la rue à Bonneval-sur-Arc.",
+    "location": "Bonneval-sur-Arc, Auvergne-Rhône-Alpes",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts de la rue",
+    "coordinates": {
+      "lat": 45.36307,
+      "lng": 7.04391
+    },
+    "highlights": [
+      "Arts de la rue"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7293,
     "name": "Musée du Patrimoine de Yvoire",
     "type": "musée",
@@ -95538,6 +101063,27 @@ export const places = [
     },
     "highlights": [
       "XIIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 7309,
+    "name": "Fête médiévale de Yvoire",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Yvoire.",
+    "location": "Yvoire, Auvergne-Rhône-Alpes",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 46.36544,
+      "lng": 6.3216
+    },
+    "highlights": [
+      "Cultures du monde"
     ],
     "visited": false,
     "favorite": false
@@ -95829,6 +101375,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7329,
+    "name": "Salon du Vin de Pérouges",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de littérature à Pérouges.",
+    "location": "Pérouges, Auvergne-Rhône-Alpes",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Littérature",
+    "coordinates": {
+      "lat": 45.8972,
+      "lng": 5.17817
+    },
+    "highlights": [
+      "Littérature"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7331,
     "name": "Musée des Beaux-Arts de Salers",
     "type": "musée",
@@ -96046,6 +101613,27 @@ export const places = [
     },
     "highlights": [
       "Époque romane"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 7345,
+    "name": "Journées du Patrimoine de Salers",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Salers.",
+    "location": "Salers, Auvergne-Rhône-Alpes",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 45.12998,
+      "lng": 2.48518
+    },
+    "highlights": [
+      "Musique folk"
     ],
     "visited": false,
     "favorite": false
@@ -96466,6 +102054,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7376,
+    "name": "Journées du Patrimoine de Lavoûte-Chilhac",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Lavoûte-Chilhac.",
+    "location": "Lavoûte-Chilhac, Auvergne-Rhône-Alpes",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 45.2382,
+      "lng": 3.40881
+    },
+    "highlights": [
+      "Marionnettes"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7379,
     "name": "Musée de la Musique de Charroux",
     "type": "musée",
@@ -96667,6 +102276,48 @@ export const places = [
     },
     "highlights": [
       "Époque romane"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 7394,
+    "name": "Fête médiévale de Charroux",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Charroux.",
+    "location": "Charroux, Auvergne-Rhône-Alpes",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 46.18048,
+      "lng": 3.15044
+    },
+    "highlights": [
+      "Marionnettes"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 7395,
+    "name": "Journées du Patrimoine de Charroux",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Charroux.",
+    "location": "Charroux, Auvergne-Rhône-Alpes",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 46.19128,
+      "lng": 3.15665
+    },
+    "highlights": [
+      "Marionnettes"
     ],
     "visited": false,
     "favorite": false
@@ -97445,6 +103096,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7450,
+    "name": "Nuit des Musées de Pont-Croix",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Pont-Croix.",
+    "location": "Pont-Croix, Bretagne",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 48.0366,
+      "lng": -4.47834
+    },
+    "highlights": [
+      "Musique folk"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7452,
     "name": "Écomusée de Barfleur",
     "type": "musée",
@@ -97709,6 +103381,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7470,
+    "name": "Nuit des Musées de Barfleur",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Barfleur.",
+    "location": "Barfleur, Normandie",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 49.67812,
+      "lng": -1.26511
+    },
+    "highlights": [
+      "Musique actuelle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7472,
     "name": "Musée de la Guerre de Beuvron-en-Auge",
     "type": "musée",
@@ -97945,6 +103638,27 @@ export const places = [
     },
     "highlights": [
       "Gothique flamboyant"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 7488,
+    "name": "Nuit des Musées de Beuvron-en-Auge",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique classique à Beuvron-en-Auge.",
+    "location": "Beuvron-en-Auge, Normandie",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique classique",
+    "coordinates": {
+      "lat": 49.19583,
+      "lng": -0.06159
+    },
+    "highlights": [
+      "Musique classique"
     ],
     "visited": false,
     "favorite": false
@@ -98214,6 +103928,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7508,
+    "name": "Journées du Patrimoine de Veules-les-Roses",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Veules-les-Roses.",
+    "location": "Veules-les-Roses, Normandie",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 49.87348,
+      "lng": 0.80389
+    },
+    "highlights": [
+      "Cultures du monde"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7509,
     "name": "Écomusée de Lyons-la-Forêt",
     "type": "musée",
@@ -98434,6 +104169,27 @@ export const places = [
     },
     "highlights": [
       "XIVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 7526,
+    "name": "Journées du Patrimoine de Lyons-la-Forêt",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de patrimoine à Lyons-la-Forêt.",
+    "location": "Lyons-la-Forêt, Normandie",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Patrimoine",
+    "coordinates": {
+      "lat": 49.3987,
+      "lng": 1.4672
+    },
+    "highlights": [
+      "Patrimoine"
     ],
     "visited": false,
     "favorite": false
@@ -98702,6 +104458,48 @@ export const places = [
     },
     "highlights": [
       "XVIIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 7545,
+    "name": "Biennale d'Art contemporain de Gerberoy",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de théâtre à Gerberoy.",
+    "location": "Gerberoy, Hauts-de-France",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Théâtre",
+    "coordinates": {
+      "lat": 49.53239,
+      "lng": 1.85056
+    },
+    "highlights": [
+      "Théâtre"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 7546,
+    "name": "Salon du Vin de Gerberoy",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Gerberoy.",
+    "location": "Gerberoy, Hauts-de-France",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 49.5337,
+      "lng": 1.85557
+    },
+    "highlights": [
+      "Marionnettes"
     ],
     "visited": false,
     "favorite": false
@@ -99092,6 +104890,27 @@ export const places = [
     },
     "highlights": [
       "Époque gothique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 7575,
+    "name": "Salon du Vin de Montrésor",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de photographie à Montrésor.",
+    "location": "Montrésor, Centre-Val de Loire",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Photographie",
+    "coordinates": {
+      "lat": 47.16048,
+      "lng": 1.21013
+    },
+    "highlights": [
+      "Photographie"
     ],
     "visited": false,
     "favorite": false
@@ -99587,6 +105406,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7609,
+    "name": "Fête médiévale de Lavardin",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de bande dessinée à Lavardin.",
+    "location": "Lavardin, Centre-Val de Loire",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Bande dessinée",
+    "coordinates": {
+      "lat": 47.73359,
+      "lng": 0.87333
+    },
+    "highlights": [
+      "Bande dessinée"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7612,
     "name": "Musée de la Préhistoire de Crissay-sur-Manse",
     "type": "musée",
@@ -99998,6 +105838,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7645,
+    "name": "Nuit des Musées de Gargilesse-Dampierre",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de oenologie à Gargilesse-Dampierre.",
+    "location": "Gargilesse-Dampierre, Centre-Val de Loire",
+    "rating": 4.9,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Oenologie",
+    "coordinates": {
+      "lat": 46.50625,
+      "lng": 1.60221
+    },
+    "highlights": [
+      "Oenologie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7646,
     "name": "Musée d'Histoire naturelle de Flavigny-sur-Ozerain",
     "type": "musée",
@@ -100246,6 +106107,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7662,
+    "name": "Journées du Patrimoine de Flavigny-sur-Ozerain",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Flavigny-sur-Ozerain.",
+    "location": "Flavigny-sur-Ozerain, Bourgogne-Franche-Comté",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 47.50651,
+      "lng": 4.52225
+    },
+    "highlights": [
+      "Danse contemporaine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 7664,
+    "name": "Biennale d'Art contemporain de Flavigny-sur-Ozerain",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de photographie à Flavigny-sur-Ozerain.",
+    "location": "Flavigny-sur-Ozerain, Bourgogne-Franche-Comté",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Photographie",
+    "coordinates": {
+      "lat": 47.51479,
+      "lng": 4.53761
+    },
+    "highlights": [
+      "Photographie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7665,
     "name": "Musée de la Ville de Noyers-sur-Serein",
     "type": "musée",
@@ -100447,6 +106350,27 @@ export const places = [
     },
     "highlights": [
       "XIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 7679,
+    "name": "Salon du Vin de Noyers-sur-Serein",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de théâtre à Noyers-sur-Serein.",
+    "location": "Noyers-sur-Serein, Bourgogne-Franche-Comté",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Théâtre",
+    "coordinates": {
+      "lat": 47.69081,
+      "lng": 3.99873
+    },
+    "highlights": [
+      "Théâtre"
     ],
     "visited": false,
     "favorite": false
@@ -101001,6 +106925,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7719,
+    "name": "Biennale d'Art contemporain de Pesmes",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de théâtre à Pesmes.",
+    "location": "Pesmes, Bourgogne-Franche-Comté",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Théâtre",
+    "coordinates": {
+      "lat": 47.28401,
+      "lng": 5.5594
+    },
+    "highlights": [
+      "Théâtre"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7721,
     "name": "Musée d'Art moderne de Lods",
     "type": "musée",
@@ -101510,6 +107455,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7757,
+    "name": "Nuit des Musées de Baume-les-Messieurs",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de littérature à Baume-les-Messieurs.",
+    "location": "Baume-les-Messieurs, Bourgogne-Franche-Comté",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Littérature",
+    "coordinates": {
+      "lat": 46.70578,
+      "lng": 5.63443
+    },
+    "highlights": [
+      "Littérature"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7759,
     "name": "Musée des Beaux-Arts de Château-Chalon",
     "type": "musée",
@@ -101964,6 +107930,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7794,
+    "name": "Fête médiévale de Belcastel",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de patrimoine à Belcastel.",
+    "location": "Belcastel, Occitanie",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Patrimoine",
+    "coordinates": {
+      "lat": 44.38128,
+      "lng": 2.33973
+    },
+    "highlights": [
+      "Patrimoine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7795,
     "name": "Musée régional de Brousse-le-Château",
     "type": "musée",
@@ -102212,6 +108199,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7813,
+    "name": "Fête médiévale de Brousse-le-Château",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Brousse-le-Château.",
+    "location": "Brousse-le-Château, Occitanie",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 43.9907,
+      "lng": 2.61482
+    },
+    "highlights": [
+      "Cirque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7814,
     "name": "Musée archéologique de Sainte-Eulalie-d'Olt",
     "type": "musée",
@@ -102429,6 +108437,27 @@ export const places = [
     },
     "highlights": [
       "XVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 7829,
+    "name": "Biennale d'Art contemporain de Sainte-Eulalie-d'Olt",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Sainte-Eulalie-d'Olt.",
+    "location": "Sainte-Eulalie-d'Olt, Occitanie",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 44.46656,
+      "lng": 2.93636
+    },
+    "highlights": [
+      "Cirque"
     ],
     "visited": false,
     "favorite": false
@@ -103188,6 +109217,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7884,
+    "name": "Fête médiévale de Lagrasse",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de patrimoine à Lagrasse.",
+    "location": "Lagrasse, Occitanie",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Patrimoine",
+    "coordinates": {
+      "lat": 43.0983,
+      "lng": 2.61384
+    },
+    "highlights": [
+      "Patrimoine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 7885,
+    "name": "Biennale d'Art contemporain de Lagrasse",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Lagrasse.",
+    "location": "Lagrasse, Occitanie",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 43.0938,
+      "lng": 2.61634
+    },
+    "highlights": [
+      "Danse contemporaine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7886,
     "name": "Musée des Beaux-Arts de Eus",
     "type": "musée",
@@ -103652,6 +109723,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7919,
+    "name": "Biennale d'Art contemporain de Castelnou",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique baroque à Castelnou.",
+    "location": "Castelnou, Occitanie",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique baroque",
+    "coordinates": {
+      "lat": 42.6251,
+      "lng": 2.70148
+    },
+    "highlights": [
+      "Musique baroque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 7920,
+    "name": "Salon du Vin de Castelnou",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Castelnou.",
+    "location": "Castelnou, Occitanie",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 42.62348,
+      "lng": 2.69937
+    },
+    "highlights": [
+      "Jazz & Blues"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7921,
     "name": "Musée de la Photographie de Larressingle",
     "type": "musée",
@@ -104102,6 +110215,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 7954,
+    "name": "Biennale d'Art contemporain de Sarrant",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Sarrant.",
+    "location": "Sarrant, Occitanie",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 43.77368,
+      "lng": 0.92446
+    },
+    "highlights": [
+      "Jazz & Blues"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 7955,
     "name": "Musée du Patrimoine de La Romieu",
     "type": "musée",
@@ -104283,6 +110417,27 @@ export const places = [
     },
     "highlights": [
       "Art roman"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 7969,
+    "name": "Fête médiévale de La Romieu",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à La Romieu.",
+    "location": "La Romieu, Occitanie",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 43.97687,
+      "lng": 0.50131
+    },
+    "highlights": [
+      "Marionnettes"
     ],
     "visited": false,
     "favorite": false
@@ -104760,6 +110915,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 8005,
+    "name": "Fête médiévale de Puycelsi",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Puycelsi.",
+    "location": "Puycelsi, Occitanie",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 43.98839,
+      "lng": 1.71119
+    },
+    "highlights": [
+      "Arts visuels"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 8007,
     "name": "Musée du Textile de Lautrec",
     "type": "musée",
@@ -105170,6 +111346,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 8037,
+    "name": "Salon du Vin de Champs-sur-Marne",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de patrimoine à Champs-sur-Marne.",
+    "location": "Champs-sur-Marne, Île-de-France",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Patrimoine",
+    "coordinates": {
+      "lat": 48.85246,
+      "lng": 2.59359
+    },
+    "highlights": [
+      "Patrimoine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 8038,
     "name": "Musée de la Musique de Sèvres",
     "type": "musée",
@@ -105438,6 +111635,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 8057,
+    "name": "Salon du Vin de Sèvres",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de photographie à Sèvres.",
+    "location": "Sèvres, Île-de-France",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Photographie",
+    "coordinates": {
+      "lat": 48.81979,
+      "lng": 2.21238
+    },
+    "highlights": [
+      "Photographie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 8058,
+    "name": "Fête médiévale de Sèvres",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Sèvres.",
+    "location": "Sèvres, Île-de-France",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 48.81829,
+      "lng": 2.20319
+    },
+    "highlights": [
+      "Danse contemporaine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 8059,
     "name": "Musée de la Photographie de Clichy",
     "type": "musée",
@@ -105680,6 +111919,48 @@ export const places = [
     },
     "highlights": [
       "XIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 8075,
+    "name": "Fête médiévale de Clichy",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique classique à Clichy.",
+    "location": "Clichy, Île-de-France",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique classique",
+    "coordinates": {
+      "lat": 48.90429,
+      "lng": 2.30138
+    },
+    "highlights": [
+      "Musique classique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 8077,
+    "name": "Salon du Vin de Clichy",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de opéra à Clichy.",
+    "location": "Clichy, Île-de-France",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Opéra",
+    "coordinates": {
+      "lat": 48.89499,
+      "lng": 2.31503
+    },
+    "highlights": [
+      "Opéra"
     ],
     "visited": false,
     "favorite": false
@@ -106074,6 +112355,27 @@ export const places = [
     },
     "highlights": [
       "Art gothique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 8108,
+    "name": "Biennale d'Art contemporain de Issy-les-Moulineaux",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de oenologie à Issy-les-Moulineaux.",
+    "location": "Issy-les-Moulineaux, Île-de-France",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Oenologie",
+    "coordinates": {
+      "lat": 48.82827,
+      "lng": 2.27211
+    },
+    "highlights": [
+      "Oenologie"
     ],
     "visited": false,
     "favorite": false
@@ -106512,6 +112814,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 8143,
+    "name": "Biennale d'Art contemporain de Rueil-Malmaison",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de bande dessinée à Rueil-Malmaison.",
+    "location": "Rueil-Malmaison, Île-de-France",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Bande dessinée",
+    "coordinates": {
+      "lat": 48.86995,
+      "lng": 2.19545
+    },
+    "highlights": [
+      "Bande dessinée"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 8144,
     "name": "Musée d'Histoire naturelle de Nanterre",
     "type": "musée",
@@ -106734,6 +113057,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 8158,
+    "name": "Fête médiévale de Nanterre",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Nanterre.",
+    "location": "Nanterre, Île-de-France",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 48.8907,
+      "lng": 2.20899
+    },
+    "highlights": [
+      "Jazz & Blues"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 8161,
     "name": "Musée archéologique de Créteil",
     "type": "musée",
@@ -106931,6 +113275,27 @@ export const places = [
     },
     "highlights": [
       "XIIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 8175,
+    "name": "Journées du Patrimoine de Créteil",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts de la rue à Créteil.",
+    "location": "Créteil, Île-de-France",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts de la rue",
+    "coordinates": {
+      "lat": 48.79265,
+      "lng": 2.45817
+    },
+    "highlights": [
+      "Arts de la rue"
     ],
     "visited": false,
     "favorite": false
@@ -107195,6 +113560,27 @@ export const places = [
     },
     "highlights": [
       "Gothique flamboyant"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 8194,
+    "name": "Nuit des Musées de Corbeil-Essonnes",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Corbeil-Essonnes.",
+    "location": "Corbeil-Essonnes, Île-de-France",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 48.61642,
+      "lng": 2.4837
+    },
+    "highlights": [
+      "Marionnettes"
     ],
     "visited": false,
     "favorite": false
@@ -107692,6 +114078,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 8233,
+    "name": "Nuit des Musées de Marly-le-Roi",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de théâtre à Marly-le-Roi.",
+    "location": "Marly-le-Roi, Île-de-France",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Théâtre",
+    "coordinates": {
+      "lat": 48.86449,
+      "lng": 2.10157
+    },
+    "highlights": [
+      "Théâtre"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 8234,
     "name": "Musée de la Résistance de Jouarre",
     "type": "musée",
@@ -107872,6 +114279,27 @@ export const places = [
     },
     "highlights": [
       "XVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 8250,
+    "name": "Fête médiévale de Jouarre",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Jouarre.",
+    "location": "Jouarre, Île-de-France",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 48.92394,
+      "lng": 3.12547
+    },
+    "highlights": [
+      "Cirque"
     ],
     "visited": false,
     "favorite": false
@@ -108077,6 +114505,27 @@ export const places = [
     },
     "highlights": [
       "Époque gothique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 8267,
+    "name": "Journées du Patrimoine de Senlis",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Senlis.",
+    "location": "Senlis, Île-de-France",
+    "rating": 4.9,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 49.21295,
+      "lng": 2.57996
+    },
+    "highlights": [
+      "Cirque"
     ],
     "visited": false,
     "favorite": false
@@ -108366,6 +114815,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 8287,
+    "name": "Salon du Vin de Vence",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Vence.",
+    "location": "Vence, Provence-Alpes-Côte d'Azur",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 43.71408,
+      "lng": 7.11769
+    },
+    "highlights": [
+      "Musique actuelle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 8288,
     "name": "Musée des Arts décoratifs de Roquebrune-Cap-Martin",
     "type": "musée",
@@ -108582,6 +115052,27 @@ export const places = [
     },
     "highlights": [
       "XIIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 8304,
+    "name": "Journées du Patrimoine de Roquebrune-Cap-Martin",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Roquebrune-Cap-Martin.",
+    "location": "Roquebrune-Cap-Martin, Provence-Alpes-Côte d'Azur",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 43.75966,
+      "lng": 7.46104
+    },
+    "highlights": [
+      "Musique actuelle"
     ],
     "visited": false,
     "favorite": false
@@ -109548,6 +116039,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 8376,
+    "name": "Fête médiévale de Ramatuelle",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique baroque à Ramatuelle.",
+    "location": "Ramatuelle, Provence-Alpes-Côte d'Azur",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique baroque",
+    "coordinates": {
+      "lat": 43.211,
+      "lng": 6.59866
+    },
+    "highlights": [
+      "Musique baroque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 8378,
     "name": "Musée d'Art et d'Histoire de Grimaud",
     "type": "musée",
@@ -109810,6 +116322,27 @@ export const places = [
     },
     "highlights": [
       "XIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 8395,
+    "name": "Salon du Vin de Grimaud",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Grimaud.",
+    "location": "Grimaud, Provence-Alpes-Côte d'Azur",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 43.28272,
+      "lng": 6.53024
+    },
+    "highlights": [
+      "Cirque"
     ],
     "visited": false,
     "favorite": false
@@ -110101,6 +116634,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 8415,
+    "name": "Biennale d'Art contemporain de Seillans",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts numériques à Seillans.",
+    "location": "Seillans, Provence-Alpes-Côte d'Azur",
+    "rating": 4.9,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts numériques",
+    "coordinates": {
+      "lat": 43.63292,
+      "lng": 6.63777
+    },
+    "highlights": [
+      "Arts numériques"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 8417,
     "name": "Musée d'Histoire naturelle de Tourrettes-sur-Loup",
     "type": "musée",
@@ -110339,6 +116893,27 @@ export const places = [
     },
     "highlights": [
       "Époque romane"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 8432,
+    "name": "Fête médiévale de Tourrettes-sur-Loup",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Tourrettes-sur-Loup.",
+    "location": "Tourrettes-sur-Loup, Provence-Alpes-Côte d'Azur",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 43.71937,
+      "lng": 7.05744
+    },
+    "highlights": [
+      "Arts visuels"
     ],
     "visited": false,
     "favorite": false
@@ -110605,6 +117180,27 @@ export const places = [
     },
     "highlights": [
       "Renaissance"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 8453,
+    "name": "Journées du Patrimoine de Peillon",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de opéra à Peillon.",
+    "location": "Peillon, Provence-Alpes-Côte d'Azur",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Opéra",
+    "coordinates": {
+      "lat": 43.77368,
+      "lng": 7.37736
+    },
+    "highlights": [
+      "Opéra"
     ],
     "visited": false,
     "favorite": false
@@ -110917,6 +117513,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 8475,
+    "name": "Salon du Vin de Gourdon",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Gourdon.",
+    "location": "Gourdon, Provence-Alpes-Côte d'Azur",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 43.71237,
+      "lng": 6.98215
+    },
+    "highlights": [
+      "Danse contemporaine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 8478,
     "name": "Musée d'Art et d'Histoire de Bargème",
     "type": "musée",
@@ -111196,6 +117813,27 @@ export const places = [
     },
     "highlights": [
       "Art roman"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 8496,
+    "name": "Fête médiévale de Bargème",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de photographie à Bargème.",
+    "location": "Bargème, Provence-Alpes-Côte d'Azur",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Photographie",
+    "coordinates": {
+      "lat": 43.72441,
+      "lng": 6.58338
+    },
+    "highlights": [
+      "Photographie"
     ],
     "visited": false,
     "favorite": false
@@ -112119,6 +118757,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 8566,
+    "name": "Fête médiévale de Saint-Antonin-Noble-Val",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de photographie à Saint-Antonin-Noble-Val.",
+    "location": "Saint-Antonin-Noble-Val, Occitanie",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Photographie",
+    "coordinates": {
+      "lat": 44.15934,
+      "lng": 1.763
+    },
+    "highlights": [
+      "Photographie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 8569,
     "name": "Musée de la Marine de Lauzerte",
     "type": "musée",
@@ -112833,6 +119492,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 8624,
+    "name": "Salon du Vin de Sorèze",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Sorèze.",
+    "location": "Sorèze, Occitanie",
+    "rating": 4.9,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 43.44779,
+      "lng": 2.07727
+    },
+    "highlights": [
+      "Marionnettes"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 8625,
     "name": "Musée d'Histoire naturelle de Saint-Bertrand-de-Comminges",
     "type": "musée",
@@ -113359,6 +120039,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 8661,
+    "name": "Salon du Vin de Arreau",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique classique à Arreau.",
+    "location": "Arreau, Occitanie",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique classique",
+    "coordinates": {
+      "lat": 42.91324,
+      "lng": 0.3583
+    },
+    "highlights": [
+      "Musique classique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 8662,
+    "name": "Fête médiévale de Arreau",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts de la rue à Arreau.",
+    "location": "Arreau, Occitanie",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts de la rue",
+    "coordinates": {
+      "lat": 42.90454,
+      "lng": 0.36206
+    },
+    "highlights": [
+      "Arts de la rue"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 8663,
     "name": "Musée ethnographique de Mirande",
     "type": "musée",
@@ -113620,6 +120342,48 @@ export const places = [
     },
     "highlights": [
       "XVIIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 8682,
+    "name": "Biennale d'Art contemporain de Mirande",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Mirande.",
+    "location": "Mirande, Occitanie",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 43.52083,
+      "lng": 0.40582
+    },
+    "highlights": [
+      "Musique actuelle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 8683,
+    "name": "Journées du Patrimoine de Mirande",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Mirande.",
+    "location": "Mirande, Occitanie",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 43.51455,
+      "lng": 0.40044
+    },
+    "highlights": [
+      "Jazz & Blues"
     ],
     "visited": false,
     "favorite": false
@@ -114105,6 +120869,27 @@ export const places = [
     },
     "highlights": [
       "XVIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 8718,
+    "name": "Nuit des Musées de Fleurance",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cinéma à Fleurance.",
+    "location": "Fleurance, Occitanie",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cinéma",
+    "coordinates": {
+      "lat": 43.85634,
+      "lng": 0.66104
+    },
+    "highlights": [
+      "Cinéma"
     ],
     "visited": false,
     "favorite": false
@@ -114871,6 +121656,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 8774,
+    "name": "Biennale d'Art contemporain de Gaillac",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Gaillac.",
+    "location": "Gaillac, Occitanie",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 43.90452,
+      "lng": 1.89052
+    },
+    "highlights": [
+      "Musique folk"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 8775,
     "name": "Musée de la Ville de Rabastens",
     "type": "musée",
@@ -115072,6 +121878,27 @@ export const places = [
     },
     "highlights": [
       "XIVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 8790,
+    "name": "Fête médiévale de Rabastens",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de littérature à Rabastens.",
+    "location": "Rabastens, Occitanie",
+    "rating": 4.9,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Littérature",
+    "coordinates": {
+      "lat": 43.8331,
+      "lng": 1.72936
+    },
+    "highlights": [
+      "Littérature"
     ],
     "visited": false,
     "favorite": false
@@ -115567,6 +122394,27 @@ export const places = [
     },
     "highlights": [
       "XIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 8827,
+    "name": "Nuit des Musées de Mazamet",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Mazamet.",
+    "location": "Mazamet, Occitanie",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 43.4854,
+      "lng": 2.38228
+    },
+    "highlights": [
+      "Musique folk"
     ],
     "visited": false,
     "favorite": false
@@ -116289,6 +123137,27 @@ export const places = [
     },
     "highlights": [
       "Art roman"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 8879,
+    "name": "Nuit des Musées de Angles-sur-l'Anglin",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Angles-sur-l'Anglin.",
+    "location": "Angles-sur-l'Anglin, Nouvelle-Aquitaine",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 46.69466,
+      "lng": 0.89449
+    },
+    "highlights": [
+      "Arts visuels"
     ],
     "visited": false,
     "favorite": false
@@ -117698,6 +124567,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 8987,
+    "name": "Salon du Vin de Excideuil",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de photographie à Excideuil.",
+    "location": "Excideuil, Nouvelle-Aquitaine",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Photographie",
+    "coordinates": {
+      "lat": 45.34535,
+      "lng": 1.04286
+    },
+    "highlights": [
+      "Photographie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 8989,
     "name": "Musée régional de Hautefort",
     "type": "musée",
@@ -118415,6 +125305,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 9040,
+    "name": "Fête médiévale de Mareuil",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Mareuil.",
+    "location": "Mareuil, Nouvelle-Aquitaine",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 45.44155,
+      "lng": 0.45399
+    },
+    "highlights": [
+      "Musique actuelle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 9041,
     "name": "Musée d'Art moderne de Bourdeilles",
     "type": "musée",
@@ -118592,6 +125503,27 @@ export const places = [
     },
     "highlights": [
       "XIIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 9056,
+    "name": "Biennale d'Art contemporain de Bourdeilles",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Bourdeilles.",
+    "location": "Bourdeilles, Nouvelle-Aquitaine",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 45.31743,
+      "lng": 0.57877
+    },
+    "highlights": [
+      "Cultures du monde"
     ],
     "visited": false,
     "favorite": false
@@ -118795,6 +125727,48 @@ export const places = [
     },
     "highlights": [
       "XVIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 9070,
+    "name": "Journées du Patrimoine de Cadillac",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de théâtre à Cadillac.",
+    "location": "Cadillac, Nouvelle-Aquitaine",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Théâtre",
+    "coordinates": {
+      "lat": 44.63621,
+      "lng": -0.31332
+    },
+    "highlights": [
+      "Théâtre"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 9072,
+    "name": "Fête médiévale de Cadillac",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Cadillac.",
+    "location": "Cadillac, Nouvelle-Aquitaine",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 44.63629,
+      "lng": -0.32286
+    },
+    "highlights": [
+      "Danse contemporaine"
     ],
     "visited": false,
     "favorite": false
@@ -119040,6 +126014,27 @@ export const places = [
     },
     "highlights": [
       "Gothique flamboyant"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 9089,
+    "name": "Journées du Patrimoine de Bazas",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Bazas.",
+    "location": "Bazas, Nouvelle-Aquitaine",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 44.42648,
+      "lng": -0.21123
+    },
+    "highlights": [
+      "Arts visuels"
     ],
     "visited": false,
     "favorite": false
@@ -119747,6 +126742,27 @@ export const places = [
     },
     "highlights": [
       "XIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 9143,
+    "name": "Biennale d'Art contemporain de Ensisheim",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts de la rue à Ensisheim.",
+    "location": "Ensisheim, Grand Est",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts de la rue",
+    "coordinates": {
+      "lat": 47.87084,
+      "lng": 7.35167
+    },
+    "highlights": [
+      "Arts de la rue"
     ],
     "visited": false,
     "favorite": false
@@ -120706,6 +127722,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 9214,
+    "name": "Fête médiévale de Rosheim",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts de la rue à Rosheim.",
+    "location": "Rosheim, Grand Est",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts de la rue",
+    "coordinates": {
+      "lat": 48.49582,
+      "lng": 7.46713
+    },
+    "highlights": [
+      "Arts de la rue"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 9215,
     "name": "Musée municipal de Bouxwiller",
     "type": "musée",
@@ -120932,6 +127969,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 9229,
+    "name": "Salon du Vin de Bouxwiller",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de patrimoine à Bouxwiller.",
+    "location": "Bouxwiller, Grand Est",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Patrimoine",
+    "coordinates": {
+      "lat": 48.82678,
+      "lng": 7.4917
+    },
+    "highlights": [
+      "Patrimoine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 9231,
+    "name": "Biennale d'Art contemporain de Bouxwiller",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts numériques à Bouxwiller.",
+    "location": "Bouxwiller, Grand Est",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts numériques",
+    "coordinates": {
+      "lat": 48.8316,
+      "lng": 7.4853
+    },
+    "highlights": [
+      "Arts numériques"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 9232,
     "name": "Musée municipal de La Petite-Pierre",
     "type": "musée",
@@ -121150,6 +128229,48 @@ export const places = [
     },
     "highlights": [
       "Art roman"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 9247,
+    "name": "Salon du Vin de La Petite-Pierre",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de opéra à La Petite-Pierre.",
+    "location": "La Petite-Pierre, Grand Est",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Opéra",
+    "coordinates": {
+      "lat": 48.86249,
+      "lng": 7.31009
+    },
+    "highlights": [
+      "Opéra"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 9248,
+    "name": "Fête médiévale de La Petite-Pierre",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique classique à La Petite-Pierre.",
+    "location": "La Petite-Pierre, Grand Est",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique classique",
+    "coordinates": {
+      "lat": 48.85745,
+      "lng": 7.32779
+    },
+    "highlights": [
+      "Musique classique"
     ],
     "visited": false,
     "favorite": false
@@ -121700,6 +128821,27 @@ export const places = [
     },
     "highlights": [
       "XIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 9287,
+    "name": "Journées du Patrimoine de Fleckenstein",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Fleckenstein.",
+    "location": "Fleckenstein, Grand Est",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 49.03693,
+      "lng": 7.78016
+    },
+    "highlights": [
+      "Cirque"
     ],
     "visited": false,
     "favorite": false
@@ -122363,6 +129505,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 9341,
+    "name": "Nuit des Musées de Phalsbourg",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Phalsbourg.",
+    "location": "Phalsbourg, Grand Est",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 48.76108,
+      "lng": 7.26415
+    },
+    "highlights": [
+      "Musique folk"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 9342,
     "name": "Musée du Textile de Commercy",
     "type": "musée",
@@ -122581,6 +129744,27 @@ export const places = [
     },
     "highlights": [
       "Art roman"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 9358,
+    "name": "Nuit des Musées de Commercy",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Commercy.",
+    "location": "Commercy, Grand Est",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 48.76744,
+      "lng": 5.59709
+    },
+    "highlights": [
+      "Marionnettes"
     ],
     "visited": false,
     "favorite": false
@@ -122974,6 +130158,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 9388,
+    "name": "Biennale d'Art contemporain de Domrémy-la-Pucelle",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Domrémy-la-Pucelle.",
+    "location": "Domrémy-la-Pucelle, Grand Est",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 48.43386,
+      "lng": 5.67831
+    },
+    "highlights": [
+      "Marionnettes"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 9390,
     "name": "Musée de la Musique de Laon",
     "type": "musée",
@@ -123240,6 +130445,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 9409,
+    "name": "Salon du Vin de Laon",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de oenologie à Laon.",
+    "location": "Laon, Hauts-de-France",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Oenologie",
+    "coordinates": {
+      "lat": 49.55556,
+      "lng": 3.62935
+    },
+    "highlights": [
+      "Oenologie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 9411,
     "name": "Musée d'Art moderne de Guise",
     "type": "musée",
@@ -123484,6 +130710,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 9429,
+    "name": "Salon du Vin de Guise",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Guise.",
+    "location": "Guise, Hauts-de-France",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 49.89149,
+      "lng": 3.62152
+    },
+    "highlights": [
+      "Musique folk"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 9431,
     "name": "Musée de la Marine de Vervins",
     "type": "musée",
@@ -123665,6 +130912,27 @@ export const places = [
     },
     "highlights": [
       "Gothique flamboyant"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 9443,
+    "name": "Salon du Vin de Vervins",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de photographie à Vervins.",
+    "location": "Vervins, Hauts-de-France",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Photographie",
+    "coordinates": {
+      "lat": 49.83652,
+      "lng": 3.906
+    },
+    "highlights": [
+      "Photographie"
     ],
     "visited": false,
     "favorite": false
@@ -123971,6 +131239,48 @@ export const places = [
     },
     "highlights": [
       "Époque romane"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 9463,
+    "name": "Journées du Patrimoine de Villers-Cotterêts",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts numériques à Villers-Cotterêts.",
+    "location": "Villers-Cotterêts, Hauts-de-France",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts numériques",
+    "coordinates": {
+      "lat": 49.25374,
+      "lng": 3.08482
+    },
+    "highlights": [
+      "Arts numériques"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 9464,
+    "name": "Salon du Vin de Villers-Cotterêts",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Villers-Cotterêts.",
+    "location": "Villers-Cotterêts, Hauts-de-France",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 49.25083,
+      "lng": 3.09195
+    },
+    "highlights": [
+      "Musique actuelle"
     ],
     "visited": false,
     "favorite": false
@@ -124440,6 +131750,27 @@ export const places = [
     },
     "highlights": [
       "XIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 9500,
+    "name": "Journées du Patrimoine de Ham",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de opéra à Ham.",
+    "location": "Ham, Hauts-de-France",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Opéra",
+    "coordinates": {
+      "lat": 49.75056,
+      "lng": 3.06254
+    },
+    "highlights": [
+      "Opéra"
     ],
     "visited": false,
     "favorite": false
@@ -125059,6 +132390,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 9547,
+    "name": "Nuit des Musées de Ermenonville",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Ermenonville.",
+    "location": "Ermenonville, Hauts-de-France",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 49.12211,
+      "lng": 2.69175
+    },
+    "highlights": [
+      "Marionnettes"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 9549,
     "name": "Musée de la Céramique de Chauny",
     "type": "musée",
@@ -125323,6 +132675,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 9567,
+    "name": "Salon du Vin de Chauny",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de bande dessinée à Chauny.",
+    "location": "Chauny, Hauts-de-France",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Bande dessinée",
+    "coordinates": {
+      "lat": 49.62328,
+      "lng": 3.2225
+    },
+    "highlights": [
+      "Bande dessinée"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 9570,
     "name": "Musée d'Art et d'Histoire de Le Cateau-Cambrésis",
     "type": "musée",
@@ -125526,6 +132899,48 @@ export const places = [
     },
     "highlights": [
       "XIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 9583,
+    "name": "Salon du Vin de Le Cateau-Cambrésis",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de oenologie à Le Cateau-Cambrésis.",
+    "location": "Le Cateau-Cambrésis, Hauts-de-France",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Oenologie",
+    "coordinates": {
+      "lat": 50.09786,
+      "lng": 3.53667
+    },
+    "highlights": [
+      "Oenologie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 9585,
+    "name": "Biennale d'Art contemporain de Le Cateau-Cambrésis",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de photographie à Le Cateau-Cambrésis.",
+    "location": "Le Cateau-Cambrésis, Hauts-de-France",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Photographie",
+    "coordinates": {
+      "lat": 50.11251,
+      "lng": 3.54895
+    },
+    "highlights": [
+      "Photographie"
     ],
     "visited": false,
     "favorite": false
@@ -125895,6 +133310,27 @@ export const places = [
     },
     "highlights": [
       "XVIIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 9615,
+    "name": "Salon du Vin de Condé-sur-l'Escaut",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Condé-sur-l'Escaut.",
+    "location": "Condé-sur-l'Escaut, Hauts-de-France",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 50.45817,
+      "lng": 3.58217
+    },
+    "highlights": [
+      "Cultures du monde"
     ],
     "visited": false,
     "favorite": false
@@ -126429,6 +133865,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 9656,
+    "name": "Journées du Patrimoine de Ploërmel",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Ploërmel.",
+    "location": "Ploërmel, Bretagne",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 47.92391,
+      "lng": -2.3935
+    },
+    "highlights": [
+      "Danse contemporaine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 9657,
     "name": "Musée d'Histoire naturelle de La Gacilly",
     "type": "musée",
@@ -126831,6 +134288,27 @@ export const places = [
     },
     "highlights": [
       "XIVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 9689,
+    "name": "Biennale d'Art contemporain de Malestroit",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Malestroit.",
+    "location": "Malestroit, Bretagne",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 47.80249,
+      "lng": -2.38716
+    },
+    "highlights": [
+      "Musique actuelle"
     ],
     "visited": false,
     "favorite": false
@@ -127327,6 +134805,27 @@ export const places = [
     },
     "highlights": [
       "XVIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 9722,
+    "name": "Nuit des Musées de Le Faou",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Le Faou.",
+    "location": "Le Faou, Bretagne",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 48.29092,
+      "lng": -4.18646
+    },
+    "highlights": [
+      "Musique folk"
     ],
     "visited": false,
     "favorite": false
@@ -129148,6 +136647,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 9860,
+    "name": "Biennale d'Art contemporain de Bernay",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique baroque à Bernay.",
+    "location": "Bernay, Normandie",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique baroque",
+    "coordinates": {
+      "lat": 49.09824,
+      "lng": 0.60576
+    },
+    "highlights": [
+      "Musique baroque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 9862,
     "name": "Musée de la Préhistoire de Brionne",
     "type": "musée",
@@ -130122,6 +137642,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 9932,
+    "name": "Journées du Patrimoine de Vimoutiers",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de oenologie à Vimoutiers.",
+    "location": "Vimoutiers, Normandie",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Oenologie",
+    "coordinates": {
+      "lat": 48.93565,
+      "lng": 0.19342
+    },
+    "highlights": [
+      "Oenologie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 9933,
     "name": "Musée de la Photographie de Carrouges",
     "type": "musée",
@@ -130835,6 +138376,27 @@ export const places = [
     },
     "highlights": [
       "XVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 9991,
+    "name": "Journées du Patrimoine de Saint-Lô",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique actuelle à Saint-Lô.",
+    "location": "Saint-Lô, Normandie",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique actuelle",
+    "coordinates": {
+      "lat": 49.11637,
+      "lng": -1.07414
+    },
+    "highlights": [
+      "Musique actuelle"
     ],
     "visited": false,
     "favorite": false
@@ -131890,6 +139452,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 10075,
+    "name": "Biennale d'Art contemporain de Doué-en-Anjou",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de oenologie à Doué-en-Anjou.",
+    "location": "Doué-en-Anjou, Pays de la Loire",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Oenologie",
+    "coordinates": {
+      "lat": 47.19564,
+      "lng": -0.28239
+    },
+    "highlights": [
+      "Oenologie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 10077,
     "name": "Musée des Beaux-Arts de Montreuil-Bellay",
     "type": "musée",
@@ -132427,6 +140010,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 10114,
+    "name": "Biennale d'Art contemporain de Brissac",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Brissac.",
+    "location": "Brissac, Pays de la Loire",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 47.35871,
+      "lng": -0.44913
+    },
+    "highlights": [
+      "Marionnettes"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 10117,
     "name": "Musée des Arts décoratifs de Beaufort-en-Anjou",
     "type": "musée",
@@ -132893,6 +140497,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 10151,
+    "name": "Salon du Vin de Le Lude",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de jazz & blues à Le Lude.",
+    "location": "Le Lude, Pays de la Loire",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Jazz & Blues",
+    "coordinates": {
+      "lat": 47.64101,
+      "lng": 0.16414
+    },
+    "highlights": [
+      "Jazz & Blues"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 10153,
     "name": "Musée de la Photographie de Sablé-sur-Sarthe",
     "type": "musée",
@@ -133114,6 +140739,48 @@ export const places = [
     },
     "highlights": [
       "Époque romane"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 10168,
+    "name": "Journées du Patrimoine de Sablé-sur-Sarthe",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cultures du monde à Sablé-sur-Sarthe.",
+    "location": "Sablé-sur-Sarthe, Pays de la Loire",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cultures du monde",
+    "coordinates": {
+      "lat": 47.84376,
+      "lng": -0.33079
+    },
+    "highlights": [
+      "Cultures du monde"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 10169,
+    "name": "Salon du Vin de Sablé-sur-Sarthe",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts numériques à Sablé-sur-Sarthe.",
+    "location": "Sablé-sur-Sarthe, Pays de la Loire",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts numériques",
+    "coordinates": {
+      "lat": 47.84137,
+      "lng": -0.33002
+    },
+    "highlights": [
+      "Arts numériques"
     ],
     "visited": false,
     "favorite": false
@@ -133341,6 +141008,27 @@ export const places = [
     },
     "highlights": [
       "Renaissance"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 10185,
+    "name": "Biennale d'Art contemporain de Craon",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Craon.",
+    "location": "Craon, Pays de la Loire",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 47.84767,
+      "lng": -0.95444
+    },
+    "highlights": [
+      "Danse contemporaine"
     ],
     "visited": false,
     "favorite": false
@@ -134060,6 +141748,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 10238,
+    "name": "Biennale d'Art contemporain de Romorantin-Lanthenay",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cinéma à Romorantin-Lanthenay.",
+    "location": "Romorantin-Lanthenay, Centre-Val de Loire",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cinéma",
+    "coordinates": {
+      "lat": 47.34985,
+      "lng": 1.75362
+    },
+    "highlights": [
+      "Cinéma"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 10240,
     "name": "Musée du Patrimoine de Chaumont-sur-Loire",
     "type": "musée",
@@ -134525,6 +142234,27 @@ export const places = [
     },
     "highlights": [
       "Époque gothique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 10275,
+    "name": "Nuit des Musées de Ussé",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Ussé.",
+    "location": "Ussé, Centre-Val de Loire",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 47.24407,
+      "lng": 0.2953
+    },
+    "highlights": [
+      "Cirque"
     ],
     "visited": false,
     "favorite": false
@@ -135451,6 +143181,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 10347,
+    "name": "Fête médiévale de Châtillon-sur-Indre",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Châtillon-sur-Indre.",
+    "location": "Châtillon-sur-Indre, Centre-Val de Loire",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 46.98684,
+      "lng": 1.18048
+    },
+    "highlights": [
+      "Arts visuels"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 10348,
     "name": "Musée d'Art moderne de Levroux",
     "type": "musée",
@@ -135957,6 +143708,27 @@ export const places = [
     },
     "highlights": [
       "XIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 10381,
+    "name": "Biennale d'Art contemporain de Vierzon",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de photographie à Vierzon.",
+    "location": "Vierzon, Centre-Val de Loire",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Photographie",
+    "coordinates": {
+      "lat": 47.21767,
+      "lng": 2.0728
+    },
+    "highlights": [
+      "Photographie"
     ],
     "visited": false,
     "favorite": false
@@ -136476,6 +144248,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 10419,
+    "name": "Nuit des Musées de La Charité-sur-Loire",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cinéma à La Charité-sur-Loire.",
+    "location": "La Charité-sur-Loire, Centre-Val de Loire",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cinéma",
+    "coordinates": {
+      "lat": 47.1789,
+      "lng": 3.02438
+    },
+    "highlights": [
+      "Cinéma"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 10421,
     "name": "Musée du Patrimoine de Aigurande",
     "type": "musée",
@@ -136674,6 +144467,27 @@ export const places = [
     },
     "highlights": [
       "XIVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 10436,
+    "name": "Salon du Vin de Aigurande",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique baroque à Aigurande.",
+    "location": "Aigurande, Centre-Val de Loire",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique baroque",
+    "coordinates": {
+      "lat": 46.43847,
+      "lng": 1.83645
+    },
+    "highlights": [
+      "Musique baroque"
     ],
     "visited": false,
     "favorite": false
@@ -137192,6 +145006,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 10474,
+    "name": "Biennale d'Art contemporain de Tanlay",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de opéra à Tanlay.",
+    "location": "Tanlay, Bourgogne-Franche-Comté",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Opéra",
+    "coordinates": {
+      "lat": 47.84309,
+      "lng": 4.07434
+    },
+    "highlights": [
+      "Opéra"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 10476,
     "name": "Musée d'Histoire naturelle de Époisses",
     "type": "musée",
@@ -137372,6 +145207,27 @@ export const places = [
     },
     "highlights": [
       "XIVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 10491,
+    "name": "Nuit des Musées de Époisses",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cinéma à Époisses.",
+    "location": "Époisses, Bourgogne-Franche-Comté",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cinéma",
+    "coordinates": {
+      "lat": 47.50215,
+      "lng": 4.16281
+    },
+    "highlights": [
+      "Cinéma"
     ],
     "visited": false,
     "favorite": false
@@ -138057,6 +145913,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 10545,
+    "name": "Nuit des Musées de Pierre-de-Bresse",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique classique à Pierre-de-Bresse.",
+    "location": "Pierre-de-Bresse, Bourgogne-Franche-Comté",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique classique",
+    "coordinates": {
+      "lat": 46.88132,
+      "lng": 5.25454
+    },
+    "highlights": [
+      "Musique classique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 10546,
+    "name": "Biennale d'Art contemporain de Pierre-de-Bresse",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de photographie à Pierre-de-Bresse.",
+    "location": "Pierre-de-Bresse, Bourgogne-Franche-Comté",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Photographie",
+    "coordinates": {
+      "lat": 46.87798,
+      "lng": 5.2689
+    },
+    "highlights": [
+      "Photographie"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 10548,
     "name": "Musée d'Histoire naturelle de Louhans",
     "type": "musée",
@@ -138557,6 +146455,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 10587,
+    "name": "Journées du Patrimoine de Cuiseaux",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Cuiseaux.",
+    "location": "Cuiseaux, Bourgogne-Franche-Comté",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 46.49853,
+      "lng": 5.40312
+    },
+    "highlights": [
+      "Cirque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 10588,
     "name": "Musée des Beaux-Arts de Saint-Fargeau",
     "type": "musée",
@@ -138946,6 +146865,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 10619,
+    "name": "Journées du Patrimoine de Guédelon",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cirque à Guédelon.",
+    "location": "Guédelon, Bourgogne-Franche-Comté",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cirque",
+    "coordinates": {
+      "lat": 47.58472,
+      "lng": 3.15566
+    },
+    "highlights": [
+      "Cirque"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 10620,
     "name": "Musée du Patrimoine de Druyes-les-Belles-Fontaines",
     "type": "musée",
@@ -139210,6 +147150,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 10637,
+    "name": "Salon du Vin de Druyes-les-Belles-Fontaines",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Druyes-les-Belles-Fontaines.",
+    "location": "Druyes-les-Belles-Fontaines, Bourgogne-Franche-Comté",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 47.55906,
+      "lng": 3.42327
+    },
+    "highlights": [
+      "Danse contemporaine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 10639,
     "name": "Musée d'Art moderne de Clamecy",
     "type": "musée",
@@ -139450,6 +147411,48 @@ export const places = [
     },
     "highlights": [
       "XIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 10654,
+    "name": "Salon du Vin de Clamecy",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cinéma à Clamecy.",
+    "location": "Clamecy, Bourgogne-Franche-Comté",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cinéma",
+    "coordinates": {
+      "lat": 47.45102,
+      "lng": 3.51542
+    },
+    "highlights": [
+      "Cinéma"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 10656,
+    "name": "Biennale d'Art contemporain de Clamecy",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Clamecy.",
+    "location": "Clamecy, Bourgogne-Franche-Comté",
+    "rating": 4.5,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 47.46341,
+      "lng": 3.51886
+    },
+    "highlights": [
+      "Arts visuels"
     ],
     "visited": false,
     "favorite": false
@@ -139963,6 +147966,27 @@ export const places = [
     },
     "highlights": [
       "XVIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 10693,
+    "name": "Fête médiévale de Auxonne",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de danse contemporaine à Auxonne.",
+    "location": "Auxonne, Bourgogne-Franche-Comté",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Danse contemporaine",
+    "coordinates": {
+      "lat": 47.18906,
+      "lng": 5.37968
+    },
+    "highlights": [
+      "Danse contemporaine"
     ],
     "visited": false,
     "favorite": false
@@ -140524,6 +148548,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 10733,
+    "name": "Journées du Patrimoine de Morestel",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de cinéma à Morestel.",
+    "location": "Morestel, Auvergne-Rhône-Alpes",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Cinéma",
+    "coordinates": {
+      "lat": 45.67711,
+      "lng": 5.46909
+    },
+    "highlights": [
+      "Cinéma"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 10736,
     "name": "Musée d'Art et d'Histoire de Pont-en-Royans",
     "type": "musée",
@@ -140786,6 +148831,27 @@ export const places = [
     },
     "highlights": [
       "XIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 10752,
+    "name": "Nuit des Musées de Pont-en-Royans",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de littérature à Pont-en-Royans.",
+    "location": "Pont-en-Royans, Auvergne-Rhône-Alpes",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Littérature",
+    "coordinates": {
+      "lat": 45.06584,
+      "lng": 5.33384
+    },
+    "highlights": [
+      "Littérature"
     ],
     "visited": false,
     "favorite": false
@@ -141054,6 +149120,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 10772,
+    "name": "Biennale d'Art contemporain de Die",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de patrimoine à Die.",
+    "location": "Die, Auvergne-Rhône-Alpes",
+    "rating": 4.8,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Patrimoine",
+    "coordinates": {
+      "lat": 44.74707,
+      "lng": 5.36532
+    },
+    "highlights": [
+      "Patrimoine"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 10773,
+    "name": "Fête médiévale de Die",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Die.",
+    "location": "Die, Auvergne-Rhône-Alpes",
+    "rating": 4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 44.75788,
+      "lng": 5.36711
+    },
+    "highlights": [
+      "Musique folk"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 10775,
     "name": "Musée municipal de Crest",
     "type": "musée",
@@ -141295,6 +149403,27 @@ export const places = [
     },
     "highlights": [
       "Époque romane"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 10792,
+    "name": "Biennale d'Art contemporain de Crest",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de bande dessinée à Crest.",
+    "location": "Crest, Auvergne-Rhône-Alpes",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Bande dessinée",
+    "coordinates": {
+      "lat": 44.72117,
+      "lng": 5.01608
+    },
+    "highlights": [
+      "Bande dessinée"
     ],
     "visited": false,
     "favorite": false
@@ -142100,6 +150229,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 10850,
+    "name": "Fête médiévale de Alba-la-Romaine",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de opéra à Alba-la-Romaine.",
+    "location": "Alba-la-Romaine, Auvergne-Rhône-Alpes",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Opéra",
+    "coordinates": {
+      "lat": 44.56249,
+      "lng": 4.60499
+    },
+    "highlights": [
+      "Opéra"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 10852,
     "name": "Musée de la Ville de Vogüé",
     "type": "musée",
@@ -142797,6 +150947,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 10905,
+    "name": "Fête médiévale de Arlempdes",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de théâtre à Arlempdes.",
+    "location": "Arlempdes, Auvergne-Rhône-Alpes",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Théâtre",
+    "coordinates": {
+      "lat": 44.86725,
+      "lng": 3.91989
+    },
+    "highlights": [
+      "Théâtre"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 10906,
     "name": "Musée de la Résistance de Polignac",
     "type": "musée",
@@ -143067,6 +151238,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 10925,
+    "name": "Biennale d'Art contemporain de Polignac",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Polignac.",
+    "location": "Polignac, Auvergne-Rhône-Alpes",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 45.07509,
+      "lng": 3.86849
+    },
+    "highlights": [
+      "Musique folk"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 10926,
     "name": "Musée du Textile de Sail-les-Bains",
     "type": "musée",
@@ -143309,6 +151501,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 10944,
+    "name": "Nuit des Musées de Sail-les-Bains",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de littérature à Sail-les-Bains.",
+    "location": "Sail-les-Bains, Auvergne-Rhône-Alpes",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Littérature",
+    "coordinates": {
+      "lat": 46.02756,
+      "lng": 3.8415
+    },
+    "highlights": [
+      "Littérature"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 10945,
+    "name": "Salon du Vin de Sail-les-Bains",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Sail-les-Bains.",
+    "location": "Sail-les-Bains, Auvergne-Rhône-Alpes",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 46.02186,
+      "lng": 3.83538
+    },
+    "highlights": [
+      "Arts visuels"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 10946,
     "name": "Musée de la Photographie de Charlieu",
     "type": "musée",
@@ -143511,6 +151745,27 @@ export const places = [
     },
     "highlights": [
       "XVe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 10959,
+    "name": "Biennale d'Art contemporain de Charlieu",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de photographie à Charlieu.",
+    "location": "Charlieu, Auvergne-Rhône-Alpes",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Photographie",
+    "coordinates": {
+      "lat": 46.16395,
+      "lng": 4.16406
+    },
+    "highlights": [
+      "Photographie"
     ],
     "visited": false,
     "favorite": false
@@ -145027,6 +153282,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 11073,
+    "name": "Salon du Vin de Belle-Île-en-Mer",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts de la rue à Belle-Île-en-Mer.",
+    "location": "Belle-Île-en-Mer, Bretagne",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts de la rue",
+    "coordinates": {
+      "lat": 47.33951,
+      "lng": -3.17602
+    },
+    "highlights": [
+      "Arts de la rue"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 11075,
+    "name": "Biennale d'Art contemporain de Belle-Île-en-Mer",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de littérature à Belle-Île-en-Mer.",
+    "location": "Belle-Île-en-Mer, Bretagne",
+    "rating": 4.4,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Littérature",
+    "coordinates": {
+      "lat": 47.34054,
+      "lng": -3.19056
+    },
+    "highlights": [
+      "Littérature"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 11076,
     "name": "Musée d'Art moderne de Groix",
     "type": "musée",
@@ -145251,6 +153548,27 @@ export const places = [
     },
     "highlights": [
       "XIIe siècle"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 11091,
+    "name": "Biennale d'Art contemporain de Groix",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique classique à Groix.",
+    "location": "Groix, Bretagne",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique classique",
+    "coordinates": {
+      "lat": 47.63294,
+      "lng": -3.44393
+    },
+    "highlights": [
+      "Musique classique"
     ],
     "visited": false,
     "favorite": false
@@ -145789,6 +154107,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 11131,
+    "name": "Nuit des Musées de Erquy",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de opéra à Erquy.",
+    "location": "Erquy, Bretagne",
+    "rating": 4.6,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Opéra",
+    "coordinates": {
+      "lat": 48.62413,
+      "lng": -2.46702
+    },
+    "highlights": [
+      "Opéra"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 11132,
     "name": "Musée de la Guerre de Porquerolles",
     "type": "musée",
@@ -146058,6 +154397,48 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 11149,
+    "name": "Journées du Patrimoine de Porquerolles",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Porquerolles.",
+    "location": "Porquerolles, Provence-Alpes-Côte d'Azur",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 43.00736,
+      "lng": 6.21092
+    },
+    "highlights": [
+      "Arts visuels"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 11150,
+    "name": "Fête médiévale de Porquerolles",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Porquerolles.",
+    "location": "Porquerolles, Provence-Alpes-Côte d'Azur",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 43.01036,
+      "lng": 6.20057
+    },
+    "highlights": [
+      "Arts visuels"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 11151,
     "name": "Musée régional de Èze",
     "type": "musée",
@@ -146318,6 +154699,48 @@ export const places = [
     },
     "highlights": [
       "Époque gothique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 11170,
+    "name": "Salon du Vin de Èze",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de arts visuels à Èze.",
+    "location": "Èze, Provence-Alpes-Côte d'Azur",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Arts visuels",
+    "coordinates": {
+      "lat": 43.72134,
+      "lng": 7.36043
+    },
+    "highlights": [
+      "Arts visuels"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 11171,
+    "name": "Journées du Patrimoine de Èze",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de musique folk à Èze.",
+    "location": "Èze, Provence-Alpes-Côte d'Azur",
+    "rating": 4.7,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Musique folk",
+    "coordinates": {
+      "lat": 43.72468,
+      "lng": 7.36204
+    },
+    "highlights": [
+      "Musique folk"
     ],
     "visited": false,
     "favorite": false
@@ -146790,6 +155213,27 @@ export const places = [
     "favorite": false
   },
   {
+    "id": 11206,
+    "name": "Nuit des Musées de Mougins",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de bande dessinée à Mougins.",
+    "location": "Mougins, Provence-Alpes-Côte d'Azur",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Bande dessinée",
+    "coordinates": {
+      "lat": 43.59803,
+      "lng": 6.99889
+    },
+    "highlights": [
+      "Bande dessinée"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
     "id": 11207,
     "name": "Musée de la Photographie de Biot",
     "type": "musée",
@@ -147032,6 +155476,48 @@ export const places = [
     },
     "highlights": [
       "Époque romane"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 11223,
+    "name": "Biennale d'Art contemporain de Biot",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Biot.",
+    "location": "Biot, Provence-Alpes-Côte d'Azur",
+    "rating": 4.3,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 43.62642,
+      "lng": 7.0959
+    },
+    "highlights": [
+      "Marionnettes"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 11224,
+    "name": "Fête médiévale de Biot",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de marionnettes à Biot.",
+    "location": "Biot, Provence-Alpes-Côte d'Azur",
+    "rating": 4.2,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Marionnettes",
+    "coordinates": {
+      "lat": 43.62183,
+      "lng": 7.09956
+    },
+    "highlights": [
+      "Marionnettes"
     ],
     "visited": false,
     "favorite": false
@@ -147299,6 +155785,27 @@ export const places = [
     },
     "highlights": [
       "Époque gothique"
+    ],
+    "visited": false,
+    "favorite": false
+  },
+  {
+    "id": 11243,
+    "name": "Journées du Patrimoine de Vallauris",
+    "type": "exposition",
+    "image": "",
+    "description": "Festival de opéra à Vallauris.",
+    "location": "Vallauris, Provence-Alpes-Côte d'Azur",
+    "rating": 4.1,
+    "price": "Se renseigner",
+    "hours": "Se renseigner",
+    "period": "Opéra",
+    "coordinates": {
+      "lat": 43.58342,
+      "lng": 7.0471
+    },
+    "highlights": [
+      "Opéra"
     ],
     "visited": false,
     "favorite": false

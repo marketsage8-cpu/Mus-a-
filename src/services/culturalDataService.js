@@ -5,7 +5,7 @@
  *   - OpenStreetMap Overpass (châteaux, musées, églises)
  *   - Wikidata SPARQL (musées, châteaux, églises)
  *
- * UNIQUEMENT 3 types : musée, château, église
+ * UNIQUEMENT 4 types : musée, château, exposition, église
  *
  * Le navigateur de l'utilisateur appelle directement les APIs.
  * Les données sont mises en cache dans IndexedDB (7 jours).
@@ -1049,16 +1049,14 @@ export async function loadAllCulturalPlaces(onProgress) {
   onProgress?.({ phase: 'dedup', status: 'Dédoublonnage en cours…' });
   const unique = deduplicate(allRaw, onProgress);
 
-  // 3b. Filtrer les types non désirés (festivals, écoles, institutions, expositions)
+  // 3b. Filtrer les festivals, écoles et institutions (garder les autres expositions)
   const filtered = unique.filter(p => {
-    // Exclure toutes les expositions
-    if (p.type === 'exposition') return false;
-    // Exclure les lieux dont le nom contient festival, école, institution
     const nameLower = (p.name || '').toLowerCase();
+    // Exclure uniquement si le nom contient festival, école, ecole, institution
     if (/festival|école|ecole|institution/i.test(nameLower)) return false;
     return true;
   });
-  console.log(`[Muzea] ${unique.length - filtered.length} lieux exclus (expositions/festivals/écoles/institutions)`);
+  console.log(`[Muzea] ${unique.length - filtered.length} lieux exclus (festivals/écoles/institutions)`);
 
   // 4. Assigner IDs et valeurs par défaut
   let places = filtered.map((p, i) => ({
@@ -1093,6 +1091,7 @@ export async function loadAllCulturalPlaces(onProgress) {
     museums: places.filter(p => p.type === 'musée').length,
     castles: places.filter(p => p.type === 'château').length,
     churches: places.filter(p => p.type === 'église').length,
+    galleries: places.filter(p => p.type === 'exposition').length,
     withImage: places.filter(p => p.image && p.image !== PLACEHOLDER_IMAGE).length
   };
 
@@ -1101,6 +1100,7 @@ export async function loadAllCulturalPlaces(onProgress) {
   console.log(`  - Musées: ${stats.museums}`);
   console.log(`  - Châteaux: ${stats.castles}`);
   console.log(`  - Églises: ${stats.churches}`);
+  console.log(`  - Expositions/Galeries: ${stats.galleries}`);
   console.log(`  - Avec image: ${stats.withImage} (${(stats.withImage/stats.total*100).toFixed(1)}%)`);
 
   // 7. Mettre en cache

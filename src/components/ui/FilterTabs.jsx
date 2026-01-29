@@ -1,4 +1,4 @@
-import { placeTypes } from '../../data/places';
+import { placeTypes } from '../../data/placeTypes';
 
 /**
  * Onglets de filtrage par type de lieu

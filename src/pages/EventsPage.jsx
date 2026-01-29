@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Calendar, Clock, MapPin, ChevronRight } from 'lucide-react';
-import { places } from '../data/places';
+import { useCulturalData } from '../hooks/useCulturalData';
 import PlaceCard from '../components/cards/PlaceCard';
 import PlaceDetailModal from '../components/modals/PlaceDetailModal';
 
@@ -8,6 +8,7 @@ import PlaceDetailModal from '../components/modals/PlaceDetailModal';
  * Page des événements et expositions temporaires
  */
 const EventsPage = () => {
+  const { places } = useCulturalData();
   const [selectedPlace, setSelectedPlace] = useState(null);
 
   // Expositions temporaires actuelles

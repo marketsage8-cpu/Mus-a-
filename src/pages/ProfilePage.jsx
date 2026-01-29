@@ -7,9 +7,9 @@ import {
   Download, FileJson, FileSpreadsheet, Package
 } from 'lucide-react';
 import { useUser } from '../context/UserContext';
+import { useCulturalData } from '../hooks/useCulturalData';
 import PlaceDetailModal from '../components/modals/PlaceDetailModal';
 import InteractiveMap from '../components/map/InteractiveMap';
-import { places } from '../data/places';
 import { exportPlacesJSON, exportPlacesCSV, exportUserDataJSON, exportAllJSON } from '../utils/exportData';
 
 /**
@@ -92,6 +92,7 @@ const VisitStyleOption = ({ icon: Icon, label, isSelected, onClick }) => (
  */
 const ProfilePage = () => {
   const { userData, stats, userBadges, setUserData } = useUser();
+  const { places } = useCulturalData();
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [activeTab, setActiveTab] = useState('profil');
 
@@ -720,7 +721,7 @@ const ProfilePage = () => {
               <div className="space-y-3">
                 {/* Export complet */}
                 <button
-                  onClick={() => exportAllJSON(userData, stats, userBadges)}
+                  onClick={() => exportAllJSON(userData, stats, userBadges, places)}
                   className="w-full flex items-center gap-4 p-4 bg-[#d4a574]/10 hover:bg-[#d4a574]/20 border border-[#d4a574]/30 hover:border-[#d4a574]/50 rounded-xl transition-all group"
                 >
                   <div className="p-2.5 rounded-xl bg-[#d4a574]/20 border border-[#d4a574]/30">
@@ -735,7 +736,7 @@ const ProfilePage = () => {
 
                 {/* Export lieux JSON */}
                 <button
-                  onClick={exportPlacesJSON}
+                  onClick={() => exportPlacesJSON(places)}
                   className="w-full flex items-center gap-4 p-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all group"
                 >
                   <div className="p-2.5 rounded-xl bg-cyan-500/20 border border-cyan-500/30">
@@ -750,7 +751,7 @@ const ProfilePage = () => {
 
                 {/* Export lieux CSV */}
                 <button
-                  onClick={exportPlacesCSV}
+                  onClick={() => exportPlacesCSV(places)}
                   className="w-full flex items-center gap-4 p-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all group"
                 >
                   <div className="p-2.5 rounded-xl bg-green-500/20 border border-green-500/30">
@@ -765,7 +766,7 @@ const ProfilePage = () => {
 
                 {/* Export données perso */}
                 <button
-                  onClick={() => exportUserDataJSON(userData, stats, userBadges)}
+                  onClick={() => exportUserDataJSON(userData, stats, userBadges, places)}
                   className="w-full flex items-center gap-4 p-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all group"
                 >
                   <div className="p-2.5 rounded-xl bg-purple-500/20 border border-purple-500/30">

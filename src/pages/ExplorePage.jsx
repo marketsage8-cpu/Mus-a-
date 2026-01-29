@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { placeTypes } from '../data/places';
+import { placeTypes } from '../data/placeTypes';
 import { useCulturalData } from '../hooks/useCulturalData';
 import InteractiveMap from '../components/map/InteractiveMap';
 import PlaceDetailModal from '../components/modals/PlaceDetailModal';

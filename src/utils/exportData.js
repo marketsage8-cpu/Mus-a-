@@ -1,9 +1,11 @@
-import { places } from '../data/places';
 import { routes } from '../data/routes';
 
 /**
  * Utilitaire d'export des données Muzea
  * Permet d'exporter toutes les données en JSON ou CSV
+ *
+ * Note: Les fonctions reçoivent `places` en paramètre car les données
+ * viennent maintenant des APIs via useCulturalData hook
  */
 
 /**
@@ -24,7 +26,7 @@ const downloadFile = (content, filename, mimeType) => {
 /**
  * Exporte tous les lieux culturels en JSON
  */
-export const exportPlacesJSON = () => {
+export const exportPlacesJSON = (places = []) => {
   const data = {
     exportDate: new Date().toISOString(),
     application: 'Muzea',
@@ -37,7 +39,7 @@ export const exportPlacesJSON = () => {
 /**
  * Exporte tous les lieux culturels en CSV
  */
-export const exportPlacesCSV = () => {
+export const exportPlacesCSV = (places = []) => {
   const headers = ['id', 'name', 'type', 'description', 'location', 'rating', 'price', 'hours', 'period', 'latitude', 'longitude', 'highlights', 'image'];
   const rows = places.map(p => [
     p.id,
@@ -62,7 +64,7 @@ export const exportPlacesCSV = () => {
 /**
  * Exporte les données utilisateur (favoris, visites, préférences) en JSON
  */
-export const exportUserDataJSON = (userData, stats, userBadges) => {
+export const exportUserDataJSON = (userData, stats, userBadges, places = []) => {
   const favoritePlaces = places.filter(p => userData.favorites.includes(p.id));
   const visitedPlaces = userData.visited.map(v => ({
     ...v,
@@ -97,7 +99,7 @@ export const exportUserDataJSON = (userData, stats, userBadges) => {
 /**
  * Exporte TOUT (lieux + parcours + données utilisateur) en un seul fichier JSON
  */
-export const exportAllJSON = (userData, stats, userBadges) => {
+export const exportAllJSON = (userData, stats, userBadges, places = []) => {
   const data = {
     exportDate: new Date().toISOString(),
     application: 'Muzea',

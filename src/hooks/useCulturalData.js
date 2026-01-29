@@ -1,30 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import { loadAllCulturalPlaces, clearCache } from '../services/culturalDataService';
-import { places as staticPlaces, placeTypes } from '../data/places';
+import { placeTypes } from '../data/placeTypes';
 import { wikidataMuseums } from '../data/wikidataMuseums';
 
-/**
- * Fusionne les données statiques avec les musées Wikidata (avec coordonnées)
- * en évitant les doublons basés sur le nom normalisé
- */
-function mergeWithWikidataMuseums(basePlaces) {
-  const normalizedNames = new Set(
-    basePlaces.map(p =>
-      p.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '')
-    )
-  );
-
-  const newMuseums = wikidataMuseums.filter(museum => {
-    const key = museum.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
-    return !normalizedNames.has(key);
-  });
-
-  console.log(`[Muzea] Ajout de ${newMuseums.length} musées Wikidata avec coordonnées GPS`);
-  return [...basePlaces, ...newMuseums];
-}
-
-// Données initiales : places statiques + musées Wikidata (avec coordonnées exactes)
-const initialPlaces = mergeWithWikidataMuseums(staticPlaces);
+// Données initiales : uniquement les musées Wikidata vérifiés (en attendant le chargement API)
+const initialPlaces = wikidataMuseums.map((m, i) => ({ ...m, id: i + 1 }));
 
 /**
  * Hook pour charger TOUTES les données culturelles.
@@ -99,7 +79,6 @@ export function useCulturalData() {
     isLiveData,
     error,
     refresh,
-    totalStatic: staticPlaces.length,
     totalWikidata: wikidataMuseums.length,
     totalInitial: initialPlaces.length,
   };

@@ -1,7 +1,48 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Users, Star, MapPin, Clock, ChevronRight, Calendar, Globe, Award, Sparkles, BookOpen } from 'lucide-react';
-import { GuidesMockup } from '../components/mockups/PhoneMockup';
+
+/**
+ * Photos de tableaux et musées
+ */
+const artworkImages = [
+  {
+    id: 1,
+    src: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=600&q=80",
+    title: "Collection impressionniste",
+    artist: "Monet, Renoir..."
+  },
+  {
+    id: 2,
+    src: "https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=600&q=80",
+    title: "Art Renaissance",
+    artist: "Maîtres italiens"
+  },
+  {
+    id: 3,
+    src: "https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=600&q=80",
+    title: "Sculptures classiques",
+    artist: "Antiquité grecque"
+  },
+  {
+    id: 4,
+    src: "https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=600&q=80",
+    title: "Art moderne",
+    artist: "XXe siècle"
+  },
+  {
+    id: 5,
+    src: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=600&q=80",
+    title: "Grands maîtres",
+    artist: "Collection permanente"
+  },
+  {
+    id: 6,
+    src: "https://images.unsplash.com/photo-1551913902-c92207136625?w=600&q=80",
+    title: "Art contemporain",
+    artist: "Artistes actuels"
+  }
+];
 
 /**
  * Données fictives des guides
@@ -76,7 +117,7 @@ const guides = [
 ];
 
 /**
- * Page Guides - Style HomePage
+ * Page Guides - Style HomePage avec vraies photos
  */
 const GuidePage = () => {
   const navigate = useNavigate();
@@ -154,9 +195,35 @@ const GuidePage = () => {
               </div>
             </div>
 
-            {/* Mockup */}
+            {/* Image musée avec guide */}
             <div className="animate-on-scroll opacity-0 translate-x-[50px] scale-95 hidden md:block" style={{ transitionDelay: '300ms' }}>
-              <GuidesMockup />
+              <div className="relative">
+                <img
+                  src="https://images.unsplash.com/photo-1554907984-15263bfd63bd?w=800&q=80"
+                  alt="Guide dans un musée"
+                  className="rounded-3xl shadow-2xl shadow-black/50 w-full object-cover aspect-[4/5]"
+                />
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-[#0c0c0c]/70 via-transparent to-transparent" />
+
+                {/* Card guide flottante */}
+                <div className="absolute bottom-6 left-6 right-6">
+                  <div className="flex items-center gap-4 p-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/10">
+                    <img
+                      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80"
+                      alt="Guide"
+                      className="w-14 h-14 rounded-full object-cover border-2 border-[#e07a5f]"
+                    />
+                    <div className="flex-1">
+                      <p className="text-white font-medium">Marie Dubois</p>
+                      <p className="text-[#e07a5f] text-sm">Experte en Impressionnisme</p>
+                      <div className="flex items-center gap-1 mt-1">
+                        <Star className="w-3 h-3 text-[#e07a5f] fill-current" />
+                        <span className="text-white/80 text-xs">4.9 (127 avis)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -179,31 +246,77 @@ const GuidePage = () => {
                 icon: MapPin,
                 title: "Choisissez",
                 desc: "Sélectionnez le musée ou monument que vous souhaitez visiter",
+                image: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=400&q=80",
                 delay: '200ms'
               },
               {
                 icon: Users,
                 title: "Réservez",
                 desc: "Trouvez le guide idéal et réservez votre créneau en quelques clics",
+                image: "https://images.unsplash.com/photo-1577083552431-6e5fd01988a5?w=400&q=80",
                 delay: '300ms'
               },
               {
                 icon: Sparkles,
                 title: "Profitez",
                 desc: "Vivez une expérience culturelle unique et enrichissante",
+                image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&q=80",
                 delay: '400ms'
               }
             ].map((step, i) => (
               <div
                 key={i}
-                className="animate-on-scroll opacity-0 translate-y-[30px] text-center p-8 bg-white/[0.02] border border-white/[0.05] rounded-2xl hover:border-[#e07a5f]/30 transition-all"
+                className="animate-on-scroll opacity-0 translate-y-[30px] group overflow-hidden bg-white/[0.02] border border-white/[0.05] rounded-2xl hover:border-[#e07a5f]/30 transition-all"
                 style={{ transitionDelay: step.delay }}
               >
-                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#e07a5f]/10 flex items-center justify-center border border-[#e07a5f]/20">
-                  <step.icon className="w-7 h-7 text-[#e07a5f]" />
+                <div className="h-40 overflow-hidden">
+                  <img
+                    src={step.image}
+                    alt={step.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
                 </div>
-                <h3 className="font-serif text-2xl mb-3">{step.title}</h3>
-                <p className="text-white/50">{step.desc}</p>
+                <div className="p-6 text-center">
+                  <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-[#e07a5f]/10 flex items-center justify-center border border-[#e07a5f]/20 -mt-10 relative bg-[#0c0c0c]">
+                    <step.icon className="w-5 h-5 text-[#e07a5f]" />
+                  </div>
+                  <h3 className="font-serif text-2xl mb-3">{step.title}</h3>
+                  <p className="text-white/50">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Section Galerie - Oeuvres d'art */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+          <div className="text-center mb-16">
+            <span className="animate-on-scroll opacity-0 translate-y-[20px] text-[#e07a5f] text-xs tracking-[0.3em] uppercase mb-4 block">Collections</span>
+            <h2 className="animate-on-scroll opacity-0 translate-y-[30px] font-serif text-4xl md:text-5xl font-light mb-6" style={{ transitionDelay: '100ms' }}>
+              Découvrez les<br />
+              <em className="text-[#e07a5f]">chefs-d'œuvre</em>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {artworkImages.map((img, i) => (
+              <div
+                key={img.id}
+                className={`animate-on-scroll opacity-0 translate-y-[30px] group relative overflow-hidden rounded-2xl ${i === 0 ? 'md:row-span-2' : ''}`}
+                style={{ transitionDelay: `${200 + i * 100}ms` }}
+              >
+                <img
+                  src={img.src}
+                  alt={img.title}
+                  className={`w-full object-cover group-hover:scale-110 transition-transform duration-700 ${i === 0 ? 'h-full min-h-[400px]' : 'h-48 md:h-64'}`}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform">
+                  <h4 className="text-white font-medium">{img.title}</h4>
+                  <p className="text-[#e07a5f] text-sm">{img.artist}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -281,8 +394,20 @@ const GuidePage = () => {
       <section className="py-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
           <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Image tableau */}
+            <div className="animate-on-scroll opacity-0 translate-x-[-50px] order-2 md:order-1" style={{ transitionDelay: '200ms' }}>
+              <div className="relative">
+                <img
+                  src="https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80"
+                  alt="Visiteur devant un tableau"
+                  className="rounded-3xl shadow-2xl shadow-black/50 w-full object-cover aspect-square"
+                />
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#0c0c0c]/40 to-transparent" />
+              </div>
+            </div>
+
             {/* Contenu texte */}
-            <div>
+            <div className="order-1 md:order-2">
               <span className="animate-on-scroll opacity-0 translate-y-[20px] text-[#e07a5f] text-xs tracking-[0.3em] uppercase mb-4 block">Pourquoi nous choisir</span>
               <h2 className="animate-on-scroll opacity-0 translate-y-[30px] font-serif text-4xl md:text-5xl font-light mb-8" style={{ transitionDelay: '100ms' }}>
                 Une expérience<br />
@@ -322,30 +447,35 @@ const GuidePage = () => {
                   </div>
                 ))}
               </div>
-            </div>
 
-            {/* Stats */}
-            <div className="animate-on-scroll opacity-0 translate-x-[50px] grid grid-cols-2 gap-6" style={{ transitionDelay: '300ms' }}>
-              {[
-                { value: "150+", label: "Guides experts" },
-                { value: "50k+", label: "Visites réalisées" },
-                { value: "4.9/5", label: "Note moyenne" },
-                { value: "98%", label: "Satisfaction" }
-              ].map((stat, i) => (
-                <div key={i} className="text-center p-6 bg-white/[0.02] border border-white/[0.05] rounded-2xl">
-                  <div className="text-3xl md:text-4xl font-serif text-[#e07a5f] mb-2">{stat.value}</div>
-                  <div className="text-white/50 text-sm">{stat.label}</div>
-                </div>
-              ))}
+              {/* Stats */}
+              <div className="animate-on-scroll opacity-0 translate-y-[30px] grid grid-cols-2 gap-4 mt-10" style={{ transitionDelay: '500ms' }}>
+                {[
+                  { value: "150+", label: "Guides experts" },
+                  { value: "50k+", label: "Visites réalisées" },
+                  { value: "4.9/5", label: "Note moyenne" },
+                  { value: "98%", label: "Satisfaction" }
+                ].map((stat, i) => (
+                  <div key={i} className="text-center p-4 bg-white/[0.02] border border-white/[0.05] rounded-xl">
+                    <div className="text-2xl font-serif text-[#e07a5f] mb-1">{stat.value}</div>
+                    <div className="text-white/50 text-xs">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Section CTA */}
+      {/* Section CTA avec image de fond */}
       <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#e07a5f]/10 rounded-full blur-3xl" />
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1564399579883-451a5d44ec08?w=1920&q=80"
+            alt="Musée"
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-[#0c0c0c]/80 to-[#0c0c0c]" />
         </div>
 
         <div className="max-w-3xl mx-auto px-6 text-center relative z-10">

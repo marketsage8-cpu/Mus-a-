@@ -156,36 +156,115 @@ const DailyArtPage = () => {
   const [previousArtworks, setPreviousArtworks] = useState([]);
   const [isLiked, setIsLiked] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  const [invalidImageIds, setInvalidImageIds] = useState(new Set());
+
+  // Fonction pour vérifier si une image est valide
+  const checkImageValidity = (url) => {
+    return new Promise((resolve) => {
+      if (!url || url.trim() === '') {
+        resolve(false);
+        return;
+      }
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = url;
+    });
+  };
+
+  // Trouver la prochaine œuvre valide à partir d'un index
+  const findValidArtwork = async (startIndex, invalidIds, direction = 1) => {
+    let attempts = 0;
+    let index = startIndex;
+
+    while (attempts < artworks.length) {
+      const artwork = artworks[index];
+
+      if (!invalidIds.has(artwork.id)) {
+        const isValid = await checkImageValidity(artwork.image);
+        if (isValid) {
+          return { artwork, index };
+        } else {
+          invalidIds.add(artwork.id);
+        }
+      }
+
+      index = (index + direction + artworks.length) % artworks.length;
+      attempts++;
+    }
+
+    // Si toutes les images sont invalides, retourner la première œuvre quand même
+    return { artwork: artworks[startIndex], index: startIndex };
+  };
 
   // Déterminer l'œuvre basée sur la date
   useEffect(() => {
-    const today = new Date();
-    const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
-    const artworkIndex = dayOfYear % artworks.length;
-    setCurrentArtwork(artworks[artworkIndex]);
+    const initializeArtwork = async () => {
+      const today = new Date();
+      const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+      const artworkIndex = dayOfYear % artworks.length;
 
-    // Générer les œuvres précédentes
-    const previous = [];
-    for (let i = 1; i <= 6; i++) {
-      const prevIndex = (artworkIndex - i + artworks.length) % artworks.length;
-      previous.push({
-        ...artworks[prevIndex],
-        daysAgo: i
-      });
-    }
-    setPreviousArtworks(previous);
+      const invalidIds = new Set();
+      const { artwork: validArtwork } = await findValidArtwork(artworkIndex, invalidIds);
+      setCurrentArtwork(validArtwork);
+      setInvalidImageIds(invalidIds);
+
+      // Générer les œuvres précédentes avec images valides
+      const previous = [];
+      const usedIds = new Set([validArtwork.id]);
+      let searchIndex = artworkIndex;
+
+      for (let i = 1; i <= 6 && previous.length < 6; i++) {
+        searchIndex = (searchIndex - 1 + artworks.length) % artworks.length;
+        const artwork = artworks[searchIndex];
+
+        if (!usedIds.has(artwork.id) && !invalidIds.has(artwork.id)) {
+          const isValid = await checkImageValidity(artwork.image);
+          if (isValid) {
+            previous.push({
+              ...artwork,
+              daysAgo: i
+            });
+            usedIds.add(artwork.id);
+          } else {
+            invalidIds.add(artwork.id);
+          }
+        }
+      }
+
+      setPreviousArtworks(previous);
+      setInvalidImageIds(invalidIds);
+    };
+
+    initializeArtwork();
   }, []);
 
-  // Navigation entre les œuvres
-  const navigateArtwork = (direction) => {
+  // Navigation entre les œuvres (avec validation d'image)
+  const navigateArtwork = async (direction) => {
     const currentIndex = artworks.findIndex(a => a.id === currentArtwork.id);
-    let newIndex;
-    if (direction === 'prev') {
-      newIndex = (currentIndex - 1 + artworks.length) % artworks.length;
-    } else {
-      newIndex = (currentIndex + 1) % artworks.length;
-    }
-    setCurrentArtwork(artworks[newIndex]);
+    const dir = direction === 'prev' ? -1 : 1;
+    const startIndex = (currentIndex + dir + artworks.length) % artworks.length;
+
+    const invalidIds = new Set(invalidImageIds);
+    const { artwork: validArtwork } = await findValidArtwork(startIndex, invalidIds, dir);
+
+    setCurrentArtwork(validArtwork);
+    setInvalidImageIds(invalidIds);
+    setIsLiked(false);
+    setIsSaved(false);
+  };
+
+  // Gestionnaire d'erreur d'image - passe à l'œuvre suivante
+  const handleImageError = async () => {
+    const newInvalidIds = new Set(invalidImageIds);
+    newInvalidIds.add(currentArtwork.id);
+    setInvalidImageIds(newInvalidIds);
+
+    const currentIndex = artworks.findIndex(a => a.id === currentArtwork.id);
+    const nextIndex = (currentIndex + 1) % artworks.length;
+    const { artwork: validArtwork } = await findValidArtwork(nextIndex, newInvalidIds);
+
+    setCurrentArtwork(validArtwork);
     setIsLiked(false);
     setIsSaved(false);
   };
@@ -241,6 +320,7 @@ const DailyArtPage = () => {
                 src={currentArtwork.image}
                 alt={currentArtwork.title}
                 className="w-full h-[750px] lg:h-[1100px] object-cover transition-transform duration-700 group-hover:scale-[1.02] rounded-2xl"
+                onError={handleImageError}
               />
               {/* Gradient overlay subtil */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-50" />

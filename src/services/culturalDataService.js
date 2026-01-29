@@ -551,10 +551,8 @@ async function fetchOSMOtherPlaces(onProgress) {
     if (historic === 'castle' || tags.castle_type) {
       type = 'château';
       desc = `Château${city ? ` situé à ${city}` : ''}, France.`;
-    } else if (tourism === 'gallery' || amenity === 'arts_centre') {
-      type = 'exposition';
-      desc = `Galerie / Centre d'art${city ? ` à ${city}` : ''}, France.`;
     } else {
+      // Ignorer les galeries et autres types (uniquement musée, château, église)
       continue;
     }
 
@@ -1005,10 +1003,9 @@ export async function loadAllCulturalPlaces(onProgress) {
     museofileMuseums,    // ~1200 musées officiels labellisés
     osmMuseums,          // ~3000-5000 musées OSM
     wikidataMuseums,     // ~2000-4000 musées Wikidata avec images
-    osmOther,            // Châteaux, galeries OSM
+    osmOther,            // Châteaux OSM
     wikidataOther,       // Châteaux, églises Wikidata
-    monuments,           // Monuments historiques
-    architecture         // Architecture remarquable
+    monuments            // Monuments historiques (châteaux, églises)
   ] = await Promise.all([
     fetchMuseums(onProgress).catch((e) => { console.warn('[Muzea] Muséofile:', e.message); return []; }),
     fetchOSMMuseums(onProgress).catch((e) => { console.warn('[Muzea] OSM Musées:', e.message); return []; }),
@@ -1016,17 +1013,15 @@ export async function loadAllCulturalPlaces(onProgress) {
     fetchOSMOtherPlaces(onProgress).catch((e) => { console.warn('[Muzea] OSM Autres:', e.message); return []; }),
     fetchWikidataOtherPlaces(onProgress).catch((e) => { console.warn('[Muzea] Wikidata Autres:', e.message); return []; }),
     fetchMonuments(onProgress).catch((e) => { console.warn('[Muzea] Monuments:', e.message); return []; }),
-    fetchArchitecture(onProgress).catch((e) => { console.warn('[Muzea] Architecture:', e.message); return []; }),
   ]);
 
   console.log(`[Muzea] Sources récupérées:`);
   console.log(`  - Muséofile (officiels): ${museofileMuseums.length}`);
   console.log(`  - OSM Musées: ${osmMuseums.length}`);
   console.log(`  - Wikidata Musées: ${wikidataMuseums.length}`);
-  console.log(`  - OSM Autres: ${osmOther.length}`);
-  console.log(`  - Wikidata Autres: ${wikidataOther.length}`);
-  console.log(`  - Monuments: ${monuments.length}`);
-  console.log(`  - Architecture: ${architecture.length}`);
+  console.log(`  - OSM Châteaux: ${osmOther.length}`);
+  console.log(`  - Wikidata Châteaux/Églises: ${wikidataOther.length}`);
+  console.log(`  - Monuments (châteaux/églises): ${monuments.length}`);
 
   // Ordre de priorité pour la fusion (les premiers sont prioritaires)
   // Les données officielles (Muséofile) sont prioritaires, puis Wikidata (images), puis OSM
@@ -1036,8 +1031,7 @@ export async function loadAllCulturalPlaces(onProgress) {
     ...osmMuseums,        // Priorité 3: OSM
     ...wikidataOther,
     ...osmOther,
-    ...monuments,
-    ...architecture
+    ...monuments
   ];
 
   const totalRaw = allRaw.length;
@@ -1082,7 +1076,6 @@ export async function loadAllCulturalPlaces(onProgress) {
     museums: places.filter(p => p.type === 'musée').length,
     castles: places.filter(p => p.type === 'château').length,
     churches: places.filter(p => p.type === 'église').length,
-    galleries: places.filter(p => p.type === 'exposition').length,
     withImage: places.filter(p => p.image && p.image !== PLACEHOLDER_IMAGE).length
   };
 
@@ -1091,7 +1084,6 @@ export async function loadAllCulturalPlaces(onProgress) {
   console.log(`  - Musées: ${stats.museums}`);
   console.log(`  - Châteaux: ${stats.castles}`);
   console.log(`  - Églises: ${stats.churches}`);
-  console.log(`  - Expositions/Galeries: ${stats.galleries}`);
   console.log(`  - Avec image: ${stats.withImage} (${(stats.withImage/stats.total*100).toFixed(1)}%)`);
 
   // 7. Mettre en cache

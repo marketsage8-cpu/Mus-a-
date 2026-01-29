@@ -195,12 +195,12 @@ export const SocialMockup = () => (
 
         {/* Liste de personnes avec images artistiques */}
         <div className="p-4 space-y-3">
-          {/* Personne 1 */}
+          {/* Personne 1 - Nymphéas de Monet */}
           <div className="bg-[#e07a5f]/10 rounded-2xl border border-[#e07a5f]/30 overflow-hidden">
             <div className="h-20 relative overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=300&h=100&fit=crop"
-                alt="Nymphéas"
+                src="https://images.unsplash.com/photo-1578926375605-eaf7559b1458?w=300&q=80"
+                alt="Nymphéas - Monet"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] to-transparent" />
@@ -213,18 +213,18 @@ export const SocialMockup = () => (
               />
               <div className="flex-1">
                 <div className="text-white text-sm font-medium">Marie D.</div>
-                <div className="text-white/50 text-xs">Impressionnisme</div>
+                <div className="text-white/50 text-xs">Nymphéas - Monet</div>
               </div>
               <div className="text-[#e07a5f] text-xs">2km</div>
             </div>
           </div>
 
-          {/* Personne 2 */}
+          {/* Personne 2 - Van Gogh */}
           <div className="bg-white/5 rounded-2xl border border-white/10 overflow-hidden">
             <div className="h-16 relative overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1564399579883-451a5d44ec08?w=300&h=80&fit=crop"
-                alt="Versailles"
+                src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=300&q=80"
+                alt="La Nuit Étoilée"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] to-transparent" />
@@ -237,18 +237,18 @@ export const SocialMockup = () => (
               />
               <div className="flex-1">
                 <div className="text-white text-sm font-medium">Thomas B.</div>
-                <div className="text-white/50 text-xs">Architecture</div>
+                <div className="text-white/50 text-xs">Van Gogh</div>
               </div>
               <div className="text-white/40 text-xs">5km</div>
             </div>
           </div>
 
-          {/* Personne 3 */}
+          {/* Personne 3 - Picasso */}
           <div className="bg-white/5 rounded-2xl border border-white/10 overflow-hidden">
             <div className="h-16 relative overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=300&h=80&fit=crop"
-                alt="Art contemporain"
+                src="https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=300&q=80"
+                alt="Picasso"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] to-transparent" />
@@ -261,7 +261,7 @@ export const SocialMockup = () => (
               />
               <div className="flex-1">
                 <div className="text-white text-sm font-medium">Sophie M.</div>
-                <div className="text-white/50 text-xs">Art contemporain</div>
+                <div className="text-white/50 text-xs">Picasso</div>
               </div>
               <div className="text-white/40 text-xs">8km</div>
             </div>
@@ -299,7 +299,7 @@ export const GuidesMockup = () => (
             {/* Ligne de connexion */}
             <div className="absolute left-4 top-8 bottom-8 w-0.5 bg-gradient-to-b from-[#e07a5f] via-[#e07a5f]/50 to-white/20" />
 
-            {/* Étape 1 - Louvre */}
+            {/* Étape 1 - Nymphéas Monet */}
             <div className="relative flex gap-3 mb-4">
               <div className="w-8 h-8 rounded-full bg-[#e07a5f] flex items-center justify-center text-[#0c0c0c] font-bold text-xs z-10">
                 1
@@ -307,20 +307,20 @@ export const GuidesMockup = () => (
               <div className="flex-1 bg-[#e07a5f]/10 rounded-xl overflow-hidden border border-[#e07a5f]/30">
                 <div className="h-16 relative">
                   <img
-                    src="https://images.unsplash.com/photo-1554907984-15263bfd63bd?w=300&h=80&fit=crop"
-                    alt="Galerie du Louvre"
+                    src="https://images.unsplash.com/photo-1578926375605-eaf7559b1458?w=300&q=80"
+                    alt="Nymphéas - Monet"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] to-transparent" />
                 </div>
                 <div className="p-2 -mt-3 relative">
-                  <div className="text-white text-xs font-medium">Galerie du Louvre</div>
+                  <div className="text-white text-xs font-medium">Nymphéas - Monet</div>
                   <div className="text-white/50 text-[10px]">30 min - En cours</div>
                 </div>
               </div>
             </div>
 
-            {/* Étape 2 - Joconde */}
+            {/* Étape 2 - Van Gogh */}
             <div className="relative flex gap-3 mb-4">
               <div className="w-8 h-8 rounded-full bg-[#e07a5f]/60 flex items-center justify-center text-white font-bold text-xs z-10">
                 2
@@ -328,20 +328,20 @@ export const GuidesMockup = () => (
               <div className="flex-1 bg-white/5 rounded-xl overflow-hidden border border-white/10">
                 <div className="h-14 relative">
                   <img
-                    src="https://images.unsplash.com/photo-1580136579312-94651dfd596d?w=300&h=70&fit=crop"
-                    alt="La Joconde"
+                    src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=300&q=80"
+                    alt="La Nuit Étoilée"
                     className="w-full h-full object-cover opacity-70"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] to-transparent" />
                 </div>
                 <div className="p-2 -mt-2 relative">
-                  <div className="text-white/70 text-xs">La Joconde</div>
+                  <div className="text-white/70 text-xs">La Nuit Étoilée</div>
                   <div className="text-white/40 text-[10px]">15 min</div>
                 </div>
               </div>
             </div>
 
-            {/* Étape 3 - Sculptures */}
+            {/* Étape 3 - Picasso */}
             <div className="relative flex gap-3 mb-4">
               <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white/60 font-bold text-xs z-10">
                 3
@@ -349,14 +349,14 @@ export const GuidesMockup = () => (
               <div className="flex-1 bg-white/5 rounded-xl overflow-hidden border border-white/10 opacity-70">
                 <div className="h-12 relative">
                   <img
-                    src="https://images.unsplash.com/photo-1566054757965-8c4085344c96?w=300&h=60&fit=crop"
-                    alt="Sculptures"
+                    src="https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=300&q=80"
+                    alt="Picasso"
                     className="w-full h-full object-cover opacity-50"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] to-transparent" />
                 </div>
                 <div className="p-2 -mt-2 relative">
-                  <div className="text-white/50 text-xs">Aile des sculptures</div>
+                  <div className="text-white/50 text-xs">Picasso - Bleu et Rose</div>
                   <div className="text-white/30 text-[10px]">20 min</div>
                 </div>
               </div>

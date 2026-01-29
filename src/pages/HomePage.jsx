@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MapPin, Clock, Calendar, Star, Users, Headphones, Award, Bell, Heart, Filter, Navigation, ChevronRight, Compass, Sparkles, TrendingUp, Eye, MessageCircle, Image, Share2, Coffee } from 'lucide-react';
+import { MapMockup, RecommendationsMockup, SocialMockup, GuidesMockup } from '../components/mockups/PhoneMockup';
 
 /**
  * Landing Page Immersive - Style Muzea
@@ -123,19 +124,11 @@ const HomePage = () => {
       </section>
 
       {/* Section 01 - Carte Interactive */}
-      <section id="carte" className="min-h-screen relative flex items-center overflow-hidden">
-        {/* Image de fond - style hero */}
-        <div
-          className="absolute top-0 right-0 w-[55%] h-full bg-cover bg-center hidden md:block"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1400&q=80')`
-          }}
-        />
-        {/* Dégradé de transition */}
-        <div className="absolute top-0 right-[10%] w-[50%] h-full bg-gradient-to-r from-[#0c0c0c] via-[#0c0c0c] to-transparent z-10 hidden md:block" />
-
-        <div className="pl-8 md:pl-16 lg:pl-24 pr-6 w-full relative z-20 py-20">
-          <div className="max-w-xl">
+      <section id="carte" className="py-24 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Contenu texte à gauche */}
+            <div className="relative">
             <span className="animate-on-scroll opacity-0 scale-50 text-[150px] font-serif font-light text-white/[0.03] absolute -top-16 -left-8 select-none">01</span>
 
             <span className="animate-on-scroll opacity-0 translate-x-[-30px] text-[#e07a5f] text-xs tracking-[0.3em] uppercase mb-4 block">Carte Interactive</span>
@@ -192,48 +185,51 @@ const HomePage = () => {
               <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
+
+            {/* Mockup téléphone à droite */}
+            <div className="animate-on-scroll opacity-0 translate-x-[50px] scale-95 hidden md:block" style={{ transitionDelay: '300ms' }}>
+              <MapMockup />
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Section 02 - Muzea Now (inversée - image à gauche) */}
-      <section id="muzea-now" className="min-h-screen relative flex items-center overflow-hidden">
-        {/* Image de fond - côté gauche */}
-        <div
-          className="absolute top-0 left-0 w-[55%] h-full bg-cover bg-center hidden md:block"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1616499452581-cc7f8e3dd3c9?w=1400&q=80')`
-          }}
-        />
-        {/* Dégradé de transition - vers la droite */}
-        <div className="absolute top-0 left-[10%] w-[50%] h-full bg-gradient-to-l from-[#0c0c0c] via-[#0c0c0c] to-transparent z-10 hidden md:block" />
+      {/* Section 02 - Muzea Now (inversée - mockup à gauche) */}
+      <section id="muzea-now" className="py-24 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Mockup téléphone à gauche */}
+            <div className="animate-on-scroll opacity-0 translate-x-[-50px] scale-95 hidden md:block order-2 md:order-1" style={{ transitionDelay: '300ms' }}>
+              <RecommendationsMockup />
+            </div>
 
-        <div className="pr-8 md:pr-16 lg:pr-24 pl-6 w-full relative z-20 py-20 flex justify-end">
-          <div className="max-w-xl">
-            <span className="animate-on-scroll opacity-0 scale-50 text-[150px] font-serif font-light text-white/[0.03] absolute -top-16 -right-8 select-none">02</span>
+            {/* Contenu texte à droite */}
+            <div className="relative order-1 md:order-2">
+              <span className="animate-on-scroll opacity-0 scale-50 text-[150px] font-serif font-light text-white/[0.03] absolute -top-16 -right-8 select-none">02</span>
 
-            <span className="animate-on-scroll opacity-0 translate-x-[30px] text-[#e07a5f] text-xs tracking-[0.3em] uppercase mb-4 block">Muzea Now</span>
+              <span className="animate-on-scroll opacity-0 translate-x-[30px] text-[#e07a5f] text-xs tracking-[0.3em] uppercase mb-4 block">Muzea Now</span>
 
-            <h2 className="animate-on-scroll opacity-0 translate-x-[30px] font-serif text-4xl md:text-5xl font-light mb-6 leading-tight" style={{ transitionDelay: '100ms' }}>
-              Que visiter<br />
-              <em className="text-[#e07a5f]">maintenant ?</em>
-            </h2>
+              <h2 className="animate-on-scroll opacity-0 translate-x-[30px] font-serif text-4xl md:text-5xl font-light mb-6 leading-tight" style={{ transitionDelay: '100ms' }}>
+                Que visiter<br />
+                <em className="text-[#e07a5f]">maintenant ?</em>
+              </h2>
 
-            <p className="animate-on-scroll opacity-0 translate-x-[30px] text-white/55 text-lg mb-4 leading-relaxed" style={{ transitionDelay: '200ms' }}>
-              Notre algorithme intelligent analyse en temps réel les horaires d'ouverture, l'affluence actuelle et vos préférences pour vous suggérer le lieu parfait à visiter tout de suite.
-            </p>
+              <p className="animate-on-scroll opacity-0 translate-x-[30px] text-white/55 text-lg mb-4 leading-relaxed" style={{ transitionDelay: '200ms' }}>
+                Notre algorithme intelligent analyse en temps réel les horaires d'ouverture, l'affluence actuelle et vos préférences pour vous suggérer le lieu parfait à visiter tout de suite.
+              </p>
 
-            <p className="animate-on-scroll opacity-0 translate-x-[30px] text-white/40 text-base mb-8 leading-relaxed" style={{ transitionDelay: '250ms' }}>
-              Fini les files d'attente interminables et les musées fermés à l'improviste. Muzea Now vous guide vers les meilleures expériences culturelles disponibles à l'instant T.
-            </p>
+              <p className="animate-on-scroll opacity-0 translate-x-[30px] text-white/40 text-base mb-8 leading-relaxed" style={{ transitionDelay: '250ms' }}>
+                Fini les files d'attente interminables et les musées fermés à l'improviste. Muzea Now vous guide vers les meilleures expériences culturelles disponibles à l'instant T.
+              </p>
 
-            <ul className="space-y-4 mb-10">
-              <li className="animate-on-scroll opacity-0 translate-x-[30px] flex items-center gap-4 text-white/70" style={{ transitionDelay: '300ms' }}>
-                <div className="w-12 h-12 rounded-full bg-[#e07a5f]/10 flex items-center justify-center border border-[#e07a5f]/20">
-                  <Clock className="w-5 h-5 text-[#e07a5f]" />
-                </div>
-                <div>
-                  <div className="font-medium">Horaires en temps réel</div>
-                  <div className="text-sm text-white/40">Toujours à jour, même les jours fériés</div>
+              <ul className="space-y-4 mb-10">
+                <li className="animate-on-scroll opacity-0 translate-x-[30px] flex items-center gap-4 text-white/70" style={{ transitionDelay: '300ms' }}>
+                  <div className="w-12 h-12 rounded-full bg-[#e07a5f]/10 flex items-center justify-center border border-[#e07a5f]/20">
+                    <Clock className="w-5 h-5 text-[#e07a5f]" />
+                  </div>
+                  <div>
+                    <div className="font-medium">Horaires en temps réel</div>
+                    <div className="text-sm text-white/40">Toujours à jour, même les jours fériés</div>
                 </div>
               </li>
               <li className="animate-on-scroll opacity-0 translate-x-[30px] flex items-center gap-4 text-white/70" style={{ transitionDelay: '400ms' }}>
@@ -385,20 +381,17 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Section 04 - Guides (image à gauche) */}
-      <section id="guides" className="min-h-screen relative flex items-center overflow-hidden">
-        {/* Image de fond - côté gauche */}
-        <div
-          className="absolute top-0 left-0 w-[55%] h-full bg-cover bg-center hidden md:block"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=1400&q=80')`
-          }}
-        />
-        {/* Dégradé de transition */}
-        <div className="absolute top-0 left-[10%] w-[50%] h-full bg-gradient-to-l from-[#0c0c0c] via-[#0c0c0c] to-transparent z-10 hidden md:block" />
+      {/* Section 04 - Guides (mockup à gauche) */}
+      <section id="guides" className="py-24 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Mockup téléphone à gauche */}
+            <div className="animate-on-scroll opacity-0 translate-x-[-50px] scale-95 hidden md:block order-2 md:order-1" style={{ transitionDelay: '300ms' }}>
+              <GuidesMockup />
+            </div>
 
-        <div className="pr-8 md:pr-16 lg:pr-24 pl-6 w-full relative z-20 py-20 flex justify-end">
-          <div className="max-w-xl">
+            {/* Contenu texte à droite */}
+            <div className="relative order-1 md:order-2">
             <span className="animate-on-scroll opacity-0 scale-50 text-[150px] font-serif font-light text-white/[0.03] absolute -top-16 -right-8 select-none">04</span>
 
             <span className="animate-on-scroll opacity-0 translate-x-[30px] text-[#e07a5f] text-xs tracking-[0.3em] uppercase mb-4 block">Guides Culturels</span>
@@ -455,23 +448,16 @@ const HomePage = () => {
               <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
+          </div>
         </div>
       </section>
 
-      {/* Section 05 - Rencontres (image à droite) */}
-      <section id="rencontres" className="min-h-screen relative flex items-center overflow-hidden">
-        {/* Image de fond - côté droit */}
-        <div
-          className="absolute top-0 right-0 w-[55%] h-full bg-cover bg-center hidden md:block"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1400&q=80')`
-          }}
-        />
-        {/* Dégradé de transition */}
-        <div className="absolute top-0 right-[10%] w-[50%] h-full bg-gradient-to-r from-[#0c0c0c] via-[#0c0c0c] to-transparent z-10 hidden md:block" />
-
-        <div className="pl-8 md:pl-16 lg:pl-24 pr-6 w-full relative z-20 py-20">
-          <div className="max-w-xl">
+      {/* Section 05 - Rencontres (mockup à droite) */}
+      <section id="rencontres" className="py-24 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Contenu texte à gauche */}
+            <div className="relative">
             <span className="animate-on-scroll opacity-0 scale-50 text-[150px] font-serif font-light text-white/[0.03] absolute -top-16 -left-8 select-none">05</span>
 
             <span className="animate-on-scroll opacity-0 translate-x-[-30px] text-[#e07a5f] text-xs tracking-[0.3em] uppercase mb-4 block">Rencontres</span>
@@ -527,6 +513,12 @@ const HomePage = () => {
               Rejoindre la communauté
               <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
+          </div>
+
+            {/* Mockup téléphone à droite */}
+            <div className="animate-on-scroll opacity-0 translate-x-[50px] scale-95 hidden md:block" style={{ transitionDelay: '300ms' }}>
+              <SocialMockup />
+            </div>
           </div>
         </div>
       </section>

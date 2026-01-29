@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Users, Star, MapPin, Clock, ChevronRight, Calendar, Globe, Award, Sparkles, BookOpen } from 'lucide-react';
+import { Users, Star, MapPin, Clock, ChevronRight, Calendar, Globe, Award, Sparkles, BookOpen, Search } from 'lucide-react';
 
 /**
  * Données fictives des guides
@@ -199,36 +199,86 @@ const GuidePage = () => {
         </div>
       </section>
 
-      {/* Section 01 - Comment ça marche */}
+      {/* Section 01 - Recherche de guide */}
       <section id="decouvrir" className="py-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
-          <div className="text-center mb-16">
-            <span className="animate-on-scroll opacity-0 translate-y-[20px] text-[#e07a5f] text-xs tracking-[0.3em] uppercase mb-4 block">Comment ça marche</span>
+          <div className="text-center mb-12">
+            <span className="animate-on-scroll opacity-0 translate-y-[20px] text-[#e07a5f] text-xs tracking-[0.3em] uppercase mb-4 block">Trouvez votre guide</span>
             <h2 className="animate-on-scroll opacity-0 translate-y-[30px] font-serif text-4xl md:text-5xl font-light mb-6" style={{ transitionDelay: '100ms' }}>
               Réservez votre<br />
               <em className="text-[#e07a5f]">visite guidée</em>
             </h2>
+            <p className="animate-on-scroll opacity-0 translate-y-[30px] text-white/50 max-w-2xl mx-auto" style={{ transitionDelay: '150ms' }}>
+              Sélectionnez un musée et trouvez le guide parfait pour une expérience culturelle inoubliable
+            </p>
           </div>
 
+          {/* Barre de recherche */}
+          <div className="animate-on-scroll opacity-0 translate-y-[30px] max-w-4xl mx-auto mb-16" style={{ transitionDelay: '200ms' }}>
+            <div className="bg-white/[0.03] border border-white/[0.1] rounded-2xl p-6 md:p-8">
+              <div className="grid md:grid-cols-2 gap-4 mb-6">
+                {/* Sélection du musée */}
+                <div>
+                  <label className="block text-white/60 text-sm mb-2">Choisir un musée</label>
+                  <div className="relative">
+                    <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#e07a5f]" />
+                    <select className="w-full bg-white/[0.05] border border-white/[0.15] rounded-xl pl-12 pr-4 py-4 text-white appearance-none cursor-pointer hover:border-[#e07a5f]/50 focus:border-[#e07a5f] focus:outline-none transition-all">
+                      <option value="">Sélectionner un musée...</option>
+                      <option value="louvre">Musée du Louvre</option>
+                      <option value="orsay">Musée d'Orsay</option>
+                      <option value="orangerie">Musée de l'Orangerie</option>
+                      <option value="pompidou">Centre Pompidou</option>
+                      <option value="versailles">Château de Versailles</option>
+                      <option value="rodin">Musée Rodin</option>
+                    </select>
+                    <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 rotate-90" />
+                  </div>
+                </div>
+
+                {/* Sélection de la date */}
+                <div>
+                  <label className="block text-white/60 text-sm mb-2">Date de visite</label>
+                  <div className="relative">
+                    <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#e07a5f]" />
+                    <input
+                      type="date"
+                      className="w-full bg-white/[0.05] border border-white/[0.15] rounded-xl pl-12 pr-4 py-4 text-white cursor-pointer hover:border-[#e07a5f]/50 focus:border-[#e07a5f] focus:outline-none transition-all"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Bouton recherche */}
+              <button
+                onClick={() => document.getElementById('guides').scrollIntoView({ behavior: 'smooth' })}
+                className="w-full md:w-auto px-8 py-4 bg-[#e07a5f] text-[#0c0c0c] font-medium rounded-full hover:bg-[#e8968a] transition-all hover:scale-105 shadow-lg shadow-[#e07a5f]/20 flex items-center justify-center gap-3"
+              >
+                <Search className="w-5 h-5" />
+                Rechercher un guide
+              </button>
+            </div>
+          </div>
+
+          {/* Étapes */}
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
                 icon: MapPin,
                 title: "Choisissez",
                 desc: "Sélectionnez le musée ou monument que vous souhaitez visiter",
-                delay: '200ms'
+                delay: '300ms'
               },
               {
                 icon: Users,
                 title: "Réservez",
                 desc: "Trouvez le guide idéal et réservez votre créneau en quelques clics",
-                delay: '300ms'
+                delay: '400ms'
               },
               {
                 icon: Sparkles,
                 title: "Profitez",
                 desc: "Vivez une expérience culturelle unique et enrichissante",
-                delay: '400ms'
+                delay: '500ms'
               }
             ].map((step, i) => (
               <div

@@ -120,7 +120,7 @@ const MeetingsPage = () => {
         <div
           className="absolute top-0 right-0 w-[70%] h-full bg-cover bg-center hidden md:block"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=1600&q=80')`
+            backgroundImage: `url('https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=1600&q=80')`
           }}
         />
 
@@ -199,36 +199,92 @@ const MeetingsPage = () => {
         </div>
       </section>
 
-      {/* Section 01 - Comment ça marche */}
+      {/* Section 01 - Recherche de passionnés */}
       <section id="decouvrir" className="py-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
-          <div className="text-center mb-16">
-            <span className="animate-on-scroll opacity-0 translate-y-[20px] text-[#e07a5f] text-xs tracking-[0.3em] uppercase mb-4 block">Comment ça marche</span>
+          <div className="text-center mb-12">
+            <span className="animate-on-scroll opacity-0 translate-y-[20px] text-[#e07a5f] text-xs tracking-[0.3em] uppercase mb-4 block">Trouvez des passionnés</span>
             <h2 className="animate-on-scroll opacity-0 translate-y-[30px] font-serif text-4xl md:text-5xl font-light mb-6" style={{ transitionDelay: '100ms' }}>
-              Trois étapes pour<br />
-              <em className="text-[#e07a5f]">rencontrer</em>
+              Rencontrez autour<br />
+              <em className="text-[#e07a5f]">de vos passions</em>
             </h2>
+            <p className="animate-on-scroll opacity-0 translate-y-[30px] text-white/50 max-w-2xl mx-auto" style={{ transitionDelay: '150ms' }}>
+              Choisissez un lieu culturel et découvrez les passionnés disponibles pour une visite partagée
+            </p>
           </div>
 
+          {/* Barre de recherche */}
+          <div className="animate-on-scroll opacity-0 translate-y-[30px] max-w-4xl mx-auto mb-16" style={{ transitionDelay: '200ms' }}>
+            <div className="bg-white/[0.03] border border-white/[0.1] rounded-2xl p-6 md:p-8">
+              <div className="grid md:grid-cols-2 gap-4 mb-6">
+                {/* Sélection du lieu */}
+                <div>
+                  <label className="block text-white/60 text-sm mb-2">Lieu culturel</label>
+                  <div className="relative">
+                    <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#e07a5f]" />
+                    <select className="w-full bg-white/[0.05] border border-white/[0.15] rounded-xl pl-12 pr-4 py-4 text-white appearance-none cursor-pointer hover:border-[#e07a5f]/50 focus:border-[#e07a5f] focus:outline-none transition-all">
+                      <option value="">Choisir un lieu...</option>
+                      <option value="louvre">Musée du Louvre</option>
+                      <option value="orsay">Musée d'Orsay</option>
+                      <option value="orangerie">Musée de l'Orangerie</option>
+                      <option value="pompidou">Centre Pompidou</option>
+                      <option value="versailles">Château de Versailles</option>
+                      <option value="quai-branly">Musée du Quai Branly</option>
+                    </select>
+                    <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 rotate-90" />
+                  </div>
+                </div>
+
+                {/* Sélection des intérêts */}
+                <div>
+                  <label className="block text-white/60 text-sm mb-2">Centre d'intérêt</label>
+                  <div className="relative">
+                    <Heart className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#e07a5f]" />
+                    <select className="w-full bg-white/[0.05] border border-white/[0.15] rounded-xl pl-12 pr-4 py-4 text-white appearance-none cursor-pointer hover:border-[#e07a5f]/50 focus:border-[#e07a5f] focus:outline-none transition-all">
+                      <option value="">Tous les intérêts</option>
+                      <option value="impressionnisme">Impressionnisme</option>
+                      <option value="art-moderne">Art moderne</option>
+                      <option value="art-contemporain">Art contemporain</option>
+                      <option value="histoire">Histoire</option>
+                      <option value="architecture">Architecture</option>
+                      <option value="photographie">Photographie</option>
+                    </select>
+                    <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 rotate-90" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Bouton recherche */}
+              <button
+                onClick={() => document.getElementById('communaute').scrollIntoView({ behavior: 'smooth' })}
+                className="w-full md:w-auto px-8 py-4 bg-[#e07a5f] text-[#0c0c0c] font-medium rounded-full hover:bg-[#e8968a] transition-all hover:scale-105 shadow-lg shadow-[#e07a5f]/20 flex items-center justify-center gap-3"
+              >
+                <Search className="w-5 h-5" />
+                Trouver des passionnés
+              </button>
+            </div>
+          </div>
+
+          {/* Étapes */}
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
                 icon: Search,
                 title: "Trouvez",
                 desc: "Recherchez un musée ou une exposition qui vous intéresse",
-                delay: '200ms'
+                delay: '300ms'
               },
               {
                 icon: Users,
                 title: "Connectez",
                 desc: "Découvrez les passionnés disponibles pour une visite commune",
-                delay: '300ms'
+                delay: '400ms'
               },
               {
                 icon: Coffee,
                 title: "Partagez",
                 desc: "Visitez ensemble et prolongez autour d'un café culturel",
-                delay: '400ms'
+                delay: '500ms'
               }
             ].map((step, i) => (
               <div
@@ -248,7 +304,7 @@ const MeetingsPage = () => {
       </section>
 
       {/* Section 02 - Profils en vedette */}
-      <section className="py-24 relative overflow-hidden">
+      <section id="communaute" className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#0c0c0c] via-[#0f0f0f] to-[#0c0c0c]" />
 
         <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-10">

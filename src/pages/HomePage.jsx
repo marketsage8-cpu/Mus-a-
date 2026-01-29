@@ -1,1177 +1,480 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Zap, MapPin, Clock, Footprints, Car, Heart, ChevronLeft, ChevronRight, Calendar, Euro, X, Landmark, Castle, Palette, Star } from 'lucide-react';
-import { places } from '../data/places';
-import { frenchMuseums } from '../data/frenchMuseums';
-import InteractiveMap from '../components/map/InteractiveMap';
-import { useUser } from '../context/UserContext';
-import CabinetBackground from '../components/backgrounds/CabinetBackground';
-import ChateauBackground from '../components/backgrounds/ChateauBackground';
-import ExpositionBackground from '../components/backgrounds/ExpositionBackground';
-import PlaceDetailModal from '../components/modals/PlaceDetailModal';
-
-// Combiner tous les lieux pour la recherche
-const allSearchablePlaces = [
-  ...places,
-  ...frenchMuseums.map(m => ({
-    id: m.id,
-    name: m.name,
-    type: m.type,
-    location: `${m.city}, ${m.region}`,
-    city: m.city,
-    region: m.region,
-    image: m.image,
-    rating: (Math.random() * 0.5 + 4.5).toFixed(1), // Rating aléatoire entre 4.5 et 5.0
-    description: `Découvrez ${m.name}, un magnifique ${m.type} situé à ${m.city} en ${m.region}.`,
-    coordinates: { lat: 48.8566, lng: 2.3522 }, // Coordonnées par défaut
-    price: m.type === 'musée' ? '12€ - 18€' : m.type === 'château' ? '10€ - 15€' : 'Gratuit',
-    hours: '10h00 - 18h00'
-  }))
-];
+import { MapPin, Clock, Zap, Calendar, Star, Users, Headphones, Award, Bell, Heart, Filter, Navigation, ChevronRight } from 'lucide-react';
 
 /**
- * Page d'accueil avec hero, carte floue et section Musea Now
+ * Landing Page Immersive - Style Muzea
+ * Design luxueux noir/or avec animations au scroll
  */
 const HomePage = () => {
   const navigate = useNavigate();
-  const { toggleFavorite, isFavorite } = useUser();
-  const [searchQuery, setSearchQuery] = useState('');
-  const [userLocation, setUserLocation] = useState(null);
-  const [nearbyPlaces, setNearbyPlaces] = useState([]);
-  const [selectedBentoCard, setSelectedBentoCard] = useState(null);
-  const [activeCategory, setActiveCategory] = useState('musée');
-  const [searchResults, setSearchResults] = useState([]);
-  const [showSearchResults, setShowSearchResults] = useState(false);
-  const [selectedPlace, setSelectedPlace] = useState(null);
-  const searchRef = useRef(null);
+  const [isNavScrolled, setIsNavScrolled] = useState(false);
 
-  // Catégories pour Muzea Now
-  const categories = [
-    { id: 'musée', label: 'Musées', icon: Landmark },
-    { id: 'château', label: 'Châteaux', icon: Castle },
-    { id: 'église', label: 'Églises', icon: Landmark },
-    { id: 'exposition', label: 'Expositions', icon: Palette }
-  ];
-
-  // Expositions éphémères (filtrer par type "exposition")
-  const allExhibitions = places.filter(p => p.type === 'exposition');
-
-  // Filtres pour les expositions
-  const [exhibitionDistanceFilter, setExhibitionDistanceFilter] = useState('all'); // 'all', '500m', '5km', '10km'
-  const [exhibitionCityFilter, setExhibitionCityFilter] = useState('all');
-
-  // Extraire les villes uniques des expositions
-  const exhibitionCities = [...new Set(allExhibitions.map(e => {
-    // Extraire la ville de la location (généralement après la virgule)
-    const parts = e.location.split(',');
-    return parts.length > 1 ? parts[parts.length - 1].trim() : parts[0].trim();
-  }))].sort();
-
-  // Filtrer les expositions selon les critères
-  const exhibitions = allExhibitions.filter(exhibition => {
-    // Vérification de sécurité pour les coordonnées
-    if (!exhibition.coordinates || typeof exhibition.coordinates.lat !== 'number' || typeof exhibition.coordinates.lng !== 'number') {
-      return exhibitionDistanceFilter === 'all'; // Inclure seulement si pas de filtre distance
-    }
-
-    // Filtre par ville
-    if (exhibitionCityFilter !== 'all') {
-      const exhibitionCity = exhibition.location.split(',').pop().trim();
-      if (exhibitionCity !== exhibitionCityFilter) return false;
-    }
-
-    // Filtre par distance (nécessite la géolocalisation)
-    if (exhibitionDistanceFilter !== 'all' && userLocation) {
-      try {
-        const distance = calculateDistance(
-          userLocation.lat,
-          userLocation.lng,
-          exhibition.coordinates.lat,
-          exhibition.coordinates.lng
-        );
-        const maxDistance = exhibitionDistanceFilter === '500m' ? 0.5
-          : exhibitionDistanceFilter === '5km' ? 5
-          : exhibitionDistanceFilter === '10km' ? 10
-          : Infinity;
-        if (distance > maxDistance) return false;
-      } catch (error) {
-        console.error('Erreur calcul distance:', error);
-        return false;
-      }
-    }
-
-    return true;
-  });
-
-  // Carousel 3D state
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [selectedExhibition, setSelectedExhibition] = useState(null);
-  const [flippedCards, setFlippedCards] = useState({});
-  const carouselRef = useRef(null);
-
-  // Réinitialiser l'index du carousel quand les filtres changent
+  // Observer pour les animations au scroll
   useEffect(() => {
-    setActiveIndex(0);
-    setFlippedCards({});
-  }, [exhibitionDistanceFilter, exhibitionCityFilter]);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { rootMargin: '-15% 0px', threshold: 0.1 }
+    );
 
-  // Get user location on mount
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setUserLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          });
-        },
-        () => {
-          // Default to Paris if geolocation fails
-          setUserLocation({ lat: 48.8566, lng: 2.3522 });
-        }
-      );
-    } else {
-      setUserLocation({ lat: 48.8566, lng: 2.3522 });
-    }
-  }, []);
-
-  // Calculate nearby places when location or category changes
-  useEffect(() => {
-    if (userLocation) {
-      const placesWithDistance = places
-        .filter(p => p.type === activeCategory)
-        .map(place => ({
-          ...place,
-          distance: calculateDistance(
-            userLocation.lat,
-            userLocation.lng,
-            place.coordinates.lat,
-            place.coordinates.lng
-          )
-        }))
-        .sort((a, b) => a.distance - b.distance)
-        .slice(0, 3);
-
-      setNearbyPlaces(placesWithDistance);
-    }
-  }, [userLocation, activeCategory]);
-
-  // Haversine formula to calculate distance in km
-  const calculateDistance = (lat1, lng1, lat2, lng2) => {
-    const R = 6371;
-    const dLat = (lat2 - lat1) * Math.PI / 180;
-    const dLng = (lng2 - lng1) * Math.PI / 180;
-    const a =
-      Math.sin(dLat/2) * Math.sin(dLat/2) +
-      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-      Math.sin(dLng/2) * Math.sin(dLng/2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    return R * c;
-  };
-
-  // Convert distance to travel time text
-  const getDistanceText = (distanceKm) => {
-    if (distanceKm < 1) {
-      const minutes = Math.round(distanceKm * 12); // ~5km/h walking
-      return { text: `${minutes} min à pied`, icon: Footprints };
-    } else if (distanceKm < 3) {
-      const minutes = Math.round(distanceKm * 12);
-      return { text: `${minutes} min à pied`, icon: Footprints };
-    } else {
-      const minutes = Math.round(distanceKm * 2); // ~30km/h city driving
-      return { text: `${minutes} min de trajet`, icon: Car };
-    }
-  };
-
-  // Filtrer les lieux selon la recherche (inclut frenchMuseums)
-  useEffect(() => {
-    if (searchQuery.trim().length >= 2) {
-      const query = searchQuery.toLowerCase();
-      const filtered = allSearchablePlaces.filter(place =>
-        place.name.toLowerCase().includes(query) ||
-        place.location?.toLowerCase().includes(query) ||
-        place.city?.toLowerCase().includes(query) ||
-        place.region?.toLowerCase().includes(query) ||
-        place.type.toLowerCase().includes(query)
-      ).slice(0, 12); // Limiter à 12 résultats pour plus de choix
-      setSearchResults(filtered);
-      setShowSearchResults(true);
-    } else {
-      setSearchResults([]);
-      setShowSearchResults(false);
-    }
-  }, [searchQuery]);
-
-  // Fermer les résultats quand on clique ailleurs
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (searchRef.current && !searchRef.current.contains(event.target)) {
-        setShowSearchResults(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate(`/explore?search=${encodeURIComponent(searchQuery)}`);
-    }
-  };
-
-  // Sélectionner un lieu depuis les résultats de recherche
-  const handleSelectSearchResult = (place) => {
-    setSelectedPlace(place);
-    setShowSearchResults(false);
-    setSearchQuery('');
-  };
-
-  // Carousel 3D navigation
-  const navigateCarousel = (direction) => {
-    setActiveIndex(prev => {
-      if (direction === 'left') {
-        return prev > 0 ? prev - 1 : exhibitions.length - 1;
-      } else {
-        return prev < exhibitions.length - 1 ? prev + 1 : 0;
-      }
+    document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+      observer.observe(el);
     });
-  };
 
-  // Go to specific card
-  const goToCard = (index) => {
-    setActiveIndex(index);
-  };
+    return () => observer.disconnect();
+  }, []);
 
-  // Toggle flip card
-  const toggleFlip = (exhibitionId) => {
-    setFlippedCards(prev => ({
-      ...prev,
-      [exhibitionId]: !prev[exhibitionId]
-    }));
-  };
-
-  // Handle favorite click (stop propagation to prevent flip)
-  const handleFavoriteClick = (e, placeId) => {
-    e.stopPropagation();
-    toggleFavorite(placeId);
-  };
-
-  // Handle BentoCard click with zoom effect
-  const handleBentoClick = (index) => {
-    setSelectedBentoCard(index);
-    setTimeout(() => {
-      setSelectedBentoCard(null);
-      navigate('/explore');
-    }, 300);
-  };
-
+  // Effet de scroll pour la navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsNavScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <div className="animate-fade-in relative">
-      {/* ============================================
-          SECTION 1: HERO
-          ============================================ */}
-      <section className="relative min-h-screen flex flex-col">
-        {/* Background image - Art coloré et vibrant */}
-        <div className="absolute inset-0">
-          <img
-            src="/images/MBA_2022_39.jpg"
-            alt="Musée des Beaux-Arts"
-            className="w-full h-full object-cover"
-          />
-          {/* Gradient overlay - effet "bavure" fluide depuis la navbar bleu marine (style Culturio) */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background: `linear-gradient(to bottom,
-                #1a2640 0%,
-                #1a2640 6%,
-                rgba(15, 15, 26, 0.97) 10%,
-                rgba(15, 15, 26, 0.92) 14%,
-                rgba(15, 15, 26, 0.85) 18%,
-                rgba(15, 15, 26, 0.75) 22%,
-                rgba(15, 15, 26, 0.6) 28%,
-                rgba(15, 15, 26, 0.45) 34%,
-                rgba(15, 15, 26, 0.3) 40%,
-                rgba(15, 15, 26, 0.18) 48%,
-                rgba(15, 15, 26, 0.1) 55%,
-                rgba(15, 15, 26, 0.05) 62%,
-                transparent 70%,
-                rgba(26, 26, 46, 0.2) 80%,
-                rgba(26, 26, 46, 0.5) 90%,
-                #243350 100%)`
-            }}
-          />
+    <div className="min-h-screen bg-[#0c0c0c] text-white overflow-x-hidden">
+      {/* Navigation fixe */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isNavScrolled ? 'bg-[#0c0c0c]/90 backdrop-blur-lg border-b border-white/[0.08]' : 'bg-transparent'
+      }`}>
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="text-[#c9a962] text-xl tracking-[0.3em] font-light">MUZEA</div>
+          <div className="hidden md:flex items-center gap-8">
+            <a href="#carte" className="text-white/60 hover:text-[#c9a962] transition-colors text-sm">Carte</a>
+            <a href="#muzea-now" className="text-white/60 hover:text-[#c9a962] transition-colors text-sm">Muzea Now</a>
+            <a href="#expositions" className="text-white/60 hover:text-[#c9a962] transition-colors text-sm">Expositions</a>
+            <a href="#guides" className="text-white/60 hover:text-[#c9a962] transition-colors text-sm">Guides</a>
+          </div>
+          <button
+            onClick={() => navigate('/profile')}
+            className="px-4 py-2 border border-[#c9a962]/30 text-[#c9a962] text-sm rounded-full hover:bg-[#c9a962]/10 transition-all"
+          >
+            Mon profil
+          </button>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="min-h-screen flex items-center justify-center relative pt-20">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#c9a962]/5 rounded-full blur-3xl" />
         </div>
 
-        {/* Hero Content - centered */}
-        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 pt-20 pb-32">
-          <div className="max-w-3xl mx-auto text-center">
-            {/* Logo Muzea */}
-            <div className="mb-8 animate-slide-up">
-              <img
-                src="/logo-muzea.svg"
-                alt="Muzea - Culture Nearby"
-                className="w-32 h-auto mx-auto drop-shadow-lg"
-                style={{
-                  filter: 'brightness(0) invert(1) drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3))'
-                }}
-              />
+        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/[0.03] border border-white/[0.08] rounded-full mb-8">
+            <span className="w-2 h-2 bg-[#c9a962] rounded-full animate-pulse" />
+            <span className="text-white/60 text-sm">Culture Nearby</span>
+          </div>
+
+          {/* Titre principal */}
+          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-light mb-6 leading-tight">
+            Toute la culture<br />
+            <em className="text-[#c9a962] font-normal">autour de vous</em>
+          </h1>
+
+          {/* Sous-titre */}
+          <p className="text-white/55 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light">
+            Découvrez les musées, expositions et trésors culturels qui vous entourent.
+            Une expérience immersive pour les amoureux de l'art et du patrimoine.
+          </p>
+
+          {/* CTA */}
+          <button
+            onClick={() => navigate('/explore')}
+            className="px-8 py-4 bg-[#c9a962] text-[#0c0c0c] font-medium rounded-full hover:bg-[#d4b370] transition-all hover:scale-105 shadow-lg shadow-[#c9a962]/20"
+          >
+            Commencer l'exploration
+          </button>
+
+          {/* Scroll indicator */}
+          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30">
+            <span className="text-xs tracking-widest">DÉFILER</span>
+            <div className="w-px h-16 bg-gradient-to-b from-white/30 to-transparent" />
+          </div>
+        </div>
+      </section>
+
+      {/* Section 01 - Carte Interactive */}
+      <section id="carte" className="py-32 relative">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            {/* Contenu texte */}
+            <div className="animate-on-scroll opacity-0 translate-x-[-50px] transition-all duration-1000 ease-out">
+              <span className="text-[120px] font-serif font-light text-white/[0.03] absolute -top-10 -left-4">01</span>
+              <span className="text-[#c9a962] text-xs tracking-[0.3em] uppercase mb-4 block">Carte Interactive</span>
+              <h2 className="font-serif text-4xl md:text-5xl font-light mb-6 leading-tight">
+                Découvrez les trésors<br />
+                <em className="text-[#c9a962]">qui vous entourent</em>
+              </h2>
+              <p className="text-white/55 text-lg mb-8 leading-relaxed">
+                Une carte vivante qui révèle en temps réel tous les musées,
+                châteaux et lieux culturels à proximité de votre position.
+              </p>
+              <ul className="space-y-4 mb-10">
+                <li className="flex items-center gap-4 text-white/70">
+                  <div className="w-10 h-10 rounded-full bg-[#c9a962]/10 flex items-center justify-center">
+                    <Navigation className="w-5 h-5 text-[#c9a962]" />
+                  </div>
+                  Géolocalisation en temps réel
+                </li>
+                <li className="flex items-center gap-4 text-white/70">
+                  <div className="w-10 h-10 rounded-full bg-[#c9a962]/10 flex items-center justify-center">
+                    <Filter className="w-5 h-5 text-[#c9a962]" />
+                  </div>
+                  Filtres par type et distance
+                </li>
+                <li className="flex items-center gap-4 text-white/70">
+                  <div className="w-10 h-10 rounded-full bg-[#c9a962]/10 flex items-center justify-center">
+                    <Star className="w-5 h-5 text-[#c9a962]" />
+                  </div>
+                  Avis et recommandations
+                </li>
+              </ul>
+              <button
+                onClick={() => navigate('/explore')}
+                className="flex items-center gap-4 text-[#c9a962] group"
+              >
+                <span className="w-12 h-px bg-[#c9a962] group-hover:w-16 transition-all" />
+                Explorer la carte
+                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
             </div>
 
-            {/* Main title - Italic serif golden */}
-            <h1
-              className="font-serif-italic text-4xl sm:text-5xl lg:text-6xl mb-6 animate-slide-up"
-              style={{ color: '#d4a574' }}
-            >
-              Toute la culture autour de vous.
-            </h1>
+            {/* Visuel */}
+            <div className="animate-on-scroll opacity-0 translate-x-[50px] transition-all duration-1000 delay-200 ease-out relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0c0c0c] via-transparent to-transparent z-10 w-1/3" />
+              <div className="bg-[#1a1a1a] rounded-2xl p-6 border border-white/[0.08] relative overflow-hidden">
+                {/* Fake map visual */}
+                <div className="aspect-[4/3] bg-[#0f0f0f] rounded-xl relative overflow-hidden">
+                  <svg viewBox="0 0 400 300" className="w-full h-full">
+                    {/* Map background */}
+                    <rect fill="#151515" width="400" height="300"/>
+                    {/* Roads */}
+                    <path d="M0 150 L400 150" stroke="#252525" strokeWidth="3"/>
+                    <path d="M200 0 L200 300" stroke="#252525" strokeWidth="3"/>
+                    <path d="M0 75 L400 225" stroke="#1f1f1f" strokeWidth="2"/>
+                    {/* Location pins */}
+                    <circle cx="120" cy="100" r="8" fill="#c9a962"/>
+                    <circle cx="280" cy="180" r="8" fill="#c9a962"/>
+                    <circle cx="200" cy="150" r="12" fill="#c9a962"/>
+                    <circle cx="200" cy="150" r="20" fill="#c9a962" opacity="0.2"/>
+                    <circle cx="320" cy="80" r="6" fill="#c9a962" opacity="0.6"/>
+                    <circle cx="80" cy="220" r="6" fill="#c9a962" opacity="0.6"/>
+                    {/* User location */}
+                    <circle cx="200" cy="150" r="6" fill="#fff"/>
+                  </svg>
+                  {/* Info card overlay */}
+                  <div className="absolute top-4 right-4 bg-[#1a1a1a] rounded-lg p-3 border border-white/10 w-48">
+                    <div className="text-sm font-medium mb-1">Musée d'Orsay</div>
+                    <div className="text-xs text-white/50 flex items-center gap-2">
+                      <MapPin className="w-3 h-3" /> 350m • 5 min
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Subtitle - light gray */}
-            <p
-              className="text-lg sm:text-xl mb-10 max-w-2xl mx-auto animate-slide-up"
-              style={{ color: '#9ca3af', animationDelay: '100ms' }}
-            >
-              Musées, expositions et lieux culturels, visibles en temps réel autour de vous.
-            </p>
-
-            {/* Search bar - white avec autocomplétion */}
-            <div
-              ref={searchRef}
-              className="relative max-w-xl mx-auto mb-6 animate-slide-up"
-              style={{ animationDelay: '200ms' }}
-            >
-              <form onSubmit={handleSearch}>
-                <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 z-10" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onFocus={() => searchQuery.length >= 2 && setShowSearchResults(true)}
-                  placeholder="Rechercher un musée, château..."
-                  className={`
-                    w-full
-                    py-4 px-6 pl-14
-                    bg-white
-                    ${showSearchResults && searchResults.length > 0 ? 'rounded-t-3xl rounded-b-none' : 'rounded-full'}
-                    text-gray-800
-                    placeholder-gray-400
-                    shadow-lg
-                    focus:outline-none
-                    focus:ring-2 focus:ring-[#d4a574]/50
-                    transition-all
-                  `}
-                />
-                {searchQuery && (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setSearchQuery('');
-                      setShowSearchResults(false);
-                    }}
-                    className="absolute right-5 top-1/2 -translate-y-1/2 p-1 hover:bg-gray-100 rounded-full transition-colors"
-                  >
-                    <X className="w-4 h-4 text-gray-400" />
-                  </button>
-                )}
-              </form>
-
-              {/* Dropdown des résultats de recherche */}
-              {showSearchResults && searchResults.length > 0 && (
-                <div className="absolute top-full left-0 right-0 bg-white rounded-b-3xl shadow-2xl z-50 border-t border-gray-100 max-h-[60vh] overflow-y-auto">
-                  {searchResults.map((place) => (
-                    <button
-                      key={place.id}
-                      onClick={() => handleSelectSearchResult(place)}
-                      className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors text-left border-b border-gray-50 last:border-b-0"
-                    >
-                      <img
-                        src={place.image}
-                        alt={place.name}
-                        className="w-14 h-14 rounded-xl object-cover flex-shrink-0"
-                      />
-                      <div className="flex-1 min-w-0 overflow-hidden">
-                        <h4 className="text-gray-800 font-semibold line-clamp-1">{place.name}</h4>
-                        <p className="text-gray-500 text-sm flex items-center gap-1">
-                          <MapPin className="w-3 h-3 flex-shrink-0" />
-                          <span className="line-clamp-1">{place.location}</span>
-                        </p>
-                        <div className="flex items-center gap-2 mt-1 flex-wrap">
-                          <span className={`
-                            px-2 py-0.5 text-xs rounded-full capitalize flex-shrink-0
-                            ${place.type === 'musée' ? 'bg-turquoise-100 text-turquoise-700' :
-                              place.type === 'château' ? 'bg-amber-100 text-amber-700' :
-                              place.type === 'église' ? 'bg-rose-100 text-rose-700' :
-                              'bg-purple-100 text-purple-700'}
-                          `}>
-                            {place.type}
+      {/* Section 02 - Muzea Now (inversée) */}
+      <section id="muzea-now" className="py-32 relative">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            {/* Visuel (à gauche) */}
+            <div className="animate-on-scroll opacity-0 translate-x-[-50px] transition-all duration-1000 delay-200 ease-out relative order-2 md:order-1">
+              <div className="absolute inset-0 bg-gradient-to-l from-[#0c0c0c] via-transparent to-transparent z-10 w-1/3 right-0 left-auto" />
+              <div className="bg-[#1a1a1a] rounded-2xl p-6 border border-white/[0.08]">
+                <div className="space-y-4">
+                  {/* Museum cards */}
+                  {[
+                    { name: 'Musée du Louvre', time: '12 min', status: 'OUVERT', rating: 4.9 },
+                    { name: "Musée d'Orsay", time: '8 min', status: 'OUVERT', rating: 4.8 },
+                    { name: 'Centre Pompidou', time: '15 min', status: 'OUVERT', rating: 4.7 },
+                  ].map((museum, i) => (
+                    <div key={i} className="flex items-center gap-4 p-4 bg-[#0f0f0f] rounded-xl border border-white/[0.05]">
+                      <div className="w-16 h-16 bg-gradient-to-br from-[#c9a962]/20 to-[#c9a962]/5 rounded-lg flex items-center justify-center text-2xl">
+                        🏛️
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="font-medium">{museum.name}</span>
+                          <span className="px-2 py-0.5 bg-green-500/20 text-green-400 text-[10px] rounded-full">
+                            {museum.status}
                           </span>
-                          <span className="flex items-center gap-1 text-xs text-amber-500 flex-shrink-0">
-                            <Star className="w-3 h-3 fill-amber-400" />
-                            {place.rating}
+                        </div>
+                        <div className="flex items-center gap-3 text-sm text-white/50">
+                          <span className="flex items-center gap-1">
+                            <Clock className="w-3 h-3" /> {museum.time}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Star className="w-3 h-3 text-[#c9a962]" /> {museum.rating}
                           </span>
                         </div>
                       </div>
-                    </button>
-                  ))}
-                  <button
-                    onClick={handleSearch}
-                    className="w-full py-3 px-4 bg-gray-50 text-[#d4a574] font-medium text-sm hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 sticky bottom-0"
-                  >
-                    <Search className="w-4 h-4" />
-                    Voir tous les résultats pour "{searchQuery}"
-                  </button>
-                </div>
-              )}
-            </div>
-
-          </div>
-        </div>
-
-        {/* ============================================
-            SECTION 2: BLURRED MAP (overlapping hero)
-            ============================================ */}
-        <div className="relative z-20 -mt-20 px-4 pb-16">
-          <div className="max-w-4xl mx-auto">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-              {/* Blurred map */}
-              <div className="filter blur-[3px]">
-                <InteractiveMap
-                  places={places.slice(0, 5)}
-                  height="300px"
-                  center={userLocation ? [userLocation.lat, userLocation.lng] : [48.8566, 2.3522]}
-                  zoom={12}
-                  showUserLocation={false}
-                />
-              </div>
-
-              {/* Overlay for clickability */}
-              <div className="absolute inset-0 bg-[#243350]/20" />
-
-              {/* CTA Button centered on map */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <button
-                  onClick={() => navigate('/explore')}
-                  className="
-                    px-8 py-4
-                    bg-[#2d4a3e] hover:bg-[#3d5a4e]
-                    text-white text-lg font-semibold
-                    rounded-full
-                    shadow-xl
-                    hover:scale-105
-                    transition-all duration-300
-                  "
-                >
-                  Explorer la carte !
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================
-          SECTION 3: MUZEA NOW
-          ============================================ */}
-      <section className="relative py-20 px-4 overflow-hidden">
-        {/* Background dynamique selon la catégorie - z-index 0 */}
-        <div className="absolute inset-0 z-0 bg-[#2a3d5c]" />
-        {activeCategory === 'musée' && <CabinetBackground />}
-        {activeCategory === 'château' && <ChateauBackground />}
-        {activeCategory === 'exposition' && <ExpositionBackground />}
-        {/* Overlay très léger pour mieux voir les motifs - z-index 2 */}
-        <div className="absolute inset-0 z-[2] bg-[#2a3d5c]/5 pointer-events-none" />
-
-        <div className="max-w-6xl mx-auto relative z-[5]">
-          {/* Section header - Muzea Now centered layout */}
-          {/* Container avec fond semi-transparent pour contraste avec les motifs dorés */}
-          <div className="text-center mb-8 relative">
-            <div className="absolute inset-0 -mx-4 sm:-mx-8 -my-4 bg-[#1a2640]/50 backdrop-blur-sm rounded-3xl" />
-            <div className="relative py-4">
-              {/* Muzea now - avec encadrement stylé */}
-              <div className="inline-flex items-center justify-center mb-4">
-                <div className="relative px-6 py-2">
-                  {/* Fond avec dégradé subtil */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#d4a574]/30 via-[#d4a574]/20 to-[#d4a574]/30 rounded-lg" />
-                  {/* Bordure avec angles stylés */}
-                  <div className="absolute inset-0 border border-[#d4a574]/60 rounded-lg" />
-                  {/* Coins décorés */}
-                  <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-[#d4a574] rounded-tl-lg" />
-                  <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-[#d4a574] rounded-tr-lg" />
-                  <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-[#d4a574] rounded-bl-lg" />
-                  <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-[#d4a574] rounded-br-lg" />
-                  {/* Texte */}
-                  <p className="relative text-sm uppercase tracking-[0.3em] text-[#d4a574] font-semibold">
-                    Muzea now
-                  </p>
-                </div>
-              </div>
-              {/* Question principale */}
-              <h2
-                className="font-serif-italic text-3xl sm:text-4xl lg:text-5xl mb-4"
-                style={{ color: '#d4a574' }}
-              >
-                Que puis-je visiter maintenant ?
-              </h2>
-              {/* Description - beaucoup plus petit */}
-              <p className="text-xs sm:text-sm text-gray-400 max-w-md mx-auto mb-8">
-                3 propositions optimales basées sur votre position et l'heure actuelle
-              </p>
-
-              {/* Tabs de catégories */}
-              <div className="flex justify-center gap-2 sm:gap-4">
-                {categories.map((cat) => {
-                  const Icon = cat.icon;
-                  const isActive = activeCategory === cat.id;
-                  return (
-                    <button
-                      key={cat.id}
-                      onClick={() => setActiveCategory(cat.id)}
-                      className={`
-                        flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full
-                        font-medium text-sm sm:text-base
-                        transition-all duration-300 ease-out
-                        ${isActive
-                          ? 'bg-[#d4a574] text-[#243350] shadow-lg shadow-[#d4a574]/30 scale-105'
-                          : 'bg-[#243350]/80 text-white/90 hover:bg-[#243350] hover:text-white border border-white/30 backdrop-blur-sm'
-                        }
-                      `}
-                    >
-                      <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
-                      <span className="hidden sm:inline">{cat.label}</span>
-                      <span className="sm:hidden">{cat.label.slice(0, 3)}.</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-
-          {/* Bento Box Grid: 65% left, 35% right */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5 mt-8">
-            {/* Large card - left side (spans 7 columns ~60%) */}
-            {nearbyPlaces[0] && (
-              <div
-                className={`lg:col-span-7 h-[380px] lg:h-[420px] transition-transform duration-300 ${
-                  selectedBentoCard === 0 ? 'scale-[1.02] z-10' : ''
-                }`}
-              >
-                <BentoCard
-                  museum={nearbyPlaces[0]}
-                  size="large"
-                  distanceInfo={getDistanceText(nearbyPlaces[0].distance)}
-                  onClick={() => handleBentoClick(0)}
-                  showCTA={true}
-                  isSelected={selectedBentoCard === 0}
-                />
-              </div>
-            )}
-
-            {/* Right side - 2 smaller cards stacked */}
-            <div className="lg:col-span-5 flex flex-col gap-3">
-              {nearbyPlaces[1] && (
-                <div
-                  className={`h-[200px] lg:h-[200px] transition-transform duration-300 ${
-                    selectedBentoCard === 1 ? 'scale-[1.02] z-10' : ''
-                  }`}
-                >
-                  <BentoCard
-                    museum={nearbyPlaces[1]}
-                    size="small"
-                    distanceInfo={getDistanceText(nearbyPlaces[1].distance)}
-                    onClick={() => handleBentoClick(1)}
-                    isSelected={selectedBentoCard === 1}
-                  />
-                </div>
-              )}
-              {nearbyPlaces[2] && (
-                <div
-                  className={`h-[200px] lg:h-[200px] transition-transform duration-300 ${
-                    selectedBentoCard === 2 ? 'scale-[1.02] z-10' : ''
-                  }`}
-                >
-                  <BentoCard
-                    museum={nearbyPlaces[2]}
-                    size="small"
-                    distanceInfo={getDistanceText(nearbyPlaces[2].distance)}
-                    onClick={() => handleBentoClick(2)}
-                    isSelected={selectedBentoCard === 2}
-                  />
-                </div>
-              )}
-            </div>
-
-            {/* Message si pas de résultats */}
-            {nearbyPlaces.length === 0 && (
-              <div className="lg:col-span-12 text-center py-16">
-                <p className="text-gray-400 text-lg">
-                  Aucun {activeCategory === 'musée' ? 'musée' : activeCategory === 'château' ? 'château' : 'exposition'} trouvé à proximité.
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================
-          SECTION 4: EXPOSITIONS ÉPHÉMÈRES
-          ============================================ */}
-      <section className="relative py-20 px-4 overflow-hidden">
-        {/* Background avec motif artistique */}
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#1a1a2e] via-[#16213e] to-[#1a1a2e]" />
-
-        {/* Motifs décoratifs de fond */}
-        <div className="absolute inset-0 z-[1] opacity-10">
-          <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-red-500/20 blur-3xl" />
-          <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-purple-500/20 blur-3xl" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-[#d4a574]/10 blur-3xl" />
-        </div>
-
-        {/* Lignes décoratives */}
-        <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-500/30 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-500/30 to-transparent" />
-        </div>
-
-        <div className="max-w-7xl mx-auto relative z-[5]">
-          {/* Section header avec fond semi-transparent */}
-          <div className="text-center mb-8 relative">
-            <div className="absolute inset-0 -mx-4 sm:-mx-8 -my-4 bg-[#1a1a2e]/60 backdrop-blur-sm rounded-3xl" />
-            <div className="relative py-4">
-              <div className="inline-flex items-center justify-center mb-4">
-                <div className="relative px-6 py-2">
-                  <div className="absolute inset-0 bg-gradient-to-r from-red-500/30 via-red-500/20 to-red-500/30 rounded-lg" />
-                  <div className="absolute inset-0 border border-red-500/50 rounded-lg" />
-                  <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-red-500 rounded-tl-lg" />
-                  <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-red-500 rounded-tr-lg" />
-                  <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-red-500 rounded-bl-lg" />
-                  <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-red-500 rounded-br-lg" />
-                  <p className="relative text-sm uppercase tracking-[0.3em] text-red-400 font-semibold flex items-center gap-2">
-                    <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-                    Éphémères
-                  </p>
-                </div>
-              </div>
-              <h2
-                className="font-serif-italic text-3xl sm:text-4xl lg:text-5xl mb-4"
-                style={{ color: '#d4a574' }}
-              >
-                Expositions à ne pas louper !
-              </h2>
-              <p className="text-xs sm:text-sm text-gray-400 max-w-md mx-auto mb-8">
-                Cliquez sur une carte pour découvrir les détails de l'exposition
-              </p>
-
-              {/* Filtres d'expositions - Style amélioré */}
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-2xl mx-auto">
-                {/* Filtre par distance */}
-                <div className="flex items-center gap-2 flex-wrap justify-center">
-                  <span className="text-gray-300 text-sm flex items-center gap-1">
-                    <MapPin className="w-4 h-4 text-red-400" />
-                    Distance :
-                  </span>
-                  {[
-                    { id: 'all', label: 'Toutes' },
-                    { id: '500m', label: '500m' },
-                    { id: '5km', label: '5 km' },
-                    { id: '10km', label: '10 km' }
-                  ].map((filter) => (
-                    <button
-                      key={filter.id}
-                      onClick={() => setExhibitionDistanceFilter(filter.id)}
-                      className={`
-                        px-4 py-2 rounded-xl text-xs font-medium transition-all duration-300
-                        ${exhibitionDistanceFilter === filter.id
-                          ? 'bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg shadow-red-500/30 scale-105'
-                          : 'bg-[#243350]/80 text-gray-200 hover:bg-[#243350] border border-white/20 hover:border-red-500/30'
-                        }
-                      `}
-                    >
-                      {filter.label}
-                    </button>
+                      <ChevronRight className="w-5 h-5 text-white/30" />
+                    </div>
                   ))}
                 </div>
-
-                {/* Séparateur */}
-                <div className="hidden sm:block w-px h-8 bg-gradient-to-b from-transparent via-red-500/50 to-transparent" />
-
-                {/* Filtre par ville */}
-                <div className="flex items-center gap-2">
-                  <span className="text-gray-300 text-sm">Ville :</span>
-                  <select
-                    value={exhibitionCityFilter}
-                    onChange={(e) => setExhibitionCityFilter(e.target.value)}
-                    className="
-                      px-4 py-2 rounded-xl text-xs font-medium
-                      bg-[#243350]/80 text-gray-200 border border-white/20
-                      focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500/30
-                      cursor-pointer transition-all duration-300
-                      hover:border-red-500/30
-                    "
-                  >
-                    <option value="all" className="bg-[#243350]">Toutes les villes</option>
-                    {exhibitionCities.map((city) => (
-                      <option key={city} value={city} className="bg-[#243350]">
-                        {city}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              {/* Compteur de résultats - Style amélioré */}
-              <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 bg-[#243350]/60 rounded-full border border-red-500/20">
-                <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-                <p className="text-sm text-gray-300">
-                  <span className="font-semibold text-red-400">{exhibitions.length}</span> exposition{exhibitions.length > 1 ? 's' : ''} trouvée{exhibitions.length > 1 ? 's' : ''}
-                  {exhibitionDistanceFilter !== 'all' && <span className="text-gray-400"> à moins de {exhibitionDistanceFilter}</span>}
-                  {exhibitionCityFilter !== 'all' && <span className="text-gray-400"> à {exhibitionCityFilter}</span>}
-                </p>
               </div>
             </div>
-          </div>
 
-          {/* Carousel 3D container */}
-          {exhibitions.length > 0 ? (
-          <div className="relative py-16">
-            {/* Navigation arrows */}
-            <button
-              onClick={() => navigateCarousel('left')}
-              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-30 w-14 h-14 bg-[#d4a574] hover:bg-[#c49464] rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110"
-            >
-              <ChevronLeft className="w-7 h-7 text-[#243350]" />
-            </button>
-            <button
-              onClick={() => navigateCarousel('right')}
-              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-30 w-14 h-14 bg-[#d4a574] hover:bg-[#c49464] rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110"
-            >
-              <ChevronRight className="w-7 h-7 text-[#243350]" />
-            </button>
-
-            {/* 3D Carousel track */}
-            <div
-              ref={carouselRef}
-              className="relative flex items-center justify-center h-[600px] overflow-hidden"
-              style={{ perspective: '1200px' }}
-            >
-              {exhibitions.map((exhibition, index) => {
-                // Calculate position relative to active card with wrapping for infinite carousel
-                const totalCards = exhibitions.length;
-                let offset = index - activeIndex;
-
-                // Wrap offset for infinite effect
-                if (offset > totalCards / 2) {
-                  offset -= totalCards;
-                } else if (offset < -totalCards / 2) {
-                  offset += totalCards;
-                }
-
-                const absOffset = Math.abs(offset);
-
-                // Cards visibility (show 5 cards: -2, -1, 0, 1, 2)
-                const isVisible = absOffset <= 2;
-
-                if (!isVisible) return null;
-
-                // Calculate 3D transforms for arc effect - increased spacing to avoid overlap
-                const translateX = offset * 400; // Increased horizontal spacing for no touching
-                const translateZ = -absOffset * 200; // Increased depth
-                const rotateY = offset * -18; // Reduced rotation for cleaner look
-                const scale = 1 - absOffset * 0.15; // Slightly more aggressive scaling for depth
-                const opacity = 1 - absOffset * 0.2;
-                const zIndex = 10 - absOffset;
-
-                return (
-                  <div
-                    key={exhibition.id}
-                    className="absolute transition-all duration-700 ease-out cursor-pointer"
-                    style={{
-                      transform: `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
-                      opacity,
-                      zIndex,
-                    }}
-                    onClick={() => goToCard(index)}
-                  >
-                    <ExhibitionCard
-                      exhibition={exhibition}
-                      isFlipped={flippedCards[exhibition.id]}
-                      onFlip={() => toggleFlip(exhibition.id)}
-                      isFavorite={isFavorite(exhibition.id)}
-                      onFavoriteClick={(e) => handleFavoriteClick(e, exhibition.id)}
-                      isActive={index === activeIndex}
-                      onSelect={() => {
-                        if (index === activeIndex) {
-                          setSelectedExhibition(
-                            selectedExhibition === exhibition.id ? null : exhibition.id
-                          );
-                        }
-                      }}
-                      onNavigate={() => navigate('/explore')}
-                    />
+            {/* Contenu texte (à droite) */}
+            <div className="animate-on-scroll opacity-0 translate-x-[50px] transition-all duration-1000 ease-out order-1 md:order-2 relative">
+              <span className="text-[120px] font-serif font-light text-white/[0.03] absolute -top-10 -right-4">02</span>
+              <span className="text-[#c9a962] text-xs tracking-[0.3em] uppercase mb-4 block">Muzea Now</span>
+              <h2 className="font-serif text-4xl md:text-5xl font-light mb-6 leading-tight">
+                Que visiter<br />
+                <em className="text-[#c9a962]">maintenant ?</em>
+              </h2>
+              <p className="text-white/55 text-lg mb-8 leading-relaxed">
+                Notre algorithme intelligent analyse vos préférences, les horaires d'ouverture
+                et l'affluence pour vous suggérer le lieu parfait à visiter tout de suite.
+              </p>
+              <ul className="space-y-4 mb-10">
+                <li className="flex items-center gap-4 text-white/70">
+                  <div className="w-10 h-10 rounded-full bg-[#c9a962]/10 flex items-center justify-center">
+                    <Clock className="w-5 h-5 text-[#c9a962]" />
                   </div>
-                );
-              })}
-            </div>
-
-            {/* Dots indicator */}
-            <div className="flex justify-center gap-2 mt-8">
-              {exhibitions.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToCard(index)}
-                  className={`
-                    w-2 h-2 rounded-full transition-all duration-300
-                    ${index === activeIndex
-                      ? 'w-8 bg-[#d4a574]'
-                      : 'bg-gray-600 hover:bg-gray-500'
-                    }
-                  `}
-                />
-              ))}
-            </div>
-          </div>
-          ) : (
-            /* Message quand aucune exposition ne correspond aux filtres */
-            <div className="text-center py-16">
-              <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
-                <Palette className="w-10 h-10 text-gray-500" />
-              </div>
-              {exhibitionDistanceFilter !== 'all' && userLocation ? (
-                <>
-                  <h3 className="text-xl text-white mb-3">Oups !</h3>
-                  <p className="text-gray-400 mb-6 max-w-md mx-auto">
-                    Aucune exposition n'est aux alentours de vous !
-                    <span className="block mt-2 text-[#d4a574] text-sm">
-                      Essayez d'augmenter le rayon de recherche ou explorez d'autres villes.
-                    </span>
-                  </p>
-                </>
-              ) : (
-                <>
-                  <h3 className="text-xl text-white mb-3">Aucune exposition trouvée</h3>
-                  <p className="text-gray-400 mb-6 max-w-md mx-auto">
-                    Aucune exposition ne correspond à vos critères de recherche.
-                    {exhibitionDistanceFilter !== 'all' && !userLocation && (
-                      <span className="block mt-2 text-red-400 text-sm">
-                        Activez la géolocalisation pour filtrer par distance.
-                      </span>
-                    )}
-                  </p>
-                </>
-              )}
+                  Horaires en temps réel
+                </li>
+                <li className="flex items-center gap-4 text-white/70">
+                  <div className="w-10 h-10 rounded-full bg-[#c9a962]/10 flex items-center justify-center">
+                    <MapPin className="w-5 h-5 text-[#c9a962]" />
+                  </div>
+                  Temps de trajet calculé
+                </li>
+                <li className="flex items-center gap-4 text-white/70">
+                  <div className="w-10 h-10 rounded-full bg-[#c9a962]/10 flex items-center justify-center">
+                    <Users className="w-5 h-5 text-[#c9a962]" />
+                  </div>
+                  Niveau d'affluence
+                </li>
+              </ul>
               <button
-                onClick={() => {
-                  setExhibitionDistanceFilter('all');
-                  setExhibitionCityFilter('all');
-                }}
-                className="px-6 py-3 bg-[#d4a574] hover:bg-[#c49464] text-[#243350] font-semibold rounded-xl transition-all"
+                onClick={() => navigate('/explore')}
+                className="flex items-center gap-4 text-[#c9a962] group"
               >
-                Réinitialiser les filtres
+                <span className="w-12 h-px bg-[#c9a962] group-hover:w-16 transition-all" />
+                Voir mes suggestions
+                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
-          )}
+          </div>
         </div>
       </section>
 
-      {/* Modal de détails du lieu */}
-      <PlaceDetailModal
-        place={selectedPlace}
-        isOpen={!!selectedPlace}
-        onClose={() => setSelectedPlace(null)}
-      />
-    </div>
-  );
-};
+      {/* Section 03 - Expositions */}
+      <section id="expositions" className="py-32 relative">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            {/* Contenu texte */}
+            <div className="animate-on-scroll opacity-0 translate-x-[-50px] transition-all duration-1000 ease-out relative">
+              <span className="text-[120px] font-serif font-light text-white/[0.03] absolute -top-10 -left-4">03</span>
+              <span className="text-[#c9a962] text-xs tracking-[0.3em] uppercase mb-4 block">Éphémères</span>
+              <h2 className="font-serif text-4xl md:text-5xl font-light mb-6 leading-tight">
+                Les expositions<br />
+                <em className="text-[#c9a962]">à ne pas louper</em>
+              </h2>
+              <p className="text-white/55 text-lg mb-8 leading-relaxed">
+                Restez informé des expositions temporaires avant qu'il ne soit trop tard.
+                Recevez des alertes personnalisées selon vos goûts artistiques.
+              </p>
+              <ul className="space-y-4 mb-10">
+                <li className="flex items-center gap-4 text-white/70">
+                  <div className="w-10 h-10 rounded-full bg-[#c9a962]/10 flex items-center justify-center">
+                    <Bell className="w-5 h-5 text-[#c9a962]" />
+                  </div>
+                  Alertes personnalisées
+                </li>
+                <li className="flex items-center gap-4 text-white/70">
+                  <div className="w-10 h-10 rounded-full bg-[#c9a962]/10 flex items-center justify-center">
+                    <Calendar className="w-5 h-5 text-[#c9a962]" />
+                  </div>
+                  Dates de fin signalées
+                </li>
+                <li className="flex items-center gap-4 text-white/70">
+                  <div className="w-10 h-10 rounded-full bg-[#c9a962]/10 flex items-center justify-center">
+                    <Heart className="w-5 h-5 text-[#c9a962]" />
+                  </div>
+                  Sauvegardez vos favoris
+                </li>
+              </ul>
+              <button
+                onClick={() => navigate('/events')}
+                className="flex items-center gap-4 text-[#c9a962] group"
+              >
+                <span className="w-12 h-px bg-[#c9a962] group-hover:w-16 transition-all" />
+                Voir les expositions
+                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
 
-/**
- * Bento Card Component - Version simplifiée et sobre
- */
-const BentoCard = ({ museum, size = 'small', distanceInfo, onClick, showCTA = false, isSelected = false }) => {
-  const DistanceIcon = distanceInfo?.icon || MapPin;
-
-  return (
-    <div
-      className={`
-        relative w-full h-full rounded-2xl overflow-hidden group cursor-pointer
-        transition-all duration-300 ease-out
-        ${isSelected ? 'ring-2 ring-[#d4a574]/50' : ''}
-      `}
-      onClick={onClick}
-      style={{ zIndex: 10 }}
-    >
-      {/* Background image */}
-      <img
-        src={museum.image}
-        alt={museum.name}
-        className={`
-          absolute inset-0 w-full h-full object-cover
-          transition-transform duration-500
-          group-hover:scale-105
-        `}
-      />
-
-      {/* Gradient overlay simple */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: `linear-gradient(to top,
-            rgba(0, 0, 0, 0.85) 0%,
-            rgba(0, 0, 0, 0.4) 40%,
-            transparent 100%)`
-        }}
-      />
-
-      {/* Content - bottom */}
-      <div className={`absolute bottom-0 left-0 right-0 p-5 ${size === 'large' ? 'sm:p-6' : ''}`}>
-        {/* Museum name */}
-        <h3
-          className={`
-            font-semibold text-white leading-tight mb-2
-            ${size === 'large' ? 'text-xl sm:text-2xl' : 'text-lg'}
-          `}
-        >
-          {museum.name}
-        </h3>
-
-        {/* Distance simple */}
-        <div className="flex items-center gap-2 text-white/70 text-sm">
-          <DistanceIcon className="w-4 h-4" />
-          <span>{distanceInfo?.text || museum.location}</span>
+            {/* Visuel */}
+            <div className="animate-on-scroll opacity-0 translate-x-[50px] transition-all duration-1000 delay-200 ease-out relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0c0c0c] via-transparent to-transparent z-10 w-1/3" />
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { title: 'Monet - Nymphéas', place: 'Musée de l\'Orangerie', color: 'from-blue-500/20 to-cyan-500/20', end: '15 Mars' },
+                  { title: 'Picasso Bleu et Rose', place: 'Musée d\'Orsay', color: 'from-pink-500/20 to-rose-500/20', end: '28 Fév' },
+                  { title: 'Van Gogh Immersif', place: 'Atelier des Lumières', color: 'from-yellow-500/20 to-orange-500/20', end: '1 Avril' },
+                  { title: 'Égypte des Pharaons', place: 'Institut du Monde Arabe', color: 'from-amber-500/20 to-yellow-500/20', end: '10 Mars' },
+                ].map((expo, i) => (
+                  <div key={i} className={`p-4 rounded-xl bg-gradient-to-br ${expo.color} border border-white/[0.08] hover:scale-105 transition-transform cursor-pointer`}>
+                    <span className="px-2 py-1 bg-[#c9a962]/20 text-[#c9a962] text-[10px] rounded-full mb-3 inline-block">
+                      ÉPHÉMÈRE
+                    </span>
+                    <h4 className="font-medium text-sm mb-1">{expo.title}</h4>
+                    <p className="text-white/50 text-xs mb-2">{expo.place}</p>
+                    <p className="text-[#c9a962] text-xs">Jusqu'au {expo.end}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        {/* CTA Button - only for large card */}
-        {showCTA && (
+      {/* Section 04 - Guides (inversée) */}
+      <section id="guides" className="py-32 relative">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            {/* Visuel (à gauche) */}
+            <div className="animate-on-scroll opacity-0 translate-x-[-50px] transition-all duration-1000 delay-200 ease-out relative order-2 md:order-1">
+              <div className="absolute inset-0 bg-gradient-to-l from-[#0c0c0c] via-transparent to-transparent z-10 w-1/3 right-0 left-auto" />
+              <div className="bg-[#1a1a1a] rounded-2xl overflow-hidden border border-white/[0.08]">
+                <div className="h-40 bg-gradient-to-br from-[#c9a962]/30 to-[#c9a962]/10 relative">
+                  <div className="absolute inset-0 flex items-center justify-center text-6xl">🎨</div>
+                </div>
+                <div className="p-6">
+                  <span className="px-2 py-1 bg-[#c9a962]/20 text-[#c9a962] text-xs rounded-full">PARCOURS THÉMATIQUE</span>
+                  <h4 className="font-serif text-xl mt-3 mb-2">L'Impressionnisme à Paris</h4>
+                  <p className="text-white/50 text-sm mb-4">Un voyage à travers les chefs-d'œuvre de Monet, Renoir et Degas</p>
+                  <div className="flex items-center gap-4 text-sm text-white/60 mb-4">
+                    <span>5 lieux</span>
+                    <span>•</span>
+                    <span>2 jours</span>
+                    <span>•</span>
+                    <span className="flex items-center gap-1"><Star className="w-3 h-3 text-[#c9a962]" /> 4.9</span>
+                  </div>
+                  <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+                    <div className="h-full w-3/5 bg-[#c9a962] rounded-full" />
+                  </div>
+                  <p className="text-xs text-white/40 mt-2">3/5 lieux visités</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Contenu texte (à droite) */}
+            <div className="animate-on-scroll opacity-0 translate-x-[50px] transition-all duration-1000 ease-out order-1 md:order-2 relative">
+              <span className="text-[120px] font-serif font-light text-white/[0.03] absolute -top-10 -right-4">04</span>
+              <span className="text-[#c9a962] text-xs tracking-[0.3em] uppercase mb-4 block">Guides Culturels</span>
+              <h2 className="font-serif text-4xl md:text-5xl font-light mb-6 leading-tight">
+                Des parcours<br />
+                <em className="text-[#c9a962]">sur mesure</em>
+              </h2>
+              <p className="text-white/55 text-lg mb-8 leading-relaxed">
+                Explorez des itinéraires thématiques créés par des passionnés et des experts.
+                De l'Impressionnisme à l'Art Contemporain, trouvez le parcours fait pour vous.
+              </p>
+              <ul className="space-y-4 mb-10">
+                <li className="flex items-center gap-4 text-white/70">
+                  <div className="w-10 h-10 rounded-full bg-[#c9a962]/10 flex items-center justify-center">
+                    <MapPin className="w-5 h-5 text-[#c9a962]" />
+                  </div>
+                  Parcours thématiques
+                </li>
+                <li className="flex items-center gap-4 text-white/70">
+                  <div className="w-10 h-10 rounded-full bg-[#c9a962]/10 flex items-center justify-center">
+                    <Headphones className="w-5 h-5 text-[#c9a962]" />
+                  </div>
+                  Audio-guides intégrés
+                </li>
+                <li className="flex items-center gap-4 text-white/70">
+                  <div className="w-10 h-10 rounded-full bg-[#c9a962]/10 flex items-center justify-center">
+                    <Award className="w-5 h-5 text-[#c9a962]" />
+                  </div>
+                  Badges de progression
+                </li>
+              </ul>
+              <button
+                onClick={() => navigate('/guide')}
+                className="flex items-center gap-4 text-[#c9a962] group"
+              >
+                <span className="w-12 h-px bg-[#c9a962] group-hover:w-16 transition-all" />
+                Découvrir les guides
+                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section CTA finale */}
+      <section className="py-32 relative">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#c9a962]/10 rounded-full blur-3xl" />
+        </div>
+        <div className="max-w-3xl mx-auto px-6 text-center relative z-10">
+          <h2 className="font-serif text-4xl md:text-6xl font-light mb-6">
+            Prêt à explorer<br />
+            <em className="text-[#c9a962]">la culture ?</em>
+          </h2>
+          <p className="text-white/55 text-lg mb-10">
+            Rejoignez des milliers de passionnés qui découvrent chaque jour
+            de nouveaux trésors culturels près de chez eux.
+          </p>
           <button
-            className="
-              mt-4 w-full py-3
-              bg-[#d4a574] hover:bg-[#c49464]
-              text-[#243350] font-semibold
-              rounded-lg
-              transition-colors
-            "
+            onClick={() => navigate('/explore')}
+            className="px-10 py-5 bg-[#c9a962] text-[#0c0c0c] font-medium text-lg rounded-full hover:bg-[#d4b370] transition-all hover:scale-105 shadow-xl shadow-[#c9a962]/20"
           >
-            Voir ce lieu
+            Commencer gratuitement
           </button>
-        )}
-      </div>
-    </div>
-  );
-};
+        </div>
+      </section>
 
-/**
- * Exhibition Card Component with flip effect - LARGER cards with 3D carousel support
- * Front: Image, title, favorite heart
- * Back: Exhibition details
- */
-const ExhibitionCard = ({
-  exhibition,
-  isFlipped,
-  onFlip,
-  isFavorite,
-  onFavoriteClick,
-  isActive,
-  onSelect,
-  onNavigate
-}) => {
-  return (
-    <div
-      className={`
-        w-[380px] h-[520px] cursor-pointer
-        transition-all duration-500 ease-out
-        ${isActive ? 'shadow-2xl' : ''}
-      `}
-      style={{ perspective: '1200px' }}
-      onClick={onSelect}
-    >
-      <div
-        className={`
-          relative w-full h-full transition-transform duration-700 ease-out
-          ${isFlipped ? '[transform:rotateY(180deg)]' : ''}
-        `}
-        style={{ transformStyle: 'preserve-3d' }}
-      >
-        {/* Front of card */}
-        <div
-          className={`
-            absolute inset-0 rounded-3xl overflow-hidden
-            transition-all duration-500
-            ${isActive
-              ? 'shadow-2xl'
-              : 'shadow-xl'
-            }
-          `}
-          style={{ backfaceVisibility: 'hidden' }}
-          onClick={(e) => {
-            e.stopPropagation();
-            if (isActive) onFlip();
-          }}
-        >
-          {/* Background image with zoom effect on active */}
-          <img
-            src={exhibition.image}
-            alt={exhibition.name}
-            className={`
-              absolute inset-0 w-full h-full object-cover
-              transition-transform duration-700 ease-out
-              ${isActive ? 'scale-105' : ''}
-            `}
-          />
-
-          {/* Gradient overlay */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background: `linear-gradient(to top,
-                rgba(0, 0, 0, 0.95) 0%,
-                rgba(0, 0, 0, 0.7) 30%,
-                rgba(0, 0, 0, 0.3) 60%,
-                rgba(0, 0, 0, 0.1) 80%,
-                transparent 100%)`
-            }}
-          />
-
-          {/* Favorite button - top right */}
-          <button
-            onClick={onFavoriteClick}
-            className={`
-              absolute top-5 right-5 z-10 p-3.5 rounded-full
-              backdrop-blur-md shadow-lg
-              transition-all duration-300
-              ${isFavorite
-                ? 'bg-red-500/90 text-white scale-110'
-                : 'bg-white/20 text-white hover:bg-white/30 hover:scale-110'
-              }
-            `}
-          >
-            <Heart className={`w-6 h-6 ${isFavorite ? 'fill-current' : ''}`} />
-          </button>
-
-          {/* Éphémère badge - top left */}
-          <div className="absolute top-5 left-5">
-            <span className="px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wide bg-red-500/90 text-white backdrop-blur-md shadow-lg flex items-center gap-2">
-              <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
-              Éphémère
-            </span>
-          </div>
-
-          {/* Content - bottom */}
-          <div className="absolute bottom-0 left-0 right-0 p-6">
-            <h3 className="font-bold text-white text-2xl leading-tight mb-3 line-clamp-2">
-              {exhibition.name}
-            </h3>
-            <div className="flex items-center gap-2 text-white/80 text-base">
-              <MapPin className="w-5 h-5" />
-              <span className="truncate">{exhibition.location}</span>
+      {/* Footer */}
+      <footer className="py-12 border-t border-white/[0.08]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="text-[#c9a962] text-xl tracking-[0.3em] font-light">MUZEA</div>
+            <div className="flex items-center gap-8 text-white/40 text-sm">
+              <a href="#" className="hover:text-[#c9a962] transition-colors">À propos</a>
+              <a href="#" className="hover:text-[#c9a962] transition-colors">Contact</a>
+              <a href="#" className="hover:text-[#c9a962] transition-colors">Mentions légales</a>
+              <a href="#" className="hover:text-[#c9a962] transition-colors">CGU</a>
             </div>
-            <p className="text-[#d4a574] text-base mt-3 font-semibold">
-              {exhibition.period}
-            </p>
-
+            <p className="text-white/30 text-sm">© 2026 Muzea. Tous droits réservés.</p>
           </div>
         </div>
+      </footer>
 
-        {/* Back of card */}
-        <div
-          className={`
-            absolute inset-0 rounded-3xl overflow-hidden
-            border border-[#d4a574]/20
-            ${isActive ? 'shadow-2xl' : 'shadow-xl'}
-          `}
-          style={{
-            backfaceVisibility: 'hidden',
-            transform: 'rotateY(180deg)',
-            background: 'linear-gradient(135deg, #1e1e38 0%, #151528 40%, #1a2640 100%)'
-          }}
-          onClick={(e) => {
-            e.stopPropagation();
-            if (isActive) onFlip();
-          }}
-        >
+      {/* CSS pour les animations */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Inter:wght@300;400;500&display=swap');
 
-          {/* Header with image */}
-          <div className="relative h-36 overflow-hidden">
-            <img
-              src={exhibition.image}
-              alt={exhibition.name}
-              className="w-full h-full object-cover opacity-60"
-            />
-            {/* Enhanced gradient overlay for smoother transition */}
-            <div
-              className="absolute inset-0"
-              style={{
-                background: `linear-gradient(to bottom,
-                  rgba(30, 30, 56, 0.3) 0%,
-                  rgba(21, 21, 40, 0.6) 50%,
-                  rgba(15, 15, 26, 0.95) 100%
-                )`
-              }}
-            />
+        .font-serif {
+          font-family: 'Cormorant Garamond', serif;
+        }
 
-            {/* Back badge */}
-            <div className="absolute top-4 left-4">
-              <span className="px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide bg-[#d4a574]/90 text-[#243350] backdrop-blur-md shadow-lg">
-                Détails
-              </span>
-            </div>
-          </div>
+        .animate-on-scroll {
+          transition: opacity 1s ease-out, transform 1s ease-out;
+        }
 
-          {/* Content */}
-          <div className="p-5 pt-0 -mt-4 relative pb-16">
-            <h3 className="font-bold text-[#d4a574] text-lg leading-tight mb-2">
-              {exhibition.name}
-            </h3>
-
-            <p className="text-gray-300 text-xs mb-3 line-clamp-2 leading-relaxed">
-              {exhibition.description}
-            </p>
-
-            {/* Info grid */}
-            <div className="space-y-2 text-sm">
-              <div className="flex items-center gap-2 text-gray-300">
-                <div className="w-8 h-8 rounded-lg bg-[#d4a574]/20 flex items-center justify-center">
-                  <MapPin className="w-4 h-4 text-[#d4a574]" />
-                </div>
-                <span className="truncate text-xs">{exhibition.location}</span>
-              </div>
-
-              <div className="flex items-center gap-2 text-gray-300">
-                <div className="w-8 h-8 rounded-lg bg-[#d4a574]/20 flex items-center justify-center">
-                  <Calendar className="w-4 h-4 text-[#d4a574]" />
-                </div>
-                <span className="text-xs">{exhibition.period}</span>
-              </div>
-
-              <div className="flex items-center gap-2 text-gray-300">
-                <div className="w-8 h-8 rounded-lg bg-[#d4a574]/20 flex items-center justify-center">
-                  <Clock className="w-4 h-4 text-[#d4a574]" />
-                </div>
-                <span className="text-xs">{exhibition.hours}</span>
-              </div>
-
-              <div className="flex items-center gap-2 text-gray-300">
-                <div className="w-8 h-8 rounded-lg bg-[#d4a574]/20 flex items-center justify-center">
-                  <Euro className="w-4 h-4 text-[#d4a574]" />
-                </div>
-                <span className="font-bold text-[#d4a574]">{exhibition.price}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Navigation button */}
-          <div className="absolute bottom-6 left-6 right-6">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onNavigate();
-              }}
-              className="w-full py-3 bg-[#d4a574] hover:bg-[#c49464] text-[#243350] font-bold rounded-xl transition-all duration-300 hover:scale-[1.02]"
-            >
-              Explorer
-            </button>
-          </div>
-        </div>
-      </div>
+        .animate-on-scroll.visible {
+          opacity: 1 !important;
+          transform: translateX(0) !important;
+        }
+      `}</style>
     </div>
   );
 };

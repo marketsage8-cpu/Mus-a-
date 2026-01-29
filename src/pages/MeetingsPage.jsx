@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Users, MessageCircle, Heart, MapPin, Calendar, Clock, Star, ChevronRight, Search, Coffee, Sparkles } from 'lucide-react';
+import { Users, MessageCircle, Heart, Clock, Star, Search, Coffee, Sparkles } from 'lucide-react';
 
 /**
  * Données fictives des utilisateurs
@@ -214,54 +214,41 @@ const MeetingsPage = () => {
           </div>
 
           {/* Barre de recherche */}
-          <div className="animate-on-scroll opacity-0 translate-y-[30px] max-w-4xl mx-auto mb-16" style={{ transitionDelay: '200ms' }}>
-            <div className="bg-white/[0.03] border border-white/[0.1] rounded-2xl p-6 md:p-8">
-              <div className="grid md:grid-cols-2 gap-4 mb-6">
-                {/* Sélection du lieu */}
-                <div>
-                  <label className="block text-white/60 text-sm mb-2">Lieu culturel</label>
-                  <div className="relative">
-                    <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#e07a5f]" />
-                    <select className="w-full bg-white/[0.05] border border-white/[0.15] rounded-xl pl-12 pr-4 py-4 text-white appearance-none cursor-pointer hover:border-[#e07a5f]/50 focus:border-[#e07a5f] focus:outline-none transition-all">
-                      <option value="">Choisir un lieu...</option>
-                      <option value="louvre">Musée du Louvre</option>
-                      <option value="orsay">Musée d'Orsay</option>
-                      <option value="orangerie">Musée de l'Orangerie</option>
-                      <option value="pompidou">Centre Pompidou</option>
-                      <option value="versailles">Château de Versailles</option>
-                      <option value="quai-branly">Musée du Quai Branly</option>
-                    </select>
-                    <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 rotate-90" />
-                  </div>
+          <div id="search-section" className="animate-on-scroll opacity-0 translate-y-[30px] max-w-2xl mx-auto mb-16" style={{ transitionDelay: '200ms' }}>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              document.getElementById('communaute').scrollIntoView({ behavior: 'smooth' });
+            }} className="relative">
+              <div className="flex items-center bg-white/[0.05] border border-white/[0.15] rounded-full overflow-hidden hover:border-[#e07a5f]/50 transition-all focus-within:border-[#e07a5f] focus-within:bg-white/[0.08]">
+                <div className="pl-5">
+                  <Search className="w-5 h-5 text-white/40" />
                 </div>
-
-                {/* Sélection des intérêts */}
-                <div>
-                  <label className="block text-white/60 text-sm mb-2">Centre d'intérêt</label>
-                  <div className="relative">
-                    <Heart className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#e07a5f]" />
-                    <select className="w-full bg-white/[0.05] border border-white/[0.15] rounded-xl pl-12 pr-4 py-4 text-white appearance-none cursor-pointer hover:border-[#e07a5f]/50 focus:border-[#e07a5f] focus:outline-none transition-all">
-                      <option value="">Tous les intérêts</option>
-                      <option value="impressionnisme">Impressionnisme</option>
-                      <option value="art-moderne">Art moderne</option>
-                      <option value="art-contemporain">Art contemporain</option>
-                      <option value="histoire">Histoire</option>
-                      <option value="architecture">Architecture</option>
-                      <option value="photographie">Photographie</option>
-                    </select>
-                    <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 rotate-90" />
-                  </div>
-                </div>
+                <input
+                  type="text"
+                  name="search"
+                  placeholder="Rechercher un musée, château, exposition..."
+                  className="flex-1 bg-transparent px-4 py-4 text-white placeholder-white/40 outline-none text-base"
+                />
+                <button
+                  type="submit"
+                  className="px-6 py-3 m-1 bg-[#e07a5f] text-[#0c0c0c] font-medium rounded-full hover:bg-[#e8968a] transition-all"
+                >
+                  Rechercher
+                </button>
               </div>
+            </form>
 
-              {/* Bouton recherche */}
-              <button
-                onClick={() => document.getElementById('communaute').scrollIntoView({ behavior: 'smooth' })}
-                className="w-full md:w-auto px-8 py-4 bg-[#e07a5f] text-[#0c0c0c] font-medium rounded-full hover:bg-[#e8968a] transition-all hover:scale-105 shadow-lg shadow-[#e07a5f]/20 flex items-center justify-center gap-3"
-              >
-                <Search className="w-5 h-5" />
-                Trouver des passionnés
-              </button>
+            {/* Suggestions */}
+            <div className="flex flex-wrap gap-2 mt-4 justify-center">
+              {['Musée du Louvre', 'Château de Versailles', 'Exposition Picasso', 'Musée d\'Orsay'].map((suggestion) => (
+                <button
+                  key={suggestion}
+                  onClick={() => document.getElementById('communaute').scrollIntoView({ behavior: 'smooth' })}
+                  className="px-3 py-1.5 text-sm bg-white/[0.03] border border-white/[0.1] rounded-full text-white/50 hover:text-white hover:border-[#e07a5f]/50 transition-all"
+                >
+                  {suggestion}
+                </button>
+              ))}
             </div>
           </div>
 

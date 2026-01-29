@@ -279,7 +279,7 @@ const DailyArtPage = () => {
 
   if (!currentArtwork) {
     return (
-      <div className="min-h-screen pt-20 pb-24 flex items-center justify-center" style={{ backgroundColor: '#1e2a42' }}>
+      <div className="min-h-screen pt-20 pb-24 flex items-center justify-center" style={{ backgroundColor: '#0c0c0c' }}>
         <div className="flex items-center gap-3 text-[#e07a5f]">
           <Sparkles className="w-6 h-6 animate-pulse" />
           <span>Chargement...</span>
@@ -289,14 +289,14 @@ const DailyArtPage = () => {
   }
 
   return (
-    <div className="min-h-screen pt-20 pb-24 md:pb-8" style={{ backgroundColor: '#1e2a42' }}>
+    <div className="min-h-screen pt-20 pb-24 md:pb-8" style={{ backgroundColor: '#0c0c0c' }}>
       {/* Fond avec blur de l'image */}
       <div className="fixed inset-0 pointer-events-none">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-10 blur-3xl scale-110"
           style={{ backgroundImage: `url(${currentArtwork.image})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1e2a42] via-[#1e2a42]/90 to-[#1e2a42]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0c0c] via-[#0c0c0c]/90 to-[#0c0c0c]" />
       </div>
 
       {/* Contenu principal */}
@@ -497,7 +497,7 @@ const DailyArtPage = () => {
               })}
             </div>
             {/* Indicateur de scroll */}
-            <div className="absolute right-0 top-0 bottom-4 w-16 bg-gradient-to-l from-[#1e2a42] to-transparent pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-4 w-16 bg-gradient-to-l from-[#0c0c0c] to-transparent pointer-events-none" />
           </div>
         </div>
 

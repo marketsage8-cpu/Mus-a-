@@ -274,7 +274,7 @@ const MeetingsPage = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20 pb-24 md:pb-8" style={{ backgroundColor: '#1e2a42' }}>
+    <div className="min-h-screen pt-20 pb-24 md:pb-8" style={{ backgroundColor: '#0c0c0c' }}>
       {/* Hero Header */}
       <div className="relative">
         <div
@@ -283,7 +283,7 @@ const MeetingsPage = () => {
             backgroundImage: "url('https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=1920&h=600&fit=crop')"
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1e2a42]/50 via-[#1e2a42]/80 to-[#1e2a42]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0c0c]/50 via-[#0c0c0c]/80 to-[#0c0c0c]" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 py-16">
           <div className="text-center mb-10">

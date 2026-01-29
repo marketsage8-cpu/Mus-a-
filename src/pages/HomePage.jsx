@@ -128,7 +128,7 @@ const HomePage = () => {
         <div
           className="absolute top-0 right-0 w-[55%] h-full bg-cover bg-center hidden md:block"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1400&q=80')`
+            backgroundImage: `url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1400&q=80')`
           }}
         />
         {/* Dégradé de transition */}
@@ -201,7 +201,7 @@ const HomePage = () => {
         <div
           className="absolute top-0 left-0 w-[55%] h-full bg-cover bg-center hidden md:block"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1400&q=80')`
+            backgroundImage: `url('https://images.unsplash.com/photo-1616499452581-cc7f8e3dd3c9?w=1400&q=80')`
           }}
         />
         {/* Dégradé de transition - vers la droite */}
@@ -464,7 +464,7 @@ const HomePage = () => {
         <div
           className="absolute top-0 right-0 w-[55%] h-full bg-cover bg-center hidden md:block"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1556656793-08538906a9f8?w=1400&q=80')`
+            backgroundImage: `url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1400&q=80')`
           }}
         />
         {/* Dégradé de transition */}

@@ -50,7 +50,7 @@ const SelectableTag = ({ label, isSelected, onClick, isPrimary = false }) => (
       relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300
       ${isSelected
         ? isPrimary
-          ? 'bg-[#e07a5f] text-[#1e2a42] shadow-lg shadow-[#e07a5f]/30'
+          ? 'bg-[#e07a5f] text-[#0c0c0c] shadow-lg shadow-[#e07a5f]/30'
           : 'bg-[#e07a5f]/20 border border-[#e07a5f]/50 text-[#e07a5f]'
         : 'bg-white/5 border border-white/10 text-gray-400 hover:border-[#e07a5f]/30'
       }
@@ -61,7 +61,7 @@ const SelectableTag = ({ label, isSelected, onClick, isPrimary = false }) => (
       <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-[#e07a5f] rounded-full" />
     )}
     {isPrimary && (
-      <span className="absolute -top-1 -right-1 px-1.5 py-0.5 bg-[#e07a5f] text-[#1e2a42] text-[10px] font-bold rounded-full">
+      <span className="absolute -top-1 -right-1 px-1.5 py-0.5 bg-[#e07a5f] text-[#0c0c0c] text-[10px] font-bold rounded-full">
         1
       </span>
     )}
@@ -240,14 +240,14 @@ const ProfilePage = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-20 pb-24 md:pb-8" style={{ backgroundColor: '#1e2a42' }}>
+    <div className="min-h-screen pt-20 pb-24 md:pb-8" style={{ backgroundColor: '#0c0c0c' }}>
       {/* Fond avec blur de l'image de couverture */}
       <div className="fixed inset-0 pointer-events-none">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-10 blur-3xl scale-110"
           style={{ backgroundImage: `url(${coverImage})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1e2a42] via-[#1e2a42]/90 to-[#1e2a42]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0c0c] via-[#0c0c0c]/90 to-[#0c0c0c]" />
       </div>
 
       {/* Contenu principal */}
@@ -271,7 +271,7 @@ const ProfilePage = () => {
               alt="Couverture"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1e2a42] via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-transparent to-transparent" />
             <button
               onClick={() => coverInputRef.current?.click()}
               className="absolute top-3 right-3 p-2 bg-black/30 backdrop-blur-sm rounded-full text-white hover:bg-black/50 transition-all"
@@ -292,12 +292,12 @@ const ProfilePage = () => {
             <div className="flex flex-col sm:flex-row items-center sm:items-end gap-4">
               {/* Avatar */}
               <div className="relative group">
-                <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-[#1e2a42] shadow-xl bg-[#e07a5f]">
+                <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-[#0c0c0c] shadow-xl bg-[#e07a5f]">
                   {avatarImage ? (
                     <img src={avatarImage} alt="Avatar" className="w-full h-full object-cover" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                      <span className="text-3xl font-bold text-[#1e2a42]">
+                      <span className="text-3xl font-bold text-[#0c0c0c]">
                         {userData.name.charAt(0)}
                       </span>
                     </div>
@@ -305,7 +305,7 @@ const ProfilePage = () => {
                 </div>
                 <button
                   onClick={() => avatarInputRef.current?.click()}
-                  className="absolute -bottom-1 -right-1 p-2 bg-[#e07a5f] rounded-full text-[#1e2a42] hover:bg-[#e8968a] transition-all shadow-lg"
+                  className="absolute -bottom-1 -right-1 p-2 bg-[#e07a5f] rounded-full text-[#0c0c0c] hover:bg-[#e8968a] transition-all shadow-lg"
                 >
                   <Camera className="w-3 h-3" />
                 </button>
@@ -356,7 +356,7 @@ const ProfilePage = () => {
                   flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm
                   transition-all duration-300
                   ${isActive
-                    ? 'bg-[#e07a5f] text-[#1e2a42]'
+                    ? 'bg-[#e07a5f] text-[#0c0c0c]'
                     : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white border border-white/10'
                   }
                 `}
@@ -536,7 +536,7 @@ const ProfilePage = () => {
             {/* Bouton CTA */}
             <Link
               to="/events"
-              className="block w-full py-4 bg-[#e07a5f] hover:bg-[#e8968a] text-[#1e2a42] rounded-xl font-semibold text-center transition-all shadow-lg shadow-[#e07a5f]/20"
+              className="block w-full py-4 bg-[#e07a5f] hover:bg-[#e8968a] text-[#0c0c0c] rounded-xl font-semibold text-center transition-all shadow-lg shadow-[#e07a5f]/20"
             >
               <span className="flex items-center justify-center gap-2">
                 <Sparkles className="w-5 h-5" />
@@ -608,7 +608,7 @@ const ProfilePage = () => {
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link
                   to="/favoris"
-                  className="px-6 py-3 bg-[#e07a5f] hover:bg-[#e8968a] text-[#1e2a42] rounded-xl font-semibold transition-all shadow-lg shadow-[#e07a5f]/20 flex items-center justify-center gap-2"
+                  className="px-6 py-3 bg-[#e07a5f] hover:bg-[#e8968a] text-[#0c0c0c] rounded-xl font-semibold transition-all shadow-lg shadow-[#e07a5f]/20 flex items-center justify-center gap-2"
                 >
                   <Heart className="w-5 h-5" />
                   Voir mes favoris

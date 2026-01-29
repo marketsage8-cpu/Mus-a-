@@ -32,12 +32,42 @@ const GENERIC_PATTERNS = [
   /^Musée régional de /i,
   // "Musée municipal de X"
   /^Musée municipal de /i,
-  // "Musée d'Art moderne de X" (pas le vrai à Paris)
-  /^Musée d'Art moderne de (?!Paris$)/i,
-  // "Musée d'Histoire naturelle de X"
-  /^Musée d'Histoire naturelle de /i,
+  // "Musée d'Art moderne de X" (sauf Paris)
+  /^Musée d'Art moderne de (?!Paris)/i,
+  // "Musée d'Histoire naturelle de X" (sauf Paris)
+  /^Musée d'Histoire naturelle de (?!Paris)/i,
   // "Musée du Patrimoine de X"
   /^Musée du Patrimoine de /i,
+  // "Musée archéologique de X" (sauf vrais connus)
+  /^Musée archéologique de (?!Saint-Germain|Dijon|Strasbourg|Nîmes|Marseille|Lyon|Grenoble)/i,
+  // "Musée ethnographique de X"
+  /^Musée ethnographique de /i,
+  // "Musée d'Art et d'Histoire de X" (sauf vrais connus)
+  /^Musée d'Art et d'Histoire de (?!Saint-Denis|Genève|Cholet|Cognac|Narbonne|Rochefort)/i,
+  // "Écomusée de X" (sauf vrais connus)
+  /^Écomusée de (?!Alsace|Grande Lande|Marquèze|Santon|Creusot)/i,
+  // "Musée des Arts décoratifs de X" - SEULS Paris, Lyon, Bordeaux, Strasbourg ont de vrais MAD
+  /^Musée des Arts décoratifs de (?!(Paris|Lyon|Bordeaux|Strasbourg)\b)/i,
+  // "Musée des Beaux-Arts de X" - gardons les vrais
+  /^Musée des Beaux-Arts de (?!Paris|Lyon|Bordeaux|Nantes|Marseille|Lille|Rouen|Rennes|Dijon|Nancy|Tours|Orléans|Caen|Reims|Angers|Valenciennes|Chartres|Nice|Strasbourg|Quimper|Arras|Agen|Pau|Limoges|Carcassonne|Chambéry|Cambrai)/i,
+  // "Musée de la Guerre de X" - très générique
+  /^Musée de la Guerre de /i,
+  // "Musée de la Musique de X" - sauf Cité de la Musique Paris
+  /^Musée de la Musique de /i,
+  // "Musée de la Marine de X" (sauf Paris, Brest, Rochefort, Toulon)
+  /^Musée de la Marine de (?!Paris|Brest|Rochefort|Toulon)/i,
+  // "Musée du Textile de X"
+  /^Musée du Textile de /i,
+  // "Musée de la Préhistoire de X" (sauf vrais)
+  /^Musée de la Préhistoire de (?!Eyzies|Tautavel|Carnac|Nemours)/i,
+  // "Musée de la Résistance de X" (sauf vrais)
+  /^Musée de la Résistance de (?!Lyon|Grenoble|Besançon|Champigny|Limoges)/i,
+  // "Musée de la Céramique de X" (sauf Sèvres, Rouen, Vallauris)
+  /^Musée de la Céramique de (?!Sèvres|Rouen|Vallauris)/i,
+  // "Musée de la Ville de X"
+  /^Musée de la Ville de /i,
+  // "Musée de la Photographie de X" (sauf Nice)
+  /^Musée de la Photographie de (?!Nice)/i,
 ];
 
 // Thèmes génériques utilisés dans les noms fictifs
@@ -205,24 +235,25 @@ function validateMuseum(museum) {
     recommendation: 'KEEP'
   };
 
-  // 1. Musée réel connu -> VALIDE
-  if (isKnownRealMuseum(museum.name)) {
+  // 1. D'ABORD vérifier les patterns génériques (priorité sur la liste de référence)
+  // Car "Musée des Arts décoratifs de Nice" matche partiellement avec le vrai MAD de Paris
+  if (isGenericPattern(museum.name)) {
+    validation.flags.push('GENERIC_PATTERN');
+    validation.confidence -= 0.5;  // Plus sévère
+  }
+
+  // 2. Seulement si pas de pattern générique, vérifier si c'est un musée réel connu
+  if (!validation.flags.includes('GENERIC_PATTERN') && isKnownRealMuseum(museum.name)) {
     validation.flags.push('KNOWN_REAL_MUSEUM');
     validation.confidence = 1.0;
     return validation;
   }
 
-  // 2. Source vérifiée -> VALIDE
+  // 3. Source vérifiée -> VALIDE (même avec pattern générique)
   if (hasVerifiedSource(museum)) {
     validation.flags.push('VERIFIED_SOURCE');
-    validation.confidence = 0.9;
+    validation.confidence = Math.max(validation.confidence, 0.9);
     return validation;
-  }
-
-  // 3. Pattern générique -> SUSPECT
-  if (isGenericPattern(museum.name)) {
-    validation.flags.push('GENERIC_PATTERN');
-    validation.confidence -= 0.4;
   }
 
   // 4. Incohérence nom/description -> SUSPECT

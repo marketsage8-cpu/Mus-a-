@@ -1,0 +1,2739 @@
+{
+  "deletedAt": "2026-01-29T15:48:28.539Z",
+  "count": 126,
+  "museums": [
+    {
+      "id": 34,
+      "name": "Musée des Arts décoratifs de Meaux",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en art contemporain, situé à Meaux.",
+      "location": "Meaux, Île-de-France",
+      "rating": 4.9,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Art contemporain",
+      "coordinates": {
+        "lat": 48.96956,
+        "lng": 2.87024
+      },
+      "highlights": [
+        "Art contemporain"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 63,
+      "name": "Musée des Arts décoratifs de Vincennes",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en histoire locale, situé à Vincennes.",
+      "location": "Vincennes, Île-de-France",
+      "rating": 4.1,
+      "price": "7€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Histoire locale",
+      "coordinates": {
+        "lat": 48.83911,
+        "lng": 2.44059
+      },
+      "highlights": [
+        "Histoire locale"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 105,
+      "name": "Musée des Arts décoratifs de Malmaison",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en photographie, situé à Malmaison.",
+      "location": "Malmaison, Île-de-France",
+      "rating": 4.7,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Photographie",
+      "coordinates": {
+        "lat": 48.86927,
+        "lng": 2.17614
+      },
+      "highlights": [
+        "Photographie"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 125,
+      "name": "Musée des Arts décoratifs de Nice",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en marine, navigation, situé à Nice.",
+      "location": "Nice, Provence-Alpes-Côte d'Azur",
+      "rating": 4.8,
+      "price": "9€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Marine",
+      "coordinates": {
+        "lat": 43.71433,
+        "lng": 7.25346
+      },
+      "highlights": [
+        "Marine",
+        "Navigation"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 154,
+      "name": "Musée des Arts décoratifs de Arles",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en beaux-arts, sculpture, situé à Arles.",
+      "location": "Arles, Provence-Alpes-Côte d'Azur",
+      "rating": 4.3,
+      "price": "10€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Beaux-Arts",
+      "coordinates": {
+        "lat": 43.66725,
+        "lng": 4.62293
+      },
+      "highlights": [
+        "Beaux-Arts",
+        "Sculpture"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 200,
+      "name": "Musée des Arts décoratifs de Orange",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en histoire locale, situé à Orange.",
+      "location": "Orange, Provence-Alpes-Côte d'Azur",
+      "rating": 4.1,
+      "price": "15€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Histoire locale",
+      "coordinates": {
+        "lat": 44.14733,
+        "lng": 4.80256
+      },
+      "highlights": [
+        "Histoire locale"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 209,
+      "name": "Musée des Arts décoratifs de Saint-Rémy-de-Provence",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en céramique, faïence, situé à Saint-Rémy-de-Provence.",
+      "location": "Saint-Rémy-de-Provence, Provence-Alpes-Côte d'Azur",
+      "rating": 4,
+      "price": "11€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Céramique",
+      "coordinates": {
+        "lat": 43.7931,
+        "lng": 4.82454
+      },
+      "highlights": [
+        "Céramique",
+        "Faïence"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 231,
+      "name": "Musée des Arts décoratifs de Gap",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en industrie, techniques, situé à Gap.",
+      "location": "Gap, Provence-Alpes-Côte d'Azur",
+      "rating": 4.1,
+      "price": "14€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Industrie",
+      "coordinates": {
+        "lat": 44.55215,
+        "lng": 6.07305
+      },
+      "highlights": [
+        "Industrie",
+        "Techniques"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 290,
+      "name": "Musée des Arts décoratifs de Clermont-Ferrand",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en industrie, techniques, situé à Clermont-Ferrand.",
+      "location": "Clermont-Ferrand, Auvergne-Rhône-Alpes",
+      "rating": 4.4,
+      "price": "15€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Industrie",
+      "coordinates": {
+        "lat": 45.78007,
+        "lng": 3.09013
+      },
+      "highlights": [
+        "Industrie",
+        "Techniques"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 315,
+      "name": "Musée des Beaux-Arts de Chambéry",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en résistance, déportation, situé à Chambéry.",
+      "location": "Chambéry, Auvergne-Rhône-Alpes",
+      "rating": 4.6,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Résistance",
+      "coordinates": {
+        "lat": 45.56423,
+        "lng": 5.91173
+      },
+      "highlights": [
+        "Résistance",
+        "Déportation"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 333,
+      "name": "Musée des Arts décoratifs de Le Puy-en-Velay",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en photographie, situé à Le Puy-en-Velay.",
+      "location": "Le Puy-en-Velay, Auvergne-Rhône-Alpes",
+      "rating": 4.3,
+      "price": "10€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Photographie",
+      "coordinates": {
+        "lat": 45.04882,
+        "lng": 3.8766
+      },
+      "highlights": [
+        "Photographie"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 388,
+      "name": "Musée des Arts décoratifs de Limoges",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en ethnologie, arts populaires, situé à Limoges.",
+      "location": "Limoges, Nouvelle-Aquitaine",
+      "rating": 4.8,
+      "price": "15€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Ethnologie",
+      "coordinates": {
+        "lat": 45.83396,
+        "lng": 1.26706
+      },
+      "highlights": [
+        "Ethnologie",
+        "Arts populaires"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 410,
+      "name": "Musée des Arts décoratifs de Pau",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en numismatique, situé à Pau.",
+      "location": "Pau, Nouvelle-Aquitaine",
+      "rating": 4.5,
+      "price": "11€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Numismatique",
+      "coordinates": {
+        "lat": 43.29719,
+        "lng": -0.36116
+      },
+      "highlights": [
+        "Numismatique"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 421,
+      "name": "Musée des Arts décoratifs de Angoulême",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en marine, navigation, situé à Angoulême.",
+      "location": "Angoulême, Nouvelle-Aquitaine",
+      "rating": 4.4,
+      "price": "15€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Marine",
+      "coordinates": {
+        "lat": 45.64133,
+        "lng": 0.15684
+      },
+      "highlights": [
+        "Marine",
+        "Navigation"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 488,
+      "name": "Musée des Arts décoratifs de Rochefort",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en numismatique, situé à Rochefort.",
+      "location": "Rochefort, Nouvelle-Aquitaine",
+      "rating": 4.3,
+      "price": "7€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Numismatique",
+      "coordinates": {
+        "lat": 45.94839,
+        "lng": -0.95916
+      },
+      "highlights": [
+        "Numismatique"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 495,
+      "name": "Musée des Arts décoratifs de Brive-la-Gaillarde",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en arts plastiques, peinture, situé à Brive-la-Gaillarde.",
+      "location": "Brive-la-Gaillarde, Nouvelle-Aquitaine",
+      "rating": 4.3,
+      "price": "7€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Arts plastiques",
+      "coordinates": {
+        "lat": 45.14974,
+        "lng": 1.53716
+      },
+      "highlights": [
+        "Arts plastiques",
+        "Peinture"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 526,
+      "name": "Musée des Arts décoratifs de Nîmes",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en marine, navigation, situé à Nîmes.",
+      "location": "Nîmes, Occitanie",
+      "rating": 4.7,
+      "price": "6€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Marine",
+      "coordinates": {
+        "lat": 43.83983,
+        "lng": 4.35398
+      },
+      "highlights": [
+        "Marine",
+        "Navigation"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 578,
+      "name": "Musée des Arts décoratifs de Auch",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en musique, instruments, situé à Auch.",
+      "location": "Auch, Occitanie",
+      "rating": 4.8,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Musique",
+      "coordinates": {
+        "lat": 43.65342,
+        "lng": 0.57892
+      },
+      "highlights": [
+        "Musique",
+        "Instruments"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 602,
+      "name": "Musée des Arts décoratifs de Mende",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en textile, mode, situé à Mende.",
+      "location": "Mende, Occitanie",
+      "rating": 4.1,
+      "price": "6€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Textile",
+      "coordinates": {
+        "lat": 44.51522,
+        "lng": 3.50848
+      },
+      "highlights": [
+        "Textile",
+        "Mode"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 609,
+      "name": "Musée des Arts décoratifs de Foix",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en céramique, faïence, situé à Foix.",
+      "location": "Foix, Occitanie",
+      "rating": 4.8,
+      "price": "8€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Céramique",
+      "coordinates": {
+        "lat": 42.96935,
+        "lng": 1.60637
+      },
+      "highlights": [
+        "Céramique",
+        "Faïence"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 683,
+      "name": "Musée des Arts décoratifs de Mulhouse",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en art contemporain, situé à Mulhouse.",
+      "location": "Mulhouse, Grand Est",
+      "rating": 4.1,
+      "price": "7€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Art contemporain",
+      "coordinates": {
+        "lat": 47.75722,
+        "lng": 7.32729
+      },
+      "highlights": [
+        "Art contemporain"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 735,
+      "name": "Musée des Arts décoratifs de Sélestat",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en arts plastiques, peinture, situé à Sélestat.",
+      "location": "Sélestat, Grand Est",
+      "rating": 4.7,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Arts plastiques",
+      "coordinates": {
+        "lat": 48.25095,
+        "lng": 7.45293
+      },
+      "highlights": [
+        "Arts plastiques",
+        "Peinture"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 744,
+      "name": "Musée des Arts décoratifs de Haguenau",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en archéologie, antiquités, situé à Haguenau.",
+      "location": "Haguenau, Grand Est",
+      "rating": 4.5,
+      "price": "7€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Archéologie",
+      "coordinates": {
+        "lat": 48.81287,
+        "lng": 7.79808
+      },
+      "highlights": [
+        "Archéologie",
+        "Antiquités"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 754,
+      "name": "Musée des Arts décoratifs de Saverne",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en sciences naturelles, situé à Saverne.",
+      "location": "Saverne, Grand Est",
+      "rating": 4.4,
+      "price": "14€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Sciences naturelles",
+      "coordinates": {
+        "lat": 48.74335,
+        "lng": 7.36658
+      },
+      "highlights": [
+        "Sciences naturelles"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 814,
+      "name": "Musée des Arts décoratifs de Laon",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en ethnologie, arts populaires, situé à Laon.",
+      "location": "Laon, Hauts-de-France",
+      "rating": 4.4,
+      "price": "16€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Ethnologie",
+      "coordinates": {
+        "lat": 49.55978,
+        "lng": 3.61638
+      },
+      "highlights": [
+        "Ethnologie",
+        "Arts populaires"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 843,
+      "name": "Musée des Arts décoratifs de Boulogne-sur-Mer",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en numismatique, situé à Boulogne-sur-Mer.",
+      "location": "Boulogne-sur-Mer, Hauts-de-France",
+      "rating": 4.1,
+      "price": "7€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Numismatique",
+      "coordinates": {
+        "lat": 50.72063,
+        "lng": 1.62239
+      },
+      "highlights": [
+        "Numismatique"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 868,
+      "name": "Musée des Arts décoratifs de Senlis",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en archéologie, antiquités, situé à Senlis.",
+      "location": "Senlis, Hauts-de-France",
+      "rating": 4.2,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Archéologie",
+      "coordinates": {
+        "lat": 49.2069,
+        "lng": 2.58972
+      },
+      "highlights": [
+        "Archéologie",
+        "Antiquités"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 886,
+      "name": "Musée des Arts décoratifs de Chantilly",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en archéologie, antiquités, situé à Chantilly.",
+      "location": "Chantilly, Hauts-de-France",
+      "rating": 4.9,
+      "price": "6€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Archéologie",
+      "coordinates": {
+        "lat": 49.20434,
+        "lng": 2.47738
+      },
+      "highlights": [
+        "Archéologie",
+        "Antiquités"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 896,
+      "name": "Musée des Arts décoratifs de Pierrefonds",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en céramique, faïence, situé à Pierrefonds.",
+      "location": "Pierrefonds, Hauts-de-France",
+      "rating": 4.1,
+      "price": "14€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Céramique",
+      "coordinates": {
+        "lat": 49.35642,
+        "lng": 2.98797
+      },
+      "highlights": [
+        "Céramique",
+        "Faïence"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 904,
+      "name": "Musée des Arts décoratifs de Rennes",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en céramique, faïence, situé à Rennes.",
+      "location": "Rennes, Bretagne",
+      "rating": 4.4,
+      "price": "9€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Céramique",
+      "coordinates": {
+        "lat": 48.11103,
+        "lng": -1.67199
+      },
+      "highlights": [
+        "Céramique",
+        "Faïence"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 970,
+      "name": "Musée des Arts décoratifs de Concarneau",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en préhistoire, paléontologie, situé à Concarneau.",
+      "location": "Concarneau, Bretagne",
+      "rating": 4.1,
+      "price": "8€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Préhistoire",
+      "coordinates": {
+        "lat": 47.86547,
+        "lng": -3.91375
+      },
+      "highlights": [
+        "Préhistoire",
+        "Paléontologie"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 1012,
+      "name": "Musée des Arts décoratifs de Caen",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en photographie, situé à Caen.",
+      "location": "Caen, Normandie",
+      "rating": 4.1,
+      "price": "5€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Photographie",
+      "coordinates": {
+        "lat": 49.18475,
+        "lng": -0.3649
+      },
+      "highlights": [
+        "Photographie"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 1013,
+      "name": "Musée des Beaux-Arts de Caen",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en préhistoire, paléontologie, situé à Caen.",
+      "location": "Caen, Normandie",
+      "rating": 4.3,
+      "price": "5€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Préhistoire",
+      "coordinates": {
+        "lat": 49.17748,
+        "lng": -0.37787
+      },
+      "highlights": [
+        "Préhistoire",
+        "Paléontologie"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 1040,
+      "name": "Musée des Arts décoratifs de Bayeux",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en photographie, situé à Bayeux.",
+      "location": "Bayeux, Normandie",
+      "rating": 4.9,
+      "price": "9€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Photographie",
+      "coordinates": {
+        "lat": 49.27901,
+        "lng": -0.69978
+      },
+      "highlights": [
+        "Photographie"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 1099,
+      "name": "Musée des Arts décoratifs de Falaise",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en arts plastiques, peinture, situé à Falaise.",
+      "location": "Falaise, Normandie",
+      "rating": 4.9,
+      "price": "16€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Arts plastiques",
+      "coordinates": {
+        "lat": 48.90117,
+        "lng": -0.19735
+      },
+      "highlights": [
+        "Arts plastiques",
+        "Peinture"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 1152,
+      "name": "Musée des Arts décoratifs de Saint-Nazaire",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en ethnologie, arts populaires, situé à Saint-Nazaire.",
+      "location": "Saint-Nazaire, Pays de la Loire",
+      "rating": 4.2,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Ethnologie",
+      "coordinates": {
+        "lat": 47.28198,
+        "lng": -2.21702
+      },
+      "highlights": [
+        "Ethnologie",
+        "Arts populaires"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 1160,
+      "name": "Musée des Arts décoratifs de Saumur",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en sciences naturelles, situé à Saumur.",
+      "location": "Saumur, Pays de la Loire",
+      "rating": 4.9,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Sciences naturelles",
+      "coordinates": {
+        "lat": 47.25434,
+        "lng": -0.07399
+      },
+      "highlights": [
+        "Sciences naturelles"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 1256,
+      "name": "Musée des Arts décoratifs de Amboise",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en céramique, faïence, situé à Amboise.",
+      "location": "Amboise, Centre-Val de Loire",
+      "rating": 4.1,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Céramique",
+      "coordinates": {
+        "lat": 47.42011,
+        "lng": 0.97543
+      },
+      "highlights": [
+        "Céramique",
+        "Faïence"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 1292,
+      "name": "Musée des Arts décoratifs de Vendôme",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en arts décoratifs, design, situé à Vendôme.",
+      "location": "Vendôme, Centre-Val de Loire",
+      "rating": 4.9,
+      "price": "16€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Arts décoratifs",
+      "coordinates": {
+        "lat": 47.78446,
+        "lng": 1.06165
+      },
+      "highlights": [
+        "Arts décoratifs",
+        "Design"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 1477,
+      "name": "Musée des Arts décoratifs de Calvi",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en arts décoratifs, design, situé à Calvi.",
+      "location": "Calvi, Corse",
+      "rating": 4.5,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Arts décoratifs",
+      "coordinates": {
+        "lat": 42.56721,
+        "lng": 8.764
+      },
+      "highlights": [
+        "Arts décoratifs",
+        "Design"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 1492,
+      "name": "Musée des Arts décoratifs de Figeac",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en histoire locale, situé à Figeac.",
+      "location": "Figeac, Occitanie",
+      "rating": 4.5,
+      "price": "11€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Histoire locale",
+      "coordinates": {
+        "lat": 44.60566,
+        "lng": 2.03787
+      },
+      "highlights": [
+        "Histoire locale"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 1511,
+      "name": "Musée des Arts décoratifs de Sisteron",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en ethnologie, arts populaires, situé à Sisteron.",
+      "location": "Sisteron, Provence-Alpes-Côte d'Azur",
+      "rating": 4.4,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Ethnologie",
+      "coordinates": {
+        "lat": 44.19361,
+        "lng": 5.95093
+      },
+      "highlights": [
+        "Ethnologie",
+        "Arts populaires"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 1520,
+      "name": "Musée des Arts décoratifs de Les Baux-de-Provence",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en céramique, faïence, situé à Les Baux-de-Provence.",
+      "location": "Les Baux-de-Provence, Provence-Alpes-Côte d'Azur",
+      "rating": 4.2,
+      "price": "17€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Céramique",
+      "coordinates": {
+        "lat": 43.74322,
+        "lng": 4.79186
+      },
+      "highlights": [
+        "Céramique",
+        "Faïence"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 1584,
+      "name": "Musée des Arts décoratifs de Pézenas",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en photographie, situé à Pézenas.",
+      "location": "Pézenas, Occitanie",
+      "rating": 4.3,
+      "price": "12€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Photographie",
+      "coordinates": {
+        "lat": 43.46283,
+        "lng": 3.42296
+      },
+      "highlights": [
+        "Photographie"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 1723,
+      "name": "Musée des Arts décoratifs de Manosque",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en ethnologie, arts populaires, situé à Manosque.",
+      "location": "Manosque, Provence-Alpes-Côte d'Azur",
+      "rating": 4.7,
+      "price": "17€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Ethnologie",
+      "coordinates": {
+        "lat": 43.83996,
+        "lng": 5.78853
+      },
+      "highlights": [
+        "Ethnologie",
+        "Arts populaires"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 1730,
+      "name": "Musée des Arts décoratifs de Forcalquier",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en art contemporain, situé à Forcalquier.",
+      "location": "Forcalquier, Provence-Alpes-Côte d'Azur",
+      "rating": 4,
+      "price": "13€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Art contemporain",
+      "coordinates": {
+        "lat": 43.96303,
+        "lng": 5.77847
+      },
+      "highlights": [
+        "Art contemporain"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 1755,
+      "name": "Musée des Arts décoratifs de Vaison-la-Romaine",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en histoire locale, situé à Vaison-la-Romaine.",
+      "location": "Vaison-la-Romaine, Provence-Alpes-Côte d'Azur",
+      "rating": 4.6,
+      "price": "6€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Histoire locale",
+      "coordinates": {
+        "lat": 44.24076,
+        "lng": 5.07446
+      },
+      "highlights": [
+        "Histoire locale"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 1766,
+      "name": "Musée des Arts décoratifs de Tarascon",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en arts décoratifs, design, situé à Tarascon.",
+      "location": "Tarascon, Provence-Alpes-Côte d'Azur",
+      "rating": 4.3,
+      "price": "14€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Arts décoratifs",
+      "coordinates": {
+        "lat": 43.80741,
+        "lng": 4.65834
+      },
+      "highlights": [
+        "Arts décoratifs",
+        "Design"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 1773,
+      "name": "Musée des Arts décoratifs de Istres",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en arts décoratifs, design, situé à Istres.",
+      "location": "Istres, Provence-Alpes-Côte d'Azur",
+      "rating": 4.5,
+      "price": "11€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Arts décoratifs",
+      "coordinates": {
+        "lat": 43.52099,
+        "lng": 4.99176
+      },
+      "highlights": [
+        "Arts décoratifs",
+        "Design"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 1789,
+      "name": "Musée des Arts décoratifs de La Ciotat",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en sciences naturelles, situé à La Ciotat.",
+      "location": "La Ciotat, Provence-Alpes-Côte d'Azur",
+      "rating": 4.3,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Sciences naturelles",
+      "coordinates": {
+        "lat": 43.16497,
+        "lng": 5.61104
+      },
+      "highlights": [
+        "Sciences naturelles"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 1806,
+      "name": "Musée des Arts décoratifs de Aubagne",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en céramique, faïence, situé à Aubagne.",
+      "location": "Aubagne, Provence-Alpes-Côte d'Azur",
+      "rating": 4.8,
+      "price": "11€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Céramique",
+      "coordinates": {
+        "lat": 43.28269,
+        "lng": 5.56745
+      },
+      "highlights": [
+        "Céramique",
+        "Faïence"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 1849,
+      "name": "Musée des Arts décoratifs de Chamonix",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en arts décoratifs, design, situé à Chamonix.",
+      "location": "Chamonix, Auvergne-Rhône-Alpes",
+      "rating": 4,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Arts décoratifs",
+      "coordinates": {
+        "lat": 45.91492,
+        "lng": 6.86889
+      },
+      "highlights": [
+        "Arts décoratifs",
+        "Design"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 1965,
+      "name": "Musée des Arts décoratifs de Dax",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en beaux-arts, sculpture, situé à Dax.",
+      "location": "Dax, Nouvelle-Aquitaine",
+      "rating": 4.4,
+      "price": "7€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Beaux-Arts",
+      "coordinates": {
+        "lat": 43.71058,
+        "lng": -1.06218
+      },
+      "highlights": [
+        "Beaux-Arts",
+        "Sculpture"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 2074,
+      "name": "Musée des Arts décoratifs de Hendaye",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en arts plastiques, peinture, situé à Hendaye.",
+      "location": "Hendaye, Nouvelle-Aquitaine",
+      "rating": 4.4,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Arts plastiques",
+      "coordinates": {
+        "lat": 43.34934,
+        "lng": -1.76848
+      },
+      "highlights": [
+        "Arts plastiques",
+        "Peinture"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 2082,
+      "name": "Musée des Arts décoratifs de Uzerche",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en numismatique, situé à Uzerche.",
+      "location": "Uzerche, Nouvelle-Aquitaine",
+      "rating": 4.7,
+      "price": "8€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Numismatique",
+      "coordinates": {
+        "lat": 45.43294,
+        "lng": 1.55902
+      },
+      "highlights": [
+        "Numismatique"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 2143,
+      "name": "Musée des Arts décoratifs de Agde",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en céramique, faïence, situé à Agde.",
+      "location": "Agde, Occitanie",
+      "rating": 4.4,
+      "price": "13€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Céramique",
+      "coordinates": {
+        "lat": 43.30622,
+        "lng": 3.46657
+      },
+      "highlights": [
+        "Céramique",
+        "Faïence"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 2181,
+      "name": "Musée des Arts décoratifs de Font-Romeu",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en art contemporain, situé à Font-Romeu.",
+      "location": "Font-Romeu, Occitanie",
+      "rating": 4.6,
+      "price": "10€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Art contemporain",
+      "coordinates": {
+        "lat": 42.50728,
+        "lng": 2.03973
+      },
+      "highlights": [
+        "Art contemporain"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 2205,
+      "name": "Musée des Arts décoratifs de Le Vigan",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en musique, instruments, situé à Le Vigan.",
+      "location": "Le Vigan, Occitanie",
+      "rating": 4.7,
+      "price": "7€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Musique",
+      "coordinates": {
+        "lat": 43.9913,
+        "lng": 3.59963
+      },
+      "highlights": [
+        "Musique",
+        "Instruments"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 2296,
+      "name": "Musée des Arts décoratifs de Wissembourg",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en photographie, situé à Wissembourg.",
+      "location": "Wissembourg, Grand Est",
+      "rating": 4.6,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Photographie",
+      "coordinates": {
+        "lat": 49.04073,
+        "lng": 7.95148
+      },
+      "highlights": [
+        "Photographie"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 2350,
+      "name": "Musée des Arts décoratifs de Chaumont",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en ethnologie, arts populaires, situé à Chaumont.",
+      "location": "Chaumont, Grand Est",
+      "rating": 4.8,
+      "price": "8€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Ethnologie",
+      "coordinates": {
+        "lat": 48.1146,
+        "lng": 5.13698
+      },
+      "highlights": [
+        "Ethnologie",
+        "Arts populaires"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 2387,
+      "name": "Musée des Arts décoratifs de Abbeville",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en préhistoire, paléontologie, situé à Abbeville.",
+      "location": "Abbeville, Hauts-de-France",
+      "rating": 4.3,
+      "price": "17€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Préhistoire",
+      "coordinates": {
+        "lat": 50.1068,
+        "lng": 1.8419
+      },
+      "highlights": [
+        "Préhistoire",
+        "Paléontologie"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 2428,
+      "name": "Musée des Beaux-Arts de Cambrai",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en art contemporain, situé à Cambrai.",
+      "location": "Cambrai, Hauts-de-France",
+      "rating": 4.6,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Art contemporain",
+      "coordinates": {
+        "lat": 50.17945,
+        "lng": 3.23002
+      },
+      "highlights": [
+        "Art contemporain"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 2439,
+      "name": "Musée des Beaux-Arts de Valenciennes",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en arts décoratifs, design, situé à Valenciennes.",
+      "location": "Valenciennes, Hauts-de-France",
+      "rating": 4.5,
+      "price": "15€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Arts décoratifs",
+      "coordinates": {
+        "lat": 50.35361,
+        "lng": 3.52469
+      },
+      "highlights": [
+        "Arts décoratifs",
+        "Design"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 2452,
+      "name": "Musée des Arts décoratifs de Le Touquet",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en beaux-arts, sculpture, situé à Le Touquet.",
+      "location": "Le Touquet, Hauts-de-France",
+      "rating": 4.7,
+      "price": "12€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Beaux-Arts",
+      "coordinates": {
+        "lat": 50.51601,
+        "lng": 1.58805
+      },
+      "highlights": [
+        "Beaux-Arts",
+        "Sculpture"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 2511,
+      "name": "Musée des Arts décoratifs de Roscoff",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en préhistoire, paléontologie, situé à Roscoff.",
+      "location": "Roscoff, Bretagne",
+      "rating": 4.1,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Préhistoire",
+      "coordinates": {
+        "lat": 48.72513,
+        "lng": -3.98793
+      },
+      "highlights": [
+        "Préhistoire",
+        "Paléontologie"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 2555,
+      "name": "Musée des Arts décoratifs de Pontivy",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en arts décoratifs, design, situé à Pontivy.",
+      "location": "Pontivy, Bretagne",
+      "rating": 4.8,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Arts décoratifs",
+      "coordinates": {
+        "lat": 48.06962,
+        "lng": -2.96006
+      },
+      "highlights": [
+        "Arts décoratifs",
+        "Design"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 2586,
+      "name": "Musée des Arts décoratifs de Locronan",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en arts décoratifs, design, situé à Locronan.",
+      "location": "Locronan, Bretagne",
+      "rating": 4.6,
+      "price": "16€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Arts décoratifs",
+      "coordinates": {
+        "lat": 48.09409,
+        "lng": -4.21146
+      },
+      "highlights": [
+        "Arts décoratifs",
+        "Design"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 2609,
+      "name": "Musée des Arts décoratifs de Étretat",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en marine, navigation, situé à Étretat.",
+      "location": "Étretat, Normandie",
+      "rating": 4.6,
+      "price": "19€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Marine",
+      "coordinates": {
+        "lat": 49.7071,
+        "lng": 0.199
+      },
+      "highlights": [
+        "Marine",
+        "Navigation"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 2758,
+      "name": "Musée des Arts décoratifs de Clisson",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en musique, instruments, situé à Clisson.",
+      "location": "Clisson, Pays de la Loire",
+      "rating": 4.5,
+      "price": "9€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Musique",
+      "coordinates": {
+        "lat": 47.08725,
+        "lng": -1.27744
+      },
+      "highlights": [
+        "Musique",
+        "Instruments"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 2792,
+      "name": "Musée des Arts décoratifs de Sainte-Suzanne",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en industrie, techniques, situé à Sainte-Suzanne.",
+      "location": "Sainte-Suzanne, Pays de la Loire",
+      "rating": 4.5,
+      "price": "14€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Industrie",
+      "coordinates": {
+        "lat": 48.10399,
+        "lng": -0.34958
+      },
+      "highlights": [
+        "Industrie",
+        "Techniques"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 2876,
+      "name": "Musée des Arts décoratifs de Saint-Amand-Montrond",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en musique, instruments, situé à Saint-Amand-Montrond.",
+      "location": "Saint-Amand-Montrond, Centre-Val de Loire",
+      "rating": 4.4,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Musique",
+      "coordinates": {
+        "lat": 46.73286,
+        "lng": 2.51183
+      },
+      "highlights": [
+        "Musique",
+        "Instruments"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 2894,
+      "name": "Musée des Arts décoratifs de Tournus",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en arts plastiques, peinture, situé à Tournus.",
+      "location": "Tournus, Bourgogne-Franche-Comté",
+      "rating": 4.7,
+      "price": "11€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Arts plastiques",
+      "coordinates": {
+        "lat": 46.55801,
+        "lng": 4.91644
+      },
+      "highlights": [
+        "Arts plastiques",
+        "Peinture"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 2976,
+      "name": "Musée des Arts décoratifs de Lons-le-Saunier",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en musique, instruments, situé à Lons-le-Saunier.",
+      "location": "Lons-le-Saunier, Bourgogne-Franche-Comté",
+      "rating": 4,
+      "price": "19€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Musique",
+      "coordinates": {
+        "lat": 46.67853,
+        "lng": 5.55564
+      },
+      "highlights": [
+        "Musique",
+        "Instruments"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 3060,
+      "name": "Musée des Arts décoratifs de Cayenne",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en beaux-arts, sculpture, situé à Cayenne.",
+      "location": "Cayenne, Guyane",
+      "rating": 4.3,
+      "price": "6€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Beaux-Arts",
+      "coordinates": {
+        "lat": 4.94092,
+        "lng": -52.33191
+      },
+      "highlights": [
+        "Beaux-Arts",
+        "Sculpture"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 3104,
+      "name": "Musée des Arts décoratifs de Ax-les-Thermes",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en arts décoratifs, design, situé à Ax-les-Thermes.",
+      "location": "Ax-les-Thermes, Occitanie",
+      "rating": 4.7,
+      "price": "16€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Arts décoratifs",
+      "coordinates": {
+        "lat": 42.72291,
+        "lng": 1.83947
+      },
+      "highlights": [
+        "Arts décoratifs",
+        "Design"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 3119,
+      "name": "Musée des Arts décoratifs de Le Mont-Dore",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en préhistoire, paléontologie, situé à Le Mont-Dore.",
+      "location": "Le Mont-Dore, Auvergne-Rhône-Alpes",
+      "rating": 4.5,
+      "price": "16€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Préhistoire",
+      "coordinates": {
+        "lat": 45.56912,
+        "lng": 2.8043
+      },
+      "highlights": [
+        "Préhistoire",
+        "Paléontologie"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 3213,
+      "name": "Musée des Arts décoratifs de La Roque-Gageac",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en musique, instruments, situé à La Roque-Gageac.",
+      "location": "La Roque-Gageac, Nouvelle-Aquitaine",
+      "rating": 4.1,
+      "price": "15€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Musique",
+      "coordinates": {
+        "lat": 44.82221,
+        "lng": 1.18983
+      },
+      "highlights": [
+        "Musique",
+        "Instruments"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 3270,
+      "name": "Musée des Arts décoratifs de Melle",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en numismatique, situé à Melle.",
+      "location": "Melle, Nouvelle-Aquitaine",
+      "rating": 4.3,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Numismatique",
+      "coordinates": {
+        "lat": 46.22751,
+        "lng": -0.14025
+      },
+      "highlights": [
+        "Numismatique"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 3340,
+      "name": "Musée des Arts décoratifs de Saint-Véran",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en arts plastiques, peinture, situé à Saint-Véran.",
+      "location": "Saint-Véran, Provence-Alpes-Côte d'Azur",
+      "rating": 4.1,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Arts plastiques",
+      "coordinates": {
+        "lat": 44.70777,
+        "lng": 6.86149
+      },
+      "highlights": [
+        "Arts plastiques",
+        "Peinture"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 3378,
+      "name": "Musée des Arts décoratifs de Yvoire",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en arts décoratifs, design, situé à Yvoire.",
+      "location": "Yvoire, Auvergne-Rhône-Alpes",
+      "rating": 4.2,
+      "price": "8€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Arts décoratifs",
+      "coordinates": {
+        "lat": 46.36209,
+        "lng": 6.32501
+      },
+      "highlights": [
+        "Arts décoratifs",
+        "Design"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 3472,
+      "name": "Musée des Arts décoratifs de Veules-les-Roses",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en arts plastiques, peinture, situé à Veules-les-Roses.",
+      "location": "Veules-les-Roses, Normandie",
+      "rating": 4.1,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Arts plastiques",
+      "coordinates": {
+        "lat": 49.87494,
+        "lng": 0.80556
+      },
+      "highlights": [
+        "Arts plastiques",
+        "Peinture"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 3560,
+      "name": "Musée des Arts décoratifs de Châteauneuf-en-Auxois",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en art contemporain, situé à Châteauneuf-en-Auxois.",
+      "location": "Châteauneuf-en-Auxois, Bourgogne-Franche-Comté",
+      "rating": 4.6,
+      "price": "19€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Art contemporain",
+      "coordinates": {
+        "lat": 47.20771,
+        "lng": 4.64291
+      },
+      "highlights": [
+        "Art contemporain"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 3590,
+      "name": "Musée des Arts décoratifs de Baume-les-Messieurs",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en art contemporain, situé à Baume-les-Messieurs.",
+      "location": "Baume-les-Messieurs, Bourgogne-Franche-Comté",
+      "rating": 4.2,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Art contemporain",
+      "coordinates": {
+        "lat": 46.71501,
+        "lng": 5.63954
+      },
+      "highlights": [
+        "Art contemporain"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 3669,
+      "name": "Musée des Arts décoratifs de Castelnou",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en arts plastiques, peinture, situé à Castelnou.",
+      "location": "Castelnou, Occitanie",
+      "rating": 4.5,
+      "price": "12€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Arts plastiques",
+      "coordinates": {
+        "lat": 42.62611,
+        "lng": 2.69431
+      },
+      "highlights": [
+        "Arts plastiques",
+        "Peinture"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 3688,
+      "name": "Musée des Arts décoratifs de Sarrant",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en numismatique, situé à Sarrant.",
+      "location": "Sarrant, Occitanie",
+      "rating": 4.2,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Numismatique",
+      "coordinates": {
+        "lat": 43.77154,
+        "lng": 0.9185
+      },
+      "highlights": [
+        "Numismatique"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 3695,
+      "name": "Musée des Arts décoratifs de La Romieu",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en céramique, faïence, situé à La Romieu.",
+      "location": "La Romieu, Occitanie",
+      "rating": 4.5,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Céramique",
+      "coordinates": {
+        "lat": 43.98153,
+        "lng": 0.49785
+      },
+      "highlights": [
+        "Céramique",
+        "Faïence"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 3750,
+      "name": "Musée des Arts décoratifs de Boulogne-Billancourt",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en textile, mode, situé à Boulogne-Billancourt.",
+      "location": "Boulogne-Billancourt, Île-de-France",
+      "rating": 4.8,
+      "price": "18€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Textile",
+      "coordinates": {
+        "lat": 48.84558,
+        "lng": 2.24887
+      },
+      "highlights": [
+        "Textile",
+        "Mode"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 3804,
+      "name": "Musée des Arts décoratifs de Yerres",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en marine, navigation, situé à Yerres.",
+      "location": "Yerres, Île-de-France",
+      "rating": 4.4,
+      "price": "9€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Marine",
+      "coordinates": {
+        "lat": 48.71445,
+        "lng": 2.48411
+      },
+      "highlights": [
+        "Marine",
+        "Navigation"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 3848,
+      "name": "Musée des Arts décoratifs de Roquebrune-Cap-Martin",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en art contemporain, situé à Roquebrune-Cap-Martin.",
+      "location": "Roquebrune-Cap-Martin, Provence-Alpes-Côte d'Azur",
+      "rating": 4.6,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Art contemporain",
+      "coordinates": {
+        "lat": 43.76423,
+        "lng": 7.45764
+      },
+      "highlights": [
+        "Art contemporain"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 3875,
+      "name": "Musée des Arts décoratifs de Bormes-les-Mimosas",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en histoire locale, situé à Bormes-les-Mimosas.",
+      "location": "Bormes-les-Mimosas, Provence-Alpes-Côte d'Azur",
+      "rating": 4.5,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Histoire locale",
+      "coordinates": {
+        "lat": 43.15976,
+        "lng": 6.33432
+      },
+      "highlights": [
+        "Histoire locale"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 3919,
+      "name": "Musée des Arts décoratifs de Peillon",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en photographie, situé à Peillon.",
+      "location": "Peillon, Provence-Alpes-Côte d'Azur",
+      "rating": 4.6,
+      "price": "17€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Photographie",
+      "coordinates": {
+        "lat": 43.77042,
+        "lng": 7.38932
+      },
+      "highlights": [
+        "Photographie"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 3940,
+      "name": "Musée des Arts décoratifs de Bargème",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en archéologie, antiquités, situé à Bargème.",
+      "location": "Bargème, Provence-Alpes-Côte d'Azur",
+      "rating": 4.7,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Archéologie",
+      "coordinates": {
+        "lat": 43.73094,
+        "lng": 6.57256
+      },
+      "highlights": [
+        "Archéologie",
+        "Antiquités"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 3973,
+      "name": "Musée des Arts décoratifs de Saint-Antonin-Noble-Val",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en textile, mode, situé à Saint-Antonin-Noble-Val.",
+      "location": "Saint-Antonin-Noble-Val, Occitanie",
+      "rating": 4.4,
+      "price": "14€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Textile",
+      "coordinates": {
+        "lat": 44.14776,
+        "lng": 1.76024
+      },
+      "highlights": [
+        "Textile",
+        "Mode"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 3982,
+      "name": "Musée des Arts décoratifs de Lauzerte",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en beaux-arts, sculpture, situé à Lauzerte.",
+      "location": "Lauzerte, Occitanie",
+      "rating": 4.7,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Beaux-Arts",
+      "coordinates": {
+        "lat": 44.25565,
+        "lng": 1.07621
+      },
+      "highlights": [
+        "Beaux-Arts",
+        "Sculpture"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 3997,
+      "name": "Musée des Arts décoratifs de Sorèze",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en sciences naturelles, situé à Sorèze.",
+      "location": "Sorèze, Occitanie",
+      "rating": 4.4,
+      "price": "6€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Sciences naturelles",
+      "coordinates": {
+        "lat": 43.44574,
+        "lng": 2.08104
+      },
+      "highlights": [
+        "Sciences naturelles"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4159,
+      "name": "Musée des Arts décoratifs de Ribérac",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en musique, instruments, situé à Ribérac.",
+      "location": "Ribérac, Nouvelle-Aquitaine",
+      "rating": 4.3,
+      "price": "8€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Musique",
+      "coordinates": {
+        "lat": 45.23872,
+        "lng": 0.33715
+      },
+      "highlights": [
+        "Musique",
+        "Instruments"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4175,
+      "name": "Musée des Arts décoratifs de Hautefort",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en arts plastiques, peinture, situé à Hautefort.",
+      "location": "Hautefort, Nouvelle-Aquitaine",
+      "rating": 4.5,
+      "price": "11€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Arts plastiques",
+      "coordinates": {
+        "lat": 45.24963,
+        "lng": 1.15435
+      },
+      "highlights": [
+        "Arts plastiques",
+        "Peinture"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4200,
+      "name": "Musée des Arts décoratifs de Bourdeilles",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en sciences naturelles, situé à Bourdeilles.",
+      "location": "Bourdeilles, Nouvelle-Aquitaine",
+      "rating": 4,
+      "price": "7€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Sciences naturelles",
+      "coordinates": {
+        "lat": 45.31821,
+        "lng": 0.59241
+      },
+      "highlights": [
+        "Sciences naturelles"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4312,
+      "name": "Musée des Arts décoratifs de Fleckenstein",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en ethnologie, arts populaires, situé à Fleckenstein.",
+      "location": "Fleckenstein, Grand Est",
+      "rating": 4,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Ethnologie",
+      "coordinates": {
+        "lat": 49.04398,
+        "lng": 7.77336
+      },
+      "highlights": [
+        "Ethnologie",
+        "Arts populaires"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4359,
+      "name": "Musée des Arts décoratifs de Domrémy-la-Pucelle",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en préhistoire, paléontologie, situé à Domrémy-la-Pucelle.",
+      "location": "Domrémy-la-Pucelle, Grand Est",
+      "rating": 4.4,
+      "price": "9€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Préhistoire",
+      "coordinates": {
+        "lat": 48.4424,
+        "lng": 5.66536
+      },
+      "highlights": [
+        "Préhistoire",
+        "Paléontologie"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4392,
+      "name": "Musée des Arts décoratifs de Villers-Cotterêts",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en résistance, déportation, situé à Villers-Cotterêts.",
+      "location": "Villers-Cotterêts, Hauts-de-France",
+      "rating": 4.5,
+      "price": "9€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Résistance",
+      "coordinates": {
+        "lat": 49.25627,
+        "lng": 3.08896
+      },
+      "highlights": [
+        "Résistance",
+        "Déportation"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4440,
+      "name": "Musée des Arts décoratifs de Chauny",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en sciences naturelles, situé à Chauny.",
+      "location": "Chauny, Hauts-de-France",
+      "rating": 4.7,
+      "price": "8€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Sciences naturelles",
+      "coordinates": {
+        "lat": 49.61058,
+        "lng": 3.20997
+      },
+      "highlights": [
+        "Sciences naturelles"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4459,
+      "name": "Musée des Arts décoratifs de Bavay",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en numismatique, situé à Bavay.",
+      "location": "Bavay, Hauts-de-France",
+      "rating": 4,
+      "price": "7€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Numismatique",
+      "coordinates": {
+        "lat": 50.29633,
+        "lng": 3.80744
+      },
+      "highlights": [
+        "Numismatique"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4545,
+      "name": "Musée des Arts décoratifs de Loudéac",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en sciences naturelles, situé à Loudéac.",
+      "location": "Loudéac, Bretagne",
+      "rating": 4.1,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Sciences naturelles",
+      "coordinates": {
+        "lat": 48.18349,
+        "lng": -2.75435
+      },
+      "highlights": [
+        "Sciences naturelles"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4616,
+      "name": "Musée des Arts décoratifs de Carrouges",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en musique, instruments, situé à Carrouges.",
+      "location": "Carrouges, Normandie",
+      "rating": 4.3,
+      "price": "5€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Musique",
+      "coordinates": {
+        "lat": 48.56842,
+        "lng": -0.14821
+      },
+      "highlights": [
+        "Musique",
+        "Instruments"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4627,
+      "name": "Musée des Arts décoratifs de Sées",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en textile, mode, situé à Sées.",
+      "location": "Sées, Normandie",
+      "rating": 4.5,
+      "price": "16€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Textile",
+      "coordinates": {
+        "lat": 48.60311,
+        "lng": 0.17353
+      },
+      "highlights": [
+        "Textile",
+        "Mode"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4633,
+      "name": "Musée des Arts décoratifs de Saint-Lô",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en musique, instruments, situé à Saint-Lô.",
+      "location": "Saint-Lô, Normandie",
+      "rating": 4.4,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Musique",
+      "coordinates": {
+        "lat": 49.11339,
+        "lng": -1.0875
+      },
+      "highlights": [
+        "Musique",
+        "Instruments"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4661,
+      "name": "Musée des Arts décoratifs de Baugé",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en marine, navigation, situé à Baugé.",
+      "location": "Baugé, Pays de la Loire",
+      "rating": 4.9,
+      "price": "17€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Marine",
+      "coordinates": {
+        "lat": 47.54535,
+        "lng": -0.10353
+      },
+      "highlights": [
+        "Marine",
+        "Navigation"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4676,
+      "name": "Musée des Arts décoratifs de Montreuil-Bellay",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en textile, mode, situé à Montreuil-Bellay.",
+      "location": "Montreuil-Bellay, Pays de la Loire",
+      "rating": 4.1,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Textile",
+      "coordinates": {
+        "lat": 47.13128,
+        "lng": -0.15277
+      },
+      "highlights": [
+        "Textile",
+        "Mode"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4684,
+      "name": "Musée des Arts décoratifs de Brissac",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en textile, mode, situé à Brissac.",
+      "location": "Brissac, Pays de la Loire",
+      "rating": 4.8,
+      "price": "18€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Textile",
+      "coordinates": {
+        "lat": 47.34735,
+        "lng": -0.45364
+      },
+      "highlights": [
+        "Textile",
+        "Mode"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4695,
+      "name": "Musée des Arts décoratifs de Beaufort-en-Anjou",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en art contemporain, situé à Beaufort-en-Anjou.",
+      "location": "Beaufort-en-Anjou, Pays de la Loire",
+      "rating": 4.6,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Art contemporain",
+      "coordinates": {
+        "lat": 47.43153,
+        "lng": -0.22518
+      },
+      "highlights": [
+        "Art contemporain"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4724,
+      "name": "Musée des Arts décoratifs de Craon",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en industrie, techniques, situé à Craon.",
+      "location": "Craon, Pays de la Loire",
+      "rating": 4.7,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Industrie",
+      "coordinates": {
+        "lat": 47.83786,
+        "lng": -0.95891
+      },
+      "highlights": [
+        "Industrie",
+        "Techniques"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4848,
+      "name": "Musée des Arts décoratifs de Ancy-le-Franc",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en sciences naturelles, situé à Ancy-le-Franc.",
+      "location": "Ancy-le-Franc, Bourgogne-Franche-Comté",
+      "rating": 4.8,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Sciences naturelles",
+      "coordinates": {
+        "lat": 47.77387,
+        "lng": 4.16208
+      },
+      "highlights": [
+        "Sciences naturelles"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4879,
+      "name": "Musée des Arts décoratifs de Saulieu",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en textile, mode, situé à Saulieu.",
+      "location": "Saulieu, Bourgogne-Franche-Comté",
+      "rating": 4.6,
+      "price": "11€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Textile",
+      "coordinates": {
+        "lat": 47.28189,
+        "lng": 4.23006
+      },
+      "highlights": [
+        "Textile",
+        "Mode"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4886,
+      "name": "Musée des Arts décoratifs de Pierre-de-Bresse",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en résistance, déportation, situé à Pierre-de-Bresse.",
+      "location": "Pierre-de-Bresse, Bourgogne-Franche-Comté",
+      "rating": 4.3,
+      "price": "10€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Résistance",
+      "coordinates": {
+        "lat": 46.885,
+        "lng": 5.26906
+      },
+      "highlights": [
+        "Résistance",
+        "Déportation"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4912,
+      "name": "Musée des Arts décoratifs de Saint-Fargeau",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en musique, instruments, situé à Saint-Fargeau.",
+      "location": "Saint-Fargeau, Bourgogne-Franche-Comté",
+      "rating": 4,
+      "price": "10€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Musique",
+      "coordinates": {
+        "lat": 47.64259,
+        "lng": 3.0665
+      },
+      "highlights": [
+        "Musique",
+        "Instruments"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4926,
+      "name": "Musée des Arts décoratifs de Druyes-les-Belles-Fontaines",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en histoire locale, situé à Druyes-les-Belles-Fontaines.",
+      "location": "Druyes-les-Belles-Fontaines, Bourgogne-Franche-Comté",
+      "rating": 4.1,
+      "price": "7€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Histoire locale",
+      "coordinates": {
+        "lat": 47.56268,
+        "lng": 3.41683
+      },
+      "highlights": [
+        "Histoire locale"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4947,
+      "name": "Musée des Arts décoratifs de Château-Chinon",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en photographie, situé à Château-Chinon.",
+      "location": "Château-Chinon, Bourgogne-Franche-Comté",
+      "rating": 4.5,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Photographie",
+      "coordinates": {
+        "lat": 47.0675,
+        "lng": 3.93549
+      },
+      "highlights": [
+        "Photographie"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4964,
+      "name": "Musée des Arts décoratifs de Crémieu",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en arts décoratifs, design, situé à Crémieu.",
+      "location": "Crémieu, Auvergne-Rhône-Alpes",
+      "rating": 4.5,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Arts décoratifs",
+      "coordinates": {
+        "lat": 45.72415,
+        "lng": 5.25344
+      },
+      "highlights": [
+        "Arts décoratifs",
+        "Design"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4984,
+      "name": "Musée des Arts décoratifs de Pont-en-Royans",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en archéologie, antiquités, situé à Pont-en-Royans.",
+      "location": "Pont-en-Royans, Auvergne-Rhône-Alpes",
+      "rating": 4.5,
+      "price": "16€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Archéologie",
+      "coordinates": {
+        "lat": 45.06694,
+        "lng": 5.34162
+      },
+      "highlights": [
+        "Archéologie",
+        "Antiquités"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 4994,
+      "name": "Musée des Arts décoratifs de Die",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en sciences naturelles, situé à Die.",
+      "location": "Die, Auvergne-Rhône-Alpes",
+      "rating": 4.4,
+      "price": "10€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Sciences naturelles",
+      "coordinates": {
+        "lat": 44.75301,
+        "lng": 5.36919
+      },
+      "highlights": [
+        "Sciences naturelles"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 5007,
+      "name": "Musée des Arts décoratifs de Crest",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en textile, mode, situé à Crest.",
+      "location": "Crest, Auvergne-Rhône-Alpes",
+      "rating": 4.2,
+      "price": "18€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Textile",
+      "coordinates": {
+        "lat": 44.7372,
+        "lng": 5.02537
+      },
+      "highlights": [
+        "Textile",
+        "Mode"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 5049,
+      "name": "Musée des Arts décoratifs de Balazuc",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en industrie, techniques, situé à Balazuc.",
+      "location": "Balazuc, Auvergne-Rhône-Alpes",
+      "rating": 4.1,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Industrie",
+      "coordinates": {
+        "lat": 44.51005,
+        "lng": 4.37677
+      },
+      "highlights": [
+        "Industrie",
+        "Techniques"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 5107,
+      "name": "Musée des Arts décoratifs de Piriac-sur-Mer",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en archéologie, antiquités, situé à Piriac-sur-Mer.",
+      "location": "Piriac-sur-Mer, Pays de la Loire",
+      "rating": 4.9,
+      "price": "14€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Archéologie",
+      "coordinates": {
+        "lat": 47.3857,
+        "lng": -2.54097
+      },
+      "highlights": [
+        "Archéologie",
+        "Antiquités"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 5150,
+      "name": "Musée des Arts décoratifs de Cancale",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en textile, mode, situé à Cancale.",
+      "location": "Cancale, Bretagne",
+      "rating": 4.9,
+      "price": "Gratuit",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Textile",
+      "coordinates": {
+        "lat": 48.66385,
+        "lng": -1.84953
+      },
+      "highlights": [
+        "Textile",
+        "Mode"
+      ],
+      "visited": false,
+      "favorite": false
+    },
+    {
+      "id": 5189,
+      "name": "Musée des Arts décoratifs de Saint-Paul-de-Vence",
+      "type": "musée",
+      "image": "",
+      "description": "Musée spécialisé en céramique, faïence, situé à Saint-Paul-de-Vence.",
+      "location": "Saint-Paul-de-Vence, Provence-Alpes-Côte d'Azur",
+      "rating": 4.7,
+      "price": "5€",
+      "hours": "10h - 18h (se renseigner)",
+      "period": "Céramique",
+      "coordinates": {
+        "lat": 43.68989,
+        "lng": 7.1137
+      },
+      "highlights": [
+        "Céramique",
+        "Faïence"
+      ],
+      "visited": false,
+      "favorite": false
+    }
+  ]
+}

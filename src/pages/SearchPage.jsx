@@ -120,7 +120,7 @@ const SearchPage = () => {
                     font-medium text-sm
                     transition-all duration-300
                     ${isActive
-                      ? 'bg-[#e07a5f] text-[#243350] shadow-lg shadow-[#e07a5f]/30'
+                      ? 'bg-[#e07a5f] text-[#0c0c0c] shadow-lg shadow-[#e07a5f]/30'
                       : 'bg-white/10 text-gray-300 hover:bg-white/20 border border-white/20'
                     }
                   `}

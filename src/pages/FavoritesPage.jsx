@@ -40,10 +40,10 @@ const FavoritesPage = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20 pb-24 md:pb-8 relative overflow-hidden" style={{ backgroundColor: '#2a3550' }}>
+    <div className="min-h-screen pt-20 pb-24 md:pb-8 relative overflow-hidden" style={{ backgroundColor: '#0c0c0c' }}>
       {/* Fond décoratif */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#2a3550] via-[#283858] to-[#1e2a42]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0c0c] via-[#111111] to-[#0c0c0c]" />
         <svg className="absolute inset-0 w-full h-full opacity-30" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="heartPattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
@@ -93,8 +93,8 @@ const FavoritesPage = () => {
                       font-medium text-sm
                       transition-all duration-300
                       ${isActive
-                        ? 'bg-[#e07a5f] text-[#243350] shadow-lg shadow-[#e07a5f]/20'
-                        : 'bg-[#243350]/80 text-white/80 hover:bg-[#243350] hover:text-white border border-white/20'
+                        ? 'bg-[#e07a5f] text-[#0c0c0c] shadow-lg shadow-[#e07a5f]/20'
+                        : 'bg-[#0c0c0c]/80 text-white/80 hover:bg-[#0c0c0c] hover:text-white border border-white/20'
                       }
                     `}
                   >
@@ -102,7 +102,7 @@ const FavoritesPage = () => {
                     <span>{cat.label}</span>
                     <span className={`
                       px-2 py-0.5 rounded-full text-xs
-                      ${isActive ? 'bg-[#243350]/20' : 'bg-white/10'}
+                      ${isActive ? 'bg-[#0c0c0c]/20' : 'bg-white/10'}
                     `}>
                       {cat.count}
                     </span>
@@ -123,7 +123,7 @@ const FavoritesPage = () => {
               return (
                 <div
                   key={place.id}
-                  className="group relative bg-[#243350] rounded-2xl overflow-hidden border border-white/10 hover:border-[#e07a5f]/40 transition-all duration-300 hover:shadow-xl hover:shadow-[#e07a5f]/10"
+                  className="group relative bg-[#0c0c0c] rounded-2xl overflow-hidden border border-white/10 hover:border-[#e07a5f]/40 transition-all duration-300 hover:shadow-xl hover:shadow-[#e07a5f]/10"
                 >
                   {/* Image */}
                   <div className="relative h-48 overflow-hidden">
@@ -133,7 +133,7 @@ const FavoritesPage = () => {
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       onClick={() => setSelectedPlace(place)}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#243350] via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-transparent to-transparent" />
 
                     {/* Badge type */}
                     <div className="absolute top-3 left-3">
@@ -189,7 +189,7 @@ const FavoritesPage = () => {
         ) : activeFilter !== 'all' ? (
           /* État vide pour une catégorie spécifique */
           <div className="text-center py-16">
-            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-[#243350] border border-white/10 flex items-center justify-center">
+            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-[#0c0c0c] border border-white/10 flex items-center justify-center">
               <Filter className="w-8 h-8 text-gray-600" />
             </div>
             <h3 className="font-serif-italic text-2xl text-[#e07a5f] mb-3">
@@ -227,7 +227,7 @@ const FavoritesPage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => navigate('/explore')}
-                className="px-8 py-4 bg-[#e07a5f] hover:bg-[#e8968a] text-[#243350] font-bold rounded-xl shadow-lg shadow-[#e07a5f]/20 transition-all hover:scale-105 flex items-center justify-center gap-2"
+                className="px-8 py-4 bg-[#e07a5f] hover:bg-[#e8968a] text-[#0c0c0c] font-bold rounded-xl shadow-lg shadow-[#e07a5f]/20 transition-all hover:scale-105 flex items-center justify-center gap-2"
               >
                 <MapPin className="w-5 h-5" />
                 Explorer la carte

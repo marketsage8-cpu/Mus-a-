@@ -31,55 +31,47 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-[#0c0c0c] text-white overflow-x-hidden pt-16">
-      {/* Hero Section - Texte à gauche, Image à droite */}
-      <section className="min-h-[90vh] relative flex items-center">
-        <div className="max-w-7xl mx-auto px-6 w-full">
-          <div className="grid md:grid-cols-2 gap-0 items-center">
-            {/* Colonne gauche - Texte */}
-            <div className="relative z-10 py-20 pr-8">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/[0.03] border border-white/[0.08] rounded-full mb-8">
-                <span className="w-2 h-2 bg-[#c9a962] rounded-full animate-pulse" />
-                <span className="text-white/60 text-sm">Culture Nearby</span>
-              </div>
+      {/* Hero Section - Texte à gauche, Image plein écran à droite */}
+      <section className="min-h-[90vh] relative flex items-center overflow-hidden">
+        {/* Image de fond - prend tout le côté droit */}
+        <div
+          className="absolute top-0 right-0 w-[60%] h-full bg-cover bg-center hidden md:block"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1200&q=80')`
+          }}
+        />
 
-              {/* Titre principal */}
-              <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-light mb-6 leading-tight">
-                Toute la culture<br />
-                <em className="text-[#c9a962] font-normal">autour de vous</em>
-              </h1>
+        {/* Dégradé de transition au milieu - du fond noir vers l'image */}
+        <div className="absolute top-0 right-[30%] w-[35%] h-full bg-gradient-to-r from-[#0c0c0c] via-[#0c0c0c]/70 to-transparent z-10 hidden md:block" />
 
-              {/* Sous-titre */}
-              <p className="text-white/55 text-lg md:text-xl max-w-lg mb-10 font-light">
-                Découvrez les musées, expositions et trésors culturels qui vous entourent.
-                Une expérience immersive pour les amoureux de l'art et du patrimoine.
-              </p>
-
-              {/* CTA */}
-              <button
-                onClick={() => navigate('/explore')}
-                className="px-8 py-4 bg-[#c9a962] text-[#0c0c0c] font-medium rounded-full hover:bg-[#d4b370] transition-all hover:scale-105 shadow-lg shadow-[#c9a962]/20"
-              >
-                Commencer l'exploration
-              </button>
+        {/* Contenu texte à gauche */}
+        <div className="max-w-7xl mx-auto px-6 w-full relative z-20">
+          <div className="max-w-xl">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/[0.03] border border-white/[0.08] rounded-full mb-8">
+              <span className="w-2 h-2 bg-[#c9a962] rounded-full animate-pulse" />
+              <span className="text-white/60 text-sm">Culture Nearby</span>
             </div>
 
-            {/* Colonne droite - Image avec dégradé */}
-            <div className="relative h-[90vh] hidden md:block">
-              {/* Dégradé de transition gauche */}
-              <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-[#0c0c0c] to-transparent z-10" />
+            {/* Titre principal */}
+            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-light mb-6 leading-tight">
+              Toute la culture<br />
+              <em className="text-[#c9a962] font-normal">autour de vous</em>
+            </h1>
 
-              {/* Image d'œuvre d'art */}
-              <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{
-                  backgroundImage: `url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&q=80')`
-                }}
-              />
+            {/* Sous-titre */}
+            <p className="text-white/55 text-lg md:text-xl max-w-lg mb-10 font-light">
+              Découvrez les musées, expositions et trésors culturels qui vous entourent.
+              Une expérience immersive pour les amoureux de l'art et du patrimoine.
+            </p>
 
-              {/* Overlay subtil */}
-              <div className="absolute inset-0 bg-[#0c0c0c]/20" />
-            </div>
+            {/* CTA */}
+            <button
+              onClick={() => navigate('/explore')}
+              className="px-8 py-4 bg-[#c9a962] text-[#0c0c0c] font-medium rounded-full hover:bg-[#d4b370] transition-all hover:scale-105 shadow-lg shadow-[#c9a962]/20"
+            >
+              Commencer l'exploration
+            </button>
           </div>
         </div>
 

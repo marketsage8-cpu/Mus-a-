@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MapPin, Clock, Calendar, Star, Users, Headphones, Award, Bell, Heart, Filter, Navigation, ChevronRight, Compass, Sparkles, TrendingUp, Eye } from 'lucide-react';
+import { MapPin, Clock, Calendar, Star, Users, Headphones, Award, Bell, Heart, Filter, Navigation, ChevronRight, Compass, Sparkles, TrendingUp, Eye, MessageCircle, Image, Share2, Coffee } from 'lucide-react';
 
 /**
  * Landing Page Immersive - Style Muzea
@@ -30,19 +30,19 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0c0c0c] text-white overflow-x-hidden pt-16">
+    <div className="min-h-screen bg-[#0c0c0c] text-white overflow-x-hidden">
       {/* Hero Section - Texte à gauche, Image plein écran à droite */}
-      <section className="min-h-[90vh] relative flex items-center overflow-hidden">
+      <section className="min-h-screen relative flex items-center overflow-hidden">
         {/* Image de fond - prend tout le côté droit */}
         <div
-          className="absolute top-0 right-0 w-[55%] h-full bg-cover bg-center hidden md:block"
+          className="absolute top-0 right-0 w-[60%] h-full bg-cover bg-center hidden md:block"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1541367777708-7905fe3296c0?w=1400&q=80')`
+            backgroundImage: `url('https://images.unsplash.com/photo-1605429523419-d828acb941d9?w=1400&q=80')`
           }}
         />
 
-        {/* Dégradé de transition au milieu */}
-        <div className="absolute top-0 right-[25%] w-[35%] h-full bg-gradient-to-r from-[#0c0c0c] via-[#0c0c0c]/80 to-transparent z-10 hidden md:block" />
+        {/* Dégradé de transition intense - fondu progressif */}
+        <div className="absolute top-0 right-[15%] w-[50%] h-full bg-gradient-to-r from-[#0c0c0c] via-[#0c0c0c] to-transparent z-10 hidden md:block" />
 
         {/* Contenu texte à gauche */}
         <div className="pl-8 md:pl-16 lg:pl-24 pr-6 w-full relative z-20">
@@ -530,6 +530,219 @@ const HomePage = () => {
                 Découvrir les guides
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 05 - Rencontres */}
+      <section id="rencontres" className="py-32 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            {/* Visuel (à gauche) */}
+            <div className="animate-on-scroll opacity-0 translate-x-[-50px] scale-95 transition-all duration-1000 ease-out relative order-2 md:order-1">
+              <div className="absolute -inset-4 bg-gradient-to-l from-[#c9a962]/20 to-transparent rounded-3xl blur-2xl" />
+              <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                <img
+                  src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80"
+                  alt="Rencontres culturelles"
+                  className="w-full aspect-[4/3] object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-[#0c0c0c]/40 to-transparent" />
+
+                {/* Event cards overlay */}
+                <div className="absolute bottom-4 left-4 right-4 space-y-2">
+                  <div className="flex items-center gap-3 p-3 bg-[#1a1a1a]/90 backdrop-blur-sm rounded-lg border border-white/10">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#c9a962]/30 to-[#c9a962]/10 rounded-lg flex items-center justify-center">
+                      <Coffee className="w-6 h-6 text-[#c9a962]" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-sm font-medium">Café Musée - Impressionnistes</div>
+                      <div className="flex items-center gap-2 text-xs text-white/50">
+                        <span>Samedi 15h</span>
+                        <span className="text-green-400">12 participants</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 bg-[#1a1a1a]/90 backdrop-blur-sm rounded-lg border border-white/10">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#c9a962]/30 to-[#c9a962]/10 rounded-lg flex items-center justify-center">
+                      <Users className="w-6 h-6 text-[#c9a962]" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-sm font-medium">Visite guidée - Art Contemporain</div>
+                      <div className="flex items-center gap-2 text-xs text-white/50">
+                        <span>Dimanche 14h</span>
+                        <span className="text-yellow-400">8 places restantes</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Contenu texte (à droite) */}
+            <div className="order-1 md:order-2 relative">
+              <span className="animate-on-scroll opacity-0 scale-50 text-[150px] font-serif font-light text-white/[0.03] absolute -top-16 -right-8 select-none">05</span>
+
+              <span className="animate-on-scroll opacity-0 translate-x-[30px] text-[#c9a962] text-xs tracking-[0.3em] uppercase mb-4 block">Rencontres</span>
+
+              <h2 className="animate-on-scroll opacity-0 translate-x-[30px] font-serif text-4xl md:text-5xl font-light mb-6 leading-tight" style={{ transitionDelay: '100ms' }}>
+                Partagez votre<br />
+                <em className="text-[#c9a962]">passion</em>
+              </h2>
+
+              <p className="animate-on-scroll opacity-0 translate-x-[30px] text-white/55 text-lg mb-4 leading-relaxed" style={{ transitionDelay: '200ms' }}>
+                La culture se vit mieux à plusieurs. Rencontrez d'autres passionnés d'art près de chez vous et partagez des moments uniques devant vos œuvres préférées.
+              </p>
+
+              <p className="animate-on-scroll opacity-0 translate-x-[30px] text-white/40 text-base mb-8 leading-relaxed" style={{ transitionDelay: '250ms' }}>
+                Participez à des visites de groupe, des cafés-musées, des discussions thématiques ou créez vos propres événements. Une communauté bienveillante vous attend.
+              </p>
+
+              <ul className="space-y-4 mb-10">
+                <li className="animate-on-scroll opacity-0 translate-x-[30px] flex items-center gap-4 text-white/70" style={{ transitionDelay: '300ms' }}>
+                  <div className="w-12 h-12 rounded-full bg-[#c9a962]/10 flex items-center justify-center border border-[#c9a962]/20">
+                    <MessageCircle className="w-5 h-5 text-[#c9a962]" />
+                  </div>
+                  <div>
+                    <div className="font-medium">Discussions passionnées</div>
+                    <div className="text-sm text-white/40">Échangez avec des amateurs éclairés</div>
+                  </div>
+                </li>
+                <li className="animate-on-scroll opacity-0 translate-x-[30px] flex items-center gap-4 text-white/70" style={{ transitionDelay: '400ms' }}>
+                  <div className="w-12 h-12 rounded-full bg-[#c9a962]/10 flex items-center justify-center border border-[#c9a962]/20">
+                    <Users className="w-5 h-5 text-[#c9a962]" />
+                  </div>
+                  <div>
+                    <div className="font-medium">Visites de groupe</div>
+                    <div className="text-sm text-white/40">Explorez ensemble les expositions</div>
+                  </div>
+                </li>
+                <li className="animate-on-scroll opacity-0 translate-x-[30px] flex items-center gap-4 text-white/70" style={{ transitionDelay: '500ms' }}>
+                  <div className="w-12 h-12 rounded-full bg-[#c9a962]/10 flex items-center justify-center border border-[#c9a962]/20">
+                    <Coffee className="w-5 h-5 text-[#c9a962]" />
+                  </div>
+                  <div>
+                    <div className="font-medium">Cafés-musées</div>
+                    <div className="text-sm text-white/40">Débriefez autour d'un verre après la visite</div>
+                  </div>
+                </li>
+              </ul>
+
+              <button
+                onClick={() => navigate('/community')}
+                className="animate-on-scroll opacity-0 translate-y-[20px] flex items-center gap-4 text-[#c9a962] group" style={{ transitionDelay: '600ms' }}
+              >
+                <span className="w-12 h-px bg-[#c9a962] group-hover:w-16 transition-all" />
+                Rejoindre la communauté
+                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 06 - Œuvre du jour */}
+      <section id="oeuvre-du-jour" className="py-32 relative overflow-hidden">
+        {/* Background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0c0c] via-[#0a0a0a] to-[#0c0c0c]" />
+
+        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-10">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            {/* Contenu texte */}
+            <div className="relative">
+              <span className="animate-on-scroll opacity-0 scale-50 text-[150px] font-serif font-light text-white/[0.03] absolute -top-16 -left-8 select-none">06</span>
+
+              <span className="animate-on-scroll opacity-0 translate-x-[-30px] text-[#c9a962] text-xs tracking-[0.3em] uppercase mb-4 block">Œuvre du Jour</span>
+
+              <h2 className="animate-on-scroll opacity-0 translate-x-[-30px] font-serif text-4xl md:text-5xl font-light mb-6 leading-tight" style={{ transitionDelay: '100ms' }}>
+                Votre dose quotidienne<br />
+                <em className="text-[#c9a962]">de beauté</em>
+              </h2>
+
+              <p className="animate-on-scroll opacity-0 translate-x-[-30px] text-white/55 text-lg mb-4 leading-relaxed" style={{ transitionDelay: '200ms' }}>
+                Chaque jour, découvrez une œuvre d'art sélectionnée par notre équipe. Une invitation à la contemplation, à l'émerveillement et à la découverte.
+              </p>
+
+              <p className="animate-on-scroll opacity-0 translate-x-[-30px] text-white/40 text-base mb-8 leading-relaxed" style={{ transitionDelay: '250ms' }}>
+                Des chefs-d'œuvre classiques aux créations contemporaines, élargissez votre culture artistique en quelques minutes par jour. Chaque œuvre est accompagnée de son histoire et de son contexte.
+              </p>
+
+              <ul className="space-y-4 mb-10">
+                <li className="animate-on-scroll opacity-0 translate-x-[-30px] flex items-center gap-4 text-white/70" style={{ transitionDelay: '300ms' }}>
+                  <div className="w-12 h-12 rounded-full bg-[#c9a962]/10 flex items-center justify-center border border-[#c9a962]/20">
+                    <Image className="w-5 h-5 text-[#c9a962]" />
+                  </div>
+                  <div>
+                    <div className="font-medium">Sélection quotidienne</div>
+                    <div className="text-sm text-white/40">Une nouvelle œuvre chaque matin à 8h</div>
+                  </div>
+                </li>
+                <li className="animate-on-scroll opacity-0 translate-x-[-30px] flex items-center gap-4 text-white/70" style={{ transitionDelay: '400ms' }}>
+                  <div className="w-12 h-12 rounded-full bg-[#c9a962]/10 flex items-center justify-center border border-[#c9a962]/20">
+                    <Sparkles className="w-5 h-5 text-[#c9a962]" />
+                  </div>
+                  <div>
+                    <div className="font-medium">Analyse détaillée</div>
+                    <div className="text-sm text-white/40">Histoire, technique et anecdotes</div>
+                  </div>
+                </li>
+                <li className="animate-on-scroll opacity-0 translate-x-[-30px] flex items-center gap-4 text-white/70" style={{ transitionDelay: '500ms' }}>
+                  <div className="w-12 h-12 rounded-full bg-[#c9a962]/10 flex items-center justify-center border border-[#c9a962]/20">
+                    <Share2 className="w-5 h-5 text-[#c9a962]" />
+                  </div>
+                  <div>
+                    <div className="font-medium">Partagez vos coups de cœur</div>
+                    <div className="text-sm text-white/40">Inspirez votre entourage</div>
+                  </div>
+                </li>
+              </ul>
+
+              <button
+                onClick={() => navigate('/artwork-of-the-day')}
+                className="animate-on-scroll opacity-0 translate-y-[20px] flex items-center gap-4 text-[#c9a962] group" style={{ transitionDelay: '600ms' }}
+              >
+                <span className="w-12 h-px bg-[#c9a962] group-hover:w-16 transition-all" />
+                Voir l'œuvre du jour
+                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+
+            {/* Visuel - Œuvre du jour */}
+            <div className="animate-on-scroll opacity-0 translate-x-[50px] scale-95 transition-all duration-1000 ease-out relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-[#c9a962]/20 to-transparent rounded-3xl blur-2xl" />
+              <div className="relative">
+                {/* Frame effect */}
+                <div className="absolute -inset-3 border-2 border-[#c9a962]/30 rounded-sm" />
+                <div className="absolute -inset-6 border border-[#c9a962]/10 rounded-sm" />
+
+                <div className="relative rounded-sm overflow-hidden border border-white/20 shadow-2xl bg-[#1a1a1a]">
+                  <img
+                    src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&q=80"
+                    alt="Œuvre du jour"
+                    className="w-full aspect-[3/4] object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-transparent to-transparent" />
+
+                  {/* Artwork info overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-[#0c0c0c] to-transparent">
+                    <span className="px-3 py-1 bg-[#c9a962] text-[#0c0c0c] text-xs font-medium rounded-full mb-3 inline-block">
+                      ŒUVRE DU JOUR
+                    </span>
+                    <h4 className="font-serif text-2xl mb-1">La Nuit étoilée</h4>
+                    <p className="text-white/60 text-sm mb-2">Vincent van Gogh, 1889</p>
+                    <p className="text-white/40 text-xs">Museum of Modern Art, New York</p>
+                  </div>
+                </div>
+
+                {/* Floating stats */}
+                <div className="absolute -right-4 top-1/4 bg-[#1a1a1a]/90 backdrop-blur-sm rounded-lg p-3 border border-white/10">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Heart className="w-4 h-4 text-[#c9a962]" />
+                    <span>2.4k</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

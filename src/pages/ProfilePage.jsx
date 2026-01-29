@@ -20,8 +20,8 @@ const SettingOption = ({ icon: Icon, label, description, hasToggle, isEnabled, o
     onClick={onClick || onToggle}
     className="w-full flex items-center gap-4 p-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all group"
   >
-    <div className="p-2.5 rounded-xl bg-[#d4a574]/20 border border-[#d4a574]/30">
-      <Icon className="w-5 h-5 text-[#d4a574]" />
+    <div className="p-2.5 rounded-xl bg-[#e07a5f]/20 border border-[#e07a5f]/30">
+      <Icon className="w-5 h-5 text-[#e07a5f]" />
     </div>
     <div className="flex-1 text-left">
       <h4 className="text-white font-medium">{label}</h4>
@@ -29,13 +29,13 @@ const SettingOption = ({ icon: Icon, label, description, hasToggle, isEnabled, o
     </div>
     {hasToggle ? (
       <div
-        className={`w-12 h-6 rounded-full transition-all ${isEnabled ? 'bg-[#d4a574]' : 'bg-white/10'}`}
+        className={`w-12 h-6 rounded-full transition-all ${isEnabled ? 'bg-[#e07a5f]' : 'bg-white/10'}`}
         onClick={(e) => { e.stopPropagation(); onToggle?.(); }}
       >
         <div className={`w-5 h-5 rounded-full bg-white shadow-md transform transition-transform mt-0.5 ${isEnabled ? 'translate-x-6' : 'translate-x-0.5'}`} />
       </div>
     ) : (
-      <ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-[#d4a574] transition-colors" />
+      <ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-[#e07a5f] transition-colors" />
     )}
   </button>
 );
@@ -50,18 +50,18 @@ const SelectableTag = ({ label, isSelected, onClick, isPrimary = false }) => (
       relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300
       ${isSelected
         ? isPrimary
-          ? 'bg-[#d4a574] text-[#1e2a42] shadow-lg shadow-[#d4a574]/30'
-          : 'bg-[#d4a574]/20 border border-[#d4a574]/50 text-[#d4a574]'
-        : 'bg-white/5 border border-white/10 text-gray-400 hover:border-[#d4a574]/30'
+          ? 'bg-[#e07a5f] text-[#1e2a42] shadow-lg shadow-[#e07a5f]/30'
+          : 'bg-[#e07a5f]/20 border border-[#e07a5f]/50 text-[#e07a5f]'
+        : 'bg-white/5 border border-white/10 text-gray-400 hover:border-[#e07a5f]/30'
       }
     `}
   >
     {label}
     {isSelected && !isPrimary && (
-      <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-[#d4a574] rounded-full" />
+      <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-[#e07a5f] rounded-full" />
     )}
     {isPrimary && (
-      <span className="absolute -top-1 -right-1 px-1.5 py-0.5 bg-[#d4a574] text-[#1e2a42] text-[10px] font-bold rounded-full">
+      <span className="absolute -top-1 -right-1 px-1.5 py-0.5 bg-[#e07a5f] text-[#1e2a42] text-[10px] font-bold rounded-full">
         1
       </span>
     )}
@@ -77,12 +77,12 @@ const VisitStyleOption = ({ icon: Icon, label, isSelected, onClick }) => (
     className={`
       flex flex-col items-center gap-2 p-4 rounded-xl transition-all duration-300 flex-1 min-w-[100px]
       ${isSelected
-        ? 'bg-[#d4a574]/20 border-2 border-[#d4a574] text-[#d4a574]'
-        : 'bg-white/5 border border-white/10 text-gray-400 hover:border-[#d4a574]/30'
+        ? 'bg-[#e07a5f]/20 border-2 border-[#e07a5f] text-[#e07a5f]'
+        : 'bg-white/5 border border-white/10 text-gray-400 hover:border-[#e07a5f]/30'
       }
     `}
   >
-    <Icon className={`w-6 h-6 ${isSelected ? 'text-[#d4a574]' : 'text-gray-500'}`} />
+    <Icon className={`w-6 h-6 ${isSelected ? 'text-[#e07a5f]' : 'text-gray-500'}`} />
     <span className="text-xs font-medium text-center">{label}</span>
   </button>
 );
@@ -254,7 +254,7 @@ const ProfilePage = () => {
       <div className="relative z-10 max-w-4xl mx-auto px-4">
         {/* Titre de la page */}
         <div className="text-center pt-6 pb-8">
-          <h1 className="font-serif-italic text-3xl text-[#d4a574]">
+          <h1 className="font-serif-italic text-3xl text-[#e07a5f]">
             Mon Profil
           </h1>
           <p className="text-gray-400 text-sm mt-2">
@@ -292,7 +292,7 @@ const ProfilePage = () => {
             <div className="flex flex-col sm:flex-row items-center sm:items-end gap-4">
               {/* Avatar */}
               <div className="relative group">
-                <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-[#1e2a42] shadow-xl bg-[#d4a574]">
+                <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-[#1e2a42] shadow-xl bg-[#e07a5f]">
                   {avatarImage ? (
                     <img src={avatarImage} alt="Avatar" className="w-full h-full object-cover" />
                   ) : (
@@ -305,7 +305,7 @@ const ProfilePage = () => {
                 </div>
                 <button
                   onClick={() => avatarInputRef.current?.click()}
-                  className="absolute -bottom-1 -right-1 p-2 bg-[#d4a574] rounded-full text-[#1e2a42] hover:bg-[#c49464] transition-all shadow-lg"
+                  className="absolute -bottom-1 -right-1 p-2 bg-[#e07a5f] rounded-full text-[#1e2a42] hover:bg-[#e8968a] transition-all shadow-lg"
                 >
                   <Camera className="w-3 h-3" />
                 </button>
@@ -327,15 +327,15 @@ const ProfilePage = () => {
               {/* Statistiques rapides */}
               <div className="flex gap-4">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-[#d4a574]">{stats.totalFavorites}</div>
+                  <div className="text-2xl font-bold text-[#e07a5f]">{stats.totalFavorites}</div>
                   <div className="text-xs text-gray-400">Favoris</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-[#d4a574]">{stats.totalVisited || 0}</div>
+                  <div className="text-2xl font-bold text-[#e07a5f]">{stats.totalVisited || 0}</div>
                   <div className="text-xs text-gray-400">Visités</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-[#d4a574]">{unlockedBadgesCount}</div>
+                  <div className="text-2xl font-bold text-[#e07a5f]">{unlockedBadgesCount}</div>
                   <div className="text-xs text-gray-400">Badges</div>
                 </div>
               </div>
@@ -356,7 +356,7 @@ const ProfilePage = () => {
                   flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm
                   transition-all duration-300
                   ${isActive
-                    ? 'bg-[#d4a574] text-[#1e2a42]'
+                    ? 'bg-[#e07a5f] text-[#1e2a42]'
                     : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white border border-white/10'
                   }
                 `}
@@ -376,14 +376,14 @@ const ProfilePage = () => {
             {/* Section: À propos de moi */}
             <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-[#d4a574] font-medium text-sm uppercase tracking-wider flex items-center gap-2">
+                <h3 className="text-[#e07a5f] font-medium text-sm uppercase tracking-wider flex items-center gap-2">
                   <User className="w-4 h-4" />
                   À propos de moi
                 </h3>
                 {!isEditingAbout && (
                   <button
                     onClick={() => setIsEditingAbout(true)}
-                    className="p-1.5 text-gray-500 hover:text-[#d4a574] transition-colors"
+                    className="p-1.5 text-gray-500 hover:text-[#e07a5f] transition-colors"
                   >
                     <Edit3 className="w-4 h-4" />
                   </button>
@@ -394,7 +394,7 @@ const ProfilePage = () => {
                   <textarea
                     value={aboutText}
                     onChange={(e) => setAboutText(e.target.value)}
-                    className="w-full h-24 p-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#d4a574]/50 resize-none"
+                    className="w-full h-24 p-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#e07a5f]/50 resize-none"
                     placeholder="Décrivez-vous en quelques mots..."
                   />
                   <div className="flex justify-end gap-2">
@@ -422,14 +422,14 @@ const ProfilePage = () => {
             {/* Section: Ville */}
             <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-[#d4a574] font-medium text-sm uppercase tracking-wider flex items-center gap-2">
+                <h3 className="text-[#e07a5f] font-medium text-sm uppercase tracking-wider flex items-center gap-2">
                   <MapPin className="w-4 h-4" />
                   Ville
                 </h3>
                 {!isEditingCity && (
                   <button
                     onClick={() => setIsEditingCity(true)}
-                    className="p-1.5 text-gray-500 hover:text-[#d4a574] transition-colors"
+                    className="p-1.5 text-gray-500 hover:text-[#e07a5f] transition-colors"
                   >
                     <Edit3 className="w-4 h-4" />
                   </button>
@@ -441,7 +441,7 @@ const ProfilePage = () => {
                     type="text"
                     value={cityText}
                     onChange={(e) => setCityText(e.target.value)}
-                    className="flex-1 p-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#d4a574]/50"
+                    className="flex-1 p-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#e07a5f]/50"
                     placeholder="Votre ville..."
                   />
                   <button
@@ -466,7 +466,7 @@ const ProfilePage = () => {
 
             {/* Section: Centres d'intérêt */}
             <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
-              <h3 className="text-[#d4a574] font-medium text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
+              <h3 className="text-[#e07a5f] font-medium text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
                 <Heart className="w-4 h-4" />
                 Centres d'intérêt
               </h3>
@@ -484,7 +484,7 @@ const ProfilePage = () => {
 
             {/* Section: Langues */}
             <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
-              <h3 className="text-[#d4a574] font-medium text-sm uppercase tracking-wider mb-2 flex items-center gap-2">
+              <h3 className="text-[#e07a5f] font-medium text-sm uppercase tracking-wider mb-2 flex items-center gap-2">
                 <Languages className="w-4 h-4" />
                 Langues
               </h3>
@@ -516,7 +516,7 @@ const ProfilePage = () => {
 
             {/* Section: Style de visite préféré */}
             <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
-              <h3 className="text-[#d4a574] font-medium text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
+              <h3 className="text-[#e07a5f] font-medium text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
                 <Footprints className="w-4 h-4" />
                 Style de visite préféré
               </h3>
@@ -536,7 +536,7 @@ const ProfilePage = () => {
             {/* Bouton CTA */}
             <Link
               to="/events"
-              className="block w-full py-4 bg-[#d4a574] hover:bg-[#c49464] text-[#1e2a42] rounded-xl font-semibold text-center transition-all shadow-lg shadow-[#d4a574]/20"
+              className="block w-full py-4 bg-[#e07a5f] hover:bg-[#e8968a] text-[#1e2a42] rounded-xl font-semibold text-center transition-all shadow-lg shadow-[#e07a5f]/20"
             >
               <span className="flex items-center justify-center gap-2">
                 <Sparkles className="w-5 h-5" />
@@ -555,13 +555,13 @@ const ProfilePage = () => {
             <div className="text-center mb-6">
               <div className="inline-flex items-center justify-center mb-4">
                 <div className="relative px-6 py-2">
-                  <div className="absolute inset-0 bg-[#d4a574]/20 rounded-lg" />
-                  <div className="absolute inset-0 border border-[#d4a574]/50 rounded-lg" />
-                  <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-[#d4a574] rounded-tl-lg" />
-                  <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-[#d4a574] rounded-tr-lg" />
-                  <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-[#d4a574] rounded-bl-lg" />
-                  <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-[#d4a574] rounded-br-lg" />
-                  <p className="relative text-sm uppercase tracking-[0.2em] text-[#d4a574] font-semibold flex items-center gap-2">
+                  <div className="absolute inset-0 bg-[#e07a5f]/20 rounded-lg" />
+                  <div className="absolute inset-0 border border-[#e07a5f]/50 rounded-lg" />
+                  <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-[#e07a5f] rounded-tl-lg" />
+                  <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-[#e07a5f] rounded-tr-lg" />
+                  <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-[#e07a5f] rounded-bl-lg" />
+                  <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-[#e07a5f] rounded-br-lg" />
+                  <p className="relative text-sm uppercase tracking-[0.2em] text-[#e07a5f] font-semibold flex items-center gap-2">
                     <Heart className="w-4 h-4" />
                     Collection
                   </p>
@@ -576,12 +576,12 @@ const ProfilePage = () => {
             </div>
 
             {/* Séparateur */}
-            <div className="h-px bg-gradient-to-r from-transparent via-[#d4a574]/30 to-transparent mb-6" />
+            <div className="h-px bg-gradient-to-r from-transparent via-[#e07a5f]/30 to-transparent mb-6" />
 
             {/* Statistiques */}
             <div className="grid grid-cols-3 gap-4 mb-6">
               <div className="text-center p-4 bg-white/5 rounded-xl border border-white/10">
-                <div className="text-2xl font-bold text-[#d4a574]">{stats.totalFavorites}</div>
+                <div className="text-2xl font-bold text-[#e07a5f]">{stats.totalFavorites}</div>
                 <div className="text-xs text-gray-400 mt-1">Favoris</div>
               </div>
               <div className="text-center p-4 bg-white/5 rounded-xl border border-white/10">
@@ -608,14 +608,14 @@ const ProfilePage = () => {
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link
                   to="/favoris"
-                  className="px-6 py-3 bg-[#d4a574] hover:bg-[#c49464] text-[#1e2a42] rounded-xl font-semibold transition-all shadow-lg shadow-[#d4a574]/20 flex items-center justify-center gap-2"
+                  className="px-6 py-3 bg-[#e07a5f] hover:bg-[#e8968a] text-[#1e2a42] rounded-xl font-semibold transition-all shadow-lg shadow-[#e07a5f]/20 flex items-center justify-center gap-2"
                 >
                   <Heart className="w-5 h-5" />
                   Voir mes favoris
                 </Link>
                 <Link
                   to="/explore"
-                  className="px-6 py-3 bg-white/5 text-white rounded-xl font-semibold hover:bg-white/10 transition-all border border-white/10 hover:border-[#d4a574]/30 flex items-center justify-center gap-2"
+                  className="px-6 py-3 bg-white/5 text-white rounded-xl font-semibold hover:bg-white/10 transition-all border border-white/10 hover:border-[#e07a5f]/30 flex items-center justify-center gap-2"
                 >
                   <Compass className="w-5 h-5" />
                   Explorer la carte
@@ -632,7 +632,7 @@ const ProfilePage = () => {
           <div className="space-y-6">
             {/* Section Compte */}
             <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
-              <h3 className="text-[#d4a574] font-medium text-sm uppercase tracking-wider mb-4">Compte</h3>
+              <h3 className="text-[#e07a5f] font-medium text-sm uppercase tracking-wider mb-4">Compte</h3>
               <div className="space-y-3">
                 <SettingOption
                   icon={User}
@@ -649,7 +649,7 @@ const ProfilePage = () => {
 
             {/* Section Préférences */}
             <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
-              <h3 className="text-[#d4a574] font-medium text-sm uppercase tracking-wider mb-4">Préférences</h3>
+              <h3 className="text-[#e07a5f] font-medium text-sm uppercase tracking-wider mb-4">Préférences</h3>
               <div className="space-y-3">
                 <SettingOption
                   icon={Bell}
@@ -680,14 +680,14 @@ const ProfilePage = () => {
 
             {/* Section Carte avec cadre doré */}
             <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
-              <h3 className="text-[#d4a574] font-medium text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
+              <h3 className="text-[#e07a5f] font-medium text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
                 <Map className="w-4 h-4" />
                 Ma Position
               </h3>
 
               {/* Cadre doré autour de la carte */}
               <div className="relative p-2 rounded-xl" style={{
-                background: 'linear-gradient(135deg, #d4a574 0%, #c49464 50%, #d4a574 100%)',
+                background: 'linear-gradient(135deg, #e07a5f 0%, #e8968a 50%, #e07a5f 100%)',
                 boxShadow: '0 4px 20px rgba(212, 165, 116, 0.3)'
               }}>
                 <div className="rounded-lg overflow-hidden">
@@ -709,7 +709,7 @@ const ProfilePage = () => {
 
             {/* Section Export des données */}
             <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
-              <h3 className="text-[#d4a574] font-medium text-sm uppercase tracking-wider mb-2 flex items-center gap-2">
+              <h3 className="text-[#e07a5f] font-medium text-sm uppercase tracking-wider mb-2 flex items-center gap-2">
                 <Download className="w-4 h-4" />
                 Exporter mes données
               </h3>
@@ -721,16 +721,16 @@ const ProfilePage = () => {
                 {/* Export complet */}
                 <button
                   onClick={() => exportAllJSON(userData, stats, userBadges)}
-                  className="w-full flex items-center gap-4 p-4 bg-[#d4a574]/10 hover:bg-[#d4a574]/20 border border-[#d4a574]/30 hover:border-[#d4a574]/50 rounded-xl transition-all group"
+                  className="w-full flex items-center gap-4 p-4 bg-[#e07a5f]/10 hover:bg-[#e07a5f]/20 border border-[#e07a5f]/30 hover:border-[#e07a5f]/50 rounded-xl transition-all group"
                 >
-                  <div className="p-2.5 rounded-xl bg-[#d4a574]/20 border border-[#d4a574]/30">
-                    <Package className="w-5 h-5 text-[#d4a574]" />
+                  <div className="p-2.5 rounded-xl bg-[#e07a5f]/20 border border-[#e07a5f]/30">
+                    <Package className="w-5 h-5 text-[#e07a5f]" />
                   </div>
                   <div className="flex-1 text-left">
                     <h4 className="text-white font-medium">Tout exporter (JSON)</h4>
                     <p className="text-gray-400 text-sm">Lieux, parcours, favoris, visites, profil</p>
                   </div>
-                  <Download className="w-5 h-5 text-[#d4a574] group-hover:translate-y-0.5 transition-transform" />
+                  <Download className="w-5 h-5 text-[#e07a5f] group-hover:translate-y-0.5 transition-transform" />
                 </button>
 
                 {/* Export lieux JSON */}

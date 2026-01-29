@@ -89,7 +89,7 @@ const SearchPage = () => {
           <div className="text-center mb-8">
             <h1
               className="font-serif-italic text-4xl sm:text-5xl mb-3"
-              style={{ color: '#d4a574' }}
+              style={{ color: '#e07a5f' }}
             >
               Recherche
             </h1>
@@ -120,7 +120,7 @@ const SearchPage = () => {
                     font-medium text-sm
                     transition-all duration-300
                     ${isActive
-                      ? 'bg-[#d4a574] text-[#243350] shadow-lg shadow-[#d4a574]/30'
+                      ? 'bg-[#e07a5f] text-[#243350] shadow-lg shadow-[#e07a5f]/30'
                       : 'bg-white/10 text-gray-300 hover:bg-white/20 border border-white/20'
                     }
                   `}
@@ -160,7 +160,7 @@ const SearchPage = () => {
                 </div>
                 <h3
                   className="font-serif-italic text-2xl mb-2"
-                  style={{ color: '#d4a574' }}
+                  style={{ color: '#e07a5f' }}
                 >
                   Aucun résultat
                 </h3>
@@ -177,7 +177,7 @@ const SearchPage = () => {
             </div>
             <h3
               className="font-serif-italic text-2xl mb-2"
-              style={{ color: '#d4a574' }}
+              style={{ color: '#e07a5f' }}
             >
               Commencez votre recherche
             </h3>
@@ -191,7 +191,7 @@ const SearchPage = () => {
                 <button
                   key={suggestion}
                   onClick={() => setSearchQuery(suggestion)}
-                  className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10 hover:border-[#d4a574]/30 hover:text-[#d4a574] transition-all text-sm"
+                  className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10 hover:border-[#e07a5f]/30 hover:text-[#e07a5f] transition-all text-sm"
                 >
                   {suggestion}
                 </button>

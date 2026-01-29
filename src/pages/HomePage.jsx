@@ -128,13 +128,13 @@ const HomePage = () => {
         <div
           className="absolute top-0 right-0 w-[55%] h-full bg-cover bg-center hidden md:block"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=1400&q=80')`
+            backgroundImage: `url('https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1400&q=80')`
           }}
         />
         {/* Dégradé de transition */}
         <div className="absolute top-0 right-[10%] w-[50%] h-full bg-gradient-to-r from-[#0c0c0c] via-[#0c0c0c] to-transparent z-10 hidden md:block" />
 
-        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-20 py-20">
+        <div className="pl-8 md:pl-16 lg:pl-24 pr-6 w-full relative z-20 py-20">
           <div className="max-w-xl">
             <span className="animate-on-scroll opacity-0 scale-50 text-[150px] font-serif font-light text-white/[0.03] absolute -top-16 -left-8 select-none">01</span>
 
@@ -201,14 +201,14 @@ const HomePage = () => {
         <div
           className="absolute top-0 left-0 w-[55%] h-full bg-cover bg-center hidden md:block"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?w=1400&q=80')`
+            backgroundImage: `url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1400&q=80')`
           }}
         />
         {/* Dégradé de transition - vers la droite */}
         <div className="absolute top-0 left-[10%] w-[50%] h-full bg-gradient-to-l from-[#0c0c0c] via-[#0c0c0c] to-transparent z-10 hidden md:block" />
 
-        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-20 py-20 w-full">
-          <div className="ml-auto max-w-xl">
+        <div className="pr-8 md:pr-16 lg:pr-24 pl-6 w-full relative z-20 py-20 flex justify-end">
+          <div className="max-w-xl">
             <span className="animate-on-scroll opacity-0 scale-50 text-[150px] font-serif font-light text-white/[0.03] absolute -top-16 -right-8 select-none">02</span>
 
             <span className="animate-on-scroll opacity-0 translate-x-[30px] text-[#e07a5f] text-xs tracking-[0.3em] uppercase mb-4 block">Muzea Now</span>
@@ -397,8 +397,8 @@ const HomePage = () => {
         {/* Dégradé de transition */}
         <div className="absolute top-0 left-[10%] w-[50%] h-full bg-gradient-to-l from-[#0c0c0c] via-[#0c0c0c] to-transparent z-10 hidden md:block" />
 
-        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-20 py-20 w-full">
-          <div className="ml-auto max-w-xl">
+        <div className="pr-8 md:pr-16 lg:pr-24 pl-6 w-full relative z-20 py-20 flex justify-end">
+          <div className="max-w-xl">
             <span className="animate-on-scroll opacity-0 scale-50 text-[150px] font-serif font-light text-white/[0.03] absolute -top-16 -right-8 select-none">04</span>
 
             <span className="animate-on-scroll opacity-0 translate-x-[30px] text-[#e07a5f] text-xs tracking-[0.3em] uppercase mb-4 block">Guides Culturels</span>
@@ -464,13 +464,13 @@ const HomePage = () => {
         <div
           className="absolute top-0 right-0 w-[55%] h-full bg-cover bg-center hidden md:block"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1400&q=80')`
+            backgroundImage: `url('https://images.unsplash.com/photo-1556656793-08538906a9f8?w=1400&q=80')`
           }}
         />
         {/* Dégradé de transition */}
         <div className="absolute top-0 right-[10%] w-[50%] h-full bg-gradient-to-r from-[#0c0c0c] via-[#0c0c0c] to-transparent z-10 hidden md:block" />
 
-        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-20 py-20">
+        <div className="pl-8 md:pl-16 lg:pl-24 pr-6 w-full relative z-20 py-20">
           <div className="max-w-xl">
             <span className="animate-on-scroll opacity-0 scale-50 text-[150px] font-serif font-light text-white/[0.03] absolute -top-16 -left-8 select-none">05</span>
 

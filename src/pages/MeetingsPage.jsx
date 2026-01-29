@@ -287,14 +287,14 @@ const MeetingsPage = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 py-16">
           <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#d4af37]/15 border border-[#d4af37]/30 rounded-full mb-6">
-              <Users className="w-4 h-4 text-[#d4af37]" />
-              <span className="text-[#d4af37] text-sm font-medium font-serif-italic">Partagez vos visites culturelles</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#e07a5f]/15 border border-[#e07a5f]/30 rounded-full mb-6">
+              <Users className="w-4 h-4 text-[#e07a5f]" />
+              <span className="text-[#e07a5f] text-sm font-medium font-serif-italic">Partagez vos visites culturelles</span>
             </div>
 
             <h1
               className="font-serif-italic text-4xl md:text-5xl lg:text-6xl mb-4"
-              style={{ color: '#d4a574' }}
+              style={{ color: '#e07a5f' }}
             >
               Trouvez des compagnons de visite
             </h1>
@@ -317,7 +317,7 @@ const MeetingsPage = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Rechercher un musée, un château, une église..."
-                  className="w-full py-4 pl-14 pr-12 bg-stone-800/50 border border-stone-700/50 rounded-2xl text-[#f5f0e6] placeholder-stone-500 focus:outline-none focus:border-[#d4af37]/50 focus:ring-2 focus:ring-[#d4af37]/20 transition-all text-lg font-body"
+                  className="w-full py-4 pl-14 pr-12 bg-stone-800/50 border border-stone-700/50 rounded-2xl text-[#f5f0e6] placeholder-stone-500 focus:outline-none focus:border-[#e07a5f]/50 focus:ring-2 focus:ring-[#e07a5f]/20 transition-all text-lg font-body"
                 />
                 {searchQuery && (
                   <button
@@ -387,7 +387,7 @@ const MeetingsPage = () => {
           <div className="max-w-7xl mx-auto px-4 py-12">
             <div className="text-center mb-10">
               <h2 className="font-display text-3xl font-bold text-[#f5f0e6] mb-3">
-                Lieux <span className="text-[#d4af37]">populaires</span>
+                Lieux <span className="text-[#e07a5f]">populaires</span>
               </h2>
               <p className="text-[#c4b69c]/70 font-body">
                 Les destinations les plus prisées pour faire des rencontres culturelles
@@ -399,7 +399,7 @@ const MeetingsPage = () => {
                 <button
                   key={place.id}
                   onClick={() => handleSelectPlace(place)}
-                  className="group relative bg-stone-800/30 border border-stone-700/30 rounded-2xl overflow-hidden hover:border-[#d4af37]/30 transition-all duration-300 text-left"
+                  className="group relative bg-stone-800/30 border border-stone-700/30 rounded-2xl overflow-hidden hover:border-[#e07a5f]/30 transition-all duration-300 text-left"
                 >
                   <div className="relative h-48 overflow-hidden">
                     <img
@@ -409,7 +409,7 @@ const MeetingsPage = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/50 to-transparent" />
 
-                    <div className="absolute top-3 right-3 px-3 py-1 bg-gradient-to-r from-[#d4af37] to-[#b8962e] rounded-full">
+                    <div className="absolute top-3 right-3 px-3 py-1 bg-gradient-to-r from-[#e07a5f] to-[#e8968a] rounded-full">
                       <span className="text-[#0a0f1a] text-xs font-semibold flex items-center gap-1">
                         <Users className="w-3 h-3" />
                         {placeMeetups[place.id]?.length || 0}
@@ -418,7 +418,7 @@ const MeetingsPage = () => {
                   </div>
 
                   <div className="p-4">
-                    <h3 className="font-display font-semibold text-[#f5f0e6] mb-2 group-hover:text-[#d4af37] transition-colors">
+                    <h3 className="font-display font-semibold text-[#f5f0e6] mb-2 group-hover:text-[#e07a5f] transition-colors">
                       {place.name}
                     </h3>
                     <div className="flex items-center gap-3 text-sm text-stone-400">
@@ -436,7 +436,7 @@ const MeetingsPage = () => {
             <div className="mt-16">
               <div className="text-center mb-10">
                 <h2 className="font-display text-3xl font-bold text-[#f5f0e6] mb-3">
-                  Nos <span className="text-[#d4af37]">passionnés</span> de culture
+                  Nos <span className="text-[#e07a5f]">passionnés</span> de culture
                 </h2>
                 <p className="text-[#c4b69c]/70 font-body">
                   Des visiteurs triés sur le volet pour des expériences uniques
@@ -447,21 +447,21 @@ const MeetingsPage = () => {
                 {meetupUsers.slice(0, 8).map((user) => (
                   <div
                     key={user.id}
-                    className="group text-center p-6 bg-stone-800/20 border border-stone-700/30 rounded-2xl hover:border-[#d4af37]/30 transition-all"
+                    className="group text-center p-6 bg-stone-800/20 border border-stone-700/30 rounded-2xl hover:border-[#e07a5f]/30 transition-all"
                   >
                     <div className="relative inline-block mb-4">
                       <img
                         src={user.avatar}
                         alt={user.name}
-                        className="w-24 h-24 rounded-full object-cover border-2 border-[#d4af37]/30 group-hover:border-[#d4af37] transition-colors"
+                        className="w-24 h-24 rounded-full object-cover border-2 border-[#e07a5f]/30 group-hover:border-[#e07a5f] transition-colors"
                       />
-                      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8962e] rounded-full flex items-center gap-1">
+                      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-gradient-to-r from-[#e07a5f] to-[#e8968a] rounded-full flex items-center gap-1">
                         <Star className="w-3 h-3 text-[#0a0f1a] fill-[#0a0f1a]" />
                         <span className="text-[#0a0f1a] text-xs font-bold">{user.rating}</span>
                       </div>
                     </div>
                     <h4 className="font-display font-semibold text-[#f5f0e6]">{user.name}</h4>
-                    <p className="text-[#d4af37] text-sm font-serif-italic">{user.interests[0]}</p>
+                    <p className="text-[#e07a5f] text-sm font-serif-italic">{user.interests[0]}</p>
                     <p className="text-stone-500 text-xs mt-1">{user.visitCount} visites</p>
                   </div>
                 ))}
@@ -480,7 +480,7 @@ const MeetingsPage = () => {
             {/* Header du lieu */}
             <button
               onClick={goBack}
-              className="flex items-center gap-2 text-[#d4af37] hover:text-[#f5d76e] mb-6 transition-colors"
+              className="flex items-center gap-2 text-[#e07a5f] hover:text-[#f0a090] mb-6 transition-colors"
             >
               <ChevronLeft className="w-5 h-5" />
               Retour à la recherche
@@ -495,7 +495,7 @@ const MeetingsPage = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <span className="px-3 py-1 bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-[#0a0f1a] text-xs font-semibold rounded-full uppercase mb-2 inline-block">
+                  <span className="px-3 py-1 bg-gradient-to-r from-[#e07a5f] to-[#e8968a] text-[#0a0f1a] text-xs font-semibold rounded-full uppercase mb-2 inline-block">
                     {selectedPlace.type}
                   </span>
                   <h2 className="text-[#f5f0e6] text-2xl sm:text-3xl font-display font-bold">{selectedPlace.name}</h2>
@@ -510,7 +510,7 @@ const MeetingsPage = () => {
             {/* Liste des profils disponibles */}
             <div>
               <h3 className="text-[#f5f0e6] text-xl font-display font-semibold mb-4 flex items-center gap-2">
-                <Users className="w-5 h-5 text-[#d4af37]" />
+                <Users className="w-5 h-5 text-[#e07a5f]" />
                 {placeMeetups[selectedPlace.id]?.length || 0} personnes disponibles pour une visite
               </h3>
 
@@ -518,7 +518,7 @@ const MeetingsPage = () => {
                 {placeMeetups[selectedPlace.id]?.map(user => (
                   <div
                     key={user.id}
-                    className="bg-stone-800/30 rounded-2xl p-5 border border-stone-700/30 hover:border-[#d4af37]/50 transition-all"
+                    className="bg-stone-800/30 rounded-2xl p-5 border border-stone-700/30 hover:border-[#e07a5f]/50 transition-all"
                   >
                     <div className="flex items-start gap-4">
                       {/* Avatar */}
@@ -526,7 +526,7 @@ const MeetingsPage = () => {
                         <img
                           src={user.avatar}
                           alt={user.name}
-                          className="w-16 h-16 rounded-full object-cover border-2 border-[#d4af37]/30"
+                          className="w-16 h-16 rounded-full object-cover border-2 border-[#e07a5f]/30"
                         />
                         {user.verified && (
                           <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center border-2 border-stone-900">
@@ -541,7 +541,7 @@ const MeetingsPage = () => {
                       <div className="flex-1">
                         <div className="flex items-center justify-between">
                           <h4 className="text-[#f5f0e6] font-semibold">{user.name}, {user.age} ans</h4>
-                          <div className="flex items-center gap-1 text-[#d4af37] text-sm">
+                          <div className="flex items-center gap-1 text-[#e07a5f] text-sm">
                             <Star className="w-4 h-4 fill-current" />
                             {user.rating}
                           </div>
@@ -551,7 +551,7 @@ const MeetingsPage = () => {
                         {/* Tags d'intérêts */}
                         <div className="flex flex-wrap gap-1 mt-2">
                           {user.interests.slice(0, 3).map((interest, idx) => (
-                            <span key={idx} className="px-2 py-0.5 bg-[#d4af37]/10 text-[#d4af37] text-xs rounded-full">
+                            <span key={idx} className="px-2 py-0.5 bg-[#e07a5f]/10 text-[#e07a5f] text-xs rounded-full">
                               {interest}
                             </span>
                           ))}
@@ -560,11 +560,11 @@ const MeetingsPage = () => {
                         {/* Disponibilité */}
                         <div className="flex items-center gap-4 mt-3 text-sm">
                           <span className="text-stone-400 flex items-center gap-1">
-                            <Calendar className="w-4 h-4 text-[#d4af37]" />
+                            <Calendar className="w-4 h-4 text-[#e07a5f]" />
                             {user.availableDate}
                           </span>
                           <span className="text-stone-400 flex items-center gap-1">
-                            <Clock className="w-4 h-4 text-[#d4af37]" />
+                            <Clock className="w-4 h-4 text-[#e07a5f]" />
                             {user.availableTime}
                           </span>
                         </div>
@@ -579,7 +579,7 @@ const MeetingsPage = () => {
                     {/* Bouton de contact */}
                     <button
                       onClick={() => startConversation(user)}
-                      className="w-full mt-4 py-3 bg-gradient-to-r from-[#d4af37] to-[#b8962e] hover:from-[#e5c349] hover:to-[#d4af37] text-[#0a0f1a] font-semibold rounded-xl flex items-center justify-center gap-2 transition-all"
+                      className="w-full mt-4 py-3 bg-gradient-to-r from-[#e07a5f] to-[#e8968a] hover:from-[#f09a8a] hover:to-[#e07a5f] text-[#0a0f1a] font-semibold rounded-xl flex items-center justify-center gap-2 transition-all"
                     >
                       <MessageCircle className="w-5 h-5" />
                       Envoyer un message
@@ -606,7 +606,7 @@ const MeetingsPage = () => {
                 <img
                   src={selectedUser.avatar}
                   alt={selectedUser.name}
-                  className="w-12 h-12 rounded-full object-cover border-2 border-[#d4af37]/30"
+                  className="w-12 h-12 rounded-full object-cover border-2 border-[#e07a5f]/30"
                 />
                 <div className="flex-1">
                   <h3 className="text-[#f5f0e6] font-semibold">{selectedUser.name}</h3>
@@ -614,7 +614,7 @@ const MeetingsPage = () => {
                     Visite prévue : {selectedPlace.name}
                   </p>
                 </div>
-                <div className="flex items-center gap-1 text-[#d4af37]">
+                <div className="flex items-center gap-1 text-[#e07a5f]">
                   <Star className="w-4 h-4 fill-current" />
                   <span className="text-sm">{selectedUser.rating}</span>
                 </div>
@@ -631,7 +631,7 @@ const MeetingsPage = () => {
                   <div
                     className={`max-w-[80%] rounded-2xl p-4 ${
                       message.sender === 'me'
-                        ? 'bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-[#0a0f1a]'
+                        ? 'bg-gradient-to-r from-[#e07a5f] to-[#e8968a] text-[#0a0f1a]'
                         : 'bg-stone-800/50 text-[#f5f0e6]'
                     }`}
                   >
@@ -655,11 +655,11 @@ const MeetingsPage = () => {
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
                   placeholder="Écrivez votre message..."
-                  className="flex-1 py-3 px-4 bg-stone-900/50 border border-stone-700/50 rounded-xl text-[#f5f0e6] placeholder-stone-500 focus:outline-none focus:border-[#d4af37]/50 transition-colors"
+                  className="flex-1 py-3 px-4 bg-stone-900/50 border border-stone-700/50 rounded-xl text-[#f5f0e6] placeholder-stone-500 focus:outline-none focus:border-[#e07a5f]/50 transition-colors"
                 />
                 <button
                   type="submit"
-                  className="p-3 bg-gradient-to-r from-[#d4af37] to-[#b8962e] hover:from-[#e5c349] hover:to-[#d4af37] rounded-xl transition-colors"
+                  className="p-3 bg-gradient-to-r from-[#e07a5f] to-[#e8968a] hover:from-[#f09a8a] hover:to-[#e07a5f] rounded-xl transition-colors"
                 >
                   <Send className="w-5 h-5 text-[#0a0f1a]" />
                 </button>
@@ -674,7 +674,7 @@ const MeetingsPage = () => {
                 className="w-20 h-20 rounded-xl object-cover"
               />
               <div>
-                <span className="px-2 py-0.5 bg-[#d4af37]/20 text-[#d4af37] text-xs rounded-full uppercase">
+                <span className="px-2 py-0.5 bg-[#e07a5f]/20 text-[#e07a5f] text-xs rounded-full uppercase">
                   {selectedPlace.type}
                 </span>
                 <h4 className="text-[#f5f0e6] font-semibold mt-1">{selectedPlace.name}</h4>

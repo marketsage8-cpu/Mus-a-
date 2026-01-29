@@ -59,7 +59,7 @@ const EventsPage = () => {
               <Calendar className="w-6 h-6 text-purple-400" />
             </div>
             <div>
-              <h1 className="font-display text-3xl font-bold text-amber-50">
+              <h1 className="font-display text-3xl font-bold text-white">
                 Événements & Expositions
               </h1>
               <p className="text-stone-400">
@@ -74,7 +74,7 @@ const EventsPage = () => {
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Expositions en cours */}
         <section className="mb-12">
-          <h2 className="font-display text-2xl font-bold text-amber-50 mb-6 flex items-center gap-3">
+          <h2 className="font-display text-2xl font-bold text-white mb-6 flex items-center gap-3">
             <span className="w-2 h-8 bg-purple-500 rounded-full" />
             Expositions en cours
           </h2>
@@ -98,8 +98,8 @@ const EventsPage = () => {
 
         {/* Événements à venir */}
         <section>
-          <h2 className="font-display text-2xl font-bold text-amber-50 mb-6 flex items-center gap-3">
-            <span className="w-2 h-8 bg-amber-500 rounded-full" />
+          <h2 className="font-display text-2xl font-bold text-white mb-6 flex items-center gap-3">
+            <span className="w-2 h-8 bg-[#e07a5f] rounded-full" />
             À venir
           </h2>
 
@@ -115,7 +115,7 @@ const EventsPage = () => {
                   bg-stone-800/30
                   border border-stone-700/30
                   rounded-2xl
-                  hover:border-amber-800/30
+                  hover:border-[#e07a5f]/30
                   hover:bg-stone-800/50
                   transition-all duration-300
                   cursor-pointer
@@ -123,9 +123,9 @@ const EventsPage = () => {
               >
                 {/* Date badge */}
                 <div className="flex-shrink-0 w-24 text-center">
-                  <div className="p-3 bg-amber-600/20 rounded-xl">
-                    <Calendar className="w-6 h-6 text-amber-400 mx-auto mb-1" />
-                    <p className="text-xs text-amber-400 font-medium">{event.date}</p>
+                  <div className="p-3 bg-[#e07a5f]/20 rounded-xl">
+                    <Calendar className="w-6 h-6 text-[#e07a5f] mx-auto mb-1" />
+                    <p className="text-xs text-[#e07a5f] font-medium">{event.date}</p>
                   </div>
                 </div>
 
@@ -136,7 +136,7 @@ const EventsPage = () => {
                       {event.type}
                     </span>
                   </div>
-                  <h3 className="font-display text-xl font-semibold text-amber-50 mb-1 group-hover:text-amber-400 transition-colors">
+                  <h3 className="font-display text-xl font-semibold text-white mb-1 group-hover:text-[#e07a5f] transition-colors">
                     {event.title}
                   </h3>
                   <p className="text-stone-400 text-sm mb-2 line-clamp-1">
@@ -150,7 +150,7 @@ const EventsPage = () => {
 
                 {/* Arrow */}
                 <div className="flex-shrink-0 hidden sm:block">
-                  <ChevronRight className="w-5 h-5 text-stone-600 group-hover:text-amber-400 group-hover:translate-x-1 transition-all" />
+                  <ChevronRight className="w-5 h-5 text-stone-600 group-hover:text-[#e07a5f] group-hover:translate-x-1 transition-all" />
                 </div>
               </article>
             ))}
@@ -158,8 +158,8 @@ const EventsPage = () => {
         </section>
 
         {/* Newsletter CTA */}
-        <section className="mt-12 p-8 bg-gradient-to-r from-purple-900/20 to-amber-900/20 border border-purple-700/30 rounded-2xl text-center">
-          <h3 className="font-display text-2xl font-bold text-amber-50 mb-2">
+        <section className="mt-12 p-8 bg-gradient-to-r from-purple-900/20 to-[#e07a5f]/20/20 border border-purple-700/30 rounded-2xl text-center">
+          <h3 className="font-display text-2xl font-bold text-white mb-2">
             Ne manquez rien
           </h3>
           <p className="text-stone-400 mb-6 max-w-md mx-auto">
@@ -175,19 +175,19 @@ const EventsPage = () => {
                 bg-stone-800/50
                 border border-stone-700/50
                 rounded-xl
-                text-amber-50
+                text-white
                 placeholder-stone-500
                 focus:outline-none
-                focus:border-amber-600/50
+                focus:border-[#e07a5f]/50
               "
             />
             <button className="
               px-6 py-3
-              bg-gradient-to-r from-amber-600 to-amber-700
+              bg-gradient-to-r from-[#e07a5f] to-[#d86a4f]
               text-white font-medium
               rounded-xl
-              shadow-lg shadow-amber-900/30
-              hover:from-amber-500 hover:to-amber-600
+              shadow-lg shadow-[#e07a5f]/30
+              hover:from-[#e8968a] hover:to-[#e07a5f]
               transition-all
             ">
               S'inscrire

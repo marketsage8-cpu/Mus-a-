@@ -1058,8 +1058,68 @@ export async function loadAllCulturalPlaces(onProgress) {
   });
   console.log(`[Muzea] ${unique.length - filtered.length} lieux exclus (festivals/écoles/institutions)`);
 
+  // 3c. Validation Wikipedia - ne garder que les lieux vérifiés
+  onProgress?.({ phase: 'validation', status: 'Validation des lieux via Wikipedia…' });
+
+  // Fonction pour vérifier si un lieu existe via Wikipedia
+  const checkWikipediaExists = async (name) => {
+    try {
+      const searchUrl = `https://fr.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(name)}&srlimit=1&format=json&origin=*`;
+      const response = await fetch(searchUrl);
+      const data = await response.json();
+      return data.query?.search?.length > 0;
+    } catch {
+      return true; // En cas d'erreur, on garde le lieu
+    }
+  };
+
+  // Séparer les lieux vérifiés et non vérifiés
+  const verified = [];
+  const toCheck = [];
+
+  for (const p of filtered) {
+    // Lieux déjà vérifiés (ont un wikidataId ou viennent de sources fiables)
+    if (p.wikidataId || p.source === 'data.culture.gouv.fr' || p.source === 'Wikidata') {
+      verified.push(p);
+    } else {
+      toCheck.push(p);
+    }
+  }
+
+  console.log(`[Muzea] ${verified.length} lieux déjà vérifiés, ${toCheck.length} à vérifier via Wikipedia`);
+
+  // Vérifier les lieux non vérifiés en batch (limité pour éviter la surcharge)
+  const BATCH_SIZE = 20;
+  const MAX_TO_CHECK = 500; // Limite pour éviter trop de requêtes
+  const limitedCheck = toCheck.slice(0, MAX_TO_CHECK);
+  const validatedFromCheck = [];
+
+  for (let i = 0; i < limitedCheck.length; i += BATCH_SIZE) {
+    const batch = limitedCheck.slice(i, i + BATCH_SIZE);
+    const results = await Promise.all(
+      batch.map(async (p) => {
+        const exists = await checkWikipediaExists(p.name);
+        return exists ? p : null;
+      })
+    );
+    validatedFromCheck.push(...results.filter(Boolean));
+
+    if (i % 100 === 0) {
+      onProgress?.({ phase: 'validation', status: `Validation Wikipedia: ${i}/${limitedCheck.length}` });
+    }
+
+    // Petit délai entre les batches pour ne pas surcharger l'API
+    await sleep(100);
+  }
+
+  // Garder aussi les lieux non vérifiés au-delà de la limite (on ne peut pas tout vérifier)
+  const remainingUnchecked = toCheck.slice(MAX_TO_CHECK);
+
+  const allValidated = [...verified, ...validatedFromCheck, ...remainingUnchecked];
+  console.log(`[Muzea] ${filtered.length - allValidated.length} lieux exclus (non trouvés sur Wikipedia)`);
+
   // 4. Assigner IDs et valeurs par défaut
-  let places = filtered.map((p, i) => ({
+  let places = allValidated.map((p, i) => ({
     ...p,
     id: i + 1,
     image: p.image || '', // Sera rempli par le fallback Wikipedia si vide

@@ -45,6 +45,17 @@ const PlaceDetailModal = ({ place, isOpen, onClose }) => {
 
   if (!isOpen || !place) return null;
 
+  // Valeurs par défaut pour éviter les crashes
+  const safeName = place.name || 'Lieu sans nom';
+  const safeImage = place.image || 'https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?w=400&h=300&fit=crop';
+  const safeLocation = place.location || 'France';
+  const safeRating = place.rating || 4.0;
+  const safeDescription = place.description || 'Aucune description disponible.';
+  const safePrice = place.price || 'Se renseigner';
+  const safeHours = place.hours || 'Se renseigner';
+  const safePeriod = place.period || 'Permanent';
+  const safeHighlights = Array.isArray(place.highlights) ? place.highlights : [];
+
   const favorite = isFavorite(place.id);
   const visited = isVisited(place.id);
 
@@ -61,9 +72,10 @@ const PlaceDetailModal = ({ place, isOpen, onClose }) => {
         {/* Header image */}
         <div className="relative h-64 sm:h-80">
           <img
-            src={place.image}
-            alt={place.name}
+            src={safeImage}
+            alt={safeName}
             className="w-full h-full object-cover"
+            onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?w=400&h=300&fit=crop'; }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/30 to-transparent" />
 
@@ -85,16 +97,16 @@ const PlaceDetailModal = ({ place, isOpen, onClose }) => {
           {/* Title overlay */}
           <div className="absolute bottom-4 left-4 right-4">
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-2">
-              {place.name}
+              {safeName}
             </h2>
             <div className="flex items-center gap-4 text-white/80">
               <span className="flex items-center gap-1">
                 <MapPin className="w-4 h-4" />
-                {place.location}
+                {safeLocation}
               </span>
               <span className="flex items-center gap-1">
                 <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
-                {place.rating}
+                {safeRating}
               </span>
             </div>
           </div>
@@ -104,49 +116,51 @@ const PlaceDetailModal = ({ place, isOpen, onClose }) => {
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-20rem)]">
           {/* Description */}
           <p className="text-stone-300 text-lg leading-relaxed mb-6">
-            {place.description}
+            {safeDescription}
           </p>
 
           {/* Infos pratiques */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
             <div className="bg-stone-800/50 rounded-xl p-4 text-center">
               <Euro className="w-5 h-5 text-amber-400 mx-auto mb-2" />
-              <p className="text-amber-50 font-semibold">{place.price}</p>
+              <p className="text-amber-50 font-semibold">{safePrice}</p>
               <p className="text-xs text-stone-500">Tarif</p>
             </div>
             <div className="bg-stone-800/50 rounded-xl p-4 text-center">
               <Clock className="w-5 h-5 text-amber-400 mx-auto mb-2" />
-              <p className="text-amber-50 font-semibold text-sm">{place.hours}</p>
+              <p className="text-amber-50 font-semibold text-sm">{safeHours}</p>
               <p className="text-xs text-stone-500">Horaires</p>
             </div>
             <div className="bg-stone-800/50 rounded-xl p-4 text-center">
               <Calendar className="w-5 h-5 text-amber-400 mx-auto mb-2" />
-              <p className="text-amber-50 font-semibold">{place.period}</p>
+              <p className="text-amber-50 font-semibold">{safePeriod}</p>
               <p className="text-xs text-stone-500">Période</p>
             </div>
             <div className="bg-stone-800/50 rounded-xl p-4 text-center">
               <Star className="w-5 h-5 text-amber-400 mx-auto mb-2" />
-              <p className="text-amber-50 font-semibold">{place.rating}/5</p>
+              <p className="text-amber-50 font-semibold">{safeRating}/5</p>
               <p className="text-xs text-stone-500">Note</p>
             </div>
           </div>
 
           {/* Points forts */}
-          <div className="mb-6">
-            <h3 className="font-display text-xl font-semibold text-amber-50 mb-3">
-              Points forts
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {place.highlights.map((highlight, index) => (
-                <span
-                  key={index}
-                  className="px-3 py-1.5 bg-amber-600/10 border border-amber-600/30 text-amber-400 rounded-full text-sm"
-                >
-                  {highlight}
-                </span>
-              ))}
+          {safeHighlights.length > 0 && (
+            <div className="mb-6">
+              <h3 className="font-display text-xl font-semibold text-amber-50 mb-3">
+                Points forts
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {safeHighlights.map((highlight, index) => (
+                  <span
+                    key={index}
+                    className="px-3 py-1.5 bg-amber-600/10 border border-amber-600/30 text-amber-400 rounded-full text-sm"
+                  >
+                    {highlight}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Section Wikipedia */}
           {(wikiLoading || wikipedia) && (
@@ -283,7 +297,7 @@ const PlaceDetailModal = ({ place, isOpen, onClose }) => {
             <button
               onClick={() => {
                 onClose();
-                navigate(`/events?place=${encodeURIComponent(place.name)}`);
+                navigate(`/events?place=${encodeURIComponent(safeName)}`);
               }}
               className="w-full flex items-center justify-center gap-3 py-4 px-6 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-xl font-semibold transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-purple-500/30"
             >

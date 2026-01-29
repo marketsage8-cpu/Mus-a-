@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Users, Star, MapPin, Clock, ChevronRight, Calendar, Globe, Award, Sparkles, BookOpen } from 'lucide-react';
-import { GuidesMockup } from '../components/mockups/PhoneMockup';
 
 /**
  * Données fictives des guides
@@ -115,62 +114,88 @@ const GuidePage = () => {
 
   return (
     <div className="min-h-screen bg-[#0c0c0c] text-white overflow-x-hidden">
-      {/* Hero Section */}
-      <section className="min-h-screen relative flex items-center overflow-hidden pt-20">
-        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 w-full">
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Contenu texte */}
-            <div className="relative">
-              <div className="animate-on-scroll opacity-0 translate-y-[20px] inline-flex items-center gap-2 px-4 py-2 bg-white/[0.03] border border-white/[0.08] rounded-full mb-8">
-                <span className="w-2 h-2 bg-[#e07a5f] rounded-full animate-pulse" />
-                <span className="text-white/60 text-sm">Guides certifiés & passionnés</span>
-              </div>
+      {/* Hero Section - Style HomePage avec image de fond */}
+      <section className="min-h-screen relative flex items-center overflow-hidden">
+        {/* Image de fond - prend 70% côté droit */}
+        <div
+          className="absolute top-0 right-0 w-[70%] h-full bg-cover bg-center hidden md:block"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1578926375605-eaf7559b1458?w=1600&q=80')`
+          }}
+        />
 
-              <h1 className="animate-on-scroll opacity-0 translate-y-[30px] font-serif text-5xl md:text-6xl font-light mb-6 leading-tight" style={{ transitionDelay: '100ms' }}>
-                Vivez l'Art avec<br />
-                <em className="text-[#e07a5f] font-normal">nos Experts</em>
-              </h1>
+        {/* Dégradé de transition intense - fondu progressif */}
+        <div className="absolute top-0 right-[20%] w-[55%] h-full bg-gradient-to-r from-[#0c0c0c] via-[#0c0c0c] to-transparent z-10 hidden md:block" />
 
-              <p className="animate-on-scroll opacity-0 translate-y-[30px] text-white/60 text-lg md:text-xl max-w-lg mb-6 font-light leading-relaxed" style={{ transitionDelay: '200ms' }}>
-                Découvrez les plus grands musées accompagné par des conférenciers d'exception. Des visites privées et personnalisées.
-              </p>
-
-              <div className="animate-on-scroll opacity-0 translate-y-[30px] flex flex-wrap gap-4 mb-10 text-sm text-white/50" style={{ transitionDelay: '300ms' }}>
-                <span className="flex items-center gap-2">
-                  <Award className="w-4 h-4 text-[#e07a5f]" />
-                  Guides certifiés
-                </span>
-                <span className="flex items-center gap-2">
-                  <Globe className="w-4 h-4 text-[#e07a5f]" />
-                  Multilingue
-                </span>
-                <span className="flex items-center gap-2">
-                  <Star className="w-4 h-4 text-[#e07a5f]" />
-                  4.9/5 en moyenne
-                </span>
-              </div>
-
-              <div className="animate-on-scroll opacity-0 translate-y-[30px] flex flex-wrap gap-4" style={{ transitionDelay: '400ms' }}>
-                <button
-                  onClick={() => document.getElementById('guides').scrollIntoView({ behavior: 'smooth' })}
-                  className="px-8 py-4 bg-[#e07a5f] text-[#0c0c0c] font-medium rounded-full hover:bg-[#e8968a] transition-all hover:scale-105 shadow-lg shadow-[#e07a5f]/20"
-                >
-                  Trouver un guide
-                </button>
-                <button
-                  onClick={() => document.getElementById('decouvrir').scrollIntoView({ behavior: 'smooth' })}
-                  className="px-8 py-4 border border-white/20 text-white/80 font-medium rounded-full hover:bg-white/5 transition-all"
-                >
-                  En savoir plus
-                </button>
-              </div>
+        {/* Contenu texte à gauche */}
+        <div className="pl-8 md:pl-16 lg:pl-24 pr-6 w-full relative z-20">
+          <div className="max-w-xl">
+            <div className="animate-on-scroll opacity-0 translate-y-[20px] inline-flex items-center gap-2 px-4 py-2 bg-white/[0.03] border border-white/[0.08] rounded-full mb-8">
+              <span className="w-2 h-2 bg-[#e07a5f] rounded-full animate-pulse" />
+              <span className="text-white/60 text-sm">Guides certifiés & passionnés</span>
             </div>
 
-            {/* Mockup */}
-            <div className="animate-on-scroll opacity-0 translate-x-[50px] scale-95 hidden md:block" style={{ transitionDelay: '300ms' }}>
-              <GuidesMockup />
+            <h1 className="animate-on-scroll opacity-0 translate-y-[30px] font-serif text-5xl md:text-6xl lg:text-7xl font-light mb-6 leading-tight" style={{ transitionDelay: '100ms' }}>
+              Vivez l'Art avec<br />
+              <em className="text-[#e07a5f] font-normal">nos Experts</em>
+            </h1>
+
+            <p className="animate-on-scroll opacity-0 translate-y-[30px] text-white/60 text-lg md:text-xl max-w-lg mb-6 font-light leading-relaxed" style={{ transitionDelay: '200ms' }}>
+              Découvrez les plus grands musées accompagné par des conférenciers d'exception. Des visites privées et personnalisées.
+            </p>
+
+            <div className="animate-on-scroll opacity-0 translate-y-[30px] flex flex-wrap gap-4 mb-10 text-sm text-white/50" style={{ transitionDelay: '300ms' }}>
+              <span className="flex items-center gap-2">
+                <Award className="w-4 h-4 text-[#e07a5f]" />
+                Guides certifiés
+              </span>
+              <span className="flex items-center gap-2">
+                <Globe className="w-4 h-4 text-[#e07a5f]" />
+                Multilingue
+              </span>
+              <span className="flex items-center gap-2">
+                <Star className="w-4 h-4 text-[#e07a5f]" />
+                4.9/5 en moyenne
+              </span>
+            </div>
+
+            <div className="animate-on-scroll opacity-0 translate-y-[30px] flex flex-wrap gap-4" style={{ transitionDelay: '400ms' }}>
+              <button
+                onClick={() => document.getElementById('guides').scrollIntoView({ behavior: 'smooth' })}
+                className="px-8 py-4 bg-[#e07a5f] text-[#0c0c0c] font-medium rounded-full hover:bg-[#e8968a] transition-all hover:scale-105 shadow-lg shadow-[#e07a5f]/20"
+              >
+                Trouver un guide
+              </button>
+              <button
+                onClick={() => document.getElementById('decouvrir').scrollIntoView({ behavior: 'smooth' })}
+                className="px-8 py-4 border border-white/20 text-white/80 font-medium rounded-full hover:bg-white/5 transition-all"
+              >
+                En savoir plus
+              </button>
+            </div>
+
+            {/* Stats */}
+            <div className="animate-on-scroll opacity-0 translate-y-[30px] flex gap-8 mt-12 pt-8 border-t border-white/10" style={{ transitionDelay: '500ms' }}>
+              <div>
+                <div className="text-3xl font-serif text-[#e07a5f]">150+</div>
+                <div className="text-sm text-white/40">Guides experts</div>
+              </div>
+              <div>
+                <div className="text-3xl font-serif text-[#e07a5f]">4.9</div>
+                <div className="text-sm text-white/40">Note moyenne</div>
+              </div>
+              <div>
+                <div className="text-3xl font-serif text-[#e07a5f]">12k+</div>
+                <div className="text-sm text-white/40">Visites guidées</div>
+              </div>
             </div>
           </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 z-20">
+          <span className="text-xs tracking-widest">DÉFILER</span>
+          <div className="w-px h-16 bg-gradient-to-b from-white/30 to-transparent" />
         </div>
       </section>
 

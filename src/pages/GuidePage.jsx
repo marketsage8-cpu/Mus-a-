@@ -1,666 +1,388 @@
-import { useState, useMemo } from 'react';
-import { Search, Star, MapPin, Clock, Users, ChevronRight, X, Calendar, Filter, Check, Minus, Plus, Globe, CreditCard } from 'lucide-react';
-import { places } from '../data/places';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Users, Star, MapPin, Clock, ChevronRight, Calendar, Globe, Award, Sparkles, BookOpen } from 'lucide-react';
+import { GuidesMockup } from '../components/mockups/PhoneMockup';
 
 /**
- * Page Guides - Réservation de visites guidées
- * Design cohérent avec le reste du site Muzea
+ * Données fictives des guides
+ */
+const guides = [
+  {
+    id: 1,
+    name: 'Marie Dubois',
+    specialty: "Histoire de l'Art",
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=face',
+    rating: 4.9,
+    reviews: 127,
+    languages: ['Français', 'Anglais'],
+    price: 89,
+    verified: true
+  },
+  {
+    id: 2,
+    name: 'Jean-Pierre Martin',
+    specialty: 'Art Contemporain',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face',
+    rating: 5.0,
+    reviews: 89,
+    languages: ['Français', 'Espagnol'],
+    price: 95,
+    verified: true
+  },
+  {
+    id: 3,
+    name: 'Sophie Laurent',
+    specialty: 'Renaissance & Classique',
+    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face',
+    rating: 4.8,
+    reviews: 156,
+    languages: ['Français', 'Italien', 'Anglais'],
+    price: 85,
+    verified: true
+  },
+  {
+    id: 4,
+    name: 'Antoine Moreau',
+    specialty: 'Impressionnisme',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face',
+    rating: 4.7,
+    reviews: 98,
+    languages: ['Français', 'Allemand'],
+    price: 80,
+    verified: false
+  },
+  {
+    id: 5,
+    name: 'Claire Fontaine',
+    specialty: 'Art Moderne',
+    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=face',
+    rating: 4.9,
+    reviews: 112,
+    languages: ['Français', 'Anglais', 'Japonais'],
+    price: 90,
+    verified: true
+  },
+  {
+    id: 6,
+    name: 'Lucas Bernard',
+    specialty: 'Patrimoine Français',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face',
+    rating: 4.8,
+    reviews: 134,
+    languages: ['Français', 'Anglais'],
+    price: 88,
+    verified: true
+  }
+];
+
+/**
+ * Page Guides - Style HomePage
  */
 const GuidePage = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedPlace, setSelectedPlace] = useState(null);
-  const [selectedDate, setSelectedDate] = useState('');
-  const [selectedTime, setSelectedTime] = useState('');
-  const [showFilters, setShowFilters] = useState(false);
-  const [bookingGuide, setBookingGuide] = useState(null);
-  const [bookingConfirmed, setBookingConfirmed] = useState(false);
-  const [nbPersons, setNbPersons] = useState(1);
+  const navigate = useNavigate();
 
-  // Guides disponibles
-  const guides = [
-    {
-      id: 1,
-      name: 'Marie Dubois',
-      specialty: "Histoire de l'Art",
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=face',
-      rating: 4.9,
-      reviews: 127,
-      languages: ['Français', 'Anglais'],
-      price: 89,
-      availableTimes: ['9h00', '11h00', '14h00', '16h00']
-    },
-    {
-      id: 2,
-      name: 'Jean-Pierre Martin',
-      specialty: 'Art Contemporain',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face',
-      rating: 5.0,
-      reviews: 89,
-      languages: ['Français', 'Espagnol'],
-      price: 95,
-      availableTimes: ['10h00', '14h00', '17h00']
-    },
-    {
-      id: 3,
-      name: 'Sophie Laurent',
-      specialty: 'Renaissance & Classique',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face',
-      rating: 4.8,
-      reviews: 156,
-      languages: ['Français', 'Italien', 'Anglais'],
-      price: 85,
-      availableTimes: ['9h30', '11h30', '14h30', '16h30']
-    },
-    {
-      id: 4,
-      name: 'Antoine Moreau',
-      specialty: 'Impressionnisme',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face',
-      rating: 4.7,
-      reviews: 98,
-      languages: ['Français', 'Allemand'],
-      price: 80,
-      availableTimes: ['10h00', '13h00', '15h00']
-    },
-    {
-      id: 5,
-      name: 'Claire Fontaine',
-      specialty: 'Art Moderne',
-      image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=face',
-      rating: 4.9,
-      reviews: 112,
-      languages: ['Français', 'Anglais', 'Japonais'],
-      price: 90,
-      availableTimes: ['9h00', '12h00', '15h00', '18h00']
-    }
-  ];
+  // Observer pour les animations au scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { rootMargin: '-10% 0px', threshold: 0.1 }
+    );
 
-  // Dates disponibles pour les 14 prochains jours
-  const availableDates = useMemo(() => {
-    const dates = [];
-    const today = new Date();
-    for (let i = 1; i <= 14; i++) {
-      const date = new Date(today);
-      date.setDate(today.getDate() + i);
-      dates.push({
-        value: date.toISOString().split('T')[0],
-        label: date.toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' })
-      });
-    }
-    return dates;
+    document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
-  // Filtrer les lieux selon la recherche
-  const filteredPlaces = useMemo(() => {
-    if (!searchQuery.trim()) return [];
-    const query = searchQuery.toLowerCase();
-    return places.filter(place =>
-      place.name.toLowerCase().includes(query) ||
-      place.location.toLowerCase().includes(query) ||
-      place.type?.toLowerCase().includes(query)
-    ).slice(0, 10);
-  }, [searchQuery]);
-
-  // Filtrer les guides selon l'heure sélectionnée
-  const filteredGuides = useMemo(() => {
-    if (!selectedTime) return guides;
-    return guides.filter(guide => guide.availableTimes.includes(selectedTime));
-  }, [selectedTime, guides]);
-
-  const handlePlaceSelect = (place) => {
-    setSelectedPlace(place);
-    setSearchQuery(place.name);
-    setShowFilters(true);
-    setSelectedDate('');
-    setSelectedTime('');
-  };
-
-  const handleReset = () => {
-    setSelectedPlace(null);
-    setSearchQuery('');
-    setShowFilters(false);
-    setSelectedDate('');
-    setSelectedTime('');
-  };
-
   return (
-    <div className="min-h-screen pt-20 pb-24 md:pb-8" style={{ backgroundColor: '#0c0c0c' }}>
-      {/* Hero Header */}
-      <div className="relative">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-25"
-          style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1554907984-15263bfd63bd?w=1920&h=600&fit=crop')"
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0c0c]/50 via-[#0c0c0c]/80 to-[#0c0c0c]" />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 py-16">
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#e07a5f]/15 border border-[#e07a5f]/30 rounded-full mb-6">
-              <Users className="w-4 h-4 text-[#e07a5f]" />
-              <span className="text-[#e07a5f] text-sm font-medium font-serif-italic">Guides certifiés & passionnés</span>
-            </div>
-
-            <h1
-              className="font-serif-italic text-4xl md:text-5xl lg:text-6xl mb-4"
-              style={{ color: '#e07a5f' }}
-            >
-              Vivez l'Art avec nos Guides Experts
-            </h1>
-
-            <p
-              className="text-lg md:text-xl max-w-2xl mx-auto"
-              style={{ color: '#9ca3af' }}
-            >
-              Découvrez les plus grands musées accompagné par des conférenciers d'exception
-            </p>
-          </div>
-
-          {/* Barre de recherche */}
-          <div className="max-w-3xl mx-auto relative">
+    <div className="min-h-screen bg-[#0c0c0c] text-white overflow-x-hidden">
+      {/* Hero Section */}
+      <section className="min-h-screen relative flex items-center overflow-hidden pt-20">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 w-full">
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Contenu texte */}
             <div className="relative">
-              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 text-stone-400" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => {
-                  setSearchQuery(e.target.value);
-                  if (selectedPlace && e.target.value !== selectedPlace.name) {
-                    setSelectedPlace(null);
-                    setShowFilters(false);
-                  }
-                }}
-                placeholder="Rechercher un musée, un château, une église..."
-                className="w-full py-4 pl-14 pr-12 bg-stone-800/50 border border-stone-700/50 rounded-2xl text-[#f5f0e6] placeholder-stone-500 focus:outline-none focus:border-[#e07a5f]/50 focus:ring-2 focus:ring-[#e07a5f]/20 transition-all text-lg font-body"
-              />
-              {searchQuery && (
+              <div className="animate-on-scroll opacity-0 translate-y-[20px] inline-flex items-center gap-2 px-4 py-2 bg-white/[0.03] border border-white/[0.08] rounded-full mb-8">
+                <span className="w-2 h-2 bg-[#e07a5f] rounded-full animate-pulse" />
+                <span className="text-white/60 text-sm">Guides certifiés & passionnés</span>
+              </div>
+
+              <h1 className="animate-on-scroll opacity-0 translate-y-[30px] font-serif text-5xl md:text-6xl font-light mb-6 leading-tight" style={{ transitionDelay: '100ms' }}>
+                Vivez l'Art avec<br />
+                <em className="text-[#e07a5f] font-normal">nos Experts</em>
+              </h1>
+
+              <p className="animate-on-scroll opacity-0 translate-y-[30px] text-white/60 text-lg md:text-xl max-w-lg mb-6 font-light leading-relaxed" style={{ transitionDelay: '200ms' }}>
+                Découvrez les plus grands musées accompagné par des conférenciers d'exception. Des visites privées et personnalisées.
+              </p>
+
+              <div className="animate-on-scroll opacity-0 translate-y-[30px] flex flex-wrap gap-4 mb-10 text-sm text-white/50" style={{ transitionDelay: '300ms' }}>
+                <span className="flex items-center gap-2">
+                  <Award className="w-4 h-4 text-[#e07a5f]" />
+                  Guides certifiés
+                </span>
+                <span className="flex items-center gap-2">
+                  <Globe className="w-4 h-4 text-[#e07a5f]" />
+                  Multilingue
+                </span>
+                <span className="flex items-center gap-2">
+                  <Star className="w-4 h-4 text-[#e07a5f]" />
+                  4.9/5 en moyenne
+                </span>
+              </div>
+
+              <div className="animate-on-scroll opacity-0 translate-y-[30px] flex flex-wrap gap-4" style={{ transitionDelay: '400ms' }}>
                 <button
-                  onClick={handleReset}
-                  className="absolute right-5 top-1/2 -translate-y-1/2 p-1 text-stone-400 hover:text-amber-50 transition-colors"
+                  onClick={() => document.getElementById('guides').scrollIntoView({ behavior: 'smooth' })}
+                  className="px-8 py-4 bg-[#e07a5f] text-[#0c0c0c] font-medium rounded-full hover:bg-[#e8968a] transition-all hover:scale-105 shadow-lg shadow-[#e07a5f]/20"
                 >
-                  <X className="w-5 h-5" />
+                  Trouver un guide
                 </button>
-              )}
-            </div>
-
-            {/* Dropdown des résultats de recherche */}
-            {searchQuery && !selectedPlace && filteredPlaces.length > 0 && (
-              <div
-                className="absolute left-0 right-0 mt-2 bg-stone-900 border border-stone-700/50 rounded-xl shadow-2xl z-50 max-h-[70vh] overflow-y-auto"
-                style={{
-                  animation: 'fadeInUp 0.4s ease-out 0.2s both'
-                }}
-              >
-                {filteredPlaces.map((place) => (
-                  <button
-                    key={place.id}
-                    onClick={() => handlePlaceSelect(place)}
-                    className="w-full flex items-center gap-4 p-4 hover:bg-stone-800/50 transition-colors text-left"
-                  >
-                    <img
-                      src={place.image}
-                      alt={place.name}
-                      className="w-16 h-16 rounded-xl object-cover flex-shrink-0"
-                    />
-                    <div className="flex-1">
-                      <h4 className="font-display font-semibold text-[#f5f0e6]">{place.name}</h4>
-                      <div className="flex flex-wrap items-center gap-3 text-sm text-stone-400 mt-1">
-                        <span className="flex items-center gap-1">
-                          <MapPin className="w-3 h-3 flex-shrink-0" />
-                          <span>{place.location}</span>
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Star className="w-3 h-3 text-[#e07a5f] fill-[#e07a5f]" />
-                          {place.rating}
-                        </span>
-                      </div>
-                    </div>
-                    <ChevronRight className="w-5 h-5 text-stone-500 flex-shrink-0" />
-                  </button>
-                ))}
-              </div>
-            )}
-
-            {/* Message si aucun résultat */}
-            {searchQuery && !selectedPlace && filteredPlaces.length === 0 && (
-              <div className="absolute left-0 right-0 mt-2 bg-stone-900 border border-stone-700/50 rounded-xl p-6 text-center z-50">
-                <p className="text-stone-400">Aucun lieu trouvé pour "{searchQuery}"</p>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Section Filtres et Guides */}
-      {selectedPlace && showFilters && (
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          {/* Lieu sélectionné */}
-          <div className="bg-stone-800/30 border border-stone-700/30 rounded-2xl p-6 mb-8">
-            <div className="flex flex-col md:flex-row gap-6">
-              <img
-                src={selectedPlace.image}
-                alt={selectedPlace.name}
-                className="w-full md:w-64 h-40 rounded-xl object-cover"
-              />
-              <div className="flex-1">
-                <h2 className="font-display text-2xl font-bold text-[#f5f0e6] mb-2">{selectedPlace.name}</h2>
-                <p className="text-[#c4b69c]/80 mb-4 font-body">{selectedPlace.description}</p>
-                <div className="flex flex-wrap items-center gap-4 text-sm text-stone-400">
-                  <span className="flex items-center gap-1">
-                    <MapPin className="w-4 h-4" />
-                    {selectedPlace.location}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Star className="w-4 h-4 text-[#e07a5f] fill-[#e07a5f]" />
-                    {selectedPlace.rating}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
-                    {selectedPlace.hours}
-                  </span>
-                  <span className="text-[#e07a5f] font-semibold">{selectedPlace.price}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Filtres: Date et Heure */}
-          <div className="bg-stone-900/50 border border-stone-700/30 rounded-2xl p-6 mb-8">
-            <div className="flex items-center gap-2 mb-6">
-              <Filter className="w-5 h-5 text-[#e07a5f]" />
-              <h3 className="font-display text-xl font-semibold text-[#f5f0e6]">Choisissez votre créneau</h3>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              {/* Sélection de la date */}
-              <div>
-                <label className="block text-sm font-medium text-[#c4b69c]/80 mb-3 font-body">
-                  <Calendar className="w-4 h-4 inline mr-2" />
-                  Jour de visite
-                </label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                  {availableDates.slice(0, 6).map((date) => (
-                    <button
-                      key={date.value}
-                      onClick={() => setSelectedDate(date.value)}
-                      className={`p-3 rounded-xl text-sm font-medium transition-all ${
-                        selectedDate === date.value
-                          ? 'bg-gradient-to-r from-[#e07a5f] to-[#e8968a] text-[#0a0f1a]'
-                          : 'bg-stone-800/50 border border-stone-700/50 text-stone-300 hover:border-[#e07a5f]/50'
-                      }`}
-                    >
-                      {date.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Sélection de l'heure */}
-              <div>
-                <label className="block text-sm font-medium text-[#c4b69c]/80 mb-3 font-body">
-                  <Clock className="w-4 h-4 inline mr-2" />
-                  Heure de début
-                </label>
-                <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
-                  {['9h00', '10h00', '11h00', '14h00', '15h00', '16h00', '17h00', '18h00'].map((time) => (
-                    <button
-                      key={time}
-                      onClick={() => setSelectedTime(selectedTime === time ? '' : time)}
-                      className={`p-3 rounded-xl text-sm font-medium transition-all ${
-                        selectedTime === time
-                          ? 'bg-gradient-to-r from-[#e07a5f] to-[#e8968a] text-[#0a0f1a]'
-                          : 'bg-stone-800/50 border border-stone-700/50 text-stone-300 hover:border-[#e07a5f]/50'
-                      }`}
-                    >
-                      {time}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Liste des guides */}
-          <div>
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="font-display text-2xl font-semibold text-[#f5f0e6]">
-                Nos guides disponibles
-              </h3>
-              <span className="text-[#c4b69c]/70 text-sm font-body">
-                {filteredGuides.length} guide{filteredGuides.length > 1 ? 's' : ''} disponible{filteredGuides.length > 1 ? 's' : ''}
-              </span>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredGuides.map((guide) => (
-                <div
-                  key={guide.id}
-                  className="group bg-stone-800/30 border border-stone-700/30 rounded-2xl overflow-hidden hover:border-[#e07a5f]/30 transition-all duration-300"
+                <button
+                  onClick={() => document.getElementById('decouvrir').scrollIntoView({ behavior: 'smooth' })}
+                  className="px-8 py-4 border border-white/20 text-white/80 font-medium rounded-full hover:bg-white/5 transition-all"
                 >
-                  <div className="p-6">
-                    <div className="flex items-start gap-4 mb-4">
-                      <img
-                        src={guide.image}
-                        alt={guide.name}
-                        className="w-20 h-20 rounded-full object-cover border-2 border-[#e07a5f]/30"
-                      />
-                      <div className="flex-1">
-                        <h4 className="font-display font-semibold text-[#f5f0e6] text-lg">{guide.name}</h4>
-                        <p className="text-[#e07a5f] text-sm mb-2 font-serif-italic">{guide.specialty}</p>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1">
-                            <Star className="w-4 h-4 text-[#e07a5f] fill-[#e07a5f]" />
-                            <span className="text-[#f5f0e6] font-semibold">{guide.rating}</span>
-                          </div>
-                          <span className="text-stone-500 text-sm">({guide.reviews} avis)</span>
-                        </div>
-                      </div>
-                    </div>
+                  En savoir plus
+                </button>
+              </div>
+            </div>
 
-                    <div className="space-y-3 mb-4">
-                      <div className="flex items-center gap-2 text-sm text-stone-400">
-                        <span className="text-stone-500">Langues:</span>
-                        <span className="text-[#c4b69c]">{guide.languages.join(', ')}</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-sm">
-                        <span className="text-stone-500">Créneaux:</span>
-                        <div className="flex flex-wrap gap-1">
-                          {guide.availableTimes.map((time) => (
-                            <span
-                              key={time}
-                              className={`px-2 py-0.5 rounded text-xs ${
-                                selectedTime === time
-                                  ? 'bg-[#e07a5f]/30 text-[#e07a5f]'
-                                  : 'bg-stone-700/50 text-stone-400'
-                              }`}
-                            >
-                              {time}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between pt-4 border-t border-stone-700/30">
-                      <div>
-                        <span className="text-2xl font-bold text-[#e07a5f]">{guide.price}€</span>
-                        <span className="text-stone-500 text-sm"> / personne</span>
-                      </div>
-                      <button
-                        onClick={() => {
-                          setBookingGuide(guide);
-                          setBookingConfirmed(false);
-                          setNbPersons(1);
-                        }}
-                        disabled={!selectedDate}
-                        className="px-6 py-2.5 bg-gradient-to-r from-[#e07a5f] to-[#e8968a] text-[#0a0f1a] rounded-xl font-semibold hover:from-[#f09a8a] hover:to-[#e07a5f] transition-all disabled:opacity-40 disabled:cursor-not-allowed"
-                      >
-                        Réserver
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
+            {/* Mockup */}
+            <div className="animate-on-scroll opacity-0 translate-x-[50px] scale-95 hidden md:block" style={{ transitionDelay: '300ms' }}>
+              <GuidesMockup />
             </div>
           </div>
         </div>
-      )}
+      </section>
 
-      {/* Section par défaut - Lieux populaires */}
-      {!selectedPlace && (
-        <div
-          className={`transition-all duration-500 ease-out overflow-hidden ${
-            searchQuery
-              ? 'opacity-0 max-h-0 scale-95'
-              : 'opacity-100 max-h-[3000px] scale-100'
-          }`}
-        >
-          <div className="max-w-7xl mx-auto px-4 py-12">
-          <div className="text-center mb-10">
-            <h2 className="font-display text-3xl font-bold text-[#f5f0e6] mb-3">
-              Lieux <span className="text-[#e07a5f]">populaires</span>
+      {/* Section 01 - Comment ça marche */}
+      <section id="decouvrir" className="py-24 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+          <div className="text-center mb-16">
+            <span className="animate-on-scroll opacity-0 translate-y-[20px] text-[#e07a5f] text-xs tracking-[0.3em] uppercase mb-4 block">Comment ça marche</span>
+            <h2 className="animate-on-scroll opacity-0 translate-y-[30px] font-serif text-4xl md:text-5xl font-light mb-6" style={{ transitionDelay: '100ms' }}>
+              Réservez votre<br />
+              <em className="text-[#e07a5f]">visite guidée</em>
             </h2>
-            <p className="text-[#c4b69c]/70 font-body">
-              Les destinations les plus prisées par nos visiteurs
-            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {places.slice(0, 8).map((place) => (
-              <button
-                key={place.id}
-                onClick={() => handlePlaceSelect(place)}
-                className="group relative bg-stone-800/30 border border-stone-700/30 rounded-2xl overflow-hidden hover:border-[#e07a5f]/30 transition-all duration-300 text-left"
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: MapPin,
+                title: "Choisissez",
+                desc: "Sélectionnez le musée ou monument que vous souhaitez visiter",
+                delay: '200ms'
+              },
+              {
+                icon: Users,
+                title: "Réservez",
+                desc: "Trouvez le guide idéal et réservez votre créneau en quelques clics",
+                delay: '300ms'
+              },
+              {
+                icon: Sparkles,
+                title: "Profitez",
+                desc: "Vivez une expérience culturelle unique et enrichissante",
+                delay: '400ms'
+              }
+            ].map((step, i) => (
+              <div
+                key={i}
+                className="animate-on-scroll opacity-0 translate-y-[30px] text-center p-8 bg-white/[0.02] border border-white/[0.05] rounded-2xl hover:border-[#e07a5f]/30 transition-all"
+                style={{ transitionDelay: step.delay }}
               >
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={place.image}
-                    alt={place.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/50 to-transparent" />
-
-                  <div className="absolute top-3 right-3 px-3 py-1 bg-gradient-to-r from-[#e07a5f] to-[#e8968a] rounded-full">
-                    <span className="text-[#0a0f1a] text-xs font-semibold">Dès {place.price}</span>
-                  </div>
+                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#e07a5f]/10 flex items-center justify-center border border-[#e07a5f]/20">
+                  <step.icon className="w-7 h-7 text-[#e07a5f]" />
                 </div>
-
-                <div className="p-4">
-                  <h3 className="font-display font-semibold text-[#f5f0e6] mb-2 group-hover:text-[#e07a5f] transition-colors">
-                    {place.name}
-                  </h3>
-                  <div className="flex items-center gap-3 text-sm text-stone-400">
-                    <span className="flex items-center gap-1">
-                      <MapPin className="w-3 h-3" />
-                      {place.location.split(',')[0]}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Star className="w-3 h-3 text-[#e07a5f] fill-[#e07a5f]" />
-                      {place.rating}
-                    </span>
-                  </div>
-                </div>
-              </button>
+                <h3 className="font-serif text-2xl mb-3">{step.title}</h3>
+                <p className="text-white/50">{step.desc}</p>
+              </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* Section Experts */}
-          <div className="mt-16">
-            <div className="text-center mb-10">
-              <h2 className="font-display text-3xl font-bold text-[#f5f0e6] mb-3">
-                Nos <span className="text-[#e07a5f]">experts</span> passionnés
-              </h2>
-              <p className="text-[#c4b69c]/70 font-body">
-                Des guides conférenciers triés sur le volet pour des expériences uniques
-              </p>
-            </div>
+      {/* Section 02 - Nos guides */}
+      <section id="guides" className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0c0c] via-[#0f0f0f] to-[#0c0c0c]" />
 
-            <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
-              {guides.map((guide) => (
-                <div
-                  key={guide.id}
-                  className="group text-center p-6 bg-stone-800/20 border border-stone-700/30 rounded-2xl hover:border-[#e07a5f]/30 transition-all"
-                >
-                  <div className="relative inline-block mb-4">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-10">
+          <div className="text-center mb-16">
+            <span className="animate-on-scroll opacity-0 translate-y-[20px] text-[#e07a5f] text-xs tracking-[0.3em] uppercase mb-4 block">Nos experts</span>
+            <h2 className="animate-on-scroll opacity-0 translate-y-[30px] font-serif text-4xl md:text-5xl font-light mb-6" style={{ transitionDelay: '100ms' }}>
+              Guides<br />
+              <em className="text-[#e07a5f]">passionnés</em>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {guides.map((guide, i) => (
+              <div
+                key={guide.id}
+                className="animate-on-scroll opacity-0 translate-y-[30px] group p-6 bg-white/[0.02] border border-white/[0.08] rounded-2xl hover:border-[#e07a5f]/30 transition-all"
+                style={{ transitionDelay: `${200 + i * 100}ms` }}
+              >
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="relative">
                     <img
                       src={guide.image}
                       alt={guide.name}
-                      className="w-24 h-24 rounded-full object-cover border-2 border-[#e07a5f]/30 group-hover:border-[#e07a5f] transition-colors"
+                      className="w-16 h-16 rounded-full object-cover border-2 border-[#e07a5f]/30"
                     />
-                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-gradient-to-r from-[#e07a5f] to-[#e8968a] rounded-full flex items-center gap-1">
-                      <Star className="w-3 h-3 text-[#0a0f1a] fill-[#0a0f1a]" />
-                      <span className="text-[#0a0f1a] text-xs font-bold">{guide.rating}</span>
+                    {guide.verified && (
+                      <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#e07a5f] rounded-full flex items-center justify-center">
+                        <svg className="w-3 h-3 text-[#0c0c0c]" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-medium text-white group-hover:text-[#e07a5f] transition-colors">{guide.name}</h4>
+                    <p className="text-[#e07a5f] text-sm italic">{guide.specialty}</p>
+                    <div className="flex items-center gap-1 text-[#e07a5f] text-sm mt-1">
+                      <Star className="w-3 h-3 fill-current" />
+                      {guide.rating}
+                      <span className="text-white/40 ml-1">({guide.reviews} avis)</span>
                     </div>
                   </div>
-                  <h4 className="font-display font-semibold text-[#f5f0e6]">{guide.name}</h4>
-                  <p className="text-[#e07a5f] text-sm font-serif-italic">{guide.specialty}</p>
+                </div>
+
+                <div className="flex items-center gap-2 text-sm text-white/40 mb-4">
+                  <Globe className="w-4 h-4" />
+                  <span>{guide.languages.join(', ')}</span>
+                </div>
+
+                <div className="flex items-center justify-between pt-4 border-t border-white/[0.08]">
+                  <div>
+                    <span className="text-2xl font-bold text-[#e07a5f]">{guide.price}€</span>
+                    <span className="text-white/40 text-sm"> / personne</span>
+                  </div>
+                  <button className="flex items-center gap-2 px-4 py-2 bg-[#e07a5f]/10 text-[#e07a5f] rounded-full hover:bg-[#e07a5f]/20 transition-colors text-sm">
+                    Réserver
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Section 03 - Avantages */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Contenu texte */}
+            <div>
+              <span className="animate-on-scroll opacity-0 translate-y-[20px] text-[#e07a5f] text-xs tracking-[0.3em] uppercase mb-4 block">Pourquoi nous choisir</span>
+              <h2 className="animate-on-scroll opacity-0 translate-y-[30px] font-serif text-4xl md:text-5xl font-light mb-8" style={{ transitionDelay: '100ms' }}>
+                Une expérience<br />
+                <em className="text-[#e07a5f]">inoubliable</em>
+              </h2>
+
+              <div className="space-y-6">
+                {[
+                  {
+                    icon: Award,
+                    title: "Guides certifiés",
+                    desc: "Tous nos guides sont des conférenciers diplômés et passionnés"
+                  },
+                  {
+                    icon: Clock,
+                    title: "Flexibilité totale",
+                    desc: "Choisissez votre horaire et la durée de votre visite"
+                  },
+                  {
+                    icon: BookOpen,
+                    title: "Contenu personnalisé",
+                    desc: "Visites adaptées à vos centres d'intérêt et votre niveau"
+                  }
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    className="animate-on-scroll opacity-0 translate-y-[20px] flex gap-4"
+                    style={{ transitionDelay: `${200 + i * 100}ms` }}
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-[#e07a5f]/10 flex items-center justify-center flex-shrink-0 border border-[#e07a5f]/20">
+                      <item.icon className="w-5 h-5 text-[#e07a5f]" />
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-white mb-1">{item.title}</h4>
+                      <p className="text-white/50 text-sm">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Stats */}
+            <div className="animate-on-scroll opacity-0 translate-x-[50px] grid grid-cols-2 gap-6" style={{ transitionDelay: '300ms' }}>
+              {[
+                { value: "150+", label: "Guides experts" },
+                { value: "50k+", label: "Visites réalisées" },
+                { value: "4.9/5", label: "Note moyenne" },
+                { value: "98%", label: "Satisfaction" }
+              ].map((stat, i) => (
+                <div key={i} className="text-center p-6 bg-white/[0.02] border border-white/[0.05] rounded-2xl">
+                  <div className="text-3xl md:text-4xl font-serif text-[#e07a5f] mb-2">{stat.value}</div>
+                  <div className="text-white/50 text-sm">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Section CTA */}
+      <section className="py-32 relative overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#e07a5f]/10 rounded-full blur-3xl" />
         </div>
-      )}
-      {/* Modal de réservation */}
-      {bookingGuide && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          {/* Overlay */}
-          <div
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
-            onClick={() => setBookingGuide(null)}
-          />
 
-          {/* Modal */}
-          <div className="relative w-full max-w-lg bg-[#1a2236] border border-stone-700/50 rounded-2xl shadow-2xl overflow-hidden">
-            {/* Header */}
-            <div className="relative px-6 pt-6 pb-4 border-b border-stone-700/30">
-              <button
-                onClick={() => setBookingGuide(null)}
-                className="absolute top-4 right-4 p-2 rounded-full text-stone-400 hover:text-white hover:bg-stone-700/50 transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-              <h3 className="font-display text-xl font-bold text-[#f5f0e6]">
-                {bookingConfirmed ? 'Réservation confirmée !' : 'Réserver une visite guidée'}
-              </h3>
-            </div>
-
-            {bookingConfirmed ? (
-              /* Confirmation */
-              <div className="p-6 text-center">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-500/20 border-2 border-emerald-500 flex items-center justify-center">
-                  <Check className="w-8 h-8 text-emerald-400" />
-                </div>
-                <h4 className="font-display text-lg font-semibold text-[#f5f0e6] mb-2">
-                  Votre visite est réservée
-                </h4>
-                <p className="text-stone-400 text-sm mb-6 font-body">
-                  Un email de confirmation vous sera envoyé avec tous les détails.
-                </p>
-                <div className="bg-stone-800/50 rounded-xl p-4 text-left space-y-2 mb-6">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-stone-400">Guide</span>
-                    <span className="text-[#f5f0e6] font-medium">{bookingGuide.name}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-stone-400">Lieu</span>
-                    <span className="text-[#f5f0e6] font-medium">{selectedPlace?.name}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-stone-400">Date</span>
-                    <span className="text-[#f5f0e6] font-medium">
-                      {selectedDate && new Date(selectedDate).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}
-                    </span>
-                  </div>
-                  {selectedTime && (
-                    <div className="flex justify-between text-sm">
-                      <span className="text-stone-400">Heure</span>
-                      <span className="text-[#f5f0e6] font-medium">{selectedTime}</span>
-                    </div>
-                  )}
-                  <div className="flex justify-between text-sm">
-                    <span className="text-stone-400">Personnes</span>
-                    <span className="text-[#f5f0e6] font-medium">{nbPersons}</span>
-                  </div>
-                  <div className="flex justify-between text-sm pt-2 border-t border-stone-700/30">
-                    <span className="text-stone-400 font-semibold">Total</span>
-                    <span className="text-[#e07a5f] font-bold text-lg">{bookingGuide.price * nbPersons}€</span>
-                  </div>
-                </div>
-                <button
-                  onClick={() => setBookingGuide(null)}
-                  className="w-full py-3 bg-gradient-to-r from-[#e07a5f] to-[#e8968a] text-[#0a0f1a] rounded-xl font-semibold hover:from-[#f09a8a] hover:to-[#e07a5f] transition-all"
-                >
-                  Fermer
-                </button>
-              </div>
-            ) : (
-              /* Formulaire de réservation */
-              <div className="p-6 space-y-5">
-                {/* Guide sélectionné */}
-                <div className="flex items-center gap-4 p-4 bg-stone-800/30 rounded-xl border border-stone-700/30">
-                  <img
-                    src={bookingGuide.image}
-                    alt={bookingGuide.name}
-                    className="w-14 h-14 rounded-full object-cover border-2 border-[#e07a5f]/30"
-                  />
-                  <div className="flex-1">
-                    <h4 className="font-display font-semibold text-[#f5f0e6]">{bookingGuide.name}</h4>
-                    <p className="text-[#e07a5f] text-sm font-serif-italic">{bookingGuide.specialty}</p>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Star className="w-4 h-4 text-[#e07a5f] fill-[#e07a5f]" />
-                    <span className="text-[#f5f0e6] font-semibold">{bookingGuide.rating}</span>
-                  </div>
-                </div>
-
-                {/* Récap lieu + date */}
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 text-sm">
-                    <MapPin className="w-4 h-4 text-[#e07a5f] flex-shrink-0" />
-                    <span className="text-[#f5f0e6]">{selectedPlace?.name}</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm">
-                    <Calendar className="w-4 h-4 text-[#e07a5f] flex-shrink-0" />
-                    <span className="text-[#f5f0e6]">
-                      {selectedDate && new Date(selectedDate).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}
-                    </span>
-                  </div>
-                  {selectedTime && (
-                    <div className="flex items-center gap-3 text-sm">
-                      <Clock className="w-4 h-4 text-[#e07a5f] flex-shrink-0" />
-                      <span className="text-[#f5f0e6]">{selectedTime}</span>
-                    </div>
-                  )}
-                  <div className="flex items-center gap-3 text-sm">
-                    <Globe className="w-4 h-4 text-[#e07a5f] flex-shrink-0" />
-                    <span className="text-stone-400">{bookingGuide.languages.join(', ')}</span>
-                  </div>
-                </div>
-
-                {/* Nombre de personnes */}
-                <div>
-                  <label className="block text-sm font-medium text-[#c4b69c]/80 mb-3 font-body">
-                    Nombre de personnes
-                  </label>
-                  <div className="flex items-center gap-4">
-                    <button
-                      onClick={() => setNbPersons(Math.max(1, nbPersons - 1))}
-                      className="w-10 h-10 rounded-xl bg-stone-800/50 border border-stone-700/50 flex items-center justify-center text-stone-300 hover:border-[#e07a5f]/50 hover:text-[#e07a5f] transition-colors"
-                    >
-                      <Minus className="w-4 h-4" />
-                    </button>
-                    <span className="text-2xl font-bold text-[#f5f0e6] w-10 text-center">{nbPersons}</span>
-                    <button
-                      onClick={() => setNbPersons(Math.min(10, nbPersons + 1))}
-                      className="w-10 h-10 rounded-xl bg-stone-800/50 border border-stone-700/50 flex items-center justify-center text-stone-300 hover:border-[#e07a5f]/50 hover:text-[#e07a5f] transition-colors"
-                    >
-                      <Plus className="w-4 h-4" />
-                    </button>
-                    <span className="text-stone-500 text-sm ml-2">({bookingGuide.price}€ / pers.)</span>
-                  </div>
-                </div>
-
-                {/* Total + bouton confirmer */}
-                <div className="pt-4 border-t border-stone-700/30">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-stone-400 font-body">Total</span>
-                    <span className="text-2xl font-bold text-[#e07a5f]">{bookingGuide.price * nbPersons}€</span>
-                  </div>
-                  <button
-                    onClick={() => setBookingConfirmed(true)}
-                    className="w-full py-3.5 bg-gradient-to-r from-[#e07a5f] to-[#e8968a] text-[#0a0f1a] rounded-xl font-semibold hover:from-[#f09a8a] hover:to-[#e07a5f] transition-all flex items-center justify-center gap-2"
-                  >
-                    <CreditCard className="w-5 h-5" />
-                    Confirmer la réservation
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
+        <div className="max-w-3xl mx-auto px-6 text-center relative z-10">
+          <h2 className="animate-on-scroll opacity-0 translate-y-[30px] font-serif text-4xl md:text-5xl font-light mb-6">
+            Prêt pour une visite<br />
+            <em className="text-[#e07a5f]">extraordinaire ?</em>
+          </h2>
+          <p className="animate-on-scroll opacity-0 translate-y-[30px] text-white/55 text-lg mb-10 max-w-xl mx-auto" style={{ transitionDelay: '100ms' }}>
+            Réservez dès maintenant et vivez l'art comme jamais avec nos guides passionnés.
+          </p>
+          <button
+            onClick={() => document.getElementById('guides').scrollIntoView({ behavior: 'smooth' })}
+            className="animate-on-scroll opacity-0 translate-y-[30px] px-10 py-5 bg-[#e07a5f] text-[#0c0c0c] font-medium text-lg rounded-full hover:bg-[#e8968a] transition-all hover:scale-105 shadow-xl shadow-[#e07a5f]/20"
+            style={{ transitionDelay: '200ms' }}
+          >
+            Trouver mon guide
+          </button>
         </div>
-      )}
+      </section>
+
+      {/* CSS pour les animations */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Inter:wght@300;400;500&display=swap');
+
+        .font-serif {
+          font-family: 'Cormorant Garamond', serif;
+        }
+
+        .animate-on-scroll {
+          transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+          opacity: 1 !important;
+          transform: translateX(0) translateY(0) scale(1) !important;
+        }
+      `}</style>
     </div>
   );
 };

@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MapPin, Clock, Zap, Calendar, Star, Users, Headphones, Award, Bell, Heart, Filter, Navigation, ChevronRight } from 'lucide-react';
+import { MapPin, Clock, Calendar, Star, Users, Headphones, Award, Bell, Heart, Filter, Navigation, ChevronRight } from 'lucide-react';
 
 /**
  * Landing Page Immersive - Style Muzea
@@ -8,7 +8,6 @@ import { MapPin, Clock, Zap, Calendar, Star, Users, Headphones, Award, Bell, Hea
  */
 const HomePage = () => {
   const navigate = useNavigate();
-  const [isNavScrolled, setIsNavScrolled] = useState(false);
 
   // Observer pour les animations au scroll
   useEffect(() => {
@@ -30,76 +29,64 @@ const HomePage = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Effet de scroll pour la navbar
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsNavScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <div className="min-h-screen bg-[#0c0c0c] text-white overflow-x-hidden">
-      {/* Navigation fixe */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isNavScrolled ? 'bg-[#0c0c0c]/90 backdrop-blur-lg border-b border-white/[0.08]' : 'bg-transparent'
-      }`}>
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="text-[#c9a962] text-xl tracking-[0.3em] font-light">MUZEA</div>
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#carte" className="text-white/60 hover:text-[#c9a962] transition-colors text-sm">Carte</a>
-            <a href="#muzea-now" className="text-white/60 hover:text-[#c9a962] transition-colors text-sm">Muzea Now</a>
-            <a href="#expositions" className="text-white/60 hover:text-[#c9a962] transition-colors text-sm">Expositions</a>
-            <a href="#guides" className="text-white/60 hover:text-[#c9a962] transition-colors text-sm">Guides</a>
+    <div className="min-h-screen bg-[#0c0c0c] text-white overflow-x-hidden pt-16">
+      {/* Hero Section - Texte à gauche, Image à droite */}
+      <section className="min-h-[90vh] relative flex items-center">
+        <div className="max-w-7xl mx-auto px-6 w-full">
+          <div className="grid md:grid-cols-2 gap-0 items-center">
+            {/* Colonne gauche - Texte */}
+            <div className="relative z-10 py-20 pr-8">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/[0.03] border border-white/[0.08] rounded-full mb-8">
+                <span className="w-2 h-2 bg-[#c9a962] rounded-full animate-pulse" />
+                <span className="text-white/60 text-sm">Culture Nearby</span>
+              </div>
+
+              {/* Titre principal */}
+              <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-light mb-6 leading-tight">
+                Toute la culture<br />
+                <em className="text-[#c9a962] font-normal">autour de vous</em>
+              </h1>
+
+              {/* Sous-titre */}
+              <p className="text-white/55 text-lg md:text-xl max-w-lg mb-10 font-light">
+                Découvrez les musées, expositions et trésors culturels qui vous entourent.
+                Une expérience immersive pour les amoureux de l'art et du patrimoine.
+              </p>
+
+              {/* CTA */}
+              <button
+                onClick={() => navigate('/explore')}
+                className="px-8 py-4 bg-[#c9a962] text-[#0c0c0c] font-medium rounded-full hover:bg-[#d4b370] transition-all hover:scale-105 shadow-lg shadow-[#c9a962]/20"
+              >
+                Commencer l'exploration
+              </button>
+            </div>
+
+            {/* Colonne droite - Image avec dégradé */}
+            <div className="relative h-[90vh] hidden md:block">
+              {/* Dégradé de transition gauche */}
+              <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-[#0c0c0c] to-transparent z-10" />
+
+              {/* Image d'œuvre d'art */}
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{
+                  backgroundImage: `url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&q=80')`
+                }}
+              />
+
+              {/* Overlay subtil */}
+              <div className="absolute inset-0 bg-[#0c0c0c]/20" />
+            </div>
           </div>
-          <button
-            onClick={() => navigate('/profile')}
-            className="px-4 py-2 border border-[#c9a962]/30 text-[#c9a962] text-sm rounded-full hover:bg-[#c9a962]/10 transition-all"
-          >
-            Mon profil
-          </button>
         </div>
-      </nav>
 
-      {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center relative pt-20">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#c9a962]/5 rounded-full blur-3xl" />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/[0.03] border border-white/[0.08] rounded-full mb-8">
-            <span className="w-2 h-2 bg-[#c9a962] rounded-full animate-pulse" />
-            <span className="text-white/60 text-sm">Culture Nearby</span>
-          </div>
-
-          {/* Titre principal */}
-          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-light mb-6 leading-tight">
-            Toute la culture<br />
-            <em className="text-[#c9a962] font-normal">autour de vous</em>
-          </h1>
-
-          {/* Sous-titre */}
-          <p className="text-white/55 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light">
-            Découvrez les musées, expositions et trésors culturels qui vous entourent.
-            Une expérience immersive pour les amoureux de l'art et du patrimoine.
-          </p>
-
-          {/* CTA */}
-          <button
-            onClick={() => navigate('/explore')}
-            className="px-8 py-4 bg-[#c9a962] text-[#0c0c0c] font-medium rounded-full hover:bg-[#d4b370] transition-all hover:scale-105 shadow-lg shadow-[#c9a962]/20"
-          >
-            Commencer l'exploration
-          </button>
-
-          {/* Scroll indicator */}
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30">
-            <span className="text-xs tracking-widest">DÉFILER</span>
-            <div className="w-px h-16 bg-gradient-to-b from-white/30 to-transparent" />
-          </div>
+        {/* Scroll indicator */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 z-20">
+          <span className="text-xs tracking-widest">DÉFILER</span>
+          <div className="w-px h-16 bg-gradient-to-b from-white/30 to-transparent" />
         </div>
       </section>
 
@@ -108,8 +95,8 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             {/* Contenu texte */}
-            <div className="animate-on-scroll opacity-0 translate-x-[-50px] transition-all duration-1000 ease-out">
-              <span className="text-[120px] font-serif font-light text-white/[0.03] absolute -top-10 -left-4">01</span>
+            <div className="animate-on-scroll opacity-0 translate-x-[-50px] transition-all duration-1000 ease-out relative">
+              <span className="text-[120px] font-serif font-light text-white/[0.03] absolute -top-10 -left-4 select-none">01</span>
               <span className="text-[#c9a962] text-xs tracking-[0.3em] uppercase mb-4 block">Carte Interactive</span>
               <h2 className="font-serif text-4xl md:text-5xl font-light mb-6 leading-tight">
                 Découvrez les trésors<br />
@@ -151,28 +138,22 @@ const HomePage = () => {
 
             {/* Visuel */}
             <div className="animate-on-scroll opacity-0 translate-x-[50px] transition-all duration-1000 delay-200 ease-out relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0c0c0c] via-transparent to-transparent z-10 w-1/3" />
+              <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-[#0c0c0c] to-transparent z-10" />
               <div className="bg-[#1a1a1a] rounded-2xl p-6 border border-white/[0.08] relative overflow-hidden">
-                {/* Fake map visual */}
                 <div className="aspect-[4/3] bg-[#0f0f0f] rounded-xl relative overflow-hidden">
                   <svg viewBox="0 0 400 300" className="w-full h-full">
-                    {/* Map background */}
                     <rect fill="#151515" width="400" height="300"/>
-                    {/* Roads */}
                     <path d="M0 150 L400 150" stroke="#252525" strokeWidth="3"/>
                     <path d="M200 0 L200 300" stroke="#252525" strokeWidth="3"/>
                     <path d="M0 75 L400 225" stroke="#1f1f1f" strokeWidth="2"/>
-                    {/* Location pins */}
                     <circle cx="120" cy="100" r="8" fill="#c9a962"/>
                     <circle cx="280" cy="180" r="8" fill="#c9a962"/>
                     <circle cx="200" cy="150" r="12" fill="#c9a962"/>
                     <circle cx="200" cy="150" r="20" fill="#c9a962" opacity="0.2"/>
                     <circle cx="320" cy="80" r="6" fill="#c9a962" opacity="0.6"/>
                     <circle cx="80" cy="220" r="6" fill="#c9a962" opacity="0.6"/>
-                    {/* User location */}
                     <circle cx="200" cy="150" r="6" fill="#fff"/>
                   </svg>
-                  {/* Info card overlay */}
                   <div className="absolute top-4 right-4 bg-[#1a1a1a] rounded-lg p-3 border border-white/10 w-48">
                     <div className="text-sm font-medium mb-1">Musée d'Orsay</div>
                     <div className="text-xs text-white/50 flex items-center gap-2">
@@ -192,10 +173,9 @@ const HomePage = () => {
           <div className="grid md:grid-cols-2 gap-16 items-center">
             {/* Visuel (à gauche) */}
             <div className="animate-on-scroll opacity-0 translate-x-[-50px] transition-all duration-1000 delay-200 ease-out relative order-2 md:order-1">
-              <div className="absolute inset-0 bg-gradient-to-l from-[#0c0c0c] via-transparent to-transparent z-10 w-1/3 right-0 left-auto" />
+              <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-[#0c0c0c] to-transparent z-10" />
               <div className="bg-[#1a1a1a] rounded-2xl p-6 border border-white/[0.08]">
                 <div className="space-y-4">
-                  {/* Museum cards */}
                   {[
                     { name: 'Musée du Louvre', time: '12 min', status: 'OUVERT', rating: 4.9 },
                     { name: "Musée d'Orsay", time: '8 min', status: 'OUVERT', rating: 4.8 },
@@ -230,7 +210,7 @@ const HomePage = () => {
 
             {/* Contenu texte (à droite) */}
             <div className="animate-on-scroll opacity-0 translate-x-[50px] transition-all duration-1000 ease-out order-1 md:order-2 relative">
-              <span className="text-[120px] font-serif font-light text-white/[0.03] absolute -top-10 -right-4">02</span>
+              <span className="text-[120px] font-serif font-light text-white/[0.03] absolute -top-10 -right-4 select-none">02</span>
               <span className="text-[#c9a962] text-xs tracking-[0.3em] uppercase mb-4 block">Muzea Now</span>
               <h2 className="font-serif text-4xl md:text-5xl font-light mb-6 leading-tight">
                 Que visiter<br />
@@ -279,7 +259,7 @@ const HomePage = () => {
           <div className="grid md:grid-cols-2 gap-16 items-center">
             {/* Contenu texte */}
             <div className="animate-on-scroll opacity-0 translate-x-[-50px] transition-all duration-1000 ease-out relative">
-              <span className="text-[120px] font-serif font-light text-white/[0.03] absolute -top-10 -left-4">03</span>
+              <span className="text-[120px] font-serif font-light text-white/[0.03] absolute -top-10 -left-4 select-none">03</span>
               <span className="text-[#c9a962] text-xs tracking-[0.3em] uppercase mb-4 block">Éphémères</span>
               <h2 className="font-serif text-4xl md:text-5xl font-light mb-6 leading-tight">
                 Les expositions<br />
@@ -321,7 +301,7 @@ const HomePage = () => {
 
             {/* Visuel */}
             <div className="animate-on-scroll opacity-0 translate-x-[50px] transition-all duration-1000 delay-200 ease-out relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0c0c0c] via-transparent to-transparent z-10 w-1/3" />
+              <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-[#0c0c0c] to-transparent z-10" />
               <div className="grid grid-cols-2 gap-4">
                 {[
                   { title: 'Monet - Nymphéas', place: 'Musée de l\'Orangerie', color: 'from-blue-500/20 to-cyan-500/20', end: '15 Mars' },
@@ -350,7 +330,7 @@ const HomePage = () => {
           <div className="grid md:grid-cols-2 gap-16 items-center">
             {/* Visuel (à gauche) */}
             <div className="animate-on-scroll opacity-0 translate-x-[-50px] transition-all duration-1000 delay-200 ease-out relative order-2 md:order-1">
-              <div className="absolute inset-0 bg-gradient-to-l from-[#0c0c0c] via-transparent to-transparent z-10 w-1/3 right-0 left-auto" />
+              <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-[#0c0c0c] to-transparent z-10" />
               <div className="bg-[#1a1a1a] rounded-2xl overflow-hidden border border-white/[0.08]">
                 <div className="h-40 bg-gradient-to-br from-[#c9a962]/30 to-[#c9a962]/10 relative">
                   <div className="absolute inset-0 flex items-center justify-center text-6xl">🎨</div>
@@ -376,7 +356,7 @@ const HomePage = () => {
 
             {/* Contenu texte (à droite) */}
             <div className="animate-on-scroll opacity-0 translate-x-[50px] transition-all duration-1000 ease-out order-1 md:order-2 relative">
-              <span className="text-[120px] font-serif font-light text-white/[0.03] absolute -top-10 -right-4">04</span>
+              <span className="text-[120px] font-serif font-light text-white/[0.03] absolute -top-10 -right-4 select-none">04</span>
               <span className="text-[#c9a962] text-xs tracking-[0.3em] uppercase mb-4 block">Guides Culturels</span>
               <h2 className="font-serif text-4xl md:text-5xl font-light mb-6 leading-tight">
                 Des parcours<br />

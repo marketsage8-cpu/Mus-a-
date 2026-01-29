@@ -1,12 +1,13 @@
 import { useState, useMemo } from 'react';
 import { Search, Star, MapPin, Clock, Users, ChevronRight, X, Calendar, Filter, Check, Minus, Plus, Globe, CreditCard } from 'lucide-react';
-import { places } from '../data/places';
+import { useCulturalData } from '../hooks/useCulturalData';
 
 /**
  * Page Guides - Réservation de visites guidées
  * Design cohérent avec le reste du site Muzea
  */
 const GuidePage = () => {
+  const { places } = useCulturalData();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [selectedDate, setSelectedDate] = useState('');

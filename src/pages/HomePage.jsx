@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Zap, MapPin, Clock, Footprints, Car, Heart, ChevronLeft, ChevronRight, Calendar, Euro, X, Landmark, Castle, Palette, Star } from 'lucide-react';
-import { places } from '../data/places';
+import { useCulturalData } from '../hooks/useCulturalData';
 import { frenchMuseums } from '../data/frenchMuseums';
 import InteractiveMap from '../components/map/InteractiveMap';
 import { useUser } from '../context/UserContext';
@@ -10,30 +10,12 @@ import ChateauBackground from '../components/backgrounds/ChateauBackground';
 import ExpositionBackground from '../components/backgrounds/ExpositionBackground';
 import PlaceDetailModal from '../components/modals/PlaceDetailModal';
 
-// Combiner tous les lieux pour la recherche
-const allSearchablePlaces = [
-  ...places,
-  ...frenchMuseums.map(m => ({
-    id: m.id,
-    name: m.name,
-    type: m.type,
-    location: `${m.city}, ${m.region}`,
-    city: m.city,
-    region: m.region,
-    image: m.image,
-    rating: (Math.random() * 0.5 + 4.5).toFixed(1), // Rating aléatoire entre 4.5 et 5.0
-    description: `Découvrez ${m.name}, un magnifique ${m.type} situé à ${m.city} en ${m.region}.`,
-    coordinates: { lat: 48.8566, lng: 2.3522 }, // Coordonnées par défaut
-    price: m.type === 'musée' ? '12€ - 18€' : m.type === 'château' ? '10€ - 15€' : 'Gratuit',
-    hours: '10h00 - 18h00'
-  }))
-];
-
 /**
  * Page d'accueil avec hero, carte floue et section Musea Now
  */
 const HomePage = () => {
   const navigate = useNavigate();
+  const { places } = useCulturalData();
   const { toggleFavorite, isFavorite } = useUser();
   const [searchQuery, setSearchQuery] = useState('');
   const [userLocation, setUserLocation] = useState(null);
@@ -45,6 +27,25 @@ const HomePage = () => {
   const [selectedPlace, setSelectedPlace] = useState(null);
   const searchRef = useRef(null);
 
+  // Combiner tous les lieux pour la recherche
+  const allSearchablePlaces = useMemo(() => [
+    ...places,
+    ...frenchMuseums.map(m => ({
+      id: m.id,
+      name: m.name,
+      type: m.type,
+      location: `${m.city}, ${m.region}`,
+      city: m.city,
+      region: m.region,
+      image: m.image,
+      rating: (Math.random() * 0.5 + 4.5).toFixed(1),
+      description: `Découvrez ${m.name}, un magnifique ${m.type} situé à ${m.city} en ${m.region}.`,
+      coordinates: { lat: 48.8566, lng: 2.3522 },
+      price: m.type === 'musée' ? '12€ - 18€' : m.type === 'château' ? '10€ - 15€' : 'Gratuit',
+      hours: '10h00 - 18h00'
+    }))
+  ], [places]);
+
   // Catégories pour Muzea Now
   const categories = [
     { id: 'musée', label: 'Musées', icon: Landmark },
@@ -54,7 +55,7 @@ const HomePage = () => {
   ];
 
   // Expositions éphémères (filtrer par type "exposition")
-  const allExhibitions = places.filter(p => p.type === 'exposition');
+  const allExhibitions = useMemo(() => places.filter(p => p.type === 'exposition'), [places]);
 
   // Filtres pour les expositions
   const [exhibitionDistanceFilter, setExhibitionDistanceFilter] = useState('all'); // 'all', '500m', '5km', '10km'

@@ -260,6 +260,7 @@ const HomePage = () => {
               Voir mes suggestions
               <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
+            </div>
           </div>
         </div>
       </section>

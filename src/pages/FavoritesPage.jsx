@@ -47,7 +47,7 @@ const FavoritesPage = () => {
         <svg className="absolute inset-0 w-full h-full opacity-30" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="heartPattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-              <path d="M30,15 Q35,5 40,15 Q45,25 30,40 Q15,25 20,15 Q25,5 30,15" fill="none" stroke="#d4a574" strokeWidth="0.5" opacity="0.3" />
+              <path d="M30,15 Q35,5 40,15 Q45,25 30,40 Q15,25 20,15 Q25,5 30,15" fill="none" stroke="#e07a5f" strokeWidth="0.5" opacity="0.3" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#heartPattern)" />
@@ -65,12 +65,12 @@ const FavoritesPage = () => {
 
             {favoritePlaces.length > 0 && (
               <>
-                <h1 className="font-serif-italic text-3xl sm:text-4xl lg:text-5xl mb-4" style={{ color: '#d4a574' }}>
+                <h1 className="font-serif-italic text-3xl sm:text-4xl lg:text-5xl mb-4" style={{ color: '#e07a5f' }}>
                   Vos Favoris
                 </h1>
                 <p className="text-gray-400 max-w-xl mx-auto">
                   Retrouvez tous vos lieux culturels préférés sauvegardés en un seul endroit.
-                  <span className="block mt-2 text-[#d4a574]">
+                  <span className="block mt-2 text-[#e07a5f]">
                     {favoritePlaces.length} lieu{favoritePlaces.length > 1 ? 'x' : ''} sauvegardé{favoritePlaces.length > 1 ? 's' : ''}
                   </span>
                 </p>
@@ -93,7 +93,7 @@ const FavoritesPage = () => {
                       font-medium text-sm
                       transition-all duration-300
                       ${isActive
-                        ? 'bg-[#d4a574] text-[#243350] shadow-lg shadow-[#d4a574]/20'
+                        ? 'bg-[#e07a5f] text-[#243350] shadow-lg shadow-[#e07a5f]/20'
                         : 'bg-[#243350]/80 text-white/80 hover:bg-[#243350] hover:text-white border border-white/20'
                       }
                     `}
@@ -123,7 +123,7 @@ const FavoritesPage = () => {
               return (
                 <div
                   key={place.id}
-                  className="group relative bg-[#243350] rounded-2xl overflow-hidden border border-white/10 hover:border-[#d4a574]/40 transition-all duration-300 hover:shadow-xl hover:shadow-[#d4a574]/10"
+                  className="group relative bg-[#243350] rounded-2xl overflow-hidden border border-white/10 hover:border-[#e07a5f]/40 transition-all duration-300 hover:shadow-xl hover:shadow-[#e07a5f]/10"
                 >
                   {/* Image */}
                   <div className="relative h-48 overflow-hidden">
@@ -156,24 +156,24 @@ const FavoritesPage = () => {
 
                   {/* Contenu */}
                   <div className="p-4" onClick={() => setSelectedPlace(place)}>
-                    <h3 className="font-bold text-white text-lg mb-2 line-clamp-1 group-hover:text-[#d4a574] transition-colors">
+                    <h3 className="font-bold text-white text-lg mb-2 line-clamp-1 group-hover:text-[#e07a5f] transition-colors">
                       {place.name}
                     </h3>
 
                     <div className="flex items-center gap-2 text-gray-400 text-sm mb-3">
-                      <MapPin className="w-4 h-4 text-[#d4a574]" />
+                      <MapPin className="w-4 h-4 text-[#e07a5f]" />
                       <span className="truncate">{place.location}</span>
                     </div>
 
                     {/* Infos rapides */}
                     <div className="flex items-center gap-3 text-xs">
                       <div className="flex items-center gap-1 px-2 py-1 bg-white/5 rounded-lg">
-                        <Euro className="w-3.5 h-3.5 text-[#d4a574]" />
+                        <Euro className="w-3.5 h-3.5 text-[#e07a5f]" />
                         <span className="text-white">{place.price}</span>
                       </div>
                       {place.period && (
                         <div className="flex items-center gap-1 px-2 py-1 bg-white/5 rounded-lg">
-                          <Calendar className="w-3.5 h-3.5 text-[#d4a574]" />
+                          <Calendar className="w-3.5 h-3.5 text-[#e07a5f]" />
                           <span className="text-white truncate max-w-[100px]">{place.period}</span>
                         </div>
                       )}
@@ -181,7 +181,7 @@ const FavoritesPage = () => {
                   </div>
 
                   {/* Bordure brillante au survol */}
-                  <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#d4a574]/30 pointer-events-none transition-all" />
+                  <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#e07a5f]/30 pointer-events-none transition-all" />
                 </div>
               );
             })}
@@ -192,7 +192,7 @@ const FavoritesPage = () => {
             <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-[#243350] border border-white/10 flex items-center justify-center">
               <Filter className="w-8 h-8 text-gray-600" />
             </div>
-            <h3 className="font-serif-italic text-2xl text-[#d4a574] mb-3">
+            <h3 className="font-serif-italic text-2xl text-[#e07a5f] mb-3">
               Aucun {activeFilter} en favoris
             </h3>
             <p className="text-gray-400 mb-6 max-w-md mx-auto">
@@ -217,7 +217,7 @@ const FavoritesPage = () => {
               </div>
             </div>
 
-            <h3 className="font-serif-italic text-3xl text-[#d4a574] mb-4">
+            <h3 className="font-serif-italic text-3xl text-[#e07a5f] mb-4">
               Aucun favori pour l'instant
             </h3>
             <p className="text-gray-400 mb-8 max-w-lg mx-auto text-lg">
@@ -227,7 +227,7 @@ const FavoritesPage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => navigate('/explore')}
-                className="px-8 py-4 bg-[#d4a574] hover:bg-[#c49464] text-[#243350] font-bold rounded-xl shadow-lg shadow-[#d4a574]/20 transition-all hover:scale-105 flex items-center justify-center gap-2"
+                className="px-8 py-4 bg-[#e07a5f] hover:bg-[#e8968a] text-[#243350] font-bold rounded-xl shadow-lg shadow-[#e07a5f]/20 transition-all hover:scale-105 flex items-center justify-center gap-2"
               >
                 <MapPin className="w-5 h-5" />
                 Explorer la carte

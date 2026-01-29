@@ -137,14 +137,14 @@ const GuidePage = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 py-16">
           <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#d4af37]/15 border border-[#d4af37]/30 rounded-full mb-6">
-              <Users className="w-4 h-4 text-[#d4af37]" />
-              <span className="text-[#d4af37] text-sm font-medium font-serif-italic">Guides certifiés & passionnés</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#e07a5f]/15 border border-[#e07a5f]/30 rounded-full mb-6">
+              <Users className="w-4 h-4 text-[#e07a5f]" />
+              <span className="text-[#e07a5f] text-sm font-medium font-serif-italic">Guides certifiés & passionnés</span>
             </div>
 
             <h1
               className="font-serif-italic text-4xl md:text-5xl lg:text-6xl mb-4"
-              style={{ color: '#d4a574' }}
+              style={{ color: '#e07a5f' }}
             >
               Vivez l'Art avec nos Guides Experts
             </h1>
@@ -172,7 +172,7 @@ const GuidePage = () => {
                   }
                 }}
                 placeholder="Rechercher un musée, un château, une église..."
-                className="w-full py-4 pl-14 pr-12 bg-stone-800/50 border border-stone-700/50 rounded-2xl text-[#f5f0e6] placeholder-stone-500 focus:outline-none focus:border-[#d4af37]/50 focus:ring-2 focus:ring-[#d4af37]/20 transition-all text-lg font-body"
+                className="w-full py-4 pl-14 pr-12 bg-stone-800/50 border border-stone-700/50 rounded-2xl text-[#f5f0e6] placeholder-stone-500 focus:outline-none focus:border-[#e07a5f]/50 focus:ring-2 focus:ring-[#e07a5f]/20 transition-all text-lg font-body"
               />
               {searchQuery && (
                 <button
@@ -211,7 +211,7 @@ const GuidePage = () => {
                           <span>{place.location}</span>
                         </span>
                         <span className="flex items-center gap-1">
-                          <Star className="w-3 h-3 text-[#d4af37] fill-[#d4af37]" />
+                          <Star className="w-3 h-3 text-[#e07a5f] fill-[#e07a5f]" />
                           {place.rating}
                         </span>
                       </div>
@@ -252,14 +252,14 @@ const GuidePage = () => {
                     {selectedPlace.location}
                   </span>
                   <span className="flex items-center gap-1">
-                    <Star className="w-4 h-4 text-[#d4af37] fill-[#d4af37]" />
+                    <Star className="w-4 h-4 text-[#e07a5f] fill-[#e07a5f]" />
                     {selectedPlace.rating}
                   </span>
                   <span className="flex items-center gap-1">
                     <Clock className="w-4 h-4" />
                     {selectedPlace.hours}
                   </span>
-                  <span className="text-[#d4af37] font-semibold">{selectedPlace.price}</span>
+                  <span className="text-[#e07a5f] font-semibold">{selectedPlace.price}</span>
                 </div>
               </div>
             </div>
@@ -268,7 +268,7 @@ const GuidePage = () => {
           {/* Filtres: Date et Heure */}
           <div className="bg-stone-900/50 border border-stone-700/30 rounded-2xl p-6 mb-8">
             <div className="flex items-center gap-2 mb-6">
-              <Filter className="w-5 h-5 text-[#d4af37]" />
+              <Filter className="w-5 h-5 text-[#e07a5f]" />
               <h3 className="font-display text-xl font-semibold text-[#f5f0e6]">Choisissez votre créneau</h3>
             </div>
 
@@ -286,8 +286,8 @@ const GuidePage = () => {
                       onClick={() => setSelectedDate(date.value)}
                       className={`p-3 rounded-xl text-sm font-medium transition-all ${
                         selectedDate === date.value
-                          ? 'bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-[#0a0f1a]'
-                          : 'bg-stone-800/50 border border-stone-700/50 text-stone-300 hover:border-[#d4af37]/50'
+                          ? 'bg-gradient-to-r from-[#e07a5f] to-[#e8968a] text-[#0a0f1a]'
+                          : 'bg-stone-800/50 border border-stone-700/50 text-stone-300 hover:border-[#e07a5f]/50'
                       }`}
                     >
                       {date.label}
@@ -309,8 +309,8 @@ const GuidePage = () => {
                       onClick={() => setSelectedTime(selectedTime === time ? '' : time)}
                       className={`p-3 rounded-xl text-sm font-medium transition-all ${
                         selectedTime === time
-                          ? 'bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-[#0a0f1a]'
-                          : 'bg-stone-800/50 border border-stone-700/50 text-stone-300 hover:border-[#d4af37]/50'
+                          ? 'bg-gradient-to-r from-[#e07a5f] to-[#e8968a] text-[#0a0f1a]'
+                          : 'bg-stone-800/50 border border-stone-700/50 text-stone-300 hover:border-[#e07a5f]/50'
                       }`}
                     >
                       {time}
@@ -336,21 +336,21 @@ const GuidePage = () => {
               {filteredGuides.map((guide) => (
                 <div
                   key={guide.id}
-                  className="group bg-stone-800/30 border border-stone-700/30 rounded-2xl overflow-hidden hover:border-[#d4af37]/30 transition-all duration-300"
+                  className="group bg-stone-800/30 border border-stone-700/30 rounded-2xl overflow-hidden hover:border-[#e07a5f]/30 transition-all duration-300"
                 >
                   <div className="p-6">
                     <div className="flex items-start gap-4 mb-4">
                       <img
                         src={guide.image}
                         alt={guide.name}
-                        className="w-20 h-20 rounded-full object-cover border-2 border-[#d4af37]/30"
+                        className="w-20 h-20 rounded-full object-cover border-2 border-[#e07a5f]/30"
                       />
                       <div className="flex-1">
                         <h4 className="font-display font-semibold text-[#f5f0e6] text-lg">{guide.name}</h4>
-                        <p className="text-[#d4af37] text-sm mb-2 font-serif-italic">{guide.specialty}</p>
+                        <p className="text-[#e07a5f] text-sm mb-2 font-serif-italic">{guide.specialty}</p>
                         <div className="flex items-center gap-2">
                           <div className="flex items-center gap-1">
-                            <Star className="w-4 h-4 text-[#d4af37] fill-[#d4af37]" />
+                            <Star className="w-4 h-4 text-[#e07a5f] fill-[#e07a5f]" />
                             <span className="text-[#f5f0e6] font-semibold">{guide.rating}</span>
                           </div>
                           <span className="text-stone-500 text-sm">({guide.reviews} avis)</span>
@@ -371,7 +371,7 @@ const GuidePage = () => {
                               key={time}
                               className={`px-2 py-0.5 rounded text-xs ${
                                 selectedTime === time
-                                  ? 'bg-[#d4af37]/30 text-[#d4af37]'
+                                  ? 'bg-[#e07a5f]/30 text-[#e07a5f]'
                                   : 'bg-stone-700/50 text-stone-400'
                               }`}
                             >
@@ -384,7 +384,7 @@ const GuidePage = () => {
 
                     <div className="flex items-center justify-between pt-4 border-t border-stone-700/30">
                       <div>
-                        <span className="text-2xl font-bold text-[#d4af37]">{guide.price}€</span>
+                        <span className="text-2xl font-bold text-[#e07a5f]">{guide.price}€</span>
                         <span className="text-stone-500 text-sm"> / personne</span>
                       </div>
                       <button
@@ -394,7 +394,7 @@ const GuidePage = () => {
                           setNbPersons(1);
                         }}
                         disabled={!selectedDate}
-                        className="px-6 py-2.5 bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-[#0a0f1a] rounded-xl font-semibold hover:from-[#e5c349] hover:to-[#d4af37] transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                        className="px-6 py-2.5 bg-gradient-to-r from-[#e07a5f] to-[#e8968a] text-[#0a0f1a] rounded-xl font-semibold hover:from-[#f09a8a] hover:to-[#e07a5f] transition-all disabled:opacity-40 disabled:cursor-not-allowed"
                       >
                         Réserver
                       </button>
@@ -419,7 +419,7 @@ const GuidePage = () => {
           <div className="max-w-7xl mx-auto px-4 py-12">
           <div className="text-center mb-10">
             <h2 className="font-display text-3xl font-bold text-[#f5f0e6] mb-3">
-              Lieux <span className="text-[#d4af37]">populaires</span>
+              Lieux <span className="text-[#e07a5f]">populaires</span>
             </h2>
             <p className="text-[#c4b69c]/70 font-body">
               Les destinations les plus prisées par nos visiteurs
@@ -431,7 +431,7 @@ const GuidePage = () => {
               <button
                 key={place.id}
                 onClick={() => handlePlaceSelect(place)}
-                className="group relative bg-stone-800/30 border border-stone-700/30 rounded-2xl overflow-hidden hover:border-[#d4af37]/30 transition-all duration-300 text-left"
+                className="group relative bg-stone-800/30 border border-stone-700/30 rounded-2xl overflow-hidden hover:border-[#e07a5f]/30 transition-all duration-300 text-left"
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
@@ -441,13 +441,13 @@ const GuidePage = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/50 to-transparent" />
 
-                  <div className="absolute top-3 right-3 px-3 py-1 bg-gradient-to-r from-[#d4af37] to-[#b8962e] rounded-full">
+                  <div className="absolute top-3 right-3 px-3 py-1 bg-gradient-to-r from-[#e07a5f] to-[#e8968a] rounded-full">
                     <span className="text-[#0a0f1a] text-xs font-semibold">Dès {place.price}</span>
                   </div>
                 </div>
 
                 <div className="p-4">
-                  <h3 className="font-display font-semibold text-[#f5f0e6] mb-2 group-hover:text-[#d4af37] transition-colors">
+                  <h3 className="font-display font-semibold text-[#f5f0e6] mb-2 group-hover:text-[#e07a5f] transition-colors">
                     {place.name}
                   </h3>
                   <div className="flex items-center gap-3 text-sm text-stone-400">
@@ -456,7 +456,7 @@ const GuidePage = () => {
                       {place.location.split(',')[0]}
                     </span>
                     <span className="flex items-center gap-1">
-                      <Star className="w-3 h-3 text-[#d4af37] fill-[#d4af37]" />
+                      <Star className="w-3 h-3 text-[#e07a5f] fill-[#e07a5f]" />
                       {place.rating}
                     </span>
                   </div>
@@ -469,7 +469,7 @@ const GuidePage = () => {
           <div className="mt-16">
             <div className="text-center mb-10">
               <h2 className="font-display text-3xl font-bold text-[#f5f0e6] mb-3">
-                Nos <span className="text-[#d4af37]">experts</span> passionnés
+                Nos <span className="text-[#e07a5f]">experts</span> passionnés
               </h2>
               <p className="text-[#c4b69c]/70 font-body">
                 Des guides conférenciers triés sur le volet pour des expériences uniques
@@ -480,21 +480,21 @@ const GuidePage = () => {
               {guides.map((guide) => (
                 <div
                   key={guide.id}
-                  className="group text-center p-6 bg-stone-800/20 border border-stone-700/30 rounded-2xl hover:border-[#d4af37]/30 transition-all"
+                  className="group text-center p-6 bg-stone-800/20 border border-stone-700/30 rounded-2xl hover:border-[#e07a5f]/30 transition-all"
                 >
                   <div className="relative inline-block mb-4">
                     <img
                       src={guide.image}
                       alt={guide.name}
-                      className="w-24 h-24 rounded-full object-cover border-2 border-[#d4af37]/30 group-hover:border-[#d4af37] transition-colors"
+                      className="w-24 h-24 rounded-full object-cover border-2 border-[#e07a5f]/30 group-hover:border-[#e07a5f] transition-colors"
                     />
-                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8962e] rounded-full flex items-center gap-1">
+                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-gradient-to-r from-[#e07a5f] to-[#e8968a] rounded-full flex items-center gap-1">
                       <Star className="w-3 h-3 text-[#0a0f1a] fill-[#0a0f1a]" />
                       <span className="text-[#0a0f1a] text-xs font-bold">{guide.rating}</span>
                     </div>
                   </div>
                   <h4 className="font-display font-semibold text-[#f5f0e6]">{guide.name}</h4>
-                  <p className="text-[#d4af37] text-sm font-serif-italic">{guide.specialty}</p>
+                  <p className="text-[#e07a5f] text-sm font-serif-italic">{guide.specialty}</p>
                 </div>
               ))}
             </div>
@@ -565,12 +565,12 @@ const GuidePage = () => {
                   </div>
                   <div className="flex justify-between text-sm pt-2 border-t border-stone-700/30">
                     <span className="text-stone-400 font-semibold">Total</span>
-                    <span className="text-[#d4af37] font-bold text-lg">{bookingGuide.price * nbPersons}€</span>
+                    <span className="text-[#e07a5f] font-bold text-lg">{bookingGuide.price * nbPersons}€</span>
                   </div>
                 </div>
                 <button
                   onClick={() => setBookingGuide(null)}
-                  className="w-full py-3 bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-[#0a0f1a] rounded-xl font-semibold hover:from-[#e5c349] hover:to-[#d4af37] transition-all"
+                  className="w-full py-3 bg-gradient-to-r from-[#e07a5f] to-[#e8968a] text-[#0a0f1a] rounded-xl font-semibold hover:from-[#f09a8a] hover:to-[#e07a5f] transition-all"
                 >
                   Fermer
                 </button>
@@ -583,14 +583,14 @@ const GuidePage = () => {
                   <img
                     src={bookingGuide.image}
                     alt={bookingGuide.name}
-                    className="w-14 h-14 rounded-full object-cover border-2 border-[#d4af37]/30"
+                    className="w-14 h-14 rounded-full object-cover border-2 border-[#e07a5f]/30"
                   />
                   <div className="flex-1">
                     <h4 className="font-display font-semibold text-[#f5f0e6]">{bookingGuide.name}</h4>
-                    <p className="text-[#d4af37] text-sm font-serif-italic">{bookingGuide.specialty}</p>
+                    <p className="text-[#e07a5f] text-sm font-serif-italic">{bookingGuide.specialty}</p>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Star className="w-4 h-4 text-[#d4af37] fill-[#d4af37]" />
+                    <Star className="w-4 h-4 text-[#e07a5f] fill-[#e07a5f]" />
                     <span className="text-[#f5f0e6] font-semibold">{bookingGuide.rating}</span>
                   </div>
                 </div>
@@ -598,23 +598,23 @@ const GuidePage = () => {
                 {/* Récap lieu + date */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 text-sm">
-                    <MapPin className="w-4 h-4 text-[#d4af37] flex-shrink-0" />
+                    <MapPin className="w-4 h-4 text-[#e07a5f] flex-shrink-0" />
                     <span className="text-[#f5f0e6]">{selectedPlace?.name}</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm">
-                    <Calendar className="w-4 h-4 text-[#d4af37] flex-shrink-0" />
+                    <Calendar className="w-4 h-4 text-[#e07a5f] flex-shrink-0" />
                     <span className="text-[#f5f0e6]">
                       {selectedDate && new Date(selectedDate).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}
                     </span>
                   </div>
                   {selectedTime && (
                     <div className="flex items-center gap-3 text-sm">
-                      <Clock className="w-4 h-4 text-[#d4af37] flex-shrink-0" />
+                      <Clock className="w-4 h-4 text-[#e07a5f] flex-shrink-0" />
                       <span className="text-[#f5f0e6]">{selectedTime}</span>
                     </div>
                   )}
                   <div className="flex items-center gap-3 text-sm">
-                    <Globe className="w-4 h-4 text-[#d4af37] flex-shrink-0" />
+                    <Globe className="w-4 h-4 text-[#e07a5f] flex-shrink-0" />
                     <span className="text-stone-400">{bookingGuide.languages.join(', ')}</span>
                   </div>
                 </div>
@@ -627,14 +627,14 @@ const GuidePage = () => {
                   <div className="flex items-center gap-4">
                     <button
                       onClick={() => setNbPersons(Math.max(1, nbPersons - 1))}
-                      className="w-10 h-10 rounded-xl bg-stone-800/50 border border-stone-700/50 flex items-center justify-center text-stone-300 hover:border-[#d4af37]/50 hover:text-[#d4af37] transition-colors"
+                      className="w-10 h-10 rounded-xl bg-stone-800/50 border border-stone-700/50 flex items-center justify-center text-stone-300 hover:border-[#e07a5f]/50 hover:text-[#e07a5f] transition-colors"
                     >
                       <Minus className="w-4 h-4" />
                     </button>
                     <span className="text-2xl font-bold text-[#f5f0e6] w-10 text-center">{nbPersons}</span>
                     <button
                       onClick={() => setNbPersons(Math.min(10, nbPersons + 1))}
-                      className="w-10 h-10 rounded-xl bg-stone-800/50 border border-stone-700/50 flex items-center justify-center text-stone-300 hover:border-[#d4af37]/50 hover:text-[#d4af37] transition-colors"
+                      className="w-10 h-10 rounded-xl bg-stone-800/50 border border-stone-700/50 flex items-center justify-center text-stone-300 hover:border-[#e07a5f]/50 hover:text-[#e07a5f] transition-colors"
                     >
                       <Plus className="w-4 h-4" />
                     </button>
@@ -646,11 +646,11 @@ const GuidePage = () => {
                 <div className="pt-4 border-t border-stone-700/30">
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-stone-400 font-body">Total</span>
-                    <span className="text-2xl font-bold text-[#d4af37]">{bookingGuide.price * nbPersons}€</span>
+                    <span className="text-2xl font-bold text-[#e07a5f]">{bookingGuide.price * nbPersons}€</span>
                   </div>
                   <button
                     onClick={() => setBookingConfirmed(true)}
-                    className="w-full py-3.5 bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-[#0a0f1a] rounded-xl font-semibold hover:from-[#e5c349] hover:to-[#d4af37] transition-all flex items-center justify-center gap-2"
+                    className="w-full py-3.5 bg-gradient-to-r from-[#e07a5f] to-[#e8968a] text-[#0a0f1a] rounded-xl font-semibold hover:from-[#f09a8a] hover:to-[#e07a5f] transition-all flex items-center justify-center gap-2"
                   >
                     <CreditCard className="w-5 h-5" />
                     Confirmer la réservation

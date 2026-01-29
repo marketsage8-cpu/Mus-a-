@@ -280,7 +280,7 @@ const DailyArtPage = () => {
   if (!currentArtwork) {
     return (
       <div className="min-h-screen pt-20 pb-24 flex items-center justify-center" style={{ backgroundColor: '#1e2a42' }}>
-        <div className="flex items-center gap-3 text-[#d4a574]">
+        <div className="flex items-center gap-3 text-[#e07a5f]">
           <Sparkles className="w-6 h-6 animate-pulse" />
           <span>Chargement...</span>
         </div>
@@ -303,7 +303,7 @@ const DailyArtPage = () => {
       <div className="relative z-10 max-w-[1600px] mx-auto px-4">
         {/* Titre simple */}
         <div className="text-center pt-10 pb-6">
-          <h1 className="font-serif-italic text-3xl text-[#d4a574]">
+          <h1 className="font-serif-italic text-3xl text-[#e07a5f]">
             L'œuvre du jour
           </h1>
           <p className="text-gray-400 text-sm mt-2">
@@ -315,7 +315,7 @@ const DailyArtPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-[2.5fr_1fr] gap-6 mb-6">
           {/* COLONNE GAUCHE - Image de l'œuvre */}
           <div className="relative">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl group sticky top-24 border-8 border-[#d4a574]/40 bg-gradient-to-br from-[#d4a574]/20 to-[#8b6914]/30 p-1">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl group sticky top-24 border-8 border-[#e07a5f]/40 bg-gradient-to-br from-[#e07a5f]/20 to-[#8b6914]/30 p-1">
               <img
                 src={currentArtwork.image}
                 alt={currentArtwork.title}
@@ -338,7 +338,7 @@ const DailyArtPage = () => {
                 <button
                   onClick={() => setIsSaved(!isSaved)}
                   className={`p-3 rounded-full transition-all backdrop-blur-sm ${
-                    isSaved ? 'bg-[#d4a574]/80 text-[#1a2640]' : 'bg-black/30 hover:bg-black/50 text-white'
+                    isSaved ? 'bg-[#e07a5f]/80 text-[#1a2640]' : 'bg-black/30 hover:bg-black/50 text-white'
                   }`}
                 >
                   <Bookmark className={`w-5 h-5 ${isSaved ? 'fill-current' : ''}`} />
@@ -372,35 +372,35 @@ const DailyArtPage = () => {
               <h2 className="font-serif-italic text-xl lg:text-2xl text-white leading-tight mb-3">
                 {currentArtwork.title}
               </h2>
-              <p className="text-[#d4a574] text-base mb-2">
+              <p className="text-[#e07a5f] text-base mb-2">
                 {currentArtwork.artist}
                 <span className="text-gray-400 text-sm ml-2">
                   {currentArtwork.year < 0 ? `${Math.abs(currentArtwork.year)} av. J.-C.` : currentArtwork.year}
                 </span>
               </p>
               <div className="flex flex-wrap items-center gap-2 mb-3">
-                <span className="px-2 py-0.5 bg-[#d4a574]/20 text-[#d4a574] text-xs rounded-full">
+                <span className="px-2 py-0.5 bg-[#e07a5f]/20 text-[#e07a5f] text-xs rounded-full">
                   {currentArtwork.style}
                 </span>
                 <span className="text-gray-400 text-xs">{currentArtwork.medium}</span>
                 <span className="text-gray-500 text-xs">{currentArtwork.dimensions}</span>
               </div>
               <div className="flex items-center gap-2 text-gray-400 text-xs">
-                <MapPin className="w-3 h-3 text-[#d4a574]" />
+                <MapPin className="w-3 h-3 text-[#e07a5f]" />
                 {currentArtwork.location}
               </div>
             </div>
 
             {/* Analyse de l'œuvre - prend tout l'espace restant */}
             <div className="bg-white/5 rounded-2xl p-5 border border-white/10 flex-1 flex flex-col">
-              <h3 className="text-[#d4a574] font-medium text-sm mb-4 uppercase tracking-wider">Analyse de l'œuvre</h3>
+              <h3 className="text-[#e07a5f] font-medium text-sm mb-4 uppercase tracking-wider">Analyse de l'œuvre</h3>
               <p className="text-gray-300 text-sm leading-relaxed flex-1 mb-4">
                 {currentArtwork.description}
               </p>
-              <div className="flex items-start gap-3 p-4 bg-[#d4a574]/10 rounded-xl mt-auto">
+              <div className="flex items-start gap-3 p-4 bg-[#e07a5f]/10 rounded-xl mt-auto">
                 <span className="text-xl">💡</span>
                 <div>
-                  <p className="text-[#d4a574] text-sm font-medium mb-1">Le saviez-vous ?</p>
+                  <p className="text-[#e07a5f] text-sm font-medium mb-1">Le saviez-vous ?</p>
                   <p className="text-gray-400 text-xs leading-relaxed">
                     {currentArtwork.funFact}
                   </p>
@@ -413,7 +413,7 @@ const DailyArtPage = () => {
         {/* SECTION BIOGRAPHIE - Sous l'image et l'analyse */}
         {currentArtwork.artistImage && (
           <div className="bg-white/5 rounded-2xl p-6 border border-white/10 mb-6">
-            <h3 className="text-[#d4a574] font-medium text-lg mb-6 uppercase tracking-wider text-center">
+            <h3 className="text-[#e07a5f] font-medium text-lg mb-6 uppercase tracking-wider text-center">
               À propos de l'artiste
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
@@ -422,7 +422,7 @@ const DailyArtPage = () => {
                 <img
                   src={currentArtwork.artistImage}
                   alt={currentArtwork.artist}
-                  className="w-32 h-32 lg:w-40 lg:h-40 rounded-full object-cover border-4 border-[#d4a574]/50 mb-4"
+                  className="w-32 h-32 lg:w-40 lg:h-40 rounded-full object-cover border-4 border-[#e07a5f]/50 mb-4"
                 />
                 <p className="text-white text-xl font-semibold">{currentArtwork.artist}</p>
                 <p className="text-gray-400 text-sm mt-1">
@@ -432,7 +432,7 @@ const DailyArtPage = () => {
 
               {/* Biographie */}
               <div className="md:col-span-5">
-                <h4 className="text-[#d4a574] font-medium text-sm mb-3 uppercase tracking-wider">Biographie</h4>
+                <h4 className="text-[#e07a5f] font-medium text-sm mb-3 uppercase tracking-wider">Biographie</h4>
                 {currentArtwork.artistBio && (
                   <p className="text-gray-300 text-base leading-relaxed">
                     {currentArtwork.artistBio}
@@ -442,12 +442,12 @@ const DailyArtPage = () => {
 
               {/* Anecdotes */}
               <div className="md:col-span-4">
-                <h4 className="text-[#d4a574] font-medium text-sm mb-3 uppercase tracking-wider">Anecdotes</h4>
+                <h4 className="text-[#e07a5f] font-medium text-sm mb-3 uppercase tracking-wider">Anecdotes</h4>
                 {currentArtwork.artistAnecdotes && currentArtwork.artistAnecdotes.length > 0 && (
                   <div className="space-y-3">
                     {currentArtwork.artistAnecdotes.map((anecdote, index) => (
                       <div key={index} className="flex gap-3 text-sm text-gray-300">
-                        <span className="text-[#d4a574] text-lg">•</span>
+                        <span className="text-[#e07a5f] text-lg">•</span>
                         <span>{anecdote}</span>
                       </div>
                     ))}
@@ -484,7 +484,7 @@ const DailyArtPage = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                     </div>
                     <div className="absolute top-3 left-3">
-                      <span className="px-2 py-1 bg-[#d4a574]/90 text-[#1a2640] text-xs font-semibold rounded-full capitalize">
+                      <span className="px-2 py-1 bg-[#e07a5f]/90 text-[#1a2640] text-xs font-semibold rounded-full capitalize">
                         {dayName}
                       </span>
                     </div>

@@ -13,14 +13,99 @@
 
 const CACHE_KEY = 'muzea_all_places';
 const CACHE_VERSION_KEY = 'muzea_cache_version';
-// Version 6: Ajout des champs enrichis pour musées (adresse, URL, téléphone, thèmes)
-// et géocodage via API BAN pour musées sans coordonnées GPS
-const CACHE_VERSION = 6;
+// Version 7: Récupération massive de tous les musées depuis OSM + Wikidata
+// avec images Wikimedia Commons et fallback Wikipedia
+const CACHE_VERSION = 7;
 const CACHE_MAX_AGE = 7 * 24 * 60 * 60 * 1000; // 7 jours
+
+// Image placeholder pour les musées sans image
+const PLACEHOLDER_IMAGE = 'https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?w=400&h=300&fit=crop';
 
 // ─── Helpers ─────────────────────────────────────────────
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+/**
+ * Récupère l'image d'un musée depuis Wikipedia (fallback si pas d'image Wikidata)
+ * API: https://fr.wikipedia.org/api/rest_v1/page/summary/{title}
+ */
+async function getWikipediaImage(museumName) {
+  if (!museumName) return null;
+
+  try {
+    // Normaliser le nom pour la recherche Wikipedia
+    const searchName = museumName
+      .replace(/^(musée|museum)\s+/i, '')
+      .trim();
+
+    const url = `https://fr.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(museumName)}`;
+    const res = await fetch(url, {
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (!res.ok) {
+      // Essayer avec le nom simplifié
+      const url2 = `https://fr.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(searchName)}`;
+      const res2 = await fetch(url2, { headers: { 'Accept': 'application/json' } });
+      if (!res2.ok) return null;
+      const data2 = await res2.json();
+      return data2.thumbnail?.source || data2.originalimage?.source || null;
+    }
+
+    const data = await res.json();
+    return data.thumbnail?.source || data.originalimage?.source || null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Cache en mémoire pour les images Wikipedia (évite les appels répétés)
+ */
+const imageCache = new Map();
+
+/**
+ * Récupère les images en batch pour les musées sans image
+ * Limite: 10 requêtes en parallèle max, 100ms entre chaque batch
+ */
+async function fetchMissingImages(places, onProgress) {
+  const museumsWithoutImage = places.filter(p => !p.image && p.type === 'musée');
+
+  if (museumsWithoutImage.length === 0) return places;
+
+  console.log(`[Muzea] Recherche d'images Wikipedia pour ${museumsWithoutImage.length} musées...`);
+
+  const BATCH_SIZE = 10;
+  let processed = 0;
+
+  for (let i = 0; i < museumsWithoutImage.length; i += BATCH_SIZE) {
+    const batch = museumsWithoutImage.slice(i, i + BATCH_SIZE);
+
+    await Promise.all(batch.map(async (museum) => {
+      if (imageCache.has(museum.name)) {
+        museum.image = imageCache.get(museum.name);
+        return;
+      }
+
+      const image = await getWikipediaImage(museum.name);
+      if (image) {
+        museum.image = image;
+        imageCache.set(museum.name, image);
+      }
+    }));
+
+    processed += batch.length;
+    if (processed % 50 === 0) {
+      onProgress?.({ source: 'Images Wikipedia', loaded: processed, total: museumsWithoutImage.length });
+    }
+
+    // Rate limiting
+    await sleep(100);
+  }
+
+  console.log(`[Muzea] Images trouvées: ${places.filter(p => p.image && p.image !== PLACEHOLDER_IMAGE).length}`);
+  return places;
+}
 
 async function fetchJSON(url, retries = 3) {
   for (let i = 0; i < retries; i++) {
@@ -330,27 +415,112 @@ async function fetchMonuments(onProgress) {
   return [...classes, ...inscrits];
 }
 
-// ─── Source 3 : Châteaux + Musées + Monuments OSM ────────
+// ─── Source 3 : TOUS les musées OSM (Overpass API) ────────
+// Requête optimisée pour récupérer TOUS les musées de France
+// https://overpass-api.de/api/interpreter
 
-async function fetchOSMPlaces(onProgress) {
+async function fetchOSMMuseums(onProgress) {
+  // Requête spécifique pour TOUS les musées en France
+  const query = `
+    [out:json][timeout:300];
+    area["ISO3166-1"="FR"]->.france;
+    (
+      node["tourism"="museum"](area.france);
+      way["tourism"="museum"](area.france);
+      relation["tourism"="museum"](area.france);
+    );
+    out center tags;
+  `;
+
+  onProgress?.({ source: 'OpenStreetMap Musées', loaded: 0, total: 1, status: 'Chargement de tous les musées OSM…' });
+
+  const data = await fetchPOST(
+    'https://overpass-api.de/api/interpreter',
+    `data=${encodeURIComponent(query.trim())}`
+  );
+
+  if (!data || !data.elements) {
+    console.warn('[Muzea] Aucune donnée OSM reçue');
+    return [];
+  }
+
+  onProgress?.({ source: 'OpenStreetMap Musées', loaded: 1, total: 1 });
+
+  console.log(`[Muzea] OSM: ${data.elements.length} éléments reçus`);
+
+  const places = [];
+  for (const el of data.elements) {
+    const lat = el.lat || el.center?.lat;
+    const lng = el.lon || el.center?.lon;
+    if (!lat || !lng) continue;
+
+    const tags = el.tags || {};
+    const name = tags.name || tags['name:fr'] || tags.official_name || '';
+    if (!name) continue;
+
+    const city = tags['addr:city'] || tags['addr:municipality'] || tags['addr:town'] || tags['addr:village'] || '';
+    const address = [
+      tags['addr:housenumber'],
+      tags['addr:street'],
+      tags['addr:postcode'],
+      city
+    ].filter(Boolean).join(' ');
+
+    // Récupérer l'image Wikimedia si disponible
+    let image = '';
+    if (tags.image) {
+      image = tags.image;
+    } else if (tags.wikimedia_commons) {
+      // Convertir le nom de fichier Commons en URL
+      const filename = tags.wikimedia_commons.replace('File:', '').replace(/ /g, '_');
+      image = `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(filename)}?width=400`;
+    } else if (tags.wikidata) {
+      // On stocke l'ID Wikidata pour récupérer l'image plus tard
+      image = ''; // Sera rempli par Wikidata ou Wikipedia
+    }
+
+    places.push({
+      name: name.trim(),
+      type: 'musée',
+      description: tags.description || `Musée${city ? ` à ${city}` : ''}, France.`,
+      location: city || 'France',
+      address: address || '',
+      city: city,
+      coordinates: { lat: +lat, lng: +lng },
+      url: tags.website || tags['contact:website'] || '',
+      phone: tags.phone || tags['contact:phone'] || '',
+      image: image,
+      price: tags.fee === 'no' ? 'Gratuit' : (tags.charge || 'Se renseigner'),
+      hours: tags.opening_hours || 'Se renseigner',
+      period: tags.start_date || '',
+      themes: tags.museum || tags.subject || '',
+      highlights: [],
+      source: 'OpenStreetMap',
+      osmId: el.id,
+      wikidataId: tags.wikidata || ''
+    });
+  }
+
+  console.log(`[Muzea] OSM: ${places.length} musées avec nom récupérés`);
+  return places;
+}
+
+// ─── Source 3b : Châteaux + Églises + Galeries OSM ────────
+
+async function fetchOSMOtherPlaces(onProgress) {
   const query = `
     [out:json][timeout:180];
     area["ISO3166-1"="FR"]->.fr;
     (
       nwr["historic"="castle"](area.fr);
       nwr["castle_type"](area.fr);
-      nwr["tourism"="museum"](area.fr);
       nwr["tourism"="gallery"](area.fr);
       nwr["amenity"="arts_centre"](area.fr);
-      nwr["historic"="monument"](area.fr);
-      nwr["historic"="memorial"](area.fr);
-      nwr["historic"="ruins"](area.fr);
-      nwr["historic"="fort"](area.fr);
     );
-    out center;
+    out center tags;
   `;
 
-  onProgress?.({ source: 'OpenStreetMap', loaded: 0, total: 1, status: 'Chargement OSM…' });
+  onProgress?.({ source: 'OpenStreetMap Autres', loaded: 0, total: 1, status: 'Chargement châteaux/galeries OSM…' });
 
   const data = await fetchPOST(
     'https://overpass-api.de/api/interpreter',
@@ -359,13 +529,14 @@ async function fetchOSMPlaces(onProgress) {
 
   if (!data || !data.elements) return [];
 
-  onProgress?.({ source: 'OpenStreetMap', loaded: 1, total: 1 });
+  onProgress?.({ source: 'OpenStreetMap Autres', loaded: 1, total: 1 });
 
   const places = [];
   for (const el of data.elements) {
     const lat = el.lat || el.center?.lat;
     const lng = el.lon || el.center?.lon;
     if (!lat || !lng) continue;
+
     const tags = el.tags || {};
     const name = tags.name || tags['name:fr'] || '';
     if (!name) continue;
@@ -380,53 +551,160 @@ async function fetchOSMPlaces(onProgress) {
     if (historic === 'castle' || tags.castle_type) {
       type = 'château';
       desc = `Château${city ? ` situé à ${city}` : ''}, France.`;
-    } else if (tourism === 'museum') {
-      type = 'musée';
-      desc = `Musée${city ? ` à ${city}` : ''}, France.`;
     } else if (tourism === 'gallery' || amenity === 'arts_centre') {
       type = 'exposition';
       desc = `Galerie / Centre d'art${city ? ` à ${city}` : ''}, France.`;
-    } else if (/church|cathedral|abbey|chapel|monastery/i.test(tags.building || '') ||
-               /[ée]glise|cath[ée]drale|basilique|abbaye|chapelle|notre.?dame/i.test(name)) {
-      type = 'église';
-      desc = `Édifice religieux${city ? ` à ${city}` : ''}, France.`;
     } else {
-      continue; // Skip: on ne veut pas de "monument" générique
+      continue;
+    }
+
+    // Récupérer l'image si disponible
+    let image = '';
+    if (tags.image) {
+      image = tags.image;
+    } else if (tags.wikimedia_commons) {
+      const filename = tags.wikimedia_commons.replace('File:', '').replace(/ /g, '_');
+      image = `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(filename)}?width=400`;
     }
 
     places.push({
-      name: name.trim(), type,
+      name: name.trim(),
+      type,
       description: tags.description || desc,
       location: city || 'France',
       coordinates: { lat: +lat, lng: +lng },
+      image: image,
       price: tags.fee === 'no' ? 'Gratuit' : 'Se renseigner',
       hours: tags.opening_hours || 'Se renseigner',
       period: tags.start_date || 'Historique',
       highlights: [],
+      source: 'OpenStreetMap'
     });
   }
   return places;
 }
 
-// ─── Source 4 : Wikidata SPARQL (musées + châteaux + églises) ──
+// ─── Source 4 : TOUS les musées Wikidata SPARQL ──────────
+// Requête SPARQL optimisée pour récupérer TOUS les musées français avec images
+// Documentation: https://query.wikidata.org/
 
-async function fetchWikidataPlaces(onProgress) {
-  onProgress?.({ source: 'Wikidata', loaded: 0, total: 1, status: 'Chargement Wikidata…' });
+async function fetchWikidataMuseums(onProgress) {
+  onProgress?.({ source: 'Wikidata Musées', loaded: 0, total: 1, status: 'Chargement de tous les musées Wikidata…' });
 
-  // SPARQL query: museums, castles, monuments in France with coordinates
+  // Requête SPARQL optimisée pour tous les musées français
+  // wdt:P31/wdt:P279* = instance de ou sous-classe de musée (Q33506)
   const sparql = `
-SELECT ?item ?itemLabel ?lat ?lon ?typeLabel ?communeLabel ?image WHERE {
-  VALUES ?type { wd:Q33506 wd:Q23413 wd:Q811979 wd:Q16970 wd:Q839954 wd:Q4989906 wd:Q207694 wd:Q57821 wd:Q3395121 }
-  ?item wdt:P17 wd:Q142 ;
-        wdt:P31 ?type ;
-        wdt:P625 ?coord .
+SELECT DISTINCT ?museum ?museumLabel ?lat ?lon ?image ?website ?communeLabel ?streetAddress WHERE {
+  # Tous les musées et leurs sous-types en France
+  ?museum wdt:P31/wdt:P279* wd:Q33506 .
+  ?museum wdt:P17 wd:Q142 .
+  ?museum wdt:P625 ?coord .
+
   BIND(geof:latitude(?coord) AS ?lat)
   BIND(geof:longitude(?coord) AS ?lon)
-  OPTIONAL { ?item wdt:P131 ?commune . }
-  OPTIONAL { ?item wdt:P18 ?image . }
+
+  # Champs optionnels
+  OPTIONAL { ?museum wdt:P18 ?image . }
+  OPTIONAL { ?museum wdt:P856 ?website . }
+  OPTIONAL { ?museum wdt:P131 ?commune . }
+  OPTIONAL { ?museum wdt:P6375 ?streetAddress . }
+
   SERVICE wikibase:label { bd:serviceParam wikibase:language "fr,en" . }
 }
-LIMIT 10000
+`.trim();
+
+  const url = `https://query.wikidata.org/sparql?query=${encodeURIComponent(sparql)}&format=json`;
+
+  // Ajouter un User-Agent pour éviter les blocages
+  const data = await fetchJSON(url);
+  if (!data?.results?.bindings) {
+    console.warn('[Muzea] Wikidata: pas de résultats');
+    return [];
+  }
+
+  onProgress?.({ source: 'Wikidata Musées', loaded: 1, total: 1 });
+
+  console.log(`[Muzea] Wikidata: ${data.results.bindings.length} musées reçus`);
+
+  const places = [];
+  const seen = new Set();
+
+  for (const b of data.results.bindings) {
+    const lat = parseFloat(b.lat?.value);
+    const lng = parseFloat(b.lon?.value);
+    if (!lat || !lng || isNaN(lat) || isNaN(lng)) continue;
+
+    const name = b.museumLabel?.value || '';
+    if (!name || name.startsWith('Q')) continue; // skip unnamed items
+
+    const itemId = b.museum?.value || '';
+    if (seen.has(itemId)) continue;
+    seen.add(itemId);
+
+    const city = b.communeLabel?.value || '';
+    const address = b.streetAddress?.value || '';
+
+    // Image Wikimedia Commons
+    let image = '';
+    if (b.image?.value) {
+      // Convertir l'URL Wikimedia en URL directe avec taille
+      const imageUrl = b.image.value;
+      if (imageUrl.includes('commons.wikimedia.org')) {
+        // Extraire le nom du fichier et créer une URL redimensionnée
+        const filename = imageUrl.split('/').pop();
+        image = `https://commons.wikimedia.org/wiki/Special:FilePath/${filename}?width=400`;
+      } else {
+        image = imageUrl;
+      }
+    }
+
+    places.push({
+      name: name.trim(),
+      type: 'musée',
+      description: `Musée${city ? ` à ${city}` : ''}, France.`,
+      location: city || 'France',
+      city: city,
+      address: address,
+      coordinates: { lat, lng },
+      image: image,
+      url: b.website?.value || '',
+      price: 'Se renseigner',
+      hours: 'Se renseigner',
+      period: '',
+      themes: '',
+      highlights: [],
+      source: 'Wikidata',
+      wikidataId: itemId.split('/').pop()
+    });
+  }
+
+  console.log(`[Muzea] Wikidata: ${places.length} musées uniques avec coordonnées`);
+  return places;
+}
+
+// ─── Source 4b : Châteaux et églises Wikidata ──────────
+
+async function fetchWikidataOtherPlaces(onProgress) {
+  onProgress?.({ source: 'Wikidata Autres', loaded: 0, total: 1, status: 'Chargement châteaux/églises Wikidata…' });
+
+  // Châteaux (Q23413) et églises (Q16970) en France
+  const sparql = `
+SELECT DISTINCT ?item ?itemLabel ?lat ?lon ?typeLabel ?image ?communeLabel WHERE {
+  VALUES ?baseType { wd:Q23413 wd:Q16970 }
+  ?item wdt:P31/wdt:P279* ?baseType .
+  ?item wdt:P17 wd:Q142 .
+  ?item wdt:P625 ?coord .
+  ?item wdt:P31 ?type .
+
+  BIND(geof:latitude(?coord) AS ?lat)
+  BIND(geof:longitude(?coord) AS ?lon)
+
+  OPTIONAL { ?item wdt:P18 ?image . }
+  OPTIONAL { ?item wdt:P131 ?commune . }
+
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "fr,en" . }
+}
+LIMIT 15000
 `.trim();
 
   const url = `https://query.wikidata.org/sparql?query=${encodeURIComponent(sparql)}&format=json`;
@@ -434,7 +712,7 @@ LIMIT 10000
   const data = await fetchJSON(url);
   if (!data?.results?.bindings) return [];
 
-  onProgress?.({ source: 'Wikidata', loaded: 1, total: 1 });
+  onProgress?.({ source: 'Wikidata Autres', loaded: 1, total: 1 });
 
   const places = [];
   const seen = new Set();
@@ -445,7 +723,7 @@ LIMIT 10000
     if (!lat || !lng || isNaN(lat) || isNaN(lng)) continue;
 
     const name = b.itemLabel?.value || '';
-    if (!name || name.startsWith('Q')) continue; // skip unnamed items
+    if (!name || name.startsWith('Q')) continue;
 
     const itemId = b.item?.value || '';
     if (seen.has(itemId)) continue;
@@ -455,28 +733,38 @@ LIMIT 10000
     const city = b.communeLabel?.value || '';
 
     let type = null;
-    if (/mus[ée]/i.test(typeLabel) || /gallery|galerie/i.test(typeLabel)) {
-      type = 'musée';
-    } else if (/ch[âa]teau|castle|fort/i.test(typeLabel)) {
+    if (/ch[âa]teau|castle|fort/i.test(typeLabel)) {
       type = 'château';
     } else if (/[ée]glise|church|cath[ée]drale|basilique|abbaye|chapelle|prieur[ée]/i.test(typeLabel)) {
       type = 'église';
-    } else if (/exposition|galerie/i.test(typeLabel)) {
-      type = 'exposition';
     } else {
-      continue; // Skip: on ne veut que musée, château, église, exposition
+      continue;
+    }
+
+    // Image
+    let image = '';
+    if (b.image?.value) {
+      const imageUrl = b.image.value;
+      if (imageUrl.includes('commons.wikimedia.org')) {
+        const filename = imageUrl.split('/').pop();
+        image = `https://commons.wikimedia.org/wiki/Special:FilePath/${filename}?width=400`;
+      } else {
+        image = imageUrl;
+      }
     }
 
     places.push({
       name: name.trim(),
       type,
-      description: `${typeLabel ? typeLabel.charAt(0).toUpperCase() + typeLabel.slice(1) : 'Lieu culturel'}${city ? ` à ${city}` : ''}, France.`,
+      description: `${type.charAt(0).toUpperCase() + type.slice(1)}${city ? ` à ${city}` : ''}, France.`,
       location: city || 'France',
       coordinates: { lat, lng },
+      image: image,
       price: 'Se renseigner',
       hours: 'Se renseigner',
       period: 'Historique',
       highlights: [],
+      source: 'Wikidata'
     });
   }
   return places;
@@ -514,44 +802,103 @@ async function fetchArchitecture(onProgress) {
   );
 }
 
-// ─── Dédoublonnage rapide ────────────────────────────────
+// ─── Dédoublonnage par proximité GPS (< 100m) ────────────
+// 0.0009 degré ≈ 100m à la latitude de la France
 
-function deduplicate(allPlaces) {
-  const nameIndex = new Set();
-  const CELL = 0.001;
+function deduplicate(allPlaces, onProgress) {
+  const DISTANCE_THRESHOLD = 0.0009; // ~100m
+  const nameIndex = new Map(); // Stocke le meilleur enregistrement par nom normalisé
   const grid = new Map();
 
-  const unique = [];
-  for (const p of allPlaces) {
-    const key = p.name.toLowerCase()
-      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z0-9]/g, '') + '_' + p.type;
-    if (nameIndex.has(key)) continue;
+  console.log(`[Muzea] Dédoublonnage de ${allPlaces.length} lieux...`);
 
-    const cx = Math.floor(p.coordinates.lat / CELL);
-    const cy = Math.floor(p.coordinates.lng / CELL);
-    let tooClose = false;
-    for (let dx = -1; dx <= 1 && !tooClose; dx++) {
-      for (let dy = -1; dy <= 1 && !tooClose; dy++) {
+  // Fonction pour normaliser les noms
+  const normalizeName = (name) => name.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]/g, '');
+
+  // Fonction pour calculer la distance entre deux points (approximation)
+  const distance = (p1, p2) => {
+    const dlat = Math.abs(p1.lat - p2.lat);
+    const dlng = Math.abs(p1.lng - p2.lng);
+    return Math.sqrt(dlat * dlat + dlng * dlng);
+  };
+
+  // Fonction pour fusionner deux enregistrements (garde le plus complet)
+  const merge = (existing, newPlace) => {
+    return {
+      ...existing,
+      // Prendre les champs non vides du nouveau s'ils manquent dans l'existant
+      image: existing.image || newPlace.image,
+      url: existing.url || newPlace.url,
+      address: existing.address || newPlace.address,
+      phone: existing.phone || newPlace.phone,
+      themes: existing.themes || newPlace.themes,
+      description: existing.description.length > newPlace.description.length
+        ? existing.description : newPlace.description,
+      // Préférer Wikidata > data.culture.gouv > OSM pour les données officielles
+      source: existing.source === 'data.culture.gouv.fr' ? existing.source :
+              (newPlace.source === 'data.culture.gouv.fr' ? newPlace.source :
+              (existing.source === 'Wikidata' ? existing.source : newPlace.source))
+    };
+  };
+
+  const unique = [];
+  let processed = 0;
+
+  for (const p of allPlaces) {
+    if (!p.coordinates || !p.coordinates.lat || !p.coordinates.lng) continue;
+
+    const key = normalizeName(p.name) + '_' + p.type;
+
+    // Vérifier si un lieu avec le même nom existe déjà
+    if (nameIndex.has(key)) {
+      const existing = nameIndex.get(key);
+      const dist = distance(existing.coordinates, p.coordinates);
+      // Si même nom et à moins de 10km, fusionner
+      if (dist < 0.1) {
+        nameIndex.set(key, merge(existing, p));
+        continue;
+      }
+    }
+
+    // Vérifier la proximité GPS avec la grille spatiale
+    const cx = Math.floor(p.coordinates.lat / DISTANCE_THRESHOLD);
+    const cy = Math.floor(p.coordinates.lng / DISTANCE_THRESHOLD);
+    let foundClose = null;
+
+    for (let dx = -1; dx <= 1 && !foundClose; dx++) {
+      for (let dy = -1; dy <= 1 && !foundClose; dy++) {
         const gk = `${cx + dx}_${cy + dy}`;
         for (const ex of (grid.get(gk) || [])) {
-          if (ex.type === p.type &&
-            Math.abs(ex.coordinates.lat - p.coordinates.lat) < CELL &&
-            Math.abs(ex.coordinates.lng - p.coordinates.lng) < CELL) {
-            tooClose = true;
+          if (ex.type === p.type && distance(ex.coordinates, p.coordinates) < DISTANCE_THRESHOLD) {
+            foundClose = ex;
             break;
           }
         }
       }
     }
-    if (tooClose) continue;
 
-    nameIndex.add(key);
+    if (foundClose) {
+      // Fusionner avec l'existant
+      Object.assign(foundClose, merge(foundClose, p));
+      continue;
+    }
+
+    // Nouveau lieu unique
+    nameIndex.set(key, p);
     unique.push(p);
     const gk = `${cx}_${cy}`;
     if (!grid.has(gk)) grid.set(gk, []);
     grid.get(gk).push(p);
+
+    processed++;
+    if (processed % 1000 === 0) {
+      onProgress?.({ source: 'Dédoublonnage', loaded: processed, total: allPlaces.length });
+    }
   }
+
+  console.log(`[Muzea] Dédoublonnage terminé: ${unique.length} lieux uniques`);
   return unique;
 }
 
@@ -626,11 +973,18 @@ async function setCachedPlaces(places) {
 
 /**
  * Charge TOUS les lieux culturels depuis les APIs.
- * Retourne les données du cache si disponible,
- * sinon lance le chargement complet.
+ * Sources:
+ *   1. data.culture.gouv.fr (Muséofile ~1200 musées officiels)
+ *   2. OpenStreetMap Overpass (~3000-5000 musées)
+ *   3. Wikidata SPARQL (~2000-4000 musées avec images)
+ *   4. Monuments historiques
+ *   5. Architecture remarquable
+ *
+ * Retourne les données du cache si disponible (7 jours),
+ * sinon lance le chargement complet avec fusion et dédoublonnage.
  *
  * @param {Function} onProgress - callback({ source, loaded, total, phase })
- * @returns {Promise<Array>} Liste de tous les lieux
+ * @returns {Promise<Array>} Liste de tous les lieux (~8000-10000 musées)
  */
 export async function loadAllCulturalPlaces(onProgress) {
   // 1. Essayer le cache
@@ -641,46 +995,110 @@ export async function loadAllCulturalPlaces(onProgress) {
     return cached;
   }
 
-  console.log('[Muzea] Pas de cache — chargement depuis les APIs…');
+  console.log('[Muzea] Pas de cache — chargement massif depuis les APIs…');
+  console.log('[Muzea] Sources: data.culture.gouv.fr, OpenStreetMap, Wikidata');
   onProgress?.({ phase: 'loading', status: 'Connexion aux APIs…' });
 
-  // 2. Charger toutes les sources en parallèle (5 sources — pas de festivals)
-  const [museums, monuments, osmPlaces, wikidata, architecture] = await Promise.all([
-    fetchMuseums(onProgress).catch((e) => { console.warn('[Muzea] Musées:', e.message); return []; }),
+  // 2. Charger TOUTES les sources en parallèle
+  // Priorité des données: data.culture.gouv > Wikidata > OSM
+  const [
+    museofileMuseums,    // ~1200 musées officiels labellisés
+    osmMuseums,          // ~3000-5000 musées OSM
+    wikidataMuseums,     // ~2000-4000 musées Wikidata avec images
+    osmOther,            // Châteaux, galeries OSM
+    wikidataOther,       // Châteaux, églises Wikidata
+    monuments,           // Monuments historiques
+    architecture         // Architecture remarquable
+  ] = await Promise.all([
+    fetchMuseums(onProgress).catch((e) => { console.warn('[Muzea] Muséofile:', e.message); return []; }),
+    fetchOSMMuseums(onProgress).catch((e) => { console.warn('[Muzea] OSM Musées:', e.message); return []; }),
+    fetchWikidataMuseums(onProgress).catch((e) => { console.warn('[Muzea] Wikidata Musées:', e.message); return []; }),
+    fetchOSMOtherPlaces(onProgress).catch((e) => { console.warn('[Muzea] OSM Autres:', e.message); return []; }),
+    fetchWikidataOtherPlaces(onProgress).catch((e) => { console.warn('[Muzea] Wikidata Autres:', e.message); return []; }),
     fetchMonuments(onProgress).catch((e) => { console.warn('[Muzea] Monuments:', e.message); return []; }),
-    fetchOSMPlaces(onProgress).catch((e) => { console.warn('[Muzea] OSM:', e.message); return []; }),
-    fetchWikidataPlaces(onProgress).catch((e) => { console.warn('[Muzea] Wikidata:', e.message); return []; }),
     fetchArchitecture(onProgress).catch((e) => { console.warn('[Muzea] Architecture:', e.message); return []; }),
   ]);
 
-  console.log(`[Muzea] Sources: musées=${museums.length}, monuments=${monuments.length}, OSM=${osmPlaces.length}, wikidata=${wikidata.length}, archi=${architecture.length}`);
+  console.log(`[Muzea] Sources récupérées:`);
+  console.log(`  - Muséofile (officiels): ${museofileMuseums.length}`);
+  console.log(`  - OSM Musées: ${osmMuseums.length}`);
+  console.log(`  - Wikidata Musées: ${wikidataMuseums.length}`);
+  console.log(`  - OSM Autres: ${osmOther.length}`);
+  console.log(`  - Wikidata Autres: ${wikidataOther.length}`);
+  console.log(`  - Monuments: ${monuments.length}`);
+  console.log(`  - Architecture: ${architecture.length}`);
 
-  const allRaw = [...museums, ...monuments, ...osmPlaces, ...wikidata, ...architecture];
-  console.log(`[Muzea] ${allRaw.length} lieux bruts récupérés au total`);
+  // Ordre de priorité pour la fusion (les premiers sont prioritaires)
+  // Les données officielles (Muséofile) sont prioritaires, puis Wikidata (images), puis OSM
+  const allRaw = [
+    ...museofileMuseums,  // Priorité 1: Données officielles
+    ...wikidataMuseums,   // Priorité 2: Wikidata (avec images)
+    ...osmMuseums,        // Priorité 3: OSM
+    ...wikidataOther,
+    ...osmOther,
+    ...monuments,
+    ...architecture
+  ];
 
-  if (allRaw.length === 0) return null;
+  const totalRaw = allRaw.length;
+  console.log(`[Muzea] ${totalRaw} lieux bruts au total (avant dédoublonnage)`);
 
-  // 3. Dédoublonnage
-  onProgress?.({ phase: 'dedup', status: 'Dédoublonnage…' });
-  const unique = deduplicate(allRaw);
+  if (totalRaw === 0) return null;
 
-  // 4. Assigner IDs
-  const places = unique.map((p, i) => ({
+  // 3. Dédoublonnage par proximité GPS (<100m) et nom
+  onProgress?.({ phase: 'dedup', status: 'Dédoublonnage en cours…' });
+  const unique = deduplicate(allRaw, onProgress);
+
+  // 4. Assigner IDs et valeurs par défaut
+  let places = unique.map((p, i) => ({
     ...p,
     id: i + 1,
-    image: '',
+    image: p.image || '', // Sera rempli par le fallback Wikipedia si vide
     rating: +(4.0 + Math.random() * 0.9).toFixed(1),
     visited: false,
     favorite: false,
   }));
 
-  console.log(`[Muzea] ${places.length} lieux uniques prêts`);
+  console.log(`[Muzea] ${places.length} lieux uniques après dédoublonnage`);
 
-  // 5. Mettre en cache
+  // 5. Récupérer les images manquantes via Wikipedia (limité à 200 pour éviter la surcharge)
+  onProgress?.({ phase: 'images', status: 'Recherche d\'images Wikipedia…' });
+  const museumsWithoutImage = places.filter(p => !p.image && p.type === 'musée').slice(0, 200);
+
+  if (museumsWithoutImage.length > 0) {
+    console.log(`[Muzea] Recherche d'images Wikipedia pour ${museumsWithoutImage.length} musées...`);
+    places = await fetchMissingImages(places, onProgress);
+  }
+
+  // 6. Ajouter le placeholder pour les musées sans image
+  places = places.map(p => ({
+    ...p,
+    image: p.image || (p.type === 'musée' ? PLACEHOLDER_IMAGE : '')
+  }));
+
+  // Statistiques finales
+  const stats = {
+    total: places.length,
+    museums: places.filter(p => p.type === 'musée').length,
+    castles: places.filter(p => p.type === 'château').length,
+    churches: places.filter(p => p.type === 'église').length,
+    galleries: places.filter(p => p.type === 'exposition').length,
+    withImage: places.filter(p => p.image && p.image !== PLACEHOLDER_IMAGE).length
+  };
+
+  console.log(`[Muzea] Statistiques finales:`);
+  console.log(`  - Total: ${stats.total} lieux`);
+  console.log(`  - Musées: ${stats.museums}`);
+  console.log(`  - Châteaux: ${stats.castles}`);
+  console.log(`  - Églises: ${stats.churches}`);
+  console.log(`  - Expositions/Galeries: ${stats.galleries}`);
+  console.log(`  - Avec image: ${stats.withImage} (${(stats.withImage/stats.total*100).toFixed(1)}%)`);
+
+  // 7. Mettre en cache
   onProgress?.({ phase: 'caching', status: 'Mise en cache…' });
   await setCachedPlaces(places);
 
-  onProgress?.({ phase: 'done', total: places.length });
+  onProgress?.({ phase: 'done', total: places.length, stats });
   return places;
 }
 

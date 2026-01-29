@@ -171,7 +171,7 @@ const GuidePage = () => {
                     setShowFilters(false);
                   }
                 }}
-                placeholder="Rechercher un musée, un monument, un château..."
+                placeholder="Rechercher un musée, un château, une église..."
                 className="w-full py-4 pl-14 pr-12 bg-stone-800/50 border border-stone-700/50 rounded-2xl text-[#f5f0e6] placeholder-stone-500 focus:outline-none focus:border-[#d4af37]/50 focus:ring-2 focus:ring-[#d4af37]/20 transition-all text-lg font-body"
               />
               {searchQuery && (

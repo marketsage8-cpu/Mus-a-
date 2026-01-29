@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap, Circle, useMapEvents } from 'react-leaflet';
+import { useEffect, useRef, useState, useMemo } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMap, Circle } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 import L from 'leaflet';
 import { getTypeBadgeColor } from '../../data/places';
-import { fetchWikipediaImage } from '../../services/liveDataService';
 
 // Correction des icônes Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -228,105 +227,11 @@ const FitBounds = ({ places }) => {
 };
 
 /**
- * Composant qui surveille les changements de vue et déclenche le chargement
- * Mode "live": charge les données à la demande selon la zone visible
- */
-const BoundsWatcher = ({ onBoundsChange, debounceMs = 500 }) => {
-  const map = useMap();
-  const debounceTimer = useRef(null);
-  const lastBounds = useRef(null);
-
-  const handleBoundsChange = useCallback(() => {
-    // Debounce pour éviter trop d'appels
-    if (debounceTimer.current) {
-      clearTimeout(debounceTimer.current);
-    }
-
-    debounceTimer.current = setTimeout(() => {
-      const bounds = map.getBounds();
-      const newBounds = {
-        latMin: bounds.getSouth(),
-        latMax: bounds.getNorth(),
-        lonMin: bounds.getWest(),
-        lonMax: bounds.getEast()
-      };
-
-      // Ne déclencher que si les bounds ont vraiment changé
-      const lastStr = lastBounds.current ? JSON.stringify(lastBounds.current) : '';
-      const newStr = JSON.stringify(newBounds);
-
-      if (lastStr !== newStr) {
-        lastBounds.current = newBounds;
-        onBoundsChange?.(newBounds);
-      }
-    }, debounceMs);
-  }, [map, onBoundsChange, debounceMs]);
-
-  // Écouter les événements de la carte
-  useMapEvents({
-    moveend: handleBoundsChange,
-    zoomend: handleBoundsChange,
-    load: handleBoundsChange
-  });
-
-  // Charger au montage initial
-  useEffect(() => {
-    // Petit délai pour que la carte soit prête
-    const timer = setTimeout(handleBoundsChange, 100);
-    return () => {
-      clearTimeout(timer);
-      if (debounceTimer.current) {
-        clearTimeout(debounceTimer.current);
-      }
-    };
-  }, [handleBoundsChange]);
-
-  return null;
-};
-
-/**
- * Indicateur de chargement sur la carte
- */
-const LoadingIndicator = ({ loading, count }) => {
-  if (!loading && count === 0) return null;
-
-  return (
-    <div className="absolute top-2 left-2 z-[1000] flex items-center gap-2 bg-night-800/90 text-sand-100 px-3 py-1.5 rounded-lg text-xs shadow-lg backdrop-blur-sm border border-gold-400/30">
-      {loading ? (
-        <>
-          <svg className="w-4 h-4 animate-spin text-gold-400" fill="none" viewBox="0 0 24 24">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-          </svg>
-          <span>Chargement...</span>
-        </>
-      ) : (
-        <>
-          <span className="w-2 h-2 bg-green-400 rounded-full" />
-          <span>{count} lieux</span>
-        </>
-      )}
-    </div>
-  );
-};
-
-/**
  * Carte interactive Leaflet avec markers cliquables
- *
- * @param {Array} places - Liste des lieux à afficher (mode statique)
- * @param {Function} onPlaceClick - Callback au clic sur un marqueur
- * @param {Function} onBoundsChange - Callback quand la zone visible change (mode live)
- * @param {boolean} liveMode - Active le chargement dynamique à la demande
- * @param {boolean} loading - Indicateur de chargement (mode live)
- * @param {Function} onLoadImage - Callback pour charger une image (lazy loading)
  */
 const InteractiveMap = ({
   places,
   onPlaceClick,
-  onBoundsChange,
-  liveMode = false,
-  loading = false,
-  onLoadImage,
   className = '',
   height = '256px',
   center = [46.603354, 1.888334], // Centre de la France
@@ -336,7 +241,6 @@ const InteractiveMap = ({
 }) => {
   const [userLocation, setUserLocation] = useState(null);
   const [locationError, setLocationError] = useState(null);
-  const [hoveredPlace, setHoveredPlace] = useState(null);
 
   const handleLocationFound = (location) => {
     setUserLocation(location);
@@ -356,9 +260,6 @@ const InteractiveMap = ({
           {locationError}
         </div>
       )}
-
-      {/* Indicateur de chargement (mode live) */}
-      {liveMode && <LoadingIndicator loading={loading} count={places.length} />}
 
       {/* Indicateur de position active */}
       {userLocation && (
@@ -395,11 +296,6 @@ const InteractiveMap = ({
             onLocationFound={handleLocationFound}
             onLocationError={handleLocationError}
           />
-        )}
-
-        {/* Surveillance des bounds pour chargement dynamique (mode live) */}
-        {liveMode && onBoundsChange && (
-          <BoundsWatcher onBoundsChange={onBoundsChange} debounceMs={500} />
         )}
 
         {/* Marqueur position utilisateur */}
@@ -472,14 +368,7 @@ const InteractiveMap = ({
               position={[place.coordinates.lat, place.coordinates.lng]}
               icon={createCustomIcon(place.type)}
               eventHandlers={{
-                click: () => onPlaceClick?.(place),
-                // Lazy loading de l'image au survol
-                mouseover: async () => {
-                  if (!place.image && onLoadImage) {
-                    const image = await onLoadImage(place.id);
-                    // L'image sera mise à jour via le state parent
-                  }
-                }
+                click: () => onPlaceClick?.(place)
               }}
             >
               <Popup className="custom-popup" maxWidth={320}>

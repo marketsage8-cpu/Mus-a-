@@ -176,12 +176,12 @@ const DailyArtPage = () => {
 
   return (
     <div className="bg-[#0c0c0c] text-white min-h-[400vh]">
-      {/* Image fixe en arrière-plan - TOUJOURS VISIBLE */}
+      {/* Image fixe en arrière-plan - PLEIN ÉCRAN */}
       <div className="fixed inset-0 z-0">
         <img
           src={currentPainting.image}
           alt={currentPainting.title}
-          className="w-full h-full object-contain bg-[#0c0c0c]"
+          className="w-full h-full object-cover"
         />
         {/* Overlay qui s'assombrit au scroll pour lire le texte */}
         <div

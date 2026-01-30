@@ -3,12 +3,68 @@ import { useNavigate } from 'react-router-dom';
 import { MapPin, Clock, Calendar, Star, Users, Headphones, Award, Bell, Heart, Filter, Navigation, ChevronRight, Compass, Sparkles, TrendingUp, Eye, MessageCircle, Image, Share2, Coffee, Search } from 'lucide-react';
 import { MapMockup, RecommendationsMockup, SocialMockup, GuidesMockup } from '../components/mockups/PhoneMockup';
 
+// Fonction pour normaliser le texte (enlever accents)
+const normalizeText = (text) => {
+  if (!text) return '';
+  return text
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/œ/g, 'oe')
+    .replace(/æ/g, 'ae');
+};
+
+// Liste des lieux pour l'autocomplete
+const popularLocations = [
+  { name: 'Musée du Louvre', type: 'Musée', city: 'Paris' },
+  { name: 'Musée d\'Orsay', type: 'Musée', city: 'Paris' },
+  { name: 'Centre Pompidou', type: 'Musée', city: 'Paris' },
+  { name: 'Château de Versailles', type: 'Château', city: 'Versailles' },
+  { name: 'Musée Rodin', type: 'Musée', city: 'Paris' },
+  { name: 'Orangerie', type: 'Musée', city: 'Paris' },
+  { name: 'Musée Picasso', type: 'Musée', city: 'Paris' },
+  { name: 'Château de Fontainebleau', type: 'Château', city: 'Fontainebleau' },
+  { name: 'Notre-Dame de Paris', type: 'Église', city: 'Paris' },
+  { name: 'Sacré-Cœur', type: 'Église', city: 'Paris' },
+  { name: 'Palais de Tokyo', type: 'Musée', city: 'Paris' },
+  { name: 'Fondation Louis Vuitton', type: 'Musée', city: 'Paris' }
+];
+
 /**
  * Landing Page Immersive - Style Muzea
  * Design luxueux noir/or avec animations au scroll
  */
 const HomePage = () => {
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
+
+  // Rechercher les lieux correspondants pour l'autocomplete
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setSearchResults([]);
+      setShowDropdown(false);
+      return;
+    }
+
+    const query = normalizeText(searchQuery);
+    const results = popularLocations.filter(loc =>
+      normalizeText(loc.name).includes(query) ||
+      normalizeText(loc.city).includes(query) ||
+      normalizeText(loc.type).includes(query)
+    ).slice(0, 5);
+
+    setSearchResults(results);
+    setShowDropdown(results.length > 0);
+  }, [searchQuery]);
+
+  // Sélectionner un résultat
+  const handleResultClick = (result) => {
+    setSearchQuery(result.name);
+    setShowDropdown(false);
+    navigate(`/search?q=${encodeURIComponent(result.name)}`);
+  };
 
   // Observer pour les animations au scroll
   useEffect(() => {
@@ -82,25 +138,27 @@ const HomePage = () => {
               </span>
             </div>
 
-            {/* Barre de recherche */}
+            {/* Barre de recherche avec autocomplete */}
             <div className="animate-on-scroll opacity-0 translate-y-[30px]" style={{ transitionDelay: '400ms' }}>
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  const query = e.target.search.value;
-                  if (query.trim()) {
-                    navigate(`/search?q=${encodeURIComponent(query)}`);
+                  if (searchQuery.trim()) {
+                    setShowDropdown(false);
+                    navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
                   }
                 }}
                 className="relative max-w-lg"
               >
-                <div className="flex items-center bg-white/[0.05] border border-white/[0.15] rounded-full overflow-hidden hover:border-[#e07a5f]/50 transition-all focus-within:border-[#e07a5f] focus-within:bg-white/[0.08]">
+                <div className={`flex items-center bg-white/[0.05] border border-white/[0.15] ${showDropdown ? 'rounded-t-3xl rounded-b-none border-b-0' : 'rounded-full'} overflow-hidden hover:border-[#e07a5f]/50 transition-all focus-within:border-[#e07a5f] focus-within:bg-white/[0.08]`}>
                   <div className="pl-5">
                     <Search className="w-5 h-5 text-white/40" />
                   </div>
                   <input
                     type="text"
-                    name="search"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onFocus={() => searchResults.length > 0 && setShowDropdown(true)}
                     placeholder="Rechercher un musée, monument, exposition..."
                     className="flex-1 bg-transparent px-4 py-4 text-white placeholder-white/40 outline-none text-base"
                   />
@@ -111,14 +169,44 @@ const HomePage = () => {
                     Rechercher
                   </button>
                 </div>
+
+                {/* Dropdown avec résultats */}
+                {showDropdown && searchResults.length > 0 && (
+                  <div className="absolute left-0 right-0 top-full bg-[#1a1a1a] border border-white/[0.15] border-t-0 rounded-b-2xl overflow-hidden z-50 shadow-xl">
+                    {searchResults.map((result, index) => (
+                      <button
+                        key={index}
+                        type="button"
+                        onClick={() => handleResultClick(result)}
+                        className="w-full flex items-center gap-3 px-5 py-3 hover:bg-white/[0.05] transition-colors text-left border-b border-white/[0.05] last:border-b-0"
+                      >
+                        <MapPin className="w-4 h-4 text-[#e07a5f]" />
+                        <div className="flex-1">
+                          <div className="text-white text-sm">{result.name}</div>
+                          <div className="text-white/40 text-xs">{result.type} • {result.city}</div>
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-white/30" />
+                      </button>
+                    ))}
+                  </div>
+                )}
               </form>
+
+              {/* Fermer dropdown si clic ailleurs */}
+              {showDropdown && (
+                <div
+                  className="fixed inset-0 z-40"
+                  onClick={() => setShowDropdown(false)}
+                />
+              )}
+
               <div className="flex flex-wrap gap-2 mt-4 text-sm">
                 <span className="text-white/40">Suggestions :</span>
-                <button onClick={() => navigate('/search?q=Louvre')} className="text-[#e07a5f] hover:underline">Louvre</button>
+                <button onClick={() => { setSearchQuery('Louvre'); navigate('/search?q=Louvre'); }} className="text-[#e07a5f] hover:underline">Louvre</button>
                 <span className="text-white/20">•</span>
-                <button onClick={() => navigate('/search?q=Orsay')} className="text-[#e07a5f] hover:underline">Musée d'Orsay</button>
+                <button onClick={() => { setSearchQuery('Orsay'); navigate('/search?q=Orsay'); }} className="text-[#e07a5f] hover:underline">Musée d'Orsay</button>
                 <span className="text-white/20">•</span>
-                <button onClick={() => navigate('/search?q=Versailles')} className="text-[#e07a5f] hover:underline">Versailles</button>
+                <button onClick={() => { setSearchQuery('Versailles'); navigate('/search?q=Versailles'); }} className="text-[#e07a5f] hover:underline">Versailles</button>
               </div>
             </div>
 

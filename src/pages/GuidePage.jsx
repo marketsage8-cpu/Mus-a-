@@ -435,8 +435,14 @@ const GuidePage = () => {
             </div>
           </div>
 
-          {/* Étapes */}
-          <div className="grid md:grid-cols-3 gap-8">
+          {/* Étapes - masquées lors de la recherche */}
+          <div
+            className={`grid md:grid-cols-3 gap-8 transition-all duration-500 ease-out overflow-hidden ${
+              searchQuery.trim()
+                ? 'max-h-0 opacity-0 mt-0'
+                : 'max-h-[600px] opacity-100'
+            }`}
+          >
             {[
               {
                 icon: MapPin,

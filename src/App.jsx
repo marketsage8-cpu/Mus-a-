@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import ExplorePage from './pages/ExplorePage';
 import FavoritesPage from './pages/FavoritesPage';
 import EventsPage from './pages/EventsPage';
+import ExpositionsPage from './pages/ExpositionsPage';
 import MeetingsPage from './pages/MeetingsPage';
 import ProfilePage from './pages/ProfilePage';
 import SearchPage from './pages/SearchPage';
@@ -32,7 +33,8 @@ function App() {
               <Route path="/explore" element={<ExplorePage />} />
               <Route path="/favorites" element={<FavoritesPage />} />
               <Route path="/favoris" element={<FavoritesPage />} />
-              <Route path="/events" element={<MeetingsPage />} />
+              <Route path="/events" element={<ExpositionsPage />} />
+              <Route path="/expositions" element={<ExpositionsPage />} />
               <Route path="/decouverte" element={<DailyArtPage />} />
               <Route path="/artwork-of-the-day" element={<DailyArtPage />} />
               <Route path="/guides" element={<GuidePage />} />

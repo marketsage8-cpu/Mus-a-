@@ -228,10 +228,13 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 z-20">
-          <span className="text-xs tracking-widest">DÉFILER</span>
-          <div className="w-px h-16 bg-gradient-to-b from-white/30 to-transparent" />
+        {/* Scroll indicator avec animation */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-white/50 z-20 cursor-pointer hover:text-white/80 transition-colors group">
+          <span className="text-xs tracking-[0.3em] uppercase scroll-text-pulse">DÉFILER</span>
+          <div className="relative w-6 h-10 border-2 border-white/30 rounded-full group-hover:border-white/50 transition-colors">
+            <div className="scroll-dot absolute top-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-[#e07a5f] rounded-full" />
+          </div>
+          <div className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent scroll-line-pulse" />
         </div>
       </section>
 
@@ -806,6 +809,50 @@ const HomePage = () => {
         .animate-on-scroll.visible {
           opacity: 1 !important;
           transform: translateX(0) translateY(0) scale(1) !important;
+        }
+
+        /* Animation scroll indicator */
+        @keyframes scrollDot {
+          0%, 100% {
+            top: 8px;
+            opacity: 1;
+          }
+          50% {
+            top: 22px;
+            opacity: 0.5;
+          }
+        }
+
+        @keyframes textPulse {
+          0%, 100% {
+            opacity: 0.5;
+          }
+          50% {
+            opacity: 1;
+          }
+        }
+
+        @keyframes linePulse {
+          0%, 100% {
+            opacity: 0.3;
+            height: 32px;
+          }
+          50% {
+            opacity: 0.6;
+            height: 40px;
+          }
+        }
+
+        .scroll-dot {
+          animation: scrollDot 1.5s ease-in-out infinite;
+        }
+
+        .scroll-text-pulse {
+          animation: textPulse 2s ease-in-out infinite;
+        }
+
+        .scroll-line-pulse {
+          animation: linePulse 2s ease-in-out infinite;
         }
       `}</style>
     </div>

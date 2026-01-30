@@ -1,8 +1,9 @@
 /**
- * Composants de mockups pour illustrer les fonctionnalités de l'app
+ * Composants de mockups pour illustrer les fonctionnalités de l'app Muzea
+ * Design réaliste montrant les vraies fonctionnalités du site
  */
 
-// Mockup téléphone avec carte interactive
+// Mockup téléphone avec carte interactive - Version réaliste
 export const MapMockup = () => (
   <div className="relative w-full max-w-md mx-auto">
     {/* Cadre du téléphone */}
@@ -14,66 +15,84 @@ export const MapMockup = () => (
       <div className="relative bg-[#0c0c0c] rounded-[2.5rem] overflow-hidden aspect-[9/19]">
         {/* Barre de statut */}
         <div className="h-12 bg-[#0c0c0c] flex items-end justify-center pb-2">
-          <span className="text-white/60 text-xs">9:41</span>
+          <span className="text-white/60 text-xs font-medium">9:41</span>
         </div>
 
         {/* Contenu de la carte */}
         <div className="relative flex-1 bg-[#1a2234]">
-          {/* Grille de rues stylisée */}
+          {/* Grille de rues stylisée - Paris */}
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 300">
-            {/* Rues */}
-            <path d="M0 100 L200 100" stroke="#2a3a5c" strokeWidth="8" />
-            <path d="M0 200 L200 200" stroke="#2a3a5c" strokeWidth="6" />
-            <path d="M70 0 L70 300" stroke="#2a3a5c" strokeWidth="8" />
-            <path d="M140 0 L140 300" stroke="#2a3a5c" strokeWidth="6" />
+            {/* Fond de carte */}
+            <rect width="200" height="300" fill="#1a2234" />
 
-            {/* Parcs/zones vertes */}
-            <rect x="10" y="120" width="50" height="60" rx="8" fill="#1a3a2a" opacity="0.5" />
-            <rect x="150" y="30" width="40" height="50" rx="8" fill="#1a3a2a" opacity="0.5" />
+            {/* La Seine */}
+            <path d="M0 140 Q50 120 100 145 Q150 170 200 150" stroke="#2a4a6c" strokeWidth="12" fill="none" />
 
-            {/* Marqueurs de musées */}
-            <g transform="translate(100, 80)">
-              <circle r="12" fill="#e07a5f" />
-              <path d="M-6 -2 L0 -8 L6 -2 L6 4 L-6 4 Z" fill="white" />
-              <rect x="-4" y="0" width="8" height="4" fill="white" />
+            {/* Rues principales */}
+            <path d="M0 80 L200 80" stroke="#2a3a5c" strokeWidth="6" />
+            <path d="M0 200 L200 200" stroke="#2a3a5c" strokeWidth="5" />
+            <path d="M60 0 L60 300" stroke="#2a3a5c" strokeWidth="6" />
+            <path d="M140 0 L140 300" stroke="#2a3a5c" strokeWidth="5" />
+
+            {/* Parcs/Jardins */}
+            <rect x="5" y="160" width="45" height="50" rx="6" fill="#1a3a2a" opacity="0.6" />
+            <rect x="150" y="20" width="45" height="45" rx="6" fill="#1a3a2a" opacity="0.6" />
+
+            {/* Marqueur Louvre - Principal */}
+            <g transform="translate(95, 70)">
+              <circle r="14" fill="#e07a5f" />
+              <path d="M-7 -2 L0 -9 L7 -2 L7 5 L-7 5 Z" fill="white" />
+              <rect x="-5" y="1" width="10" height="4" fill="white" />
             </g>
 
-            <g transform="translate(50, 180)">
-              <circle r="10" fill="#e07a5f" opacity="0.8" />
+            {/* Marqueur Orsay */}
+            <g transform="translate(45, 130)">
+              <circle r="11" fill="#e07a5f" opacity="0.9" />
+              <path d="M-5 -1 L0 -6 L5 -1 L5 4 L-5 4 Z" fill="white" />
+            </g>
+
+            {/* Marqueur Pompidou */}
+            <g transform="translate(155, 95)">
+              <circle r="11" fill="#e07a5f" opacity="0.9" />
+              <path d="M-5 -1 L0 -6 L5 -1 L5 4 L-5 4 Z" fill="white" />
+            </g>
+
+            {/* Marqueur Orangerie */}
+            <g transform="translate(70, 175)">
+              <circle r="9" fill="#e07a5f" opacity="0.7" />
               <path d="M-4 -1 L0 -5 L4 -1 L4 3 L-4 3 Z" fill="white" />
             </g>
 
-            <g transform="translate(160, 150)">
-              <circle r="10" fill="#e07a5f" opacity="0.8" />
-              <path d="M-4 -1 L0 -5 L4 -1 L4 3 L-4 3 Z" fill="white" />
+            {/* Marqueur Rodin */}
+            <g transform="translate(130, 230)">
+              <circle r="9" fill="#e07a5f" opacity="0.7" />
             </g>
 
-            <g transform="translate(130, 250)">
-              <circle r="8" fill="#e07a5f" opacity="0.6" />
-            </g>
-
-            {/* Position utilisateur */}
-            <g transform="translate(100, 150)">
-              <circle r="20" fill="#3b82f6" opacity="0.2" />
-              <circle r="8" fill="#3b82f6" />
+            {/* Position utilisateur avec pulse */}
+            <g transform="translate(100, 145)">
+              <circle r="24" fill="#3b82f6" opacity="0.15" />
+              <circle r="16" fill="#3b82f6" opacity="0.25" />
+              <circle r="10" fill="#3b82f6" />
               <circle r="4" fill="white" />
             </g>
           </svg>
 
-          {/* Carte de lieu en bas */}
-          <div className="absolute bottom-4 left-4 right-4 bg-[#0c0c0c]/95 backdrop-blur rounded-2xl p-3 border border-white/10">
+          {/* Carte de lieu en bas - Louvre */}
+          <div className="absolute bottom-4 left-3 right-3 bg-[#0c0c0c]/95 backdrop-blur-md rounded-2xl p-3 border border-white/10">
             <div className="flex gap-3">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#e07a5f]/30 to-[#e07a5f]/10 rounded-xl flex items-center justify-center">
-                <svg className="w-8 h-8 text-[#e07a5f]" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.5L19 8l-7 3.5L5 8l7-3.5z"/>
-                </svg>
+              <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0">
+                <img
+                  src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=100&q=80"
+                  alt="Louvre"
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <div className="flex-1">
-                <div className="h-3 bg-white/80 rounded w-3/4 mb-2" />
-                <div className="h-2 bg-white/40 rounded w-1/2 mb-2" />
-                <div className="flex gap-2">
-                  <div className="h-2 bg-[#e07a5f]/60 rounded w-12" />
-                  <div className="h-2 bg-white/20 rounded w-8" />
+              <div className="flex-1 min-w-0">
+                <div className="text-white text-sm font-medium truncate">Musée du Louvre</div>
+                <div className="text-white/50 text-xs mb-1">Paris 1er • 350m</div>
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-0.5 bg-green-500/20 text-green-400 text-[10px] rounded-full font-medium">OUVERT</span>
+                  <span className="text-[#e07a5f] text-xs">★ 4.9</span>
                 </div>
               </div>
             </div>
@@ -81,12 +100,12 @@ export const MapMockup = () => (
         </div>
 
         {/* Barre de recherche en haut */}
-        <div className="absolute top-14 left-4 right-4 bg-[#0c0c0c]/90 backdrop-blur rounded-full px-4 py-3 border border-white/10 flex items-center gap-3">
+        <div className="absolute top-14 left-3 right-3 bg-[#0c0c0c]/90 backdrop-blur-md rounded-full px-4 py-2.5 border border-white/10 flex items-center gap-3">
           <svg className="w-4 h-4 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <circle cx="11" cy="11" r="8" />
             <path d="M21 21l-4.35-4.35" />
           </svg>
-          <div className="h-2 bg-white/30 rounded flex-1" />
+          <span className="text-white/40 text-xs">Rechercher un musée...</span>
         </div>
       </div>
     </div>
@@ -96,7 +115,7 @@ export const MapMockup = () => (
   </div>
 );
 
-// Mockup téléphone avec recommandations Muzea Now
+// Mockup téléphone avec recommandations Muzea Now - Version réaliste
 export const RecommendationsMockup = () => (
   <div className="relative w-full max-w-md mx-auto">
     <div className="relative bg-[#1a1a1a] rounded-[3rem] p-3 shadow-2xl shadow-black/50">
@@ -106,54 +125,76 @@ export const RecommendationsMockup = () => (
         {/* Header */}
         <div className="p-4 pt-12">
           <div className="text-center mb-4">
-            <div className="h-3 bg-[#e07a5f] rounded w-32 mx-auto mb-2" />
-            <div className="h-2 bg-white/30 rounded w-48 mx-auto" />
+            <div className="text-[#e07a5f] text-lg font-serif italic">Muzea Now</div>
+            <div className="text-white/40 text-[10px]">Que visiter maintenant ?</div>
           </div>
         </div>
 
-        {/* Cards de recommandations */}
-        <div className="px-4 space-y-3">
-          {/* Card 1 - Principale */}
-          <div className="bg-gradient-to-br from-[#e07a5f]/20 to-[#e07a5f]/5 rounded-2xl p-4 border border-[#e07a5f]/30">
+        {/* Cards de recommandations réalistes */}
+        <div className="px-3 space-y-2.5">
+          {/* Card 1 - Musée d'Orsay - Principale */}
+          <div className="bg-gradient-to-br from-[#e07a5f]/20 to-[#e07a5f]/5 rounded-xl p-3 border border-[#e07a5f]/30">
             <div className="flex gap-3">
-              <div className="w-20 h-20 bg-gradient-to-br from-[#e07a5f]/40 to-[#e07a5f]/20 rounded-xl" />
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="px-2 py-0.5 bg-[#e07a5f] rounded-full">
-                    <span className="text-[8px] text-[#0c0c0c] font-bold">OUVERT</span>
-                  </div>
-                  <div className="h-2 bg-white/20 rounded w-8" />
+              <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                <img
+                  src="https://images.unsplash.com/photo-1578926375605-eaf7559b1458?w=100&q=80"
+                  alt="Musée d'Orsay"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="px-1.5 py-0.5 bg-green-500/20 text-green-400 text-[8px] rounded-full font-medium">OUVERT</span>
+                  <span className="text-white/40 text-[8px]">jusqu'à 18h</span>
                 </div>
-                <div className="h-3 bg-white/70 rounded w-full mb-2" />
-                <div className="h-2 bg-white/30 rounded w-3/4 mb-2" />
-                <div className="flex gap-2">
-                  <div className="h-2 bg-[#e07a5f]/50 rounded w-10" />
-                  <div className="h-2 bg-white/20 rounded w-10" />
+                <div className="text-white text-xs font-medium truncate">Musée d'Orsay</div>
+                <div className="text-white/50 text-[10px] mb-1">Paris 7e • 800m</div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[#e07a5f] text-[10px]">★ 4.8</span>
+                  <span className="text-white/30 text-[10px]">Affluence faible</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Card 2 */}
-          <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+          {/* Card 2 - Centre Pompidou */}
+          <div className="bg-white/5 rounded-xl p-3 border border-white/10">
             <div className="flex gap-3">
-              <div className="w-16 h-16 bg-white/10 rounded-xl" />
-              <div className="flex-1">
-                <div className="h-2.5 bg-white/60 rounded w-full mb-2" />
-                <div className="h-2 bg-white/30 rounded w-2/3 mb-2" />
-                <div className="h-2 bg-white/20 rounded w-1/2" />
+              <div className="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0">
+                <img
+                  src="https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=100&q=80"
+                  alt="Centre Pompidou"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-white text-xs font-medium truncate">Centre Pompidou</div>
+                <div className="text-white/50 text-[10px] mb-1">Paris 4e • 1.2km</div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[#e07a5f] text-[10px]">★ 4.6</span>
+                  <span className="text-yellow-500/80 text-[10px]">Affluence moyenne</span>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Card 3 */}
-          <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+          {/* Card 3 - Musée Rodin */}
+          <div className="bg-white/5 rounded-xl p-3 border border-white/10">
             <div className="flex gap-3">
-              <div className="w-16 h-16 bg-white/10 rounded-xl" />
-              <div className="flex-1">
-                <div className="h-2.5 bg-white/60 rounded w-full mb-2" />
-                <div className="h-2 bg-white/30 rounded w-2/3 mb-2" />
-                <div className="h-2 bg-white/20 rounded w-1/2" />
+              <div className="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0">
+                <img
+                  src="https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=100&q=80"
+                  alt="Musée Rodin"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-white text-xs font-medium truncate">Musée Rodin</div>
+                <div className="text-white/50 text-[10px] mb-1">Paris 7e • 1.5km</div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[#e07a5f] text-[10px]">★ 4.7</span>
+                  <span className="text-green-500/80 text-[10px]">Affluence faible</span>
+                </div>
               </div>
             </div>
           </div>
@@ -171,7 +212,7 @@ export const RecommendationsMockup = () => (
   </div>
 );
 
-// Mockup téléphone avec rencontres/social
+// Mockup téléphone avec rencontres/social - Version réaliste
 export const SocialMockup = () => (
   <div className="relative w-full max-w-md mx-auto">
     <div className="relative bg-[#1a1a1a] rounded-[3rem] p-3 shadow-2xl shadow-black/50">
@@ -182,11 +223,11 @@ export const SocialMockup = () => (
         <div className="p-4 pt-12 border-b border-white/10">
           <div className="flex items-center justify-between">
             <div>
-              <div className="h-3 bg-[#e07a5f] rounded w-24 mb-1" />
-              <div className="h-2 bg-white/30 rounded w-32" />
+              <div className="text-[#e07a5f] text-base font-serif italic">Rencontres</div>
+              <div className="text-white/40 text-[10px]">Passionnés près de vous</div>
             </div>
-            <div className="w-10 h-10 bg-[#e07a5f]/20 rounded-full flex items-center justify-center">
-              <svg className="w-5 h-5 text-[#e07a5f]" fill="currentColor" viewBox="0 0 24 24">
+            <div className="w-9 h-9 bg-[#e07a5f]/20 rounded-full flex items-center justify-center">
+              <svg className="w-4 h-4 text-[#e07a5f]" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
               </svg>
             </div>
@@ -194,7 +235,7 @@ export const SocialMockup = () => (
         </div>
 
         {/* Liste de personnes avec images artistiques */}
-        <div className="p-4 space-y-3">
+        <div className="p-3 space-y-2.5">
           {/* Personne 1 - Nymphéas de Monet */}
           <div className="bg-[#e07a5f]/10 rounded-2xl border border-[#e07a5f]/30 overflow-hidden">
             <div className="h-20 relative overflow-hidden">
@@ -280,7 +321,7 @@ export const SocialMockup = () => (
   </div>
 );
 
-// Mockup pour les guides culturels
+// Mockup pour les guides culturels - Version réaliste
 export const GuidesMockup = () => (
   <div className="relative w-full max-w-md mx-auto">
     <div className="relative bg-[#1a1a1a] rounded-[3rem] p-3 shadow-2xl shadow-black/50">
@@ -289,8 +330,10 @@ export const GuidesMockup = () => (
       <div className="relative bg-[#0c0c0c] rounded-[2.5rem] overflow-hidden aspect-[9/19]">
         {/* Header avec parcours */}
         <div className="p-4 pt-12">
-          <div className="h-3 bg-[#e07a5f] rounded w-28 mb-2 mx-auto" />
-          <div className="h-2 bg-white/30 rounded w-40 mx-auto" />
+          <div className="text-center">
+            <div className="text-[#e07a5f] text-base font-serif italic">Votre parcours</div>
+            <div className="text-white/40 text-[10px]">Impressionnisme au Louvre</div>
+          </div>
         </div>
 
         {/* Timeline du parcours avec images */}

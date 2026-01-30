@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Users, MessageCircle, Heart, Clock, Star, Search, Coffee, Sparkles } from 'lucide-react';
+import { Users, MessageCircle, Heart, Clock, Star, Search, Coffee, Sparkles, MapPin, ChevronRight } from 'lucide-react';
 
 /**
  * Fonction de scroll fluide et rapide avec easing naturel
@@ -139,10 +139,64 @@ const meetupUsers = [
 /**
  * Page Rencontres - Style HomePage
  */
+// Liste des lieux disponibles pour l'autocomplete
+const allLocations = [
+  'Musée du Louvre',
+  'Musée d\'Orsay',
+  'Centre Pompidou',
+  'Château de Versailles',
+  'Orangerie',
+  'Musée Picasso',
+  'Exposition Picasso',
+  'Palais de Tokyo',
+  'Musée Guimet',
+  'Institut du Monde Arabe',
+  'Château de Fontainebleau'
+];
+
 const MeetingsPage = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredUsers, setFilteredUsers] = useState(meetupUsers);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
+
+  // Rechercher les lieux et personnes correspondants pour l'autocomplete
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setSearchResults([]);
+      setShowDropdown(false);
+      return;
+    }
+
+    const query = normalizeText(searchQuery);
+
+    // Trouver les lieux qui correspondent
+    const matchingLocations = allLocations.filter(loc =>
+      normalizeText(loc).includes(query)
+    );
+
+    // Trouver les utilisateurs qui correspondent
+    const matchingUsers = meetupUsers.filter(user => {
+      const matchesLocation = user.favoriteLocations.some(loc =>
+        normalizeText(loc).includes(query)
+      );
+      const matchesInterest = user.interests.some(interest =>
+        normalizeText(interest).includes(query)
+      );
+      const matchesName = normalizeText(user.name).includes(query);
+      return matchesLocation || matchesInterest || matchesName;
+    });
+
+    // Combiner les résultats
+    const results = [
+      ...matchingLocations.map(loc => ({ type: 'location', name: loc, icon: 'MapPin' })),
+      ...matchingUsers.map(u => ({ type: 'user', name: u.name, interest: u.interests[0], icon: 'Users' }))
+    ].slice(0, 6); // Max 6 résultats
+
+    setSearchResults(results);
+    setShowDropdown(results.length > 0);
+  }, [searchQuery]);
 
   // Filtrer les utilisateurs en fonction de la recherche
   useEffect(() => {
@@ -153,19 +207,14 @@ const MeetingsPage = () => {
 
     const query = normalizeText(searchQuery);
     const filtered = meetupUsers.filter(user => {
-      // Recherche dans les lieux favoris
       const matchesLocation = user.favoriteLocations.some(loc =>
         normalizeText(loc).includes(query)
       );
-      // Recherche dans les intérêts
       const matchesInterest = user.interests.some(interest =>
         normalizeText(interest).includes(query)
       );
-      // Recherche dans le nom
       const matchesName = normalizeText(user.name).includes(query);
-      // Recherche dans la bio
       const matchesBio = normalizeText(user.bio).includes(query);
-      // Recherche dans l'art préféré
       const matchesArt = normalizeText(user.artTitle).includes(query);
 
       return matchesLocation || matchesInterest || matchesName || matchesBio || matchesArt;
@@ -177,12 +226,21 @@ const MeetingsPage = () => {
   // Fonction de recherche et scroll
   const handleSearch = (e) => {
     e.preventDefault();
+    setShowDropdown(false);
+    smoothScrollTo('communaute', 700);
+  };
+
+  // Sélectionner un résultat de l'autocomplete
+  const handleResultClick = (result) => {
+    setSearchQuery(result.name);
+    setShowDropdown(false);
     smoothScrollTo('communaute', 700);
   };
 
   // Cliquer sur une suggestion
   const handleSuggestionClick = (suggestion) => {
     setSearchQuery(suggestion);
+    setShowDropdown(false);
     smoothScrollTo('communaute', 700);
   };
 
@@ -310,7 +368,7 @@ const MeetingsPage = () => {
           {/* Barre de recherche */}
           <div id="search-section" className="animate-on-scroll opacity-0 translate-y-[30px] max-w-2xl mx-auto mb-16" style={{ transitionDelay: '200ms' }}>
             <form onSubmit={handleSearch} className="relative">
-              <div className="flex items-center bg-white/[0.05] border border-white/[0.15] rounded-full overflow-hidden hover:border-[#e07a5f]/50 transition-all focus-within:border-[#e07a5f] focus-within:bg-white/[0.08]">
+              <div className={`flex items-center bg-white/[0.05] border border-white/[0.15] ${showDropdown ? 'rounded-t-3xl rounded-b-none border-b-0' : 'rounded-full'} overflow-hidden hover:border-[#e07a5f]/50 transition-all focus-within:border-[#e07a5f] focus-within:bg-white/[0.08]`}>
                 <div className="pl-5">
                   <Search className="w-5 h-5 text-white/40" />
                 </div>
@@ -318,6 +376,7 @@ const MeetingsPage = () => {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
+                  onFocus={() => searchResults.length > 0 && setShowDropdown(true)}
                   placeholder="Rechercher un musée, château, exposition..."
                   className="flex-1 bg-transparent px-4 py-4 text-white placeholder-white/40 outline-none text-base"
                 />
@@ -328,7 +387,45 @@ const MeetingsPage = () => {
                   Rechercher
                 </button>
               </div>
+
+              {/* Dropdown avec résultats */}
+              {showDropdown && searchResults.length > 0 && (
+                <div className="absolute left-0 right-0 top-full bg-[#1a1a1a] border border-white/[0.15] border-t-0 rounded-b-2xl overflow-hidden z-50 shadow-xl">
+                  {searchResults.map((result, index) => (
+                    <button
+                      key={index}
+                      type="button"
+                      onClick={() => handleResultClick(result)}
+                      className="w-full flex items-center gap-3 px-5 py-3 hover:bg-white/[0.05] transition-colors text-left border-b border-white/[0.05] last:border-b-0"
+                    >
+                      {result.type === 'location' ? (
+                        <MapPin className="w-4 h-4 text-[#e07a5f]" />
+                      ) : (
+                        <Users className="w-4 h-4 text-[#e07a5f]" />
+                      )}
+                      <div className="flex-1">
+                        <div className="text-white text-sm">{result.name}</div>
+                        {result.type === 'user' && result.interest && (
+                          <div className="text-white/40 text-xs">Passionné de {result.interest}</div>
+                        )}
+                        {result.type === 'location' && (
+                          <div className="text-white/40 text-xs">Lieu culturel</div>
+                        )}
+                      </div>
+                      <ChevronRight className="w-4 h-4 text-white/30" />
+                    </button>
+                  ))}
+                </div>
+              )}
             </form>
+
+            {/* Fermer dropdown si clic ailleurs */}
+            {showDropdown && (
+              <div
+                className="fixed inset-0 z-40"
+                onClick={() => setShowDropdown(false)}
+              />
+            )}
 
             {/* Suggestions */}
             <div className="flex flex-wrap gap-2 mt-4 justify-center">

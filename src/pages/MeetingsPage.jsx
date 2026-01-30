@@ -3,31 +3,27 @@ import { useNavigate } from 'react-router-dom';
 import { Users, MessageCircle, Heart, Clock, Star, Search, Coffee, Sparkles } from 'lucide-react';
 
 /**
- * Fonction de scroll fluide et personnalisée avec easing doux
+ * Fonction de scroll fluide et rapide avec easing naturel
  * @param {string} targetId - L'ID de l'élément cible
- * @param {number} duration - Durée de l'animation en ms (défaut: 1200ms)
+ * @param {number} duration - Durée de l'animation en ms (défaut: 700ms)
  */
-const smoothScrollTo = (targetId, duration = 1200) => {
+const smoothScrollTo = (targetId, duration = 700) => {
   const target = document.getElementById(targetId);
   if (!target) return;
 
   const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
   const startPosition = window.pageYOffset;
-  const distance = targetPosition - startPosition - 80; // 80px offset pour la navbar
+  const distance = targetPosition - startPosition - 80;
   let startTime = null;
 
-  // Easing function: easeInOutCubic - très fluide et naturel
-  const easeInOutCubic = (t) => {
-    return t < 0.5
-      ? 4 * t * t * t
-      : 1 - Math.pow(-2 * t + 2, 3) / 2;
-  };
+  // Easing function: easeOutQuart - démarrage rapide, fin douce
+  const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
 
   const animation = (currentTime) => {
     if (startTime === null) startTime = currentTime;
     const timeElapsed = currentTime - startTime;
     const progress = Math.min(timeElapsed / duration, 1);
-    const easeProgress = easeInOutCubic(progress);
+    const easeProgress = easeOutQuart(progress);
 
     window.scrollTo(0, startPosition + distance * easeProgress);
 
@@ -39,8 +35,19 @@ const smoothScrollTo = (targetId, duration = 1200) => {
   requestAnimationFrame(animation);
 };
 
+// Fonction pour normaliser le texte (enlever accents)
+const normalizeText = (text) => {
+  if (!text) return '';
+  return text
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/œ/g, 'oe')
+    .replace(/æ/g, 'ae');
+};
+
 /**
- * Données fictives des utilisateurs
+ * Données fictives des utilisateurs avec lieux favoris
  */
 const meetupUsers = [
   {
@@ -54,7 +61,8 @@ const meetupUsers = [
     interests: ["Impressionnisme", "Art moderne", "Histoire"],
     visitCount: 45,
     rating: 4.8,
-    verified: true
+    verified: true,
+    favoriteLocations: ['Musée du Louvre', 'Musée d\'Orsay', 'Orangerie']
   },
   {
     id: 2,
@@ -67,7 +75,8 @@ const meetupUsers = [
     interests: ["Architecture", "Renaissance", "Châteaux"],
     visitCount: 120,
     rating: 4.9,
-    verified: true
+    verified: true,
+    favoriteLocations: ['Château de Versailles', 'Musée du Louvre', 'Château de Fontainebleau']
   },
   {
     id: 3,
@@ -80,7 +89,8 @@ const meetupUsers = [
     interests: ["Art contemporain", "Photographie", "Sculpture"],
     visitCount: 32,
     rating: 4.7,
-    verified: true
+    verified: true,
+    favoriteLocations: ['Centre Pompidou', 'Musée Picasso', 'Exposition Picasso']
   },
   {
     id: 4,
@@ -93,7 +103,8 @@ const meetupUsers = [
     interests: ["Photographie", "Art classique", "Antiquités"],
     visitCount: 67,
     rating: 4.6,
-    verified: false
+    verified: false,
+    favoriteLocations: ['Musée du Louvre', 'Musée Guimet', 'Institut du Monde Arabe']
   },
   {
     id: 5,
@@ -106,7 +117,8 @@ const meetupUsers = [
     interests: ["Patrimoine", "Châteaux", "Jardins"],
     visitCount: 23,
     rating: 4.9,
-    verified: true
+    verified: true,
+    favoriteLocations: ['Château de Versailles', 'Orangerie', 'Musée d\'Orsay']
   },
   {
     id: 6,
@@ -119,7 +131,8 @@ const meetupUsers = [
     interests: ["Histoire", "Moyen-Âge", "Révolution"],
     visitCount: 89,
     rating: 5.0,
-    verified: true
+    verified: true,
+    favoriteLocations: ['Musée du Louvre', 'Centre Pompidou', 'Palais de Tokyo']
   }
 ];
 
@@ -128,6 +141,50 @@ const meetupUsers = [
  */
 const MeetingsPage = () => {
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredUsers, setFilteredUsers] = useState(meetupUsers);
+
+  // Filtrer les utilisateurs en fonction de la recherche
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setFilteredUsers(meetupUsers);
+      return;
+    }
+
+    const query = normalizeText(searchQuery);
+    const filtered = meetupUsers.filter(user => {
+      // Recherche dans les lieux favoris
+      const matchesLocation = user.favoriteLocations.some(loc =>
+        normalizeText(loc).includes(query)
+      );
+      // Recherche dans les intérêts
+      const matchesInterest = user.interests.some(interest =>
+        normalizeText(interest).includes(query)
+      );
+      // Recherche dans le nom
+      const matchesName = normalizeText(user.name).includes(query);
+      // Recherche dans la bio
+      const matchesBio = normalizeText(user.bio).includes(query);
+      // Recherche dans l'art préféré
+      const matchesArt = normalizeText(user.artTitle).includes(query);
+
+      return matchesLocation || matchesInterest || matchesName || matchesBio || matchesArt;
+    });
+
+    setFilteredUsers(filtered);
+  }, [searchQuery]);
+
+  // Fonction de recherche et scroll
+  const handleSearch = (e) => {
+    e.preventDefault();
+    smoothScrollTo('communaute', 700);
+  };
+
+  // Cliquer sur une suggestion
+  const handleSuggestionClick = (suggestion) => {
+    setSearchQuery(suggestion);
+    smoothScrollTo('communaute', 700);
+  };
 
   // Observer pour les animations au scroll
   useEffect(() => {
@@ -204,7 +261,7 @@ const MeetingsPage = () => {
                 Créer mon profil
               </button>
               <button
-                onClick={() => smoothScrollTo('decouvrir', 1400)}
+                onClick={() => smoothScrollTo('decouvrir', 700)}
                 className="px-8 py-4 border border-white/20 text-white/80 font-medium rounded-full hover:bg-white/5 transition-all"
               >
                 Découvrir
@@ -252,17 +309,15 @@ const MeetingsPage = () => {
 
           {/* Barre de recherche */}
           <div id="search-section" className="animate-on-scroll opacity-0 translate-y-[30px] max-w-2xl mx-auto mb-16" style={{ transitionDelay: '200ms' }}>
-            <form onSubmit={(e) => {
-              e.preventDefault();
-              smoothScrollTo('communaute', 1400);
-            }} className="relative">
+            <form onSubmit={handleSearch} className="relative">
               <div className="flex items-center bg-white/[0.05] border border-white/[0.15] rounded-full overflow-hidden hover:border-[#e07a5f]/50 transition-all focus-within:border-[#e07a5f] focus-within:bg-white/[0.08]">
                 <div className="pl-5">
                   <Search className="w-5 h-5 text-white/40" />
                 </div>
                 <input
                   type="text"
-                  name="search"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Rechercher un musée, château, exposition..."
                   className="flex-1 bg-transparent px-4 py-4 text-white placeholder-white/40 outline-none text-base"
                 />
@@ -280,7 +335,7 @@ const MeetingsPage = () => {
               {['Musée du Louvre', 'Château de Versailles', 'Exposition Picasso', 'Musée d\'Orsay'].map((suggestion) => (
                 <button
                   key={suggestion}
-                  onClick={() => smoothScrollTo('communaute', 1400)}
+                  onClick={() => handleSuggestionClick(suggestion)}
                   className="px-3 py-1.5 text-sm bg-white/[0.03] border border-white/[0.1] rounded-full text-white/50 hover:text-white hover:border-[#e07a5f]/50 transition-all"
                 >
                   {suggestion}
@@ -335,13 +390,28 @@ const MeetingsPage = () => {
           <div className="text-center mb-16">
             <span className="animate-on-scroll opacity-0 translate-y-[20px] text-[#e07a5f] text-xs tracking-[0.3em] uppercase mb-4 block">Communauté</span>
             <h2 className="animate-on-scroll opacity-0 translate-y-[30px] font-serif text-4xl md:text-5xl font-light mb-6" style={{ transitionDelay: '100ms' }}>
-              Nos passionnés<br />
-              <em className="text-[#e07a5f]">de culture</em>
+              {searchQuery ? (
+                <>Passionnés de<br /><em className="text-[#e07a5f]">"{searchQuery}"</em></>
+              ) : (
+                <>Nos passionnés<br /><em className="text-[#e07a5f]">de culture</em></>
+              )}
             </h2>
+            {searchQuery && (
+              <p className="text-white/50">
+                {filteredUsers.length} passionné{filteredUsers.length > 1 ? 's' : ''} trouvé{filteredUsers.length > 1 ? 's' : ''}
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="ml-3 text-[#e07a5f] hover:underline"
+                >
+                  Effacer la recherche
+                </button>
+              </p>
+            )}
           </div>
 
+          {filteredUsers.length > 0 ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {meetupUsers.map((user, i) => (
+            {filteredUsers.map((user, i) => (
               <div
                 key={user.id}
                 className="animate-on-scroll opacity-0 translate-y-[30px] group bg-white/[0.02] border border-white/[0.08] rounded-2xl hover:border-[#e07a5f]/30 transition-all overflow-hidden"
@@ -407,6 +477,23 @@ const MeetingsPage = () => {
               </div>
             ))}
           </div>
+          ) : (
+            <div className="text-center py-16">
+              <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-white/[0.05] flex items-center justify-center">
+                <Search className="w-8 h-8 text-white/30" />
+              </div>
+              <h3 className="font-serif text-2xl text-white/70 mb-3">Aucun passionné trouvé</h3>
+              <p className="text-white/40 mb-6">
+                Aucun passionné ne correspond à "{searchQuery}"
+              </p>
+              <button
+                onClick={() => setSearchQuery('')}
+                className="px-6 py-3 bg-[#e07a5f]/10 text-[#e07a5f] rounded-full hover:bg-[#e07a5f]/20 transition-all"
+              >
+                Voir tous les passionnés
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

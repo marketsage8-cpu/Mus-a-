@@ -3,31 +3,27 @@ import { useNavigate } from 'react-router-dom';
 import { Users, Star, MapPin, Clock, ChevronRight, Globe, Award, Sparkles, BookOpen, Search } from 'lucide-react';
 
 /**
- * Fonction de scroll fluide et personnalisée avec easing doux
+ * Fonction de scroll fluide et rapide avec easing naturel
  * @param {string} targetId - L'ID de l'élément cible
- * @param {number} duration - Durée de l'animation en ms (défaut: 1200ms)
+ * @param {number} duration - Durée de l'animation en ms (défaut: 700ms)
  */
-const smoothScrollTo = (targetId, duration = 1200) => {
+const smoothScrollTo = (targetId, duration = 700) => {
   const target = document.getElementById(targetId);
   if (!target) return;
 
   const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
   const startPosition = window.pageYOffset;
-  const distance = targetPosition - startPosition - 80; // 80px offset pour la navbar
+  const distance = targetPosition - startPosition - 80;
   let startTime = null;
 
-  // Easing function: easeInOutCubic - très fluide et naturel
-  const easeInOutCubic = (t) => {
-    return t < 0.5
-      ? 4 * t * t * t
-      : 1 - Math.pow(-2 * t + 2, 3) / 2;
-  };
+  // Easing function: easeOutQuart - démarrage rapide, fin douce
+  const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
 
   const animation = (currentTime) => {
     if (startTime === null) startTime = currentTime;
     const timeElapsed = currentTime - startTime;
     const progress = Math.min(timeElapsed / duration, 1);
-    const easeProgress = easeInOutCubic(progress);
+    const easeProgress = easeOutQuart(progress);
 
     window.scrollTo(0, startPosition + distance * easeProgress);
 
@@ -40,7 +36,7 @@ const smoothScrollTo = (targetId, duration = 1200) => {
 };
 
 /**
- * Données fictives des guides
+ * Données fictives des guides avec lieux associés
  */
 const guides = [
   {
@@ -54,7 +50,8 @@ const guides = [
     reviews: 127,
     languages: ['Français', 'Anglais'],
     price: 89,
-    verified: true
+    verified: true,
+    locations: ['Musée du Louvre', 'Musée d\'Orsay', 'Orangerie']
   },
   {
     id: 2,
@@ -67,7 +64,8 @@ const guides = [
     reviews: 89,
     languages: ['Français', 'Espagnol'],
     price: 95,
-    verified: true
+    verified: true,
+    locations: ['Centre Pompidou', 'Musée Picasso', 'Fondation Louis Vuitton']
   },
   {
     id: 3,
@@ -80,7 +78,8 @@ const guides = [
     reviews: 156,
     languages: ['Français', 'Italien', 'Anglais'],
     price: 85,
-    verified: true
+    verified: true,
+    locations: ['Musée du Louvre', 'Château de Versailles', 'Musée d\'Orsay']
   },
   {
     id: 4,
@@ -93,7 +92,8 @@ const guides = [
     reviews: 98,
     languages: ['Français', 'Allemand'],
     price: 80,
-    verified: false
+    verified: false,
+    locations: ['Orangerie', 'Musée d\'Orsay', 'Musée Marmottan']
   },
   {
     id: 5,
@@ -106,7 +106,8 @@ const guides = [
     reviews: 112,
     languages: ['Français', 'Anglais', 'Japonais'],
     price: 90,
-    verified: true
+    verified: true,
+    locations: ['Centre Pompidou', 'Musée du Louvre', 'Palais de Tokyo']
   },
   {
     id: 6,
@@ -119,15 +120,67 @@ const guides = [
     reviews: 134,
     languages: ['Français', 'Anglais'],
     price: 88,
-    verified: true
+    verified: true,
+    locations: ['Musée du Louvre', 'Château de Versailles', 'Château de Fontainebleau']
   }
 ];
+
+// Fonction pour normaliser le texte (enlever accents)
+const normalizeText = (text) => {
+  if (!text) return '';
+  return text
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/œ/g, 'oe')
+    .replace(/æ/g, 'ae');
+};
 
 /**
  * Page Guides - Style HomePage
  */
 const GuidePage = () => {
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredGuides, setFilteredGuides] = useState(guides);
+
+  // Filtrer les guides en fonction de la recherche
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setFilteredGuides(guides);
+      return;
+    }
+
+    const query = normalizeText(searchQuery);
+    const filtered = guides.filter(guide => {
+      // Recherche dans les lieux
+      const matchesLocation = guide.locations.some(loc =>
+        normalizeText(loc).includes(query)
+      );
+      // Recherche dans la spécialité
+      const matchesSpecialty = normalizeText(guide.specialty).includes(query);
+      // Recherche dans le nom
+      const matchesName = normalizeText(guide.name).includes(query);
+      // Recherche dans le titre artistique
+      const matchesArt = normalizeText(guide.artTitle).includes(query);
+
+      return matchesLocation || matchesSpecialty || matchesName || matchesArt;
+    });
+
+    setFilteredGuides(filtered);
+  }, [searchQuery]);
+
+  // Fonction de recherche et scroll
+  const handleSearch = (e) => {
+    e.preventDefault();
+    smoothScrollTo('guides', 700);
+  };
+
+  // Cliquer sur une suggestion
+  const handleSuggestionClick = (suggestion) => {
+    setSearchQuery(suggestion);
+    smoothScrollTo('guides', 700);
+  };
 
   // Observer pour les animations au scroll
   useEffect(() => {
@@ -198,13 +251,13 @@ const GuidePage = () => {
 
             <div className="animate-on-scroll opacity-0 translate-y-[30px] flex flex-wrap gap-4" style={{ transitionDelay: '400ms' }}>
               <button
-                onClick={() => smoothScrollTo('search-section', 1400)}
+                onClick={() => smoothScrollTo('search-section', 700)}
                 className="px-8 py-4 bg-[#e07a5f] text-[#0c0c0c] font-medium rounded-full hover:bg-[#e8968a] transition-all hover:scale-105 shadow-lg shadow-[#e07a5f]/20"
               >
                 Trouver un guide
               </button>
               <button
-                onClick={() => smoothScrollTo('decouvrir', 1400)}
+                onClick={() => smoothScrollTo('decouvrir', 700)}
                 className="px-8 py-4 border border-white/20 text-white/80 font-medium rounded-full hover:bg-white/5 transition-all"
               >
                 En savoir plus
@@ -252,17 +305,15 @@ const GuidePage = () => {
 
           {/* Barre de recherche */}
           <div id="search-section" className="animate-on-scroll opacity-0 translate-y-[30px] max-w-2xl mx-auto mb-16" style={{ transitionDelay: '200ms' }}>
-            <form onSubmit={(e) => {
-              e.preventDefault();
-              smoothScrollTo('guides', 1400);
-            }} className="relative">
+            <form onSubmit={handleSearch} className="relative">
               <div className="flex items-center bg-white/[0.05] border border-white/[0.15] rounded-full overflow-hidden hover:border-[#e07a5f]/50 transition-all focus-within:border-[#e07a5f] focus-within:bg-white/[0.08]">
                 <div className="pl-5">
                   <Search className="w-5 h-5 text-white/40" />
                 </div>
                 <input
                   type="text"
-                  name="search"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Rechercher un musée, château, exposition..."
                   className="flex-1 bg-transparent px-4 py-4 text-white placeholder-white/40 outline-none text-base"
                 />
@@ -280,7 +331,7 @@ const GuidePage = () => {
               {['Musée du Louvre', 'Château de Versailles', 'Musée d\'Orsay', 'Centre Pompidou'].map((suggestion) => (
                 <button
                   key={suggestion}
-                  onClick={() => smoothScrollTo('guides', 1400)}
+                  onClick={() => handleSuggestionClick(suggestion)}
                   className="px-3 py-1.5 text-sm bg-white/[0.03] border border-white/[0.1] rounded-full text-white/50 hover:text-white hover:border-[#e07a5f]/50 transition-all"
                 >
                   {suggestion}
@@ -335,13 +386,28 @@ const GuidePage = () => {
           <div className="text-center mb-16">
             <span className="animate-on-scroll opacity-0 translate-y-[20px] text-[#e07a5f] text-xs tracking-[0.3em] uppercase mb-4 block">Nos experts</span>
             <h2 className="animate-on-scroll opacity-0 translate-y-[30px] font-serif text-4xl md:text-5xl font-light mb-6" style={{ transitionDelay: '100ms' }}>
-              Guides<br />
-              <em className="text-[#e07a5f]">passionnés</em>
+              {searchQuery ? (
+                <>Guides pour<br /><em className="text-[#e07a5f]">"{searchQuery}"</em></>
+              ) : (
+                <>Guides<br /><em className="text-[#e07a5f]">passionnés</em></>
+              )}
             </h2>
+            {searchQuery && (
+              <p className="text-white/50">
+                {filteredGuides.length} guide{filteredGuides.length > 1 ? 's' : ''} trouvé{filteredGuides.length > 1 ? 's' : ''}
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="ml-3 text-[#e07a5f] hover:underline"
+                >
+                  Effacer la recherche
+                </button>
+              </p>
+            )}
           </div>
 
+          {filteredGuides.length > 0 ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {guides.map((guide, i) => (
+            {filteredGuides.map((guide, i) => (
               <div
                 key={guide.id}
                 className="animate-on-scroll opacity-0 translate-y-[30px] group bg-white/[0.02] border border-white/[0.08] rounded-2xl hover:border-[#e07a5f]/30 transition-all overflow-hidden"
@@ -406,6 +472,23 @@ const GuidePage = () => {
               </div>
             ))}
           </div>
+          ) : (
+            <div className="text-center py-16">
+              <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-white/[0.05] flex items-center justify-center">
+                <Search className="w-8 h-8 text-white/30" />
+              </div>
+              <h3 className="font-serif text-2xl text-white/70 mb-3">Aucun guide trouvé</h3>
+              <p className="text-white/40 mb-6">
+                Aucun guide ne correspond à "{searchQuery}"
+              </p>
+              <button
+                onClick={() => setSearchQuery('')}
+                className="px-6 py-3 bg-[#e07a5f]/10 text-[#e07a5f] rounded-full hover:bg-[#e07a5f]/20 transition-all"
+              >
+                Voir tous les guides
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
@@ -489,7 +572,7 @@ const GuidePage = () => {
             Réservez dès maintenant et vivez l'art comme jamais avec nos guides passionnés.
           </p>
           <button
-            onClick={() => smoothScrollTo('guides', 1400)}
+            onClick={() => smoothScrollTo('guides', 700)}
             className="animate-on-scroll opacity-0 translate-y-[30px] px-10 py-5 bg-[#e07a5f] text-[#0c0c0c] font-medium text-lg rounded-full hover:bg-[#e8968a] transition-all hover:scale-105 shadow-xl shadow-[#e07a5f]/20"
             style={{ transitionDelay: '200ms' }}
           >

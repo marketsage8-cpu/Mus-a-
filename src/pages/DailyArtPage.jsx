@@ -1,73 +1,41 @@
-import { useState, useEffect } from 'react';
-import { MapPin, Heart, ChevronLeft, ChevronRight, Bookmark, Sparkles } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Heart, Bookmark, ChevronDown, MapPin, Palette, Calendar, Ruler } from 'lucide-react';
 
 /**
- * Base de données des œuvres d'art pour la découverte
- * Enrichie avec analyses approfondies et biographies des artistes
+ * Base de données des tableaux pour l'œuvre du jour
+ * Uniquement des peintures avec images haute qualité
  */
-const artworks = [
+const paintings = [
   {
     id: 1,
     title: "La Liberté guidant le peuple",
     artist: "Eugène Delacroix",
     year: 1830,
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Eug%C3%A8ne_Delacroix_-_Le_28_Juillet._La_Libert%C3%A9_guidant_le_peuple.jpg/800px-Eug%C3%A8ne_Delacroix_-_Le_28_Juillet._La_Libert%C3%A9_guidant_le_peuple.jpg",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Eug%C3%A8ne_Delacroix_-_Le_28_Juillet._La_Libert%C3%A9_guidant_le_peuple.jpg/1280px-Eug%C3%A8ne_Delacroix_-_Le_28_Juillet._La_Libert%C3%A9_guidant_le_peuple.jpg",
     style: "Romantisme",
     medium: "Huile sur toile",
     dimensions: "260 × 325 cm",
     location: "Musée du Louvre, Paris",
-    description: "Cette œuvre emblématique commémore les Trois Glorieuses, les journées révolutionnaires des 27, 28 et 29 juillet 1830 à Paris. Delacroix fusionne allégorie et réalisme dans une composition pyramidale saisissante : la figure de la Liberté, à la fois déesse antique et femme du peuple, brandit le drapeau tricolore au sommet d'une barricade jonchée de corps. La palette contrastée — le bleu, blanc, rouge éclatant sur les tons terreux et sombres — crée un effet dramatique puissant. Cette œuvre incarne le manifeste du romantisme pictural français, où l'émotion et le mouvement priment sur la raison classique.",
-    funFact: "Le tableau a été caché pendant plusieurs années car jugé trop subversif par les autorités. Delacroix s'est représenté lui-même comme le bourgeois au chapeau haut-de-forme.",
-    artistImage: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Eug%C3%A8ne_Delacroix_%28Nadar%29.jpg",
-    artistBio: "Eugène Delacroix (1798-1863), chef de file du romantisme français, était un coloriste virtuose admiré de Van Gogh et Cézanne. Fils supposé de Talleyrand, il a mené une vie mondaine tout en peignant avec passion. Son voyage au Maroc en 1832 a profondément influencé sa palette. Il écrivait dans son journal : « Ce qu'il y a de plus réel pour moi, ce sont les illusions que je crée avec ma peinture. »",
-    artistAnecdotes: [
-      "Il portait toujours sur lui un petit carnet pour croquer les scènes de rue",
-      "Il entretenait une rivalité artistique féroce avec Ingres, le chef du néoclassicisme",
-      "Son atelier parisien est aujourd'hui un musée dédié à son œuvre"
-    ]
+    description: "Cette œuvre emblématique commémore les Trois Glorieuses, les journées révolutionnaires des 27, 28 et 29 juillet 1830 à Paris. Delacroix fusionne allégorie et réalisme dans une composition pyramidale saisissante : la figure de la Liberté, à la fois déesse antique et femme du peuple, brandit le drapeau tricolore au sommet d'une barricade jonchée de corps.",
+    analysis: "La palette contrastée — le bleu, blanc, rouge éclatant sur les tons terreux et sombres — crée un effet dramatique puissant. Cette œuvre incarne le manifeste du romantisme pictural français, où l'émotion et le mouvement priment sur la raison classique.",
+    funFact: "Delacroix s'est représenté lui-même comme le bourgeois au chapeau haut-de-forme à gauche du tableau."
   },
   {
     id: 2,
     title: "Les Nymphéas",
     artist: "Claude Monet",
     year: 1906,
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Claude_Monet_-_Water_Lilies_-_1906%2C_Ryerson.jpg/800px-Claude_Monet_-_Water_Lilies_-_1906%2C_Ryerson.jpg",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Claude_Monet_-_Water_Lilies_-_1906%2C_Ryerson.jpg/1280px-Claude_Monet_-_Water_Lilies_-_1906%2C_Ryerson.jpg",
     style: "Impressionnisme",
     medium: "Huile sur toile",
     dimensions: "89 × 93 cm",
     location: "Musée de l'Orangerie, Paris",
-    description: "Les Nymphéas représentent l'aboutissement de quarante années d'observation obsessionnelle de la lumière sur l'eau. Dans cette toile, Monet abolit la distinction traditionnelle entre sujet et fond : le ciel se reflète dans l'étang, les nénuphars flottent dans un espace sans horizon ni perspective. La touche visible et fragmentée capte les vibrations lumineuses à différents moments de la journée. Cette série révolutionnaire annonce l'abstraction du XXe siècle — Mark Rothko et les expressionnistes abstraits s'en réclameront. Monet disait vouloir peindre « l'instantanéité, l'enveloppe surtout, la même lumière répandue partout ».",
-    funFact: "Monet a continué à peindre les Nymphéas même après avoir développé une cataracte, produisant des œuvres aux teintes rouges inhabituelles dues à sa vision altérée. Il a fait détruire certaines toiles qu'il jugeait indignes.",
-    artistImage: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Claude_Monet_1899_Nadar.jpg",
-    artistBio: "Claude Monet (1840-1926), fondateur de l'impressionnisme, a consacré sa vie à capturer les variations infinies de la lumière. Après une jeunesse difficile, il a créé à Giverny le jardin qui deviendrait son ultime sujet. Marié deux fois, père de huit enfants, il a traversé des périodes de pauvreté extrême avant de connaître le succès. À la fin de sa vie, presque aveugle, il peignait encore, guidé par l'étiquette des tubes de peinture.",
-    artistAnecdotes: [
-      "Il se levait à 3h30 du matin pour peindre l'aube sur ses nymphéas",
-      "Il a fait creuser l'étang de Giverny et détourner un ruisseau pour créer son jardin d'eau",
-      "Clemenceau l'a convaincu de faire don des grandes toiles des Nymphéas à l'État français"
-    ]
+    description: "Les Nymphéas représentent l'aboutissement de quarante années d'observation obsessionnelle de la lumière sur l'eau. Dans cette toile, Monet abolit la distinction traditionnelle entre sujet et fond : le ciel se reflète dans l'étang, les nénuphars flottent dans un espace sans horizon ni perspective.",
+    analysis: "La touche visible et fragmentée capte les vibrations lumineuses à différents moments de la journée. Cette série révolutionnaire annonce l'abstraction du XXe siècle — Mark Rothko et les expressionnistes abstraits s'en réclameront.",
+    funFact: "Monet a continué à peindre les Nymphéas même après avoir développé une cataracte, produisant des œuvres aux teintes rouges inhabituelles."
   },
   {
     id: 3,
-    title: "Le Penseur",
-    artist: "Auguste Rodin",
-    year: 1880,
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/The_Thinker%2C_Rodin.jpg/600px-The_Thinker%2C_Rodin.jpg",
-    style: "Sculpture réaliste",
-    medium: "Bronze",
-    dimensions: "186 × 102 × 144 cm",
-    location: "Musée Rodin, Paris",
-    description: "Initialement nommé 'Le Poète', cette sculpture représentait Dante contemplant les cercles de l'Enfer au sommet de La Porte de l'Enfer. La tension musculaire extraordinaire du corps nu contraste avec l'immobilité méditative de la pose. Rodin a révolutionné la sculpture en montrant l'effort physique de la pensée — le menton appuyé sur le dos de la main (non sur la paume, geste plus naturel), les orteils crispés, le dos courbé. Cette anatomie tourmentée exprime que penser est un acte corporel total, une lutte de l'esprit contre la matière.",
-    funFact: "Il existe plus de 25 tirages originaux en bronze du Penseur à travers le monde. L'un d'eux, placé sur la tombe de Rodin à Meudon, veille éternellement sur le sculpteur.",
-    artistImage: "https://upload.wikimedia.org/wikipedia/commons/8/82/Auguste_Rodin_by_George_Charles_Beresford_%28NPG_x6573%29.jpg",
-    artistBio: "Auguste Rodin (1840-1917), le plus célèbre sculpteur de la modernité, a transformé cet art figé en expression vivante. Recalé trois fois à l'École des Beaux-Arts, il a travaillé comme artisan avant d'être accusé de moulage sur nature pour L'Âge d'airain — preuve de son réalisme troublant. Sa relation passionnée avec Camille Claudel a marqué son œuvre. À sa mort, il a légué son atelier et ses œuvres à l'État français.",
-    artistAnecdotes: [
-      "Il modelait souvent les yeux caves pour que la lumière y crée des ombres expressives",
-      "Ses sculptures étaient jugées si réalistes qu'on l'accusa de mouler des corps vivants",
-      "Il gardait des dizaines de mains et pieds sculptés dans son atelier pour les assembler"
-    ]
-  },
-  {
-    id: 4,
     title: "La Nuit étoilée",
     artist: "Vincent van Gogh",
     year: 1889,
@@ -76,38 +44,12 @@ const artworks = [
     medium: "Huile sur toile",
     dimensions: "73,7 × 92,1 cm",
     location: "MoMA, New York",
-    description: "Peinte depuis la fenêtre de sa chambre à l'asile de Saint-Rémy-de-Provence après sa crise de folie, cette œuvre transcende la réalité observable. Le ciel occupe les deux tiers de la composition, animé de spirales cosmiques et d'étoiles irradiantes qui semblent pulser d'une énergie surnaturelle. Le cyprès au premier plan, flamme sombre montant vers le ciel, fait le lien entre le village endormi et le cosmos en mouvement. Van Gogh y exprime sa quête spirituelle : « Regarder les étoiles me fait toujours rêver. Pourquoi les points lumineux du ciel nous seraient-ils moins accessibles que les points noirs sur la carte de France ? » Cette vision hallucinée préfigure l'expressionnisme.",
-    funFact: "Van Gogh considérait cette peinture comme un échec, lui préférant des œuvres plus réalistes. Il ne l'a jamais vendue. Aujourd'hui, elle est l'une des images les plus reproduites de l'histoire de l'art.",
-    artistImage: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_%28454045%29.jpg",
-    artistBio: "Vincent van Gogh (1853-1890), génie incompris de son vivant, n'a vendu qu'un seul tableau. Après des échecs comme marchand d'art et prédicateur, il s'est consacré à la peinture à 27 ans, produisant plus de 2000 œuvres en seulement dix ans. Sa correspondance avec son frère Théo révèle un homme cultivé et passionné. Sa vie tragique — pauvreté, maladie mentale, suicide à 37 ans — a contribué au mythe de l'artiste maudit.",
-    artistAnecdotes: [
-      "Il a réalisé plus de 30 autoportraits car il n'avait pas d'argent pour payer des modèles",
-      "Il mangeait parfois sa peinture, ce qui a pu aggraver son état mental",
-      "Son oreille coupée reste un mystère — automutilation ou bagarre avec Gauguin ?"
-    ]
+    description: "Peinte depuis la fenêtre de sa chambre à l'asile de Saint-Rémy-de-Provence après sa crise de folie, cette œuvre transcende la réalité observable. Le ciel occupe les deux tiers de la composition, animé de spirales cosmiques et d'étoiles irradiantes qui semblent pulser d'une énergie surnaturelle.",
+    analysis: "Le cyprès au premier plan, flamme sombre montant vers le ciel, fait le lien entre le village endormi et le cosmos en mouvement. Van Gogh y exprime sa quête spirituelle et cette vision hallucinée préfigure l'expressionnisme.",
+    funFact: "Van Gogh considérait cette peinture comme un échec, lui préférant des œuvres plus réalistes. Il ne l'a jamais vendue."
   },
   {
-    id: 5,
-    title: "La Vénus de Milo",
-    artist: "Artiste inconnu",
-    year: -130,
-    image: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Venus_de_Milo.JPG",
-    style: "Sculpture hellénistique",
-    medium: "Marbre de Paros",
-    dimensions: "202 cm de hauteur",
-    location: "Musée du Louvre, Paris",
-    description: "Découverte en 1820 par un paysan sur l'île de Milos, cette sculpture incarne l'idéal de beauté féminine depuis deux millénaires. Son attribution reste débattue : œuvre d'Alexandros d'Antioche ou création plus tardive ? La position en contrapposto (hanches et épaules désaxées) crée une torsion dynamique du corps. Le drapé glissant sur les hanches, à la limite de la chute, ajoute une tension érotique subtile. L'absence des bras, loin d'être un défaut, confère à la statue son mystère : tenait-elle une pomme, un miroir, un bouclier ? Cette incomplétude invite le regard à compléter mentalement l'œuvre.",
-    funFact: "Personne ne sait avec certitude ce que tenaient ses bras disparus. Lors de son transport vers la France, les bras ont peut-être été perdus dans une bagarre entre Français et Turcs.",
-    artistImage: "https://upload.wikimedia.org/wikipedia/commons/9/93/Bust_Homer_BM_1825.jpg",
-    artistBio: "L'artiste de la Vénus de Milo reste anonyme, comme la plupart des sculpteurs grecs dont les œuvres nous sont parvenues. Une inscription mentionnant « Alexandros d'Antioche » a été retrouvée près de la statue, mais sa connexion avec l'œuvre est contestée. La période hellénistique (323-31 av. J.-C.) se caractérise par un réalisme accru et une recherche de l'émotion, rompant avec l'idéalisme classique.",
-    artistAnecdotes: [
-      "Les sculpteurs grecs peignaient leurs statues de couleurs vives — la blancheur du marbre est un accident de l'histoire",
-      "Les proportions de la Vénus suivent le canon de Polyclète, mais avec des adaptations hellénistiques",
-      "Elle a inspiré des milliers d'artistes, de Botticelli à Dalí"
-    ]
-  },
-  {
-    id: 6,
+    id: 4,
     title: "Le Sacre de Napoléon",
     artist: "Jacques-Louis David",
     year: 1807,
@@ -116,18 +58,12 @@ const artworks = [
     medium: "Huile sur toile",
     dimensions: "621 × 979 cm",
     location: "Musée du Louvre, Paris",
-    description: "Cette toile monumentale — la plus grande du Louvre — représente le couronnement de Napoléon à Notre-Dame le 2 décembre 1804. David, peintre officiel de l'Empereur, y déploie une mise en scène théâtrale de la légitimité impériale. L'instant choisi est symbolique : Napoléon couronne lui-même Joséphine, affirmant son pouvoir face au pape Pie VII, relégué à un rôle de simple spectateur. Les 191 personnages identifiables forment un document historique autant qu'une œuvre d'art. La lumière dorée, les tissus somptueux, l'architecture grandiose créent une atmosphère de sacralité laïque, fusion de l'héritage révolutionnaire et de la pompe monarchique.",
-    funFact: "La mère de Napoléon, Letizia, apparaît au centre de la tribune, mais elle n'était pas présente à la cérémonie — elle boudait le mariage de son fils. Napoléon a exigé son inclusion.",
-    artistImage: "https://upload.wikimedia.org/wikipedia/commons/2/27/David_Self_Portrait.jpg",
-    artistBio: "Jacques-Louis David (1748-1825), maître du néoclassicisme, fut le peintre de trois régimes : la monarchie, la Révolution (dont il fut un acteur politique votant la mort du roi) et l'Empire. Ses tableaux d'histoire ont façonné l'imagerie révolutionnaire et napoléonienne. Exilé à Bruxelles après Waterloo, il y mourut sans avoir revu Paris. Son influence sur l'art académique a perduré un siècle.",
-    artistAnecdotes: [
-      "Il a mis trois ans à peindre Le Sacre, travaillant dans une église désaffectée",
-      "Napoléon a visité l'atelier et s'est exclamé : « C'est bien, très bien, David ! »",
-      "Il avait une tumeur à la joue qui déformait son visage et affectait son élocution"
-    ]
+    description: "Cette toile monumentale — la plus grande du Louvre — représente le couronnement de Napoléon à Notre-Dame le 2 décembre 1804. David, peintre officiel de l'Empereur, y déploie une mise en scène théâtrale de la légitimité impériale.",
+    analysis: "L'instant choisi est symbolique : Napoléon couronne lui-même Joséphine, affirmant son pouvoir face au pape Pie VII. Les 191 personnages identifiables forment un document historique autant qu'une œuvre d'art.",
+    funFact: "La mère de Napoléon apparaît au centre mais elle n'était pas présente — elle boudait le mariage de son fils."
   },
   {
-    id: 7,
+    id: 5,
     title: "Le Radeau de la Méduse",
     artist: "Théodore Géricault",
     year: 1819,
@@ -136,372 +72,377 @@ const artworks = [
     medium: "Huile sur toile",
     dimensions: "491 × 716 cm",
     location: "Musée du Louvre, Paris",
-    description: "Cette œuvre monumentale dépeint le naufrage de la frégate Méduse en 1816 et l'agonie de 147 personnes abandonnées sur un radeau pendant 13 jours. Géricault a choisi le moment où les survivants aperçoivent le navire Argus à l'horizon — un instant entre désespoir et espoir. La composition pyramidale, culminant vers le personnage noir agitant un tissu, exprime cette tension. Les corps entrelacés, entre vivants, mourants et morts, créent une chorégraphie macabre. Le scandale politique (l'incompétence d'un capitaine royaliste) se mue en méditation universelle sur la condition humaine face à l'adversité.",
-    funFact: "Géricault a étudié des cadavres à la morgue et fait construire un radeau grandeur nature dans son atelier. Il a rasé ses cheveux pour s'isoler du monde et interviewer les survivants.",
-    artistImage: "https://upload.wikimedia.org/wikipedia/commons/6/6c/Horace_Vernet_-_Jean_Louis_Th%C3%A9odore_G%C3%A9ricault_on_his_Deathbed_-_WGA25026.jpg",
-    artistBio: "Théodore Géricault (1791-1824), météore du romantisme français, est mort à 32 ans après une chute de cheval. Riche héritier, passionné de chevaux, il a brûlé sa vie avec intensité. Son Radeau de la Méduse, peint à 27 ans, a révolutionné la peinture d'histoire en traitant un fait divers comme une épopée. Ses portraits d'aliénés, réalisés à la fin de sa vie, anticipent la psychiatrie moderne.",
-    artistAnecdotes: [
-      "Il gardait des membres amputés dans son atelier pour étudier la décomposition des chairs",
-      "Il a eu une liaison secrète avec la femme de son oncle, qui lui a donné un fils",
-      "Delacroix a posé pour l'un des cadavres du premier plan du Radeau"
-    ]
+    description: "Cette œuvre monumentale dépeint le naufrage de la frégate Méduse en 1816 et l'agonie de 147 personnes abandonnées sur un radeau pendant 13 jours. Géricault a choisi le moment où les survivants aperçoivent le navire Argus à l'horizon.",
+    analysis: "La composition pyramidale, culminant vers le personnage noir agitant un tissu, exprime la tension entre désespoir et espoir. Les corps entrelacés créent une chorégraphie macabre et universelle.",
+    funFact: "Géricault a étudié des cadavres à la morgue et fait construire un radeau grandeur nature dans son atelier."
+  },
+  {
+    id: 6,
+    title: "La Jeune Fille à la perle",
+    artist: "Johannes Vermeer",
+    year: 1665,
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/1665_Girl_with_a_Pearl_Earring.jpg/800px-1665_Girl_with_a_Pearl_Earring.jpg",
+    style: "Baroque hollandais",
+    medium: "Huile sur toile",
+    dimensions: "44,5 × 39 cm",
+    location: "Mauritshuis, La Haye",
+    description: "Surnommée la « Joconde du Nord », cette œuvre énigmatique représente une jeune femme au turban bleu et jaune, tournant la tête vers le spectateur. Son regard direct et sa bouche entrouverte créent une intimité troublante.",
+    analysis: "Vermeer maîtrise magistralement la lumière qui caresse le visage et fait briller la perle — peut-être pas une vraie perle mais un reflet de verre peint. Le fond sombre fait ressortir la luminosité du sujet.",
+    funFact: "L'identité du modèle reste un mystère. Certains pensent qu'il s'agit de la fille de Vermeer, d'autres d'une servante."
+  },
+  {
+    id: 7,
+    title: "Le Déjeuner sur l'herbe",
+    artist: "Édouard Manet",
+    year: 1863,
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Edouard_Manet_-_Luncheon_on_the_Grass_-_Google_Art_Project.jpg/1280px-Edouard_Manet_-_Luncheon_on_the_Grass_-_Google_Art_Project.jpg",
+    style: "Réalisme / Préimpressionnisme",
+    medium: "Huile sur toile",
+    dimensions: "208 × 265 cm",
+    location: "Musée d'Orsay, Paris",
+    description: "Ce tableau a provoqué un scandale au Salon des Refusés de 1863. Une femme nue, au regard franc, est assise parmi des hommes habillés en costume contemporain, dans un décor de pique-nique.",
+    analysis: "Manet rompt avec les conventions : la nudité n'est pas mythologique mais moderne et provocante. La perspective aplatie et l'éclairage frontal annoncent la révolution impressionniste.",
+    funFact: "Le modèle nu est Victorine Meurent, qui posera aussi pour Olympia, autre tableau scandaleux de Manet."
+  },
+  {
+    id: 8,
+    title: "Les Tournesols",
+    artist: "Vincent van Gogh",
+    year: 1888,
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Vincent_Willem_van_Gogh_127.jpg/800px-Vincent_Willem_van_Gogh_127.jpg",
+    style: "Post-impressionnisme",
+    medium: "Huile sur toile",
+    dimensions: "92 × 73 cm",
+    location: "National Gallery, Londres",
+    description: "Van Gogh a peint cette série de tournesols pour décorer la chambre de Gauguin à Arles. Les fleurs, à différents stades de floraison et de flétrissure, symbolisent le cycle de la vie.",
+    analysis: "La palette entièrement jaune — du citron au bronze — vibre d'une intensité solaire. Les touches épaisses et les contours marqués donnent aux fleurs une présence presque sculpturale.",
+    funFact: "Van Gogh voulait créer une « symphonie en jaune et bleu ». Il associait le jaune au bonheur et à l'amitié."
+  },
+  {
+    id: 9,
+    title: "La Grande Vague de Kanagawa",
+    artist: "Katsushika Hokusai",
+    year: 1831,
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tsunami_by_hokusai_19th_century.jpg/1280px-Tsunami_by_hokusai_19th_century.jpg",
+    style: "Ukiyo-e",
+    medium: "Estampe sur bois",
+    dimensions: "25 × 37 cm",
+    location: "Metropolitan Museum, New York",
+    description: "Cette estampe iconique montre une vague gigantesque menaçant trois bateaux de pêcheurs, avec le mont Fuji serein à l'arrière-plan. Le contraste entre la violence de la mer et la montagne immuable crée une tension dramatique.",
+    analysis: "Hokusai utilise le bleu de Prusse, pigment alors nouveau au Japon, pour ses dégradés subtils. La composition asymétrique et le cadrage audacieux ont profondément influencé les impressionnistes.",
+    funFact: "Hokusai avait 70 ans quand il a créé cette œuvre. Il disait : « À 110 ans, chaque point, chaque ligne seront vivants »."
+  },
+  {
+    id: 10,
+    title: "Le Bal du moulin de la Galette",
+    artist: "Pierre-Auguste Renoir",
+    year: 1876,
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Pierre-Auguste_Renoir%2C_Le_Moulin_de_la_Galette.jpg/1280px-Pierre-Auguste_Renoir%2C_Le_Moulin_de_la_Galette.jpg",
+    style: "Impressionnisme",
+    medium: "Huile sur toile",
+    dimensions: "131 × 175 cm",
+    location: "Musée d'Orsay, Paris",
+    description: "Cette scène joyeuse capture l'atmosphère d'un bal populaire à Montmartre. Les danseurs, baignés d'une lumière tamisée filtrant à travers les arbres, incarnent la joie de vivre parisienne.",
+    analysis: "Renoir excelle dans le rendu de la lumière dappled (tachetée) sur les visages et les vêtements. Les touches rapides et les couleurs vives créent un effet de mouvement et de gaieté.",
+    funFact: "Renoir a peint ce tableau sur place, faisant porter la toile chaque jour de son atelier au moulin par ses amis."
   }
 ];
 
 /**
- * Page Découverte - Version épurée avec grandes images
+ * Page Œuvre du Jour - Design immersif avec scroll reveal
  */
 const DailyArtPage = () => {
-  const [currentArtwork, setCurrentArtwork] = useState(null);
-  const [previousArtworks, setPreviousArtworks] = useState([]);
+  const [currentPainting, setCurrentPainting] = useState(null);
+  const [scrollY, setScrollY] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
-  const [invalidImageIds, setInvalidImageIds] = useState(new Set());
-
-  // Fonction pour vérifier si une image est valide
-  const checkImageValidity = (url) => {
-    return new Promise((resolve) => {
-      if (!url || url.trim() === '') {
-        resolve(false);
-        return;
-      }
-      const img = new Image();
-      img.onload = () => resolve(true);
-      img.onerror = () => resolve(false);
-      img.src = url;
-    });
-  };
-
-  // Trouver la prochaine œuvre valide à partir d'un index
-  const findValidArtwork = async (startIndex, invalidIds, direction = 1) => {
-    let attempts = 0;
-    let index = startIndex;
-
-    while (attempts < artworks.length) {
-      const artwork = artworks[index];
-
-      if (!invalidIds.has(artwork.id)) {
-        const isValid = await checkImageValidity(artwork.image);
-        if (isValid) {
-          return { artwork, index };
-        } else {
-          invalidIds.add(artwork.id);
-        }
-      }
-
-      index = (index + direction + artworks.length) % artworks.length;
-      attempts++;
-    }
-
-    // Si toutes les images sont invalides, retourner la première œuvre quand même
-    return { artwork: artworks[startIndex], index: startIndex };
-  };
+  const containerRef = useRef(null);
 
   // Déterminer l'œuvre basée sur la date
   useEffect(() => {
-    const initializeArtwork = async () => {
-      const today = new Date();
-      const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
-      const artworkIndex = dayOfYear % artworks.length;
-
-      const invalidIds = new Set();
-      const { artwork: validArtwork } = await findValidArtwork(artworkIndex, invalidIds);
-      setCurrentArtwork(validArtwork);
-      setInvalidImageIds(invalidIds);
-
-      // Générer les œuvres précédentes avec images valides
-      const previous = [];
-      const usedIds = new Set([validArtwork.id]);
-      let searchIndex = artworkIndex;
-
-      for (let i = 1; i <= 6 && previous.length < 6; i++) {
-        searchIndex = (searchIndex - 1 + artworks.length) % artworks.length;
-        const artwork = artworks[searchIndex];
-
-        if (!usedIds.has(artwork.id) && !invalidIds.has(artwork.id)) {
-          const isValid = await checkImageValidity(artwork.image);
-          if (isValid) {
-            previous.push({
-              ...artwork,
-              daysAgo: i
-            });
-            usedIds.add(artwork.id);
-          } else {
-            invalidIds.add(artwork.id);
-          }
-        }
-      }
-
-      setPreviousArtworks(previous);
-      setInvalidImageIds(invalidIds);
-    };
-
-    initializeArtwork();
+    const today = new Date();
+    const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+    const paintingIndex = dayOfYear % paintings.length;
+    setCurrentPainting(paintings[paintingIndex]);
   }, []);
 
-  // Navigation entre les œuvres (avec validation d'image)
-  const navigateArtwork = async (direction) => {
-    const currentIndex = artworks.findIndex(a => a.id === currentArtwork.id);
-    const dir = direction === 'prev' ? -1 : 1;
-    const startIndex = (currentIndex + dir + artworks.length) % artworks.length;
+  // Gérer le scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-    const invalidIds = new Set(invalidImageIds);
-    const { artwork: validArtwork } = await findValidArtwork(startIndex, invalidIds, dir);
-
-    setCurrentArtwork(validArtwork);
-    setInvalidImageIds(invalidIds);
-    setIsLiked(false);
-    setIsSaved(false);
+  // Scroll vers le contenu
+  const scrollToContent = () => {
+    window.scrollTo({
+      top: window.innerHeight * 0.7,
+      behavior: 'smooth'
+    });
   };
 
-  // Gestionnaire d'erreur d'image - passe à l'œuvre suivante
-  const handleImageError = async () => {
-    const newInvalidIds = new Set(invalidImageIds);
-    newInvalidIds.add(currentArtwork.id);
-    setInvalidImageIds(newInvalidIds);
-
-    const currentIndex = artworks.findIndex(a => a.id === currentArtwork.id);
-    const nextIndex = (currentIndex + 1) % artworks.length;
-    const { artwork: validArtwork } = await findValidArtwork(nextIndex, newInvalidIds);
-
-    setCurrentArtwork(validArtwork);
-    setIsLiked(false);
-    setIsSaved(false);
-  };
-
-  // Sélectionner une œuvre
-  const selectArtwork = (artwork) => {
-    setCurrentArtwork(artwork);
-    setIsLiked(false);
-    setIsSaved(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  if (!currentArtwork) {
+  if (!currentPainting) {
     return (
-      <div className="min-h-screen pt-20 pb-24 flex items-center justify-center" style={{ backgroundColor: '#0c0c0c' }}>
-        <div className="flex items-center gap-3 text-[#e07a5f]">
-          <Sparkles className="w-6 h-6 animate-pulse" />
-          <span>Chargement...</span>
-        </div>
+      <div className="min-h-screen flex items-center justify-center bg-[#0c0c0c]">
+        <div className="w-8 h-8 border-2 border-[#e07a5f] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
 
+  // Calculs pour les animations basées sur le scroll
+  const opacity = Math.min(scrollY / 400, 1);
+  const titleOpacity = Math.min(Math.max((scrollY - 100) / 300, 0), 1);
+  const descOpacity = Math.min(Math.max((scrollY - 250) / 300, 0), 1);
+  const analysisOpacity = Math.min(Math.max((scrollY - 450) / 300, 0), 1);
+  const factOpacity = Math.min(Math.max((scrollY - 650) / 300, 0), 1);
+  const infoOpacity = Math.min(Math.max((scrollY - 850) / 300, 0), 1);
+
   return (
-    <div className="min-h-screen pt-20 pb-24 md:pb-8" style={{ backgroundColor: '#0c0c0c' }}>
-      {/* Fond avec blur de l'image */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-10 blur-3xl scale-110"
-          style={{ backgroundImage: `url(${currentArtwork.image})` }}
+    <div ref={containerRef} className="bg-[#0c0c0c] text-white">
+      {/* Image plein écran fixe */}
+      <div className="fixed inset-0 z-0">
+        <img
+          src={currentPainting.image}
+          alt={currentPainting.title}
+          className="w-full h-full object-cover"
+          style={{
+            transform: `scale(${1 + scrollY * 0.0002})`,
+            filter: `brightness(${1 - opacity * 0.5})`
+          }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0c0c] via-[#0c0c0c]/90 to-[#0c0c0c]" />
+        {/* Overlay progressif */}
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-transparent to-transparent"
+          style={{ opacity: 0.3 + opacity * 0.7 }}
+        />
       </div>
 
-      {/* Contenu principal */}
-      <div className="relative z-10 max-w-[1600px] mx-auto px-4">
-        {/* Titre simple */}
-        <div className="text-center pt-10 pb-6">
-          <h1 className="font-serif-italic text-3xl text-[#e07a5f]">
-            L'œuvre du jour
-          </h1>
-          <p className="text-gray-400 text-sm mt-2">
-            Chaque jour, une œuvre, son histoire et sa description !
-          </p>
-        </div>
-
-        {/* LAYOUT PRINCIPAL - Image à gauche, Analyse à droite (70/30) */}
-        <div className="grid grid-cols-1 lg:grid-cols-[2.5fr_1fr] gap-6 mb-6">
-          {/* COLONNE GAUCHE - Image de l'œuvre */}
-          <div className="relative">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl group sticky top-24 border-8 border-[#e07a5f]/40 bg-gradient-to-br from-[#e07a5f]/20 to-[#8b6914]/30 p-1">
-              <img
-                src={currentArtwork.image}
-                alt={currentArtwork.title}
-                className="w-full h-[750px] lg:h-[1100px] object-cover transition-transform duration-700 group-hover:scale-[1.02] rounded-2xl"
-                onError={handleImageError}
-              />
-              {/* Gradient overlay subtil */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-50" />
-
-              {/* Boutons d'action sur l'image */}
-              <div className="absolute top-4 right-4 flex gap-2">
-                <button
-                  onClick={() => setIsLiked(!isLiked)}
-                  className={`p-3 rounded-full transition-all backdrop-blur-sm ${
-                    isLiked ? 'bg-red-500/80 text-white' : 'bg-black/30 hover:bg-black/50 text-white'
-                  }`}
-                >
-                  <Heart className={`w-5 h-5 ${isLiked ? 'fill-current' : ''}`} />
-                </button>
-                <button
-                  onClick={() => setIsSaved(!isSaved)}
-                  className={`p-3 rounded-full transition-all backdrop-blur-sm ${
-                    isSaved ? 'bg-[#e07a5f]/80 text-[#1a2640]' : 'bg-black/30 hover:bg-black/50 text-white'
-                  }`}
-                >
-                  <Bookmark className={`w-5 h-5 ${isSaved ? 'fill-current' : ''}`} />
-                </button>
-              </div>
-
-              {/* Navigation sur l'image */}
-              <div className="absolute bottom-4 left-4 right-4 flex justify-between">
-                <button
-                  onClick={() => navigateArtwork('prev')}
-                  className="flex items-center gap-2 px-4 py-2 bg-black/30 backdrop-blur-sm hover:bg-black/50 rounded-xl text-white transition-all"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                  <span className="hidden sm:inline">Précédent</span>
-                </button>
-                <button
-                  onClick={() => navigateArtwork('next')}
-                  className="flex items-center gap-2 px-4 py-2 bg-black/30 backdrop-blur-sm hover:bg-black/50 rounded-xl text-white transition-all"
-                >
-                  <span className="hidden sm:inline">Suivant</span>
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
+      {/* Contenu scrollable */}
+      <div className="relative z-10">
+        {/* Section Hero - Plein écran */}
+        <section className="h-screen flex flex-col items-center justify-end pb-16 px-6">
+          {/* Badge œuvre du jour */}
+          <div
+            className="mb-6 px-4 py-2 bg-[#e07a5f]/20 backdrop-blur-sm border border-[#e07a5f]/30 rounded-full"
+            style={{ opacity: 1 - opacity }}
+          >
+            <span className="text-[#e07a5f] text-sm font-medium tracking-wider uppercase">
+              Œuvre du jour
+            </span>
           </div>
 
-          {/* COLONNE DROITE - Analyse du tableau */}
-          <div className="flex flex-col h-full lg:h-[1100px]">
-            {/* Titre et infos de l'œuvre */}
-            <div className="bg-white/5 rounded-2xl p-5 border border-white/10 mb-4">
-              <h2 className="font-serif-italic text-xl lg:text-2xl text-white leading-tight mb-3">
-                {currentArtwork.title}
+          {/* Titre initial */}
+          <h1
+            className="font-serif text-4xl md:text-6xl lg:text-7xl text-center mb-4 text-white drop-shadow-2xl"
+            style={{ opacity: 1 - opacity, transform: `translateY(${scrollY * 0.3}px)` }}
+          >
+            {currentPainting.title}
+          </h1>
+
+          {/* Artiste */}
+          <p
+            className="text-xl md:text-2xl text-[#e07a5f] mb-8"
+            style={{ opacity: 1 - opacity }}
+          >
+            {currentPainting.artist}, {currentPainting.year}
+          </p>
+
+          {/* Boutons d'action */}
+          <div
+            className="flex gap-4 mb-12"
+            style={{ opacity: 1 - opacity * 0.8 }}
+          >
+            <button
+              onClick={() => setIsLiked(!isLiked)}
+              className={`p-4 rounded-full backdrop-blur-md transition-all ${
+                isLiked ? 'bg-red-500/80 text-white' : 'bg-white/10 hover:bg-white/20 text-white'
+              }`}
+            >
+              <Heart className={`w-6 h-6 ${isLiked ? 'fill-current' : ''}`} />
+            </button>
+            <button
+              onClick={() => setIsSaved(!isSaved)}
+              className={`p-4 rounded-full backdrop-blur-md transition-all ${
+                isSaved ? 'bg-[#e07a5f]/80 text-white' : 'bg-white/10 hover:bg-white/20 text-white'
+              }`}
+            >
+              <Bookmark className={`w-6 h-6 ${isSaved ? 'fill-current' : ''}`} />
+            </button>
+          </div>
+
+          {/* Indicateur de scroll */}
+          <button
+            onClick={scrollToContent}
+            className="flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors animate-bounce"
+            style={{ opacity: 1 - opacity }}
+          >
+            <span className="text-sm tracking-widest uppercase">Découvrir</span>
+            <ChevronDown className="w-6 h-6" />
+          </button>
+        </section>
+
+        {/* Section Texte qui apparaît au scroll */}
+        <section className="min-h-[200vh] px-6 md:px-12 lg:px-24">
+          <div className="max-w-4xl mx-auto">
+            {/* Titre réapparaît */}
+            <div
+              className="py-24 transition-all duration-700"
+              style={{
+                opacity: titleOpacity,
+                transform: `translateY(${(1 - titleOpacity) * 50}px)`
+              }}
+            >
+              <h2 className="font-serif text-5xl md:text-7xl text-white mb-4 leading-tight">
+                {currentPainting.title}
               </h2>
-              <p className="text-[#e07a5f] text-base mb-2">
-                {currentArtwork.artist}
-                <span className="text-gray-400 text-sm ml-2">
-                  {currentArtwork.year < 0 ? `${Math.abs(currentArtwork.year)} av. J.-C.` : currentArtwork.year}
-                </span>
+              <p className="text-2xl text-[#e07a5f] italic">
+                {currentPainting.artist}
               </p>
-              <div className="flex flex-wrap items-center gap-2 mb-3">
-                <span className="px-2 py-0.5 bg-[#e07a5f]/20 text-[#e07a5f] text-xs rounded-full">
-                  {currentArtwork.style}
-                </span>
-                <span className="text-gray-400 text-xs">{currentArtwork.medium}</span>
-                <span className="text-gray-500 text-xs">{currentArtwork.dimensions}</span>
-              </div>
-              <div className="flex items-center gap-2 text-gray-400 text-xs">
-                <MapPin className="w-3 h-3 text-[#e07a5f]" />
-                {currentArtwork.location}
+            </div>
+
+            {/* Description */}
+            <div
+              className="py-16 transition-all duration-700"
+              style={{
+                opacity: descOpacity,
+                transform: `translateY(${(1 - descOpacity) * 50}px)`
+              }}
+            >
+              <p className="text-xl md:text-2xl text-white/80 leading-relaxed font-light">
+                {currentPainting.description}
+              </p>
+            </div>
+
+            {/* Analyse */}
+            <div
+              className="py-16 transition-all duration-700"
+              style={{
+                opacity: analysisOpacity,
+                transform: `translateY(${(1 - analysisOpacity) * 50}px)`
+              }}
+            >
+              <h3 className="text-[#e07a5f] text-sm uppercase tracking-[0.3em] mb-6">
+                Analyse
+              </h3>
+              <p className="text-xl md:text-2xl text-white/70 leading-relaxed font-light">
+                {currentPainting.analysis}
+              </p>
+            </div>
+
+            {/* Fun Fact */}
+            <div
+              className="py-16 transition-all duration-700"
+              style={{
+                opacity: factOpacity,
+                transform: `translateY(${(1 - factOpacity) * 50}px)`
+              }}
+            >
+              <div className="p-8 bg-[#e07a5f]/10 backdrop-blur-sm rounded-3xl border border-[#e07a5f]/20">
+                <span className="text-4xl mb-4 block">💡</span>
+                <h3 className="text-[#e07a5f] font-medium text-lg mb-3">
+                  Le saviez-vous ?
+                </h3>
+                <p className="text-xl text-white/80 leading-relaxed">
+                  {currentPainting.funFact}
+                </p>
               </div>
             </div>
 
-            {/* Analyse de l'œuvre - prend tout l'espace restant */}
-            <div className="bg-white/5 rounded-2xl p-5 border border-white/10 flex-1 flex flex-col">
-              <h3 className="text-[#e07a5f] font-medium text-sm mb-4 uppercase tracking-wider">Analyse de l'œuvre</h3>
-              <p className="text-gray-300 text-sm leading-relaxed flex-1 mb-4">
-                {currentArtwork.description}
-              </p>
-              <div className="flex items-start gap-3 p-4 bg-[#e07a5f]/10 rounded-xl mt-auto">
-                <span className="text-xl">💡</span>
-                <div>
-                  <p className="text-[#e07a5f] text-sm font-medium mb-1">Le saviez-vous ?</p>
-                  <p className="text-gray-400 text-xs leading-relaxed">
-                    {currentArtwork.funFact}
-                  </p>
+            {/* Informations techniques */}
+            <div
+              className="py-16 pb-32 transition-all duration-700"
+              style={{
+                opacity: infoOpacity,
+                transform: `translateY(${(1 - infoOpacity) * 50}px)`
+              }}
+            >
+              <h3 className="text-[#e07a5f] text-sm uppercase tracking-[0.3em] mb-8">
+                Informations
+              </h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="flex items-center gap-4 p-5 bg-white/5 rounded-2xl">
+                  <Palette className="w-6 h-6 text-[#e07a5f]" />
+                  <div>
+                    <p className="text-white/50 text-sm">Style</p>
+                    <p className="text-white text-lg">{currentPainting.style}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-5 bg-white/5 rounded-2xl">
+                  <Calendar className="w-6 h-6 text-[#e07a5f]" />
+                  <div>
+                    <p className="text-white/50 text-sm">Technique</p>
+                    <p className="text-white text-lg">{currentPainting.medium}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-5 bg-white/5 rounded-2xl">
+                  <Ruler className="w-6 h-6 text-[#e07a5f]" />
+                  <div>
+                    <p className="text-white/50 text-sm">Dimensions</p>
+                    <p className="text-white text-lg">{currentPainting.dimensions}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-5 bg-white/5 rounded-2xl">
+                  <MapPin className="w-6 h-6 text-[#e07a5f]" />
+                  <div>
+                    <p className="text-white/50 text-sm">Localisation</p>
+                    <p className="text-white text-lg">{currentPainting.location}</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* SECTION BIOGRAPHIE - Sous l'image et l'analyse */}
-        {currentArtwork.artistImage && (
-          <div className="bg-white/5 rounded-2xl p-6 border border-white/10 mb-6">
-            <h3 className="text-[#e07a5f] font-medium text-lg mb-6 uppercase tracking-wider text-center">
-              À propos de l'artiste
+        {/* Section galerie des autres œuvres */}
+        <section className="py-24 px-6 bg-[#0c0c0c]">
+          <div className="max-w-7xl mx-auto">
+            <h3 className="text-[#e07a5f] text-sm uppercase tracking-[0.3em] mb-4 text-center">
+              Découvrir aussi
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-              {/* Photo et Nom de l'artiste */}
-              <div className="md:col-span-3 flex flex-col items-center text-center">
-                <img
-                  src={currentArtwork.artistImage}
-                  alt={currentArtwork.artist}
-                  className="w-32 h-32 lg:w-40 lg:h-40 rounded-full object-cover border-4 border-[#e07a5f]/50 mb-4"
-                />
-                <p className="text-white text-xl font-semibold">{currentArtwork.artist}</p>
-                <p className="text-gray-400 text-sm mt-1">
-                  {currentArtwork.year < 0 ? 'Antiquité' : `${currentArtwork.style}`}
-                </p>
-              </div>
+            <h2 className="font-serif text-3xl md:text-4xl text-white text-center mb-12">
+              Les œuvres précédentes
+            </h2>
 
-              {/* Biographie */}
-              <div className="md:col-span-5">
-                <h4 className="text-[#e07a5f] font-medium text-sm mb-3 uppercase tracking-wider">Biographie</h4>
-                {currentArtwork.artistBio && (
-                  <p className="text-gray-300 text-base leading-relaxed">
-                    {currentArtwork.artistBio}
-                  </p>
-                )}
-              </div>
-
-              {/* Anecdotes */}
-              <div className="md:col-span-4">
-                <h4 className="text-[#e07a5f] font-medium text-sm mb-3 uppercase tracking-wider">Anecdotes</h4>
-                {currentArtwork.artistAnecdotes && currentArtwork.artistAnecdotes.length > 0 && (
-                  <div className="space-y-3">
-                    {currentArtwork.artistAnecdotes.map((anecdote, index) => (
-                      <div key={index} className="flex gap-3 text-sm text-gray-300">
-                        <span className="text-[#e07a5f] text-lg">•</span>
-                        <span>{anecdote}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Œuvres précédentes - Carrousel */}
-        <div className="mb-6">
-          <p className="text-gray-500 text-sm uppercase tracking-wider mb-4">Voir aussi</p>
-          <div className="relative">
-            <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory">
-              {previousArtworks.map((artwork) => {
-                // Calculer le nom du jour
-                const date = new Date();
-                date.setDate(date.getDate() - artwork.daysAgo);
-                const dayName = date.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'short' });
-
-                return (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              {paintings
+                .filter(p => p.id !== currentPainting.id)
+                .slice(0, 5)
+                .map((painting, i) => (
                   <button
-                    key={artwork.id}
-                    onClick={() => selectArtwork(artwork)}
-                    className="relative flex-shrink-0 w-48 md:w-56 rounded-2xl overflow-hidden group/thumb snap-start"
+                    key={painting.id}
+                    onClick={() => {
+                      setCurrentPainting(painting);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="group relative aspect-[3/4] rounded-2xl overflow-hidden"
                   >
-                    <div className="aspect-[3/4]">
-                      <img
-                        src={artwork.image}
-                        alt={artwork.title}
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/thumb:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                    </div>
-                    <div className="absolute top-3 left-3">
-                      <span className="px-2 py-1 bg-[#e07a5f]/90 text-[#1a2640] text-xs font-semibold rounded-full capitalize">
-                        {dayName}
-                      </span>
-                    </div>
-                    <div className="absolute bottom-3 left-3 right-3">
-                      <p className="text-white text-sm font-semibold line-clamp-2 mb-1">{artwork.title}</p>
-                      <p className="text-gray-300 text-xs">{artwork.artist}</p>
+                    <img
+                      src={painting.image}
+                      alt={painting.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute bottom-0 left-0 right-0 p-4">
+                      <p className="text-white text-sm font-medium line-clamp-2">{painting.title}</p>
+                      <p className="text-white/60 text-xs mt-1">{painting.artist}</p>
                     </div>
                   </button>
-                );
-              })}
+                ))}
             </div>
-            {/* Indicateur de scroll */}
-            <div className="absolute right-0 top-0 bottom-4 w-16 bg-gradient-to-l from-[#0c0c0c] to-transparent pointer-events-none" />
           </div>
-        </div>
-
+        </section>
       </div>
+
+      {/* CSS pour les animations */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&display=swap');
+
+        .font-serif {
+          font-family: 'Cormorant Garamond', serif;
+        }
+      `}</style>
     </div>
   );
 };

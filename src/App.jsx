@@ -34,7 +34,10 @@ function App() {
               <Route path="/favoris" element={<FavoritesPage />} />
               <Route path="/events" element={<MeetingsPage />} />
               <Route path="/decouverte" element={<DailyArtPage />} />
+              <Route path="/artwork-of-the-day" element={<DailyArtPage />} />
               <Route path="/guides" element={<GuidePage />} />
+              <Route path="/guide" element={<GuidePage />} />
+              <Route path="/rencontres" element={<MeetingsPage />} />
               <Route path="/profile" element={<ProfilePage />} />
             </Routes>
           </main>

@@ -507,12 +507,15 @@ const GuidePage = () => {
           </div>
 
           {filteredGuides.length > 0 ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div
+            key={searchQuery || 'all'}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 animate-results-fade-in"
+          >
             {filteredGuides.map((guide, i) => (
               <div
                 key={guide.id}
-                className="animate-on-scroll opacity-0 translate-y-[30px] group bg-white/[0.02] border border-white/[0.08] rounded-2xl hover:border-[#e07a5f]/30 transition-all overflow-hidden"
-                style={{ transitionDelay: `${200 + i * 100}ms` }}
+                className="guide-card-appear group bg-white/[0.02] border border-white/[0.08] rounded-2xl hover:border-[#e07a5f]/30 transition-all overflow-hidden"
+                style={{ animationDelay: `${i * 80}ms` }}
               >
                 {/* Image artistique */}
                 <div className="relative h-40 overflow-hidden">
@@ -697,6 +700,38 @@ const GuidePage = () => {
         .animate-on-scroll.visible {
           opacity: 1 !important;
           transform: translateX(0) translateY(0) scale(1) !important;
+        }
+
+        /* Animation pour l'apparition des résultats filtrés */
+        @keyframes resultsSlideIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes cardPopIn {
+          from {
+            opacity: 0;
+            transform: scale(0.9) translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+          }
+        }
+
+        .animate-results-fade-in {
+          animation: resultsSlideIn 0.4s ease-out forwards;
+        }
+
+        .guide-card-appear {
+          opacity: 0;
+          animation: cardPopIn 0.5s ease-out forwards;
         }
       `}</style>
     </div>

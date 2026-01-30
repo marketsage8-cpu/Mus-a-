@@ -17,7 +17,8 @@ const Navigation = () => {
     { path: '/', label: 'Accueil' },
     { path: '/explore', label: 'Carte' },
     { path: '/guides', label: 'Guides' },
-    { path: '/events', label: 'Rencontres' },
+    { path: '/rencontres', label: 'Rencontres' },
+    { path: '/expositions', label: 'Expositions' },
     { path: '/decouverte', label: 'Œuvre du jour' }
   ];
 

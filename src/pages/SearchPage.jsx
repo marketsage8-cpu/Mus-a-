@@ -6,7 +6,26 @@ import SearchBar from '../components/ui/SearchBar';
 import PlaceCard from '../components/cards/PlaceCard';
 import PlaceDetailModal from '../components/modals/PlaceDetailModal';
 
-// Combiner tous les lieux pour la recherche (musées + châteaux + expositions)
+// Fonction pour normaliser le texte (enlever accents et mettre en minuscule)
+const normalizeText = (text) => {
+  if (!text) return '';
+  return text
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '') // Enlève les accents
+    .replace(/œ/g, 'oe')
+    .replace(/æ/g, 'ae');
+};
+
+// Synonymes et variantes de recherche
+const searchSynonyms = {
+  'eglise': ['église', 'cathédrale', 'basilique', 'chapelle', 'abbaye'],
+  'chateau': ['château', 'citadelle', 'forteresse', 'manoir', 'palais'],
+  'musee': ['musée', 'galerie', 'collection'],
+  'expo': ['exposition', 'temporaire'],
+};
+
+// Combiner tous les lieux pour la recherche (musées + châteaux + expositions + églises)
 const allSearchablePlaces = [
   ...places,
   ...frenchMuseums.map(m => ({
@@ -35,15 +54,32 @@ const SearchPage = () => {
 
   const filteredPlaces = allSearchablePlaces.filter((place) => {
     if (!searchQuery.trim()) return false;
-    const query = searchQuery.toLowerCase();
-    const matchesQuery = (
-      place.name.toLowerCase().includes(query) ||
-      place.location.toLowerCase().includes(query) ||
-      place.city?.toLowerCase().includes(query) ||
-      place.region?.toLowerCase().includes(query) ||
-      place.description?.toLowerCase().includes(query) ||
-      place.type?.toLowerCase().includes(query)
-    );
+
+    const normalizedQuery = normalizeText(searchQuery);
+    const normalizedName = normalizeText(place.name);
+    const normalizedLocation = normalizeText(place.location);
+    const normalizedCity = normalizeText(place.city);
+    const normalizedRegion = normalizeText(place.region);
+    const normalizedDescription = normalizeText(place.description);
+    const normalizedType = normalizeText(place.type);
+
+    // Vérifier les synonymes
+    let expandedQueries = [normalizedQuery];
+    Object.entries(searchSynonyms).forEach(([key, synonyms]) => {
+      if (normalizedQuery.includes(key)) {
+        synonyms.forEach(syn => expandedQueries.push(normalizeText(syn)));
+      }
+    });
+
+    // Recherche avec toutes les variantes
+    const matchesQuery = expandedQueries.some(q => (
+      normalizedName.includes(q) ||
+      normalizedLocation.includes(q) ||
+      normalizedCity.includes(q) ||
+      normalizedRegion.includes(q) ||
+      normalizedDescription.includes(q) ||
+      normalizedType.includes(q)
+    ));
 
     // Filtre par type
     if (activeFilter !== 'all' && place.type !== activeFilter) {
@@ -94,7 +130,7 @@ const SearchPage = () => {
               Recherche
             </h1>
             <p className="text-gray-400 font-body">
-              Trouvez des musées, châteaux et sites culturels
+              Trouvez des musées, châteaux, églises et sites culturels
             </p>
           </div>
 
@@ -187,7 +223,7 @@ const SearchPage = () => {
 
             {/* Suggestions de recherche */}
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              {['Louvre', 'Versailles', 'Lyon', 'Bordeaux', 'Monet'].map((suggestion) => (
+              {['Louvre', 'Versailles', 'Lyon', 'Église', 'Château', 'Exposition'].map((suggestion) => (
                 <button
                   key={suggestion}
                   onClick={() => setSearchQuery(suggestion)}

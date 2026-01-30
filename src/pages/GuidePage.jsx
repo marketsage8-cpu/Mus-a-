@@ -1,6 +1,43 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Users, Star, MapPin, Clock, ChevronRight, Globe, Award, Sparkles, BookOpen, Search } from 'lucide-react';
+
+/**
+ * Fonction de scroll fluide et personnalisée avec easing doux
+ * @param {string} targetId - L'ID de l'élément cible
+ * @param {number} duration - Durée de l'animation en ms (défaut: 1200ms)
+ */
+const smoothScrollTo = (targetId, duration = 1200) => {
+  const target = document.getElementById(targetId);
+  if (!target) return;
+
+  const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+  const startPosition = window.pageYOffset;
+  const distance = targetPosition - startPosition - 80; // 80px offset pour la navbar
+  let startTime = null;
+
+  // Easing function: easeInOutCubic - très fluide et naturel
+  const easeInOutCubic = (t) => {
+    return t < 0.5
+      ? 4 * t * t * t
+      : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  };
+
+  const animation = (currentTime) => {
+    if (startTime === null) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const progress = Math.min(timeElapsed / duration, 1);
+    const easeProgress = easeInOutCubic(progress);
+
+    window.scrollTo(0, startPosition + distance * easeProgress);
+
+    if (timeElapsed < duration) {
+      requestAnimationFrame(animation);
+    }
+  };
+
+  requestAnimationFrame(animation);
+};
 
 /**
  * Données fictives des guides
@@ -114,22 +151,22 @@ const GuidePage = () => {
 
   return (
     <div className="min-h-screen bg-[#0c0c0c] text-white overflow-x-hidden">
-      {/* Hero Section - Style HomePage avec image de fond */}
+      {/* Hero Section - Style HomePage avec image de fond à GAUCHE */}
       <section className="min-h-screen relative flex items-center overflow-hidden">
-        {/* Image de fond - prend 70% côté droit */}
+        {/* Image de fond - prend 70% côté GAUCHE */}
         <div
-          className="absolute top-0 right-0 w-[70%] h-full bg-cover bg-center hidden md:block"
+          className="absolute top-0 left-0 w-[70%] h-full bg-cover bg-center hidden md:block"
           style={{
             backgroundImage: `url('https://images.unsplash.com/photo-1578926375605-eaf7559b1458?w=1600&q=80')`
           }}
         />
 
-        {/* Dégradé de transition intense - fondu progressif */}
-        <div className="absolute top-0 right-[20%] w-[55%] h-full bg-gradient-to-r from-[#0c0c0c] via-[#0c0c0c] to-transparent z-10 hidden md:block" />
+        {/* Dégradé de transition intense - fondu progressif vers la DROITE */}
+        <div className="absolute top-0 left-[20%] w-[55%] h-full bg-gradient-to-l from-[#0c0c0c] via-[#0c0c0c] to-transparent z-10 hidden md:block" />
 
-        {/* Contenu texte à gauche */}
-        <div className="pl-8 md:pl-16 lg:pl-24 pr-6 w-full relative z-20">
-          <div className="max-w-xl">
+        {/* Contenu texte à DROITE */}
+        <div className="pr-8 md:pr-16 lg:pr-24 pl-6 w-full relative z-20 md:ml-auto md:w-[55%]">
+          <div className="max-w-xl md:ml-auto">
             <div className="animate-on-scroll opacity-0 translate-y-[20px] inline-flex items-center gap-2 px-4 py-2 bg-white/[0.03] border border-white/[0.08] rounded-full mb-8">
               <span className="w-2 h-2 bg-[#e07a5f] rounded-full animate-pulse" />
               <span className="text-white/60 text-sm">Guides certifiés & passionnés</span>
@@ -161,13 +198,13 @@ const GuidePage = () => {
 
             <div className="animate-on-scroll opacity-0 translate-y-[30px] flex flex-wrap gap-4" style={{ transitionDelay: '400ms' }}>
               <button
-                onClick={() => document.getElementById('search-section').scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => smoothScrollTo('search-section', 1400)}
                 className="px-8 py-4 bg-[#e07a5f] text-[#0c0c0c] font-medium rounded-full hover:bg-[#e8968a] transition-all hover:scale-105 shadow-lg shadow-[#e07a5f]/20"
               >
                 Trouver un guide
               </button>
               <button
-                onClick={() => document.getElementById('decouvrir').scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => smoothScrollTo('decouvrir', 1400)}
                 className="px-8 py-4 border border-white/20 text-white/80 font-medium rounded-full hover:bg-white/5 transition-all"
               >
                 En savoir plus
@@ -217,7 +254,7 @@ const GuidePage = () => {
           <div id="search-section" className="animate-on-scroll opacity-0 translate-y-[30px] max-w-2xl mx-auto mb-16" style={{ transitionDelay: '200ms' }}>
             <form onSubmit={(e) => {
               e.preventDefault();
-              document.getElementById('guides').scrollIntoView({ behavior: 'smooth' });
+              smoothScrollTo('guides', 1400);
             }} className="relative">
               <div className="flex items-center bg-white/[0.05] border border-white/[0.15] rounded-full overflow-hidden hover:border-[#e07a5f]/50 transition-all focus-within:border-[#e07a5f] focus-within:bg-white/[0.08]">
                 <div className="pl-5">
@@ -243,7 +280,7 @@ const GuidePage = () => {
               {['Musée du Louvre', 'Château de Versailles', 'Musée d\'Orsay', 'Centre Pompidou'].map((suggestion) => (
                 <button
                   key={suggestion}
-                  onClick={() => document.getElementById('guides').scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => smoothScrollTo('guides', 1400)}
                   className="px-3 py-1.5 text-sm bg-white/[0.03] border border-white/[0.1] rounded-full text-white/50 hover:text-white hover:border-[#e07a5f]/50 transition-all"
                 >
                   {suggestion}
@@ -452,7 +489,7 @@ const GuidePage = () => {
             Réservez dès maintenant et vivez l'art comme jamais avec nos guides passionnés.
           </p>
           <button
-            onClick={() => document.getElementById('guides').scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => smoothScrollTo('guides', 1400)}
             className="animate-on-scroll opacity-0 translate-y-[30px] px-10 py-5 bg-[#e07a5f] text-[#0c0c0c] font-medium text-lg rounded-full hover:bg-[#e8968a] transition-all hover:scale-105 shadow-xl shadow-[#e07a5f]/20"
             style={{ transitionDelay: '200ms' }}
           >

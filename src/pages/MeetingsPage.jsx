@@ -3,6 +3,43 @@ import { useNavigate } from 'react-router-dom';
 import { Users, MessageCircle, Heart, Clock, Star, Search, Coffee, Sparkles } from 'lucide-react';
 
 /**
+ * Fonction de scroll fluide et personnalisée avec easing doux
+ * @param {string} targetId - L'ID de l'élément cible
+ * @param {number} duration - Durée de l'animation en ms (défaut: 1200ms)
+ */
+const smoothScrollTo = (targetId, duration = 1200) => {
+  const target = document.getElementById(targetId);
+  if (!target) return;
+
+  const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+  const startPosition = window.pageYOffset;
+  const distance = targetPosition - startPosition - 80; // 80px offset pour la navbar
+  let startTime = null;
+
+  // Easing function: easeInOutCubic - très fluide et naturel
+  const easeInOutCubic = (t) => {
+    return t < 0.5
+      ? 4 * t * t * t
+      : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  };
+
+  const animation = (currentTime) => {
+    if (startTime === null) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const progress = Math.min(timeElapsed / duration, 1);
+    const easeProgress = easeInOutCubic(progress);
+
+    window.scrollTo(0, startPosition + distance * easeProgress);
+
+    if (timeElapsed < duration) {
+      requestAnimationFrame(animation);
+    }
+  };
+
+  requestAnimationFrame(animation);
+};
+
+/**
  * Données fictives des utilisateurs
  */
 const meetupUsers = [
@@ -167,7 +204,7 @@ const MeetingsPage = () => {
                 Créer mon profil
               </button>
               <button
-                onClick={() => document.getElementById('decouvrir').scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => smoothScrollTo('decouvrir', 1400)}
                 className="px-8 py-4 border border-white/20 text-white/80 font-medium rounded-full hover:bg-white/5 transition-all"
               >
                 Découvrir
@@ -217,7 +254,7 @@ const MeetingsPage = () => {
           <div id="search-section" className="animate-on-scroll opacity-0 translate-y-[30px] max-w-2xl mx-auto mb-16" style={{ transitionDelay: '200ms' }}>
             <form onSubmit={(e) => {
               e.preventDefault();
-              document.getElementById('communaute').scrollIntoView({ behavior: 'smooth' });
+              smoothScrollTo('communaute', 1400);
             }} className="relative">
               <div className="flex items-center bg-white/[0.05] border border-white/[0.15] rounded-full overflow-hidden hover:border-[#e07a5f]/50 transition-all focus-within:border-[#e07a5f] focus-within:bg-white/[0.08]">
                 <div className="pl-5">
@@ -243,7 +280,7 @@ const MeetingsPage = () => {
               {['Musée du Louvre', 'Château de Versailles', 'Exposition Picasso', 'Musée d\'Orsay'].map((suggestion) => (
                 <button
                   key={suggestion}
-                  onClick={() => document.getElementById('communaute').scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => smoothScrollTo('communaute', 1400)}
                   className="px-3 py-1.5 text-sm bg-white/[0.03] border border-white/[0.1] rounded-full text-white/50 hover:text-white hover:border-[#e07a5f]/50 transition-all"
                 >
                   {suggestion}

@@ -116,14 +116,14 @@ const ProfilePage = () => {
 
   // Fonds artistiques pour la photo de profil
   const artStyleBackgrounds = [
-    { id: 'impressionism', name: 'Impressionnisme', image: 'https://images.unsplash.com/photo-1578926375605-eaf7559b1458?w=400&q=80', color: '#6B8E9F' },
-    { id: 'renaissance', name: 'Renaissance', image: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&q=80', color: '#8B7355' },
-    { id: 'romanticism', name: 'Romantisme', image: 'https://images.unsplash.com/photo-1577083165633-14ebcdb0f658?w=400&q=80', color: '#8B4513' },
-    { id: 'postimpressionism', name: 'Post-impressionnisme', image: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&q=80', color: '#1E3A5F' },
-    { id: 'baroque', name: 'Baroque', image: 'https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=400&q=80', color: '#2F4F4F' },
-    { id: 'ukiyoe', name: 'Ukiyo-e', image: 'https://images.unsplash.com/photo-1580136579312-94651dfd596d?w=400&q=80', color: '#4682B4' },
-    { id: 'modern', name: 'Art moderne', image: 'https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=400&q=80', color: '#191970' },
-    { id: 'abstract', name: 'Abstrait', image: 'https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=400&q=80', color: '#DAA520' },
+    { id: 'impressionism', name: 'Impressionnisme', image: '/images/art/impressionism.jpg', color: '#6B8E9F' },
+    { id: 'renaissance', name: 'Renaissance', image: '/images/art/renaissance.jpg', color: '#8B7355' },
+    { id: 'romanticism', name: 'Romantisme', image: '/images/art/romanticism.jpg', color: '#8B4513' },
+    { id: 'postimpressionism', name: 'Post-impressionnisme', image: '/images/art/postimpressionism.jpg', color: '#1E3A5F' },
+    { id: 'baroque', name: 'Baroque', image: '/images/art/baroque.jpg', color: '#2F4F4F' },
+    { id: 'ukiyoe', name: 'Ukiyo-e', image: '/images/art/ukiyoe.jpg', color: '#4682B4' },
+    { id: 'modern', name: 'Art moderne', image: '/images/art/modern.jpg', color: '#191970' },
+    { id: 'abstract', name: 'Abstrait', image: '/images/art/abstract.jpg', color: '#DAA520' },
   ];
   const [selectedArtStyle, setSelectedArtStyle] = useState(userData.artStyle || 'impressionism');
   const [showArtStyleSelector, setShowArtStyleSelector] = useState(false);
@@ -315,14 +315,18 @@ const ProfilePage = () => {
             <div className="flex flex-col sm:flex-row items-center sm:items-end gap-4">
               {/* Avatar avec fond artistique - Zone d'identité artistique */}
               <div className="relative group">
-                {/* Fond artistique derrière l'avatar - Plus grand et plus visible */}
-                <div className="absolute -inset-4 rounded-2xl overflow-hidden shadow-xl">
-                  <img
-                    src={currentArtStyle.image}
-                    alt={currentArtStyle.name}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/10" />
+                {/* Fond artistique derrière l'avatar - Couleur avec motif */}
+                <div
+                  className="absolute -inset-4 rounded-2xl overflow-hidden shadow-xl"
+                  style={{ backgroundColor: currentArtStyle.color }}
+                >
+                  {/* Motif décoratif */}
+                  <div className="absolute inset-0 opacity-30" style={{
+                    backgroundImage: `radial-gradient(circle at 20% 30%, rgba(255,255,255,0.3) 0%, transparent 40%),
+                                      radial-gradient(circle at 80% 70%, rgba(255,255,255,0.2) 0%, transparent 30%),
+                                      linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%)`
+                  }} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10" />
                   {/* Label du style artistique */}
                   <div className="absolute bottom-1 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-black/50 backdrop-blur-sm rounded-full">
                     <span className="text-[10px] text-white/80 font-medium whitespace-nowrap">{currentArtStyle.name}</span>
@@ -871,12 +875,14 @@ const ProfilePage = () => {
               {/* Preview actuel - Plus grand et plus détaillé */}
               <div className="mt-5 flex items-center gap-5 p-4 bg-white/5 rounded-2xl border border-[#e07a5f]/20 shadow-inner">
                 <div className="relative">
-                  <div className="w-20 h-20 rounded-2xl overflow-hidden border-2 border-[#e07a5f]/30 shadow-lg">
-                    <img
-                      src={currentArtStyle.image}
-                      alt={currentArtStyle.name}
-                      className="w-full h-full object-cover"
-                    />
+                  <div
+                    className="w-20 h-20 rounded-2xl overflow-hidden border-2 border-[#e07a5f]/30 shadow-lg"
+                    style={{ backgroundColor: currentArtStyle.color }}
+                  >
+                    <div className="absolute inset-0 opacity-40" style={{
+                      backgroundImage: `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4) 0%, transparent 50%),
+                                        linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%)`
+                    }} />
                   </div>
                   <div className="absolute -bottom-2 -right-2 w-10 h-10 rounded-full border-3 border-[#0c0c0c] bg-[#e07a5f] flex items-center justify-center overflow-hidden shadow-lg">
                     {avatarImage ? (
@@ -916,17 +922,18 @@ const ProfilePage = () => {
                         ? 'ring-3 ring-[#e07a5f] ring-offset-3 ring-offset-[#0c0c0c] scale-[1.02] shadow-xl shadow-[#e07a5f]/30'
                         : 'hover:scale-[1.05] hover:ring-2 hover:ring-white/40 hover:shadow-lg'
                     }`}
-                    style={{ animationDelay: `${index * 50}ms` }}
+                    style={{ backgroundColor: style.color, animationDelay: `${index * 50}ms` }}
                   >
-                    <img
-                      src={style.image}
-                      alt={style.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
+                    {/* Motif décoratif */}
+                    <div className="absolute inset-0 opacity-30 transition-opacity duration-300 group-hover:opacity-50" style={{
+                      backgroundImage: `radial-gradient(circle at 20% 20%, rgba(255,255,255,0.5) 0%, transparent 40%),
+                                        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.3) 0%, transparent 30%),
+                                        linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 60%)`
+                    }} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                     <div className="absolute bottom-0 left-0 right-0 p-3">
                       <p className="text-white font-semibold text-sm drop-shadow-lg">{style.name}</p>
-                      <p className="text-white/60 text-[11px] mt-0.5">
+                      <p className="text-white/70 text-[11px] mt-0.5">
                         {style.id === 'impressionism' && 'Monet, Renoir, Degas...'}
                         {style.id === 'renaissance' && 'Da Vinci, Michel-Ange...'}
                         {style.id === 'romanticism' && 'Delacroix, Turner...'}

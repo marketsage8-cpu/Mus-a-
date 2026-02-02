@@ -114,6 +114,22 @@ const ProfilePage = () => {
   const [coverImage, setCoverImage] = useState(userData.coverImage || '/images/MBA_2022_39.jpg');
   const [avatarImage, setAvatarImage] = useState(userData.avatarImage || null);
 
+  // Fonds artistiques pour la photo de profil
+  const artStyleBackgrounds = [
+    { id: 'impressionism', name: 'Impressionnisme', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Claude_Monet_-_Water_Lilies_-_1906%2C_Ryerson.jpg/400px-Claude_Monet_-_Water_Lilies_-_1906%2C_Ryerson.jpg', color: '#6B8E9F' },
+    { id: 'renaissance', name: 'Renaissance', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/400px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg', color: '#8B7355' },
+    { id: 'romanticism', name: 'Romantisme', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Eug%C3%A8ne_Delacroix_-_Le_28_Juillet._La_Libert%C3%A9_guidant_le_peuple.jpg/400px-Eug%C3%A8ne_Delacroix_-_Le_28_Juillet._La_Libert%C3%A9_guidant_le_peuple.jpg', color: '#8B4513' },
+    { id: 'postimpressionism', name: 'Post-impressionnisme', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/400px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg', color: '#1E3A5F' },
+    { id: 'baroque', name: 'Baroque', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/1665_Girl_with_a_Pearl_Earring.jpg/400px-1665_Girl_with_a_Pearl_Earring.jpg', color: '#2F4F4F' },
+    { id: 'ukiyoe', name: 'Ukiyo-e', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tsunami_by_hokusai_19th_century.jpg/400px-Tsunami_by_hokusai_19th_century.jpg', color: '#4682B4' },
+    { id: 'modern', name: 'Art moderne', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Starry_Night_Over_the_Rhone.jpg/400px-Starry_Night_Over_the_Rhone.jpg', color: '#191970' },
+    { id: 'abstract', name: 'Abstrait', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Kandinsky_-_Jaune_Rouge_Bleu.jpg/400px-Kandinsky_-_Jaune_Rouge_Bleu.jpg', color: '#DAA520' },
+  ];
+  const [selectedArtStyle, setSelectedArtStyle] = useState(userData.artStyle || 'impressionism');
+  const [showArtStyleSelector, setShowArtStyleSelector] = useState(false);
+
+  const currentArtStyle = artStyleBackgrounds.find(s => s.id === selectedArtStyle) || artStyleBackgrounds[0];
+
   // Centres d'intérêt disponibles
   const availableInterests = [
     'Art', 'Histoire', 'Science', 'Architecture', 'Photographie',
@@ -230,6 +246,13 @@ const ProfilePage = () => {
     setUserData(prev => ({ ...prev, visitStyle: styleId }));
   };
 
+  // Changer le fond artistique
+  const changeArtStyle = (styleId) => {
+    setSelectedArtStyle(styleId);
+    setUserData(prev => ({ ...prev, artStyle: styleId }));
+    setShowArtStyleSelector(false);
+  };
+
   const unlockedBadgesCount = userBadges.filter(b => b.unlocked).length;
 
   // Onglets disponibles
@@ -290,9 +313,19 @@ const ProfilePage = () => {
           {/* Avatar et informations */}
           <div className="relative px-6 pb-6 -mt-12">
             <div className="flex flex-col sm:flex-row items-center sm:items-end gap-4">
-              {/* Avatar */}
+              {/* Avatar avec fond artistique */}
               <div className="relative group">
-                <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-[#0c0c0c] shadow-xl bg-[#e07a5f]">
+                {/* Fond artistique derrière l'avatar */}
+                <div className="absolute -inset-3 rounded-full overflow-hidden">
+                  <img
+                    src={currentArtStyle.image}
+                    alt={currentArtStyle.name}
+                    className="w-full h-full object-cover blur-[1px]"
+                  />
+                  <div className="absolute inset-0 bg-black/30" />
+                </div>
+                {/* Avatar */}
+                <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-[#0c0c0c] shadow-xl bg-[#e07a5f]">
                   {avatarImage ? (
                     <img src={avatarImage} alt="Avatar" className="w-full h-full object-cover" />
                   ) : (
@@ -303,11 +336,20 @@ const ProfilePage = () => {
                     </div>
                   )}
                 </div>
+                {/* Bouton photo */}
                 <button
                   onClick={() => avatarInputRef.current?.click()}
-                  className="absolute -bottom-1 -right-1 p-2 bg-[#e07a5f] rounded-full text-[#0c0c0c] hover:bg-[#e8968a] transition-all shadow-lg"
+                  className="absolute -bottom-1 -right-1 p-2 bg-[#e07a5f] rounded-full text-[#0c0c0c] hover:bg-[#e8968a] transition-all shadow-lg z-10"
                 >
                   <Camera className="w-3 h-3" />
+                </button>
+                {/* Bouton modifier le style */}
+                <button
+                  onClick={() => setShowArtStyleSelector(true)}
+                  className="absolute -bottom-1 -left-1 p-2 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-all shadow-lg z-10"
+                  title="Modifier le style artistique"
+                >
+                  <Edit3 className="w-3 h-3" />
                 </button>
                 <input
                   ref={avatarInputRef}
@@ -788,6 +830,67 @@ const ProfilePage = () => {
         isOpen={!!selectedPlace}
         onClose={() => setSelectedPlace(null)}
       />
+
+      {/* Modal sélection style artistique */}
+      {showArtStyleSelector && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+            onClick={() => setShowArtStyleSelector(false)}
+          />
+
+          {/* Modal content */}
+          <div className="relative bg-[#0c0c0c] border border-white/10 rounded-2xl p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h3 className="text-xl font-serif text-white">Votre identité artistique</h3>
+                <p className="text-gray-400 text-sm mt-1">Choisissez le style qui vous représente</p>
+              </div>
+              <button
+                onClick={() => setShowArtStyleSelector(false)}
+                className="p-2 text-gray-400 hover:text-white transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Grille des styles */}
+            <div className="grid grid-cols-2 gap-3">
+              {artStyleBackgrounds.map((style) => (
+                <button
+                  key={style.id}
+                  onClick={() => changeArtStyle(style.id)}
+                  className={`relative group rounded-xl overflow-hidden aspect-square transition-all ${
+                    selectedArtStyle === style.id
+                      ? 'ring-2 ring-[#e07a5f] ring-offset-2 ring-offset-[#0c0c0c]'
+                      : 'hover:scale-105'
+                  }`}
+                >
+                  <img
+                    src={style.image}
+                    alt={style.name}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-3">
+                    <p className="text-white font-medium text-sm">{style.name}</p>
+                  </div>
+                  {selectedArtStyle === style.id && (
+                    <div className="absolute top-2 right-2 w-6 h-6 bg-[#e07a5f] rounded-full flex items-center justify-center">
+                      <Check className="w-4 h-4 text-[#0c0c0c]" />
+                    </div>
+                  )}
+                </button>
+              ))}
+            </div>
+
+            <p className="text-center text-gray-500 text-xs mt-6">
+              Ce fond apparaîtra derrière votre photo de profil
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

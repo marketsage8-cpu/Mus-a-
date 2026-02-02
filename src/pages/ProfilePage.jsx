@@ -356,13 +356,13 @@ const ProfilePage = () => {
                 />
               </div>
 
-              {/* Bouton Modifier le style artistique - TRÈS VISIBLE */}
+              {/* Bouton Modifier le style artistique - TRÈS VISIBLE et PROÉMINENT */}
               <button
                 onClick={() => setShowArtStyleSelector(true)}
-                className="mt-4 sm:mt-0 px-4 py-2 bg-[#e07a5f] text-[#0c0c0c] rounded-xl font-medium text-sm hover:bg-[#e8968a] transition-all shadow-lg flex items-center gap-2"
+                className="mt-4 sm:mt-0 px-5 py-3 bg-gradient-to-r from-[#e07a5f] to-[#d4654a] text-white rounded-xl font-semibold text-sm hover:from-[#e8968a] hover:to-[#e07a5f] transition-all shadow-xl shadow-[#e07a5f]/40 flex items-center gap-2 border border-[#e07a5f]/50 animate-pulse hover:animate-none"
               >
-                <Edit3 className="w-4 h-4" />
-                Modifier mon style artistique
+                <Sparkles className="w-4 h-4" />
+                Modifier mon identité artistique
               </button>
 
               {/* Nom et email */}
@@ -836,86 +836,98 @@ const ProfilePage = () => {
         onClose={() => setSelectedPlace(null)}
       />
 
-      {/* Modal sélection style artistique */}
+      {/* Modal sélection style artistique - AMÉLIORÉ */}
       {showArtStyleSelector && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          {/* Backdrop */}
+          {/* Backdrop avec animation */}
           <div
-            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/85 backdrop-blur-md animate-fade-in"
             onClick={() => setShowArtStyleSelector(false)}
           />
 
-          {/* Modal content */}
-          <div className="relative bg-[#0c0c0c] border border-white/10 rounded-2xl max-w-lg w-full max-h-[90vh] overflow-hidden">
-            {/* Header avec preview */}
-            <div className="relative p-6 pb-4 border-b border-white/10">
+          {/* Modal content - Plus grand et plus visible */}
+          <div className="relative bg-gradient-to-b from-[#0c0c0c] to-[#141414] border border-white/15 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-hidden shadow-2xl shadow-[#e07a5f]/10 animate-modal-slide-up">
+            {/* Header avec preview - Plus impactant */}
+            <div className="relative p-6 pb-5 border-b border-white/10 bg-gradient-to-r from-[#e07a5f]/5 to-transparent">
               <div className="flex items-start justify-between">
                 <div className="flex-1">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#e07a5f]/10 border border-[#e07a5f]/30 rounded-full mb-3">
-                    <Sparkles className="w-3 h-3 text-[#e07a5f]" />
-                    <span className="text-[#e07a5f] text-xs font-medium">Identité artistique</span>
+                  <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#e07a5f]/15 border border-[#e07a5f]/40 rounded-full mb-3 animate-pulse">
+                    <Sparkles className="w-4 h-4 text-[#e07a5f]" />
+                    <span className="text-[#e07a5f] text-sm font-semibold">Identité artistique</span>
                   </div>
-                  <h3 className="text-xl font-serif text-white">Choisissez votre style</h3>
-                  <p className="text-gray-400 text-sm mt-1">Les autres utilisateurs vous reconnaîtront grâce à votre style artistique</p>
+                  <h3 className="text-2xl font-serif text-white">Choisissez votre style</h3>
+                  <p className="text-gray-400 text-sm mt-2 max-w-md">
+                    Votre style artistique vous représente. Les autres utilisateurs vous reconnaîtront instantanément grâce à ce fond unique.
+                  </p>
                 </div>
                 <button
                   onClick={() => setShowArtStyleSelector(false)}
-                  className="p-2 text-gray-400 hover:text-white transition-colors"
+                  className="p-2.5 text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
 
-              {/* Preview actuel */}
-              <div className="mt-4 flex items-center gap-4 p-3 bg-white/5 rounded-xl border border-white/10">
+              {/* Preview actuel - Plus grand et plus détaillé */}
+              <div className="mt-5 flex items-center gap-5 p-4 bg-white/5 rounded-2xl border border-[#e07a5f]/20 shadow-inner">
                 <div className="relative">
-                  <div className="w-16 h-16 rounded-xl overflow-hidden">
+                  <div className="w-20 h-20 rounded-2xl overflow-hidden border-2 border-[#e07a5f]/30 shadow-lg">
                     <img
                       src={currentArtStyle.image}
                       alt={currentArtStyle.name}
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="absolute -bottom-1 -right-1 w-8 h-8 rounded-full border-2 border-[#0c0c0c] bg-[#e07a5f] flex items-center justify-center overflow-hidden">
+                  <div className="absolute -bottom-2 -right-2 w-10 h-10 rounded-full border-3 border-[#0c0c0c] bg-[#e07a5f] flex items-center justify-center overflow-hidden shadow-lg">
                     {avatarImage ? (
                       <img src={avatarImage} alt="" className="w-full h-full object-cover" />
                     ) : (
-                      <span className="text-xs font-bold text-[#0c0c0c]">{userData.name.charAt(0)}</span>
+                      <span className="text-sm font-bold text-[#0c0c0c]">{userData.name.charAt(0)}</span>
                     )}
                   </div>
                 </div>
                 <div className="flex-1">
-                  <p className="text-white text-sm font-medium">Style actuel</p>
-                  <p className="text-[#e07a5f] text-lg font-serif">{currentArtStyle.name}</p>
+                  <p className="text-white/60 text-xs uppercase tracking-wider mb-1">Votre style actuel</p>
+                  <p className="text-[#e07a5f] text-xl font-serif font-medium">{currentArtStyle.name}</p>
+                  <p className="text-white/40 text-xs mt-1">Cliquez sur une autre image pour changer</p>
                 </div>
-                <Check className="w-5 h-5 text-[#e07a5f]" />
+                <div className="w-10 h-10 bg-[#e07a5f]/20 rounded-full flex items-center justify-center">
+                  <Check className="w-5 h-5 text-[#e07a5f]" />
+                </div>
               </div>
             </div>
 
-            {/* Grille des styles - Scrollable */}
-            <div className="p-6 overflow-y-auto max-h-[50vh]">
-              <p className="text-gray-500 text-xs uppercase tracking-wider mb-4">Tous les styles disponibles</p>
-              <div className="grid grid-cols-2 gap-3">
-                {artStyleBackgrounds.map((style) => (
+            {/* Grille des styles - Plus grande avec meilleure visibilité */}
+            <div className="p-6 overflow-y-auto max-h-[55vh]">
+              <div className="flex items-center justify-between mb-5">
+                <p className="text-[#e07a5f] text-xs font-semibold uppercase tracking-wider flex items-center gap-2">
+                  <Camera className="w-3.5 h-3.5" />
+                  {artStyleBackgrounds.length} styles disponibles
+                </p>
+                <p className="text-gray-500 text-xs">Appuyez pour sélectionner</p>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                {artStyleBackgrounds.map((style, index) => (
                   <button
                     key={style.id}
                     onClick={() => changeArtStyle(style.id)}
-                    className={`relative group rounded-xl overflow-hidden aspect-[4/3] transition-all ${
+                    className={`relative group rounded-2xl overflow-hidden aspect-[4/3] transition-all duration-300 ${
                       selectedArtStyle === style.id
-                        ? 'ring-2 ring-[#e07a5f] ring-offset-2 ring-offset-[#0c0c0c] scale-[1.02]'
-                        : 'hover:scale-[1.03] hover:ring-1 hover:ring-white/30'
+                        ? 'ring-3 ring-[#e07a5f] ring-offset-3 ring-offset-[#0c0c0c] scale-[1.02] shadow-xl shadow-[#e07a5f]/30'
+                        : 'hover:scale-[1.05] hover:ring-2 hover:ring-white/40 hover:shadow-lg'
                     }`}
+                    style={{ animationDelay: `${index * 50}ms` }}
                   >
                     <img
                       src={style.image}
                       alt={style.name}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
                     <div className="absolute bottom-0 left-0 right-0 p-3">
-                      <p className="text-white font-medium text-sm">{style.name}</p>
-                      <p className="text-white/50 text-[10px] mt-0.5">
-                        {style.id === 'impressionism' && 'Monet, Renoir...'}
+                      <p className="text-white font-semibold text-sm drop-shadow-lg">{style.name}</p>
+                      <p className="text-white/60 text-[11px] mt-0.5">
+                        {style.id === 'impressionism' && 'Monet, Renoir, Degas...'}
                         {style.id === 'renaissance' && 'Da Vinci, Michel-Ange...'}
                         {style.id === 'romanticism' && 'Delacroix, Turner...'}
                         {style.id === 'postimpressionism' && 'Van Gogh, Cézanne...'}
@@ -926,8 +938,13 @@ const ProfilePage = () => {
                       </p>
                     </div>
                     {selectedArtStyle === style.id && (
-                      <div className="absolute top-2 right-2 w-6 h-6 bg-[#e07a5f] rounded-full flex items-center justify-center shadow-lg">
+                      <div className="absolute top-3 right-3 w-7 h-7 bg-[#e07a5f] rounded-full flex items-center justify-center shadow-lg animate-bounce-once">
                         <Check className="w-4 h-4 text-[#0c0c0c]" />
+                      </div>
+                    )}
+                    {selectedArtStyle !== style.id && (
+                      <div className="absolute top-3 right-3 w-7 h-7 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span className="text-white text-xs font-bold">+</span>
                       </div>
                     )}
                   </button>
@@ -935,15 +952,43 @@ const ProfilePage = () => {
               </div>
             </div>
 
-            {/* Footer */}
-            <div className="p-4 border-t border-white/10 bg-white/[0.02]">
-              <p className="text-center text-gray-500 text-xs">
-                Ce fond apparaîtra derrière votre photo de profil et représentera votre identité artistique
-              </p>
+            {/* Footer - Plus informatif */}
+            <div className="p-5 border-t border-white/10 bg-gradient-to-r from-[#e07a5f]/5 to-transparent">
+              <div className="flex items-center justify-between">
+                <p className="text-gray-400 text-xs flex items-center gap-2">
+                  <Sparkles className="w-3 h-3 text-[#e07a5f]" />
+                  Ce fond apparaîtra derrière votre photo de profil
+                </p>
+                <button
+                  onClick={() => setShowArtStyleSelector(false)}
+                  className="px-5 py-2 bg-[#e07a5f] text-[#0c0c0c] rounded-xl font-medium text-sm hover:bg-[#e8968a] transition-all shadow-lg"
+                >
+                  Terminé
+                </button>
+              </div>
             </div>
           </div>
         </div>
       )}
+
+      {/* Styles pour les animations */}
+      <style>{`
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes modal-slide-up {
+          from { opacity: 0; transform: translateY(20px) scale(0.95); }
+          to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes bounce-once {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.2); }
+        }
+        .animate-fade-in { animation: fade-in 0.2s ease-out; }
+        .animate-modal-slide-up { animation: modal-slide-up 0.3s ease-out; }
+        .animate-bounce-once { animation: bounce-once 0.3s ease-out; }
+      `}</style>
     </div>
   );
 };

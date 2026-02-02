@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MapPin, Clock, Calendar, Star, Users, Headphones, Award, Bell, Heart, Filter, Navigation, ChevronRight, Compass, Sparkles, TrendingUp, Eye, MessageCircle, Image, Share2, Coffee, Search } from 'lucide-react';
 import { MapMockup, RecommendationsMockup, SocialMockup, GuidesMockup } from '../components/mockups/PhoneMockup';
-import { MuzeaPattern } from '../components/backgrounds/ArtisticBackground';
 
 // Fonction pour normaliser le texte (enlever accents)
 const normalizeText = (text) => {
@@ -89,9 +88,6 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-[#0c0c0c] text-white overflow-x-hidden">
-      {/* Motif d'arrière-plan */}
-      <MuzeaPattern variant="default" />
-
       {/* Hero Section - Texte à gauche, Image plein écran à droite */}
       <section className="min-h-screen relative flex items-center overflow-hidden">
         {/* Image de fond - prend 70% côté droit */}

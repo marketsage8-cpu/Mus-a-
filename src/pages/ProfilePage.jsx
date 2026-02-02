@@ -11,7 +11,6 @@ import PlaceDetailModal from '../components/modals/PlaceDetailModal';
 import InteractiveMap from '../components/map/InteractiveMap';
 import { places } from '../data/places';
 import { exportPlacesJSON, exportPlacesCSV, exportUserDataJSON, exportAllJSON } from '../utils/exportData';
-import { MuzeaPattern } from '../components/backgrounds/ArtisticBackground';
 
 /**
  * Option de paramètre avec toggle ou chevron
@@ -265,9 +264,6 @@ const ProfilePage = () => {
 
   return (
     <div className="min-h-screen pt-20 pb-24 md:pb-8" style={{ backgroundColor: '#0c0c0c' }}>
-      {/* Motif d'arrière-plan */}
-      <MuzeaPattern variant="profile" />
-
       {/* Fond avec blur de l'image de couverture */}
       <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 1 }}>
         <div

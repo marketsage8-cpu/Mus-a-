@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Users, MessageCircle, Heart, Clock, Star, Search, Coffee, Sparkles, MapPin, ChevronRight } from 'lucide-react';
-import { MuzeaPattern } from '../components/backgrounds/ArtisticBackground';
 
 /**
  * Fonction de scroll fluide et rapide avec easing naturel
@@ -271,9 +270,6 @@ const MeetingsPage = () => {
 
   return (
     <div className="min-h-screen bg-[#0c0c0c] text-white overflow-x-hidden">
-      {/* Motif d'arrière-plan */}
-      <MuzeaPattern variant="meetings" />
-
       {/* Hero Section - Style HomePage avec image de fond */}
       <section className="min-h-screen relative flex items-center overflow-hidden">
         {/* Image de fond - prend 70% côté droit */}

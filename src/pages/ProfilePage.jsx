@@ -116,14 +116,14 @@ const ProfilePage = () => {
 
   // Fonds artistiques pour la photo de profil
   const artStyleBackgrounds = [
-    { id: 'impressionism', name: 'Impressionnisme', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Claude_Monet_-_Water_Lilies_-_1906%2C_Ryerson.jpg/400px-Claude_Monet_-_Water_Lilies_-_1906%2C_Ryerson.jpg', color: '#6B8E9F' },
-    { id: 'renaissance', name: 'Renaissance', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/400px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg', color: '#8B7355' },
-    { id: 'romanticism', name: 'Romantisme', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Eug%C3%A8ne_Delacroix_-_Le_28_Juillet._La_Libert%C3%A9_guidant_le_peuple.jpg/400px-Eug%C3%A8ne_Delacroix_-_Le_28_Juillet._La_Libert%C3%A9_guidant_le_peuple.jpg', color: '#8B4513' },
-    { id: 'postimpressionism', name: 'Post-impressionnisme', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/400px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg', color: '#1E3A5F' },
-    { id: 'baroque', name: 'Baroque', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/1665_Girl_with_a_Pearl_Earring.jpg/400px-1665_Girl_with_a_Pearl_Earring.jpg', color: '#2F4F4F' },
-    { id: 'ukiyoe', name: 'Ukiyo-e', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tsunami_by_hokusai_19th_century.jpg/400px-Tsunami_by_hokusai_19th_century.jpg', color: '#4682B4' },
-    { id: 'modern', name: 'Art moderne', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Starry_Night_Over_the_Rhone.jpg/400px-Starry_Night_Over_the_Rhone.jpg', color: '#191970' },
-    { id: 'abstract', name: 'Abstrait', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Kandinsky_-_Jaune_Rouge_Bleu.jpg/400px-Kandinsky_-_Jaune_Rouge_Bleu.jpg', color: '#DAA520' },
+    { id: 'impressionism', name: 'Impressionnisme', image: 'https://images.unsplash.com/photo-1578926375605-eaf7559b1458?w=400&q=80', color: '#6B8E9F' },
+    { id: 'renaissance', name: 'Renaissance', image: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&q=80', color: '#8B7355' },
+    { id: 'romanticism', name: 'Romantisme', image: 'https://images.unsplash.com/photo-1577083165633-14ebcdb0f658?w=400&q=80', color: '#8B4513' },
+    { id: 'postimpressionism', name: 'Post-impressionnisme', image: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&q=80', color: '#1E3A5F' },
+    { id: 'baroque', name: 'Baroque', image: 'https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=400&q=80', color: '#2F4F4F' },
+    { id: 'ukiyoe', name: 'Ukiyo-e', image: 'https://images.unsplash.com/photo-1580136579312-94651dfd596d?w=400&q=80', color: '#4682B4' },
+    { id: 'modern', name: 'Art moderne', image: 'https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=400&q=80', color: '#191970' },
+    { id: 'abstract', name: 'Abstrait', image: 'https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=400&q=80', color: '#DAA520' },
   ];
   const [selectedArtStyle, setSelectedArtStyle] = useState(userData.artStyle || 'impressionism');
   const [showArtStyleSelector, setShowArtStyleSelector] = useState(false);

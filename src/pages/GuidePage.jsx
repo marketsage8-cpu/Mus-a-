@@ -531,93 +531,6 @@ const GuidePage = () => {
               ))}
             </div>
 
-            {/* Filtres Date et Heure - Section TRÈS VISIBLE et proéminente */}
-            <div className="mt-8 p-5 bg-gradient-to-b from-[#e07a5f]/10 to-white/[0.02] border-2 border-[#e07a5f]/30 rounded-2xl shadow-lg shadow-[#e07a5f]/5">
-              {/* En-tête avec icône animée */}
-              <div className="flex items-center justify-center gap-3 mb-5">
-                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#e07a5f]/30 to-[#e07a5f]/50" />
-                <div className="flex items-center gap-2 px-4 py-2 bg-[#e07a5f]/20 border border-[#e07a5f]/40 rounded-full">
-                  <Calendar className="w-4 h-4 text-[#e07a5f] animate-pulse" />
-                  <span className="text-[#e07a5f] text-sm font-semibold uppercase tracking-wider">
-                    Quand souhaitez-vous visiter ?
-                  </span>
-                </div>
-                <div className="h-px flex-1 bg-gradient-to-l from-transparent via-[#e07a5f]/30 to-[#e07a5f]/50" />
-              </div>
-
-              <div className="flex flex-wrap gap-5 justify-center items-end">
-                {/* Sélecteur de date - Plus grand */}
-                <div className="flex flex-col gap-2">
-                  <label className="text-white text-sm font-medium flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-[#e07a5f]" />
-                    Date de visite
-                  </label>
-                  <input
-                    type="date"
-                    value={selectedDate}
-                    onChange={(e) => setSelectedDate(e.target.value)}
-                    className="px-5 py-3 bg-white/[0.08] border-2 border-white/[0.2] rounded-xl text-white text-base focus:outline-none focus:border-[#e07a5f] focus:bg-white/[0.12] transition-all min-w-[180px] cursor-pointer hover:border-[#e07a5f]/50"
-                    min={new Date().toISOString().split('T')[0]}
-                  />
-                </div>
-
-                {/* Sélecteur d'heure - Plus grand */}
-                <div className="flex flex-col gap-2">
-                  <label className="text-white text-sm font-medium flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-[#e07a5f]" />
-                    Créneau horaire
-                  </label>
-                  <select
-                    value={selectedTime}
-                    onChange={(e) => setSelectedTime(e.target.value)}
-                    className="px-5 py-3 bg-white/[0.08] border-2 border-white/[0.2] rounded-xl text-white text-base focus:outline-none focus:border-[#e07a5f] focus:bg-white/[0.12] transition-all appearance-none cursor-pointer min-w-[180px] hover:border-[#e07a5f]/50"
-                    style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23e07a5f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 14px center' }}
-                  >
-                    <option value="" className="bg-[#1a1a1a]">Tous les créneaux</option>
-                    <option value="matin" className="bg-[#1a1a1a]">Matin (9h-12h)</option>
-                    <option value="apres-midi" className="bg-[#1a1a1a]">Après-midi (14h-17h)</option>
-                    {availableTimes.map(time => (
-                      <option key={time} value={time} className="bg-[#1a1a1a]">{time}</option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Bouton appliquer/réinitialiser - Plus visible */}
-                {(selectedDate || selectedTime) ? (
-                  <button
-                    onClick={() => { setSelectedDate(''); setSelectedTime(''); }}
-                    className="px-5 py-3 text-sm bg-white/10 text-white hover:text-[#e07a5f] border-2 border-white/20 hover:border-[#e07a5f]/50 rounded-xl transition-all flex items-center gap-2 hover:bg-white/5"
-                  >
-                    <X className="w-4 h-4" />
-                    Réinitialiser
-                  </button>
-                ) : (
-                  <div className="px-5 py-3 text-sm text-white/40 border-2 border-dashed border-white/10 rounded-xl flex items-center gap-2">
-                    <Sparkles className="w-4 h-4" />
-                    Sélectionnez vos filtres
-                  </div>
-                )}
-              </div>
-
-              {/* Indication des filtres actifs - Plus visible */}
-              {(selectedDate || selectedTime) && (
-                <div className="mt-5 pt-4 border-t border-[#e07a5f]/20 flex items-center justify-center gap-3 text-sm">
-                  <span className="text-white/60 font-medium">Filtres actifs:</span>
-                  {selectedDate && (
-                    <span className="px-3 py-1.5 bg-[#e07a5f]/20 border border-[#e07a5f]/50 rounded-full text-[#e07a5f] text-sm font-medium flex items-center gap-2">
-                      <Calendar className="w-3 h-3" />
-                      {new Date(selectedDate).toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' })}
-                    </span>
-                  )}
-                  {selectedTime && (
-                    <span className="px-3 py-1.5 bg-[#e07a5f]/20 border border-[#e07a5f]/50 rounded-full text-[#e07a5f] text-sm font-medium flex items-center gap-2">
-                      <Clock className="w-3 h-3" />
-                      {selectedTime === 'matin' ? 'Matin' : selectedTime === 'apres-midi' ? 'Après-midi' : selectedTime}
-                    </span>
-                  )}
-                </div>
-              )}
-            </div>
           </div>
 
           {/* Étapes - masquées lors de la recherche */}
@@ -688,6 +601,77 @@ const GuidePage = () => {
                   Effacer la recherche
                 </button>
               </p>
+            )}
+          </div>
+
+          {/* Filtres Date et Heure - Dans la section liste */}
+          <div className="max-w-3xl mx-auto mb-10 p-4 bg-white/[0.03] border border-white/[0.1] rounded-2xl">
+            <div className="flex flex-wrap gap-4 justify-center items-end">
+              {/* Sélecteur de date */}
+              <div className="flex flex-col gap-1.5">
+                <label className="text-white/60 text-xs font-medium flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5 text-[#e07a5f]" />
+                  Date de visite
+                </label>
+                <input
+                  type="date"
+                  value={selectedDate}
+                  onChange={(e) => setSelectedDate(e.target.value)}
+                  className="px-4 py-2.5 bg-white/[0.05] border border-white/[0.15] rounded-xl text-white text-sm focus:outline-none focus:border-[#e07a5f] transition-all min-w-[160px] cursor-pointer hover:border-[#e07a5f]/50"
+                  min={new Date().toISOString().split('T')[0]}
+                />
+              </div>
+
+              {/* Sélecteur d'heure */}
+              <div className="flex flex-col gap-1.5">
+                <label className="text-white/60 text-xs font-medium flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-[#e07a5f]" />
+                  Créneau horaire
+                </label>
+                <select
+                  value={selectedTime}
+                  onChange={(e) => setSelectedTime(e.target.value)}
+                  className="px-4 py-2.5 bg-white/[0.05] border border-white/[0.15] rounded-xl text-white text-sm focus:outline-none focus:border-[#e07a5f] transition-all appearance-none cursor-pointer min-w-[160px] hover:border-[#e07a5f]/50"
+                  style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23e07a5f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }}
+                >
+                  <option value="" className="bg-[#1a1a1a]">Tous les créneaux</option>
+                  <option value="matin" className="bg-[#1a1a1a]">Matin (9h-12h)</option>
+                  <option value="apres-midi" className="bg-[#1a1a1a]">Après-midi (14h-17h)</option>
+                  {availableTimes.map(time => (
+                    <option key={time} value={time} className="bg-[#1a1a1a]">{time}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Bouton réinitialiser */}
+              {(selectedDate || selectedTime) && (
+                <button
+                  onClick={() => { setSelectedDate(''); setSelectedTime(''); }}
+                  className="px-4 py-2.5 text-sm bg-white/5 text-white/60 hover:text-[#e07a5f] border border-white/10 hover:border-[#e07a5f]/50 rounded-xl transition-all flex items-center gap-2"
+                >
+                  <X className="w-3.5 h-3.5" />
+                  Réinitialiser
+                </button>
+              )}
+            </div>
+
+            {/* Indication des filtres actifs */}
+            {(selectedDate || selectedTime) && (
+              <div className="mt-4 pt-3 border-t border-white/[0.08] flex items-center justify-center gap-2 text-xs">
+                <span className="text-white/40">Filtres:</span>
+                {selectedDate && (
+                  <span className="px-2.5 py-1 bg-[#e07a5f]/15 border border-[#e07a5f]/30 rounded-full text-[#e07a5f] flex items-center gap-1.5">
+                    <Calendar className="w-3 h-3" />
+                    {new Date(selectedDate).toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' })}
+                  </span>
+                )}
+                {selectedTime && (
+                  <span className="px-2.5 py-1 bg-[#e07a5f]/15 border border-[#e07a5f]/30 rounded-full text-[#e07a5f] flex items-center gap-1.5">
+                    <Clock className="w-3 h-3" />
+                    {selectedTime === 'matin' ? 'Matin' : selectedTime === 'apres-midi' ? 'Après-midi' : selectedTime}
+                  </span>
+                )}
+              </div>
             )}
           </div>
 

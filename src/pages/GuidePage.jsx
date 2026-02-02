@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Users, Star, MapPin, Clock, ChevronRight, Globe, Award, Sparkles, BookOpen, Search, Calendar, X, CreditCard, Check } from 'lucide-react';
+import { Users, Star, MapPin, Clock, ChevronRight, Globe, Award, Sparkles, BookOpen, Search, Calendar, CreditCard, Check } from 'lucide-react';
 import { MuzeaPattern } from '../components/backgrounds/ArtisticBackground';
 
 /**
@@ -212,8 +212,7 @@ const GuidePage = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
 
-  // Filtres date/heure
-  const [selectedDate, setSelectedDate] = useState('');
+  // Filtre créneau horaire
   const [selectedTime, setSelectedTime] = useState('');
 
   // Système de réservation
@@ -608,75 +607,21 @@ const GuidePage = () => {
             )}
           </div>
 
-          {/* Filtres Date et Heure - Dans la section liste */}
-          <div className="max-w-3xl mx-auto mb-10 p-4 bg-white/[0.03] border border-white/[0.1] rounded-2xl">
-            <div className="flex flex-wrap gap-4 justify-center items-end">
-              {/* Sélecteur de date */}
-              <div className="flex flex-col gap-1.5">
-                <label className="text-white/60 text-xs font-medium flex items-center gap-1.5">
-                  <Calendar className="w-3.5 h-3.5 text-[#e07a5f]" />
-                  Date de visite
-                </label>
-                <input
-                  type="date"
-                  value={selectedDate}
-                  onChange={(e) => setSelectedDate(e.target.value)}
-                  className="px-4 py-2.5 bg-white/[0.05] border border-white/[0.15] rounded-xl text-white text-sm focus:outline-none focus:border-[#e07a5f] transition-all min-w-[160px] cursor-pointer hover:border-[#e07a5f]/50"
-                  min={new Date().toISOString().split('T')[0]}
-                />
-              </div>
-
-              {/* Sélecteur d'heure */}
-              <div className="flex flex-col gap-1.5">
-                <label className="text-white/60 text-xs font-medium flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-[#e07a5f]" />
-                  Créneau horaire
-                </label>
-                <select
-                  value={selectedTime}
-                  onChange={(e) => setSelectedTime(e.target.value)}
-                  className="px-4 py-2.5 bg-white/[0.05] border border-white/[0.15] rounded-xl text-white text-sm focus:outline-none focus:border-[#e07a5f] transition-all appearance-none cursor-pointer min-w-[160px] hover:border-[#e07a5f]/50"
-                  style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23e07a5f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }}
-                >
-                  <option value="" className="bg-[#1a1a1a]">Tous les créneaux</option>
-                  <option value="matin" className="bg-[#1a1a1a]">Matin (9h-12h)</option>
-                  <option value="apres-midi" className="bg-[#1a1a1a]">Après-midi (14h-17h)</option>
-                  {availableTimes.map(time => (
-                    <option key={time} value={time} className="bg-[#1a1a1a]">{time}</option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Bouton réinitialiser */}
-              {(selectedDate || selectedTime) && (
-                <button
-                  onClick={() => { setSelectedDate(''); setSelectedTime(''); }}
-                  className="px-4 py-2.5 text-sm bg-white/5 text-white/60 hover:text-[#e07a5f] border border-white/10 hover:border-[#e07a5f]/50 rounded-xl transition-all flex items-center gap-2"
-                >
-                  <X className="w-3.5 h-3.5" />
-                  Réinitialiser
-                </button>
-              )}
-            </div>
-
-            {/* Indication des filtres actifs */}
-            {(selectedDate || selectedTime) && (
-              <div className="mt-4 pt-3 border-t border-white/[0.08] flex items-center justify-center gap-2 text-xs">
-                <span className="text-white/40">Filtres:</span>
-                {selectedDate && (
-                  <span className="px-2.5 py-1 bg-[#e07a5f]/15 border border-[#e07a5f]/30 rounded-full text-[#e07a5f] flex items-center gap-1.5">
-                    <Calendar className="w-3 h-3" />
-                    {new Date(selectedDate).toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' })}
-                  </span>
-                )}
-                {selectedTime && (
-                  <span className="px-2.5 py-1 bg-[#e07a5f]/15 border border-[#e07a5f]/30 rounded-full text-[#e07a5f] flex items-center gap-1.5">
-                    <Clock className="w-3 h-3" />
-                    {selectedTime === 'matin' ? 'Matin' : selectedTime === 'apres-midi' ? 'Après-midi' : selectedTime}
-                  </span>
-                )}
-              </div>
-            )}
+          {/* Filtre créneau horaire */}
+          <div className="flex justify-center gap-3 mb-10">
+            {['Matin', 'Après-midi', 'Soir'].map((creneau) => (
+              <button
+                key={creneau}
+                onClick={() => setSelectedTime(selectedTime === creneau.toLowerCase() ? '' : creneau.toLowerCase())}
+                className={`px-5 py-2 rounded-full text-sm transition-all ${
+                  selectedTime === creneau.toLowerCase()
+                    ? 'bg-[#e07a5f] text-[#0c0c0c] font-medium'
+                    : 'bg-white/[0.05] text-white/60 border border-white/[0.1] hover:border-[#e07a5f]/30'
+                }`}
+              >
+                {creneau}
+              </button>
+            ))}
           </div>
 
           {filteredGuides.length > 0 ? (

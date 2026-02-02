@@ -58,14 +58,9 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center group">
-            <img
-              src="/logo-muzea.svg"
-              alt="Muzea - Culture Nearby"
-              className="h-10 w-auto group-hover:scale-105 transition-transform"
-              style={{
-                filter: 'brightness(0) invert(1)'
-              }}
-            />
+            <span className="text-2xl font-light tracking-[0.2em] text-white group-hover:text-[#d4a574] transition-colors duration-300">
+              muzea
+            </span>
           </Link>
 
           {/* Desktop Navigation - Centered */}

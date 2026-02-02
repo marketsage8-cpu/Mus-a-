@@ -410,10 +410,10 @@ const GuidePage = () => {
                 Trouver un guide
               </button>
               <button
-                onClick={() => smoothScrollTo('decouvrir')}
+                onClick={() => smoothScrollTo('decouvrir', 600, 200)}
                 className="px-8 py-4 border border-white/20 text-white/80 font-medium rounded-full hover:bg-white/5 transition-all"
               >
-                En savoir plus
+                Découvrir
               </button>
             </div>
 
@@ -844,16 +844,12 @@ const GuidePage = () => {
             Prêt pour une visite<br />
             <em className="text-[#e07a5f]">extraordinaire ?</em>
           </h2>
-          <p className="animate-on-scroll opacity-0 translate-y-[30px] text-white/55 text-lg mb-10 max-w-xl mx-auto" style={{ transitionDelay: '100ms' }}>
+          <p className="animate-on-scroll opacity-0 translate-y-[30px] text-white/55 text-lg mb-6 max-w-xl mx-auto" style={{ transitionDelay: '100ms' }}>
             Réservez dès maintenant et vivez l'art comme jamais avec nos guides passionnés.
           </p>
-          <button
-            onClick={() => smoothScrollTo('search-section')}
-            className="animate-on-scroll opacity-0 translate-y-[30px] px-10 py-5 bg-[#e07a5f] text-[#0c0c0c] font-medium text-lg rounded-full hover:bg-[#e8968a] transition-all hover:scale-105 shadow-xl shadow-[#e07a5f]/20"
-            style={{ transitionDelay: '200ms' }}
-          >
-            Trouver mon guide
-          </button>
+          <p className="animate-on-scroll opacity-0 translate-y-[30px] text-[#e07a5f]/80 text-sm tracking-widest uppercase" style={{ transitionDelay: '200ms' }}>
+            muzea vous accompagne dans votre exploration culturelle
+          </p>
         </div>
       </section>
 

@@ -3,60 +3,85 @@ import { useNavigate } from 'react-router-dom';
 import { Users, Star, MapPin, Clock, ChevronRight, Globe, Award, Sparkles, BookOpen, Search, Calendar, X, CreditCard, Check } from 'lucide-react';
 
 /**
- * Fonction de scroll fluide avec easing naturel - AMÉLIORÉE
+ * Fonction de scroll fluide avec easing naturel - AMÉLIORÉE v2
  * @param {string} targetId - L'ID de l'élément cible
- * @param {number} duration - Durée de l'animation en ms (défaut: 800ms)
- * @param {number} offset - Décalage depuis le haut (défaut: 100px pour la navbar)
+ * @param {number} duration - Durée de l'animation en ms (défaut: 600ms pour plus de réactivité)
+ * @param {number} offset - Décalage depuis le haut (défaut: 120px pour bien voir la section)
  */
-const smoothScrollTo = (targetId, duration = 800, offset = 100) => {
+const smoothScrollTo = (targetId, duration = 600, offset = 120) => {
   const target = document.getElementById(targetId);
   if (!target) {
     console.warn(`Element with id "${targetId}" not found`);
     return;
   }
 
+  // Désactiver temporairement le scroll-behavior CSS pour éviter les conflits
+  document.documentElement.style.scrollBehavior = 'auto';
+
   // Calculer la position exacte de l'élément
   const rect = target.getBoundingClientRect();
   const absoluteTop = rect.top + window.scrollY;
-  const targetPosition = absoluteTop - offset;
+
+  // Ajuster l'offset en fonction de la section cible
+  let adjustedOffset = offset;
+  if (targetId === 'search-section') {
+    adjustedOffset = 140; // Plus d'espace pour bien voir la barre de recherche
+  } else if (targetId === 'guides') {
+    adjustedOffset = 100; // Un peu moins pour les résultats
+  }
+
+  const targetPosition = absoluteTop - adjustedOffset;
   const startPosition = window.scrollY;
   const distance = targetPosition - startPosition;
 
-  // Si déjà à la bonne position, ne pas animer
-  if (Math.abs(distance) < 10) return;
+  // Si déjà à la bonne position, juste focus l'input
+  if (Math.abs(distance) < 15) {
+    if (targetId === 'search-section') {
+      const searchInput = target.querySelector('input[type="text"]');
+      if (searchInput) searchInput.focus();
+    }
+    return;
+  }
 
   let startTime = null;
+  let animationId = null;
 
-  // Easing function: easeInOutCubic - plus fluide pour les longues distances
-  const easeInOutCubic = (t) => {
-    return t < 0.5
-      ? 4 * t * t * t
-      : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  // Easing function: easeOutQuart - plus fluide et naturel, sans blocage
+  const easeOutQuart = (t) => {
+    return 1 - Math.pow(1 - t, 4);
   };
 
   const animation = (currentTime) => {
     if (startTime === null) startTime = currentTime;
     const timeElapsed = currentTime - startTime;
     const progress = Math.min(timeElapsed / duration, 1);
-    const easeProgress = easeInOutCubic(progress);
+    const easeProgress = easeOutQuart(progress);
 
-    window.scrollTo({
-      top: startPosition + distance * easeProgress,
-      behavior: 'auto'
-    });
+    window.scrollTo(0, startPosition + distance * easeProgress);
 
     if (progress < 1) {
-      requestAnimationFrame(animation);
+      animationId = requestAnimationFrame(animation);
     } else {
+      // Réactiver le scroll-behavior CSS
+      document.documentElement.style.scrollBehavior = '';
+
       // Focus sur l'input de recherche si on scroll vers la section recherche
       if (targetId === 'search-section') {
         const searchInput = target.querySelector('input[type="text"]');
         if (searchInput) {
-          setTimeout(() => searchInput.focus(), 100);
+          setTimeout(() => {
+            searchInput.focus();
+            // Ajouter une légère animation visuelle pour indiquer que c'est prêt
+            searchInput.classList.add('search-focus-highlight');
+            setTimeout(() => searchInput.classList.remove('search-focus-highlight'), 500);
+          }, 50);
         }
       }
     }
   };
+
+  // Annuler toute animation précédente
+  if (animationId) cancelAnimationFrame(animationId);
 
   requestAnimationFrame(animation);
 };
@@ -293,21 +318,21 @@ const GuidePage = () => {
     e.preventDefault();
     setShowDropdown(false);
     // Scroll vers les résultats avec un petit délai pour laisser les filtres s'appliquer
-    setTimeout(() => smoothScrollTo('guides', 900, 80), 100);
+    setTimeout(() => smoothScrollTo('guides'), 150);
   };
 
   // Sélectionner un résultat de l'autocomplete
   const handleResultClick = (result) => {
     setSearchQuery(result.name);
     setShowDropdown(false);
-    setTimeout(() => smoothScrollTo('guides', 900, 80), 100);
+    setTimeout(() => smoothScrollTo('guides'), 150);
   };
 
   // Cliquer sur une suggestion
   const handleSuggestionClick = (suggestion) => {
     setSearchQuery(suggestion);
     setShowDropdown(false);
-    setTimeout(() => smoothScrollTo('guides', 900, 80), 100);
+    setTimeout(() => smoothScrollTo('guides'), 150);
   };
 
   // Observer pour les animations au scroll
@@ -379,13 +404,13 @@ const GuidePage = () => {
 
             <div className="animate-on-scroll opacity-0 translate-y-[30px] flex flex-wrap gap-4" style={{ transitionDelay: '400ms' }}>
               <button
-                onClick={() => smoothScrollTo('search-section', 900, 80)}
+                onClick={() => smoothScrollTo('search-section')}
                 className="px-8 py-4 bg-[#e07a5f] text-[#0c0c0c] font-medium rounded-full hover:bg-[#e8968a] transition-all hover:scale-105 shadow-lg shadow-[#e07a5f]/20"
               >
                 Trouver un guide
               </button>
               <button
-                onClick={() => smoothScrollTo('decouvrir', 900, 80)}
+                onClick={() => smoothScrollTo('decouvrir')}
                 className="px-8 py-4 border border-white/20 text-white/80 font-medium rounded-full hover:bg-white/5 transition-all"
               >
                 En savoir plus
@@ -506,44 +531,47 @@ const GuidePage = () => {
               ))}
             </div>
 
-            {/* Filtres Date et Heure - Section plus visible */}
-            <div className="mt-8 p-4 bg-white/[0.03] border border-white/[0.1] rounded-2xl">
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <div className="h-px flex-1 bg-gradient-to-r from-transparent to-white/10" />
-                <span className="text-[#e07a5f] text-xs font-medium uppercase tracking-wider flex items-center gap-2">
-                  <Sparkles className="w-3 h-3" />
-                  Filtrer par disponibilité
-                </span>
-                <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/10" />
+            {/* Filtres Date et Heure - Section TRÈS VISIBLE et proéminente */}
+            <div className="mt-8 p-5 bg-gradient-to-b from-[#e07a5f]/10 to-white/[0.02] border-2 border-[#e07a5f]/30 rounded-2xl shadow-lg shadow-[#e07a5f]/5">
+              {/* En-tête avec icône animée */}
+              <div className="flex items-center justify-center gap-3 mb-5">
+                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#e07a5f]/30 to-[#e07a5f]/50" />
+                <div className="flex items-center gap-2 px-4 py-2 bg-[#e07a5f]/20 border border-[#e07a5f]/40 rounded-full">
+                  <Calendar className="w-4 h-4 text-[#e07a5f] animate-pulse" />
+                  <span className="text-[#e07a5f] text-sm font-semibold uppercase tracking-wider">
+                    Quand souhaitez-vous visiter ?
+                  </span>
+                </div>
+                <div className="h-px flex-1 bg-gradient-to-l from-transparent via-[#e07a5f]/30 to-[#e07a5f]/50" />
               </div>
 
-              <div className="flex flex-wrap gap-4 justify-center items-end">
-                {/* Sélecteur de date */}
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-white/50 text-xs flex items-center gap-1.5">
-                    <Calendar className="w-3 h-3" />
+              <div className="flex flex-wrap gap-5 justify-center items-end">
+                {/* Sélecteur de date - Plus grand */}
+                <div className="flex flex-col gap-2">
+                  <label className="text-white text-sm font-medium flex items-center gap-2">
+                    <Calendar className="w-4 h-4 text-[#e07a5f]" />
                     Date de visite
                   </label>
                   <input
                     type="date"
                     value={selectedDate}
                     onChange={(e) => setSelectedDate(e.target.value)}
-                    className="px-4 py-2.5 bg-white/[0.05] border border-white/[0.15] rounded-xl text-white text-sm focus:outline-none focus:border-[#e07a5f] focus:bg-white/[0.08] transition-all min-w-[160px]"
+                    className="px-5 py-3 bg-white/[0.08] border-2 border-white/[0.2] rounded-xl text-white text-base focus:outline-none focus:border-[#e07a5f] focus:bg-white/[0.12] transition-all min-w-[180px] cursor-pointer hover:border-[#e07a5f]/50"
                     min={new Date().toISOString().split('T')[0]}
                   />
                 </div>
 
-                {/* Sélecteur d'heure */}
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-white/50 text-xs flex items-center gap-1.5">
-                    <Clock className="w-3 h-3" />
+                {/* Sélecteur d'heure - Plus grand */}
+                <div className="flex flex-col gap-2">
+                  <label className="text-white text-sm font-medium flex items-center gap-2">
+                    <Clock className="w-4 h-4 text-[#e07a5f]" />
                     Créneau horaire
                   </label>
                   <select
                     value={selectedTime}
                     onChange={(e) => setSelectedTime(e.target.value)}
-                    className="px-4 py-2.5 bg-white/[0.05] border border-white/[0.15] rounded-xl text-white text-sm focus:outline-none focus:border-[#e07a5f] focus:bg-white/[0.08] transition-all appearance-none cursor-pointer min-w-[140px]"
-                    style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23e07a5f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }}
+                    className="px-5 py-3 bg-white/[0.08] border-2 border-white/[0.2] rounded-xl text-white text-base focus:outline-none focus:border-[#e07a5f] focus:bg-white/[0.12] transition-all appearance-none cursor-pointer min-w-[180px] hover:border-[#e07a5f]/50"
+                    style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23e07a5f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 14px center' }}
                   >
                     <option value="" className="bg-[#1a1a1a]">Tous les créneaux</option>
                     <option value="matin" className="bg-[#1a1a1a]">Matin (9h-12h)</option>
@@ -554,33 +582,36 @@ const GuidePage = () => {
                   </select>
                 </div>
 
-                {/* Bouton appliquer/réinitialiser */}
+                {/* Bouton appliquer/réinitialiser - Plus visible */}
                 {(selectedDate || selectedTime) ? (
                   <button
                     onClick={() => { setSelectedDate(''); setSelectedTime(''); }}
-                    className="px-4 py-2.5 text-sm text-white/60 hover:text-[#e07a5f] border border-white/10 hover:border-[#e07a5f]/30 rounded-xl transition-all flex items-center gap-2"
+                    className="px-5 py-3 text-sm bg-white/10 text-white hover:text-[#e07a5f] border-2 border-white/20 hover:border-[#e07a5f]/50 rounded-xl transition-all flex items-center gap-2 hover:bg-white/5"
                   >
-                    <X className="w-3 h-3" />
+                    <X className="w-4 h-4" />
                     Réinitialiser
                   </button>
                 ) : (
-                  <div className="px-4 py-2.5 text-sm text-white/30 border border-transparent">
-                    Aucun filtre
+                  <div className="px-5 py-3 text-sm text-white/40 border-2 border-dashed border-white/10 rounded-xl flex items-center gap-2">
+                    <Sparkles className="w-4 h-4" />
+                    Sélectionnez vos filtres
                   </div>
                 )}
               </div>
 
-              {/* Indication des filtres actifs */}
+              {/* Indication des filtres actifs - Plus visible */}
               {(selectedDate || selectedTime) && (
-                <div className="mt-4 flex items-center justify-center gap-2 text-sm">
-                  <span className="text-white/40">Filtres actifs:</span>
+                <div className="mt-5 pt-4 border-t border-[#e07a5f]/20 flex items-center justify-center gap-3 text-sm">
+                  <span className="text-white/60 font-medium">Filtres actifs:</span>
                   {selectedDate && (
-                    <span className="px-2 py-1 bg-[#e07a5f]/10 border border-[#e07a5f]/30 rounded-full text-[#e07a5f] text-xs">
-                      {new Date(selectedDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })}
+                    <span className="px-3 py-1.5 bg-[#e07a5f]/20 border border-[#e07a5f]/50 rounded-full text-[#e07a5f] text-sm font-medium flex items-center gap-2">
+                      <Calendar className="w-3 h-3" />
+                      {new Date(selectedDate).toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' })}
                     </span>
                   )}
                   {selectedTime && (
-                    <span className="px-2 py-1 bg-[#e07a5f]/10 border border-[#e07a5f]/30 rounded-full text-[#e07a5f] text-xs">
+                    <span className="px-3 py-1.5 bg-[#e07a5f]/20 border border-[#e07a5f]/50 rounded-full text-[#e07a5f] text-sm font-medium flex items-center gap-2">
+                      <Clock className="w-3 h-3" />
                       {selectedTime === 'matin' ? 'Matin' : selectedTime === 'apres-midi' ? 'Après-midi' : selectedTime}
                     </span>
                   )}
@@ -833,7 +864,7 @@ const GuidePage = () => {
             Réservez dès maintenant et vivez l'art comme jamais avec nos guides passionnés.
           </p>
           <button
-            onClick={() => smoothScrollTo('guides', 900, 80)}
+            onClick={() => smoothScrollTo('search-section')}
             className="animate-on-scroll opacity-0 translate-y-[30px] px-10 py-5 bg-[#e07a5f] text-[#0c0c0c] font-medium text-lg rounded-full hover:bg-[#e8968a] transition-all hover:scale-105 shadow-xl shadow-[#e07a5f]/20"
             style={{ transitionDelay: '200ms' }}
           >
@@ -871,83 +902,108 @@ const GuidePage = () => {
               </button>
             </div>
 
-            {/* Présentation détaillée du guide */}
-            <div className="bg-white/[0.02] border-b border-white/10">
-              {/* Image artistique du guide avec overlay */}
-              <div className="relative h-32 overflow-hidden">
+            {/* Présentation détaillée du guide - AMÉLIORÉE */}
+            <div className="bg-gradient-to-b from-white/[0.03] to-white/[0.01] border-b border-white/10">
+              {/* Image artistique du guide avec overlay - Plus grande */}
+              <div className="relative h-40 overflow-hidden">
                 <img
                   src={selectedGuide.artImage}
                   alt={selectedGuide.artTitle}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-[#0c0c0c]/50 to-transparent" />
-                <div className="absolute bottom-3 left-4 right-4">
-                  <span className="text-xs text-white/60 bg-black/40 px-2 py-1 rounded-full backdrop-blur-sm">
-                    Spécialité: {selectedGuide.artTitle}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-[#0c0c0c]/60 to-transparent" />
+                <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
+                  <span className="text-xs text-white bg-black/50 px-3 py-1.5 rounded-full backdrop-blur-sm flex items-center gap-2">
+                    <Sparkles className="w-3 h-3 text-[#e07a5f]" />
+                    {selectedGuide.artTitle}
+                  </span>
+                  <span className="text-xs text-[#e07a5f] bg-[#e07a5f]/20 px-3 py-1.5 rounded-full backdrop-blur-sm border border-[#e07a5f]/30">
+                    Expert {selectedGuide.specialty}
                   </span>
                 </div>
               </div>
 
-              {/* Infos du guide */}
+              {/* Infos du guide - Plus détaillées */}
               <div className="p-5">
                 <div className="flex items-start gap-4">
                   <div className="relative">
                     <img
                       src={selectedGuide.image}
                       alt={selectedGuide.name}
-                      className="w-16 h-16 rounded-full object-cover border-2 border-[#e07a5f]/50"
+                      className="w-18 h-18 rounded-2xl object-cover border-2 border-[#e07a5f]/50 shadow-lg"
+                      style={{ width: '72px', height: '72px' }}
                     />
                     {selectedGuide.verified && (
-                      <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-[#e07a5f] rounded-full flex items-center justify-center">
-                        <Check className="w-3 h-3 text-[#0c0c0c]" />
+                      <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-[#e07a5f] rounded-full flex items-center justify-center shadow-lg border-2 border-[#0c0c0c]">
+                        <Check className="w-4 h-4 text-[#0c0c0c]" />
                       </div>
                     )}
                   </div>
                   <div className="flex-1">
-                    <div className="flex items-center gap-2">
-                      <h4 className="font-medium text-white text-lg">{selectedGuide.name}</h4>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <h4 className="font-semibold text-white text-xl">{selectedGuide.name}</h4>
                       {selectedGuide.verified && (
-                        <span className="px-1.5 py-0.5 bg-[#e07a5f]/20 text-[#e07a5f] text-[10px] font-medium rounded">
-                          Certifié
+                        <span className="px-2 py-1 bg-[#e07a5f]/20 text-[#e07a5f] text-xs font-semibold rounded-lg border border-[#e07a5f]/30">
+                          Guide Certifié
                         </span>
                       )}
                     </div>
-                    <p className="text-[#e07a5f] text-sm italic">{selectedGuide.specialty}</p>
-                    <div className="flex items-center gap-3 mt-2">
-                      <div className="flex items-center gap-1 text-[#e07a5f] text-sm">
-                        <Star className="w-3 h-3 fill-current" />
-                        <span className="font-medium">{selectedGuide.rating}</span>
+                    <p className="text-[#e07a5f] text-base font-medium mt-1">{selectedGuide.specialty}</p>
+                    <div className="flex items-center gap-4 mt-3 flex-wrap">
+                      <div className="flex items-center gap-1.5 bg-[#e07a5f]/10 px-2.5 py-1 rounded-lg">
+                        <Star className="w-4 h-4 fill-[#e07a5f] text-[#e07a5f]" />
+                        <span className="font-bold text-[#e07a5f]">{selectedGuide.rating}</span>
+                        <span className="text-white/50 text-sm">({selectedGuide.reviews} avis)</span>
                       </div>
-                      <span className="text-white/20">|</span>
-                      <span className="text-white/50 text-sm">{selectedGuide.reviews} avis</span>
-                      <span className="text-white/20">|</span>
-                      <div className="flex items-center gap-1 text-white/50 text-sm">
-                        <Globe className="w-3 h-3" />
+                      <div className="flex items-center gap-1.5 text-white/60 text-sm">
+                        <Globe className="w-4 h-4 text-[#e07a5f]" />
                         {selectedGuide.languages.join(', ')}
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Tarif */}
-                <div className="mt-4 flex items-center justify-between p-3 bg-[#e07a5f]/10 border border-[#e07a5f]/20 rounded-xl">
+                {/* Description du guide et son travail */}
+                <div className="mt-5 p-4 bg-white/[0.03] rounded-xl border border-white/10">
+                  <h5 className="text-white/80 text-xs uppercase tracking-wider mb-2 flex items-center gap-2">
+                    <BookOpen className="w-3 h-3 text-[#e07a5f]" />
+                    À propos de ce guide
+                  </h5>
+                  <p className="text-white/60 text-sm leading-relaxed">
+                    Spécialiste en <span className="text-[#e07a5f] font-medium">{selectedGuide.specialty}</span>,
+                    {selectedGuide.name.split(' ')[0]} vous fera découvrir les plus grandes œuvres avec passion et expertise.
+                    Avec plus de <span className="text-white font-medium">{selectedGuide.reviews}</span> visites réalisées
+                    et une note exceptionnelle de <span className="text-[#e07a5f] font-medium">{selectedGuide.rating}/5</span>,
+                    vous êtes entre les mains d'un expert reconnu.
+                  </p>
+                </div>
+
+                {/* Tarif - Plus visible */}
+                <div className="mt-4 flex items-center justify-between p-4 bg-gradient-to-r from-[#e07a5f]/15 to-[#e07a5f]/5 border border-[#e07a5f]/30 rounded-xl">
                   <div>
-                    <span className="text-white/60 text-xs">Tarif par personne</span>
-                    <div className="text-2xl font-bold text-[#e07a5f]">{selectedGuide.price}€</div>
+                    <span className="text-white/60 text-xs uppercase tracking-wider">Tarif par personne</span>
+                    <div className="text-3xl font-bold text-[#e07a5f]">{selectedGuide.price}€</div>
                   </div>
                   <div className="text-right">
-                    <span className="text-white/60 text-xs">Durée moyenne</span>
-                    <div className="text-white font-medium">2h - 2h30</div>
+                    <span className="text-white/60 text-xs uppercase tracking-wider">Durée moyenne</span>
+                    <div className="text-white font-semibold text-lg">2h - 2h30</div>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-white/60 text-xs uppercase tracking-wider">Inclus</span>
+                    <div className="text-white font-medium text-sm">Visite privée</div>
                   </div>
                 </div>
 
-                {/* Lieux couverts */}
+                {/* Lieux couverts - Plus visible */}
                 <div className="mt-4">
-                  <p className="text-white/40 text-xs uppercase tracking-wider mb-2">Lieux de visite</p>
+                  <p className="text-white/60 text-xs uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <MapPin className="w-3 h-3 text-[#e07a5f]" />
+                    Lieux où {selectedGuide.name.split(' ')[0]} peut vous guider
+                  </p>
                   <div className="flex flex-wrap gap-2">
                     {selectedGuide.locations.map((loc, idx) => (
-                      <span key={idx} className="px-2.5 py-1 bg-white/[0.05] text-white/70 text-xs rounded-lg border border-white/10 flex items-center gap-1.5">
-                        <MapPin className="w-3 h-3 text-[#e07a5f]" />
+                      <span key={idx} className="px-3 py-1.5 bg-white/[0.08] text-white text-sm rounded-xl border border-white/15 flex items-center gap-2 hover:border-[#e07a5f]/30 transition-colors">
+                        <MapPin className="w-3.5 h-3.5 text-[#e07a5f]" />
                         {loc}
                       </span>
                     ))}
@@ -1263,6 +1319,28 @@ const GuidePage = () => {
         .guide-card-appear {
           opacity: 0;
           animation: cardPopIn 0.5s ease-out forwards;
+        }
+
+        /* Animation de highlight pour la barre de recherche */
+        @keyframes searchHighlight {
+          0% {
+            box-shadow: 0 0 0 0 rgba(224, 122, 95, 0);
+          }
+          50% {
+            box-shadow: 0 0 20px 4px rgba(224, 122, 95, 0.4);
+          }
+          100% {
+            box-shadow: 0 0 0 0 rgba(224, 122, 95, 0);
+          }
+        }
+
+        .search-focus-highlight {
+          animation: searchHighlight 0.5s ease-out;
+        }
+
+        /* Scroll fluide au niveau global */
+        html {
+          scroll-behavior: auto;
         }
       `}</style>
     </div>

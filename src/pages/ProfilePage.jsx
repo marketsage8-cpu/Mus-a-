@@ -583,17 +583,6 @@ const ProfilePage = () => {
                 ))}
               </div>
             </div>
-
-            {/* Bouton CTA */}
-            <Link
-              to="/events"
-              className="block w-full py-4 bg-[#e07a5f] hover:bg-[#e8968a] text-[#0c0c0c] rounded-xl font-semibold text-center transition-all shadow-lg shadow-[#e07a5f]/20"
-            >
-              <span className="flex items-center justify-center gap-2">
-                <Sparkles className="w-5 h-5" />
-                Créer mon profil de rencontre
-              </span>
-            </Link>
           </div>
         )}
 
@@ -656,17 +645,10 @@ const ProfilePage = () => {
                   : "Vous n'avez pas encore de favoris. Explorez la carte pour en ajouter !"
                 }
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Link
-                  to="/favoris"
-                  className="px-6 py-3 bg-[#e07a5f] hover:bg-[#e8968a] text-[#0c0c0c] rounded-xl font-semibold transition-all shadow-lg shadow-[#e07a5f]/20 flex items-center justify-center gap-2"
-                >
-                  <Heart className="w-5 h-5" />
-                  Voir mes favoris
-                </Link>
+              <div className="flex justify-center">
                 <Link
                   to="/explore"
-                  className="px-6 py-3 bg-white/5 text-white rounded-xl font-semibold hover:bg-white/10 transition-all border border-white/10 hover:border-[#e07a5f]/30 flex items-center justify-center gap-2"
+                  className="px-8 py-3 bg-[#e07a5f] hover:bg-[#e8968a] text-[#0c0c0c] rounded-xl font-semibold transition-all shadow-lg shadow-[#e07a5f]/20 flex items-center justify-center gap-2"
                 >
                   <Compass className="w-5 h-5" />
                   Explorer la carte

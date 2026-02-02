@@ -6,14 +6,15 @@ import { Users, MessageCircle, Heart, Clock, Star, Search, Coffee, Sparkles, Map
  * Fonction de scroll fluide et rapide avec easing naturel
  * @param {string} targetId - L'ID de l'élément cible
  * @param {number} duration - Durée de l'animation en ms (défaut: 700ms)
+ * @param {number} offset - Offset supplémentaire depuis le haut (défaut: 80)
  */
-const smoothScrollTo = (targetId, duration = 700) => {
+const smoothScrollTo = (targetId, duration = 700, offset = 80) => {
   const target = document.getElementById(targetId);
   if (!target) return;
 
   const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
   const startPosition = window.pageYOffset;
-  const distance = targetPosition - startPosition - 80;
+  const distance = targetPosition - startPosition - offset;
   let startTime = null;
 
   // Easing function: easeOutQuart - démarrage rapide, fin douce
@@ -324,7 +325,7 @@ const MeetingsPage = () => {
                 Faire une rencontre
               </button>
               <button
-                onClick={() => smoothScrollTo('decouvrir', 700)}
+                onClick={() => smoothScrollTo('decouvrir', 700, 200)}
                 className="px-8 py-4 border border-white/20 text-white/80 font-medium rounded-full hover:bg-white/5 transition-all"
               >
                 Découvrir
@@ -690,16 +691,12 @@ const MeetingsPage = () => {
             Prêt à rencontrer<br />
             <em className="text-[#e07a5f]">des passionnés ?</em>
           </h2>
-          <p className="animate-on-scroll opacity-0 translate-y-[30px] text-white/55 text-lg mb-10 max-w-xl mx-auto" style={{ transitionDelay: '100ms' }}>
+          <p className="animate-on-scroll opacity-0 translate-y-[30px] text-white/55 text-lg mb-6 max-w-xl mx-auto" style={{ transitionDelay: '100ms' }}>
             Rejoignez notre communauté et partagez votre amour de la culture avec des personnes qui vous ressemblent.
           </p>
-          <button
-            onClick={() => smoothScrollTo('search-section', 700)}
-            className="animate-on-scroll opacity-0 translate-y-[30px] px-10 py-5 bg-[#e07a5f] text-[#0c0c0c] font-medium text-lg rounded-full hover:bg-[#e8968a] transition-all hover:scale-105 shadow-xl shadow-[#e07a5f]/20"
-            style={{ transitionDelay: '200ms' }}
-          >
-            Trouver un passionné
-          </button>
+          <p className="animate-on-scroll opacity-0 translate-y-[30px] text-[#e07a5f]/80 text-sm tracking-widest uppercase" style={{ transitionDelay: '200ms' }}>
+            muzea vous accompagne dans votre exploration culturelle
+          </p>
         </div>
       </section>
 

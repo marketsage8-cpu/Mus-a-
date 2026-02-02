@@ -313,16 +313,20 @@ const ProfilePage = () => {
           {/* Avatar et informations */}
           <div className="relative px-6 pb-6 -mt-12">
             <div className="flex flex-col sm:flex-row items-center sm:items-end gap-4">
-              {/* Avatar avec fond artistique */}
+              {/* Avatar avec fond artistique - Zone d'identité artistique */}
               <div className="relative group">
-                {/* Fond artistique derrière l'avatar */}
-                <div className="absolute -inset-3 rounded-full overflow-hidden">
+                {/* Fond artistique derrière l'avatar - Plus grand et plus visible */}
+                <div className="absolute -inset-4 rounded-2xl overflow-hidden shadow-xl">
                   <img
                     src={currentArtStyle.image}
                     alt={currentArtStyle.name}
-                    className="w-full h-full object-cover blur-[1px]"
+                    className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-black/30" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/10" />
+                  {/* Label du style artistique */}
+                  <div className="absolute bottom-1 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-black/50 backdrop-blur-sm rounded-full">
+                    <span className="text-[10px] text-white/80 font-medium whitespace-nowrap">{currentArtStyle.name}</span>
+                  </div>
                 </div>
                 {/* Avatar */}
                 <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-[#0c0c0c] shadow-xl bg-[#e07a5f]">
@@ -343,14 +347,6 @@ const ProfilePage = () => {
                 >
                   <Camera className="w-3 h-3" />
                 </button>
-                {/* Bouton modifier le style */}
-                <button
-                  onClick={() => setShowArtStyleSelector(true)}
-                  className="absolute -bottom-1 -left-1 p-2 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-all shadow-lg z-10"
-                  title="Modifier le style artistique"
-                >
-                  <Edit3 className="w-3 h-3" />
-                </button>
                 <input
                   ref={avatarInputRef}
                   type="file"
@@ -359,6 +355,15 @@ const ProfilePage = () => {
                   className="hidden"
                 />
               </div>
+
+              {/* Bouton Modifier le style artistique - Plus visible */}
+              <button
+                onClick={() => setShowArtStyleSelector(true)}
+                className="absolute -bottom-8 left-1/2 sm:left-auto sm:bottom-auto sm:-top-2 sm:right-2 -translate-x-1/2 sm:translate-x-0 px-3 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white text-xs font-medium hover:bg-[#e07a5f]/20 hover:border-[#e07a5f]/50 transition-all shadow-lg flex items-center gap-1.5 group/btn"
+              >
+                <Edit3 className="w-3 h-3 group-hover/btn:text-[#e07a5f] transition-colors" />
+                <span className="group-hover/btn:text-[#e07a5f] transition-colors">Modifier le style</span>
+              </button>
 
               {/* Nom et email */}
               <div className="text-center sm:text-left flex-1">
@@ -841,53 +846,101 @@ const ProfilePage = () => {
           />
 
           {/* Modal content */}
-          <div className="relative bg-[#0c0c0c] border border-white/10 rounded-2xl p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h3 className="text-xl font-serif text-white">Votre identité artistique</h3>
-                <p className="text-gray-400 text-sm mt-1">Choisissez le style qui vous représente</p>
-              </div>
-              <button
-                onClick={() => setShowArtStyleSelector(false)}
-                className="p-2 text-gray-400 hover:text-white transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Grille des styles */}
-            <div className="grid grid-cols-2 gap-3">
-              {artStyleBackgrounds.map((style) => (
-                <button
-                  key={style.id}
-                  onClick={() => changeArtStyle(style.id)}
-                  className={`relative group rounded-xl overflow-hidden aspect-square transition-all ${
-                    selectedArtStyle === style.id
-                      ? 'ring-2 ring-[#e07a5f] ring-offset-2 ring-offset-[#0c0c0c]'
-                      : 'hover:scale-105'
-                  }`}
-                >
-                  <img
-                    src={style.image}
-                    alt={style.name}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-3">
-                    <p className="text-white font-medium text-sm">{style.name}</p>
+          <div className="relative bg-[#0c0c0c] border border-white/10 rounded-2xl max-w-lg w-full max-h-[90vh] overflow-hidden">
+            {/* Header avec preview */}
+            <div className="relative p-6 pb-4 border-b border-white/10">
+              <div className="flex items-start justify-between">
+                <div className="flex-1">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#e07a5f]/10 border border-[#e07a5f]/30 rounded-full mb-3">
+                    <Sparkles className="w-3 h-3 text-[#e07a5f]" />
+                    <span className="text-[#e07a5f] text-xs font-medium">Identité artistique</span>
                   </div>
-                  {selectedArtStyle === style.id && (
-                    <div className="absolute top-2 right-2 w-6 h-6 bg-[#e07a5f] rounded-full flex items-center justify-center">
-                      <Check className="w-4 h-4 text-[#0c0c0c]" />
-                    </div>
-                  )}
+                  <h3 className="text-xl font-serif text-white">Choisissez votre style</h3>
+                  <p className="text-gray-400 text-sm mt-1">Les autres utilisateurs vous reconnaîtront grâce à votre style artistique</p>
+                </div>
+                <button
+                  onClick={() => setShowArtStyleSelector(false)}
+                  className="p-2 text-gray-400 hover:text-white transition-colors"
+                >
+                  <X className="w-5 h-5" />
                 </button>
-              ))}
+              </div>
+
+              {/* Preview actuel */}
+              <div className="mt-4 flex items-center gap-4 p-3 bg-white/5 rounded-xl border border-white/10">
+                <div className="relative">
+                  <div className="w-16 h-16 rounded-xl overflow-hidden">
+                    <img
+                      src={currentArtStyle.image}
+                      alt={currentArtStyle.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-8 h-8 rounded-full border-2 border-[#0c0c0c] bg-[#e07a5f] flex items-center justify-center overflow-hidden">
+                    {avatarImage ? (
+                      <img src={avatarImage} alt="" className="w-full h-full object-cover" />
+                    ) : (
+                      <span className="text-xs font-bold text-[#0c0c0c]">{userData.name.charAt(0)}</span>
+                    )}
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <p className="text-white text-sm font-medium">Style actuel</p>
+                  <p className="text-[#e07a5f] text-lg font-serif">{currentArtStyle.name}</p>
+                </div>
+                <Check className="w-5 h-5 text-[#e07a5f]" />
+              </div>
             </div>
 
-            <p className="text-center text-gray-500 text-xs mt-6">
-              Ce fond apparaîtra derrière votre photo de profil
-            </p>
+            {/* Grille des styles - Scrollable */}
+            <div className="p-6 overflow-y-auto max-h-[50vh]">
+              <p className="text-gray-500 text-xs uppercase tracking-wider mb-4">Tous les styles disponibles</p>
+              <div className="grid grid-cols-2 gap-3">
+                {artStyleBackgrounds.map((style) => (
+                  <button
+                    key={style.id}
+                    onClick={() => changeArtStyle(style.id)}
+                    className={`relative group rounded-xl overflow-hidden aspect-[4/3] transition-all ${
+                      selectedArtStyle === style.id
+                        ? 'ring-2 ring-[#e07a5f] ring-offset-2 ring-offset-[#0c0c0c] scale-[1.02]'
+                        : 'hover:scale-[1.03] hover:ring-1 hover:ring-white/30'
+                    }`}
+                  >
+                    <img
+                      src={style.image}
+                      alt={style.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-3">
+                      <p className="text-white font-medium text-sm">{style.name}</p>
+                      <p className="text-white/50 text-[10px] mt-0.5">
+                        {style.id === 'impressionism' && 'Monet, Renoir...'}
+                        {style.id === 'renaissance' && 'Da Vinci, Michel-Ange...'}
+                        {style.id === 'romanticism' && 'Delacroix, Turner...'}
+                        {style.id === 'postimpressionism' && 'Van Gogh, Cézanne...'}
+                        {style.id === 'baroque' && 'Vermeer, Caravage...'}
+                        {style.id === 'ukiyoe' && 'Hokusai, Hiroshige...'}
+                        {style.id === 'modern' && 'Picasso, Dali...'}
+                        {style.id === 'abstract' && 'Kandinsky, Mondrian...'}
+                      </p>
+                    </div>
+                    {selectedArtStyle === style.id && (
+                      <div className="absolute top-2 right-2 w-6 h-6 bg-[#e07a5f] rounded-full flex items-center justify-center shadow-lg">
+                        <Check className="w-4 h-4 text-[#0c0c0c]" />
+                      </div>
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="p-4 border-t border-white/10 bg-white/[0.02]">
+              <p className="text-center text-gray-500 text-xs">
+                Ce fond apparaîtra derrière votre photo de profil et représentera votre identité artistique
+              </p>
+            </div>
           </div>
         </div>
       )}

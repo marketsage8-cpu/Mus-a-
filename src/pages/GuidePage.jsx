@@ -3,36 +3,58 @@ import { useNavigate } from 'react-router-dom';
 import { Users, Star, MapPin, Clock, ChevronRight, Globe, Award, Sparkles, BookOpen, Search, Calendar, X, CreditCard, Check } from 'lucide-react';
 
 /**
- * Fonction de scroll fluide avec easing naturel
+ * Fonction de scroll fluide avec easing naturel - AMÉLIORÉE
  * @param {string} targetId - L'ID de l'élément cible
- * @param {number} duration - Durée de l'animation en ms (défaut: 600ms)
- * @param {number} offset - Décalage supplémentaire (défaut: 150px)
+ * @param {number} duration - Durée de l'animation en ms (défaut: 800ms)
+ * @param {number} offset - Décalage depuis le haut (défaut: 100px pour la navbar)
  */
-const smoothScrollTo = (targetId, duration = 600, offset = 150) => {
+const smoothScrollTo = (targetId, duration = 800, offset = 100) => {
   const target = document.getElementById(targetId);
-  if (!target) return;
+  if (!target) {
+    console.warn(`Element with id "${targetId}" not found`);
+    return;
+  }
 
-  const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-  const startPosition = window.pageYOffset;
-  const distance = targetPosition - startPosition - offset;
+  // Calculer la position exacte de l'élément
+  const rect = target.getBoundingClientRect();
+  const absoluteTop = rect.top + window.scrollY;
+  const targetPosition = absoluteTop - offset;
+  const startPosition = window.scrollY;
+  const distance = targetPosition - startPosition;
+
+  // Si déjà à la bonne position, ne pas animer
+  if (Math.abs(distance) < 10) return;
+
   let startTime = null;
 
-  // Easing function: easeOutCubic - plus fluide
-  const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+  // Easing function: easeInOutCubic - plus fluide pour les longues distances
+  const easeInOutCubic = (t) => {
+    return t < 0.5
+      ? 4 * t * t * t
+      : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  };
 
   const animation = (currentTime) => {
     if (startTime === null) startTime = currentTime;
     const timeElapsed = currentTime - startTime;
     const progress = Math.min(timeElapsed / duration, 1);
-    const easeProgress = easeOutCubic(progress);
+    const easeProgress = easeInOutCubic(progress);
 
     window.scrollTo({
       top: startPosition + distance * easeProgress,
       behavior: 'auto'
     });
 
-    if (timeElapsed < duration) {
+    if (progress < 1) {
       requestAnimationFrame(animation);
+    } else {
+      // Focus sur l'input de recherche si on scroll vers la section recherche
+      if (targetId === 'search-section') {
+        const searchInput = target.querySelector('input[type="text"]');
+        if (searchInput) {
+          setTimeout(() => searchInput.focus(), 100);
+        }
+      }
     }
   };
 
@@ -270,21 +292,22 @@ const GuidePage = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     setShowDropdown(false);
-    smoothScrollTo('guides', 700);
+    // Scroll vers les résultats avec un petit délai pour laisser les filtres s'appliquer
+    setTimeout(() => smoothScrollTo('guides', 900, 80), 100);
   };
 
   // Sélectionner un résultat de l'autocomplete
   const handleResultClick = (result) => {
     setSearchQuery(result.name);
     setShowDropdown(false);
-    smoothScrollTo('guides', 700);
+    setTimeout(() => smoothScrollTo('guides', 900, 80), 100);
   };
 
   // Cliquer sur une suggestion
   const handleSuggestionClick = (suggestion) => {
     setSearchQuery(suggestion);
     setShowDropdown(false);
-    smoothScrollTo('guides', 700);
+    setTimeout(() => smoothScrollTo('guides', 900, 80), 100);
   };
 
   // Observer pour les animations au scroll
@@ -356,13 +379,13 @@ const GuidePage = () => {
 
             <div className="animate-on-scroll opacity-0 translate-y-[30px] flex flex-wrap gap-4" style={{ transitionDelay: '400ms' }}>
               <button
-                onClick={() => smoothScrollTo('search-section', 700)}
+                onClick={() => smoothScrollTo('search-section', 900, 80)}
                 className="px-8 py-4 bg-[#e07a5f] text-[#0c0c0c] font-medium rounded-full hover:bg-[#e8968a] transition-all hover:scale-105 shadow-lg shadow-[#e07a5f]/20"
               >
                 Trouver un guide
               </button>
               <button
-                onClick={() => smoothScrollTo('decouvrir', 700)}
+                onClick={() => smoothScrollTo('decouvrir', 900, 80)}
                 className="px-8 py-4 border border-white/20 text-white/80 font-medium rounded-full hover:bg-white/5 transition-all"
               >
                 En savoir plus
@@ -483,38 +506,85 @@ const GuidePage = () => {
               ))}
             </div>
 
-            {/* Filtres Date et Heure */}
-            <div className="flex flex-wrap gap-4 mt-6 justify-center">
-              <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-[#e07a5f]" />
-                <input
-                  type="date"
-                  value={selectedDate}
-                  onChange={(e) => setSelectedDate(e.target.value)}
-                  className="px-4 py-2 bg-white/[0.05] border border-white/[0.15] rounded-full text-white text-sm focus:outline-none focus:border-[#e07a5f] transition-all"
-                  min={new Date().toISOString().split('T')[0]}
-                />
+            {/* Filtres Date et Heure - Section plus visible */}
+            <div className="mt-8 p-4 bg-white/[0.03] border border-white/[0.1] rounded-2xl">
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <div className="h-px flex-1 bg-gradient-to-r from-transparent to-white/10" />
+                <span className="text-[#e07a5f] text-xs font-medium uppercase tracking-wider flex items-center gap-2">
+                  <Sparkles className="w-3 h-3" />
+                  Filtrer par disponibilité
+                </span>
+                <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/10" />
               </div>
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-[#e07a5f]" />
-                <select
-                  value={selectedTime}
-                  onChange={(e) => setSelectedTime(e.target.value)}
-                  className="px-4 py-2 bg-white/[0.05] border border-white/[0.15] rounded-full text-white text-sm focus:outline-none focus:border-[#e07a5f] transition-all appearance-none cursor-pointer"
-                >
-                  <option value="" className="bg-[#1a1a1a]">Heure</option>
-                  {availableTimes.map(time => (
-                    <option key={time} value={time} className="bg-[#1a1a1a]">{time}</option>
-                  ))}
-                </select>
+
+              <div className="flex flex-wrap gap-4 justify-center items-end">
+                {/* Sélecteur de date */}
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-white/50 text-xs flex items-center gap-1.5">
+                    <Calendar className="w-3 h-3" />
+                    Date de visite
+                  </label>
+                  <input
+                    type="date"
+                    value={selectedDate}
+                    onChange={(e) => setSelectedDate(e.target.value)}
+                    className="px-4 py-2.5 bg-white/[0.05] border border-white/[0.15] rounded-xl text-white text-sm focus:outline-none focus:border-[#e07a5f] focus:bg-white/[0.08] transition-all min-w-[160px]"
+                    min={new Date().toISOString().split('T')[0]}
+                  />
+                </div>
+
+                {/* Sélecteur d'heure */}
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-white/50 text-xs flex items-center gap-1.5">
+                    <Clock className="w-3 h-3" />
+                    Créneau horaire
+                  </label>
+                  <select
+                    value={selectedTime}
+                    onChange={(e) => setSelectedTime(e.target.value)}
+                    className="px-4 py-2.5 bg-white/[0.05] border border-white/[0.15] rounded-xl text-white text-sm focus:outline-none focus:border-[#e07a5f] focus:bg-white/[0.08] transition-all appearance-none cursor-pointer min-w-[140px]"
+                    style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23e07a5f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }}
+                  >
+                    <option value="" className="bg-[#1a1a1a]">Tous les créneaux</option>
+                    <option value="matin" className="bg-[#1a1a1a]">Matin (9h-12h)</option>
+                    <option value="apres-midi" className="bg-[#1a1a1a]">Après-midi (14h-17h)</option>
+                    {availableTimes.map(time => (
+                      <option key={time} value={time} className="bg-[#1a1a1a]">{time}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Bouton appliquer/réinitialiser */}
+                {(selectedDate || selectedTime) ? (
+                  <button
+                    onClick={() => { setSelectedDate(''); setSelectedTime(''); }}
+                    className="px-4 py-2.5 text-sm text-white/60 hover:text-[#e07a5f] border border-white/10 hover:border-[#e07a5f]/30 rounded-xl transition-all flex items-center gap-2"
+                  >
+                    <X className="w-3 h-3" />
+                    Réinitialiser
+                  </button>
+                ) : (
+                  <div className="px-4 py-2.5 text-sm text-white/30 border border-transparent">
+                    Aucun filtre
+                  </div>
+                )}
               </div>
+
+              {/* Indication des filtres actifs */}
               {(selectedDate || selectedTime) && (
-                <button
-                  onClick={() => { setSelectedDate(''); setSelectedTime(''); }}
-                  className="px-4 py-2 text-sm text-[#e07a5f] hover:text-white transition-colors"
-                >
-                  Réinitialiser
-                </button>
+                <div className="mt-4 flex items-center justify-center gap-2 text-sm">
+                  <span className="text-white/40">Filtres actifs:</span>
+                  {selectedDate && (
+                    <span className="px-2 py-1 bg-[#e07a5f]/10 border border-[#e07a5f]/30 rounded-full text-[#e07a5f] text-xs">
+                      {new Date(selectedDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })}
+                    </span>
+                  )}
+                  {selectedTime && (
+                    <span className="px-2 py-1 bg-[#e07a5f]/10 border border-[#e07a5f]/30 rounded-full text-[#e07a5f] text-xs">
+                      {selectedTime === 'matin' ? 'Matin' : selectedTime === 'apres-midi' ? 'Après-midi' : selectedTime}
+                    </span>
+                  )}
+                </div>
               )}
             </div>
           </div>
@@ -763,7 +833,7 @@ const GuidePage = () => {
             Réservez dès maintenant et vivez l'art comme jamais avec nos guides passionnés.
           </p>
           <button
-            onClick={() => smoothScrollTo('guides', 700)}
+            onClick={() => smoothScrollTo('guides', 900, 80)}
             className="animate-on-scroll opacity-0 translate-y-[30px] px-10 py-5 bg-[#e07a5f] text-[#0c0c0c] font-medium text-lg rounded-full hover:bg-[#e8968a] transition-all hover:scale-105 shadow-xl shadow-[#e07a5f]/20"
             style={{ transitionDelay: '200ms' }}
           >
@@ -801,36 +871,88 @@ const GuidePage = () => {
               </button>
             </div>
 
-            {/* Présentation du guide */}
-            <div className="p-6 bg-white/[0.02] border-b border-white/10">
-              <div className="flex items-center gap-4">
+            {/* Présentation détaillée du guide */}
+            <div className="bg-white/[0.02] border-b border-white/10">
+              {/* Image artistique du guide avec overlay */}
+              <div className="relative h-32 overflow-hidden">
                 <img
-                  src={selectedGuide.image}
-                  alt={selectedGuide.name}
-                  className="w-16 h-16 rounded-full object-cover border-2 border-[#e07a5f]/30"
+                  src={selectedGuide.artImage}
+                  alt={selectedGuide.artTitle}
+                  className="w-full h-full object-cover"
                 />
-                <div className="flex-1">
-                  <h4 className="font-medium text-white">{selectedGuide.name}</h4>
-                  <p className="text-[#e07a5f] text-sm italic">{selectedGuide.specialty}</p>
-                  <div className="flex items-center gap-2 mt-1">
-                    <div className="flex items-center gap-1 text-[#e07a5f] text-sm">
-                      <Star className="w-3 h-3 fill-current" />
-                      {selectedGuide.rating}
-                    </div>
-                    <span className="text-white/30">•</span>
-                    <span className="text-white/40 text-sm">{selectedGuide.reviews} avis</span>
-                    <span className="text-white/30">•</span>
-                    <span className="text-white/40 text-sm">{selectedGuide.languages.join(', ')}</span>
-                  </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-[#0c0c0c]/50 to-transparent" />
+                <div className="absolute bottom-3 left-4 right-4">
+                  <span className="text-xs text-white/60 bg-black/40 px-2 py-1 rounded-full backdrop-blur-sm">
+                    Spécialité: {selectedGuide.artTitle}
+                  </span>
                 </div>
               </div>
-              {/* Lieux couverts */}
-              <div className="mt-4 flex flex-wrap gap-2">
-                {selectedGuide.locations.map((loc, idx) => (
-                  <span key={idx} className="px-2 py-1 bg-white/[0.05] text-white/60 text-xs rounded-full">
-                    {loc}
-                  </span>
-                ))}
+
+              {/* Infos du guide */}
+              <div className="p-5">
+                <div className="flex items-start gap-4">
+                  <div className="relative">
+                    <img
+                      src={selectedGuide.image}
+                      alt={selectedGuide.name}
+                      className="w-16 h-16 rounded-full object-cover border-2 border-[#e07a5f]/50"
+                    />
+                    {selectedGuide.verified && (
+                      <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-[#e07a5f] rounded-full flex items-center justify-center">
+                        <Check className="w-3 h-3 text-[#0c0c0c]" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2">
+                      <h4 className="font-medium text-white text-lg">{selectedGuide.name}</h4>
+                      {selectedGuide.verified && (
+                        <span className="px-1.5 py-0.5 bg-[#e07a5f]/20 text-[#e07a5f] text-[10px] font-medium rounded">
+                          Certifié
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-[#e07a5f] text-sm italic">{selectedGuide.specialty}</p>
+                    <div className="flex items-center gap-3 mt-2">
+                      <div className="flex items-center gap-1 text-[#e07a5f] text-sm">
+                        <Star className="w-3 h-3 fill-current" />
+                        <span className="font-medium">{selectedGuide.rating}</span>
+                      </div>
+                      <span className="text-white/20">|</span>
+                      <span className="text-white/50 text-sm">{selectedGuide.reviews} avis</span>
+                      <span className="text-white/20">|</span>
+                      <div className="flex items-center gap-1 text-white/50 text-sm">
+                        <Globe className="w-3 h-3" />
+                        {selectedGuide.languages.join(', ')}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Tarif */}
+                <div className="mt-4 flex items-center justify-between p-3 bg-[#e07a5f]/10 border border-[#e07a5f]/20 rounded-xl">
+                  <div>
+                    <span className="text-white/60 text-xs">Tarif par personne</span>
+                    <div className="text-2xl font-bold text-[#e07a5f]">{selectedGuide.price}€</div>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-white/60 text-xs">Durée moyenne</span>
+                    <div className="text-white font-medium">2h - 2h30</div>
+                  </div>
+                </div>
+
+                {/* Lieux couverts */}
+                <div className="mt-4">
+                  <p className="text-white/40 text-xs uppercase tracking-wider mb-2">Lieux de visite</p>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedGuide.locations.map((loc, idx) => (
+                      <span key={idx} className="px-2.5 py-1 bg-white/[0.05] text-white/70 text-xs rounded-lg border border-white/10 flex items-center gap-1.5">
+                        <MapPin className="w-3 h-3 text-[#e07a5f]" />
+                        {loc}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -905,41 +1027,81 @@ const GuidePage = () => {
               {/* Étape 2: Confirmation */}
               {reservationStep === 2 && (
                 <div className="space-y-6">
-                  <div className="p-4 bg-white/[0.05] rounded-xl space-y-3">
-                    <div className="flex justify-between">
-                      <span className="text-white/60">Guide</span>
-                      <span className="text-white font-medium">{selectedGuide.name}</span>
+                  {/* Résumé de la réservation */}
+                  <div className="p-4 bg-white/[0.03] rounded-xl border border-white/10">
+                    <h4 className="text-white/40 text-xs uppercase tracking-wider mb-4">Récapitulatif de votre réservation</h4>
+
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3 pb-3 border-b border-white/10">
+                        <div className="w-10 h-10 rounded-full bg-[#e07a5f]/10 flex items-center justify-center">
+                          <Users className="w-5 h-5 text-[#e07a5f]" />
+                        </div>
+                        <div className="flex-1">
+                          <span className="text-white/50 text-xs">Guide</span>
+                          <p className="text-white font-medium">{selectedGuide.name}</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-3 pb-3 border-b border-white/10">
+                        <div className="w-10 h-10 rounded-full bg-[#e07a5f]/10 flex items-center justify-center">
+                          <Calendar className="w-5 h-5 text-[#e07a5f]" />
+                        </div>
+                        <div className="flex-1">
+                          <span className="text-white/50 text-xs">Date de visite</span>
+                          <p className="text-white font-medium">{new Date(reservationDate).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-3 pb-3 border-b border-white/10">
+                        <div className="w-10 h-10 rounded-full bg-[#e07a5f]/10 flex items-center justify-center">
+                          <Clock className="w-5 h-5 text-[#e07a5f]" />
+                        </div>
+                        <div className="flex-1">
+                          <span className="text-white/50 text-xs">Heure de rendez-vous</span>
+                          <p className="text-white font-medium">{reservationTime} (durée: 2h-2h30)</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-[#e07a5f]/10 flex items-center justify-center">
+                          <Users className="w-5 h-5 text-[#e07a5f]" />
+                        </div>
+                        <div className="flex-1">
+                          <span className="text-white/50 text-xs">Nombre de participants</span>
+                          <p className="text-white font-medium">{numberOfPersons} personne{numberOfPersons > 1 ? 's' : ''}</p>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-white/60">Date</span>
-                      <span className="text-white font-medium">{new Date(reservationDate).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-white/60">Heure</span>
-                      <span className="text-white font-medium">{reservationTime}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-white/60">Personnes</span>
-                      <span className="text-white font-medium">{numberOfPersons}</span>
-                    </div>
-                    <div className="border-t border-white/10 pt-3 flex justify-between">
-                      <span className="text-white font-medium">Total</span>
-                      <span className="text-2xl font-bold text-[#e07a5f]">{selectedGuide.price * numberOfPersons}€</span>
+                  </div>
+
+                  {/* Prix total */}
+                  <div className="p-4 bg-[#e07a5f]/10 border border-[#e07a5f]/30 rounded-xl">
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <span className="text-white/60 text-sm">{selectedGuide.price}€ x {numberOfPersons} personne{numberOfPersons > 1 ? 's' : ''}</span>
+                        <p className="text-white/40 text-xs mt-1">Annulation gratuite jusqu'à 24h avant</p>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-white/50 text-xs">Total à payer</span>
+                        <p className="text-3xl font-bold text-[#e07a5f]">{selectedGuide.price * numberOfPersons}€</p>
+                      </div>
                     </div>
                   </div>
 
                   <div className="flex gap-3">
                     <button
                       onClick={() => setReservationStep(1)}
-                      className="flex-1 py-4 rounded-xl font-medium bg-white/10 text-white hover:bg-white/20 transition-all"
+                      className="flex-1 py-4 rounded-xl font-medium bg-white/10 text-white hover:bg-white/20 transition-all flex items-center justify-center gap-2"
                     >
+                      <ChevronRight className="w-4 h-4 rotate-180" />
                       Modifier
                     </button>
                     <button
                       onClick={nextStep}
-                      className="flex-1 py-4 rounded-xl font-medium bg-[#e07a5f] text-[#0c0c0c] hover:bg-[#e8968a] transition-all"
+                      className="flex-1 py-4 rounded-xl font-medium bg-[#e07a5f] text-[#0c0c0c] hover:bg-[#e8968a] transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#e07a5f]/20"
                     >
-                      Payer
+                      <CreditCard className="w-4 h-4" />
+                      Procéder au paiement
                     </button>
                   </div>
                 </div>
@@ -948,55 +1110,105 @@ const GuidePage = () => {
               {/* Étape 3: Paiement */}
               {reservationStep === 3 && (
                 <div className="space-y-6">
-                  <div className="p-4 bg-[#e07a5f]/10 border border-[#e07a5f]/30 rounded-xl text-center">
-                    <CreditCard className="w-12 h-12 mx-auto text-[#e07a5f] mb-3" />
-                    <p className="text-white font-medium">Paiement sécurisé</p>
-                    <p className="text-white/60 text-sm mt-1">
-                      Montant: <span className="text-[#e07a5f] font-bold">{selectedGuide.price * numberOfPersons}€</span>
-                    </p>
+                  {/* En-tête paiement */}
+                  <div className="p-4 bg-gradient-to-r from-[#e07a5f]/10 to-[#e07a5f]/5 border border-[#e07a5f]/20 rounded-xl">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 rounded-full bg-[#e07a5f]/20 flex items-center justify-center">
+                          <CreditCard className="w-6 h-6 text-[#e07a5f]" />
+                        </div>
+                        <div>
+                          <p className="text-white font-medium">Paiement sécurisé</p>
+                          <p className="text-white/50 text-xs">Vos données sont protégées</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-white/50 text-xs">Total</span>
+                        <p className="text-2xl font-bold text-[#e07a5f]">{selectedGuide.price * numberOfPersons}€</p>
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Simulation de formulaire de paiement */}
+                  {/* Mini résumé */}
+                  <div className="p-3 bg-white/[0.02] rounded-xl border border-white/5 flex items-center gap-3">
+                    <img
+                      src={selectedGuide.image}
+                      alt={selectedGuide.name}
+                      className="w-10 h-10 rounded-full object-cover"
+                    />
+                    <div className="flex-1 text-xs">
+                      <p className="text-white">{selectedGuide.name} - {selectedGuide.specialty}</p>
+                      <p className="text-white/40">
+                        {new Date(reservationDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })} à {reservationTime} • {numberOfPersons} pers.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Formulaire de paiement */}
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-white/60 text-sm mb-2">Numéro de carte</label>
+                      <label className="block text-white/60 text-xs mb-2 flex items-center gap-1.5">
+                        <CreditCard className="w-3 h-3" />
+                        Numéro de carte
+                      </label>
                       <input
                         type="text"
                         placeholder="1234 5678 9012 3456"
-                        className="w-full px-4 py-3 bg-white/[0.05] border border-white/[0.15] rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-[#e07a5f] transition-all"
+                        className="w-full px-4 py-3 bg-white/[0.05] border border-white/[0.15] rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-[#e07a5f] focus:bg-white/[0.08] transition-all"
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-white/60 text-sm mb-2">Expiration</label>
+                        <label className="block text-white/60 text-xs mb-2">Expiration</label>
                         <input
                           type="text"
                           placeholder="MM/AA"
-                          className="w-full px-4 py-3 bg-white/[0.05] border border-white/[0.15] rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-[#e07a5f] transition-all"
+                          className="w-full px-4 py-3 bg-white/[0.05] border border-white/[0.15] rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-[#e07a5f] focus:bg-white/[0.08] transition-all"
                         />
                       </div>
                       <div>
-                        <label className="block text-white/60 text-sm mb-2">CVV</label>
+                        <label className="block text-white/60 text-xs mb-2">CVV</label>
                         <input
                           type="text"
                           placeholder="123"
-                          className="w-full px-4 py-3 bg-white/[0.05] border border-white/[0.15] rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-[#e07a5f] transition-all"
+                          className="w-full px-4 py-3 bg-white/[0.05] border border-white/[0.15] rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-[#e07a5f] focus:bg-white/[0.08] transition-all"
                         />
                       </div>
                     </div>
                   </div>
 
-                  <button
-                    onClick={confirmReservation}
-                    className="w-full py-4 rounded-xl font-medium bg-[#e07a5f] text-[#0c0c0c] hover:bg-[#e8968a] transition-all flex items-center justify-center gap-2"
-                  >
-                    <Check className="w-5 h-5" />
-                    Confirmer et payer {selectedGuide.price * numberOfPersons}€
-                  </button>
+                  {/* Boutons */}
+                  <div className="space-y-3">
+                    <button
+                      onClick={confirmReservation}
+                      className="w-full py-4 rounded-xl font-medium bg-[#e07a5f] text-[#0c0c0c] hover:bg-[#e8968a] transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#e07a5f]/20"
+                    >
+                      <Check className="w-5 h-5" />
+                      Confirmer et payer {selectedGuide.price * numberOfPersons}€
+                    </button>
+                    <button
+                      onClick={() => setReservationStep(2)}
+                      className="w-full py-3 rounded-xl text-sm text-white/50 hover:text-white transition-colors"
+                    >
+                      Retour au récapitulatif
+                    </button>
+                  </div>
 
-                  <p className="text-center text-white/40 text-xs">
-                    Paiement sécurisé par SSL. Annulation gratuite jusqu'à 24h avant.
-                  </p>
+                  {/* Sécurité */}
+                  <div className="flex items-center justify-center gap-4 pt-2 border-t border-white/5">
+                    <div className="flex items-center gap-1.5 text-white/30 text-xs">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                      </svg>
+                      Paiement sécurisé SSL
+                    </div>
+                    <div className="flex items-center gap-1.5 text-white/30 text-xs">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      Annulation gratuite 24h
+                    </div>
+                  </div>
                 </div>
               )}
             </div>

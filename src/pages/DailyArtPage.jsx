@@ -235,7 +235,7 @@ const DailyArtPage = () => {
           <img
             src={currentPainting.image}
             alt={currentPainting.title}
-            className="w-full h-full object-contain"
+            className="absolute inset-0 w-full h-full object-contain"
             onError={() => setImageError(true)}
           />
         )}

@@ -450,22 +450,27 @@ const DailyArtPage = () => {
 const PastArtworkCard = ({ artwork, onClick }) => {
   const [hasError, setHasError] = useState(false);
 
-  // Ne pas afficher si l'image est cassée
-  if (hasError) {
-    return null;
-  }
-
   return (
     <button
       onClick={onClick}
       className="group relative aspect-[3/4] rounded-2xl overflow-hidden"
     >
-      <img
-        src={artwork.image}
-        alt={artwork.title}
-        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-        onError={() => setHasError(true)}
+      {/* Fond de couleur de secours (toujours visible) */}
+      <div
+        className="absolute inset-0"
+        style={{ backgroundColor: artwork.fallbackColor }}
       />
+
+      {/* Image avec gestion d'erreur */}
+      {!hasError && (
+        <img
+          src={artwork.image}
+          alt={artwork.title}
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          onError={() => setHasError(true)}
+        />
+      )}
+
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
       <div className="absolute top-3 left-3">
         <span className="px-2 py-1 bg-[#e07a5f]/80 text-white text-xs font-medium rounded-full">
